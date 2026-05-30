@@ -1,0 +1,274 @@
+/* ============================================================
+   Databases Textbook Callouts
+   File: _static/call-outs.css
+
+   Purpose:
+   Styles canonical HTML callout blocks generated in Markdown files.
+
+   Expected HTML pattern:
+
+   <div class="callout tip">
+     <p><strong>💡 Tip: Write queries top-down</strong></p>
+     <ol>
+       <li>Pick the rows with <code>WHERE</code>.</li>
+       <li>Group with <code>GROUP BY</code>.</li>
+       <li>Filter groups with <code>HAVING</code>.</li>
+     </ol>
+   </div>
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   Base Callout Style
+   ------------------------------------------------------------ */
+
+.callout {
+    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    border-left: 6px solid #64748b;
+    border-radius: 0.35rem;
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+/* Keep the headline tight */
+.callout p:first-child {
+    margin-top: 0;
+    margin-bottom: 0.45rem;
+}
+
+/* Remove extra bottom spacing from final child */
+.callout p:last-child,
+.callout ol:last-child,
+.callout ul:last-child {
+    margin-bottom: 0;
+}
+
+/* Make the headline visually stable */
+.callout strong {
+    font-weight: 700;
+}
+
+/* Keep lists compact inside callouts */
+.callout ol,
+.callout ul {
+    margin-top: 0.35rem;
+    padding-left: 1.4rem;
+}
+
+.callout li {
+    margin: 0.2rem 0;
+}
+
+/* Keep inline code readable inside callouts */
+.callout code {
+    padding: 0.1rem 0.25rem;
+    border-radius: 0.2rem;
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+    font-size: 0.95em;
+}
+
+
+/* ------------------------------------------------------------
+   Business and Instructional Callouts
+   ------------------------------------------------------------ */
+
+.callout.business-insight {
+    border-left-color: #2563eb;
+    background: #eff6ff;
+}
+
+.callout.tip {
+    border-left-color: #16a34a;
+    background: #f0fdf4;
+}
+
+.callout.note {
+    border-left-color: #64748b;
+    background: #f8fafc;
+}
+
+.callout.important {
+    border-left-color: #7c3aed;
+    background: #f5f3ff;
+}
+
+.callout.warning {
+    border-left-color: #f59e0b;
+    background: #fffbeb;
+}
+
+.callout.caution {
+    border-left-color: #ea580c;
+    background: #fff7ed;
+}
+
+.callout.good-practice {
+    border-left-color: #15803d;
+    background: #f0fdf4;
+}
+
+.callout.avoid {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+}
+
+.callout.info {
+    border-left-color: #0891b2;
+    background: #ecfeff;
+}
+
+.callout.example {
+    border-left-color: #0d9488;
+    background: #f0fdfa;
+}
+
+.callout.question {
+    border-left-color: #9333ea;
+    background: #faf5ff;
+}
+
+.callout.definition {
+    border-left-color: #475569;
+    background: #f8fafc;
+}
+
+.callout.discipline-definition {
+    border-left-color: #1d4ed8;
+    background: #eff6ff;
+}
+
+.callout.term {
+    border-left-color: #0369a1;
+    background: #f0f9ff;
+}
+
+.callout.concept {
+    border-left-color: #7e22ce;
+    background: #faf5ff;
+}
+
+.callout.key-takeaway {
+    border-left-color: #ca8a04;
+    background: #fefce8;
+}
+
+
+/* ------------------------------------------------------------
+   Optional: Dark Mode Support
+   ------------------------------------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+    .callout {
+        background: #0f172a;
+        color: #e2e8f0;
+        border-left-color: #94a3b8;
+    }
+
+    .callout code {
+        background: rgba(226, 232, 240, 0.12);
+        color: #f8fafc;
+    }
+
+    .callout.business-insight {
+        border-left-color: #60a5fa;
+        background: #0f1f3a;
+    }
+
+    .callout.tip {
+        border-left-color: #4ade80;
+        background: #0f2a1a;
+    }
+
+    .callout.note {
+        border-left-color: #94a3b8;
+        background: #111827;
+    }
+
+    .callout.important {
+        border-left-color: #a78bfa;
+        background: #211536;
+    }
+
+    .callout.warning {
+        border-left-color: #fbbf24;
+        background: #33260a;
+    }
+
+    .callout.caution {
+        border-left-color: #fb923c;
+        background: #331c0b;
+    }
+
+    .callout.good-practice {
+        border-left-color: #4ade80;
+        background: #0f2a1a;
+    }
+
+    .callout.avoid {
+        border-left-color: #f87171;
+        background: #351313;
+    }
+
+    .callout.info {
+        border-left-color: #22d3ee;
+        background: #0c2f36;
+    }
+
+    .callout.example {
+        border-left-color: #2dd4bf;
+        background: #0c2f2a;
+    }
+
+    .callout.question {
+        border-left-color: #c084fc;
+        background: #2a1538;
+    }
+
+    .callout.definition {
+        border-left-color: #94a3b8;
+        background: #111827;
+    }
+
+    .callout.discipline-definition {
+        border-left-color: #60a5fa;
+        background: #0f1f3a;
+    }
+
+    .callout.term {
+        border-left-color: #38bdf8;
+        background: #0c2636;
+    }
+
+    .callout.concept {
+        border-left-color: #c084fc;
+        background: #2a1538;
+    }
+
+    .callout.key-takeaway {
+        border-left-color: #facc15;
+        background: #332b0a;
+    }
+}
+
+
+/* ------------------------------------------------------------
+   Optional: Print Support
+   ------------------------------------------------------------ */
+
+@media print {
+    .callout {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        background: #ffffff;
+        color: #000000;
+        border-left-width: 4px;
+        box-shadow: none;
+    }
+
+    .callout code {
+        background: #f1f5f9;
+        color: #000000;
+    }
+}
