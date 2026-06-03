@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd books/database-book/platform-pilots/ai-studio && npm run build",
+  "outputDirectory": "books/database-book/platform-pilots/ai-studio/dist",
+  "installCommand": "cd books/database-book/platform-pilots/ai-studio && npm install"
+}
