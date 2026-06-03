@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "UserProgress": {
+      "title": "User Progress",
+      "description": "Tracks a user's progress through the textbook chapters and quiz scores.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The unique ID of the user." },
+        "completedChapters": { 
+          "type": "array", 
+          "items": { "type": "string" },
+          "description": "List of chapter IDs the user has successfully completed."
+        },
+        "quizScores": {
+          "type": "object",
+          "description": "A map of chapter IDs to the user's highest quiz score."
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "completedChapters", "quizScores", "updatedAt"]
+    },
+    "Highlight": {
+      "title": "Highlight",
+      "description": "Represents text highlighted by the user in the textbook chapters.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique ID of the highlight." },
+        "userId": { "type": "string", "description": "The owner's user ID." },
+        "chapterId": { "type": "string", "description": "The associated chapter ID." },
+        "sectionId": { "type": "string", "description": "The associated section ID (e.g., intro, concepts, build, questions, terms)." },
+        "selectedText": { "type": "string", "description": "The raw chunk of text highlighted by the user." },
+        "color": { "type": "string", "description": "The highlighting color." },
+        "note": { "type": "string", "description": "Optional custom notation or comment." },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "chapterId", "sectionId", "selectedText", "color", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/userProgress/{userId}": {
+      "schema": "UserProgress",
+      "description": "Stores progress data for each individual user."
+    },
+    "/highlights/{highlightId}": {
+      "schema": "Highlight",
+      "description": "Stores text highlights and user annotations."
+    }
+  }
+}

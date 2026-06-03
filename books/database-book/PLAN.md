@@ -1,8 +1,8 @@
 ---
 name: Database Book Online Reader
-status: pending (not yet executed)
+status: superseded by platform-pilots/evaluation.md
 created: 2026-05-26
-overview: Build out this empty `database-book/` folder into a self-contained static online book. It holds source MD files + images, builds them into a static HTML reader with a left navigation sidebar and reading-progress bar (warm cream/green theme reused from the BITM330 workspace's `book-platform/`). First pass uses mockup MD content for the first 3 chapters so the reader can be verified before real content is migrated. The old `book-platform/` (in the BITM330-book-drive workspace) gets archived afterwards.
+overview: Historical plan for a Python static-site builder. The current direction is to keep requirements, source, and pilots separate; evaluate existing reader prototypes against the canonical six-file chapter source contract; and only then choose a production online-reader base.
 todos:
   - id: scaffold
     content: Scaffold this `database-book/` folder with README.md, requirements.txt, build.py skeleton, .gitignore
@@ -29,6 +29,38 @@ todos:
     content: Delete the stale plan copy at `BITM330-book-drive/.github/plans/database-book-plan.md` (saved earlier in the wrong location)
     status: pending
 ---
+
+# Superseded Notice
+
+This plan is historical and should not be treated as the current canonical implementation plan.
+
+The current direction is documented in:
+
+```text
+platform-pilots/evaluation.md
+```
+
+Current project logic:
+
+```text
+chat-gpt/docs/          = product requirements and future platform roadmap
+files/source/chapters/  = canonical chapter source
+platform-pilots/*       = implementation experiments to evaluate
+```
+
+The intended stable chapter contract is:
+
+```text
+files/source/chapters/chNN-slug/
+  index.md
+  core-concepts.md
+  lets-build.md
+  review-questions.md
+  terms-treasury.md
+  rat.md
+```
+
+Do not start the Python `build.py` implementation below unless this older plan is intentionally revived.
 
 # Database Book -- Online Reader Plan
 

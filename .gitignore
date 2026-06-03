@@ -6,3 +6,8 @@
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Next.js build/dev cache (anywhere in the repo)
+**/.next/
+**/out/
+.vercel

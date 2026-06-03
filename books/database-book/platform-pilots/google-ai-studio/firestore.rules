@@ -1,0 +1,88 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: userProgress
+    // Document ID: {userId}
+    // Fields:
+    //   - userId: string (required) - The UID of the user
+    //   - completedChapters: list (required) - Array of strings (chapter IDs)
+    //   - quizScores: map (required) - Map of chapter IDs to scores (numbers)
+    //   - updatedAt: timestamp (required) - Last update time
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    // Domain Validator for UserProgress
+    function isValidUserProgress(data) {
+      return hasRequiredFields(['userId', 'completedChapters', 'quizScores', 'updatedAt']) &&
+             hasOnlyAllowedFields(['userId', 'completedChapters', 'quizScores', 'updatedAt']) &&
+             data.userId == request.auth.uid &&
+             data.completedChapters is list &&
+             data.quizScores is map &&
+             data.updatedAt is timestamp;
+    }
+
+    // Domain Validator for Highlights
+    function isValidHighlight(data) {
+      return hasRequiredFields(['id', 'userId', 'chapterId', 'sectionId', 'selectedText', 'color', 'createdAt']) &&
+             (data.keys().size() == 7 || (data.keys().size() == 8 && data.keys().hasAll(['note']))) &&
+             data.userId == request.auth.uid &&
+             data.id is string &&
+             data.id.size() <= 128 &&
+             data.chapterId is string &&
+             data.chapterId.size() <= 64 &&
+             data.sectionId is string &&
+             data.sectionId.size() <= 64 &&
+             data.selectedText is string &&
+             data.selectedText.size() <= 5000 &&
+             data.color is string &&
+             data.color.size() <= 32 &&
+             (!data.keys().contains('note') || (data.note is string && data.note.size() <= 2000)) &&
+             data.createdAt is timestamp;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // User Progress rules
+    match /userProgress/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUserProgress(request.resource.data);
+      allow update: if isOwner(userId) && isValidUserProgress(request.resource.data);
+    }
+
+    // Highlights rules
+    match /highlights/{highlightId} {
+      allow get, list: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && isValidHighlight(request.resource.data) && highlightId == request.resource.data.id;
+      allow update: if isAuthenticated() && isValidHighlight(request.resource.data) && resource.data.userId == request.auth.uid && highlightId == request.resource.data.id;
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+  }
+}

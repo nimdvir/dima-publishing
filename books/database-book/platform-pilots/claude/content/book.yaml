@@ -1,0 +1,13 @@
+# Canonical chapter manifest for the reader.
+# Order here defines reading order and prev/next navigation.
+# `preview: true` exposes the chapter publicly at /preview/<slug>.
+product_id: database-book
+
+chapters:
+  - slug: ch01-introduction
+    title: Introduction to Data and Databases
+    preview: true
+  - slug: ch02-mis
+    title: Information Systems and Business Performance
+  - slug: ch03-data-modeling
+    title: Data Modeling

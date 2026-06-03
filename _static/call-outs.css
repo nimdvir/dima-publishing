@@ -272,3 +272,17 @@
         color: #000000;
     }
 }
+
+/* ============================================================
+   Term Highlighting
+  
+   ============================================================ */
+
+.term-highlight {
+    color: #1d4ed8;
+    font-weight: 700;
+}
+
+.term-highlight:hover {
+    text-decoration: underline;
+}

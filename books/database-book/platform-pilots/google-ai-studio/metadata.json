@@ -1,0 +1,6 @@
+{
+  "name": "Interactive Textbook",
+  "description": "Interactive textbook companion for Databases and Management Information Systems by Dr. Nimrod Dvir. Read, search, run quizzes, highlights, and write notes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
