@@ -14,6 +14,9 @@ Your job in this chapter is to understand the logic of the Grading Database, see
 
 Good **database** work starts before any table is built. It starts with understanding the domain, the problem, the users, and the questions the system must eventually answer.
 
+![Detailed workflow showing raw data collection, processing, database linking, querying, analytics, and informed decision-making](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-flow2)
+*The data-to-decisions journey starts with raw records, adds structure and relationships, and ends in analysis that supports better decisions.*
+
 ### The Grading Database Project
 
 ![Grading Database project overview](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/grading_svq05h?_a=BAMAAAiu0)

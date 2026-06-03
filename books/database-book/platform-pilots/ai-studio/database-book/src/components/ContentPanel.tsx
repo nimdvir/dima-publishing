@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import { motion } from 'motion/react';
 import { 
   ArrowLeft, ArrowRight, Play, CheckCircle2, Circle, HelpCircle, 
@@ -459,6 +460,7 @@ export function ContentPanel({
     return (
       <div className="prose prose-zinc prose-indigo max-w-none text-zinc-700 leading-relaxed text-sm my-4">
         <Markdown
+          rehypePlugins={[rehypeRaw]}
           components={{
             h1: ({ children }) => <h1 className="text-2xl font-bold tracking-tight text-zinc-900 mt-6 mb-3 border-b border-zinc-100 pb-1">{applyHighlights(children, sectionHighlights)}</h1>,
             h2: ({ children }) => <h2 className="text-xl font-semibold tracking-tight text-zinc-800 mt-6 mb-2">{applyHighlights(children, sectionHighlights)}</h2>,
@@ -499,14 +501,18 @@ export function ContentPanel({
       case 'intro':
         return (
           <div className="space-y-6 animate-fadeIn">
-            <div className="bg-slate-50 border border-slate-100 p-6 rounded-2xl flex gap-4">
-              <div className="text-slate-400">
-                <Quote className="w-8 h-8 opacity-40 shrink-0" />
+            {chapter.introduction.startsWith('#') || chapter.introduction.includes('\n') || chapter.introduction.includes('<div') ? (
+              renderMarkdown(chapter.introduction)
+            ) : (
+              <div className="bg-slate-50 border border-slate-100 p-6 rounded-2xl flex gap-4">
+                <div className="text-slate-400">
+                  <Quote className="w-8 h-8 opacity-40 shrink-0" />
+                </div>
+                <p className="text-slate-700 font-medium italic leading-relaxed text-sm md:text-base">
+                  {applyHighlights(chapter.introduction, sectionHighlights)}
+                </p>
               </div>
-              <p className="text-slate-700 font-medium italic leading-relaxed text-sm md:text-base">
-                {applyHighlights(chapter.introduction, sectionHighlights)}
-              </p>
-            </div>
+            )}
           </div>
         );
 
@@ -560,7 +566,7 @@ export function ContentPanel({
                 >
                   <h3 className="text-base font-bold text-zinc-800 mb-2 flex items-center gap-1.5">
                     <span className="text-xs text-indigo-500 font-bold bg-indigo-50/70 p-1 w-5 h-5 flex items-center justify-center rounded">
-                      2.{idx + 1}
+                      {chapter.id.replace('ch', '')}.{idx + 1}
                     </span>
                     {applyHighlights(sub.title, sectionHighlights)}
                   </h3>

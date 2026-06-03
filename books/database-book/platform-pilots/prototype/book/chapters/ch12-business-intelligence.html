@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 12 – Business Intelligence and Analytics for Performance Improvement | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 12 – Business Intelligence and Analytics for Performance Improvement</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>71%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:71%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="is-current" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 12</p>
+          <h1>Business Intelligence and Analytics for Performance Improvement</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>41 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 12 – Business Intelligence and Analytics for Performance Improvement</h2>
+                  <p><em>Turning Operational Data into Strategic Insight</em></p>
+<p>Business Intelligence, or <strong>BI</strong>, is where the database becomes useful to managers. Earlier chapters focused on how data is structured, queried, designed, and administered. Chapter 12 shifts to the question that motivates all of that work:</p>
+<blockquote>
+<p>How do organizations use reliable data to understand performance and make better decisions?</p>
+</blockquote>
+<p>An operational database records what happened. A BI system helps explain what those events mean. A grading database records scores, attendance, deliverables, and due dates. A BI system asks whether students are improving, which deliverables are most difficult, whether attendance relates to performance, and where intervention may be needed.</p>
+<p>This chapter introduces the major concepts behind BI: operational versus analytical systems, data warehouses, ETL and ELT pipelines, dimensional modeling, star schemas, OLAP operations, dashboards, KPIs, governance, and the Balanced Scorecard. The running example is the <strong>Grading Database</strong>, because the same ideas apply whether an organization is analyzing student performance, retail sales, patient outcomes, financial transactions, or customer behavior.</p>
+<p>Business Intelligence is not simply a reporting tool. It is an organizational capability. It combines databases, analytical structures, queries, visualization, governance, and managerial judgment. Good BI does not make decisions for people. It gives people better evidence for making decisions.</p>
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Main Question</th>
+<th>Core Ideas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12.1</td>
+<td>What is Business Intelligence?</td>
+<td>BI, decision support, DIKW, R.E.A.D.</td>
+</tr>
+<tr>
+<td>12.2</td>
+<td>Why separate operations from analytics?</td>
+<td>OLTP, OLAP, operational systems, analytical systems</td>
+</tr>
+<tr>
+<td>12.3</td>
+<td>How does data move into BI systems?</td>
+<td>ETL, ELT, data integration, data quality</td>
+</tr>
+<tr>
+<td>12.4</td>
+<td>What is a data warehouse?</td>
+<td>EDW, data marts, metadata, data lakes</td>
+</tr>
+<tr>
+<td>12.5</td>
+<td>How is analytical data modeled?</td>
+<td>Facts, dimensions, measures, star schema</td>
+</tr>
+<tr>
+<td>12.6</td>
+<td>How do analysts explore analytical data?</td>
+<td>Slice, dice, drill-down, roll-up, pivot</td>
+</tr>
+<tr>
+<td>12.7</td>
+<td>How does SQL support BI?</td>
+<td>Views, aggregation, KPIs, analytical queries</td>
+</tr>
+<tr>
+<td>12.8</td>
+<td>How do dashboards communicate insight?</td>
+<td>Reports, dashboards, visualizations, KPI cards</td>
+</tr>
+<tr>
+<td>12.9</td>
+<td>How is performance managed?</td>
+<td>KPIs, targets, Balanced Scorecard</td>
+</tr>
+<tr>
+<td>12.10</td>
+<td>Why does BI need governance?</td>
+<td>Metric definitions, stewardship, access, trust</td>
+</tr>
+<tr>
+<td>12.11</td>
+<td>How does BI differ across platforms?</td>
+<td>Access, SQLite, Supabase/PostgreSQL</td>
+</tr>
+<tr>
+<td>12.12</td>
+<td>How do we build a simple BI layer?</td>
+<td>Grading Database analytics example</td>
+</tr>
+</tbody>
+</table>
+<h2>Learning Objectives</h2>
+<p>After completing this chapter, you will be able to:</p>
+<ol>
+<li>Explain what Business Intelligence is and how it supports organizational decision-making.</li>
+<li>Distinguish between operational systems and analytical systems.</li>
+<li>Explain why normalized operational databases are not always ideal for reporting and analytics.</li>
+<li>Describe the role of ETL and ELT in moving data from operational sources into analytical structures.</li>
+<li>Define data warehouse, enterprise data warehouse, data mart, data lake, and metadata.</li>
+<li>Distinguish facts, dimensions, measures, and descriptors in dimensional modeling.</li>
+<li>Interpret a star schema and explain how it supports analytical queries.</li>
+<li>Describe OLAP operations such as slice, dice, drill-down, roll-up, and pivot.</li>
+<li>Create basic BI queries and views using SQL.</li>
+<li>Explain how reports, dashboards, and KPIs communicate analytical results.</li>
+<li>Describe how the Balanced Scorecard connects metrics to organizational strategy.</li>
+<li>Explain why BI governance is essential for consistent, trustworthy decision-making.</li>
+</ol>
+<hr />
+<h2>12.1 Business Intelligence Fundamentals</h2>
+<h3>What Is Business Intelligence?</h3>
+<blockquote>
+<p><strong>Definition:</strong> Business Intelligence is the collection of concepts, architectures, tools, and practices that help organizations transform data into information, insight, and decision support.</p>
+</blockquote>
+<p>BI is not the same thing as storing data. It is also not the same thing as writing a single query. BI is the larger process of turning operational records into evidence that supports monitoring, evaluation, planning, and action.</p>
+<p>Operational systems answer questions such as:</p>
+<ul>
+<li>Did this student submit Quiz 2?</li>
+<li>What score did Student 102 receive on Exam 1?</li>
+<li>Was Student 205 marked present on February 12?</li>
+<li>What grade record was updated today?</li>
+</ul>
+<p>BI systems answer broader questions:</p>
+<ul>
+<li>Are students improving or declining over time?</li>
+<li>Which deliverable types have the lowest average scores?</li>
+<li>How does attendance relate to performance?</li>
+<li>Which students may need intervention before the final exam?</li>
+<li>Are course outcomes consistent across sections or semesters?</li>
+</ul>
+<p>The first set of questions supports daily operations. The second set supports analysis, evaluation, and management.</p>
+<h3>BI as Decision Support</h3>
+<p>BI systems help managers and analysts do four things:</p>
+<table>
+<thead>
+<tr>
+<th>BI Function</th>
+<th>What It Means</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Monitor</strong></td>
+<td>Track current performance</td>
+<td>Average score by deliverable type</td>
+</tr>
+<tr>
+<td><strong>Compare</strong></td>
+<td>Examine differences across groups or periods</td>
+<td>Quiz averages by week or section</td>
+</tr>
+<tr>
+<td><strong>Diagnose</strong></td>
+<td>Identify possible causes or risks</td>
+<td>Low scores concentrated after missed attendance</td>
+</tr>
+<tr>
+<td><strong>Act</strong></td>
+<td>Support decisions or interventions</td>
+<td>Contact students whose average is below 70</td>
+</tr>
+</tbody>
+</table>
+<p>This is why BI belongs in a database course. Databases are not valuable only because they store data. They are valuable because they support better decisions.</p>
+<h3>BI and the DIKW Hierarchy</h3>
+<p>The DIKW hierarchy helps explain the intellectual movement behind BI:</p>
+<table>
+<thead>
+<tr>
+<th>DIKW Level</th>
+<th>Meaning</th>
+<th>Grading Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data</strong></td>
+<td>Raw facts</td>
+<td><code>StudentID = 101</code>, <code>Score = 72</code></td>
+</tr>
+<tr>
+<td><strong>Information</strong></td>
+<td>Organized data with context</td>
+<td>Average Quiz 2 score is 76</td>
+</tr>
+<tr>
+<td><strong>Knowledge</strong></td>
+<td>Interpreted patterns</td>
+<td>Quiz scores decline after attendance drops</td>
+</tr>
+<tr>
+<td><strong>Wisdom</strong></td>
+<td>Judgment and action</td>
+<td>Add an intervention before the next quiz</td>
+</tr>
+</tbody>
+</table>
+<p>BI sits mainly between <strong>information</strong> and <strong>knowledge</strong>. It creates summaries, comparisons, and patterns that help decision-makers interpret what is happening.</p>
+<h3>BI and the R.E.A.D. Framework</h3>
+<p>The R.E.A.D. framework from Chapter 2 is also useful here. BI does not replace R.E.A.D.; it operationalizes it.</p>
+<table>
+<thead>
+<tr>
+<th>R.E.A.D. Stage</th>
+<th>BI Interpretation</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Represent and Retrieve</strong></td>
+<td>Capture and access reliable operational data</td>
+<td>Store grades, attendance, and deliverables in relational tables</td>
+</tr>
+<tr>
+<td><strong>Express and Explain</strong></td>
+<td>Present data in understandable forms</td>
+<td>Create reports, dashboards, charts, and KPI cards</td>
+</tr>
+<tr>
+<td><strong>Analyze and Associate</strong></td>
+<td>Identify patterns and relationships</td>
+<td>Compare attendance and performance; detect trends</td>
+</tr>
+<tr>
+<td><strong>Decide and Deploy</strong></td>
+<td>Use insight to guide action</td>
+<td>Contact at-risk students; revise assessments; change policy</td>
+</tr>
+</tbody>
+</table>
+<p>BI is therefore the practical layer that moves data from representation into explanation, analysis, and action.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> Business Intelligence turns databases into decision-support systems. The goal is not merely to know what happened, but to understand what it means and what action should follow.</p>
+</blockquote>
+<hr />
+<h2>12.2 Operational Systems vs. Analytical Systems</h2>
+<h3>OLTP: Systems That Run the Business</h3>
+<p>Operational databases are often called <strong>OLTP systems</strong>, which stands for <strong>Online Transaction Processing</strong>. OLTP systems are designed to record and manage individual business events quickly and accurately.</p>
+<p>Examples include:</p>
+<ul>
+<li>recording a student grade,</li>
+<li>marking attendance,</li>
+<li>submitting an order,</li>
+<li>processing a payment,</li>
+<li>updating inventory,</li>
+<li>registering a patient visit.</li>
+</ul>
+<p>OLTP systems are optimized for:</p>
+<ul>
+<li>many small transactions,</li>
+<li>fast inserts and updates,</li>
+<li>high data integrity,</li>
+<li>concurrency control,</li>
+<li>current operational state.</li>
+</ul>
+<p>A normalized Grading Database is an OLTP-style system. It is excellent for recording the correct score for the correct student on the correct deliverable.</p>
+<h3>OLAP: Systems That Analyze the Business</h3>
+<p>Analytical systems are often called <strong>OLAP systems</strong>, which stands for <strong>Online Analytical Processing</strong>. OLAP systems are designed to summarize, compare, aggregate, and explore large amounts of data.</p>
+<p>OLAP systems are optimized for:</p>
+<ul>
+<li>large scans,</li>
+<li>aggregations,</li>
+<li>historical analysis,</li>
+<li>multidimensional comparison,</li>
+<li>dashboards and reports.</li>
+</ul>
+<p>An OLAP-style grading system might analyze trends across weeks, compare assignment categories, calculate pass rates, or identify patterns across sections.</p>
+<h3>OLTP vs. OLAP</h3>
+<table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>OLTP: Operational</th>
+<th>OLAP: Analytical</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary purpose</td>
+<td>Record transactions</td>
+<td>Analyze patterns</td>
+</tr>
+<tr>
+<td>Typical question</td>
+<td>What score did this student receive?</td>
+<td>Which assignments have the lowest averages?</td>
+</tr>
+<tr>
+<td>Data focus</td>
+<td>Current, detailed records</td>
+<td>Historical and summarized data</td>
+</tr>
+<tr>
+<td>Query style</td>
+<td>Short, row-level reads/writes</td>
+<td>Large aggregations and comparisons</td>
+</tr>
+<tr>
+<td>Schema style</td>
+<td>Normalized relational schema</td>
+<td>Dimensional schema, star schema, or reporting views</td>
+</tr>
+<tr>
+<td>Users</td>
+<td>Clerks, instructors, applications</td>
+<td>Analysts, managers, decision-makers</td>
+</tr>
+<tr>
+<td>Performance priority</td>
+<td>Fast transactions and integrity</td>
+<td>Fast reporting and exploration</td>
+</tr>
+</tbody>
+</table>
+<h3>Why Not Just Analyze the Operational Database?</h3>
+<p>It is possible to run analytical queries directly against operational tables, especially in small systems. In this course, that is often exactly what we do for learning. But in larger organizations, this creates problems.</p>
+<p>Operational databases are not ideal for heavy analytics because:</p>
+<ol>
+<li><strong>Analytical queries can slow down operations.</strong> A dashboard query scanning millions of records may interfere with users trying to insert or update transactions.</li>
+<li><strong>Operational schemas are normalized for integrity, not reporting convenience.</strong> Normalized designs may require many joins for simple reporting questions.</li>
+<li><strong>Operational systems often store the current state, not full history.</strong> BI usually needs historical comparison.</li>
+<li><strong>Data may come from many systems.</strong> A single operational database rarely contains everything needed for enterprise analysis.</li>
+<li><strong>Metrics need stable definitions.</strong> Analytical systems need governed calculations that remain consistent across reports.</li>
+</ol>
+<blockquote>
+<p><strong>Important:</strong> Normalization is excellent for operational correctness. Dimensional design is excellent for analytical usability. These are not contradictions. They are different design goals.</p>
+</blockquote>
+<hr />
+<h2>12.3 ETL and ELT: Moving Data into Analytical Systems</h2>
+<h3>What Is ETL?</h3>
+<blockquote>
+<p><strong>Definition:</strong> ETL stands for <strong>Extract, Transform, Load</strong>. It is the process of pulling data from source systems, cleaning and reshaping it, and loading it into an analytical environment.</p>
+</blockquote>
+<p>ETL is the trust layer of BI. It ensures that the data used for reporting is not simply available, but meaningful, consistent, and ready for analysis.</p>
+<table>
+<thead>
+<tr>
+<th>ETL Stage</th>
+<th>What Happens</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Extract</strong></td>
+<td>Pull data from source systems</td>
+<td>Read <code>STUDENT</code>, <code>DELIVERABLE</code>, <code>STUDENT_GRADE</code>, and <code>ATTENDANCE</code></td>
+</tr>
+<tr>
+<td><strong>Transform</strong></td>
+<td>Clean, standardize, validate, derive</td>
+<td>Convert scores to percentages; classify letter grades; calculate attendance rate</td>
+</tr>
+<tr>
+<td><strong>Load</strong></td>
+<td>Store analytics-ready results</td>
+<td>Create reporting views, summary tables, or warehouse tables</td>
+</tr>
+</tbody>
+</table>
+<h3>The Transform Stage</h3>
+<p>The Transform step is usually the most important part of ETL. This is where business meaning is applied.</p>
+<p>Common transformations include:</p>
+<ul>
+<li>removing duplicates,</li>
+<li>standardizing labels,</li>
+<li>handling missing values,</li>
+<li>validating score ranges,</li>
+<li>converting dates into weeks or semesters,</li>
+<li>calculating percentages,</li>
+<li>joining operational tables,</li>
+<li>applying grading rules,</li>
+<li>creating risk categories.</li>
+</ul>
+<p>Example transformations in the Grading Database:</p>
+<table>
+<thead>
+<tr>
+<th>Raw Data Problem</th>
+<th>Transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NULL</code> score</td>
+<td>Mark as <code>Missing</code> or exclude from average, depending on policy</td>
+</tr>
+<tr>
+<td>Score out of range</td>
+<td>Flag values below 0 or above maximum points</td>
+</tr>
+<tr>
+<td>Multiple labels for same category</td>
+<td>Standardize <code>HW</code>, <code>Homework</code>, and <code>Home Work</code> as <code>Homework</code></td>
+</tr>
+<tr>
+<td>Due dates stored as dates</td>
+<td>Add week number, month, semester, and academic term</td>
+</tr>
+<tr>
+<td>Raw score</td>
+<td>Convert to percentage using points possible</td>
+</tr>
+</tbody>
+</table>
+<h3>ETL Example in SQL</h3>
+<p>A simple ETL-style view can reshape normalized grading data into an analytics-ready dataset:</p>
+<pre><code class="language-sql">CREATE VIEW GradeAnalytics AS
+SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    d.DeliverableID,
+    d.Type AS DeliverableType,
+    d.DeliverableNumber,
+    d.DueDate,
+    sg.Score,
+    CASE
+        WHEN sg.Score IS NULL THEN 'Missing'
+        WHEN sg.Score &gt;= 90 THEN 'High'
+        WHEN sg.Score &gt;= 70 THEN 'On Track'
+        ELSE 'At Risk'
+    END AS PerformanceBand
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<p>The operational tables remain normalized. The view provides an analytics-ready interface.</p>
+<h3>What Is ELT?</h3>
+<blockquote>
+<p><strong>Definition:</strong> ELT stands for <strong>Extract, Load, Transform</strong>. Data is loaded into the target system first, then transformed inside that system.</p>
+</blockquote>
+<p>ELT is common in modern cloud warehouses because platforms such as BigQuery, Snowflake, Redshift, and PostgreSQL-based systems can perform transformations at scale.</p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Sequence</th>
+<th>Common Context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ETL</strong></td>
+<td>Extract → Transform → Load</td>
+<td>Traditional warehouses, controlled pipelines</td>
+</tr>
+<tr>
+<td><strong>ELT</strong></td>
+<td>Extract → Load → Transform</td>
+<td>Cloud warehouses, large-scale raw ingestion</td>
+</tr>
+</tbody>
+</table>
+<p>For this course, the practical lesson is simple: whether you call it ETL or ELT, BI requires explicit transformation logic. Raw operational data rarely becomes trustworthy insight automatically.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> ETL is not just data movement. It is the process through which organizations define what their data means.</p>
+</blockquote>
+<hr />
+<h2>12.4 Data Warehouses, Data Marts, and Data Lakes</h2>
+<h3>What Is a Data Warehouse?</h3>
+<blockquote>
+<p><strong>Definition:</strong> A data warehouse is a centralized repository designed specifically for analysis, reporting, and decision support.</p>
+</blockquote>
+<p>A data warehouse is different from an operational database. It is structured around analytical subjects and historical trends rather than daily transaction entry.</p>
+<p>Classically, a data warehouse has four characteristics:</p>
+<table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>Meaning</th>
+<th>Grading Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Subject-oriented</strong></td>
+<td>Organized around major analytical subjects</td>
+<td>Student performance, attendance, deliverables</td>
+</tr>
+<tr>
+<td><strong>Integrated</strong></td>
+<td>Combines data from multiple sources</td>
+<td>Grades from Access, attendance from LMS, student info from registrar</td>
+</tr>
+<tr>
+<td><strong>Time-variant</strong></td>
+<td>Preserves historical data</td>
+<td>Scores and attendance across semesters</td>
+</tr>
+<tr>
+<td><strong>Non-volatile</strong></td>
+<td>Data is loaded and preserved, not constantly overwritten</td>
+<td>Historical snapshots remain available for comparison</td>
+</tr>
+</tbody>
+</table>
+<h3>Metadata in BI</h3>
+<blockquote>
+<p><strong>Definition:</strong> Metadata is data about data. In BI, metadata documents what fields mean, where they came from, how they were transformed, and how often they are refreshed.</p>
+</blockquote>
+<p>BI metadata may answer questions such as:</p>
+<ul>
+<li>What does <code>PassRate</code> mean?</li>
+<li>Is a missing score counted as zero or excluded?</li>
+<li>How often is the dashboard refreshed?</li>
+<li>Which operational tables feed this report?</li>
+<li>Who owns the definition of “at-risk student”?</li>
+</ul>
+<p>Without metadata, users may see numbers but not understand them.</p>
+<h3>Enterprise Data Warehouse vs. Data Mart</h3>
+<p>Organizations may build one large warehouse or several focused analytical stores.</p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Scope</th>
+<th>Strength</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Enterprise Data Warehouse (EDW)</strong></td>
+<td>Entire organization</td>
+<td>Single version of truth</td>
+<td>Expensive and complex</td>
+</tr>
+<tr>
+<td><strong>Data Mart</strong></td>
+<td>Specific department or function</td>
+<td>Faster and more focused</td>
+<td>Can create silos if unmanaged</td>
+</tr>
+</tbody>
+</table>
+<p>A university might have an EDW for institutional reporting, plus data marts for enrollment, advising, finance, and teaching analytics.</p>
+<h3>Data Lakes</h3>
+<blockquote>
+<p><strong>Definition:</strong> A data lake stores raw data in its native format until it is needed for analysis.</p>
+</blockquote>
+<p>Data lakes are useful when organizations want to preserve raw, flexible data for future exploration, data science, or machine learning.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Data Warehouse</th>
+<th>Data Lake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data format</td>
+<td>Cleaned, structured</td>
+<td>Raw, structured/semi-structured/unstructured</td>
+</tr>
+<tr>
+<td>Schema approach</td>
+<td>Schema-on-write</td>
+<td>Schema-on-read</td>
+</tr>
+<tr>
+<td>Main users</td>
+<td>Analysts, managers</td>
+<td>Data scientists, engineers</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Dashboards, KPIs, governed reports</td>
+<td>Exploration, machine learning, raw archives</td>
+</tr>
+</tbody>
+</table>
+<p>A warehouse is like a curated library. A data lake is like a large archive. Both can be useful, but they serve different purposes.</p>
+<hr />
+<h2>12.5 Dimensional Modeling: Facts, Dimensions, and Measures</h2>
+<h3>From Normalized Tables to Analytical Models</h3>
+<p>Operational databases are often normalized. Analytical databases often use <strong>dimensional modeling</strong>.</p>
+<blockquote>
+<p><strong>Definition:</strong> Dimensional modeling is an analytical design approach that organizes data into <strong>facts</strong> and <strong>dimensions</strong> to support fast, understandable reporting.</p>
+</blockquote>
+<p>The core idea is simple:</p>
+<ul>
+<li>Facts record measurable events.</li>
+<li>Dimensions describe the context of those events.</li>
+</ul>
+<h3>Facts and Measures</h3>
+<p>A <strong>fact</strong> is an event or observation that can be measured.</p>
+<p>A <strong>measure</strong> is the numeric value stored in a fact table.</p>
+<p>In the Grading Database:</p>
+<table>
+<thead>
+<tr>
+<th>Fact Event</th>
+<th>Measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A student earns a score on a deliverable</td>
+<td>Score, PointsPossible, Percentage</td>
+</tr>
+<tr>
+<td>A student attends a class session</td>
+<td>AttendedFlag, AttendanceCount</td>
+</tr>
+<tr>
+<td>A student submits work</td>
+<td>SubmissionCount, LateDays</td>
+</tr>
+</tbody>
+</table>
+<p>Facts are usually narrow and numeric. They are the center of analytical calculations.</p>
+<h3>Dimensions and Descriptors</h3>
+<p>A <strong>dimension</strong> provides context for a fact. Dimensions answer who, what, when, where, and how.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Descriptors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student</td>
+<td>StudentName, Email, Section, Major</td>
+</tr>
+<tr>
+<td>Deliverable</td>
+<td>Type, DeliverableNumber, Topic</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>Date, Week, Month, Semester</td>
+</tr>
+<tr>
+<td>Course</td>
+<td>CourseCode, CourseName, Instructor</td>
+</tr>
+</tbody>
+</table>
+<p>Dimensions make facts interpretable. A score of 82 becomes meaningful when we know who earned it, on what deliverable, in which week, and under which grading policy.</p>
+<h3>Star Schema</h3>
+<blockquote>
+<p><strong>Definition:</strong> A star schema is a dimensional model with one fact table at the center connected to surrounding dimension tables.</p>
+</blockquote>
+<p>A simple Grading Database star schema might look like this:</p>
+<pre><code class="language-text">              DIM_STUDENT
+                   |
+DIM_TIME ---- FACT_GRADES ---- DIM_DELIVERABLE
+                   |
+              DIM_COURSE
+</code></pre>
+<p>A more detailed representation:</p>
+<pre><code class="language-text">FACT_GRADES(
+    StudentKey,
+    DeliverableKey,
+    TimeKey,
+    CourseKey,
+    Score,
+    PointsPossible,
+    PercentageScore
+)
+
+DIM_STUDENT(StudentKey, StudentID, StudentName, Section)
+DIM_DELIVERABLE(DeliverableKey, Type, DeliverableNumber, Topic)
+DIM_TIME(TimeKey, Date, Week, Month, Semester)
+DIM_COURSE(CourseKey, CourseCode, Instructor)
+</code></pre>
+<p>The fact table contains foreign keys and measures. The dimension tables contain descriptive context.</p>
+<h3>Why Star Schemas Are Denormalized</h3>
+<p>Star schemas intentionally repeat some descriptive values to make analysis easier and faster. This is not careless redundancy. It is controlled denormalization for analytical purposes.</p>
+<table>
+<thead>
+<tr>
+<th>Operational Design</th>
+<th>Analytical Design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normalize to prevent anomalies</td>
+<td>Denormalize to simplify reporting</td>
+</tr>
+<tr>
+<td>Many small related tables</td>
+<td>Fewer, wider dimension tables</td>
+</tr>
+<tr>
+<td>Optimized for inserts and updates</td>
+<td>Optimized for reads and aggregations</td>
+</tr>
+<tr>
+<td>Enforces current operational truth</td>
+<td>Supports historical comparison</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Important:</strong> Denormalization is acceptable in BI because ETL controls how data enters the analytical system. Users generally query the warehouse; they do not manually update dimension tables during daily operations.</p>
+</blockquote>
+<h3>Snowflake Schema</h3>
+<p>A <strong>snowflake schema</strong> is a variation of a star schema in which dimensions are normalized into additional sub-tables.</p>
+<p>For example, instead of storing deliverable type information inside <code>DIM_DELIVERABLE</code>, a snowflake design might separate it:</p>
+<pre><code class="language-text">DIM_DELIVERABLE(DeliverableKey, DeliverableNumber, TypeKey, Topic)
+DIM_DELIVERABLE_TYPE(TypeKey, TypeName, Weight)
+</code></pre>
+<p>Snowflake schemas reduce redundancy but add joins. Star schemas are often preferred for teaching and reporting because they are simpler to understand.</p>
+<hr />
+<h2>12.6 OLAP Operations: Exploring Data from Multiple Angles</h2>
+<p>OLAP systems support common analytical operations. These operations describe how users move through data.</p>
+<table>
+<thead>
+<tr>
+<th>OLAP Operation</th>
+<th>Meaning</th>
+<th>Grading Example</th>
+<th>SQL Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Slice</strong></td>
+<td>Filter one dimension to one value</td>
+<td>Show only quizzes</td>
+<td><code>WHERE Type = 'Quiz'</code></td>
+</tr>
+<tr>
+<td><strong>Dice</strong></td>
+<td>Filter multiple dimensions</td>
+<td>Quizzes in Section A during March</td>
+<td><code>WHERE Type='Quiz' AND Section='A' AND Month='March'</code></td>
+</tr>
+<tr>
+<td><strong>Drill-down</strong></td>
+<td>Move from summary to detail</td>
+<td>Semester average → weekly average → deliverable score</td>
+<td>More detailed <code>GROUP BY</code></td>
+</tr>
+<tr>
+<td><strong>Roll-up</strong></td>
+<td>Move from detail to summary</td>
+<td>Deliverable score → type average → course average</td>
+<td>Less detailed <code>GROUP BY</code></td>
+</tr>
+<tr>
+<td><strong>Pivot</strong></td>
+<td>Rotate analytical view</td>
+<td>Put deliverable types as columns instead of rows</td>
+<td>Conditional aggregation or pivot tool</td>
+</tr>
+</tbody>
+</table>
+<h3>Slice Example</h3>
+<p>Question: What is the average score for quizzes only?</p>
+<pre><code class="language-sql">SELECT DeliverableType,
+       ROUND(AVG(Score), 2) AS AvgQuizScore
+FROM GradeAnalytics
+WHERE DeliverableType = 'Quiz'
+GROUP BY DeliverableType;
+</code></pre>
+<h3>Dice Example</h3>
+<p>Question: What is the average quiz score for students in Section A after October 1?</p>
+<pre><code class="language-sql">SELECT Section,
+       DeliverableType,
+       ROUND(AVG(Score), 2) AS AvgScore
+FROM GradeAnalytics
+WHERE DeliverableType = 'Quiz'
+  AND Section = 'A'
+  AND DueDate &gt;= '2026-10-01'
+GROUP BY Section, DeliverableType;
+</code></pre>
+<h3>Drill-Down Example</h3>
+<p>Question: How does performance change from assignment type to individual deliverable?</p>
+<pre><code class="language-sql">SELECT DeliverableType,
+       DeliverableNumber,
+       ROUND(AVG(Score), 2) AS AvgScore
+FROM GradeAnalytics
+GROUP BY DeliverableType, DeliverableNumber
+ORDER BY DeliverableType, DeliverableNumber;
+</code></pre>
+<h3>Roll-Up Example</h3>
+<p>Question: What is the overall class average by deliverable type?</p>
+<pre><code class="language-sql">SELECT DeliverableType,
+       ROUND(AVG(Score), 2) AS AvgScore
+FROM GradeAnalytics
+GROUP BY DeliverableType;
+</code></pre>
+<h3>Pivot-Style Example</h3>
+<p>SQL pivot syntax varies by platform. A portable approach uses conditional aggregation:</p>
+<pre><code class="language-sql">SELECT StudentName,
+       ROUND(AVG(CASE WHEN DeliverableType = 'Quiz' THEN Score END), 2) AS QuizAvg,
+       ROUND(AVG(CASE WHEN DeliverableType = 'Exam' THEN Score END), 2) AS ExamAvg,
+       ROUND(AVG(CASE WHEN DeliverableType = 'Project' THEN Score END), 2) AS ProjectAvg
+FROM GradeAnalytics
+GROUP BY StudentName
+ORDER BY StudentName;
+</code></pre>
+<p>This rotates deliverable types into columns, making student performance easier to compare across categories.</p>
+<hr />
+<h2>12.7 SQL as a BI Tool</h2>
+<h3>BI Begins with Good Queries</h3>
+<p>BI tools may look visual, but the logic underneath is often SQL. Dashboards, reports, KPIs, and data models depend on queries that filter, join, aggregate, and classify data correctly.</p>
+<p>A useful BI query usually does at least one of the following:</p>
+<ul>
+<li>joins operational tables into an analytical view,</li>
+<li>groups records into meaningful categories,</li>
+<li>computes a metric,</li>
+<li>applies a business rule,</li>
+<li>labels or flags results,</li>
+<li>supports reuse through a view.</li>
+</ul>
+<h3>Creating a Reusable BI View</h3>
+<pre><code class="language-sql">CREATE VIEW StudentPerformanceBI AS
+SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    d.Type AS DeliverableType,
+    d.DeliverableNumber,
+    d.DueDate,
+    sg.Score,
+    CASE
+        WHEN sg.Score &gt;= 90 THEN 'High'
+        WHEN sg.Score &gt;= 70 THEN 'On Track'
+        WHEN sg.Score IS NULL THEN 'Missing'
+        ELSE 'At Risk'
+    END AS PerformanceStatus
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<p>This view turns a normalized operational structure into a reusable reporting layer.</p>
+<h3>KPI Query: Pass Rate</h3>
+<pre><code class="language-sql">SELECT
+    ROUND(
+        100.0 * COUNT(CASE WHEN Score &gt;= 60 THEN 1 END) / COUNT(*),
+        1
+    ) AS PassRatePercent
+FROM StudentPerformanceBI;
+</code></pre>
+<h3>KPI Query: Missing Submission Count</h3>
+<p>A complete missing-submission report requires every expected student-deliverable pair. That means using <code>CROSS JOIN</code> and <code>LEFT JOIN</code>.</p>
+<pre><code class="language-sql">SELECT
+    COUNT(*) AS MissingSubmissionCount
+FROM STUDENT AS s
+CROSS JOIN DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+   AND d.DeliverableID = sg.DeliverableID
+WHERE sg.GradeID IS NULL;
+</code></pre>
+<h3>KPI Query: At-Risk Students</h3>
+<pre><code class="language-sql">SELECT
+    StudentName,
+    ROUND(AVG(Score), 2) AS AverageScore,
+    COUNT(*) AS GradedItems
+FROM StudentPerformanceBI
+GROUP BY StudentID, StudentName
+HAVING AVG(Score) &lt; 70
+ORDER BY AverageScore ASC;
+</code></pre>
+<h3>Trend Query: Average Score by Week</h3>
+<pre><code class="language-sql">SELECT
+    strftime('%W', DueDate) AS WeekNumber,
+    ROUND(AVG(Score), 2) AS AvgScore
+FROM StudentPerformanceBI
+GROUP BY strftime('%W', DueDate)
+ORDER BY WeekNumber;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> In PostgreSQL, use <code>EXTRACT(WEEK FROM DueDate)</code> or <code>TO_CHAR(DueDate, 'IW')</code> instead of SQLite's <code>strftime()</code>.</p>
+</blockquote>
+<h3>Access Version: Average Score by Deliverable Type</h3>
+<p>Microsoft Access uses slightly different syntax:</p>
+<pre><code class="language-sql">SELECT
+    DELIVERABLE.Type,
+    Avg(STUDENT_GRADE.Score) AS AvgScore
+FROM DELIVERABLE
+INNER JOIN STUDENT_GRADE
+    ON DELIVERABLE.DeliverableID = STUDENT_GRADE.DeliverableID
+GROUP BY DELIVERABLE.Type;
+</code></pre>
+<p>The concept is the same. The dialect changes.</p>
+<hr />
+<h2>12.8 Reports, Dashboards, and Visualization</h2>
+<h3>From Rows to Recognition</h3>
+<p>SQL produces rows and columns. Decision-makers often need patterns, trends, exceptions, and thresholds. Visualization helps convert query output into something people can interpret quickly.</p>
+<p>BI outputs usually fall into three categories:</p>
+<table>
+<thead>
+<tr>
+<th>Output Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Report</strong></td>
+<td>Structured, often scheduled summary</td>
+<td>Weekly grade summary</td>
+</tr>
+<tr>
+<td><strong>Dashboard</strong></td>
+<td>Interactive monitoring surface</td>
+<td>Class performance dashboard</td>
+</tr>
+<tr>
+<td><strong>KPI Card</strong></td>
+<td>Single metric status indicator</td>
+<td>Pass rate = 82%</td>
+</tr>
+</tbody>
+</table>
+<h3>Choosing the Right Visualization</h3>
+<table>
+<thead>
+<tr>
+<th>Analytical Question</th>
+<th>Recommended Visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compare categories</td>
+<td>Bar chart</td>
+</tr>
+<tr>
+<td>Show trend over time</td>
+<td>Line chart</td>
+</tr>
+<tr>
+<td>Show distribution</td>
+<td>Histogram or box plot</td>
+</tr>
+<tr>
+<td>Show relationship between two variables</td>
+<td>Scatter plot</td>
+</tr>
+<tr>
+<td>Show single target metric</td>
+<td>KPI card</td>
+</tr>
+<tr>
+<td>Show part-to-whole</td>
+<td>Stacked bar; pie chart only for very few categories</td>
+</tr>
+</tbody>
+</table>
+<h3>Grading Database Dashboard Example</h3>
+<p>A simple instructor dashboard might include:</p>
+<table>
+<thead>
+<tr>
+<th>Dashboard Element</th>
+<th>BI Question</th>
+<th>Query Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KPI card: average class score</td>
+<td>How is the class doing overall?</td>
+<td><code>AVG(Score)</code></td>
+</tr>
+<tr>
+<td>KPI card: missing submissions</td>
+<td>How much work is unsubmitted?</td>
+<td>Cross join + left join</td>
+</tr>
+<tr>
+<td>Bar chart: average by deliverable type</td>
+<td>Which categories are hardest?</td>
+<td><code>GROUP BY DeliverableType</code></td>
+</tr>
+<tr>
+<td>Line chart: average score by week</td>
+<td>Are scores improving or declining?</td>
+<td>Time-based grouping</td>
+</tr>
+<tr>
+<td>Table: at-risk students</td>
+<td>Who needs attention?</td>
+<td><code>HAVING AVG(Score) &lt; 70</code></td>
+</tr>
+<tr>
+<td>Filter: deliverable type</td>
+<td>Which category should we inspect?</td>
+<td>Dashboard slicer</td>
+</tr>
+</tbody>
+</table>
+<h3>Characteristics of Effective BI Reporting</h3>
+<p>Effective BI reporting should be:</p>
+<ol>
+<li><strong>Accurate:</strong> built on correct data and tested logic.</li>
+<li><strong>Timely:</strong> available when decisions need to be made.</li>
+<li><strong>Consistent:</strong> metrics mean the same thing across reports.</li>
+<li><strong>Interpretable:</strong> users can understand the output without decoding it.</li>
+<li><strong>Actionable:</strong> the report suggests what might need attention.</li>
+<li><strong>Ethical:</strong> sensitive data is protected and presented responsibly.</li>
+</ol>
+<blockquote>
+<p><strong>Common Mistake:</strong> A beautiful dashboard built on unclear metric definitions is not BI. It is decoration with numbers.</p>
+</blockquote>
+<h3>Visualization Pitfalls</h3>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why It Hurts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Too many charts</td>
+<td>Users do not know where to look</td>
+</tr>
+<tr>
+<td>Inconsistent scales</td>
+<td>Comparisons become misleading</td>
+</tr>
+<tr>
+<td>Unlabeled axes</td>
+<td>Interpretation becomes guesswork</td>
+</tr>
+<tr>
+<td>Decorative 3D charts</td>
+<td>Visual style distorts values</td>
+</tr>
+<tr>
+<td>Too many colors</td>
+<td>Attention is scattered</td>
+</tr>
+<tr>
+<td>Metrics without targets</td>
+<td>Users cannot tell whether the number is good or bad</td>
+</tr>
+</tbody>
+</table>
+<p>Clarity beats decoration. Always.</p>
+<hr />
+<h2>12.9 KPIs, Targets, and the Balanced Scorecard</h2>
+<h3>What Is a KPI?</h3>
+<blockquote>
+<p><strong>Definition:</strong> A Key Performance Indicator, or KPI, is a measurable signal used to evaluate progress toward a goal.</p>
+</blockquote>
+<p>A KPI is not just any number. It must connect to an objective.</p>
+<table>
+<thead>
+<tr>
+<th>Weak Metric</th>
+<th>Better KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of grades entered</td>
+<td>Percentage of deliverables graded within seven days</td>
+</tr>
+<tr>
+<td>Number of students</td>
+<td>Percentage of students passing</td>
+</tr>
+<tr>
+<td>Number of attendance rows</td>
+<td>Attendance rate by week</td>
+</tr>
+<tr>
+<td>Average score</td>
+<td>Average score compared with target</td>
+</tr>
+</tbody>
+</table>
+<p>A KPI becomes useful when it has context:</p>
+<ul>
+<li>a target,</li>
+<li>a time period,</li>
+<li>an owner,</li>
+<li>a decision rule,</li>
+<li>a clear definition.</li>
+</ul>
+<h3>KPI Example: At-Risk Rate</h3>
+<pre><code class="language-sql">WITH StudentAverages AS (
+    SELECT
+        StudentID,
+        AVG(Score) AS AvgScore
+    FROM STUDENT_GRADE
+    GROUP BY StudentID
+)
+SELECT
+    ROUND(
+        100.0 * COUNT(CASE WHEN AvgScore &lt; 70 THEN 1 END) / COUNT(*),
+        1
+    ) AS AtRiskRatePercent
+FROM StudentAverages;
+</code></pre>
+<p>This KPI is useful only if the organization defines what happens when the at-risk rate exceeds a threshold.</p>
+<h3>The Balanced Scorecard</h3>
+<p>The <strong>Balanced Scorecard</strong> is a performance management framework that organizes metrics into multiple perspectives rather than relying only on financial or outcome metrics.</p>
+<p>A common version includes four perspectives:</p>
+<table>
+<thead>
+<tr>
+<th>Perspective</th>
+<th>Main Question</th>
+<th>University/Teaching Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Financial / Resource</strong></td>
+<td>Are resources being used effectively?</td>
+<td>Cost per student supported</td>
+</tr>
+<tr>
+<td><strong>Customer / Stakeholder</strong></td>
+<td>Are stakeholders satisfied?</td>
+<td>Student satisfaction, advising responsiveness</td>
+</tr>
+<tr>
+<td><strong>Internal Process</strong></td>
+<td>Are processes working well?</td>
+<td>Average grading turnaround time</td>
+</tr>
+<tr>
+<td><strong>Learning and Growth</strong></td>
+<td>Is the organization improving?</td>
+<td>Faculty development, course redesign outcomes</td>
+</tr>
+</tbody>
+</table>
+<p>For the Grading Database, a course-level Balanced Scorecard might include:</p>
+<table>
+<thead>
+<tr>
+<th>Perspective</th>
+<th>KPI</th>
+<th>Possible Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student success</td>
+<td>Pass rate</td>
+<td>Identify at-risk students</td>
+</tr>
+<tr>
+<td>Internal process</td>
+<td>Grading turnaround time</td>
+<td>Adjust grading workflow</td>
+</tr>
+<tr>
+<td>Engagement</td>
+<td>Weekly attendance rate</td>
+<td>Contact absent students</td>
+</tr>
+<tr>
+<td>Learning improvement</td>
+<td>Score trend over semester</td>
+<td>Revise difficult modules</td>
+</tr>
+<tr>
+<td>Equity/fairness</td>
+<td>Outcome gaps across sections</td>
+<td>Review assessment consistency</td>
+</tr>
+</tbody>
+</table>
+<p>The Balanced Scorecard matters because it prevents metric tunnel vision. A course could have high average grades but poor attendance, delayed feedback, or unequal outcomes across student groups. BI should support a balanced view of performance.</p>
+<hr />
+<h2>12.10 BI Governance and Data Quality</h2>
+<h3>Why Governance Matters</h3>
+<p>BI systems can fail even when the technology works. The most common reason is lack of governance.</p>
+<p>Without governance:</p>
+<ul>
+<li>different teams define the same metric differently,</li>
+<li>dashboards conflict,</li>
+<li>sensitive data is overexposed,</li>
+<li>data quality problems go unassigned,</li>
+<li>users stop trusting reports.</li>
+</ul>
+<p>Governance answers the human and organizational questions behind BI:</p>
+<ul>
+<li>Who owns this metric?</li>
+<li>What exactly does it mean?</li>
+<li>Who is allowed to see it?</li>
+<li>How often is it refreshed?</li>
+<li>What should happen when data is wrong?</li>
+</ul>
+<h3>Metric Definitions</h3>
+<p>A BI environment needs shared definitions.</p>
+<p>Example: “Pass rate” could mean:</p>
+<ol>
+<li>percentage of submitted assignments with score ≥ 60,</li>
+<li>percentage of students with final average ≥ 60,</li>
+<li>percentage of students currently passing based only on graded work,</li>
+<li>percentage of enrolled students expected to pass by semester end.</li>
+</ol>
+<p>Those are different metrics. They may all be useful, but they cannot share the same name.</p>
+<p>A metric definition should include:</p>
+<table>
+<thead>
+<tr>
+<th>Metadata Item</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metric name</td>
+<td>Pass Rate</td>
+</tr>
+<tr>
+<td>Formula</td>
+<td>Students with average ≥ 60 / total active students</td>
+</tr>
+<tr>
+<td>Grain</td>
+<td>Student-semester</td>
+</tr>
+<tr>
+<td>Refresh schedule</td>
+<td>Daily at 2:00 a.m.</td>
+</tr>
+<tr>
+<td>Data owner</td>
+<td>Course coordinator</td>
+</tr>
+<tr>
+<td>Exclusions</td>
+<td>Withdrawn students excluded</td>
+</tr>
+<tr>
+<td>Action threshold</td>
+<td>Alert if below 75%</td>
+</tr>
+</tbody>
+</table>
+<h3>Data Stewardship</h3>
+<p>A <strong>data steward</strong> is responsible for the meaning, quality, and appropriate use of data in a domain.</p>
+<p>In a university, different stewards may own:</p>
+<ul>
+<li>student records,</li>
+<li>course enrollment,</li>
+<li>grades,</li>
+<li>financial aid,</li>
+<li>advising notes,</li>
+<li>attendance records.</li>
+</ul>
+<p>DBAs and analysts manage technical infrastructure and queries. Data stewards manage meaning and policy.</p>
+<h3>Access Control for BI</h3>
+<p>BI dashboards often summarize sensitive information. Summaries can still expose risk.</p>
+<p>Examples:</p>
+<ul>
+<li>A dashboard showing one student in a small group may reveal that student's performance.</li>
+<li>A class comparison dashboard may encourage unfair ranking.</li>
+<li>A public chart may expose information that should remain private.</li>
+</ul>
+<p>BI systems should apply role-based access control, row-level security, and aggregation thresholds when appropriate.</p>
+<blockquote>
+<p><strong>Important:</strong> Security does not stop at the operational database. Reports, dashboards, exports, and screenshots also require governance.</p>
+</blockquote>
+<hr />
+<h2>12.11 BI Across Access, SQLite, and Supabase</h2>
+<p>BI logic is portable. Tools differ, but the analytical thinking remains the same.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Best BI Use</th>
+<th>Strength</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Microsoft Access</strong></td>
+<td>Visual reports and small dashboards</td>
+<td>Easy forms, queries, reports</td>
+<td>Limited scalability and security</td>
+</tr>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>SQL-based BI sandbox</td>
+<td>Lightweight, transparent, portable</td>
+<td>Limited multi-user/server features</td>
+</tr>
+<tr>
+<td><strong>Supabase/PostgreSQL</strong></td>
+<td>Cloud-hosted analytical backend</td>
+<td>Robust SQL, views, security, APIs</td>
+<td>Requires stronger administration and governance</td>
+</tr>
+</tbody>
+</table>
+<h3>Access BI Pattern</h3>
+<p>In Access, students can:</p>
+<ol>
+<li>create queries using Query Design or SQL View,</li>
+<li>save analytical queries,</li>
+<li>build reports from those queries,</li>
+<li>create forms or navigation screens that act like simple dashboards,</li>
+<li>export results to Excel or Power BI.</li>
+</ol>
+<p>Access is useful because it makes the BI pipeline visible.</p>
+<h3>SQLite BI Pattern</h3>
+<p>In SQLite, students can create views and run analytical SQL:</p>
+<pre><code class="language-sql">CREATE VIEW DeliverablePerformance AS
+SELECT
+    d.Type,
+    d.DeliverableNumber,
+    ROUND(AVG(sg.Score), 2) AS AvgScore,
+    COUNT(sg.GradeID) AS SubmissionCount
+FROM DELIVERABLE AS d
+JOIN STUDENT_GRADE AS sg
+    ON d.DeliverableID = sg.DeliverableID
+GROUP BY d.Type, d.DeliverableNumber;
+</code></pre>
+<p>Then query the view:</p>
+<pre><code class="language-sql">SELECT *
+FROM DeliverablePerformance
+ORDER BY AvgScore ASC;
+</code></pre>
+<h3>Supabase/PostgreSQL BI Pattern</h3>
+<p>In Supabase/PostgreSQL, views can support dashboards and APIs:</p>
+<pre><code class="language-sql">CREATE VIEW student_summary AS
+SELECT
+    s.student_id,
+    s.first_name || ' ' || s.last_name AS student_name,
+    ROUND(AVG(sg.score), 2) AS avg_score,
+    COUNT(sg.grade_id) AS graded_items
+FROM student AS s
+JOIN student_grade AS sg
+    ON s.student_id = sg.student_id
+GROUP BY s.student_id, s.first_name, s.last_name;
+</code></pre>
+<p>Cloud BI adds governance concerns:</p>
+<ul>
+<li>Who can query the view?</li>
+<li>Should students see only their own rows?</li>
+<li>Should dashboards use row-level security?</li>
+<li>How often should data refresh?</li>
+<li>What happens if the query becomes expensive?</li>
+</ul>
+<p>The tool changes. The BI questions remain.</p>
+<hr />
+<h2>12.12 Worked Example: Building a Simple BI Layer for the Grading Database</h2>
+<p>This section brings the chapter together with a practical mini-project. The goal is to create a small BI layer using the Grading Database.</p>
+<h3>Step 1: Define the BI Questions</h3>
+<p>Suppose an instructor wants to know:</p>
+<ol>
+<li>What is the average score by deliverable type?</li>
+<li>Which students are currently at risk?</li>
+<li>How many submissions are missing?</li>
+<li>Are scores improving or declining over time?</li>
+<li>Does attendance appear related to performance?</li>
+</ol>
+<p>These are BI questions because they support monitoring and action.</p>
+<h3>Step 2: Create a Core Analytical View</h3>
+<pre><code class="language-sql">CREATE VIEW GradeBI AS
+SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    d.DeliverableID,
+    d.Type AS DeliverableType,
+    d.DeliverableNumber,
+    d.DueDate,
+    sg.Score,
+    CASE
+        WHEN sg.Score IS NULL THEN 'Missing'
+        WHEN sg.Score &lt; 70 THEN 'At Risk'
+        WHEN sg.Score &lt; 85 THEN 'Satisfactory'
+        ELSE 'Strong'
+    END AS ScoreStatus
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<h3>Step 3: Create a Deliverable Performance Report</h3>
+<pre><code class="language-sql">SELECT
+    DeliverableType,
+    DeliverableNumber,
+    ROUND(AVG(Score), 2) AS AvgScore,
+    MIN(Score) AS LowestScore,
+    MAX(Score) AS HighestScore,
+    COUNT(*) AS SubmissionCount
+FROM GradeBI
+GROUP BY DeliverableType, DeliverableNumber
+ORDER BY AvgScore ASC;
+</code></pre>
+<p>This report identifies deliverables that may need review.</p>
+<h3>Step 4: Create an At-Risk Student Report</h3>
+<pre><code class="language-sql">SELECT
+    StudentID,
+    StudentName,
+    ROUND(AVG(Score), 2) AS AvgScore,
+    COUNT(*) AS CompletedItems
+FROM GradeBI
+GROUP BY StudentID, StudentName
+HAVING AVG(Score) &lt; 70
+ORDER BY AvgScore ASC;
+</code></pre>
+<p>This report supports intervention.</p>
+<h3>Step 5: Create a Missing Submission Report</h3>
+<pre><code class="language-sql">SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    d.Type AS DeliverableType,
+    d.DeliverableNumber,
+    d.DueDate
+FROM STUDENT AS s
+CROSS JOIN DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+   AND d.DeliverableID = sg.DeliverableID
+WHERE sg.GradeID IS NULL
+ORDER BY s.LastName, d.DueDate;
+</code></pre>
+<p>This report uses the idea that BI often requires identifying what is absent, not just what exists.</p>
+<h3>Step 6: Create an Attendance-Performance View</h3>
+<pre><code class="language-sql">CREATE VIEW AttendancePerformance AS
+SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    COUNT(CASE WHEN a.Attended = 1 THEN 1 END) AS ClassesAttended,
+    COUNT(a.AttendanceID) AS ClassesRecorded,
+    ROUND(
+        100.0 * COUNT(CASE WHEN a.Attended = 1 THEN 1 END) /
+        NULLIF(COUNT(a.AttendanceID), 0),
+        1
+    ) AS AttendanceRate,
+    ROUND(AVG(sg.Score), 2) AS AvgScore
+FROM STUDENT AS s
+LEFT JOIN ATTENDANCE AS a
+    ON s.StudentID = a.StudentID
+LEFT JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName;
+</code></pre>
+<p>This view lets the instructor explore whether attendance and performance move together.</p>
+<h3>Step 7: Translate Queries into Dashboard Elements</h3>
+<table>
+<thead>
+<tr>
+<th>Dashboard Element</th>
+<th>Query Result</th>
+<th>Decision Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Average class score</td>
+<td><code>AVG(Score)</code></td>
+<td>Overall performance monitoring</td>
+</tr>
+<tr>
+<td>At-risk count</td>
+<td>Students with <code>AVG(Score) &lt; 70</code></td>
+<td>Intervention planning</td>
+</tr>
+<tr>
+<td>Missing submissions</td>
+<td>Missing student-deliverable pairs</td>
+<td>Follow-up reminders</td>
+</tr>
+<tr>
+<td>Avg score by deliverable type</td>
+<td>Grouped grade report</td>
+<td>Assessment redesign</td>
+</tr>
+<tr>
+<td>Attendance-performance table</td>
+<td>AttendancePerformance view</td>
+<td>Engagement analysis</td>
+</tr>
+</tbody>
+</table>
+<p>The BI layer is not the dashboard itself. It is the reliable analytical foundation that the dashboard depends on.</p>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ul>
+<li>Business Intelligence transforms operational data into decision-support insight.</li>
+<li>Operational systems record events; analytical systems evaluate patterns.</li>
+<li>BI depends on reliable databases, but it also requires transformation, context, and governance.</li>
+<li>ETL and ELT convert raw operational records into analytics-ready structures.</li>
+<li>Data warehouses are subject-oriented, integrated, time-variant, and non-volatile.</li>
+<li>Data marts provide focused analytical stores for departments or functions.</li>
+<li>Data lakes preserve raw data for exploration and data science.</li>
+</ul>
+<h3>Analytical Design</h3>
+<ul>
+<li>Dimensional modeling organizes data into facts and dimensions.</li>
+<li>Measures are numeric values used for calculation; descriptors provide context.</li>
+<li>Star schemas place fact tables at the center and dimension tables around them.</li>
+<li>Analytical denormalization is deliberate and controlled, not careless design.</li>
+<li>OLAP operations include slice, dice, drill-down, roll-up, and pivot.</li>
+</ul>
+<h3>Application in Practice</h3>
+<ul>
+<li>SQL views can act as BI layers over normalized operational tables.</li>
+<li>Dashboards should be built on tested queries and consistent metric definitions.</li>
+<li>KPIs are useful only when connected to goals, targets, and action.</li>
+<li>The Balanced Scorecard prevents organizations from relying on one narrow metric.</li>
+<li>BI governance ensures metric consistency, access control, stewardship, and trust.</li>
+</ul>
+<hr />
+<h2>Chapter Summary</h2>
+<p>Business Intelligence is the organizational capability that turns reliable data into performance insight. Earlier chapters showed how to design, query, normalize, and administer databases. This chapter showed how those foundations support reporting, dashboards, KPIs, and decision-making.</p>
+<p>The chapter began by distinguishing operational systems from analytical systems. Operational databases are designed to record transactions accurately and safely. Analytical systems are designed to summarize, compare, and explain patterns across many records. Both are necessary, but they serve different goals.</p>
+<p>ETL and ELT pipelines move data from operational sources into analytical environments. These pipelines do more than transfer records. They clean data, standardize definitions, apply business rules, and create trustworthy analytical structures. In this sense, ETL is a trust-building process.</p>
+<p>Data warehouses, data marts, and data lakes provide different ways to organize analytical data. Warehouses and marts emphasize structured, governed reporting. Data lakes preserve raw flexibility for exploration and advanced analytics. Dimensional modeling then organizes analytical data into facts, measures, dimensions, and descriptors. Star schemas use controlled denormalization to make reporting faster and easier.</p>
+<p>The chapter also explained OLAP operations, visualization, dashboards, KPIs, and the Balanced Scorecard. These tools help decision-makers monitor performance, identify trends, compare outcomes, and choose actions. However, BI requires governance. Without consistent metric definitions, data stewardship, access control, and documentation, dashboards can create confusion rather than insight.</p>
+<p>The main lesson is that BI is not magic layered on top of data. It is the result of disciplined design, careful transformation, clear metrics, and responsible interpretation. A dashboard is only as trustworthy as the database, ETL logic, and governance behind it.</p>
+<hr />
+<h2>Key Terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aggregation</td>
+<td>Combining many values into a summary such as count, sum, or average</td>
+</tr>
+<tr>
+<td>Balanced Scorecard</td>
+<td>A performance management framework that organizes metrics across multiple perspectives</td>
+</tr>
+<tr>
+<td>Business Intelligence (BI)</td>
+<td>Concepts, tools, and practices that transform data into decision-support insight</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>An interactive visual interface that presents BI outputs such as charts, filters, and KPIs</td>
+</tr>
+<tr>
+<td>Data Lake</td>
+<td>Repository that stores raw data in its native format for exploration and analysis</td>
+</tr>
+<tr>
+<td>Data Mart</td>
+<td>Focused analytical store designed for a specific department or function</td>
+</tr>
+<tr>
+<td>Data Warehouse</td>
+<td>Centralized analytical repository designed for reporting and decision support</td>
+</tr>
+<tr>
+<td>Dimension</td>
+<td>Analytical context that describes facts, such as student, time, or deliverable</td>
+</tr>
+<tr>
+<td>Dimensional Modeling</td>
+<td>Analytical design approach based on facts and dimensions</td>
+</tr>
+<tr>
+<td>Drill-down</td>
+<td>OLAP operation that moves from summary to more detailed data</td>
+</tr>
+<tr>
+<td>ELT</td>
+<td>Extract, Load, Transform; loading raw data first and transforming it in the target system</td>
+</tr>
+<tr>
+<td>ETL</td>
+<td>Extract, Transform, Load; moving and preparing data for analytical use</td>
+</tr>
+<tr>
+<td>Fact Table</td>
+<td>Central table in a dimensional model containing measures and foreign keys to dimensions</td>
+</tr>
+<tr>
+<td>KPI</td>
+<td>Key Performance Indicator; measurable signal used to evaluate progress toward a goal</td>
+</tr>
+<tr>
+<td>Measure</td>
+<td>Numeric value used in analysis, such as score, count, or percentage</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Data about data, including definitions, sources, refresh schedules, and lineage</td>
+</tr>
+<tr>
+<td>OLAP</td>
+<td>Online Analytical Processing; systems and methods for multidimensional analysis</td>
+</tr>
+<tr>
+<td>OLTP</td>
+<td>Online Transaction Processing; systems optimized for recording transactions</td>
+</tr>
+<tr>
+<td>Pivot</td>
+<td>OLAP operation that rotates the analytical perspective</td>
+</tr>
+<tr>
+<td>Roll-up</td>
+<td>OLAP operation that moves from detail to summary</td>
+</tr>
+<tr>
+<td>Slice</td>
+<td>OLAP operation that filters one dimension to one value</td>
+</tr>
+<tr>
+<td>Star Schema</td>
+<td>Dimensional schema with a central fact table surrounded by dimension tables</td>
+</tr>
+<tr>
+<td>Data Steward</td>
+<td>Person responsible for data meaning, quality, and appropriate use in a domain</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Review Questions</h2>
+<ol>
+<li>What is Business Intelligence, and how does it differ from operational transaction processing?</li>
+<li>Explain the difference between OLTP and OLAP using the Grading Database as an example.</li>
+<li>Why are normalized operational databases not always ideal for analytics?</li>
+<li>What are the three stages of ETL? Which stage usually carries the most business meaning?</li>
+<li>How does ELT differ from ETL, and why is ELT common in cloud environments?</li>
+<li>What are the four classic characteristics of a data warehouse?</li>
+<li>Compare an Enterprise Data Warehouse, a data mart, and a data lake.</li>
+<li>What is the difference between a fact and a dimension?</li>
+<li>In a grading analytics star schema, what might the fact table be? What dimensions would surround it?</li>
+<li>Why is denormalization acceptable in a star schema but risky in an operational database?</li>
+<li>Define slice, dice, drill-down, roll-up, and pivot.</li>
+<li>Write a SQL query that calculates average score by deliverable type.</li>
+<li>What makes a metric a KPI rather than just a number?</li>
+<li>How does the Balanced Scorecard help prevent metric tunnel vision?</li>
+<li>Why does BI require governance?</li>
+<li>What could go wrong if two departments define "pass rate" differently?</li>
+<li>How can SQL views support BI reporting?</li>
+<li>Why should dashboard access be controlled, even when the dashboard shows summaries rather than raw records?</li>
+</ol>
+<h2>Discussion Questions</h2>
+<ol>
+<li>Think of an organization you know well. What operational data does it already collect, and what BI questions could that data help answer?</li>
+<li>Self-service BI tools allow non-technical users to build dashboards. What are the benefits and risks of this democratization?</li>
+<li>In education analytics, when does helpful performance monitoring become invasive surveillance?</li>
+<li>Should students see dashboards comparing their performance to class averages? What safeguards would be needed?</li>
+<li>Is denormalization in BI a contradiction of earlier chapters on normalization, or simply a different design goal?</li>
+<li>How might AI change BI? Which parts of BI still require human judgment?</li>
+</ol>
+<h2>References</h2>
+<p>Inmon, W. H. (2005). <em>Building the data warehouse</em> (4th ed.). Wiley.</p>
+<p>Kimball, R., &amp; Ross, M. (2013). <em>The data warehouse toolkit: The definitive guide to dimensional modeling</em> (3rd ed.). Wiley.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+<p>Turban, E., Sharda, R., Delen, D., &amp; King, D. (2018). <em>Business intelligence, analytics, and data science: A managerial perspective</em> (4th ed.). Pearson.</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build: Business Intelligence for the Grading Department</h2>
+                  <!-- Sources: BITM330-Book-draft/chapter-drafts/ch12-business-intelligence/main/ch12-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
+
+<p><img alt="Let's Build" src="/_content/BITM330-Book-draft/chapter-drafts/.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif&gt;" /></p>
+<h2>Overview</h2>
+<p>This activity shifts your focus from storing data to using data for decisions. You will build a small BI layer on top of the Grading Database so an instructor or department chair can monitor performance, identify risk, and communicate findings clearly.</p>
+<p>The goal is not to build a flashy dashboard first. The goal is to produce reliable analytical outputs that a dashboard, report, or memo can trust.</p>
+<h2>What You Will Need</h2>
+<ul>
+<li>Your current Grading Database</li>
+<li>A SQL environment that supports views, or a saved-query workflow in Access</li>
+<li>Access Reports, a spreadsheet, or another format for presenting results</li>
+</ul>
+<h2>Part A: Define the BI Questions</h2>
+<p>Start with management questions, not code.</p>
+<p>Choose at least four questions such as:</p>
+<ol>
+<li>What is the average score by deliverable type?</li>
+<li>Which students are currently at risk?</li>
+<li>Which submissions are missing?</li>
+<li>Are scores improving or declining over time?</li>
+<li>Does attendance appear related to performance?</li>
+</ol>
+<p>Translate those questions into KPI-style outputs.</p>
+<table>
+<thead>
+<tr>
+<th>KPI or report</th>
+<th>What it helps decide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Average score by deliverable type</td>
+<td>Which assessments need review</td>
+</tr>
+<tr>
+<td>At-risk student count</td>
+<td>Who needs intervention</td>
+</tr>
+<tr>
+<td>Missing submission list</td>
+<td>Who needs a reminder or follow-up</td>
+</tr>
+<tr>
+<td>Attendance-performance comparison</td>
+<td>Whether engagement and grades move together</td>
+</tr>
+</tbody>
+</table>
+<h2>Part B: Create a Core Analytical View</h2>
+<p>Build one reusable layer that combines student, deliverable, and score data.</p>
+<pre><code class="language-sql">CREATE VIEW GradeBI AS
+SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    d.DeliverableID,
+    d.Type AS DeliverableType,
+    d.DeliverableNumber,
+    d.DueDate,
+    sg.Score,
+    CASE
+        WHEN sg.Score IS NULL THEN 'Missing'
+        WHEN sg.Score &lt; 70 THEN 'At Risk'
+        WHEN sg.Score &lt; 85 THEN 'Satisfactory'
+        ELSE 'Strong'
+    END AS ScoreStatus
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<p>If you are working in Access, create the equivalent saved query instead of a SQL view.</p>
+<h2>Part C: Build Three Core BI Reports</h2>
+<h3>Report 1: Deliverable Performance</h3>
+<pre><code class="language-sql">SELECT
+    DeliverableType,
+    DeliverableNumber,
+    ROUND(AVG(Score), 2) AS AvgScore,
+    MIN(Score) AS LowestScore,
+    MAX(Score) AS HighestScore,
+    COUNT(*) AS SubmissionCount
+FROM GradeBI
+GROUP BY DeliverableType, DeliverableNumber
+ORDER BY AvgScore ASC;
+</code></pre>
+<p>Use this report to find assignments that may be too difficult, too easy, or inconsistent.</p>
+<h3>Report 2: At-Risk Students</h3>
+<pre><code class="language-sql">SELECT
+    StudentID,
+    StudentName,
+    ROUND(AVG(Score), 2) AS AvgScore,
+    COUNT(*) AS CompletedItems
+FROM GradeBI
+GROUP BY StudentID, StudentName
+HAVING AVG(Score) &lt; 70
+ORDER BY AvgScore ASC;
+</code></pre>
+<p>This report supports action, not just description.</p>
+<h3>Report 3: Missing Submissions</h3>
+<pre><code class="language-sql">SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    d.Type AS DeliverableType,
+    d.DeliverableNumber,
+    d.DueDate
+FROM STUDENT AS s
+CROSS JOIN DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+   AND d.DeliverableID = sg.DeliverableID
+WHERE sg.GradeID IS NULL
+ORDER BY s.StudentID, d.DueDate;
+</code></pre>
+<p>This report matters because missing work is often more important than average work.</p>
+<h2>Part D: Add an Attendance-Performance View</h2>
+<p>Create one summary that helps you explore whether attendance and performance move together.</p>
+<pre><code class="language-sql">CREATE VIEW AttendancePerformance AS
+SELECT
+    s.StudentID,
+    s.FirstName || ' ' || s.LastName AS StudentName,
+    COUNT(CASE WHEN a.Attended = 1 THEN 1 END) AS ClassesAttended,
+    COUNT(a.AttendanceID) AS ClassesRecorded,
+    ROUND(
+        100.0 * COUNT(CASE WHEN a.Attended = 1 THEN 1 END) /
+        NULLIF(COUNT(a.AttendanceID), 0),
+        1
+    ) AS AttendanceRate,
+    ROUND(AVG(sg.Score), 2) AS AvgScore
+FROM STUDENT AS s
+LEFT JOIN ATTENDANCE AS a
+    ON s.StudentID = a.StudentID
+LEFT JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName;
+</code></pre>
+<p>If your platform uses different boolean or rounding syntax, adapt the query and note the change.</p>
+<h2>Part E: Translate Results Into a Managerial Output</h2>
+<p>Choose one of these presentation formats:</p>
+<ul>
+<li>an Access report grouped by course or deliverable type</li>
+<li>a one-page KPI sheet</li>
+<li>a decision memo to the department chair</li>
+</ul>
+<p>Your output should answer three plain-language questions:</p>
+<ol>
+<li>What does the data show?</li>
+<li>Why does it matter?</li>
+<li>What should the department do next?</li>
+</ol>
+<p>Avoid technical jargon if the audience is a manager rather than a database student.</p>
+<h2>Deliverable</h2>
+<p>Submit the following:</p>
+<ul>
+<li>SQL queries or saved-query screenshots for your BI layer</li>
+<li>at least three finished BI outputs</li>
+<li>one managerial summary, memo, or report page</li>
+</ul>
+<h2>Reflection Questions</h2>
+<ul>
+<li>Which BI result felt most useful to a decision-maker?</li>
+<li>Which output was hardest to explain clearly?</li>
+<li>Where did data quality affect the credibility of your analysis?</li>
+</ul>
+<h2>Connection Forward</h2>
+<p>Chapter 13 strengthens the database itself with advanced techniques such as indexes, constraints, audit trails, and transaction control.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 12: Business Intelligence — Term Treasury</h2>
+                  <hr />
+<h2>Essential Vocabulary</h2>
+<h3>A</h3>
+<ul>
+<li><strong>Aggregation</strong> — The process of combining multiple data values into a summary measure such as a sum, average, or count.</li>
+</ul>
+<h3>B</h3>
+<ul>
+<li><strong>Business Intelligence (BI)</strong> — The concepts, architectures, tools, and practices that enable organizations to analyze data for decision support.</li>
+</ul>
+<h3>C</h3>
+<ul>
+<li><strong>Cognitive Load</strong> — The burden placed on attention and working memory when interpreting large result sets; a key reason visualization is needed.</li>
+</ul>
+<h3>D</h3>
+<ul>
+<li><strong>Dashboard</strong> — An interactive visual interface combining multiple BI outputs (charts, KPIs, tables) into a single decision surface.</li>
+<li><strong>Data Governance</strong> — Organizational policies, roles, and processes ensuring data remains trustworthy and consistently interpreted across BI outputs.</li>
+<li><strong>Data Lake</strong> — A storage repository holding raw data in its native format until needed for analysis; complements data warehouses.</li>
+<li><strong>Data Lineage</strong> — Documentation of where data originated, how it was transformed, and how it flows through the BI pipeline.</li>
+<li><strong>Data Mart</strong> — A focused analytical store designed for a specific department or business function.</li>
+<li><strong>Data Mining</strong> — Discovering patterns, correlations, and anomalies in large datasets using statistical and machine learning techniques.</li>
+<li><strong>Data Quality Decay</strong> — The accumulation of errors over time in BI systems without systematic detection and correction.</li>
+<li><strong>Data Silo</strong> — An isolated store of data not coordinated with other organizational data, creating potential inconsistency.</li>
+<li><strong>Data Steward</strong> — An individual responsible for data quality within a specific domain (e.g., grading data, enrollment data).</li>
+<li><strong>Data Warehouse</strong> — A centralized repository for analysis and decision support; subject-oriented, integrated, time-variant, and non-volatile.</li>
+<li><strong>Decision Latency</strong> — The delay between when data is available and when it reaches decision-makers in actionable form.</li>
+<li><strong>Decision Support</strong> — Using analytical systems and outputs to help managers make informed, evidence-based decisions.</li>
+<li><strong>Definition Drift</strong> — When the meaning of terms (e.g., "active student," "passing grade") varies across reports or time without governance.</li>
+<li><strong>Denormalization</strong> — The deliberate introduction of redundancy into analytical schemas to improve query performance and simplify reporting.</li>
+<li><strong>Descriptors</strong> — Descriptive attributes in dimensional models used for filtering and grouping (e.g., StudentName, DeliverableType).</li>
+<li><strong>Dice</strong> — An OLAP operation selecting specific values from multiple dimensions simultaneously.</li>
+<li><strong>DIKW Hierarchy</strong> — Data → Information → Knowledge → Wisdom; a framework for understanding how raw facts become actionable insight.</li>
+<li><strong>Dimension Table</strong> — A table in a star schema providing context for facts, describing who, what, when, or where.</li>
+<li><strong>Dimensional Modeling</strong> — A design approach organizing data into facts and dimensions for clarity and performance.</li>
+<li><strong>Dimensions</strong> — Contextual attributes providing the who, what, when, and where for measured facts.</li>
+<li><strong>Drill-Down</strong> — An OLAP operation moving from a summary level to more detailed data.</li>
+</ul>
+<h3>E</h3>
+<ul>
+<li><strong>ELT (Extract, Load, Transform)</strong> — A variant of ETL where raw data is loaded first and transformed inside the target system.</li>
+<li><strong>Enterprise Data Warehouse (EDW)</strong> — An organization-wide data warehouse integrating data across all departments.</li>
+<li><strong>ETL (Extract, Transform, Load)</strong> — The process of pulling data from source systems, cleaning and reshaping it, and loading it into analytical structures.</li>
+</ul>
+<h3>F</h3>
+<ul>
+<li><strong>Fact Table</strong> — The central table in a star schema containing numeric measures and foreign keys to dimension tables.</li>
+<li><strong>Facts</strong> — Measurable events in a dimensional model (e.g., a student's score on a deliverable).</li>
+</ul>
+<h3>K</h3>
+<ul>
+<li><strong>KPI (Key Performance Indicator)</strong> — A quantifiable metric used to evaluate performance against targets or benchmarks.</li>
+</ul>
+<h3>M</h3>
+<ul>
+<li><strong>Measures</strong> — Numeric values in a fact table used for calculations and analysis (e.g., Score, AttendanceCount).</li>
+<li><strong>Metadata</strong> — Data about data; in BI, describes field meanings, data sources, transformation rules, and data lineage.</li>
+<li><strong>Metric Proliferation</strong> — A governance problem where different departments create conflicting versions of the same KPI.</li>
+</ul>
+<h3>O</h3>
+<ul>
+<li><strong>OLAP (Online Analytical Processing)</strong> — Systems and techniques optimized for complex, multi-dimensional analytical queries.</li>
+<li><strong>OLTP (Online Transaction Processing)</strong> — Systems optimized for recording and managing individual business transactions.</li>
+</ul>
+<h3>P</h3>
+<ul>
+<li><strong>Pattern Blindness</strong> — The inability to see trends, outliers, and distributions when data is presented only in tabular form.</li>
+<li><strong>Pivot</strong> — An OLAP operation rotating the analytical perspective by swapping dimensions on rows and columns.</li>
+<li><strong>Predictive Analytics</strong> — Using statistical models and machine learning to anticipate future outcomes from historical data.</li>
+</ul>
+<h3>R</h3>
+<ul>
+<li><strong>READ Model</strong> — Representation, Evaluation, Action/Decision, Deployment; a framework for understanding BI.</li>
+<li><strong>Referential Integrity</strong> — A database constraint ensuring FK relationships remain valid; important for clean analytical results.</li>
+<li><strong>Report</strong> — A structured BI output, often tabular, presenting summarized data for monitoring and comparison.</li>
+<li><strong>Roll-Up</strong> — An OLAP operation moving from detailed data to a higher-level summary.</li>
+<li><strong>Row-Level Security (RLS)</strong> — A database security mechanism restricting data access at the row level based on user roles.</li>
+</ul>
+<h3>S</h3>
+<ul>
+<li><strong>Schema-on-Read</strong> — An approach where data structure is defined at query time (typical of data lakes).</li>
+<li><strong>Schema-on-Write</strong> — An approach where data structure is defined before loading (typical of data warehouses).</li>
+<li><strong>Self-Service BI</strong> — Tools and platforms allowing business users to create reports and dashboards without writing SQL.</li>
+<li><strong>Sensemaking</strong> — The cognitive process by which humans interpret data patterns; supported by visualization.</li>
+<li><strong>Slice</strong> — An OLAP operation selecting a single value from one dimension to filter the data.</li>
+<li><strong>Snowflake Schema</strong> — A dimensional schema where dimension tables are further normalized into sub-tables.</li>
+<li><strong>Star Schema</strong> — A dimensional schema with a central fact table surrounded by denormalized dimension tables.</li>
+</ul>
+<h3>T</h3>
+<ul>
+<li><strong>Transaction Processing System (TPS)</strong> — A system designed for daily operations by processing many small reads and writes.</li>
+</ul>
+<h3>V</h3>
+<ul>
+<li><strong>View</strong> — A saved SQL query acting as a virtual table; commonly used in BI for reusable analytical logic.</li>
+</ul>
+<hr />
+<h2>Acronyms</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Full Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>3NF</strong></td>
+<td>Third Normal Form</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td>Application Programming Interface</td>
+</tr>
+<tr>
+<td><strong>BI</strong></td>
+<td>Business Intelligence</td>
+</tr>
+<tr>
+<td><strong>DIKW</strong></td>
+<td>Data, Information, Knowledge, Wisdom</td>
+</tr>
+<tr>
+<td><strong>EDW</strong></td>
+<td>Enterprise Data Warehouse</td>
+</tr>
+<tr>
+<td><strong>ELT</strong></td>
+<td>Extract, Load, Transform</td>
+</tr>
+<tr>
+<td><strong>ETL</strong></td>
+<td>Extract, Transform, Load</td>
+</tr>
+<tr>
+<td><strong>FK</strong></td>
+<td>Foreign Key</td>
+</tr>
+<tr>
+<td><strong>KPI</strong></td>
+<td>Key Performance Indicator</td>
+</tr>
+<tr>
+<td><strong>OLAP</strong></td>
+<td>Online Analytical Processing</td>
+</tr>
+<tr>
+<td><strong>OLTP</strong></td>
+<td>Online Transaction Processing</td>
+</tr>
+<tr>
+<td><strong>PK</strong></td>
+<td>Primary Key</td>
+</tr>
+<tr>
+<td><strong>READ</strong></td>
+<td>Representation, Evaluation, Action/Decision, Deployment</td>
+</tr>
+<tr>
+<td><strong>RLS</strong></td>
+<td>Row-Level Security</td>
+</tr>
+<tr>
+<td><strong>SDLC</strong></td>
+<td>Systems Development Life Cycle</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Structured Query Language</td>
+</tr>
+<tr>
+<td><strong>TPS</strong></td>
+<td>Transaction Processing System</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ol>
+<li>
+<p><strong>BI as Decision-Support, Not Transaction Processing</strong> — BI transforms operational data into insight, evaluation, and informed action. Operational databases record individual events; BI systems analyze patterns, trends, and performance.</p>
+</li>
+<li>
+<p><strong>DIKW Hierarchy</strong> — Data = raw facts (individual grades). Information = summarized data (average grades). Knowledge = interpreted patterns (which assessments predict success). Wisdom = judgment and action (redesigning assessments). BI sits between Information and Knowledge.</p>
+</li>
+<li>
+<p><strong>READ Model</strong> — Data is collected and structured (Representation), analyzed (Evaluation), interpreted for decisions (Action/Decision), and those actions are carried out (Deployment). BI bridges storage and insight.</p>
+</li>
+<li>
+<p><strong>Separation of Operational and Analytical Systems</strong> — OLTP: fast inserts/updates, transactional integrity, normalized schemas. OLAP: complex queries, historical comparison, denormalized schemas. Mixing the two degrades both.</p>
+</li>
+<li>
+<p><strong>Trust as the Foundation of BI</strong> — If ETL processes are poorly designed, reports conflict, metrics lose credibility, and users stop trusting the system.</p>
+</li>
+<li>
+<p><strong>BI as a Managerial Capability</strong> — BI is an organizational capability, not just a technical one. Managers rely on BI to monitor performance, identify trends, compare outcomes, and support planning.</p>
+</li>
+<li>
+<p><strong>BI Exists on a Spectrum</strong> — From simple reporting (filtering, grouping, summarizing) to advanced analytics (data mining, predictive models, machine learning).</p>
+</li>
+</ol>
+<h3>Concept Overview</h3>
+<ol>
+<li>
+<p><strong>Data Warehouse Architecture</strong> — Centralized repository defined by four properties: subject-oriented, integrated, time-variant, non-volatile. Based on Bill Inmon's foundational work.</p>
+</li>
+<li>
+<p><strong>EDW vs. Data Marts</strong> — EDW serves the entire organization (single version of truth, higher cost). Data Marts focus on one department (faster to build, risk of silos). Many use a hybrid approach.</p>
+</li>
+<li>
+<p><strong>Data Lakes</strong> — Store raw data in native format. Use schema-on-read vs. data warehouses' schema-on-write. Complement but do not replace data warehouses.</p>
+</li>
+<li>
+<p><strong>ETL Process</strong> — Extract (pull from sources), Transform (clean, standardize, validate, reshape — where most intellectual work happens), Load (insert into analytical structures).</p>
+</li>
+<li>
+<p><strong>ELT Process</strong> — Raw data loaded first, then transformed inside the target system using SQL or processing engines. Favored by modern cloud warehouses (Snowflake, BigQuery, Redshift).</p>
+</li>
+<li>
+<p><strong>Common ETL Transformations</strong> — Data cleaning/validation, code translation/standardization, aggregation, derived attributes, time-based transformations.</p>
+</li>
+<li>
+<p><strong>OLAP vs. OLTP</strong> — OLTP: row-level queries, current data, normalized. OLAP: aggregated queries, historical trends, denormalized.</p>
+</li>
+<li>
+<p><strong>Dimensional Modeling</strong> — Facts (measurable events) + Dimensions (context) + Measures (numeric values) + Descriptors (filtering attributes).</p>
+</li>
+<li>
+<p><strong>Star Schema</strong> — Fact table at center with FK + measures. Dimension tables radiate outward. Intentionally denormalized for performance.</p>
+</li>
+<li>
+<p><strong>Snowflake Schema</strong> — Dimension tables further normalized into sub-tables. Saves storage but increases query complexity.</p>
+</li>
+<li>
+<p><strong>OLAP Operations</strong> — Slice (filter one dimension), Dice (filter multiple dimensions), Drill-Down (summary → detail), Roll-Up (detail → summary), Pivot (rotate dimensions).</p>
+</li>
+<li>
+<p><strong>Metadata</strong> — Defines field meanings, documents sources, tracks transformation rules, supports governance and auditing.</p>
+</li>
+<li>
+<p><strong>Data Visualization</strong> — SQL results are necessary but not sufficient. Visualization bridges the gap by compressing complexity, highlighting change, and making exceptions visible.</p>
+</li>
+<li>
+<p><strong>BI Output Types</strong> — Standard Reports (static/tabular), Interactive Dashboards (linked visualizations), KPIs (single-number signals with trend indicators).</p>
+</li>
+<li>
+<p><strong>Effective BI Reporting</strong> — Accuracy (correct logic, clean data), Timeliness (arrives when decisions are being made), Consistency (same metric = same meaning), Interpretability (clear without explanation).</p>
+</li>
+<li>
+<p><strong>BI Governance</strong> — Prevents metric proliferation, definition drift, data quality decay, and security gaps. Key practices: central metric definitions, data stewards, access control, pipeline auditing.</p>
+</li>
+<li>
+<p><strong>Self-Service BI</strong> — Power BI, Tableau, Looker allow business users to build reports without SQL. Challenge: balancing accessibility and consistency.</p>
+</li>
+<li>
+<p><strong>Choosing Visualizations</strong> — Bar charts (comparison), line charts (trends), pie/stacked bar (part-to-whole), histograms/box plots (distribution), scatter plots (relationships), KPI cards/gauges (status).</p>
+</li>
+</ol>
+<h3>Application in Practice</h3>
+<ol>
+<li>
+<p><strong>ETL as Trust-Building</strong> — ETL encodes business rules explicitly, applies them consistently, and makes data quality visible and auditable.</p>
+</li>
+<li>
+<p><strong>Analytical Views in SQL</strong> — Views serve as Transform+Load steps via SQL. Example: <code>GradeAnalytics</code> view joins STUDENT, STUDENT_GRADE, and DELIVERABLE into a flat analytical dataset.</p>
+</li>
+<li>
+<p><strong>Building Star Schemas</strong> — Create dimension tables (DIM_TIME, DIM_STUDENT, DIM_DELIVERABLE, DIM_GRADE_SCALE) and a central fact table (FACT_GRADES) with FK and measures. Populate via <code>INSERT...SELECT</code>.</p>
+</li>
+<li>
+<p><strong>KPI Development</strong> — Pass rate: <code>COUNT(CASE WHEN Score &gt;= 60 THEN 1 END) * 100.0 / COUNT(*)</code>. Also: average class score trends, missing submission counts.</p>
+</li>
+<li>
+<p><strong>Dashboard Design Principles</strong> — Combine filters, linked charts, and summary metrics. Use views for identical logic. Rule: if a stakeholder needs a verbal explanation, the chart needs redesign.</p>
+</li>
+<li>
+<p><strong>BI Governance Practices</strong> — Shared glossary, data stewards, role-based access on analytics, ETL review, version control for report logic.</p>
+</li>
+<li>
+<p><strong>Multi-Platform BI</strong> — Same analytical questions, ETL principles, and reporting objectives apply regardless of platform. Pipeline: Design → Normalize → Query → Analyze → Report → Decide.</p>
+</li>
+</ol>
+<h3>Real-World Examples</h3>
+<ol>
+<li>
+<p><strong>Grading Database as BI Case Study</strong> — Operational tables reinterpreted analytically: grades become measures, students and deliverables become dimensions, time becomes a comparison axis. Outputs: average grade per student, performance by type, attendance correlation, trend analysis, at-risk identification.</p>
+</li>
+<li>
+<p><strong>Microsoft Access for BI</strong> — Visual query design, Report Wizard, charts, dashboard forms via Navigation Form. Exportable to Excel and Power BI.</p>
+</li>
+<li>
+<p><strong>SQLite for BI</strong> — Local analytical sandbox. SQL-based ETL using views. OLAP-style queries via <code>strftime()</code>. Simulated star schema. Teaches transferable SQL skills.</p>
+</li>
+<li>
+<p><strong>Supabase (PostgreSQL) for BI</strong> — Cloud-hosted with enterprise SQL. Views as reporting layers. Row-Level Security for secure analytics. Connection-ready for Power BI, Tableau, Looker via PostgreSQL connector. Uses <code>TO_CHAR()</code> for dates.</p>
+</li>
+<li>
+<p><strong>Enterprise BI Tools</strong> — Microsoft Power BI (DirectQuery, slicers, trends), Tableau (interactive exploration), Google Looker Studio (cloud dashboarding), Snowflake/BigQuery/Redshift (cloud data warehouses favoring ELT).</p>
+</li>
+<li>
+<p><strong>Educational BI Scenarios</strong> — Average grade per deliverable, attendance rates, letter grade distribution, performance trends, at-risk identification (AvgScore &lt; 70), attendance–grade correlation, deliverable type comparison.</p>
+</li>
+</ol>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>&lt;img src=&quot;../../_static/images/review.gif&quot; alt=&quot;Review&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Review: Business Intelligence</h2>
+                  <h2>Key Concepts Review</h2>
+<p>Review the main concepts covered in this chapter to prepare for assessment.</p>
+<h3>Main Topics</h3>
+<ul>
+<li>Topic 1</li>
+<li>Topic 2</li>
+<li>Topic 3</li>
+</ul>
+<h2>Quick Reference</h2>
+<h3>Core Ideas</h3>
+<ul>
+<li>Concept A</li>
+<li>Concept B</li>
+<li>Concept C</li>
+</ul>
+<h2>Review Questions</h2>
+<ol>
+<li>Question about the main concept?</li>
+<li>Question about application?</li>
+<li>Question about implications?</li>
+</ol>
+<h2>Preparation Tips</h2>
+<ul>
+<li>Review your notes from the concepts section</li>
+<li>Complete the Let's Build activities before assessment</li>
+<li>Consult the Terms section for definitions</li>
+</ul>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>&lt;img src=&quot;../../_static/images/RAT.gif&quot; alt=&quot;RAT&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Readiness Assessment Test: Business Intelligence</h2>
+                  <h2>Individual RAT (iRAT)</h2>
+<p>Complete this assessment individually to test your understanding of the material.</p>
+<h3>Multiple Choice Questions</h3>
+<p><strong>Question 1:</strong> What is the primary focus of this chapter?
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<p><strong>Question 2:</strong> Which of the following best describes [concept]?
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<p><strong>Question 3:</strong> In the context of this chapter, [term] refers to:
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<h3>Scoring</h3>
+<ul>
+<li>Score: _____ / 3</li>
+<li>Passing Score: 2 out of 3</li>
+</ul>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch11-database-administration.html"><small>Previous</small><strong>Chapter 11: Chapter 11: Database Administration</strong></a>
+          <a class="pager-card pager-card--next" href="ch13-advanced-database-techniques.html"><small>Next</small><strong>Chapter 13: Chapter 13 – Advanced Database Techniques</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

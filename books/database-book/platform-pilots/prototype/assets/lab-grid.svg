@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">Lab board illustration</title>
+  <desc id="desc">A board of lab cards with chapter labels, timers, and action markers.</desc>
+  <rect width="900" height="620" rx="28" fill="#f7f1e7"/>
+  <g fill="#ffffff" stroke="rgba(25,50,60,0.12)">
+    <rect x="74" y="92" width="340" height="176" rx="24"/>
+    <rect x="486" y="92" width="340" height="176" rx="24"/>
+    <rect x="74" y="332" width="340" height="176" rx="24"/>
+    <rect x="486" y="332" width="340" height="176" rx="24"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="18" fill="#46606b">
+    <text x="104" y="130">CHAPTER 1</text>
+    <text x="516" y="130">CHAPTER 2</text>
+    <text x="104" y="370">CHAPTER 5</text>
+    <text x="516" y="370">CHAPTER 12</text>
+  </g>
+  <g font-family="Georgia, serif" font-size="30" fill="#19323c">
+    <text x="104" y="176">Orientation and Workflow</text>
+    <text x="104" y="212">Check</text>
+    <text x="516" y="176">READ Framework Analysis</text>
+    <text x="104" y="416">SELECT Practice Set</text>
+    <text x="516" y="416">Dashboard Brief</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="20" fill="#245d62">
+    <text x="104" y="238">20 minutes</text>
+    <text x="516" y="238">35 minutes</text>
+    <text x="104" y="442">50 minutes</text>
+    <text x="516" y="442">60 minutes</text>
+  </g>
+  <g fill="#ba8335">
+    <rect x="104" y="248" width="88" height="10" rx="5"/>
+    <rect x="516" y="248" width="112" height="10" rx="5"/>
+    <rect x="104" y="452" width="134" height="10" rx="5"/>
+    <rect x="516" y="452" width="150" height="10" rx="5"/>
+  </g>
+  <rect x="114" y="528" width="672" height="42" rx="21" fill="#14393e"/>
+  <text x="146" y="556" fill="#ffffff" font-family="Arial, sans-serif" font-size="22">Lab cards can later connect to submissions, rubrics, and grading without changing the visual model.</text>
+</svg>

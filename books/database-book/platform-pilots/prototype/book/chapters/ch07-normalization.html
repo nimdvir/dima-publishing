@@ -1,0 +1,4420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 7: Data Normalization | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 7: Data Normalization</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>41%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:41%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="is-current" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 7</p>
+          <h1>Data Normalization</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>82 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 7: Data Normalization</h2>
+                  <!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. -->
+<hr />
+<p>title: "Chapter 7: Data Normalization"
+author: "Nimrod Dvir, PhD"
+date: 2026-05-30
+lang: en-US
+toc: true</p>
+<hr />
+<p><em>From Flat Files to Reliable Relational Design</em></p>
+<p>Chapter 6 introduced the relational model: data is stored in separate tables, rows represent instances, and keys connect related records. Chapter 7 asks the next question: how do we know whether those tables are designed well?</p>
+<p>The answer is <strong>normalization</strong>.</p>
+<p>Normalization is the design discipline that helps database designers reduce redundancy, prevent data anomalies, and place each fact where it belongs. It is not a software feature, a button in Access, or a SQL command that automatically fixes a database. It is a way of reasoning about structure.</p>
+<p>This chapter uses the <strong>Grading Database</strong> as the main case. We begin with a flat grading table that looks convenient but hides repeated student facts, repeated assignment facts, and repeated grading rules. Then we use <strong>functional dependencies</strong> and the first three <strong>normal forms</strong> to rebuild that table into a more reliable relational design.</p>
+<p>By the end of the chapter, you should be able to look at a messy table and ask:</p>
+<ul>
+<li>What facts are repeated?</li>
+<li>What does each attribute depend on?</li>
+<li>Which facts belong together?</li>
+<li>Which facts should be separated into their own tables?</li>
+<li>How can the original report still be recreated with SQL joins or views?</li>
+</ul>
+<p>That last question matters. Normalization does not mean that users lose the reports they need. It means the database stores facts cleanly, and SQL reconstructs useful reporting views when needed.</p>
+<h2>Learning Objectives</h2>
+<p>After completing this chapter, you will be able to:</p>
+<ol>
+<li>Define normalization and explain why it protects data integrity.</li>
+<li>Identify redundancy, inconsistency, and modification anomalies in a flat table.</li>
+<li>Explain functional dependencies and use them to reason about table design.</li>
+<li>Distinguish among <strong>First Normal Form (1NF)</strong>, <strong>Second Normal Form (2NF)</strong>, and <strong>Third Normal Form (3NF)</strong>.</li>
+<li>Apply 1NF by removing multi-valued cells and repeating columns.</li>
+<li>Apply 2NF by removing partial dependencies from composite-key tables.</li>
+<li>Apply 3NF by removing transitive dependencies and separating rules from transactional facts.</li>
+<li>Explain why junction tables are necessary for many-to-many relationships.</li>
+<li>Explain when controlled denormalization may be justified and what risks it creates.</li>
+</ol>
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Part</th>
+<th>Section</th>
+<th>Main Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Why Normalization Matters</td>
+<td>What goes wrong when too many facts are stored in one table?</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Functional Dependencies</td>
+<td>How do we know which facts belong together?</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Normal Forms</td>
+<td>What sequence of design checks improves table structure?</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>First Normal Form</td>
+<td>Is each cell storing one fact?</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>Second Normal Form</td>
+<td>Does every non-key attribute depend on the whole key?</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td>Third Normal Form</td>
+<td>Does every non-key attribute depend only on the key?</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td>Normalized Grading Database</td>
+<td>What does the improved schema look like?</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td>Normalization and Analytics</td>
+<td>How do normalized databases still support reports and dashboards?</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td>Denormalization</td>
+<td>When is intentional redundancy acceptable?</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td>Common Mistakes</td>
+<td>What pitfalls should designers avoid?</td>
+</tr>
+</tbody>
+</table>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.1 Why Normalization Matters</h2>
+<h3>7.1.1 The Problem: Flat Tables Feel Convenient</h3>
+<p>Many organizations begin with one large table because it feels simple. One spreadsheet can show students, assignments, due dates, scores, emails, attendance, and grading rules all in one place. At first, that convenience is attractive.</p>
+<p>The problem appears when the data changes. A flat table may be easy to read, but it is hard to maintain. It repeats the same facts many times, allows inconsistencies to creep in, and makes ordinary operations risky. The larger the table becomes, the more fragile it gets.</p>
+<p><strong>Example: A flat grading table</strong></p>
+<p>Consider this simplified grading table. It follows the Chapter 6 convention of using <code>S1001</code>-style student IDs, scores on a 0-100 scale, and separate fields for <code>CategoryWeight</code> and <code>WeightPerItem</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th style="text-align: right;">CategoryWeight</th>
+<th style="text-align: right;">WeightPerItem</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-17</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-17</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td>S1003</td>
+<td>Carla</td>
+<td>Mendez</td>
+<td>carla@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td>S1003</td>
+<td>Carla</td>
+<td>Mendez</td>
+<td>carla@university.edu</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">92</td>
+</tr>
+</tbody>
+</table>
+<p>At first glance, the table seems useful. You can see who the student is, what the deliverable was, when it was due, how much the category and item count toward the final grade, and what score the student earned.</p>
+<p>But structurally, this table mixes four different kinds of facts:</p>
+<table>
+<thead>
+<tr>
+<th>Kind of Fact</th>
+<th>Columns</th>
+<th>Better Home</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student facts</td>
+<td><code>StudentID</code>, <code>FirstName</code>, <code>LastName</code>, <code>Email</code></td>
+<td><code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Category rules</td>
+<td><code>AssignmentType</code>, <code>CategoryWeight</code>, <code>WeightPerItem</code></td>
+<td><code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td>Deliverable facts</td>
+<td><code>AssignmentType</code>, <code>DeliverableNumber</code>, <code>DueDate</code></td>
+<td><code>DELIVERABLE</code></td>
+</tr>
+<tr>
+<td>Performance facts</td>
+<td><code>StudentID</code>, deliverable identifier, <code>Score</code></td>
+<td><code>STUDENT_GRADE</code></td>
+</tr>
+</tbody>
+</table>
+<p>The table is not just wide. It is conceptually confused. One row is trying to describe a student, a deliverable, a grading rule, and a performance result at the same time.</p>
+<h3>7.1.2 Redundancy</h3>
+<p><strong>Redundancy</strong> occurs when the same fact is stored more than once.</p>
+<p>In the flat table, Alice's name and email appear in every row tied to Alice. Quiz due dates repeat for every student who completed that quiz. The category weight and item weight repeat for every row in the same assignment category.</p>
+<p>Redundancy is not automatically bad. Sometimes repeated values are intentionally created for reporting or performance. But uncontrolled redundancy in a base table is dangerous because repeated facts can drift apart.</p>
+<p><strong>Concrete example</strong></p>
+<p>Suppose Alice changes her email address to <code>alice.johnson@albany.edu</code>.</p>
+<p>In the flat table, the database must update every row where Alice appears:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th>Old Email</th>
+<th>New Email Needed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td>alice@university.edu</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td>alice@university.edu</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1001</td>
+<td>alice@university.edu</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>If one row is missed, the table now contains two versions of Alice's email.</p>
+<p>In a normalized design, Alice's email appears once in <code>STUDENT</code>. The update happens one time.</p>
+<pre><code class="language-sql">UPDATE STUDENT
+SET Email = 'alice.johnson@albany.edu'
+WHERE StudentID = 'S1001';
+</code></pre>
+<p>That is the basic promise of normalization: store the fact once, then reference it when needed.</p>
+<h3>7.1.3 Modification Anomalies</h3>
+<p>A <strong>modification anomaly</strong> is a structural problem that makes inserting, updating, or deleting data produce unwanted side effects. There are three classic types.</p>
+<table>
+<thead>
+<tr>
+<th>Anomaly</th>
+<th>What Goes Wrong</th>
+<th>Grading Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Update anomaly</strong></td>
+<td>A repeated fact must be changed in many places</td>
+<td>Alice's email must be updated in every row where Alice appears</td>
+</tr>
+<tr>
+<td><strong>Insertion anomaly</strong></td>
+<td>A fact cannot be added without another unrelated fact</td>
+<td>A new student cannot be added until the student has a score</td>
+</tr>
+<tr>
+<td><strong>Deletion anomaly</strong></td>
+<td>Deleting one fact accidentally deletes another fact</td>
+<td>Deleting Carla's only grade also removes the only stored record of Carla</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Update anomaly</strong></p>
+<p>If Quiz 1 changes from a <code>WeightPerItem</code> of 5 to 6, every Quiz 1 row must be updated.</p>
+<pre><code class="language-text">Quiz 1 for Alice -&gt; update WeightPerItem
+Quiz 1 for Brian -&gt; update WeightPerItem
+Quiz 1 for Carla -&gt; update WeightPerItem
+</code></pre>
+<p>A normalized design stores the item weight rule once.</p>
+<p><strong>Insertion anomaly</strong></p>
+<p>A new student named Daniel joins the course before completing any assignment. In the flat table, every row represents a grade event, so there is no clean place to store Daniel unless the system invents a fake score row.</p>
+<p>In a normalized design, Daniel belongs in <code>STUDENT</code> immediately:</p>
+<pre><code class="language-sql">INSERT INTO STUDENT (StudentID, FirstName, LastName, Email)
+VALUES ('S1004', 'Daniel', 'Kim', 'daniel@university.edu');
+</code></pre>
+<p>No grade row is needed yet.</p>
+<p><strong>Deletion anomaly</strong></p>
+<p>Carla has only one recorded score. If that score row is deleted, the flat table may lose Carla's name and email as well.</p>
+<p>In a normalized design, deleting a score does not delete the student:</p>
+<pre><code class="language-sql">DELETE FROM STUDENT_GRADE
+WHERE StudentID = 'S1003'
+  AND DeliverableID = 1;
+</code></pre>
+<p>Carla remains in <code>STUDENT</code>.</p>
+<h3>7.1.4 Definition of Normalization</h3>
+<p><strong>Normalization</strong> is the process of organizing relational data so that each fact is stored in the right place, redundancy is reduced, and relationships are represented through keys rather than repeated text.</p>
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Put each fact where it belongs</strong></p>
+  <p>Normalization is not about adding tables for their own sake. It is about deciding where each fact belongs so the fact is stored once and stays consistent.</p>
+</div>
+
+<p>A retailer faces the same problem as the grading database. One order spreadsheet may store customer name, product name, order date, sales representative, and shipping address in the same row. That works for a few orders, but it breaks when a customer changes address, a product price changes, or a sales representative moves territories. Normalization separates customer facts, product facts, order facts, and employee facts so each can be maintained reliably.</p>
+<p><img alt="Flat table compared to normalized STUDENT table" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch07-normalization/ch07-easy-at-first" /></p>
+<p><em>Figure 7.1 — Flat tables feel convenient at first, but updating repeated facts can lead to inconsistencies like disconnected student records.</em></p>
+<p><img alt="Flowchart showing update, insertion, and deletion anomalies" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch07-normalization/ch07-dangers" /></p>
+<p><em>Figure 7.2 — Modification anomalies (update, insertion, and deletion) are structural dangers that occur when multiple subjects are mixed in a single flat table.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.2 Functional Dependencies: The Logic Behind Normalization</h2>
+<p>Normalization is based on <strong>functional dependencies</strong>. These describe how one attribute determines another.</p>
+<h3>7.2.1 What Is a Functional Dependency?</h3>
+<p>A <strong>functional dependency</strong> exists when one attribute, or one set of attributes, determines another attribute.</p>
+<p>We write this as:</p>
+<pre><code class="language-text">X -&gt; Y
+</code></pre>
+<p>This means that if you know <code>X</code>, you can determine <code>Y</code>. The attribute or attribute set on the left is called the <strong>determinant</strong>.</p>
+<h3>7.2.2 Everyday Examples</h3>
+<p>Functional dependencies are not just database theory. They describe ordinary relationships in the world.</p>
+<table>
+<thead>
+<tr>
+<th>Functional Dependency</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StudentID -&gt; FirstName, LastName, Email</code></td>
+<td>A student ID determines the student's identity facts</td>
+</tr>
+<tr>
+<td><code>ZipCode -&gt; City, State</code></td>
+<td>A ZIP code often determines a city and state</td>
+</tr>
+<tr>
+<td><code>ProductID -&gt; ProductName, UnitPrice</code></td>
+<td>A product ID determines product details</td>
+</tr>
+<tr>
+<td><code>CourseSectionID -&gt; MeetingTime, Room</code></td>
+<td>A course section determines its meeting information</td>
+</tr>
+</tbody>
+</table>
+<p>Functional dependencies are not always universal truths. They depend on the rules of the organization. For example, <code>ZipCode -&gt; City</code> is not perfectly reliable in every real-world setting, but it may be acceptable in a simplified teaching database. Good design requires knowing the business context.</p>
+<h3>7.2.3 Functional Dependencies in the Grading Database</h3>
+<p>In the grading example, the dependencies look like this:</p>
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StudentID -&gt; FirstName, LastName, Email</code></td>
+<td>Student details depend on the student</td>
+</tr>
+<tr>
+<td><code>AssignmentType -&gt; Quantity, PointsPerType, Weight, WeightPerItem</code></td>
+<td>Category rules depend on the assignment type</td>
+</tr>
+<tr>
+<td><code>DeliverableID -&gt; AssignmentType, DeliverableNumber, DueDate</code></td>
+<td>Deliverable details depend on the deliverable</td>
+</tr>
+<tr>
+<td><code>(StudentID, DeliverableID) -&gt; Score</code></td>
+<td>A score depends on the combination of student and deliverable</td>
+</tr>
+</tbody>
+</table>
+<p>These dependencies tell us which tables should exist.</p>
+<table>
+<thead>
+<tr>
+<th>Determinant</th>
+<th>Attributes It Determines</th>
+<th>Likely Table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StudentID</code></td>
+<td><code>FirstName</code>, <code>LastName</code>, <code>Email</code></td>
+<td><code>STUDENT</code></td>
+</tr>
+<tr>
+<td><code>AssignmentType</code></td>
+<td><code>Quantity</code>, <code>PointsPerType</code>, <code>Weight</code>, <code>WeightPerItem</code></td>
+<td><code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td><code>DeliverableID</code></td>
+<td><code>AssignmentType</code>, <code>DeliverableNumber</code>, <code>DueDate</code></td>
+<td><code>DELIVERABLE</code></td>
+</tr>
+<tr>
+<td><code>(StudentID, DeliverableID)</code></td>
+<td><code>Score</code></td>
+<td><code>STUDENT_GRADE</code></td>
+</tr>
+</tbody>
+</table>
+<h3>7.2.4 The Design Rule</h3>
+<p>A practical rule follows:</p>
+<div class="callout good-practice">
+  <p><strong>✅ Good Practice: Group attributes by determinant</strong></p>
+  <p>Attributes that depend on the same determinant usually belong in the same table. Attributes that depend on different determinants usually belong in different tables.</p>
+</div>
+
+<p>This rule is not a substitute for judgment, but it is a powerful starting point.</p>
+<p><strong>Example</strong></p>
+<p>If <code>FirstName</code> and <code>Email</code> depend on <code>StudentID</code>, then they belong in <code>STUDENT</code>.</p>
+<p>If <code>Score</code> depends on both <code>StudentID</code> and <code>DeliverableID</code>, then it belongs in a table that represents that relationship, such as <code>STUDENT_GRADE</code>.</p>
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.3: A dependency diagram for the grading database showing four determinants (<code>StudentID</code>, <code>AssignmentType</code>, <code>DeliverableID</code>, <code>(StudentID, DeliverableID)</code>) with arrows to the attributes each one determines, color-coded by the table each group lives in.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.3 Normal Forms: A Step-by-Step Design Checklist</h2>
+<p>Normalization happens through levels called <strong>normal forms</strong>. Each normal form checks for a different kind of structural problem.</p>
+<table>
+<thead>
+<tr>
+<th>Normal Form</th>
+<th>Main Question</th>
+<th>Problem It Fixes</th>
+<th>Memory Aid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1NF</strong></td>
+<td>Is each cell one value?</td>
+<td>Multi-valued cells and repeating columns</td>
+<td>One fact per cell</td>
+</tr>
+<tr>
+<td><strong>2NF</strong></td>
+<td>Does every non-key attribute depend on the whole key?</td>
+<td>Partial dependencies</td>
+<td>The whole key</td>
+</tr>
+<tr>
+<td><strong>3NF</strong></td>
+<td>Does every non-key attribute depend only on the key?</td>
+<td>Transitive dependencies</td>
+<td>Nothing but the key</td>
+</tr>
+</tbody>
+</table>
+<p>A common mnemonic captures all three:</p>
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: The key, the whole key, and nothing but the key</strong></p>
+  <ul>
+    <li><strong>The key:</strong> every table needs a meaningful identifier.</li>
+    <li><strong>The whole key:</strong> non-key attributes should depend on the full key, not part of it.</li>
+    <li><strong>Nothing but the key:</strong> non-key attributes should not depend on other non-key attributes.</li>
+  </ul>
+</div>
+
+<p>Normal forms are cumulative. A table in 3NF must already satisfy 2NF and 1NF.</p>
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.4: A staircase diagram showing 1NF, 2NF, and 3NF as three rising steps, with the structural problem each step removes labeled on the riser (multi-valued cells, partial dependencies, transitive dependencies).</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.4 First Normal Form (1NF): One Cell, One Fact</h2>
+<h3>7.4.1 Definition</h3>
+<p>A table is in <strong>First Normal Form (1NF)</strong> when:</p>
+<ol>
+<li>Each cell contains a single value.</li>
+<li>Each row represents one instance.</li>
+<li>There are no repeating groups or repeating columns.</li>
+<li>Each column contains values of the same kind.</li>
+</ol>
+<p>1NF makes data queryable. It does not fully remove redundancy, but it gives the table a usable relational shape.</p>
+<h3>7.4.2 Violation 1: A Multi-Valued Cell</h3>
+<p>This table violates 1NF because the <code>Grades</code> column stores several scores in one cell.</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Grades</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>90, 85, 88</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>92, 80</td>
+</tr>
+</tbody>
+</table>
+<p>The database sees <code>90, 85, 88</code> as one text-like bundle, not three separate grade facts. That makes filtering, sorting, and averaging difficult.</p>
+<p><strong>1NF fix</strong></p>
+<p>Each grade becomes its own row.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td style="text-align: right;">85</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td style="text-align: right;">80</td>
+</tr>
+</tbody>
+</table>
+<p>Now each cell contains one value.</p>
+<h3>7.4.3 Violation 2: Repeating Columns</h3>
+<p>This table also violates 1NF because the structure repeats grades across columns.</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th style="text-align: right;">Grade1</th>
+<th style="text-align: right;">Grade2</th>
+<th style="text-align: right;">Grade3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">NULL</td>
+</tr>
+</tbody>
+</table>
+<p>The problem is that the table design assumes a fixed number of grades. What happens when there is a fourth grade? Add <code>Grade4</code>? Then <code>Grade5</code>? That is not relational design. Relational databases grow by adding rows, not by adding repeating columns.</p>
+<p><strong>1NF fix</strong></p>
+<p>Use a row for each grade event.</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">85</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">80</td>
+</tr>
+</tbody>
+</table>
+<h3>7.4.4 What 1NF Does Not Solve</h3>
+<p>A 1NF table can still be poorly designed. For example:</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>DeliverableType</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>Quiz</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">2</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>Quiz</td>
+<td style="text-align: right;">85</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>Quiz</td>
+<td style="text-align: right;">92</td>
+</tr>
+</tbody>
+</table>
+<p>This table satisfies 1NF because every cell contains one value. But it still repeats student and deliverable facts. That is why we need 2NF.</p>
+<div class="callout avoid">
+  <p><strong>❌ Avoid: Treating 1NF as the finish line</strong></p>
+  <p>A table can pass 1NF and still be a maintenance nightmare. 1NF fixes cell-level problems, but it does not stop the same student name from appearing in dozens of rows.</p>
+</div>
+
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.5: A before-and-after pair showing a multi-valued <code>Grades</code> cell on the left and the same data unpacked into one-row-per-grade on the right, with arrows from the comma-separated values to their new rows.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.5 Second Normal Form (2NF): The Whole Key</h2>
+<h3>7.5.1 Definition</h3>
+<p>A table is in <strong>Second Normal Form (2NF)</strong> when:</p>
+<ol>
+<li>It is already in 1NF.</li>
+<li>Every non-key attribute depends on the <strong>whole</strong> primary key, not just part of it.</li>
+</ol>
+<p>2NF matters mainly when a table has a <strong>composite key</strong>.</p>
+<p>A <strong>composite key</strong> is a primary key made from two or more columns. In a grading table, the combination <code>(StudentID, DeliverableID)</code> can identify one student's result on one deliverable.</p>
+<h3>7.5.2 A 2NF Violation</h3>
+<p>Consider this table:</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>DeliverableType</th>
+<th>DueDate</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">2</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td>2026-09-17</td>
+<td style="text-align: right;">85</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+<td>Quiz</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">92</td>
+</tr>
+</tbody>
+</table>
+<p>Assume the key is:</p>
+<pre><code class="language-text">(StudentID, DeliverableID)
+</code></pre>
+<p>Now inspect the dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Depends On</th>
+<th>Problem?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Score</code></td>
+<td><code>(StudentID, DeliverableID)</code></td>
+<td>Good</td>
+</tr>
+<tr>
+<td><code>FirstName</code>, <code>LastName</code>, <code>Email</code></td>
+<td><code>StudentID</code> only</td>
+<td>Partial dependency</td>
+</tr>
+<tr>
+<td><code>DeliverableType</code>, <code>DueDate</code></td>
+<td><code>DeliverableID</code> only</td>
+<td>Partial dependency</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>partial dependency</strong> occurs when a non-key attribute depends on only part of a composite key.</p>
+<h3>7.5.3 2NF Fix: Separate Student, Deliverable, and Grade Facts</h3>
+<p>To fix the table, move attributes that depend only on <code>StudentID</code> to <code>STUDENT</code>, and move attributes that depend only on <code>DeliverableID</code> to <code>DELIVERABLE</code>.</p>
+<p><strong>STUDENT</strong></p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DELIVERABLE</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">DeliverableID</th>
+<th>DeliverableType</th>
+<th>DueDate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Quiz</td>
+<td>2026-09-10</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Quiz</td>
+<td>2026-09-17</td>
+</tr>
+</tbody>
+</table>
+<p><strong>STUDENT_GRADE</strong></p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">85</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">92</td>
+</tr>
+</tbody>
+</table>
+<p>Now each table has a clearer purpose.</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>What It Stores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Student facts</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Deliverable facts</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>The score earned by one student on one deliverable</td>
+</tr>
+</tbody>
+</table>
+<h3>7.5.4 Why Junction Tables Appear</h3>
+<p><code>STUDENT_GRADE</code> is a <strong>junction table</strong> because it resolves a many-to-many relationship.</p>
+<ul>
+<li>One student can complete many deliverables.</li>
+<li>One deliverable can be completed by many students.</li>
+<li>The score belongs to the relationship between student and deliverable.</li>
+</ul>
+<p>This same pattern appears in many business systems.</p>
+<table>
+<thead>
+<tr>
+<th>Many-to-Many Relationship</th>
+<th>Junction Table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Students enroll in courses</td>
+<td><code>ENROLLMENT(StudentID, CourseID, EnrollmentDate)</code></td>
+</tr>
+<tr>
+<td>Customers buy products</td>
+<td><code>ORDER_LINE(OrderID, ProductID, Quantity)</code></td>
+</tr>
+<tr>
+<td>Employees work on projects</td>
+<td><code>PROJECT_ASSIGNMENT(EmployeeID, ProjectID, Role)</code></td>
+</tr>
+<tr>
+<td>Pets receive treatments</td>
+<td><code>VISIT_TREATMENT(VisitID, TreatmentID, Charge)</code></td>
+</tr>
+</tbody>
+</table>
+<p>The junction table is not extra complexity for its own sake. It represents something real: the relationship itself has data.</p>
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.6: A three-panel diagram showing the 2NF-violating table at the top, then arrows splitting it into <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code> below, with the composite key <code>(StudentID, DeliverableID)</code> highlighted as the only legitimate determinant of <code>Score</code>.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.6 Third Normal Form (3NF): Nothing But the Key</h2>
+<h3>7.6.1 Definition</h3>
+<p>A table is in <strong>Third Normal Form (3NF)</strong> when:</p>
+<ol>
+<li>It is already in 2NF.</li>
+<li>No non-key attribute depends on another non-key attribute.</li>
+</ol>
+<p>A <strong>transitive dependency</strong> occurs when a non-key attribute depends on another non-key attribute instead of depending directly on the key.</p>
+<h3>7.6.2 A 3NF Violation: Letter Grades</h3>
+<p>Consider this table:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+<th>LetterGrade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">92</td>
+<td>A-</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">88</td>
+<td>B+</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1003</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">76</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p>At first, this looks harmless. But <code>LetterGrade</code> is not an independent fact about the grade record. It is derived from <code>Score</code> according to a grading rule.</p>
+<p>The dependency is:</p>
+<pre><code class="language-text">Score -&gt; LetterGrade
+</code></pre>
+<p>That is a transitive dependency because:</p>
+<pre><code class="language-text">GradeID -&gt; Score
+Score -&gt; LetterGrade
+</code></pre>
+<p>So:</p>
+<pre><code class="language-text">GradeID -&gt; LetterGrade
+</code></pre>
+<p>only through <code>Score</code>.</p>
+<h3>7.6.3 3NF Fix: Separate Rules from Facts</h3>
+<p>The score belongs in <code>STUDENT_GRADE</code>. The letter-grade rule belongs in <code>GRADE_SCALE</code>.</p>
+<p><strong>STUDENT_GRADE</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1003</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">76</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GRADE_SCALE</strong></p>
+<table>
+<thead>
+<tr>
+<th>LetterGrade</th>
+<th style="text-align: right;">MinScore</th>
+<th style="text-align: right;">MaxScore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr>
+<td>A-</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td>B+</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">89</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">79</td>
+</tr>
+</tbody>
+</table>
+<p>Now the rule is stored once. If the grading scale changes, the database does not need to rewrite every grade record.</p>
+<h3>7.6.4 Another 3NF Example: Assignment Type Rules</h3>
+<p>Suppose <code>DELIVERABLE</code> stores both individual deliverable information and category-level rules:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">DeliverableID</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th style="text-align: right;">Quantity</th>
+<th style="text-align: right;">PointsPerType</th>
+<th style="text-align: right;">Weight</th>
+<th style="text-align: right;">WeightPerItem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-17</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+<p>The dependency is:</p>
+<pre><code class="language-text">AssignmentType -&gt; Quantity, PointsPerType, Weight, WeightPerItem
+</code></pre>
+<p>But <code>AssignmentType</code> is not the primary key of <code>DELIVERABLE</code>. The table mixes facts about individual deliverables with facts about assignment categories.</p>
+<p><strong>Better design</strong></p>
+<p><strong>ASSIGNMENT_TYPE</strong></p>
+<table>
+<thead>
+<tr>
+<th>AssignmentType</th>
+<th style="text-align: right;">Quantity</th>
+<th style="text-align: right;">PointsPerType</th>
+<th style="text-align: right;">Weight</th>
+<th style="text-align: right;">WeightPerItem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>Homework</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DELIVERABLE</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">DeliverableID</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-17</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+</tr>
+</tbody>
+</table>
+<p>This is cleaner because category rules live in <code>ASSIGNMENT_TYPE</code>, while individual assignments live in <code>DELIVERABLE</code>.</p>
+<h3>7.6.5 Business Example: Customer Region</h3>
+<p>A sales table might include:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">OrderID</th>
+<th style="text-align: right;">CustomerID</th>
+<th>CustomerName</th>
+<th>RegionCode</th>
+<th>RegionManager</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">501</td>
+<td>Northwind Books</td>
+<td>NE</td>
+<td>Taylor</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">502</td>
+<td>Hudson Supply</td>
+<td>NE</td>
+<td>Taylor</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">503</td>
+<td>Valley Foods</td>
+<td>SW</td>
+<td>Jordan</td>
+</tr>
+</tbody>
+</table>
+<p>If <code>RegionCode -&gt; RegionManager</code>, then <code>RegionManager</code> belongs in a <code>REGION</code> table, not repeated in every order or customer row.</p>
+<p><strong>REGION</strong></p>
+<table>
+<thead>
+<tr>
+<th>RegionCode</th>
+<th>RegionManager</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NE</td>
+<td>Taylor</td>
+</tr>
+<tr>
+<td>SW</td>
+<td>Jordan</td>
+</tr>
+</tbody>
+</table>
+<p>This is the same logic as the grading database. Rules and lookup facts belong in lookup tables, not repeated across transaction rows.</p>
+<h3>7.6.6 Before and After at a Glance</h3>
+<p>Before moving from design to the finished schema, it helps to see the journey in one compact view.</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Flat Grading Table</th>
+<th>Normalized Design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tables</td>
+<td>1</td>
+<td>7 (<code>STUDENT</code>, <code>ASSIGNMENT_TYPE</code>, <code>DELIVERABLE</code>, <code>STUDENT_GRADE</code>, <code>SCHEDULE</code>, <code>ATTENDANCE</code>, <code>GRADE_SCALE</code>)</td>
+</tr>
+<tr>
+<td>Student facts</td>
+<td>Repeated in every grade row</td>
+<td>Stored once in <code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Category rules</td>
+<td>Repeated in every deliverable row</td>
+<td>Stored once in <code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td>Letter-grade rule</td>
+<td>Embedded in each grade row</td>
+<td>Stored once in <code>GRADE_SCALE</code></td>
+</tr>
+<tr>
+<td>Update of one student email</td>
+<td>Many row updates, risk of drift</td>
+<td>One row update</td>
+</tr>
+<tr>
+<td>Adding a new student before any grade</td>
+<td>Not possible without a fake row</td>
+<td>One <code>INSERT</code> into <code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Producing the original flat report</td>
+<td>Already flat</td>
+<td>Recreated with a <code>JOIN</code> or a view</td>
+</tr>
+</tbody>
+</table>
+<p>The normalized schema separates <strong>storage</strong> from <strong>presentation</strong>. Storage stays clean and consistent. Presentation is reconstructed on demand through SQL joins, views, and reporting tools.</p>
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.7: A two-column visual: on the left, the flat grading table with redundant cells highlighted; on the right, the seven normalized tables arranged like cards, with key columns marked and lines showing how a SQL join would reassemble the original report.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.7 The Normalized Grading Database</h2>
+<p>After applying 1NF, 2NF, and 3NF, the Grading Database can be organized into focused tables. This section uses the same seven-table design introduced in Chapter 6, now explained through the lens of normalization.</p>
+<h3>7.7.1 Seven-Table Schema</h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Stores student identity and contact information</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td>Stores grading categories and category-level rules</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Stores specific deliverables such as Quiz 1 or Exam 1</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>Stores one student's score on one deliverable</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Stores class meeting dates, topics, and formats</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Stores whether a student attended one class meeting</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Stores final letter-grade thresholds</td>
+</tr>
+</tbody>
+</table>
+<h3>7.7.2 Schema Notation</h3>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email, Birthday)
+
+ASSIGNMENT_TYPE(AssignmentType, Quantity, PointsPerType, Weight, WeightPerItem)
+
+DELIVERABLE(DeliverableID, AssignmentType, DeliverableNumber, DueDate, Topic)
+
+STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+
+SCHEDULE(ClassNum, Week, ClassDate, Topic, Format)
+
+ATTENDANCE(AttendanceID, StudentID, ClassNum, Attended)
+
+GRADE_SCALE(LetterGrade, MinScore, MaxScore)
+</code></pre>
+<p>In the early flat-table examples, <code>CategoryWeight</code> names the business idea plainly. In the schema shorthand, Chapter 6 uses <code>Weight</code> for the same category-level rule.</p>
+<h3>7.7.3 How the Tables Connect</h3>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASSIGNMENT_TYPE.AssignmentType</code> -&gt; <code>DELIVERABLE.AssignmentType</code></td>
+<td>One assignment type can have many deliverables</td>
+</tr>
+<tr>
+<td><code>STUDENT.StudentID</code> -&gt; <code>STUDENT_GRADE.StudentID</code></td>
+<td>One student can have many grade records</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE.DeliverableID</code> -&gt; <code>STUDENT_GRADE.DeliverableID</code></td>
+<td>One deliverable can have many student scores</td>
+</tr>
+<tr>
+<td><code>STUDENT.StudentID</code> -&gt; <code>ATTENDANCE.StudentID</code></td>
+<td>One student can have many attendance records</td>
+</tr>
+<tr>
+<td><code>SCHEDULE.ClassNum</code> -&gt; <code>ATTENDANCE.ClassNum</code></td>
+<td>One class meeting can have many attendance records</td>
+</tr>
+</tbody>
+</table>
+<h3>7.7.4 Why This Design Is Better</h3>
+<table>
+<thead>
+<tr>
+<th>Problem in the Flat Table</th>
+<th>Normalized Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student emails repeat in every grade row</td>
+<td>Store student information once in <code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Due dates repeat for every student</td>
+<td>Store deliverable details once in <code>DELIVERABLE</code></td>
+</tr>
+<tr>
+<td>Category rules repeat across deliverables</td>
+<td>Store rules once in <code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td>Scores mix with student and deliverable facts</td>
+<td>Store scores in <code>STUDENT_GRADE</code></td>
+</tr>
+<tr>
+<td>Attendance mixes with grades</td>
+<td>Store attendance in <code>ATTENDANCE</code></td>
+</tr>
+<tr>
+<td>Letter-grade rules may repeat or be hard-coded</td>
+<td>Store thresholds in <code>GRADE_SCALE</code></td>
+</tr>
+</tbody>
+</table>
+<p>Normalization does not make the data disappear. It moves each fact to the table where it belongs.</p>
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.8: An entity-relationship diagram of the seven-table grading schema with primary keys, foreign keys, and crow's-foot notation showing the cardinality of each relationship.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.8 Normalization and Analytics</h2>
+<p>A common worry is that normalization makes reporting harder. The reality is more nuanced.</p>
+<div class="callout business-insight">
+  <p><strong>📊 Business Insight: Storage and presentation are different jobs</strong></p>
+  <p>Normalization makes storage cleaner. SQL, views, and BI tools make presentation convenient. A well-designed database stores facts in normalized tables and serves reports through joins and views.</p>
+</div>
+
+<h3>7.8.1 Example: Student Average Scores</h3>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(AVG(sg.Score), 2) AS AverageScore
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName
+ORDER BY AverageScore DESC;
+</code></pre>
+<p>This query uses normalized tables to calculate a student-level summary.</p>
+<h3>7.8.2 Example: Weighted Contribution</h3>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       at.AssignmentType,
+       d.DeliverableNumber,
+       sg.Score,
+       at.WeightPerItem,
+       ROUND(sg.Score * at.WeightPerItem / 100.0, 2) AS WeightedContribution
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+  ON sg.DeliverableID = d.DeliverableID
+JOIN ASSIGNMENT_TYPE AS at
+  ON d.AssignmentType = at.AssignmentType;
+</code></pre>
+<p>This example shows why normalized structure is useful. The score comes from <code>STUDENT_GRADE</code>, the assignment category comes from <code>DELIVERABLE</code>, and the weight rule comes from <code>ASSIGNMENT_TYPE</code>.</p>
+<h3>7.8.3 Example: Missing Grades</h3>
+<p>To find students who do not yet have a score for a deliverable, analysts often need a list of expected student-deliverable combinations.</p>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       d.DeliverableID,
+       d.AssignmentType,
+       d.DeliverableNumber
+FROM STUDENT AS s
+CROSS JOIN DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+ AND d.DeliverableID = sg.DeliverableID
+WHERE sg.GradeID IS NULL
+ORDER BY s.LastName, d.AssignmentType, d.DeliverableNumber;
+</code></pre>
+<p>This query is more advanced, but the idea is simple: compare what should exist with what actually exists. That is the bridge from clean storage to useful analysis.</p>
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.9: A layered diagram with three labeled layers, from bottom to top: normalized tables, SQL joins and views, and dashboards or reports. Arrows show data flowing upward and queries flowing downward.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.9 Denormalization: When Redundancy Is Intentional</h2>
+<h3>7.9.1 Definition</h3>
+<p><strong>Denormalization</strong> is the intentional reintroduction of redundancy into a database or reporting layer to improve performance, simplify reporting, or support a specific operational need.</p>
+<p>Denormalization should happen <strong>after</strong> a normalized design exists, not instead of normalization.</p>
+<h3>7.9.2 Appropriate Examples</h3>
+<table>
+<thead>
+<tr>
+<th>Denormalized Structure</th>
+<th>Why It Might Be Useful</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A summary table of daily sales totals</td>
+<td>Speeds up dashboard loading</td>
+</tr>
+<tr>
+<td>A cached current GPA field</td>
+<td>Avoids recalculating a common metric repeatedly</td>
+</tr>
+<tr>
+<td>A materialized view of customer order history</td>
+<td>Improves reporting performance</td>
+</tr>
+<tr>
+<td>A reporting table combining student, deliverable, and score data</td>
+<td>Helps BI tools read a simpler structure</td>
+</tr>
+</tbody>
+</table>
+<h3>7.9.3 Risk of Denormalization</h3>
+<p>Denormalization creates a synchronization problem. If a fact is stored in more than one place, the system must keep those copies consistent.</p>
+<p>For example, if <code>AverageScore</code> is stored in a student summary table, it must be refreshed whenever <code>STUDENT_GRADE</code> changes. Otherwise, the summary becomes stale.</p>
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Denormalize on purpose, not by accident</strong></p>
+  <p>Denormalization is an optimization strategy, not an excuse for messy design. Normalize first, then add controlled redundancy only when the performance or reporting benefit clearly outweighs the synchronization cost.</p>
+</div>
+
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.10: A scale or balance graphic with "Storage integrity" on one side and "Reporting speed" on the other, illustrating that denormalization shifts weight toward speed at the cost of integrity if not managed carefully.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>7.10 Common Normalization Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why It Causes Problems</th>
+<th>Better Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Storing lists in one cell</td>
+<td>Hard to filter, count, or join</td>
+<td>Store one value per row</td>
+</tr>
+<tr>
+<td>Creating <code>Quiz1</code>, <code>Quiz2</code>, <code>Quiz3</code> columns</td>
+<td>New deliverables require new columns</td>
+<td>Store deliverables as rows</td>
+</tr>
+<tr>
+<td>Repeating student names in grade rows</td>
+<td>Updates become inconsistent</td>
+<td>Store student facts in <code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Storing category rules in each deliverable row</td>
+<td>Rule changes require many edits</td>
+<td>Store rules in <code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td>Storing letter grades in every grade row</td>
+<td>Derived labels become stale</td>
+<td>Store numeric score and use <code>GRADE_SCALE</code></td>
+</tr>
+<tr>
+<td>Using reports as base tables</td>
+<td>Presentation needs distort storage design</td>
+<td>Store normalized facts and build views</td>
+</tr>
+</tbody>
+</table>
+<h4>🎨 Figure Suggestions</h4>
+<p>Figure 7.11: A quick-reference card listing each common mistake on the left and a small visual of the better approach on the right, designed so students can scan it before a design exercise.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ul>
+<li><strong>Normalization</strong> is a design discipline for placing facts in the right tables.</li>
+<li><strong>Redundancy</strong> creates inconsistency risk when repeated facts are updated unevenly.</li>
+<li><strong>Modification anomalies</strong> are predictable symptoms of poor structure.</li>
+<li><strong>Functional dependencies</strong> describe which attributes determine other attributes.</li>
+<li><strong>Normal forms</strong> are cumulative design checks: 1NF, then 2NF, then 3NF.</li>
+<li><strong>Junction tables</strong> represent many-to-many relationships and often store facts about the relationship itself.</li>
+<li><strong>Views</strong> allow normalized storage to support flat, report-friendly outputs.</li>
+</ul>
+<h3>Normal Form Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Normal Form</th>
+<th>Rule</th>
+<th>Example Violation</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1NF</strong></td>
+<td>Each cell contains one value; no repeating groups</td>
+<td><code>Grades = "90, 85, 88"</code></td>
+<td>Store each grade as a separate row</td>
+</tr>
+<tr>
+<td><strong>2NF</strong></td>
+<td>Every non-key attribute depends on the whole key</td>
+<td><code>FirstName</code> depends only on <code>StudentID</code> in a composite-key table</td>
+<td>Move student facts to <code>STUDENT</code></td>
+</tr>
+<tr>
+<td><strong>3NF</strong></td>
+<td>Non-key attributes depend only on the key</td>
+<td><code>LetterGrade</code> depends on <code>Score</code></td>
+<td>Move grading rules to <code>GRADE_SCALE</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Practical Design Checklist</h3>
+<p>Before accepting a table design, ask:</p>
+<ol>
+<li>Does each row represent one kind of thing?</li>
+<li>Does each cell contain one value?</li>
+<li>Is there a clear primary key?</li>
+<li>Does every non-key attribute depend on the key?</li>
+<li>If the key is composite, does every non-key attribute depend on the whole key?</li>
+<li>Does any non-key attribute depend on another non-key attribute?</li>
+<li>Are lookup rules or category definitions stored once?</li>
+<li>Can the original report be recreated with joins or views?</li>
+</ol>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Chapter Summary</h2>
+<p>This chapter explained how normalization turns a working relational design into a reliable one. Chapter 6 introduced the idea of connected tables; Chapter 7 showed how to test and improve those tables by asking where each fact belongs.</p>
+<p>The chapter began with a flat grading table that looked useful but mixed student facts, deliverable facts, grading rules, and score facts in one structure. That design created redundancy and led to update, insertion, and deletion anomalies. Functional dependencies then provided the reasoning tool needed to diagnose the structure.</p>
+<p>First Normal Form required each cell to contain one value and removed repeating groups. Second Normal Form removed partial dependencies from composite-key tables by separating student facts, deliverable facts, and score facts. Third Normal Form removed transitive dependencies by separating rule-based and lookup data, such as assignment-type rules and grade-scale thresholds.</p>
+<p>The chapter also showed how normalized storage supports analysis. SQL joins, views, and reporting layers allow users to see convenient flat outputs while the underlying database remains clean and trustworthy. Finally, the chapter explained that denormalization can be useful in controlled situations, but only after the normalized design is understood.</p>
+<p>Normalization is not about making databases more complicated. It is about making them safer, clearer, and easier to maintain as real organizational data changes over time.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Looking Ahead</h2>
+<p>Chapter 8 reviews and integrates the first half of the course. You will revisit data fundamentals, database structure, SQL basics, keys, relationships, and normalization as one connected system.</p>
+<p>Chapter 9 then returns to SQL in a richer way, using the normalized Grading Database to answer more advanced questions across multiple related tables.</p>
+<p>Chapter 10 moves from querying normalized databases to designing database systems from business requirements.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>References</h2>
+<p>Codd, E. F. (1970). A relational model of data for large shared data banks. <em>Communications of the ACM, 13</em>(6), 377-387.</p>
+<p>Connolly, T., &amp; Begg, C. (2015). <em>Database systems: A practical approach to design, implementation, and management</em> (6th ed.). Pearson.</p>
+<p>Date, C. J. (2004). <em>An introduction to database systems</em> (8th ed.). Pearson.</p>
+<p>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of database systems</em> (7th ed.). Pearson.</p>
+<p>Hoffer, J. A., Venkataraman, R., &amp; Topi, H. (2019). <em>Modern database management</em> (13th ed.). Pearson.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build</h2>
+                  <!-- Let's Build 07 created 2026-05-26: moved hands-on SQL + Access content from Ch07 main appendix into a guided LB using the Grading Database. Companion lab placeholder: Lab 07 — Normalizing a Veterinary Clinic Database. -->
+
+<h2>Let's Build</h2>
+<p>Chapter 7 explained that normalization is a way of thinking about <em>where each fact belongs</em>. In this Let's Build (LB) you turn that thinking into action: you take a single flat grading table from the Grading Database (GD), split it into four normalized tables in Microsoft Access, connect those tables with enforced relationships, and then rebuild the original report using a SQL query. The work you do here is the source material for <strong>Lab 07 — Normalizing a Veterinary Clinic Database</strong>, where you will transfer the same logic to the PetVax case.</p>
+<h3>Purpose</h3>
+<p>Move from reading about 1NF, 2NF, and 3NF to building a normalized schema you can defend. By the end you should be able to look at any messy flat table and explain which facts belong together, which belong apart, and how to reconstruct a report without storing the same fact twice.</p>
+<h3>What You Will Practice</h3>
+<ul>
+<li>Diagnosing redundancy and update, insertion, and deletion anomalies in a flat table.</li>
+<li>Designing four normalized tables in Access (<code>STUDENT</code>, <code>ASSIGNMENT_TYPE</code>, <code>DELIVERABLE</code>, <code>STUDENT_GRADE</code>).</li>
+<li>Writing append (<code>INSERT INTO ... SELECT</code>) queries in Access SQL View to migrate data from a flat source.</li>
+<li>Creating relationships in the Relationships window and enforcing referential integrity.</li>
+<li>Reconstructing a flat report with an <code>INNER JOIN</code> query across four tables.</li>
+<li>Distinguishing where facts are <em>stored</em> (normalized tables) from how facts are <em>presented</em> (queries and views).</li>
+</ul>
+<h3>Before You Begin</h3>
+<p>You need:</p>
+<ul>
+<li>Microsoft Access (any recent version).</li>
+<li>A starter Access file or Excel workbook containing one table named <code>GRADE_FLAT</code> that mixes student, deliverable, and score facts in every row. A ready-to-use 25-row starter is provided at <a href="assets/grade_flat_starter.csv"><code>assets/grade_flat_starter.csv</code></a> — import it into Access (External Data → New Data Source → From File → Text File) and name the table <code>GRADE_FLAT</code>.</li>
+<li>About 60–75 minutes of focused time.</li>
+<li>The Chapter 7 reading, especially §7.4–§7.7.</li>
+</ul>
+<p>A useful <code>GRADE_FLAT</code> looks like this:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th style="text-align: right;">StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th style="text-align: right;">PointsPerOne</th>
+<th style="text-align: right;">Weight</th>
+<th>Topic</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td>Data basics</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td>Tables</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">30</td>
+<td>Midterm</td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">102</td>
+<td>Bob</td>
+<td>Smith</td>
+<td>bob@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td>Data basics</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">102</td>
+<td>Bob</td>
+<td>Smith</td>
+<td>bob@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td>Tables</td>
+<td style="text-align: right;">17</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>Tip:</strong> If your starter file uses <code>DeliverableType</code> rather than <code>AssignmentType</code>, rename it consistently before you begin so the SQL examples below run unchanged.</p>
+</blockquote>
+<h3>Diagnose the Flat Table</h3>
+<p>Open <code>GRADE_FLAT</code> in Datasheet View and read it row by row before you touch a thing.</p>
+<p><strong>What facts are repeated, and where should each one live?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Repeated fact</th>
+<th>Where it repeats</th>
+<th>Better home</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student name and email</td>
+<td>Every grade row for the same student</td>
+<td><code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Assignment category rule</td>
+<td>Every row for the same <code>AssignmentType</code></td>
+<td><code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td>Deliverable due date</td>
+<td>Every student row for the same deliverable</td>
+<td><code>DELIVERABLE</code></td>
+</tr>
+<tr>
+<td>Score</td>
+<td>One row per student-deliverable pairing</td>
+<td><code>STUDENT_GRADE</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> a short list (in your own notes) of at least three repeated facts and the table each one belongs in. This list is your blueprint for the rest of the LB.</p>
+<p><strong>Check for conflicting facts before you migrate.</strong> Normalization reveals data-quality problems but does not fix them. Before splitting the table, scan <code>GRADE_FLAT</code> and ask:</p>
+<ul>
+<li>Does the same <code>StudentID</code> always have the same <code>Email</code>, <code>FirstName</code>, and <code>LastName</code>?</li>
+<li>Does the same <code>AssignmentType</code> always have the same <code>PointsPerOne</code> and <code>Weight</code>?</li>
+<li>Does the same deliverable (same <code>AssignmentType</code> + <code>DeliverableNumber</code>) always have the same <code>DueDate</code> and <code>Topic</code>?</li>
+</ul>
+<p>The provided starter file is clean. In real data, fix any conflicts in <code>GRADE_FLAT</code> before running the append queries below — otherwise <code>SELECT DISTINCT</code> will silently keep multiple versions of the same fact.</p>
+<blockquote>
+<p>📘 <strong>Concept connection:</strong> This is the heart of normalization. Each repeated fact is a sign that the table is mixing <em>kinds</em> of facts. 1NF removes multi-valued cells, 2NF removes partial dependencies, 3NF removes transitive dependencies — but the practical effect is always the same: facts move to the table where they belong.</p>
+</blockquote>
+<h3>Create the Four Normalized Tables</h3>
+<p>In Access, switch to <strong>Create → Table Design</strong> and build four empty tables. Define the primary key and required fields for each one before adding any data.</p>
+<p><strong>Table <code>STUDENT</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data type</th>
+<th>Field size / rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StudentID</td>
+<td>Number</td>
+<td>Long Integer; Primary key</td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>Short Text</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>Short Text</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Short Text</td>
+<td>Indexed: Yes (No Duplicates)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table <code>ASSIGNMENT_TYPE</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data type</th>
+<th>Field size / rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AssignmentType</td>
+<td>Short Text</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td>Quantity</td>
+<td>Number</td>
+<td>Long Integer; Optional</td>
+</tr>
+<tr>
+<td>PointsPerOne</td>
+<td>Number</td>
+<td>Long Integer; Required</td>
+</tr>
+<tr>
+<td>Weight</td>
+<td>Number</td>
+<td>Long Integer; Required</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table <code>DELIVERABLE</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data type</th>
+<th>Field size / rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeliverableID</td>
+<td>AutoNumber</td>
+<td>Primary key (Long Integer)</td>
+</tr>
+<tr>
+<td>AssignmentType</td>
+<td>Short Text</td>
+<td>Foreign key</td>
+</tr>
+<tr>
+<td>DeliverableNumber</td>
+<td>Number</td>
+<td>Long Integer; Required</td>
+</tr>
+<tr>
+<td>DueDate</td>
+<td>Date/Time</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Topic</td>
+<td>Short Text</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table <code>STUDENT_GRADE</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data type</th>
+<th>Field size / rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GradeID</td>
+<td>Number</td>
+<td>Long Integer; Primary key (from <code>GRADE_FLAT</code>)</td>
+</tr>
+<tr>
+<td>StudentID</td>
+<td>Number</td>
+<td>Long Integer; Foreign key</td>
+</tr>
+<tr>
+<td>DeliverableID</td>
+<td>Number</td>
+<td>Long Integer; Foreign key</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>Number</td>
+<td>Long Integer; Required</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> four empty tables visible in the Navigation Pane, each with a key icon next to its primary key field.</p>
+<blockquote>
+<p>✅ <strong>Good Practice:</strong> Build the structure first; load the data second. Manually copying columns from <code>GRADE_FLAT</code> into the new tables is how data quality gets buried.</p>
+<p>✅ <strong>Good Practice:</strong> In Access, every foreign key that points to an AutoNumber primary key must be <code>Number</code> with <strong>Field Size = Long Integer</strong>. If the sizes do not match exactly, the Relationships window will refuse to enforce referential integrity — often with a vague error. Set this on every ID field before you load data.</p>
+</blockquote>
+<h3>Extract Students</h3>
+<blockquote>
+<p>⚠️ <strong>Before you run any append query:</strong> Run each append query <strong>once</strong>. If you run the same append query a second time without first clearing the target table, Access will either create duplicate rows or fail with a primary-key violation halfway through. If something goes wrong, open the target table, delete all rows, then re-run the append.</p>
+</blockquote>
+<p>Move student identity facts out of <code>GRADE_FLAT</code> and into <code>STUDENT</code>.</p>
+<p>In Access, choose <strong>Create → Query Design</strong>, close the Show Table dialog, and switch to <strong>SQL View</strong>. Paste:</p>
+<pre><code class="language-sql">INSERT INTO STUDENT (StudentID, FirstName, LastName, Email)
+SELECT DISTINCT StudentID, FirstName, LastName, Email
+FROM GRADE_FLAT;
+</code></pre>
+<p>Save the query as <code>q01_Append_Students</code> and run it. Open <code>STUDENT</code>.</p>
+<p><strong>Expected output:</strong> one row per unique student. Five <code>GRADE_FLAT</code> rows for Alice should collapse to one <code>STUDENT</code> row.</p>
+<blockquote>
+<p>⚠️ <strong>Common Mistake:</strong> If the same <code>StudentID</code> appears with two spellings of an email, the append may succeed but <code>STUDENT.Email</code> will hold whichever spelling Access encountered first. That is a data-quality problem in <code>GRADE_FLAT</code>, not an Access bug. Fix the source before continuing.</p>
+</blockquote>
+<h3>Extract Assignment Type Rules</h3>
+<p>Move grading-category rules out of <code>GRADE_FLAT</code> and into <code>ASSIGNMENT_TYPE</code>.</p>
+<pre><code class="language-sql">INSERT INTO ASSIGNMENT_TYPE (AssignmentType, PointsPerOne, Weight)
+SELECT DISTINCT AssignmentType, PointsPerOne, Weight
+FROM GRADE_FLAT;
+</code></pre>
+<p>Save as <code>q02_Append_Assignment_Types</code> and run it.</p>
+<p><strong>Expected output:</strong> one row per category, for example:</p>
+<table>
+<thead>
+<tr>
+<th>AssignmentType</th>
+<th style="text-align: right;">PointsPerOne</th>
+<th style="text-align: right;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Common Mistake:</strong> If <code>Quiz</code> appears more than once with different <code>PointsPerOne</code> values, the flat table holds contradictory rules. Normalization surfaces the conflict but does not pick a winner — you have to decide which rule is correct and clean <code>GRADE_FLAT</code> before re-running the append.</p>
+</blockquote>
+<h3>Create Deliverables</h3>
+<p>Each specific quiz, exam, or project is a deliverable. <strong>Use Option A</strong> — it matches the provided starter CSV, which has no <code>DeliverableID</code> column. Use Option B only if your instructor gave you a <code>GRADE_FLAT</code> that already includes a stable <code>DeliverableID</code>.</p>
+<p><strong>Option A (default) — let Access generate <code>DeliverableID</code> as an AutoNumber:</strong></p>
+<pre><code class="language-sql">INSERT INTO DELIVERABLE (AssignmentType, DeliverableNumber, DueDate, Topic)
+SELECT DISTINCT AssignmentType, DeliverableNumber, DueDate, Topic
+FROM GRADE_FLAT;
+</code></pre>
+<p><strong>Option B (advanced) — preserve an existing <code>DeliverableID</code> from <code>GRADE_FLAT</code>:</strong></p>
+<pre><code class="language-sql">INSERT INTO DELIVERABLE (DeliverableID, AssignmentType, DeliverableNumber, DueDate, Topic)
+SELECT DISTINCT DeliverableID, AssignmentType, DeliverableNumber, DueDate, Topic
+FROM GRADE_FLAT;
+</code></pre>
+<p>Save as <code>q03_Append_Deliverables</code> and run it.</p>
+<p><strong>Expected output:</strong> one row per deliverable (e.g., one row for <code>Quiz 1</code>, one for <code>Quiz 2</code>, one for <code>Exam 1</code>) — not one row per student score.</p>
+<h3>Load Student Grades</h3>
+<p>Now move the score facts. Which append query you use depends on which option you chose in the previous step:</p>
+<table>
+<thead>
+<tr>
+<th>In <code>q03_Append_Deliverables</code> you used...</th>
+<th>Use this <code>q04</code> query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Option A</strong> — Access generated <code>DeliverableID</code></td>
+<td>The join version (below) — <code>GRADE_FLAT</code> has no <code>DeliverableID</code> to copy.</td>
+</tr>
+<tr>
+<td><strong>Option B</strong> — <code>GRADE_FLAT</code> already had <code>DeliverableID</code></td>
+<td>The direct-copy version (below).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Direct-copy version (Option B only)</strong> — if <code>GRADE_FLAT</code> already has <code>DeliverableID</code>:</p>
+<pre><code class="language-sql">INSERT INTO STUDENT_GRADE (GradeID, StudentID, DeliverableID, Score)
+SELECT GradeID, StudentID, DeliverableID, Score
+FROM GRADE_FLAT;
+</code></pre>
+<p><strong>Join version (Option A default)</strong> — join <code>GRADE_FLAT</code> to the new <code>DELIVERABLE</code> table to look up the right ID:</p>
+<pre><code class="language-sql">INSERT INTO STUDENT_GRADE (GradeID, StudentID, DeliverableID, Score)
+SELECT gf.GradeID,
+       gf.StudentID,
+       d.DeliverableID,
+       gf.Score
+FROM GRADE_FLAT AS gf
+INNER JOIN DELIVERABLE AS d
+   ON gf.AssignmentType    = d.AssignmentType
+  AND gf.DeliverableNumber = d.DeliverableNumber
+  AND gf.DueDate           = d.DueDate;
+</code></pre>
+<p>Save as <code>q04_Append_Student_Grades</code> and run it.</p>
+<p><strong>Expected output:</strong> one row per student-per-deliverable. No names, no due dates, no rule columns — only IDs and a score.</p>
+<blockquote>
+<p>💡 <strong>Key Takeaway:</strong> <code>STUDENT_GRADE</code> is the junction between students and deliverables. It stores a <em>fact about the relationship</em>, not facts about either side.</p>
+</blockquote>
+<h3>Build Relationships and Enforce Referential Integrity</h3>
+<p>Open <strong>Database Tools → Relationships</strong>, add all four tables, then drag the parent primary key onto the matching child foreign key for each pair below. In every Edit Relationships dialog, check <strong>Enforce Referential Integrity</strong> before clicking <strong>Create</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Parent</th>
+<th>Child</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT.StudentID</code></td>
+<td><code>STUDENT_GRADE.StudentID</code></td>
+<td>One student, many grade records</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE.DeliverableID</code></td>
+<td><code>STUDENT_GRADE.DeliverableID</code></td>
+<td>One deliverable, many grade records</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE.AssignmentType</code></td>
+<td><code>DELIVERABLE.AssignmentType</code></td>
+<td>One category, many deliverables</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> a Relationships window that looks like:</p>
+<pre><code class="language-text">ASSIGNMENT_TYPE 1───∞ DELIVERABLE 1───∞ STUDENT_GRADE ∞───1 STUDENT
+</code></pre>
+<p>Save the layout and take a screenshot — you will need it for the submission checklist.</p>
+<blockquote>
+<p>⚠️ <strong>Common Mistake:</strong> The Access Lookup Wizard creates a friendly dropdown but does <strong>not</strong> replace a real relationship. A lookup field helps data entry; referential integrity protects the database. Use both, but never confuse one for the other.</p>
+</blockquote>
+<h3>Test Referential Integrity</h3>
+<p>A normalized design should make bad data hard to enter. Prove it.</p>
+<ol>
+<li>Open <code>STUDENT_GRADE</code> in Datasheet View.</li>
+<li>In a new row, type <code>StudentID = 9999</code> (a value that does not exist in <code>STUDENT</code>), pick any real <code>DeliverableID</code>, and a score.</li>
+<li>Try to save the row.</li>
+</ol>
+<p><strong>Expected output:</strong> Access refuses the save with a referential-integrity error. Note the exact message in your screenshots.</p>
+<p><strong>Why does that matter?</strong> Without enforced referential integrity, a grade could exist for a student who does not. That is an orphan record, and orphan records are the kind of bug that quietly corrupts every report built on top of them.</p>
+<h3>Rebuild the Original Report</h3>
+<p>Normalization separates storage from presentation. Now show that the original flat report can be reconstructed on demand.</p>
+<p>Create a new query and switch to <strong>SQL View</strong>:</p>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       s.Email,
+       at.AssignmentType,
+       d.DeliverableNumber,
+       d.DueDate,
+       at.PointsPerOne,
+       at.Weight,
+       sg.Score
+FROM ((STUDENT AS s
+       INNER JOIN STUDENT_GRADE AS sg
+              ON s.StudentID = sg.StudentID)
+       INNER JOIN DELIVERABLE AS d
+              ON sg.DeliverableID = d.DeliverableID)
+       INNER JOIN ASSIGNMENT_TYPE AS at
+              ON d.AssignmentType = at.AssignmentType
+ORDER BY s.LastName, s.FirstName, at.AssignmentType, d.DeliverableNumber;
+</code></pre>
+<p>Save as <code>q05_Grade_Report_Normalized</code> and run it. Access will keep its own parentheses around the joins; that is normal Access SQL, not a mistake.</p>
+<p><strong>Expected output:</strong> a result set that looks like the original <code>GRADE_FLAT</code> (student name, email, category, deliverable, due date, points, weight, score), but every fact is now sourced from the table where it belongs.</p>
+<blockquote>
+<p>💡 <strong>Tip:</strong> If Access rewrites the parentheses after you save the query, that is normal. If the query refuses to run with a "JOIN expression not supported" error, rebuild it in <strong>Query Design View</strong> first (drag tables, drag join lines), then switch back to SQL View to see the parenthesized join structure Access prefers.</p>
+<p>💡 <strong>Key Takeaway:</strong> Normalization does not remove the report — it relocates the facts. The query is the report.</p>
+</blockquote>
+<h3>Optional Extension — Add SCHEDULE, ATTENDANCE, GRADE_SCALE</h3>
+<p>If you finish early, extend the schema to the full seven-table Grading Database introduced in §7.7.</p>
+<p>Create three more tables:</p>
+<pre><code class="language-text">SCHEDULE(ClassNum, Week, ClassDate, Topic, Format)
+ATTENDANCE(AttendanceID, StudentID, ClassNum, Attended)
+GRADE_SCALE(LetterGrade, MinScore, MaxScore)
+</code></pre>
+<p>Then add two relationships in the Relationships window:</p>
+<ul>
+<li><code>STUDENT.StudentID</code> → <code>ATTENDANCE.StudentID</code></li>
+<li><code>SCHEDULE.ClassNum</code> → <code>ATTENDANCE.ClassNum</code></li>
+</ul>
+<p>Leave <code>GRADE_SCALE</code> standalone for now. It is a rule table that translates numeric scores into letter grades; you will join it from a query in Chapter 9, not enforce it as a relationship here.</p>
+<p><strong>Expected output:</strong> a seven-table Relationships window with referential integrity enforced on every line except <code>GRADE_SCALE</code>.</p>
+<h3>Check Your Work</h3>
+<p>Walk through this checklist before you save:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Pass?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student names and emails appear only in <code>STUDENT</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Category rules appear only in <code>ASSIGNMENT_TYPE</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Deliverable due dates appear only in <code>DELIVERABLE</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Scores appear only in <code>STUDENT_GRADE</code></td>
+<td></td>
+</tr>
+<tr>
+<td>All three core relationships enforce referential integrity</td>
+<td></td>
+</tr>
+<tr>
+<td><code>q05_Grade_Report_Normalized</code> reproduces the flat report</td>
+<td></td>
+</tr>
+<tr>
+<td>An invalid <code>StudentID</code> in <code>STUDENT_GRADE</code> is rejected</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>What This Shows</h3>
+<p>You have now done in Access what the chapter described in prose. Five flat-table rows for Alice became one row in <code>STUDENT</code>, three rows in <code>DELIVERABLE</code>, two rows in <code>ASSIGNMENT_TYPE</code>, and five rows in <code>STUDENT_GRADE</code>. No fact was lost; every fact moved to the table where it belongs. The report still exists — it is just reconstructed by <code>q05</code> instead of stored as raw rows.</p>
+<p>Two ideas to carry forward:</p>
+<ul>
+<li><strong>Storage and presentation are different jobs.</strong> Tables hold facts; queries and views shape them.</li>
+<li><strong>Referential integrity is design, not decoration.</strong> Once enforced, the database itself refuses to accept orphan records.</li>
+</ul>
+<h3>Common Mistakes</h3>
+<ul>
+<li>Treating a Lookup Wizard dropdown as a real relationship.</li>
+<li>Appending data before defining keys, then discovering duplicates that block the primary key.</li>
+<li>Copying student names into <code>STUDENT_GRADE</code> "just in case" — that re-creates the redundancy you just removed.</li>
+<li>Re-running an append query a second time without clearing the target table; you get duplicate rows.</li>
+<li>Forgetting to check <strong>Enforce Referential Integrity</strong> when creating each relationship.</li>
+</ul>
+<h3>Submit or Save</h3>
+<p>Save your Access file as:</p>
+<pre><code class="language-text">LB07_Normalized_Grading_Database_&lt;YourName&gt;.accdb
+</code></pre>
+<p>It should contain:</p>
+<ul>
+<li>The original <code>GRADE_FLAT</code> table (unchanged).</li>
+<li>The four normalized tables: <code>STUDENT</code>, <code>ASSIGNMENT_TYPE</code>, <code>DELIVERABLE</code>, <code>STUDENT_GRADE</code> (plus <code>SCHEDULE</code>, <code>ATTENDANCE</code>, <code>GRADE_SCALE</code> if you completed the extension).</li>
+<li>The five queries: <code>q01_Append_Students</code>, <code>q02_Append_Assignment_Types</code>, <code>q03_Append_Deliverables</code>, <code>q04_Append_Student_Grades</code>, <code>q05_Grade_Report_Normalized</code>.</li>
+<li>Enforced relationships visible in the Relationships window.</li>
+</ul>
+<p>Capture four screenshots and keep them with the file:</p>
+<ol>
+<li><code>GRADE_FLAT</code> before normalization.</li>
+<li>The Relationships window with referential integrity enforced.</li>
+<li>The <code>q05_Grade_Report_Normalized</code> result set.</li>
+<li>The referential-integrity error from the invalid-row test.</li>
+</ol>
+<p>There is no LMS submission for this LB. The graded work happens in <strong>Lab 07 — Normalizing a Veterinary Clinic Database</strong>, which transfers the same normalization workflow to the PetVax case.</p>
+<h3>Peek Ahead — Chapter 8</h3>
+<p>Chapter 8 reviews the first half of the course and asks you to connect data, tables, relationships, SQL, and normalization as one system. The normalized Grading Database you built here is the schema you will be expected to read, query, and explain on the midterm. Chapter 9 then returns to SQL with multi-table queries, CTEs, and window functions that rely on exactly the design you just produced.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 7 - Term Treasury</h2>
+                  <!-- markdownlint-disable-file MD033 -->
+<p><em>Essential Vocabulary - understand the key terms used throughout this chapter.</em></p>
+<p align="center">
+  <img src="g:/My Drive/0-Projects/!-important/BITM330-book-drive/.images/Ch0 General/sections/resize/terms-sized.min.gif" alt="Term Treasury" />
+</p>
+
+<p><strong>Boyce-Codd Normal Form (BCNF)</strong>
+A stricter version of Third Normal Form that handles edge cases where a table has overlapping candidate keys. For most business database designs, satisfying 3NF is sufficient.</p>
+<p><strong>Deletion Anomaly</strong>
+The problem that occurs when removing one row also removes a fact the organization still needs to keep. For example, deleting the only grade row for a deliverable can erase the only stored copy of that deliverable's due date and point value.</p>
+<p><strong>Denormalization</strong>
+The intentional reintroduction of limited redundancy after normalization to improve performance or reporting speed. Denormalization is a conscious optimization decision made after a reliable normalized design already exists — not a substitute for good design.</p>
+<p><strong>Determinant</strong>
+The attribute or set of attributes on the left side of a functional dependency that determines the value of another attribute. Written as <code>X -&gt; Y</code>, where <code>X</code> is the determinant.</p>
+<p><strong>First Normal Form (1NF)</strong>
+A table structure in which each cell holds exactly one value, each row represents one instance, and there are no multi-valued cells or repeating columns. 1NF is the entry point to relational design and makes data structurally queryable.</p>
+<p><strong>Insertion Anomaly</strong>
+The problem that occurs when a new fact cannot be added to the database unless some unrelated fact is also entered. For example, a new student cannot be stored unless at least one grade row is also created.</p>
+<p><strong>Multi-Valued Cell</strong>
+A cell that stores more than one value in a single field, such as a comma-separated list of grades. This violates the relational expectation that each cell holds exactly one atomic fact.</p>
+<p><strong>Normal Form</strong>
+A standard design level used to evaluate and improve a table's structure by removing specific types of redundancy or dependency flaws. Normal forms are cumulative: a table in 3NF is already in 2NF and 1NF.</p>
+<p><strong>Partial Dependency</strong>
+A dependency in which a non-key attribute depends on only part of a composite key rather than on the full key. Partial dependencies are removed when moving from 1NF to 2NF.</p>
+<p><strong>Repeating Columns</strong>
+A design pattern that stores the same type of fact in multiple similar columns, such as <code>Grade1</code>, <code>Grade2</code>, and <code>Grade3</code>. Repeating columns prevent flexible querying and violate 1NF.</p>
+<p><strong>Second Normal Form (2NF)</strong>
+A table structure that satisfies 1NF and ensures every non-key attribute depends on the entire composite primary key, not on just one part of it. 2NF removes partial dependencies by moving partially dependent attributes into their own focused tables.</p>
+<p><strong>Single Source of Truth</strong>
+The design principle that each fact is stored in exactly one authoritative location so that updates remain consistent and there are no competing versions of the same information.</p>
+<p><strong>Third Normal Form (3NF)</strong>
+A table structure that satisfies 2NF and ensures every non-key attribute depends only on the primary key — not on another non-key attribute. 3NF removes transitive dependencies by separating rules and lookup data into their own tables.</p>
+<p><strong>Transitive Dependency</strong>
+A dependency in which a non-key attribute is determined by another non-key attribute rather than directly by the primary key. For example, if <code>Score</code> determines <code>LetterGrade</code>, then <code>LetterGrade</code> is transitively dependent and should be moved to a separate lookup table.</p>
+<p><strong>Update Anomaly</strong>
+The problem that occurs when the same fact must be changed in multiple rows, creating the risk of inconsistent values if any row is missed. For example, if a student's email is stored in every grade row, one email change requires updating every one of those rows.</p>
+<hr />
+<h2>Acronyms</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1NF</td>
+<td>First Normal Form</td>
+</tr>
+<tr>
+<td>2NF</td>
+<td>Second Normal Form</td>
+</tr>
+<tr>
+<td>3NF</td>
+<td>Third Normal Form</td>
+</tr>
+<tr>
+<td>BCNF</td>
+<td>Boyce-Codd Normal Form</td>
+</tr>
+</tbody>
+</table>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>Chapter 7: Review and Reflection</h2>
+                  <hr />
+<p>title: "Chapter 7: Review and Reflection"
+chapter: 7
+section: "Review and Reflection"
+description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 7 normalization concepts and connect schema design choices to data integrity, referential integrity, junction tables, reporting through joins and views, and managerial decision-making."
+keywords:
+  - review questions
+  - reflection questions
+  - BITM330
+  - normalization
+  - determinants
+  - anomalies
+  - junction tables
+  - referential integrity
+  - views
+  - denormalization
+  - chapter 7
+date: 2026-05-26
+author: "Nimrod Dvir, PhD"</p>
+<!-- markdownlint-disable MD025 -->
+<p><img alt="Reflection GIF" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" /></p>
+<!-- markdownlint-enable MD025 -->
+
+<p><em>Use these questions to review how normalization protects data quality and to think more carefully about when structure, relationships, and reporting needs should shape database design.</em></p>
+<h2>Review Questions</h2>
+<p><em>These questions help you review the chapter's main ideas, terms, frameworks, and examples.</em></p>
+<ol>
+<li>How does Chapter 7 distinguish normalization from the broader relational model introduced in Chapter 6?</li>
+<li>Why does the chapter begin with a flat grading table, and what problems does that structure make easier to see?</li>
+<li>What is a determinant, and why does the chapter treat determinants as a guide for deciding where table boundaries should go?</li>
+<li>What structural problems does 1NF remove, and why does the chapter describe 1NF as an entry point rather than a complete design solution?</li>
+<li>How does Chapter 7 define a partial dependency, and what specific repair rule does it give for resolving a 2NF violation?</li>
+<li>How does a transitive dependency differ from a partial dependency, and what kind of table redesign does 3NF usually require?</li>
+<li>What does the chapter mean by a single source of truth, and how does normalization help create it?</li>
+<li>Why does the chapter argue that many-to-many relationships must be resolved with a junction table, and what does that junction table store?</li>
+</ol>
+<h2>Reflection Questions</h2>
+<p><em>These questions encourage you to interpret the chapter, connect ideas, and think critically about how they apply in practice.</em></p>
+<ol>
+<li>Why is a wide spreadsheet-like table often attractive to users at first even when it creates update, insertion, and deletion anomalies later?</li>
+<li>The chapter says normalization is not about making smaller tables for their own sake. What larger organizational goal is the chapter really defending?</li>
+<li>Why does the chapter present 1NF, 2NF, and 3NF as cumulative stages instead of separate menu options a designer can choose among?</li>
+<li>How does the grading database example show that a reporting-friendly layout is not always the same as a storage-friendly design?</li>
+<li>The Let's Build companion rebuilds the original flat grading report from the four normalized tables using SQL joins and a view. What does that exercise teach about the relationship between normalized storage and the reports business users see?</li>
+<li>When does denormalization make sense according to the chapter, and why does the chapter insist that it should follow, rather than replace, sound normalization?</li>
+<li>Why does the chapter treat referential integrity (enforced through primary and foreign keys) as part of normalization's payoff rather than as a separate topic?</li>
+<li>If a manager says joins are inconvenient and wants one table to hold everything, how would Chapter 7 respond to that argument?</li>
+<li>Lab 07 transfers the same normalization logic to a veterinary clinic, where a treatment's catalog price (<code>StandardPrice</code>) and what was actually billed on a specific visit (<code>ActualCharge</code>) end up in two different tables. Why does the catalog price belong with the treatment itself while the actual charge belongs with the visit-and-treatment pairing, and what would go wrong if you stored both in the same table?</li>
+</ol>
+<h2>Personal Reflection Questions</h2>
+<p><em>These questions help you connect the chapter to your own habits, goals, strengths, and developing professional skills.</em></p>
+<ol>
+<li>Which Chapter 7 idea currently feels most intuitive to you: spotting anomalies, tracing determinants, applying 1NF, separating 2NF issues, diagnosing 3NF problems, or designing a junction table for a many-to-many relationship? Why?</li>
+<li>Which distinction feels hardest right now: flat table versus normalized design, partial dependency versus transitive dependency, normalization versus denormalization, or a foreign key versus a junction table? What would help you remember it?</li>
+<li>When you work with spreadsheets or reports, where have you seen information repeated in ways that could eventually create inconsistent updates?</li>
+<li>If you had to explain single source of truth to a non-technical coworker, what example would you use from school, work, or personal experience?</li>
+<li>Do you personally tend to prefer convenience for immediate reporting or structure for long-term reliability? How might that habit help you, and how might it limit you?</li>
+<li>If you were redesigning a process you already know, what facts would you try to store once and then connect through keys instead of copying into multiple places?</li>
+<li>As you think about your future career, why might the ability to question data structure matter even if you are not the person building the database itself?</li>
+</ol>
+<h2>Answer Key</h2>
+<h3>Review</h3>
+<p><strong>Question 1: How does Chapter 7 distinguish normalization from the broader relational model introduced in Chapter 6?</strong>
+Suggested Answer: Chapter 6 introduces the relational model as the idea of storing data in related tables connected through keys. Chapter 7 builds on that foundation by asking whether those tables are structured well enough to keep facts accurate over time. Normalization is therefore a design-testing discipline inside relational thinking. It does not replace the relational model; it evaluates and improves how a relational design stores facts so that anomalies are prevented before they happen.</p>
+<p><strong>Question 2: Why does the chapter begin with a flat grading table, and what problems does that structure make easier to see?</strong>
+Suggested Answer: The chapter starts with a flat grading table because it looks familiar and convenient, which makes the resulting design problems easier to recognize. In one wide table, repeated student facts, repeated deliverable facts, and grading rules sit alongside actual score facts in the same rows. That structure makes update, insertion, and deletion anomalies visible in a concrete way and shows that one row is trying to describe a student, a deliverable, a grading rule, and a performance result at the same time. It frames normalization as a fix for a real business problem rather than an abstract rule.</p>
+<p><strong>Question 3: What is a determinant, and why does the chapter treat determinants as a guide for deciding where table boundaries should go?</strong>
+Suggested Answer: A determinant is the attribute or set of attributes on the left side of a functional dependency (written <code>X -&gt; Y</code>) that determines the value of another attribute. Chapter 7 treats determinants as a design guide because attributes that depend on the same determinant usually belong together in the same table. When different attributes depend on different determinants, that signals the table is mixing different kinds of facts. Tracing determinants helps move from a vague wide table toward cleanly bounded tables like <code>STUDENT</code>, <code>ASSIGNMENT_TYPE</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code>.</p>
+<p><strong>Question 4: What structural problems does 1NF remove, and why does the chapter describe 1NF as an entry point rather than a complete design solution?</strong>
+Suggested Answer: 1NF removes multi-valued cells and repeating columns so each cell holds one fact and each row represents one instance. That structural cleanup is what makes a table queryable with SQL at all. The chapter calls 1NF an entry point because a 1NF table can still contain partial dependencies, transitive dependencies, and substantial redundancy. In other words, 1NF makes the table usable, but it does not finish the design work that 2NF and 3NF are meant to handle.</p>
+<p><strong>Question 5: How does Chapter 7 define a partial dependency, and what specific repair rule does it give for resolving a 2NF violation?</strong>
+Suggested Answer: A partial dependency occurs when a non-key attribute depends on only part of a composite key instead of on the full key. The repair rule is direct: move the partially dependent attributes into a new table whose primary key is the determinant they actually depend on. The original table then keeps only the attributes that depend on the entire composite key. That separation is how the chapter explains reaching 2NF, and it is what justifies pulling assignment-type facts out of the deliverable rows in the grading example.</p>
+<p><strong>Question 6: How does a transitive dependency differ from a partial dependency, and what kind of table redesign does 3NF usually require?</strong>
+Suggested Answer: A partial dependency comes from depending on only part of a composite key. A transitive dependency occurs when a non-key attribute depends on another non-key attribute rather than directly on the primary key. To reach 3NF, the designer usually creates a new lookup or rules table whose key is the intermediate determinant, then references that table by foreign key. In the grading example, this is how grading rules and assignment-type facts move out of the deliverable record so each non-key attribute depends only on its own key.</p>
+<p><strong>Question 7: What does the chapter mean by a single source of truth, and how does normalization help create it?</strong>
+Suggested Answer: A single source of truth means that each fact lives in exactly one authoritative location instead of being copied into many rows or tables. Normalization supports this by separating student facts, deliverable facts, grading-rule facts, and performance facts into the tables where they logically belong. When a fact is stored once, updates stay consistent automatically and different reports cannot disagree about basic information. That is what makes downstream analytics trustworthy.</p>
+<p><strong>Question 8: Why does the chapter argue that many-to-many relationships must be resolved with a junction table, and what does that junction table store?</strong>
+Suggested Answer: A many-to-many relationship cannot be stored cleanly in either of the two parent tables without repeating values or losing facts. The chapter resolves this by introducing a junction (also called bridge or associative) table whose rows each represent one pairing of the two entities. The junction table holds foreign keys back to both parents and may store attributes that belong to the pairing itself, such as a score or a date. In the grading database, <code>STUDENT_GRADE</code> plays this role: it links one student to one deliverable and records the score for that specific pairing.</p>
+<h3>Reflection</h3>
+<p><strong>Question 1: Why is a wide spreadsheet-like table often attractive to users at first even when it creates update, insertion, and deletion anomalies later?</strong>
+Suggested Answer: A wide table puts many facts in one place and feels easy to browse, filter, export, or explain to someone who is thinking like a report consumer rather than a system designer. It avoids the up-front cost of learning joins or relationships. The trade-off is that the convenience hides structural risk: once the data changes often, the repeated facts in that wide table drift apart, and what looked simple becomes the source of inconsistent reports.</p>
+<p><strong>Question 2: The chapter says normalization is not about making smaller tables for their own sake. What larger organizational goal is the chapter really defending?</strong>
+Suggested Answer: The larger goal is reliable decision support through accurate and maintainable data. Chapter 7 argues that organizations need systems where facts stay consistent as the database grows, users edit records, and many reports depend on shared data. Smaller, focused tables matter only because they help separate facts correctly. The real objective is integrity, clarity, and long-term reliability — the conditions under which managers can actually trust the numbers in front of them.</p>
+<p><strong>Question 3: Why does the chapter present 1NF, 2NF, and 3NF as cumulative stages instead of separate menu options a designer can choose among?</strong>
+Suggested Answer: The forms are cumulative because each one assumes the previous one is already satisfied. A table cannot meaningfully reach 2NF if it still stores lists inside cells, and it cannot reach 3NF cleanly if 2NF problems remain. Presenting them as a sequence forces disciplined design — students learn to fix multi-valued cells first, then partial dependencies, then transitive dependencies — rather than picking whichever rule feels easiest to apply.</p>
+<p><strong>Question 4: How does the grading database example show that a reporting-friendly layout is not always the same as a storage-friendly design?</strong>
+Suggested Answer: The original wide grading table looks convenient for viewing everything at once, but it mixes student, deliverable, rule, and performance facts in the same row, which causes anomalies as soon as anything changes. The four-table normalized design separates those facts so each is stored once and connected through keys. The example teaches that reporting convenience belongs in the presentation layer (queries, views, dashboards) rather than baked into the core storage tables.</p>
+<p><strong>Question 5: The Let's Build companion rebuilds the original flat grading report from the four normalized tables using SQL joins and a view. What does that exercise teach about the relationship between normalized storage and the reports business users see?</strong>
+Suggested Answer: The exercise shows that nothing is lost when a database is normalized. The original wide report can be reconstructed on demand by joining <code>STUDENT</code>, <code>DELIVERABLE</code>, <code>ASSIGNMENT_TYPE</code>, and <code>STUDENT_GRADE</code> and exposing the result as a view. Storage and presentation are two different layers: facts are stored once for integrity, and queries or views reshape them into the columns business users want to see. That separation lets the design protect data quality without taking away the familiar reporting view.</p>
+<p><strong>Question 6: When does denormalization make sense according to the chapter, and why does the chapter insist that it should follow, rather than replace, sound normalization?</strong>
+Suggested Answer: Denormalization makes sense when performance, reporting speed, or repeated analytical access creates a real and measurable need for controlled redundancy — for example, a precomputed summary table for a dashboard. The chapter insists it should follow normalization because a reliable normalized baseline tells the designer where the truth lives and where the copies live. Without that baseline, denormalization stops being optimization and becomes an excuse for weak design that quietly recreates the anomalies normalization was meant to prevent.</p>
+<p><strong>Question 7: Why does the chapter treat referential integrity (enforced through primary and foreign keys) as part of normalization's payoff rather than as a separate topic?</strong>
+Suggested Answer: Normalization is what makes referential integrity meaningful. Once facts are split into focused tables like <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code>, primary and foreign keys are what hold those tables together and prevent orphan rows. The chapter treats integrity rules as the payoff because they are what convert a clean design on paper into a database the system itself will defend — rejecting a grade for a deliverable that does not exist, for example, instead of letting the inconsistency sit in the data.</p>
+<p><strong>Question 8: If a manager says joins are inconvenient and wants one table to hold everything, how would Chapter 7 respond to that argument?</strong>
+Suggested Answer: Chapter 7 would acknowledge that joins add some up-front complexity to querying, but argue that the cost is justified because normalized structure protects long-term data quality. A single all-in-one table makes updates, insertions, and deletions risky and erodes trust in the data. The chapter's recommended response is to keep storage normalized and meet the manager's convenience need through views, saved queries, or summary tables in the presentation layer — preserving both ease of use and integrity instead of trading one for the other.</p>
+<p><strong>Question 9: Lab 07 transfers the same normalization logic to a veterinary clinic, where a treatment's catalog price (<code>StandardPrice</code>) and what was actually billed on a specific visit (<code>ActualCharge</code>) end up in two different tables. Why does the catalog price belong with the treatment itself while the actual charge belongs with the visit-and-treatment pairing, and what would go wrong if you stored both in the same table?</strong>
+Suggested Answer: <code>StandardPrice</code> is a fact about the treatment as a catalog item — it has one value per treatment code regardless of which pet receives it. <code>ActualCharge</code> is a fact about the relationship between a specific visit and a specific treatment, because the same treatment can be discounted, surcharged, or waived on different visits. That is why the chapter pattern puts <code>StandardPrice</code> in <code>TREATMENT</code> and <code>ActualCharge</code> in the junction table <code>VISIT_TREATMENT</code>, exactly like the grading example puts grading rules in their own table and the score in <code>STUDENT_GRADE</code>. Storing both prices in one table would either repeat the catalog price on every billing line (an update anomaly waiting to happen when the clinic raises prices) or overwrite the catalog price every time a single visit was discounted, destroying the reference value. Splitting them lets each fact live in one place and lets reports rebuild the billed-vs-standard comparison on demand.</p>
+<h3>Personal Reflection</h3>
+<p><strong>Question 1: Which Chapter 7 idea currently feels most intuitive to you: spotting anomalies, tracing determinants, applying 1NF, separating 2NF issues, diagnosing 3NF problems, or designing a junction table for a many-to-many relationship? Why?</strong>
+Suggested Answer: A strong response chooses one area and explains why it feels natural. A student might say spotting anomalies feels intuitive because repeated contact information or due dates are easy to notice in a wide table. Another might prefer 1NF because removing multi-valued cells is concrete, or junction tables because they map cleanly onto familiar pairings like students and courses. The best answer connects the choice to a specific habit, prior example, or moment in the Let's Build exercise.</p>
+<p><strong>Question 2: Which distinction feels hardest right now: flat table versus normalized design, partial dependency versus transitive dependency, normalization versus denormalization, or a foreign key versus a junction table? What would help you remember it?</strong>
+Suggested Answer: A thoughtful answer names the difficult distinction honestly and proposes a memory aid. A student might say partial versus transitive dependency is hardest and decide to ask whether the problem comes from only part of a composite key or from another non-key column in the middle. Another might say foreign key versus junction table and remember it by asking whether one row needs to point to one parent, or whether each row needs to pair two parents. The important part is showing a deliberate learning strategy.</p>
+<p><strong>Question 3: When you work with spreadsheets or reports, where have you seen information repeated in ways that could eventually create inconsistent updates?</strong>
+Suggested Answer: A plausible response might mention repeated customer contact data, copied product descriptions, duplicated deadlines across tabs, or repeated employee details in many rows. The student should explain how changing one copy without changing the others could produce conflicting reports. A strong answer connects that everyday experience back to the chapter's update anomaly idea.</p>
+<p><strong>Question 4: If you had to explain single source of truth to a non-technical coworker, what example would you use from school, work, or personal experience?</strong>
+Suggested Answer: A good answer uses a concrete shared record — a class roster, a staff contact list, an inventory sheet — where one official source controls what everyone else sees. The explanation should show that when the authoritative record is updated, every dependent report or process stays aligned, and that copying it into many places is what creates disagreement. The strongest responses keep the example easy to picture.</p>
+<p><strong>Question 5: Do you personally tend to prefer convenience for immediate reporting or structure for long-term reliability? How might that habit help you, and how might it limit you?</strong>
+Suggested Answer: A strong response identifies a real preference and evaluates it honestly. Someone who prefers convenience may produce reports quickly but overlook maintenance risk. Someone who prefers structure may design carefully but need to work harder to communicate short-term benefits to stakeholders. The best answer names both the advantage and the trade-off rather than treating one preference as obviously correct.</p>
+<p><strong>Question 6: If you were redesigning a process you already know, what facts would you try to store once and then connect through keys instead of copying into multiple places?</strong>
+Suggested Answer: A thoughtful response might mention customer records, employee details, product information, course rosters, or event schedules as the entity-style facts to store once, and then describe how related transactions or activity records (orders, visits, grades) would connect back through keys. The strongest answers show an instinct for separating stable entity data from repeated event data and gesture at where a junction table might be needed.</p>
+<p><strong>Question 7: As you think about your future career, why might the ability to question data structure matter even if you are not the person building the database itself?</strong>
+Suggested Answer: A strong answer explains that many roles depend on trusting reports, requesting new data, and interpreting patterns without writing the schema directly. Being able to question how data is organized helps a professional spot weak assumptions, ask better questions of analysts and developers, and recognize when a "simple" reporting request is really hiding a structural problem. Structure shapes decision quality, and that link is valuable far beyond technical database roles.</p>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>Readiness Assessment Test (RAT): Data Normalization</h2>
+                  <p><img alt="RAT" src="https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/RAT_big?_a=BAMAAAhK0" /></p>
+<blockquote>
+<p><strong>Part of:</strong> Chapter 7 -- <em>How a flat table becomes a reliable database by storing each fact once and linking it through keys</em><br />
+<strong>Main chapter file:</strong> <a href="../main/ch07-main-edited-2026-05-18.md">ch07-main-edited-2026-05-18.md</a><br />
+<strong>Let's Build file:</strong> No current Chapter 7 Lets-Build file is present in this chapter folder.<br />
+<strong>Key terms:</strong> <a href="../terms/ch07-terms-2026-05-05.md">ch07-terms-2026-05-05.md</a></p>
+</blockquote>
+<hr />
+<h2>Remember</h2>
+<p><strong>1. What does normalization try to accomplish in a relational database?</strong></p>
+<p>A. Store each fact once so redundancy is reduced and integrity improves</p>
+<p>B. Replace all joins with one large report-ready table</p>
+<p>C. Make every table use only one column</p>
+<p>D. Eliminate the need for primary and foreign keys</p>
+<p><strong>2. Select ALL that apply: Which anomalies are named in Chapter 7 as predictable results of poor structure?</strong></p>
+<p>A. Update anomaly</p>
+<p>B. Insertion anomaly</p>
+<p>C. Deletion anomaly</p>
+<p>D. Formatting anomaly</p>
+<p>E. Indexing anomaly</p>
+<p><strong>3. In the notation <code>X -&gt; Y</code>, what is <code>X</code> called?</strong></p>
+<p>A. The dependent</p>
+<p>B. The determinant</p>
+<p>C. The foreign key</p>
+<p>D. The lookup value</p>
+<p><strong>4. Select ALL that apply: Which situations violate First Normal Form (1NF) in the chapter?</strong></p>
+<p>A. A <code>Grades</code> cell that contains <code>90, 85, 88</code></p>
+<p>B. Columns named <code>Grade1</code>, <code>Grade2</code>, and <code>Grade3</code></p>
+<p>C. One grade stored per row in a single <code>Grade</code> column</p>
+<p>D. A comma-separated list of dates stored in one cell</p>
+<p>E. A single date value stored in one date field</p>
+<p><strong>5. Which normal form is designed to remove partial dependencies?</strong></p>
+<p>A. 1NF</p>
+<p>B. 2NF</p>
+<p>C. 3NF</p>
+<p>D. BCNF</p>
+<p><strong>6. Select ALL that apply: Which tools are identified in Chapter 7 as bridges between normalized storage and analytics-friendly presentation?</strong></p>
+<p>A. JOINs</p>
+<p>B. Views</p>
+<p>C. CTEs</p>
+<p>D. Surrogate keys</p>
+<p>E. Dashboards built on reporting layers</p>
+<p><strong>7. In the Chapter 7 grading example, which table stores the score earned by one student on one deliverable?</strong></p>
+<p>A. <code>STUDENT</code></p>
+<p>B. <code>DELIVERABLE</code></p>
+<p>C. <code>STUDENT_GRADE</code></p>
+<p>D. <code>GRADE_SCALE</code></p>
+<p><strong>8. Select ALL that apply: Which are presented as intentional denormalization patterns in Chapter 7?</strong></p>
+<p>A. Summary tables refreshed on a schedule</p>
+<p>B. Materialized views</p>
+<p>C. Cached totals such as a frequently displayed GPA</p>
+<p>D. Repeating student email in every score row</p>
+<p>E. Skipping normalization because joins take effort</p>
+<hr />
+<h2>Understand</h2>
+<p><strong>9. Why do flat tables often feel simple to users at first?</strong></p>
+<p>A. Because one row appears to hold the full story in a spreadsheet-like format</p>
+<p>B. Because flat tables enforce referential integrity automatically</p>
+<p>C. Because anomalies disappear when all facts are stored together</p>
+<p>D. Because repeated values are easy for the DBMS to detect and fix</p>
+<p><strong>10. Select ALL that apply: Why does Chapter 7 say the flat grading table fails as it grows?</strong></p>
+<p>A. It mixes different kinds of facts in one structure</p>
+<p>B. It repeats student and deliverable information across rows</p>
+<p>C. It creates update, insertion, and deletion anomalies</p>
+<p>D. It becomes invalid only because it lacks a dashboard</p>
+<p>E. It treats unrelated changes as if they belong in the same row</p>
+<p><strong>11. Why are the normal forms described as cumulative rather than optional?</strong></p>
+<p>A. Because every table must satisfy all higher normal forms before 1NF</p>
+<p>B. Because a table in 3NF has already satisfied 1NF and 2NF</p>
+<p>C. Because 2NF and 3NF are competing alternatives chosen by user preference</p>
+<p>D. Because only BCNF matters in business systems</p>
+<p><strong>12. Select ALL that apply: What does the dependency <code>DeliverableID -&gt; DueDate, DeliverableType, DeliverableNumber</code> tell a designer?</strong></p>
+<p>A. Due date is a fact about the deliverable</p>
+<p>B. Deliverable details belong together in a deliverable-focused table</p>
+<p>C. Each student's grade row should store its own copy of the due date</p>
+<p>D. Repeating deliverable facts in score rows is structurally suspect</p>
+<p>E. <code>DeliverableID</code> works as the determinant for those attributes</p>
+<p><strong>13. Why does Chapter 7 say a junction table is necessary in the grading design?</strong></p>
+<p>A. Because scores are facts about the relationship between students and deliverables</p>
+<p>B. Because a junction table removes the need for keys</p>
+<p>C. Because every database must have exactly one junction table</p>
+<p>D. Because deliverables can never have a primary key</p>
+<p><strong>14. Select ALL that apply: Why does Chapter 7 treat 3NF as useful for business rules?</strong></p>
+<p>A. It centralizes rules in one place</p>
+<p>B. It reduces hidden duplication</p>
+<p>C. It makes reports more consistent</p>
+<p>D. It removes the need for lookups</p>
+<p>E. It lowers the cost of changing rules later</p>
+<p><strong>15. Why does Chapter 7 reject the claim that normalized data is bad for analysis?</strong></p>
+<p>A. Because normalization eliminates the need for queries</p>
+<p>B. Because storage design and presentation design solve different problems, and SQL bridges them</p>
+<p>C. Because analysts should work only with raw transactional tables and never with views</p>
+<p>D. Because denormalization is forbidden in all reporting systems</p>
+<p><strong>16. Select ALL that apply: Which statements about the practical build in Access match the chapter?</strong></p>
+<p>A. The Lookup Wizard can help users choose related values for foreign keys</p>
+<p>B. The Lookup Wizard replaces actual relationship design</p>
+<p>C. Referential integrity should still be defined explicitly</p>
+<p>D. Setting <code>Indexed: No Duplicates</code> on <code>Email</code> can help enforce uniqueness</p>
+<p>E. Access is described as a visual learning tool rather than the only valid platform</p>
+<hr />
+<h2>Apply</h2>
+<p><strong>17. Alice changes her email address after three deliverables have already been graded. In the normalized design from Chapter 7, where should that change be made?</strong></p>
+<p>A. In all three rows of <code>STUDENT_GRADE</code></p>
+<p>B. In one row of <code>STUDENT</code></p>
+<p>C. In <code>DELIVERABLE</code></p>
+<p>D. In <code>GRADE_SCALE</code></p>
+<p><strong>18. Select ALL that apply: A table keyed by <code>(StudentID, DeliverableID)</code> also stores <code>FirstName</code>, <code>LastName</code>, <code>DeliverableType</code>, and <code>Score</code>. Which attributes create the 2NF problem described in Chapter 7?</strong></p>
+<p>A. <code>FirstName</code></p>
+<p>B. <code>LastName</code></p>
+<p>C. <code>DeliverableType</code></p>
+<p>D. <code>Score</code></p>
+<p>E. The composite key itself</p>
+<p><strong>19. A grade table stores both <code>Score</code> and <code>LetterGrade</code>, where the letter grade is determined from score ranges. Which design problem is Chapter 7 describing?</strong></p>
+<p>A. A 1NF violation caused by repeating columns</p>
+<p>B. A 2NF violation caused by partial dependencies</p>
+<p>C. A 3NF violation caused by a transitive dependency</p>
+<p>D. A referential integrity failure</p>
+<p><strong>20. Select ALL that apply: Which migration steps match the chapter's move from <code>GRADE_EXAMPLE</code> to a normalized design?</strong></p>
+<p>A. Use <code>SELECT DISTINCT</code> to load unique student facts into <code>STUDENT</code></p>
+<p>B. Use <code>SELECT DISTINCT</code> to load unique deliverable facts into <code>DELIVERABLE</code></p>
+<p>C. Keep relationship facts such as score in <code>STUDENT_GRADE</code></p>
+<p>D. Resolve conflicting student emails before trusting the migration</p>
+<p>E. Copy the entire flat table directly into <code>STUDENT</code></p>
+<p><strong>21. A table stores <code>Grade1</code>, <code>Grade2</code>, and <code>Grade3</code> as separate columns. What is the Chapter 7 fix?</strong></p>
+<p>A. Rename the columns to <code>Quiz1</code>, <code>Quiz2</code>, and <code>Quiz3</code></p>
+<p>B. Store one grade per row in a single grade column</p>
+<p>C. Add <code>Grade4</code> and <code>Grade5</code> in advance to make the table scalable</p>
+<p>D. Replace the numeric grades with letter grades only</p>
+<p><strong>22. Select ALL that apply: Which dependencies justify keeping attributes together in the same table?</strong></p>
+<p>A. <code>StudentID -&gt; FirstName, LastName, Email</code></p>
+<p>B. <code>DeliverableID -&gt; DeliverableType, DeliverableNumber, DueDate</code></p>
+<p>C. <code>(StudentID, DeliverableID) -&gt; Score</code></p>
+<p>D. <code>Score -&gt; LetterGrade</code> inside the transaction table</p>
+<p>E. <code>ZipCode -&gt; City, State</code> inside a student table without a separate lookup</p>
+<p><strong>23. After migrating student data, which result from <code>GROUP BY Email HAVING COUNT(*) &gt; 1</code> indicates a clean load?</strong></p>
+<p>A. One row per student</p>
+<p>B. Zero rows returned</p>
+<p>C. One row with the highest count only</p>
+<p>D. At least one duplicate so the query proves data exists</p>
+<p><strong>24. Select ALL that apply: According to Chapter 7, when might controlled denormalization be reasonable?</strong></p>
+<p>A. When read performance is critical</p>
+<p>B. When the data is queried far more often than it is updated</p>
+<p>C. When the system is operating at very large scale</p>
+<p>D. When a designer wants to avoid learning joins</p>
+<p>E. When summary data can be refreshed or synchronized safely</p>
+<hr />
+<h2>Analyze</h2>
+<p><strong>25. A designer splits data into two tables, <code>STUDENT</code> and <code>STUDENT_DETAILS</code>, but still stores <code>FirstName</code> and <code>LastName</code> redundantly in both. Which chapter idea best diagnoses the problem?</strong></p>
+<p>A. Multiple tables automatically guarantee normalization</p>
+<p>B. Normalization adds formal rules beyond simply using more than one table</p>
+<p>C. Redundancy disappears whenever a DBMS is used instead of a spreadsheet</p>
+<p>D. The design must already be in BCNF because there are two tables</p>
+<p><strong>26. Select ALL that apply: Which categories of facts does Chapter 7 say are mixed together in the flat grading table?</strong></p>
+<p>A. Student facts</p>
+<p>B. Deliverable facts</p>
+<p>C. Performance facts</p>
+<p>D. Attendance facts</p>
+<p>E. Server log facts</p>
+<p><strong>27. Which question most directly tests for the 2NF issue in a composite-key table?</strong></p>
+<p>A. Does every non-key attribute depend on the whole key?</p>
+<p>B. Does the table have more than five columns?</p>
+<p>C. Is there at least one surrogate key?</p>
+<p>D. Does every value use the same font and format?</p>
+<p><strong>28. Select ALL that apply: Which examples fit Chapter 7's explanation of a transitive dependency?</strong></p>
+<p>A. <code>Score -&gt; LetterGrade</code></p>
+<p>B. <code>ZipCode -&gt; City, State</code></p>
+<p>C. <code>InstructorID -&gt; InstructorEmail</code></p>
+<p>D. <code>(StudentID, DeliverableID) -&gt; Score</code></p>
+<p>E. <code>StudentID -&gt; Email</code></p>
+<p><strong>29. If a table is correctly in 3NF, what must also be true?</strong></p>
+<p>A. It is also in 1NF and 2NF</p>
+<p>B. It no longer needs primary keys</p>
+<p>C. It contains only one table in the whole database</p>
+<p>D. It cannot use lookup tables</p>
+<p><strong>30. Select ALL that apply: Which statements show the chapter's separation of storage design and presentation design?</strong></p>
+<p>A. Normalization belongs to storage design</p>
+<p>B. Views and CTEs belong to presentation and reporting logic</p>
+<p>C. One oversized table should serve both storage accuracy and dashboard convenience</p>
+<p>D. Reports can recombine normalized tables without changing base storage</p>
+<p>E. Pushing report convenience into base tables can create technical debt</p>
+<p><strong>31. In the flat grading design, deleting the only row for a deliverable also erases its due date and point value. Which anomaly is this?</strong></p>
+<p>A. Update anomaly</p>
+<p>B. Insertion anomaly</p>
+<p>C. Deletion anomaly</p>
+<p>D. Sort anomaly</p>
+<p><strong>32. Select ALL that apply: Which clues suggest a table is modeling a relationship rather than a single entity?</strong></p>
+<p>A. The natural identifier is a composite key</p>
+<p>B. The facts exist at the intersection of two entities</p>
+<p>C. The table resolves a many-to-many relationship</p>
+<p>D. The main non-key fact depends on both key parts together</p>
+<p>E. Every non-key attribute depends on <code>StudentID</code> alone</p>
+<hr />
+<h2>Evaluate</h2>
+<p><strong>33. Which design choice is most defensible if the grading policy changes often but historical scores must stay trustworthy?</strong></p>
+<p>A. Store <code>LetterGrade</code> redundantly in every score row and update all rows each semester</p>
+<p>B. Put grading ranges in a separate <code>GRADE_SCALE</code> table and look them up when needed</p>
+<p>C. Keep the rules in a spreadsheet outside the database and trust users to check it manually</p>
+<p>D. Store the rules in the <code>Email</code> field because it is unique</p>
+<p><strong>34. Select ALL that apply: Which arguments best support using a normalized base schema even when a dashboard team wants faster reporting?</strong></p>
+<p>A. It keeps one authoritative source of truth for core facts</p>
+<p>B. It makes later summary layers more trustworthy</p>
+<p>C. It allows business rules to be changed in one place</p>
+<p>D. It makes joins unnecessary in every reporting workflow</p>
+<p>E. It reduces the risk of stale duplicated values in metrics</p>
+<p><strong>35. Which judgment best matches Chapter 7's advice about denormalization?</strong></p>
+<p>A. Denormalize first and normalize only if problems appear later</p>
+<p>B. Normalize first, then denormalize intentionally only when performance needs justify it</p>
+<p>C. Avoid normalization entirely in systems that use dashboards</p>
+<p>D. Denormalization and normalization are interchangeable design styles</p>
+<p><strong>36. Select ALL that apply: A proposed <code>STUDENT_GRADE</code> table stores <code>Email</code>, <code>DueDate</code>, <code>Score</code>, and <code>LetterGrade</code> in every row. Which critiques are most defensible from Chapter 7?</strong></p>
+<p>A. <code>Email</code> repeats a student fact that belongs in <code>STUDENT</code></p>
+<p>B. <code>DueDate</code> repeats a deliverable fact that belongs in <code>DELIVERABLE</code></p>
+<p>C. <code>LetterGrade</code> risks a transitive dependency if it is determined from score rules</p>
+<p>D. The design increases the chance of update anomalies</p>
+<p>E. The design is automatically correct because everything needed for a report is in one row</p>
+<p><strong>37. If an instructor has only enough time to make one structural improvement to a fragile flat grading file, which choice best improves long-term integrity?</strong></p>
+<p>A. Add more color formatting so repeated facts stand out visually</p>
+<p>B. Separate student, deliverable, and score facts into related tables based on their determinants</p>
+<p>C. Hide unused columns and keep all facts in one place</p>
+<p>D. Replace all IDs with student names to make rows more readable</p>
+<p><strong>38. Select ALL that apply: Which conditions from Chapter 7 justify performance-oriented denormalization most strongly?</strong></p>
+<p>A. Read performance is critical</p>
+<p>B. Queries vastly outnumber updates</p>
+<p>C. The system operates at very large scale</p>
+<p>D. Safeguards exist to keep duplicated values synchronized</p>
+<p>E. The schema was never normalized in the first place</p>
+<p><strong>39. Which judgment best reflects the chapter's treatment of the Access Lookup Wizard?</strong></p>
+<p>A. It is a helpful interface aid, but it does not replace defining relationships and referential integrity</p>
+<p>B. It makes normalization unnecessary in Access</p>
+<p>C. It should be used instead of foreign keys</p>
+<p>D. It is the only safe way to build tables</p>
+<p><strong>40. Select ALL that apply: Why are verification queries an important final step after migration to a normalized design?</strong></p>
+<p>A. They confirm that duplicate entity facts were consolidated correctly</p>
+<p>B. They expose hidden data-quality conflicts that normalization forces into view</p>
+<p>C. They help confirm one trustworthy version of the truth</p>
+<p>D. They show whether implementation matches the intended design</p>
+<p>E. They eliminate the need for primary keys and constraints</p>
+<hr />
+<h2>Assessment Design Notes</h2>
+<ul>
+<li>Primary source base: <a href="../main/ch07-main-edited-2026-05-18.md">ch07-main-edited-2026-05-18.md</a></li>
+<li>Secondary source base: <a href="../terms/ch07-terms-2026-05-05.md">ch07-terms-2026-05-05.md</a></li>
+<li>Current Chapter 7 Lets-Build file: none present in the chapter folder at the time of this update.</li>
+<li>AI-resistance strategies used: chapter-specific grading-database references, dependency reasoning, scenario traps around anomalies and denormalization, multi-answer discrimination, migration and verification logic, and platform-specific Access notes.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th style="text-align: right;">Target Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th style="text-align: right;">Target Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td style="text-align: right;">14</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Bloom Sections Used</th>
+<th>Questions</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>Apply, Analyze, Evaluate</td>
+<td>17-24, 25, 27, 30, 33-40</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>Understand, Apply, Analyze, Evaluate</td>
+<td>10, 12, 14-16, 17-24, 25, 28, 30-40</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>Remember, Understand, Analyze</td>
+<td>1-9, 11, 13, 26, 29, 31-32</td>
+<td style="text-align: right;">14</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Answer Key</h2>
+<p><strong>1. What does normalization try to accomplish in a relational database?</strong></p>
+<p>Correct answer: A</p>
+<p>Explanation: Section 7.1 defines normalization as organizing data so each fact is stored once, redundancy is reduced, and integrity improves.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This matches the chapter definition in Section 7.1.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The chapter argues against one giant report-ready table.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Normalization is about fact placement, not one-column tables.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Keys remain central in normalized design.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Select ALL that apply: Which anomalies are named in Chapter 7 as predictable results of poor structure?</strong></p>
+<p>Correct answers: A, B, C</p>
+<p>Explanation: Section 7.1.2 names update, insertion, and deletion anomalies as the recurring failures caused by poor table structure.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Update anomaly is explicitly named.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Insertion anomaly is explicitly named.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Deletion anomaly is explicitly named.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The chapter does not define a formatting anomaly.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Indexing anomaly is not one of the three anomalies discussed.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. In the notation <code>X -&gt; Y</code>, what is <code>X</code> called?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.2 states that the left side of the dependency is the determinant.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The dependent is on the right side.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's term for the left side of the arrow.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A determinant is not automatically a foreign key.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Lookup value is not the formal term used in the chapter.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. Select ALL that apply: Which situations violate First Normal Form (1NF) in the chapter?</strong></p>
+<p>Correct answers: A, B, D</p>
+<p>Explanation: Section 7.4 explains that multi-valued cells, repeating columns, and lists inside one cell violate 1NF.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>A bundled grades cell is the chapter's main 1NF violation example.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Repeating columns such as <code>Grade1</code>, <code>Grade2</code>, <code>Grade3</code> violate 1NF.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>One grade per row is the fix, not the violation.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>A comma-separated list of dates is still a multi-valued cell.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>One atomic date value does not violate 1NF.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5. Which normal form is designed to remove partial dependencies?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.5 identifies 2NF as the stage that removes partial dependencies.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>1NF handles atomic values and repeating groups.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>2NF removes attributes that depend on only part of a composite key.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>3NF removes transitive dependencies.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>BCNF is discussed as a higher form, not the 2NF stage.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>6. Select ALL that apply: Which tools are identified in Chapter 7 as bridges between normalized storage and analytics-friendly presentation?</strong></p>
+<p>Correct answers: A, B, C, E</p>
+<p>Explanation: Sections 7.8 and Key Concepts describe joins, views, CTEs, and reporting layers as bridges from normalized storage to analysis and decisions.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>JOINs reassemble normalized tables for analysis.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Views are explicitly named as bridges.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>CTEs are explicitly named as bridges.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Surrogate keys support structure, not the analytics bridge itself.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Dashboards built on reporting layers are part of the chapter's storage-to-decisions pipeline.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7. In the Chapter 7 grading example, which table stores the score earned by one student on one deliverable?</strong></p>
+<p>Correct answer: C</p>
+<p>Explanation: Sections 7.2.2 and 7.5.3 place <code>Score</code> in <code>STUDENT_GRADE</code> because it depends on the student-deliverable combination.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td><code>STUDENT</code> stores student facts such as name and email.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td><code>DELIVERABLE</code> stores deliverable facts such as due date and type.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>STUDENT_GRADE</code> stores the relationship fact <code>Score</code>.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> stores lookup rules for letter-grade ranges.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>8. Select ALL that apply: Which are presented as intentional denormalization patterns in Chapter 7?</strong></p>
+<p>Correct answers: A, B, C</p>
+<p>Explanation: Section 7.7.2 names summary tables, materialized views, and cached totals as examples of intentional denormalization.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Summary tables refreshed on a schedule are given as an example.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Materialized views are explicitly named.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Cached totals such as GPA are given as an example.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Repeating email in score rows is bad design, not intentional denormalization.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>The chapter says denormalization comes after normalization, not instead of it.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>9. Why do flat tables often feel simple to users at first?</strong></p>
+<p>Correct answer: A</p>
+<p>Explanation: Section 7.1.1 says each row seems to tell the whole story, which feels familiar to spreadsheet users.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is the chapter's explanation for the appeal of flat tables.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Flat tables do not automatically enforce referential integrity.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The anomalies are hidden, not eliminated.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The DBMS does not automatically fix repeated facts in a flat design.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>10. Select ALL that apply: Why does Chapter 7 say the flat grading table fails as it grows?</strong></p>
+<p>Correct answers: A, B, C, E</p>
+<p>Explanation: Sections 7.1.1 and 7.1.2 explain that the table mixes different facts, repeats values, and creates anomalies because unrelated changes are forced into the same row.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>The chapter says the table mixes different kinds of facts.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Repetition of student and deliverable data is central to the problem.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Update, insertion, and deletion anomalies are named outcomes.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Dashboard absence is not the cause of failure.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>One row is overloaded with unrelated facts.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>11. Why are the normal forms described as cumulative rather than optional?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.3 states that a table in 3NF has already satisfied 1NF and 2NF.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The sequence goes upward from 1NF, not downward.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This captures the chapter's cumulative model.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter explicitly rejects treating them as alternatives.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>BCNF is not the only form that matters in business systems.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>12. Select ALL that apply: What does the dependency <code>DeliverableID -&gt; DueDate, DeliverableType, DeliverableNumber</code> tell a designer?</strong></p>
+<p>Correct answers: A, B, D, E</p>
+<p>Explanation: Section 7.2.2 explains that these are deliverable facts determined by <code>DeliverableID</code>, so they belong together in <code>DELIVERABLE</code> and should not be repeated in score rows.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Due date is a deliverable fact.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The attributes belong in a deliverable-focused table.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter argues against repeating due dates in each grade row.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Repetition of deliverable facts in score rows is exactly the design problem.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td><code>DeliverableID</code> is the determinant for those attributes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>13. Why does Chapter 7 say a junction table is necessary in the grading design?</strong></p>
+<p>Correct answer: A</p>
+<p>Explanation: Section 7.5.4 says a score belongs to the relationship between one student and one deliverable, so the many-to-many relationship needs <code>STUDENT_GRADE</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is the chapter's explanation for the junction table.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Junction tables still rely on keys.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Not every database has exactly one junction table.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Deliverables can still have primary keys.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>14. Select ALL that apply: Why does Chapter 7 treat 3NF as useful for business rules?</strong></p>
+<p>Correct answers: A, B, C, E</p>
+<p>Explanation: Section 7.6.3 says 3NF centralizes rules, reduces hidden duplication, improves consistency, and lowers change costs.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Centralizing rules is a core benefit of 3NF.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Hidden duplication is reduced.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Reports become more consistent.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>3NF often relies on lookups rather than removing them.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>The chapter explicitly ties 3NF to lower change cost.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>15. Why does Chapter 7 reject the claim that normalized data is bad for analysis?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.8 says normalization serves storage correctness while presentation tools such as joins, views, and CTEs support analysis.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Queries are still necessary in normalized systems.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's central argument about storage versus presentation.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter explicitly supports views and other presentation layers.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Denormalization is allowed in controlled cases.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>16. Select ALL that apply: Which statements about the practical build in Access match the chapter?</strong></p>
+<p>Correct answers: A, C, D, E</p>
+<p>Explanation: Section 7.9.1 says the Lookup Wizard is a UI helper, referential integrity still matters, indexed uniqueness can help on email, and Access is a visual learning tool.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>The chapter says the Lookup Wizard can help beginners choose related values.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The chapter explicitly says it does not replace actual relationship design.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Relationships and referential integrity still need to be defined.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>The email indexing note appears in the practical build guidance.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Access is framed as a visual learning tool rather than the only valid platform.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>17. Alice changes her email address after three deliverables have already been graded. In the normalized design from Chapter 7, where should that change be made?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Sections 7.1.2 and 7.5.3 show that student facts belong in <code>STUDENT</code>, so one update there prevents repeated-row edits.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Updating all score rows repeats the flat-table problem.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Student email belongs in one row of <code>STUDENT</code>.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>DELIVERABLE</code> stores deliverable facts, not student email.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> stores grading rules, not student contact data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>18. Select ALL that apply: A table keyed by <code>(StudentID, DeliverableID)</code> also stores <code>FirstName</code>, <code>LastName</code>, <code>DeliverableType</code>, and <code>Score</code>. Which attributes create the 2NF problem described in Chapter 7?</strong></p>
+<p>Correct answers: A, B, C</p>
+<p>Explanation: Section 7.5.2 says <code>FirstName</code> and <code>LastName</code> depend only on <code>StudentID</code>, while <code>DeliverableType</code> depends only on <code>DeliverableID</code>. <code>Score</code> depends on the full key.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>FirstName</code> depends on only part of the key.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>LastName</code> depends on only part of the key.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>DeliverableType</code> depends on only part of the key.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>Score</code> belongs because it depends on the whole composite key.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>The composite key is not the violation; the misplaced non-key attributes are.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>19. A grade table stores both <code>Score</code> and <code>LetterGrade</code>, where the letter grade is determined from score ranges. Which design problem is Chapter 7 describing?</strong></p>
+<p>Correct answer: C</p>
+<p>Explanation: Section 7.6.1 identifies <code>Score -&gt; LetterGrade</code> as a transitive dependency and therefore a 3NF issue.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>This is not about repeating columns or bundled cells.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The issue is not dependence on only part of a composite key.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>The letter grade depends on another non-key attribute, <code>Score</code>.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Referential integrity concerns foreign key matching, not this rule dependency.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>20. Select ALL that apply: Which migration steps match the chapter's move from <code>GRADE_EXAMPLE</code> to a normalized design?</strong></p>
+<p>Correct answers: A, B, C, D</p>
+<p>Explanation: Section 7.9.3 shows <code>SELECT DISTINCT</code> loads for entities, relationship facts into <code>STUDENT_GRADE</code>, and warns that conflicting values require data cleansing.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Student facts are extracted distinctly into <code>STUDENT</code>.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Deliverable facts are extracted distinctly into <code>DELIVERABLE</code>.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Relationship facts remain in <code>STUDENT_GRADE</code>.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>The chapter explicitly warns that conflicts must be resolved before trusting the migration.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Copying the whole flat table into <code>STUDENT</code> would preserve the original structural problem.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>21. A table stores <code>Grade1</code>, <code>Grade2</code>, and <code>Grade3</code> as separate columns. What is the Chapter 7 fix?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.4.2 says repeating columns should be replaced by one grade per row in a single column structure.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Renaming repeating columns does not fix the structural issue.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's 1NF-compliant fix.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Adding more repeating columns makes the problem worse.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Changing to letters does not solve the repeating-column problem.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>22. Select ALL that apply: Which dependencies justify keeping attributes together in the same table?</strong></p>
+<p>Correct answers: A, B, C</p>
+<p>Explanation: Sections 7.2.2 and 7.2.3 say attributes sharing the same determinant belong together. <code>Score -&gt; LetterGrade</code> and <code>ZipCode -&gt; City, State</code> signal lookup or rule separation issues instead.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Student attributes share <code>StudentID</code> as their determinant.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Deliverable attributes share <code>DeliverableID</code> as their determinant.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Score belongs with the student-deliverable relationship because it depends on both.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>This suggests a rule lookup, not keeping both in the transaction table.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>This suggests a separate lookup or rule table rather than storage together in a student row.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>23. After migrating student data, which result from <code>GROUP BY Email HAVING COUNT(*) &gt; 1</code> indicates a clean load?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.9.3 says the expected result of the verification query is zero rows returned.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The query is not designed to show one row per student.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Zero rows means no duplicate emails were found.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Returning one row would mean at least one duplicate exists.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Duplicates are a warning sign, not proof of a clean load.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>24. Select ALL that apply: According to Chapter 7, when might controlled denormalization be reasonable?</strong></p>
+<p>Correct answers: A, B, C, E</p>
+<p>Explanation: Section 7.7.2 says denormalization may be justified when read performance is critical, queries far outnumber updates, systems are large scale, and summary or cached data can be synchronized safely.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Critical read performance is a named condition.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Read-heavy workloads are a named condition.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Very large scale is a named condition.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Avoiding joins is not a valid design reason in the chapter.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Safe synchronization is part of responsible denormalization.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>25. A designer splits data into two tables, <code>STUDENT</code> and <code>STUDENT_DETAILS</code>, but still stores <code>FirstName</code> and <code>LastName</code> redundantly in both. Which chapter idea best diagnoses the problem?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.1.3 says multiple tables alone do not guarantee normalization. Formal dependency-based rules still matter.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter explicitly rejects this misconception.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This captures the chapter's point that normalization adds formal rules beyond table count.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>DBMS use alone does not remove redundancy.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The presence of two tables does not imply BCNF.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>26. Select ALL that apply: Which categories of facts does Chapter 7 say are mixed together in the flat grading table?</strong></p>
+<p>Correct answers: A, B, C</p>
+<p>Explanation: Section 7.1.1 identifies student facts, deliverable facts, and performance facts as the three categories mixed together.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Student facts are one named category.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Deliverable facts are one named category.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Performance facts are one named category.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Attendance is not part of the Chapter 7 flat grading table example.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Server log facts are unrelated to the chapter example.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>27. Which question most directly tests for the 2NF issue in a composite-key table?</strong></p>
+<p>Correct answer: A</p>
+<p>Explanation: Section 7.5 frames the 2NF test as whether each non-key attribute depends on the whole composite key rather than only part of it.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is the exact diagnostic question 2NF requires.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Column count does not determine 2NF compliance.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A surrogate key is not the defining 2NF test.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Formatting is irrelevant to dependency structure.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>28. Select ALL that apply: Which examples fit Chapter 7's explanation of a transitive dependency?</strong></p>
+<p>Correct answers: A, B, C</p>
+<p>Explanation: Section 7.6 explains transitive dependency as a non-key attribute depending on another non-key attribute; the chapter uses <code>Score -&gt; LetterGrade</code> and gives similar business examples like <code>ZipCode -&gt; City, State</code> and <code>InstructorID -&gt; InstructorEmail</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is the chapter's main grading example of transitive dependency.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is given as a supporting business example.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This also fits the chapter's business examples.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>This is a valid relationship fact, not a transitive dependency.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td><code>StudentID -&gt; Email</code> is a direct dependency that belongs in <code>STUDENT</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>29. If a table is correctly in 3NF, what must also be true?</strong></p>
+<p>Correct answer: A</p>
+<p>Explanation: Section 7.3 states that the normal forms are cumulative, so 3NF implies 1NF and 2NF are already satisfied.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This matches the chapter's cumulative progression rule.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Keys remain essential in 3NF.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>3NF says nothing about the number of tables in the full database.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Lookup tables are often part of a correct 3NF design.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>30. Select ALL that apply: Which statements show the chapter's separation of storage design and presentation design?</strong></p>
+<p>Correct answers: A, B, D, E</p>
+<p>Explanation: Sections 7.7 and 7.8 distinguish storage design from presentation design and warn against forcing report convenience into base tables.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Normalization belongs to storage design.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Views and CTEs are presentation/reporting tools.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter argues against one oversized table serving both concerns.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Reports can recombine normalized tables.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>The chapter treats this mixing as a source of technical debt.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>31. In the flat grading design, deleting the only row for a deliverable also erases its due date and point value. Which anomaly is this?</strong></p>
+<p>Correct answer: C</p>
+<p>Explanation: Section 7.1.2 defines deletion anomaly as deleting a row and unintentionally erasing unrelated facts.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Update anomaly involves repeated edits.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Insertion anomaly involves being unable to add something cleanly.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This is the chapter's deletion-anomaly pattern.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Sort anomaly is not a chapter concept.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>32. Select ALL that apply: Which clues suggest a table is modeling a relationship rather than a single entity?</strong></p>
+<p>Correct answers: A, B, C, D</p>
+<p>Explanation: Section 7.5.1 and 7.5.4 show that composite keys, many-to-many resolution, and facts depending on both entities together are clues that the table models a relationship.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>A composite key often signals an intersection of entities.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Facts existing only at the intersection indicate a relationship table.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Junction tables resolve many-to-many relationships.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>A fact depending on both key parts is relationship data.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Dependence on <code>StudentID</code> alone suggests an entity table, not a relationship table.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>33. Which design choice is most defensible if the grading policy changes often but historical scores must stay trustworthy?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.6.2 says rule data such as grading ranges should live in a separate table like <code>GRADE_SCALE</code> so changes happen in one place.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Repeating and updating all score rows reintroduces the 3NF problem.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This centralizes rules while keeping score facts separate.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Manual spreadsheets outside the database weaken control and consistency.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>Email</code> has nothing to do with grading rules.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>34. Select ALL that apply: Which arguments best support using a normalized base schema even when a dashboard team wants faster reporting?</strong></p>
+<p>Correct answers: A, B, C, E</p>
+<p>Explanation: Sections 7.7 and 7.8 argue that normalized base tables protect one source of truth, safer rule changes, and more trustworthy reporting, while summary layers can be added later.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>One authoritative source of truth is a core benefit.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Reliable base data makes later summary layers more trustworthy.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Centralized rules are easier to update safely.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Normalized design does not eliminate joins.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>The chapter ties normalized storage to reduced stale duplication in analytics.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>35. Which judgment best matches Chapter 7's advice about denormalization?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: Section 7.7.2 says denormalization should be intentional and should follow normalization rather than replace it.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter rejects denormalization-first design.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's explicit rule of thumb.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Dashboards do not justify skipping normalization.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The chapter treats them as different steps with different purposes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>36. Select ALL that apply: A proposed <code>STUDENT_GRADE</code> table stores <code>Email</code>, <code>DueDate</code>, <code>Score</code>, and <code>LetterGrade</code> in every row. Which critiques are most defensible from Chapter 7?</strong></p>
+<p>Correct answers: A, B, C, D</p>
+<p>Explanation: The chapter's 2NF and 3NF sections show that email and due date belong with different determinants, letter grade risks a transitive dependency, and the whole design raises update-anomaly risk.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>Email</code> belongs in <code>STUDENT</code>, not repeated in every grade row.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>DueDate</code> belongs in <code>DELIVERABLE</code>, not repeated in every grade row.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>LetterGrade</code> determined by score rules is a 3NF concern.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Repeated facts and rules increase update risk.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Report convenience does not make the design structurally sound.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>37. If an instructor has only enough time to make one structural improvement to a fragile flat grading file, which choice best improves long-term integrity?</strong></p>
+<p>Correct answer: B</p>
+<p>Explanation: The chapter's overall argument is that student, deliverable, and score facts should be separated according to their determinants and linked through keys.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Formatting may improve visibility but not structural integrity.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's core normalization move.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Hiding columns leaves the structural flaw in place.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Replacing IDs with names weakens identity and does not solve redundancy.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>38. Select ALL that apply: Which conditions from Chapter 7 justify performance-oriented denormalization most strongly?</strong></p>
+<p>Correct answers: A, B, C, D</p>
+<p>Explanation: Section 7.7.2 names critical read performance, read-heavy workloads, very large scale, and synchronization safeguards as justification conditions.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is one of the chapter's direct justifications.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is one of the chapter's direct justifications.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This is one of the chapter's direct justifications.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>The chapter says safeguards are needed to keep duplicated values in sync.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Skipping normalization first is the opposite of the chapter's advice.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>39. Which judgment best reflects the chapter's treatment of the Access Lookup Wizard?</strong></p>
+<p>Correct answer: A</p>
+<p>Explanation: Section 7.9.1 says the Lookup Wizard is a helpful UI aid but not a replacement for actual relationships and referential integrity.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is the chapter's exact framing.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The chapter says normalization still matters.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Foreign keys and relationships are still required.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The chapter does not present it as the only safe method.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>40. Select ALL that apply: Why are verification queries an important final step after migration to a normalized design?</strong></p>
+<p>Correct answers: A, B, C, D</p>
+<p>Explanation: Section 7.9.3 says verification queries confirm duplicates were consolidated, reveal hidden data-quality conflicts, and help prove that implementation matches the intended trustworthy design.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>The duplicate-email query checks whether entity facts were consolidated correctly.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Conflicting values become visible during verification.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Verification supports the goal of one trustworthy version of the truth.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>The chapter says normalization is complete only when implementation and verification support the design.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Verification queries do not replace keys or constraints.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Question Distribution Summary</h2>
+<h3>Bloom Level</h3>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Questions</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>1-8</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>9-16</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>17-24</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>25-32</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>33-40</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
+<h3>Question Type</h3>
+<table>
+<thead>
+<tr>
+<th>Question Type</th>
+<th>Questions</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-answer MC</td>
+<td>1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Select ALL</td>
+<td>2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+<h3>Design Criterion</h3>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Questions</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>17-24, 30, 33-40</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>10, 12, 14-20, 24-25, 28, 30, 33-40</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>1-9, 11, 13, 21-23, 26-27, 29, 31-32</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch06-relational-model.html"><small>Previous</small><strong>Chapter 6: Chapter 6: The Relational Model</strong></a>
+          <a class="pager-card pager-card--next" href="ch08-midterm-review.html"><small>Next</small><strong>Chapter 8: Chapter 8: Midterm Review - Concepts</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

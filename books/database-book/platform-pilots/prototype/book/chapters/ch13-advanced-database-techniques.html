@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 13 – Advanced Database Techniques | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 13 – Advanced Database Techniques</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>76%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:76%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="is-current" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 13</p>
+          <h1>Advanced Database Techniques</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>38 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 13 – Advanced Database Techniques</h2>
+                  <p><em>Hardening Databases for Performance, Integrity, Security, and Scale</em></p>
+<p>Earlier chapters focused on making databases <strong>correct</strong>. You learned how to design tables, define keys, normalize data, write SQL queries, administer systems, and use data for business intelligence. Those skills are essential. But in real organizations, correctness is only the beginning.</p>
+<p>A database also has to survive real use.</p>
+<p>It must remain fast as tables grow. It must reject invalid data before errors spread into reports. It must protect sensitive records from unauthorized access. It must preserve an audit trail when important values change. It must support users and applications that read and write data at the same time. A database that works during a classroom exercise may still fail when it becomes part of an operational system.</p>
+<p>This chapter introduces the advanced techniques that turn a working database into a more reliable system.</p>
+<p><strong>After reading this chapter, you will be able to:</strong></p>
+<ul>
+<li>explain how indexes improve query performance and why they create trade-offs;</li>
+<li>use transactions to protect multi-step operations from partial failure;</li>
+<li>apply constraints to enforce business rules at the database level;</li>
+<li>explain when triggers are useful for auditing, validation, and automation;</li>
+<li>use window functions and conditional aggregation for advanced analytics;</li>
+<li>describe how security and permissions protect sensitive database objects;</li>
+<li>compare how advanced techniques differ across Microsoft Access, SQLite, and Supabase/PostgreSQL;</li>
+<li>harden the Grading Database for performance, integrity, auditability, and controlled access.</li>
+</ul>
+<hr />
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Main Question</th>
+<th>Core Techniques</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13.1</td>
+<td>Why is correct SQL not enough?</td>
+<td>Database hardening, reliability, system qualities</td>
+</tr>
+<tr>
+<td>13.2</td>
+<td>How do databases stay fast as data grows?</td>
+<td>Indexes, query plans, indexing strategy</td>
+</tr>
+<tr>
+<td>13.3</td>
+<td>How do we prevent partial updates?</td>
+<td>Transactions, <code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code></td>
+</tr>
+<tr>
+<td>13.4</td>
+<td>How do we block bad data?</td>
+<td><code>CHECK</code>, <code>UNIQUE</code>, <code>DEFAULT</code>, <code>NOT NULL</code> constraints</td>
+</tr>
+<tr>
+<td>13.5</td>
+<td>How can the database react automatically?</td>
+<td>Triggers, audit logs, validation triggers</td>
+</tr>
+<tr>
+<td>13.6</td>
+<td>How do we analyze without losing detail?</td>
+<td>Window functions, rankings, running totals</td>
+</tr>
+<tr>
+<td>13.7</td>
+<td>How do we build transparent metrics?</td>
+<td>Conditional aggregation, ratios, dashboard-ready queries</td>
+</tr>
+<tr>
+<td>13.8</td>
+<td>How do we control access?</td>
+<td>Authentication, authorization, roles, permissions</td>
+</tr>
+<tr>
+<td>13.9</td>
+<td>How do techniques vary by platform?</td>
+<td>Access, SQLite, PostgreSQL/Supabase comparison</td>
+</tr>
+<tr>
+<td>13.10</td>
+<td>How do we apply all of this?</td>
+<td>Hardening the Grading Database</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>13.1 From Correct Queries to Reliable Systems</h2>
+<p>A query can be logically correct and still be operationally weak.</p>
+<p>For example, this query may correctly retrieve all grades for one student:</p>
+<pre><code class="language-sql">SELECT *
+FROM STUDENT_GRADE
+WHERE StudentID = 101;
+</code></pre>
+<p>On a table with twenty rows, it runs instantly. On a table with ten million rows and no index, it may become slow enough to frustrate users or time out entirely. The logic is correct, but the system is not ready for scale.</p>
+<p>The same problem appears in other forms:</p>
+<ul>
+<li>A grade update works unless the second step fails.</li>
+<li>A score is accepted even if it is 175.</li>
+<li>An instructor changes a grade, but no audit trail records the old value.</li>
+<li>A student can see records that should be private.</li>
+<li>A dashboard is visually impressive but based on inconsistent rules.</li>
+</ul>
+<p>These are not beginner syntax problems. They are <strong>system reliability problems</strong>.</p>
+<h3>13.1.1 What Advanced Techniques Protect</h3>
+<p>Advanced database techniques protect four core qualities.</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th>Meaning</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Queries remain usable as data volume grows</td>
+<td>Student grade reports load quickly even with years of records</td>
+</tr>
+<tr>
+<td><strong>Integrity</strong></td>
+<td>Data remains valid and internally consistent</td>
+<td>Scores cannot exceed the allowed range</td>
+</tr>
+<tr>
+<td><strong>Auditability</strong></td>
+<td>Important changes can be traced</td>
+<td>Grade updates record old score, new score, user, and timestamp</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>Users can access only what they are allowed to access</td>
+<td>Students view their own grades; instructors update assigned course records</td>
+</tr>
+</tbody>
+</table>
+<p>Together, these qualities turn a database from a collection of tables into a trustworthy information system.</p>
+<h3>13.1.2 The Idea of Database Hardening</h3>
+<p><strong>Database hardening</strong> means strengthening a database so that it can operate safely under realistic conditions. Hardening does not usually change the basic business purpose of the database. Instead, it reinforces the system around that purpose.</p>
+<p>In the Grading Database, hardening means:</p>
+<ul>
+<li>making common student and deliverable queries faster;</li>
+<li>preventing invalid grades and duplicate submissions;</li>
+<li>protecting grade updates with transactions;</li>
+<li>recording grade changes automatically;</li>
+<li>separating instructor, student, and administrator access;</li>
+<li>preparing analytics queries that are reusable and transparent.</li>
+</ul>
+<p>A hardened database does not depend entirely on users remembering rules. It embeds important rules into the database itself.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong><br />
+Basic SQL asks, “Does the query work?” Advanced database work asks, “Will the system remain fast, safe, auditable, and trustworthy when real users depend on it?”</p>
+</blockquote>
+<hr />
+<h2>13.2 Indexes: Making Queries Fast at Scale</h2>
+<p>Indexes are one of the most important tools for database performance. They do not change the data stored in a table. They change how efficiently the database can find that data.</p>
+<h3>13.2.1 Why Performance Problems Appear Late</h3>
+<p>Performance problems often stay invisible during development because early datasets are small. A query that scans 100 rows feels instant. The same query scanning 5 million rows may become painful.</p>
+<p>Without an index, a database often performs a <strong>full table scan</strong>. That means it examines every row to find the rows that match the condition.</p>
+<pre><code class="language-sql">SELECT *
+FROM STUDENT_GRADE
+WHERE StudentID = 101;
+</code></pre>
+<p>If <code>STUDENT_GRADE</code> has no index on <code>StudentID</code>, the database may inspect every grade record before returning the rows for Student 101.</p>
+<h3>13.2.2 What an Index Does</h3>
+<p>An <strong>index</strong> is a lookup structure that helps the DBMS locate rows quickly. A useful analogy is the index at the back of a textbook. Without the index, you search page by page. With the index, you jump directly to the relevant pages.</p>
+<p>A database index works similarly. It stores column values in an optimized structure and maps them to rows in the table.</p>
+<p>Common index targets include:</p>
+<ul>
+<li>primary keys;</li>
+<li>foreign keys used in joins;</li>
+<li>columns used frequently in <code>WHERE</code> filters;</li>
+<li>columns used in <code>ORDER BY</code>;</li>
+<li>dates used in time-window queries;</li>
+<li>business identifiers such as email addresses.</li>
+</ul>
+<h3>13.2.3 Creating Indexes</h3>
+<p>The basic syntax is:</p>
+<pre><code class="language-sql">CREATE INDEX index_name
+ON table_name (column_name);
+</code></pre>
+<p>In the Grading Database, common indexes include:</p>
+<pre><code class="language-sql">CREATE INDEX idx_student_grade_student
+ON STUDENT_GRADE (StudentID);
+
+CREATE INDEX idx_student_grade_deliverable
+ON STUDENT_GRADE (DeliverableID);
+
+CREATE INDEX idx_deliverable_due_date
+ON DELIVERABLE (DueDate);
+</code></pre>
+<p>These indexes support frequent questions:</p>
+<ul>
+<li>Which grades belong to this student?</li>
+<li>What scores were recorded for this deliverable?</li>
+<li>Which deliverables are due before a given date?</li>
+</ul>
+<h3>13.2.4 Composite Indexes</h3>
+<p>A <strong>composite index</strong> uses more than one column. It is useful when queries commonly filter or join using those columns together.</p>
+<pre><code class="language-sql">CREATE INDEX idx_grade_student_deliverable
+ON STUDENT_GRADE (StudentID, DeliverableID);
+</code></pre>
+<p>This index supports queries such as:</p>
+<pre><code class="language-sql">SELECT Score
+FROM STUDENT_GRADE
+WHERE StudentID = 101
+  AND DeliverableID = 5;
+</code></pre>
+<p>The order of columns matters. An index on <code>(StudentID, DeliverableID)</code> is most useful when the query filters by <code>StudentID</code>, or by both <code>StudentID</code> and <code>DeliverableID</code>. It may be less useful for a query that filters only by <code>DeliverableID</code>.</p>
+<h3>13.2.5 Unique Indexes</h3>
+<p>A <strong>unique index</strong> improves lookup speed and enforces uniqueness.</p>
+<pre><code class="language-sql">CREATE UNIQUE INDEX idx_student_email
+ON STUDENT (Email);
+</code></pre>
+<p>This prevents two students from having the same email address.</p>
+<p>A composite unique index can enforce a business rule:</p>
+<pre><code class="language-sql">CREATE UNIQUE INDEX idx_one_grade_per_student_deliverable
+ON STUDENT_GRADE (StudentID, DeliverableID);
+</code></pre>
+<p>This rule says that one student can have only one score for one deliverable. If the course policy allows multiple attempts, the design should include an <code>AttemptNumber</code> column:</p>
+<pre><code class="language-sql">CREATE UNIQUE INDEX idx_one_grade_per_attempt
+ON STUDENT_GRADE (StudentID, DeliverableID, AttemptNumber);
+</code></pre>
+<h3>13.2.6 The Cost of Indexes</h3>
+<p>Indexes improve read performance, but they are not free.</p>
+<p>Each index creates trade-offs:</p>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faster filtering</td>
+<td>More storage</td>
+</tr>
+<tr>
+<td>Faster joins</td>
+<td>Slower inserts</td>
+</tr>
+<tr>
+<td>Faster sorting</td>
+<td>Slower updates and deletes</td>
+</tr>
+<tr>
+<td>Enforced uniqueness</td>
+<td>More maintenance overhead</td>
+</tr>
+</tbody>
+</table>
+<p>Every time a row is inserted, updated, or deleted, the DBMS may also need to update indexes. For this reason, indexing every column is usually a mistake.</p>
+<h3>13.2.7 Using Query Plans</h3>
+<p>A <strong>query plan</strong> shows how the DBMS intends to execute a query. It helps you see whether indexes are being used.</p>
+<p>In SQLite:</p>
+<pre><code class="language-sql">EXPLAIN QUERY PLAN
+SELECT *
+FROM STUDENT_GRADE
+WHERE StudentID = 101;
+</code></pre>
+<p>In PostgreSQL:</p>
+<pre><code class="language-sql">EXPLAIN ANALYZE
+SELECT *
+FROM STUDENT_GRADE
+WHERE StudentID = 101;
+</code></pre>
+<p>If the plan says the database is scanning the entire table, an index may be needed. If the plan shows an index search, the database is using a more efficient path.</p>
+<blockquote>
+<p><strong>Tip:</strong><br />
+Do not guess about performance. Use query plans to see what the database is actually doing. Databases are many things, but they are not impressed by confidence.</p>
+</blockquote>
+<hr />
+<h2>13.3 Transactions: Protecting Multi-Step Operations</h2>
+<p>Many database operations involve more than one step. A transaction groups those steps into a single unit of work.</p>
+<h3>13.3.1 What a Transaction Is</h3>
+<p>A <strong>transaction</strong> is a set of database operations that must succeed or fail together.</p>
+<p>The core commands are:</p>
+<pre><code class="language-sql">BEGIN;
+COMMIT;
+ROLLBACK;
+</code></pre>
+<ul>
+<li><code>BEGIN</code> starts the transaction.</li>
+<li><code>COMMIT</code> saves the changes permanently.</li>
+<li><code>ROLLBACK</code> cancels the changes and restores the previous state.</li>
+</ul>
+<p>The basic principle is simple:</p>
+<blockquote>
+<p>Either every operation inside the transaction succeeds, or none of them do.</p>
+</blockquote>
+<h3>13.3.2 Why Transactions Matter</h3>
+<p>Consider a grading workflow:</p>
+<ol>
+<li>Insert a new score.</li>
+<li>Update the student's summary average.</li>
+<li>Add a row to a grade-change audit table.</li>
+</ol>
+<p>If step 1 succeeds but step 3 fails, the database is left in a partial state. Transactions prevent that.</p>
+<pre><code class="language-sql">BEGIN;
+
+INSERT INTO STUDENT_GRADE (StudentID, DeliverableID, Score)
+VALUES (101, 5, 88);
+
+INSERT INTO GRADE_AUDIT (GradeID, OldScore, NewScore, ChangedAt)
+VALUES (NULL, NULL, 88, CURRENT_TIMESTAMP);
+
+COMMIT;
+</code></pre>
+<p>If a problem occurs before <code>COMMIT</code>, the operation can be cancelled:</p>
+<pre><code class="language-sql">ROLLBACK;
+</code></pre>
+<h3>13.3.3 A Safer Grade Update Pattern</h3>
+<p>Updating grades is sensitive because grade changes affect student records, reports, and trust. A safer pattern records the old value before updating.</p>
+<pre><code class="language-sql">BEGIN;
+
+INSERT INTO GRADE_AUDIT (GradeID, OldScore, NewScore, ChangedAt)
+SELECT GradeID, Score, 92, CURRENT_TIMESTAMP
+FROM STUDENT_GRADE
+WHERE GradeID = 10;
+
+UPDATE STUDENT_GRADE
+SET Score = 92
+WHERE GradeID = 10;
+
+COMMIT;
+</code></pre>
+<p>This transaction makes the grade update and the audit record part of the same operation.</p>
+<h3>13.3.4 ACID in Practice</h3>
+<p>Chapter 11 introduced ACID properties. Chapter 13 applies them.</p>
+<table>
+<thead>
+<tr>
+<th>ACID Property</th>
+<th>Practical Meaning</th>
+<th>Grading Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Atomicity</strong></td>
+<td>All steps succeed or all fail</td>
+<td>Grade update and audit record happen together</td>
+</tr>
+<tr>
+<td><strong>Consistency</strong></td>
+<td>Rules remain valid before and after</td>
+<td>No invalid score is stored</td>
+</tr>
+<tr>
+<td><strong>Isolation</strong></td>
+<td>Concurrent work does not interfere</td>
+<td>Two instructors do not overwrite each other unexpectedly</td>
+</tr>
+<tr>
+<td><strong>Durability</strong></td>
+<td>Committed changes persist</td>
+<td>Saved grades survive system failure</td>
+</tr>
+</tbody>
+</table>
+<p>Transactions are one of the main reasons databases are more reliable than spreadsheets. A spreadsheet has cells. A database has rules about what happens when things go wrong.</p>
+<hr />
+<h2>13.4 Constraints Beyond Primary Keys</h2>
+<p>Primary keys and foreign keys protect identity and relationships. But many business rules require additional constraints.</p>
+<h3>13.4.1 Why Keys Are Not Enough</h3>
+<p>A table can have a valid primary key and still contain bad data.</p>
+<p>Examples:</p>
+<ul>
+<li><code>Score = 145</code></li>
+<li><code>Email = 'not-an-email'</code></li>
+<li><code>Attended = 'maybe'</code></li>
+<li>two rows for the same student and deliverable</li>
+<li>missing required values in important fields</li>
+</ul>
+<p>These values may fit the column type, but they violate business meaning.</p>
+<h3>13.4.2 NOT NULL Constraints</h3>
+<p>A <code>NOT NULL</code> constraint requires a value.</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT (
+    StudentID INTEGER PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    Email TEXT NOT NULL
+);
+</code></pre>
+<p>This ensures that essential student identity fields cannot be omitted.</p>
+<h3>13.4.3 CHECK Constraints</h3>
+<p>A <code>CHECK</code> constraint restricts allowed values.</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT_GRADE (
+    GradeID INTEGER PRIMARY KEY,
+    StudentID INTEGER NOT NULL,
+    DeliverableID INTEGER NOT NULL,
+    Score INTEGER CHECK (Score BETWEEN 0 AND 100),
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID),
+    FOREIGN KEY (DeliverableID) REFERENCES DELIVERABLE(DeliverableID)
+);
+</code></pre>
+<p>This prevents scores below 0 or above 100.</p>
+<p>Attendance can also be constrained:</p>
+<pre><code class="language-sql">CREATE TABLE ATTENDANCE (
+    AttendanceID INTEGER PRIMARY KEY,
+    ClassNum INTEGER NOT NULL,
+    StudentID INTEGER NOT NULL,
+    Attended INTEGER CHECK (Attended IN (0, 1))
+);
+</code></pre>
+<h3>13.4.4 UNIQUE Constraints</h3>
+<p>A <code>UNIQUE</code> constraint prevents duplicate values.</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT (
+    StudentID INTEGER PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    Email TEXT UNIQUE
+);
+</code></pre>
+<p>A composite <code>UNIQUE</code> constraint can enforce business rules:</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT_GRADE (
+    GradeID INTEGER PRIMARY KEY,
+    StudentID INTEGER NOT NULL,
+    DeliverableID INTEGER NOT NULL,
+    Score INTEGER CHECK (Score BETWEEN 0 AND 100),
+    UNIQUE (StudentID, DeliverableID),
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID),
+    FOREIGN KEY (DeliverableID) REFERENCES DELIVERABLE(DeliverableID)
+);
+</code></pre>
+<p>This prevents duplicate grade rows for the same student and deliverable.</p>
+<h3>13.4.5 DEFAULT Constraints</h3>
+<p>A <code>DEFAULT</code> constraint supplies a value when none is provided.</p>
+<pre><code class="language-sql">CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+</code></pre>
+<p>or:</p>
+<pre><code class="language-sql">Attended INTEGER DEFAULT 0
+</code></pre>
+<p>Defaults reduce ambiguity. Instead of leaving a value missing, the database inserts a known default.</p>
+<h3>13.4.6 Constraint Design Checklist</h3>
+<p>Before adding a constraint, ask:</p>
+<ol>
+<li>Is this rule always true?</li>
+<li>Should violations be blocked immediately?</li>
+<li>Is the rule stable over time?</li>
+<li>Should the rule live in the database rather than in application code?</li>
+<li>Will historical data violate the rule?</li>
+</ol>
+<p>If the answer to the first four questions is yes, the rule probably belongs as a database constraint.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong><br />
+Constraints are business rules made enforceable. They move data quality from “please be careful” to “the system will not allow this.”</p>
+</blockquote>
+<hr />
+<h2>13.5 Triggers: Automated Database Responses</h2>
+<p>A trigger is database logic that runs automatically when data changes.</p>
+<h3>13.5.1 What Triggers Are</h3>
+<p>A <strong>trigger</strong> executes in response to an event such as <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>.</p>
+<p>Triggers answer three questions:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Possible Answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>When should it run?</td>
+<td><code>BEFORE</code>, <code>AFTER</code></td>
+</tr>
+<tr>
+<td>What event activates it?</td>
+<td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
+</tr>
+<tr>
+<td>Which table does it watch?</td>
+<td>Example: <code>STUDENT_GRADE</code></td>
+</tr>
+</tbody>
+</table>
+<p>Triggers are useful when the database must react automatically regardless of which user, application, or tool makes the change.</p>
+<h3>13.5.2 Trigger Use Cases</h3>
+<p>Good uses include:</p>
+<ul>
+<li>audit logging;</li>
+<li>preventing invalid changes;</li>
+<li>maintaining timestamps;</li>
+<li>enforcing rules that are too complex for simple constraints;</li>
+<li>synchronizing small pieces of metadata.</li>
+</ul>
+<p>Riskier uses include:</p>
+<ul>
+<li>hidden business workflows;</li>
+<li>large cascading updates;</li>
+<li>complex calculations that are hard to debug;</li>
+<li>behavior that surprises developers.</li>
+</ul>
+<p>Triggers should be small, documented, and predictable.</p>
+<h3>13.5.3 Audit Logging Example</h3>
+<p>Grade changes should often be auditable.</p>
+<p>First, create an audit table:</p>
+<pre><code class="language-sql">CREATE TABLE GRADE_AUDIT (
+    AuditID INTEGER PRIMARY KEY,
+    GradeID INTEGER,
+    OldScore INTEGER,
+    NewScore INTEGER,
+    ChangedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<p>In SQLite:</p>
+<pre><code class="language-sql">CREATE TRIGGER trg_log_grade_update
+AFTER UPDATE ON STUDENT_GRADE
+FOR EACH ROW
+BEGIN
+    INSERT INTO GRADE_AUDIT (GradeID, OldScore, NewScore)
+    VALUES (OLD.GradeID, OLD.Score, NEW.Score);
+END;
+</code></pre>
+<p>Every update to <code>STUDENT_GRADE</code> now produces an audit record automatically.</p>
+<h3>13.5.4 Preventing Invalid Scores with a Trigger</h3>
+<p>A <code>CHECK</code> constraint is usually better for simple rules. But triggers can produce custom behavior.</p>
+<p>SQLite example:</p>
+<pre><code class="language-sql">CREATE TRIGGER trg_prevent_invalid_score
+BEFORE INSERT ON STUDENT_GRADE
+FOR EACH ROW
+WHEN NEW.Score &lt; 0 OR NEW.Score &gt; 100
+BEGIN
+    SELECT RAISE(ABORT, 'Score must be between 0 and 100');
+END;
+</code></pre>
+<p>This stops the insert before bad data enters the table.</p>
+<h3>13.5.5 PostgreSQL Trigger Pattern</h3>
+<p>PostgreSQL separates trigger logic into a function and a trigger.</p>
+<pre><code class="language-sql">CREATE TABLE GradeAudit (
+    AuditID SERIAL PRIMARY KEY,
+    GradeID INTEGER,
+    OldScore INTEGER,
+    NewScore INTEGER,
+    ChangedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<pre><code class="language-sql">CREATE OR REPLACE FUNCTION log_grade_update()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO GradeAudit (GradeID, OldScore, NewScore)
+    VALUES (OLD.GradeID, OLD.Score, NEW.Score);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+</code></pre>
+<pre><code class="language-sql">CREATE TRIGGER trg_log_grade_update
+AFTER UPDATE ON STUDENT_GRADE
+FOR EACH ROW
+EXECUTE FUNCTION log_grade_update();
+</code></pre>
+<h3>13.5.6 Trigger Caution</h3>
+<p>Triggers are powerful because they are automatic. That is also what makes them dangerous.</p>
+<p>A user may run:</p>
+<pre><code class="language-sql">UPDATE STUDENT_GRADE
+SET Score = 90
+WHERE GradeID = 10;
+</code></pre>
+<p>and not realize that three other actions are happening behind the scenes.</p>
+<blockquote>
+<p><strong>Warning:</strong><br />
+Hidden logic is still logic. Document triggers clearly, name them consistently, and avoid using them for rules that belong more naturally in queries, constraints, or application code.</p>
+</blockquote>
+<hr />
+<h2>13.6 Window Functions: Analytics Without Losing Detail</h2>
+<p>Traditional aggregation collapses rows.</p>
+<pre><code class="language-sql">SELECT StudentID, AVG(Score) AS AvgScore
+FROM STUDENT_GRADE
+GROUP BY StudentID;
+</code></pre>
+<p>This query gives one row per student. That is useful, but the individual grade rows disappear. Window functions solve this problem by adding analytical values while preserving row-level detail.</p>
+<h3>13.6.1 GROUP BY vs. Window Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><code>GROUP BY</code></th>
+<th>Window Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Output</td>
+<td>One row per group</td>
+<td>Original rows remain</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Summaries</td>
+<td>Detail plus comparison</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Average per student</td>
+<td>Each score plus student average</td>
+</tr>
+<tr>
+<td>Row detail retained?</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h3>13.6.2 Basic Syntax</h3>
+<pre><code class="language-sql">function_name() OVER (
+    PARTITION BY grouping_column
+    ORDER BY ordering_column
+)
+</code></pre>
+<ul>
+<li><code>PARTITION BY</code> divides rows into groups.</li>
+<li><code>ORDER BY</code> defines order within each group.</li>
+<li>The function computes a value over the window.</li>
+</ul>
+<h3>13.6.3 Student Average Beside Each Grade</h3>
+<pre><code class="language-sql">SELECT
+    StudentID,
+    DeliverableID,
+    Score,
+    AVG(Score) OVER (
+        PARTITION BY StudentID
+    ) AS StudentAverage
+FROM STUDENT_GRADE;
+</code></pre>
+<p>Each grade row remains visible, but the student's average appears beside it.</p>
+<h3>13.6.4 Ranking Students Within a Deliverable</h3>
+<pre><code class="language-sql">SELECT
+    DeliverableID,
+    StudentID,
+    Score,
+    RANK() OVER (
+        PARTITION BY DeliverableID
+        ORDER BY Score DESC
+    ) AS RankWithinDeliverable
+FROM STUDENT_GRADE;
+</code></pre>
+<p>This ranks students separately for each deliverable. <code>PARTITION BY DeliverableID</code> resets the ranking for each assignment.</p>
+<h3>13.6.5 Running Average Over Time</h3>
+<pre><code class="language-sql">SELECT
+    sg.StudentID,
+    d.DueDate,
+    sg.Score,
+    ROUND(
+        AVG(sg.Score) OVER (
+            PARTITION BY sg.StudentID
+            ORDER BY d.DueDate
+            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+        ),
+        2
+    ) AS RunningAverage
+FROM STUDENT_GRADE AS sg
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID
+ORDER BY sg.StudentID, d.DueDate;
+</code></pre>
+<p>This shows each score and the student's cumulative average up to that point.</p>
+<h3>13.6.6 Ranking Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>What It Does</th>
+<th>Tie Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ROW_NUMBER()</code></td>
+<td>Assigns a unique sequence number</td>
+<td>No ties; every row gets a different number</td>
+</tr>
+<tr>
+<td><code>RANK()</code></td>
+<td>Assigns rank based on order</td>
+<td>Ties share rank; gaps appear</td>
+</tr>
+<tr>
+<td><code>DENSE_RANK()</code></td>
+<td>Assigns rank based on order</td>
+<td>Ties share rank; no gaps</td>
+</tr>
+<tr>
+<td><code>NTILE(n)</code></td>
+<td>Divides rows into <code>n</code> groups</td>
+<td>Useful for quartiles or percentile bands</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-sql">SELECT
+    StudentID,
+    AVG(Score) AS AvgScore,
+    DENSE_RANK() OVER (
+        ORDER BY AVG(Score) DESC
+    ) AS DenseClassRank
+FROM STUDENT_GRADE
+GROUP BY StudentID;
+</code></pre>
+<p>Window functions are especially useful for dashboards and early-warning systems because they combine individual records with comparison context.</p>
+<hr />
+<h2>13.7 Advanced Analytics Patterns</h2>
+<p>SQL can produce many BI-ready metrics without exporting data to spreadsheets or visualization tools. The key is to write transparent, reusable analytical logic.</p>
+<h3>13.7.1 Conditional Aggregation</h3>
+<p><strong>Conditional aggregation</strong> uses <code>CASE</code> inside aggregate functions.</p>
+<pre><code class="language-sql">SELECT
+    COUNT(*) AS TotalGrades,
+    SUM(CASE WHEN Score &gt;= 60 THEN 1 ELSE 0 END) AS PassingGrades,
+    SUM(CASE WHEN Score &lt; 60 THEN 1 ELSE 0 END) AS FailingGrades
+FROM STUDENT_GRADE;
+</code></pre>
+<p>This produces multiple metrics in one query.</p>
+<h3>13.7.2 Pass Rate by Deliverable</h3>
+<pre><code class="language-sql">SELECT
+    d.Type,
+    d.DeliverableNumber,
+    COUNT(*) AS TotalSubmissions,
+    SUM(CASE WHEN sg.Score &gt;= 60 THEN 1 ELSE 0 END) AS PassingSubmissions,
+    ROUND(
+        100.0 * SUM(CASE WHEN sg.Score &gt;= 60 THEN 1 ELSE 0 END) / COUNT(*),
+        2
+    ) AS PassRatePercent
+FROM DELIVERABLE AS d
+JOIN STUDENT_GRADE AS sg
+    ON d.DeliverableID = sg.DeliverableID
+GROUP BY d.DeliverableID, d.Type, d.DeliverableNumber
+ORDER BY PassRatePercent ASC;
+</code></pre>
+<p>This identifies deliverables where students struggled most.</p>
+<h3>13.7.3 Attendance Rate by Student</h3>
+<pre><code class="language-sql">SELECT
+    StudentID,
+    COUNT(*) AS ClassSessions,
+    SUM(CASE WHEN Attended = 1 THEN 1 ELSE 0 END) AS ClassesAttended,
+    ROUND(
+        100.0 * SUM(CASE WHEN Attended = 1 THEN 1 ELSE 0 END) / COUNT(*),
+        2
+    ) AS AttendanceRatePercent
+FROM ATTENDANCE
+GROUP BY StudentID;
+</code></pre>
+<p>Percentages are easier to interpret than raw counts.</p>
+<h3>13.7.4 Normalized Scores</h3>
+<p>Scores from different deliverables may have different point values. Normalization converts them to a common scale.</p>
+<pre><code class="language-sql">SELECT
+    sg.StudentID,
+    d.Type,
+    d.DeliverableNumber,
+    sg.Score,
+    a.PointsPerType,
+    ROUND(100.0 * sg.Score / a.PointsPerType, 2) AS ScorePercent
+FROM STUDENT_GRADE AS sg
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID
+JOIN ASSIGNMENT_TYPE AS a
+    ON d.AssignmentType = a.AssignmentType;
+</code></pre>
+<p>This makes quiz, exam, and project scores more comparable.</p>
+<h3>13.7.5 Weighted Grade Calculation</h3>
+<p>A weighted grade calculation usually works best in stages. First, calculate each student's average within each assignment type. Then multiply each category average by its weight.</p>
+<pre><code class="language-sql">WITH CategoryAverages AS (
+    SELECT
+        sg.StudentID,
+        d.AssignmentType,
+        AVG(sg.Score) AS CategoryAverage
+    FROM STUDENT_GRADE AS sg
+    JOIN DELIVERABLE AS d
+        ON sg.DeliverableID = d.DeliverableID
+    GROUP BY sg.StudentID, d.AssignmentType
+),
+WeightedScores AS (
+    SELECT
+        ca.StudentID,
+        ca.AssignmentType,
+        ca.CategoryAverage,
+        at.Weight,
+        ca.CategoryAverage * at.Weight AS WeightedContribution
+    FROM CategoryAverages AS ca
+    JOIN ASSIGNMENT_TYPE AS at
+        ON ca.AssignmentType = at.AssignmentType
+)
+SELECT
+    StudentID,
+    ROUND(SUM(WeightedContribution), 2) AS FinalWeightedGrade
+FROM WeightedScores
+GROUP BY StudentID;
+</code></pre>
+<p>This pattern is easier to read and debug than a single dense query.</p>
+<h3>13.7.6 Dashboard-Ready Views</h3>
+<p>A view can store the logic for a metric and make it reusable.</p>
+<pre><code class="language-sql">CREATE VIEW StudentRiskSummary AS
+WITH StudentAverages AS (
+    SELECT
+        StudentID,
+        AVG(Score) AS AvgScore
+    FROM STUDENT_GRADE
+    GROUP BY StudentID
+)
+SELECT
+    s.StudentID,
+    s.FirstName,
+    s.LastName,
+    ROUND(sa.AvgScore, 2) AS AvgScore,
+    CASE
+        WHEN sa.AvgScore &lt; 60 THEN 'High Risk'
+        WHEN sa.AvgScore &lt; 75 THEN 'Needs Attention'
+        ELSE 'On Track'
+    END AS RiskStatus
+FROM STUDENT AS s
+JOIN StudentAverages AS sa
+    ON s.StudentID = sa.StudentID;
+</code></pre>
+<p>Now dashboards can query:</p>
+<pre><code class="language-sql">SELECT *
+FROM StudentRiskSummary
+WHERE RiskStatus &lt;&gt; 'On Track';
+</code></pre>
+<p>The dashboard consumes a trusted metric instead of recreating the calculation.</p>
+<hr />
+<h2>13.8 Security and Permissions</h2>
+<p>Security determines who can see or change data. In real systems, this is not optional. Grades, attendance, and student information are sensitive.</p>
+<h3>13.8.1 Authentication vs. Authorization</h3>
+<p><strong>Authentication</strong> asks: Who are you?</p>
+<p><strong>Authorization</strong> asks: What are you allowed to do?</p>
+<p>A student may be authenticated into a system but not authorized to view another student's grades or update any grades.</p>
+<h3>13.8.2 Role-Based Access Control</h3>
+<p>Role-based access control assigns permissions to roles rather than individuals.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Typical Permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student</td>
+<td>Read own grades and attendance</td>
+</tr>
+<tr>
+<td>Instructor</td>
+<td>Read students in assigned courses; insert/update grades</td>
+</tr>
+<tr>
+<td>Teaching Assistant</td>
+<td>Read student work; insert limited grades if authorized</td>
+</tr>
+<tr>
+<td>Department Administrator</td>
+<td>Read aggregate reports; limited access to individual records</td>
+</tr>
+<tr>
+<td>DBA/System Administrator</td>
+<td>Manage structure, backups, roles, and permissions</td>
+</tr>
+</tbody>
+</table>
+<p>This supports the <strong>principle of least privilege</strong>: users receive only the access necessary for their responsibilities.</p>
+<h3>13.8.3 SQL Permission Examples</h3>
+<p>PostgreSQL-style examples:</p>
+<pre><code class="language-sql">CREATE ROLE instructor_role;
+CREATE ROLE student_role;
+
+GRANT SELECT, INSERT, UPDATE
+ON STUDENT_GRADE
+TO instructor_role;
+
+GRANT SELECT
+ON STUDENT_GRADE
+TO student_role;
+</code></pre>
+<p>Access should be granted carefully. A student role should not simply receive <code>SELECT</code> on the entire <code>STUDENT_GRADE</code> table if that exposes all students. More advanced systems use row-level policies to restrict which rows a user can see.</p>
+<h3>13.8.4 Row-Level Security Concept</h3>
+<p>In Supabase/PostgreSQL, row-level security can restrict records by user.</p>
+<p>Conceptual example:</p>
+<pre><code class="language-sql">ALTER TABLE STUDENT_GRADE ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY student_can_view_own_grades
+ON STUDENT_GRADE
+FOR SELECT
+USING (StudentID = current_setting('app.current_student_id')::integer);
+</code></pre>
+<p>The exact implementation depends on the application's authentication model, but the principle is clear: access control can operate at the row level, not only at the table level.</p>
+<h3>13.8.5 Auditing Security-Sensitive Changes</h3>
+<p>Security is not only about preventing bad actions. It is also about recording important actions.</p>
+<p>A secure grading system should record:</p>
+<ul>
+<li>who changed a grade;</li>
+<li>when the change occurred;</li>
+<li>what the old value was;</li>
+<li>what the new value is;</li>
+<li>why the change was made, if required by policy.</li>
+</ul>
+<p>This can be supported by triggers, audit tables, and controlled update procedures.</p>
+<blockquote>
+<p><strong>Important:</strong><br />
+If a database stores sensitive information but cannot explain who changed what, when, and why, it is not fully trustworthy.</p>
+</blockquote>
+<hr />
+<h2>13.9 Advanced Techniques Across Platforms</h2>
+<p>The concepts in this chapter are portable, but the implementation differs by DBMS.</p>
+<h3>13.9.1 Microsoft Access</h3>
+<p>Access is visual, local, and workflow-oriented. It is useful for learning and for small departmental systems.</p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Access Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Indexes</td>
+<td>Field properties: <code>Indexed = Yes</code>, or indexes window</td>
+</tr>
+<tr>
+<td>Constraints</td>
+<td>Validation rules, required fields, unique indexes</td>
+</tr>
+<tr>
+<td>Transactions</td>
+<td>VBA or application-level behavior</td>
+</tr>
+<tr>
+<td>Triggers</td>
+<td>Data macros</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>File permissions, split database, limited role controls</td>
+</tr>
+<tr>
+<td>Query plans</td>
+<td>Limited compared with server DBMSs</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td>Queries, reports, forms, charts</td>
+</tr>
+</tbody>
+</table>
+<p>Access is strongest when the database is also an application interface. Forms, reports, and macros help guide user behavior.</p>
+<h3>13.9.2 SQLite</h3>
+<p>SQLite is lightweight, file-based, and explicit. It supports many advanced SQL features but has limited multi-user administration.</p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>SQLite Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Indexes</td>
+<td><code>CREATE INDEX</code></td>
+</tr>
+<tr>
+<td>Constraints</td>
+<td><code>CHECK</code>, <code>UNIQUE</code>, <code>NOT NULL</code>, <code>FOREIGN KEY</code></td>
+</tr>
+<tr>
+<td>Transactions</td>
+<td><code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code></td>
+</tr>
+<tr>
+<td>Triggers</td>
+<td><code>CREATE TRIGGER</code></td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>File-level or application-level</td>
+</tr>
+<tr>
+<td>Query plans</td>
+<td><code>EXPLAIN QUERY PLAN</code></td>
+</tr>
+<tr>
+<td>Window functions</td>
+<td>Supported in modern SQLite versions</td>
+</tr>
+</tbody>
+</table>
+<p>Important SQLite reminder:</p>
+<pre><code class="language-sql">PRAGMA foreign_keys = ON;
+</code></pre>
+<p>SQLite may not enforce foreign keys unless this setting is enabled.</p>
+<h3>13.9.3 Supabase/PostgreSQL</h3>
+<p>PostgreSQL is a full server-based DBMS. Supabase adds a cloud-hosted interface, authentication tools, APIs, and dashboards.</p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>PostgreSQL/Supabase Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Indexes</td>
+<td>B-tree, composite, partial, expression indexes</td>
+</tr>
+<tr>
+<td>Constraints</td>
+<td>Rich constraint support</td>
+</tr>
+<tr>
+<td>Transactions</td>
+<td>Full ACID transaction control</td>
+</tr>
+<tr>
+<td>Triggers</td>
+<td>Trigger functions in PL/pgSQL</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>Roles, grants, schemas</td>
+</tr>
+<tr>
+<td>Row-level security</td>
+<td>Built-in and commonly used in Supabase</td>
+</tr>
+<tr>
+<td>Query plans</td>
+<td><code>EXPLAIN</code>, <code>EXPLAIN ANALYZE</code></td>
+</tr>
+<tr>
+<td>Window functions</td>
+<td>Full support</td>
+</tr>
+</tbody>
+</table>
+<p>PostgreSQL is the best match for production systems that need concurrency, security, governance, and scalability.</p>
+<h3>13.9.4 Platform Choice as a Business Decision</h3>
+<p>The right DBMS depends on the use case.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Recommended Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Learning database concepts</td>
+<td>Access, SQLite</td>
+</tr>
+<tr>
+<td>Single-user local analysis</td>
+<td>SQLite</td>
+</tr>
+<tr>
+<td>Small departmental app</td>
+<td>Access or PostgreSQL</td>
+</tr>
+<tr>
+<td>Cloud application</td>
+<td>Supabase/PostgreSQL</td>
+</tr>
+<tr>
+<td>Multi-user secure production system</td>
+<td>PostgreSQL, SQL Server, Oracle, or similar server DBMS</td>
+</tr>
+<tr>
+<td>Dashboard backend</td>
+<td>PostgreSQL/Supabase or data warehouse platform</td>
+</tr>
+</tbody>
+</table>
+<p>Tool choice should follow requirements, not habit.</p>
+<hr />
+<h2>13.10 Let's Build: Hardening the Grading Database</h2>
+<p>This section applies the chapter's techniques to the Grading Database. The goal is not to use every advanced feature everywhere. The goal is to improve the database in targeted, meaningful ways.</p>
+<h3>13.10.1 Step 1: Identify Critical Risks</h3>
+<p>Start by asking what could go wrong.</p>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Example</th>
+<th>Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slow queries</td>
+<td>Grade reports take too long</td>
+<td>Indexes</td>
+</tr>
+<tr>
+<td>Duplicate grade records</td>
+<td>Student has two scores for Quiz 1</td>
+<td>Unique constraint</td>
+</tr>
+<tr>
+<td>Invalid values</td>
+<td>Score = 145</td>
+<td>Check constraint</td>
+</tr>
+<tr>
+<td>Partial updates</td>
+<td>Grade changed but audit not recorded</td>
+<td>Transaction</td>
+</tr>
+<tr>
+<td>Hidden changes</td>
+<td>Instructor changes a grade with no record</td>
+<td>Trigger/audit table</td>
+</tr>
+<tr>
+<td>Unauthorized access</td>
+<td>Student sees all grades</td>
+<td>Roles/permissions/RLS</td>
+</tr>
+</tbody>
+</table>
+<p>A hardened database responds to each risk with a control.</p>
+<h3>13.10.2 Step 2: Add Performance Indexes</h3>
+<pre><code class="language-sql">CREATE INDEX idx_sg_student
+ON STUDENT_GRADE(StudentID);
+
+CREATE INDEX idx_sg_deliverable
+ON STUDENT_GRADE(DeliverableID);
+
+CREATE INDEX idx_attendance_student
+ON ATTENDANCE(StudentID);
+
+CREATE INDEX idx_deliverable_duedate
+ON DELIVERABLE(DueDate);
+</code></pre>
+<p>These indexes support common joins, filters, and date-based reports.</p>
+<h3>13.10.3 Step 3: Add Data Quality Constraints</h3>
+<pre><code class="language-sql">ALTER TABLE STUDENT_GRADE
+ADD CONSTRAINT chk_score_range
+CHECK (Score BETWEEN 0 AND 100);
+</code></pre>
+<pre><code class="language-sql">ALTER TABLE STUDENT
+ADD CONSTRAINT uq_student_email
+UNIQUE (Email);
+</code></pre>
+<pre><code class="language-sql">ALTER TABLE STUDENT_GRADE
+ADD CONSTRAINT uq_student_deliverable
+UNIQUE (StudentID, DeliverableID);
+</code></pre>
+<p>If using SQLite, constraints may need to be included when the table is created or added by recreating the table, depending on the constraint type.</p>
+<h3>13.10.4 Step 4: Create an Audit Trail</h3>
+<pre><code class="language-sql">CREATE TABLE GRADE_AUDIT (
+    AuditID INTEGER PRIMARY KEY,
+    GradeID INTEGER NOT NULL,
+    OldScore INTEGER,
+    NewScore INTEGER,
+    ChangedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ChangeReason TEXT
+);
+</code></pre>
+<p>SQLite trigger:</p>
+<pre><code class="language-sql">CREATE TRIGGER trg_audit_grade_update
+AFTER UPDATE ON STUDENT_GRADE
+FOR EACH ROW
+WHEN OLD.Score &lt;&gt; NEW.Score
+BEGIN
+    INSERT INTO GRADE_AUDIT (GradeID, OldScore, NewScore)
+    VALUES (OLD.GradeID, OLD.Score, NEW.Score);
+END;
+</code></pre>
+<p>This records grade changes automatically.</p>
+<h3>13.10.5 Step 5: Use a Transaction for Grade Correction</h3>
+<pre><code class="language-sql">BEGIN;
+
+UPDATE STUDENT_GRADE
+SET Score = 92
+WHERE GradeID = 10;
+
+-- Optional: manually add reason if not handled by trigger
+UPDATE GRADE_AUDIT
+SET ChangeReason = 'Corrected data entry error'
+WHERE GradeID = 10
+  AND ChangeReason IS NULL;
+
+COMMIT;
+</code></pre>
+<p>If something goes wrong:</p>
+<pre><code class="language-sql">ROLLBACK;
+</code></pre>
+<h3>13.10.6 Step 6: Create a Performance Monitoring Query</h3>
+<pre><code class="language-sql">SELECT
+    d.Type,
+    d.DeliverableNumber,
+    COUNT(*) AS Submissions,
+    ROUND(AVG(sg.Score), 2) AS AverageScore,
+    MIN(sg.Score) AS LowestScore,
+    MAX(sg.Score) AS HighestScore,
+    ROUND(
+        100.0 * SUM(CASE WHEN sg.Score &gt;= 60 THEN 1 ELSE 0 END) / COUNT(*),
+        2
+    ) AS PassRatePercent
+FROM DELIVERABLE AS d
+JOIN STUDENT_GRADE AS sg
+    ON d.DeliverableID = sg.DeliverableID
+GROUP BY d.DeliverableID, d.Type, d.DeliverableNumber
+ORDER BY AverageScore ASC;
+</code></pre>
+<p>This query is BI-ready. It identifies difficult deliverables, summarizes submissions, and supports instructional decisions.</p>
+<h3>13.10.7 Step 7: Build a Student Progress View</h3>
+<pre><code class="language-sql">CREATE VIEW StudentProgress AS
+SELECT
+    s.StudentID,
+    s.FirstName,
+    s.LastName,
+    d.DueDate,
+    d.Type,
+    d.DeliverableNumber,
+    sg.Score,
+    AVG(sg.Score) OVER (
+        PARTITION BY s.StudentID
+        ORDER BY d.DueDate
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS RunningAverage
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<p>This view supports progress tracking without losing grade-level detail.</p>
+<h3>13.10.8 What You Accomplished</h3>
+<p>By the end of this hardening exercise, the Grading Database has been strengthened in five ways:</p>
+<table>
+<thead>
+<tr>
+<th>Improvement</th>
+<th>Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faster queries</td>
+<td>Indexes</td>
+</tr>
+<tr>
+<td>Safer updates</td>
+<td>Transactions</td>
+</tr>
+<tr>
+<td>Better data quality</td>
+<td>Constraints</td>
+</tr>
+<tr>
+<td>Auditability</td>
+<td>Triggers and audit table</td>
+</tr>
+<tr>
+<td>Better analytics</td>
+<td>Window functions and views</td>
+</tr>
+</tbody>
+</table>
+<p>This is the difference between a database that merely stores data and a database that can support real organizational work.</p>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ul>
+<li>Advanced database techniques protect performance, integrity, auditability, and security.</li>
+<li>Indexes improve read performance but introduce storage and write-maintenance costs.</li>
+<li>Transactions protect multi-step operations from partial failure.</li>
+<li>Constraints turn business rules into enforceable database rules.</li>
+<li>Triggers allow the database to respond automatically to changes.</li>
+<li>Window functions support analytics while preserving row-level detail.</li>
+<li>Conditional aggregation creates transparent KPI-style metrics directly in SQL.</li>
+<li>Permissions and roles protect sensitive data and support least privilege.</li>
+<li>Advanced techniques are conceptually portable, but implementation varies across Access, SQLite, and PostgreSQL.</li>
+</ul>
+<h3>Practical Design Rules</h3>
+<ul>
+<li>Index columns that are frequently used in joins, filters, sorting, and date ranges.</li>
+<li>Do not index every column.</li>
+<li>Use transactions when multiple changes must succeed or fail together.</li>
+<li>Prefer constraints over after-the-fact data cleaning.</li>
+<li>Use triggers for auditing and universal enforcement, not for complex hidden workflows.</li>
+<li>Use views to make advanced analytics reusable.</li>
+<li>Grant permissions to roles, not individual users.</li>
+<li>Treat security, auditability, and performance as design responsibilities.</li>
+</ul>
+<hr />
+<h2>Chapter Summary</h2>
+<p>This chapter extended the course from correct SQL to reliable database systems. Earlier chapters taught you how to design schemas, normalize tables, query data, administer databases, and build BI outputs. Chapter 13 showed how to harden those databases so they remain trustworthy under real use.</p>
+<p>Indexes improve performance by helping the DBMS find rows efficiently. Transactions protect related changes so that operations succeed completely or fail safely. Constraints prevent invalid data from entering the system. Triggers provide automatic auditing and enforcement. Window functions and conditional aggregation support advanced analytics without abandoning SQL transparency. Permissions and roles control who can see and modify sensitive data.</p>
+<p>The Grading Database provided a running example throughout the chapter. By adding indexes, constraints, transactions, audit triggers, analytical views, and access controls, the database became more than a classroom schema. It became a model of how database systems support reliability, accountability, and organizational trust.</p>
+<p>The larger lesson is simple: advanced database techniques are not decorative extras. They are the mechanisms that make data systems dependable. A database that stores correct data today must also protect that data tomorrow, next semester, and next year.</p>
+<hr />
+<h2>Key Terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audit Table</td>
+<td>A table that records important changes for accountability and review</td>
+</tr>
+<tr>
+<td>Composite Index</td>
+<td>An index built on two or more columns</td>
+</tr>
+<tr>
+<td>Conditional Aggregation</td>
+<td>Using <code>CASE</code> inside aggregate functions to calculate condition-specific metrics</td>
+</tr>
+<tr>
+<td>Constraint</td>
+<td>A rule enforced by the database to restrict allowed data or relationships</td>
+</tr>
+<tr>
+<td>Database Hardening</td>
+<td>Strengthening a database for performance, integrity, auditability, and security</td>
+</tr>
+<tr>
+<td>Default Constraint</td>
+<td>A rule that supplies a value when none is provided</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>A lookup structure that improves query performance</td>
+</tr>
+<tr>
+<td>Query Plan</td>
+<td>The DBMS's strategy for executing a query</td>
+</tr>
+<tr>
+<td>Row-Level Security</td>
+<td>A security mechanism that restricts access to individual rows</td>
+</tr>
+<tr>
+<td>Trigger</td>
+<td>Database logic that runs automatically in response to data changes</td>
+</tr>
+<tr>
+<td>Transaction</td>
+<td>A unit of work that succeeds or fails as a whole</td>
+</tr>
+<tr>
+<td>Unique Constraint</td>
+<td>A rule that prevents duplicate values in a column or group of columns</td>
+</tr>
+<tr>
+<td>Window Function</td>
+<td>A SQL function that computes analytical values over a set of rows while preserving row-level detail</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Review Questions</h2>
+<ol>
+<li>What does it mean to harden a database?</li>
+<li>Why can a logically correct query still be operationally weak?</li>
+<li>What is an index, and why does it improve performance?</li>
+<li>Why should foreign keys often be indexed?</li>
+<li>What are the trade-offs of adding too many indexes?</li>
+<li>What is a transaction, and why is it important for grade updates?</li>
+<li>Explain the difference between <code>COMMIT</code> and <code>ROLLBACK</code>.</li>
+<li>Give an example of a <code>CHECK</code> constraint in the Grading Database.</li>
+<li>Why might a composite <code>UNIQUE</code> constraint be useful on <code>(StudentID, DeliverableID)</code>?</li>
+<li>What is a trigger, and when should it be used?</li>
+<li>Why can triggers create debugging problems?</li>
+<li>How do window functions differ from <code>GROUP BY</code>?</li>
+<li>Write a query that ranks students by average score.</li>
+<li>What is conditional aggregation, and how can it support KPIs?</li>
+<li>Explain authentication vs. authorization.</li>
+<li>What is the principle of least privilege?</li>
+<li>How does SQLite differ from PostgreSQL in security and concurrency?</li>
+<li>How can Microsoft Access simulate trigger-like behavior?</li>
+<li>Which advanced technique would you use to prevent invalid scores?</li>
+<li>Which advanced technique would you use to record grade changes automatically?</li>
+</ol>
+<h2>Discussion Questions</h2>
+<ol>
+<li>Should grade changes always require an audit trail? Why or why not?</li>
+<li>When might performance optimization conflict with data integrity?</li>
+<li>Is it better to enforce rules in the application or in the database? When might each be appropriate?</li>
+<li>Should students be able to view class-rank dashboards based on window functions? What ethical issues might arise?</li>
+<li>What risks are introduced when business logic is hidden inside triggers?</li>
+<li>How does database hardening support organizational trust?</li>
+<li>Which platform—Access, SQLite, or Supabase/PostgreSQL—best fits a small departmental grading system? What changes if the system must support thousands of students?</li>
+</ol>
+<h2>References</h2>
+<p>Connolly, T. M., &amp; Begg, C. E. (2015). <em>Database systems: A practical approach to design, implementation, and management</em> (6th ed.). Pearson.</p>
+<p>Date, C. J. (2004). <em>An introduction to database systems</em> (8th ed.). Pearson.</p>
+<p>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of database systems</em> (7th ed.). Pearson.</p>
+<p>Hoffer, J. A., Venkataraman, R., &amp; Topi, H. (2019). <em>Modern database management</em> (13th ed.). Pearson.</p>
+<p>PostgreSQL Global Development Group. (n.d.). <em>PostgreSQL documentation</em>. https://www.postgresql.org/docs/</p>
+<p>SQLite Consortium. (n.d.). <em>SQLite documentation</em>. https://www.sqlite.org/docs.html</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build: Hardening the Grading Database</h2>
+                  <!-- Sources: BITM330-Book-draft/chapter-drafts/ch13-advanced-database-techniques/main/ch13-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
+
+<p><img alt="Let's Build" src="/_content/BITM330-Book-draft/chapter-drafts/.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif&gt;" /></p>
+<h2>Overview</h2>
+<p>In this chapter, you strengthen the Grading Database so it behaves more like a professional system. The goal is not to use every advanced feature just because it exists. The goal is to identify real risks and apply targeted controls that improve performance, data quality, auditability, and reliability.</p>
+<h2>What You Will Need</h2>
+<ul>
+<li>Your current Grading Database</li>
+<li>A SQL environment that supports indexes and transactions</li>
+<li>SQLite or PostgreSQL if you want to implement triggers directly in SQL</li>
+<li>A short write-up explaining your design choices</li>
+</ul>
+<h2>Part A: Identify the Risks First</h2>
+<p>Before writing code, decide what problem each advanced technique is solving.</p>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Example</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slow queries</td>
+<td>Grade reports take too long</td>
+<td>Indexes</td>
+</tr>
+<tr>
+<td>Duplicate grade records</td>
+<td>One student gets two rows for the same deliverable</td>
+<td>Unique constraint</td>
+</tr>
+<tr>
+<td>Invalid scores</td>
+<td><code>Score = 145</code></td>
+<td>Check constraint</td>
+</tr>
+<tr>
+<td>Partial updates</td>
+<td>A grade changes but the audit entry is missing</td>
+<td>Transaction</td>
+</tr>
+<tr>
+<td>Hidden changes</td>
+<td>Someone edits grades without a record</td>
+<td>Trigger and audit table</td>
+</tr>
+</tbody>
+</table>
+<p>Write one sentence for each risk explaining whether it is currently present in your database.</p>
+<h2>Part B: Add Performance Indexes</h2>
+<p>Create indexes on the fields you filter or join most often.</p>
+<pre><code class="language-sql">CREATE INDEX idx_sg_student
+ON STUDENT_GRADE(StudentID);
+
+CREATE INDEX idx_sg_deliverable
+ON STUDENT_GRADE(DeliverableID);
+
+CREATE INDEX idx_attendance_student
+ON ATTENDANCE(StudentID);
+</code></pre>
+<p>Then explain why those indexes make sense for the grading workflow.</p>
+<p>If your platform supports plan inspection, test one query before and after indexing.</p>
+<h2>Part C: Add Data Quality Controls</h2>
+<p>Use constraints to stop bad data at the point of entry.</p>
+<pre><code class="language-sql">ALTER TABLE STUDENT_GRADE
+ADD CONSTRAINT chk_score_range
+CHECK (Score BETWEEN 0 AND 100);
+</code></pre>
+<pre><code class="language-sql">ALTER TABLE STUDENT
+ADD CONSTRAINT uq_student_email
+UNIQUE (Email);
+</code></pre>
+<pre><code class="language-sql">ALTER TABLE STUDENT_GRADE
+ADD CONSTRAINT uq_student_deliverable
+UNIQUE (StudentID, DeliverableID);
+</code></pre>
+<p>If you are working in Access or another platform with syntax limits, explain how you enforced the same rule through indexed fields, validation rules, or table design.</p>
+<h2>Part D: Create an Audit Trail</h2>
+<p>Create a table that records grade changes.</p>
+<pre><code class="language-sql">CREATE TABLE GRADE_AUDIT (
+    AuditID INTEGER PRIMARY KEY,
+    GradeID INTEGER NOT NULL,
+    OldScore INTEGER,
+    NewScore INTEGER,
+    ChangedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ChangeReason TEXT
+);
+</code></pre>
+<p>Then add a trigger that writes to that table when a score changes.</p>
+<pre><code class="language-sql">CREATE TRIGGER trg_audit_grade_update
+AFTER UPDATE ON STUDENT_GRADE
+FOR EACH ROW
+WHEN OLD.Score &lt;&gt; NEW.Score
+BEGIN
+    INSERT INTO GRADE_AUDIT (GradeID, OldScore, NewScore)
+    VALUES (OLD.GradeID, OLD.Score, NEW.Score);
+END;
+</code></pre>
+<p>If your platform does not support triggers in the same way, describe the closest practical alternative.</p>
+<h2>Part E: Use a Transaction for a Grade Correction</h2>
+<p>Protect a multi-step correction with transaction control.</p>
+<pre><code class="language-sql">BEGIN;
+
+UPDATE STUDENT_GRADE
+SET Score = 92
+WHERE GradeID = 10;
+
+UPDATE GRADE_AUDIT
+SET ChangeReason = 'Corrected data entry error'
+WHERE GradeID = 10
+  AND ChangeReason IS NULL;
+
+COMMIT;
+</code></pre>
+<p>If the result is wrong, use:</p>
+<pre><code class="language-sql">ROLLBACK;
+</code></pre>
+<p>Explain why a transaction is safer than running the steps one at a time without protection.</p>
+<h2>Part F: Build One Advanced Analytical Object</h2>
+<p>Create one reusable object that supports monitoring or reporting.</p>
+<p>Example: a student progress view with a running average.</p>
+<pre><code class="language-sql">CREATE VIEW StudentProgress AS
+SELECT
+    s.StudentID,
+    s.FirstName,
+    s.LastName,
+    d.DueDate,
+    d.Type,
+    d.DeliverableNumber,
+    sg.Score,
+    AVG(sg.Score) OVER (
+        PARTITION BY s.StudentID
+        ORDER BY d.DueDate
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS RunningAverage
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+    ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+    ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<p>If your platform does not support window functions, build a simpler summary object and explain the tradeoff.</p>
+<h2>Deliverable</h2>
+<p>Submit the following:</p>
+<ul>
+<li>SQL file or screenshots showing indexes, constraints, transaction logic, and trigger or alternative control</li>
+<li>one brief note explaining each design choice</li>
+<li>evidence that the audit or monitoring object works</li>
+</ul>
+<h2>Reflection Questions</h2>
+<ul>
+<li>Which advanced technique gave the biggest reliability improvement?</li>
+<li>Which technique would be hardest to maintain over time?</li>
+<li>How do these controls support trust in the database's outputs?</li>
+</ul>
+<h2>Connection Forward</h2>
+<p>Chapter 14 uses a more polished reporting tool, but that tool is only useful if the database underneath it is reliable.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 13: Advanced Database Techniques — Term Treasury</h2>
+                  <hr />
+<h2>Essential Vocabulary</h2>
+<h3>A</h3>
+<ul>
+<li><strong>Administrative Access</strong> — A permission level where users can modify database structure, users, and permissions (e.g., database administrators).</li>
+<li><strong>AFTER Trigger</strong> — A trigger that runs after the data change succeeds; used for logging, auditing, and derived actions.</li>
+<li><strong>Analytics Pattern</strong> — A SQL technique expressing business logic directly inside queries, such as conditional aggregation, percentages, and ratios.</li>
+<li><strong>Atomicity</strong> — The "all-or-nothing" property of transactions; ensures either all operations complete or none of them do.</li>
+<li><strong>Audit Table</strong> — A dedicated table (e.g., <code>GRADE_AUDIT</code>) recording historical changes for accountability and compliance.</li>
+<li><strong>Auditability</strong> — The property of a system where changes are traceable: who, when, and what the previous value was.</li>
+<li><strong>Authentication</strong> — Verifying who a user is, typically through usernames, passwords, tokens, or external identity providers.</li>
+<li><strong>Authorization</strong> — Determining what a user is allowed to do, enforced through roles and privileges inside the database.</li>
+</ul>
+<h3>B</h3>
+<ul>
+<li><strong>BEFORE Trigger</strong> — A trigger that runs before the data change is applied; used for validation and prevention of invalid data.</li>
+<li><strong>BEGIN</strong> — A SQL command marking the start of a transaction.</li>
+</ul>
+<h3>C</h3>
+<ul>
+<li><strong>CHECK Constraint</strong> — A constraint restricting column values based on a logical condition (e.g., <code>Score BETWEEN 0 AND 100</code>).</li>
+<li><strong>COMMIT</strong> — A SQL command that permanently applies all changes made during a transaction.</li>
+<li><strong>Composite Index</strong> — An index built on multiple columns together, useful when queries filter on multiple columns simultaneously.</li>
+<li><strong>Concurrency</strong> — The ability of a database to handle multiple simultaneous users or operations.</li>
+<li><strong>Conditional Aggregation</strong> — A pattern using <code>CASE</code> expressions inside aggregate functions to compute metrics only for rows meeting specific conditions.</li>
+<li><strong>Connection Pooling</strong> — A performance technique managing and reusing database connections to improve efficiency under concurrent access.</li>
+<li><strong>Constraint</strong> — A rule encoded in the schema that enforces data validity, turning assumptions into enforceable rules.</li>
+<li><strong>Contribution Weighting</strong> — An analytics technique weighting grades by assignment type to compute weighted averages.</li>
+</ul>
+<h3>D</h3>
+<ul>
+<li><strong>Data Macro</strong> — In Microsoft Access, a sequence of actions attached to data events that achieves trigger-like behavior without SQL triggers.</li>
+<li><strong>DEFAULT Constraint</strong> — A constraint assigning a value automatically when none is provided (e.g., <code>CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code>).</li>
+<li><strong>DENSE_RANK()</strong> — A window function assigning ranks without gaps when values are tied.</li>
+</ul>
+<h3>E</h3>
+<ul>
+<li><strong>EXPLAIN ANALYZE</strong> — A PostgreSQL command revealing how the database executes a query, enabling optimization of indexing strategies.</li>
+</ul>
+<h3>F</h3>
+<ul>
+<li><strong>Full Table Scan</strong> — Examining every row in a table to find matching records; the default without an index, increasingly expensive as data grows.</li>
+</ul>
+<h3>G</h3>
+<ul>
+<li><strong>Governance Mechanism</strong> — A rule or feature embedded in the database (indexes, transactions, constraints, triggers, permissions) that reduces reliance on fragile application logic.</li>
+</ul>
+<h3>H</h3>
+<ul>
+<li><strong>Hardening</strong> — Applying advanced techniques (indexes, transactions, constraints, triggers, security) to transform a well-designed database into a production-ready system.</li>
+</ul>
+<h3>I</h3>
+<ul>
+<li><strong>Index</strong> — A lookup structure allowing the database to locate rows quickly without scanning the entire table; maps column values to row locations.</li>
+</ul>
+<h3>L</h3>
+<ul>
+<li><strong>Least Privilege (Principle of)</strong> — Each user is granted only the permissions necessary to perform their job — nothing more.</li>
+</ul>
+<h3>M</h3>
+<ul>
+<li><strong>Macro (MS Access)</strong> — A sequence of predefined actions in Access that execute automatically in response to an event; declarative instructions for lightweight automation and workflow enforcement.</li>
+</ul>
+<h3>O</h3>
+<ul>
+<li><strong>OVER() Clause</strong> — The clause used by every window function to define the window, using <code>PARTITION BY</code> and <code>ORDER BY</code> components.</li>
+<li><strong>Over-Indexing</strong> — Creating too many indexes, leading to slower writes, increased storage, and complex maintenance.</li>
+<li><strong>ORDER BY (in OVER)</strong> — Defines row ordering within each partition for window function evaluation.</li>
+</ul>
+<h3>P</h3>
+<ul>
+<li><strong>PARTITION BY</strong> — Divides rows into groups in the <code>OVER()</code> clause (similar to GROUP BY but without collapsing rows).</li>
+<li><strong>Partial Update</strong> — A dangerous situation where some changes in a multi-step operation are written while others are not, leaving data inconsistent.</li>
+<li><strong>Privilege</strong> — A specific permission (e.g., SELECT, INSERT, UPDATE) granted to a role.</li>
+<li><strong>Production-Ready System</strong> — A database hardened with advanced techniques to be reliable, scalable, and trustworthy under real-world conditions.</li>
+</ul>
+<h3>Q</h3>
+<ul>
+<li><strong>Query Execution Plan</strong> — The strategy the database optimizer selects for retrieving data; influenced by indexes.</li>
+</ul>
+<h3>R</h3>
+<ul>
+<li><strong>RAISE (ABORT)</strong> — A SQLite function used inside triggers to cancel an operation and return an error message.</li>
+<li><strong>RANK()</strong> — A window function assigning ranks with gaps when there are ties.</li>
+<li><strong>Read-Heavy System</strong> — A system where queries execute far more often than modifications; benefits most from indexing.</li>
+<li><strong>Read-Only Access</strong> — A permission level where users can view but not modify data.</li>
+<li><strong>Role</strong> — A named group of permissions assigned to users (e.g., <code>instructor_role</code>, <code>student_role</code>, <code>admin_role</code>).</li>
+<li><strong>ROLLBACK</strong> — A SQL command undoing all changes since <code>BEGIN</code>, restoring the pre-transaction state.</li>
+<li><strong>Row-Level Security (RLS)</strong> — A PostgreSQL/Supabase feature restricting which rows a user can access based on policies.</li>
+<li><strong>ROW_NUMBER()</strong> — A window function assigning a unique sequential number to rows within a window.</li>
+<li><strong>Running Average</strong> — A time-aware metric calculated using window functions showing cumulative performance up to each point.</li>
+</ul>
+<h3>S</h3>
+<ul>
+<li><strong>Safety Boundary</strong> — The conceptual boundary created by a transaction (<code>BEGIN</code>...<code>COMMIT</code>/<code>ROLLBACK</code>) around critical operations.</li>
+<li><strong>Score Normalization</strong> — Transforming raw scores into a consistent scale (e.g., 0–100) for cross-deliverable comparison.</li>
+<li><strong>Semantic Correctness</strong> — The property that data values are meaningful (e.g., a grade of 175 is structurally valid but semantically wrong); enforced by constraints beyond keys.</li>
+<li><strong>Single-Column Index</strong> — An index on one column, useful for frequent filter or join operations on that column.</li>
+<li><strong>Split Database</strong> — An Access architecture where the back-end (tables) is stored securely and the front-end (forms, queries, reports) is distributed to users.</li>
+<li><strong>Structural Correctness</strong> — The property that every row has a unique identity and relationships remain intact; enforced by PK and FK.</li>
+</ul>
+<h3>T</h3>
+<ul>
+<li><strong>Transaction</strong> — A logical unit of work grouping multiple operations into a single, indivisible action; must complete in full or not at all.</li>
+<li><strong>Trigger</strong> — A block of database logic executing automatically in response to INSERT, UPDATE, or DELETE events.</li>
+<li><strong>Trigger Function</strong> — In PostgreSQL, a PL/pgSQL function containing the logic executed by a trigger.</li>
+</ul>
+<h3>U</h3>
+<ul>
+<li><strong>UNIQUE Constraint</strong> — A constraint preventing duplicate values in a column or group of columns.</li>
+<li><strong>Unique Index</strong> — An index enforcing uniqueness while also improving lookup speed.</li>
+</ul>
+<h3>V</h3>
+<ul>
+<li><strong>Validation Rule (Access)</strong> — A field-level property in Access Design View enforcing CHECK-like constraints visually.</li>
+</ul>
+<h3>W</h3>
+<ul>
+<li><strong>Window Function</strong> — A SQL function performing calculations across related rows without collapsing them; enables analytics alongside row-level detail.</li>
+<li><strong>Workflow Enforcement</strong> — Using macros or application logic to enforce rules at the interaction level (e.g., requiring data entry in a specific order).</li>
+<li><strong>Write Access</strong> — A permission level where users can insert or update data.</li>
+</ul>
+<hr />
+<h2>Acronyms</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Full Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ACID</strong></td>
+<td>Atomicity, Consistency, Isolation, Durability</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td>Application Programming Interface</td>
+</tr>
+<tr>
+<td><strong>AVG</strong></td>
+<td>Average (SQL aggregate function)</td>
+</tr>
+<tr>
+<td><strong>BI</strong></td>
+<td>Business Intelligence</td>
+</tr>
+<tr>
+<td><strong>BITM</strong></td>
+<td>Business IT Management</td>
+</tr>
+<tr>
+<td><strong>CTE</strong></td>
+<td>Common Table Expression</td>
+</tr>
+<tr>
+<td><strong>DBA</strong></td>
+<td>Database Administrator</td>
+</tr>
+<tr>
+<td><strong>DBMS</strong></td>
+<td>Database Management System</td>
+</tr>
+<tr>
+<td><strong>FERPA</strong></td>
+<td>Family Educational Rights and Privacy Act</td>
+</tr>
+<tr>
+<td><strong>IS</strong></td>
+<td>Information Systems</td>
+</tr>
+<tr>
+<td><strong>JSON</strong></td>
+<td>JavaScript Object Notation</td>
+</tr>
+<tr>
+<td><strong>KPI</strong></td>
+<td>Key Performance Indicator</td>
+</tr>
+<tr>
+<td><strong>PL/pgSQL</strong></td>
+<td>Procedural Language/PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>RLS</strong></td>
+<td>Row-Level Security</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Structured Query Language</td>
+</tr>
+<tr>
+<td><strong>VBA</strong></td>
+<td>Visual Basic for Applications</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ol>
+<li>
+<p><strong>"Working SQL" Is Not Enough</strong> — A database can pass every test and still fail in production due to slow performance, partial updates, invalid data, unauthorized access, or hidden logic scattered across applications.</p>
+</li>
+<li>
+<p><strong>Four Core System Qualities</strong> — Performance, Consistency, Data Quality, and Security. Each directly affects business outcomes and must be actively protected.</p>
+</li>
+<li>
+<p><strong>Advanced Techniques Are Governance Mechanisms</strong> — They reduce reliance on fragile application logic and human discipline by shifting enforcement to the database itself.</p>
+</li>
+<li>
+<p><strong>Structural vs. Semantic Correctness</strong> — PK/FK protect structure (unique identity, intact relationships). Constraints protect meaning (valid values, business rules). Both layers are required.</p>
+</li>
+<li>
+<p><strong>Performance, Consistency, and Security Are Design Responsibilities</strong> — They do not emerge accidentally and cannot be bolted on at the end.</p>
+</li>
+<li>
+<p><strong>SQL Becomes a System Tool</strong> — At this level, SQL enforces business rules, protects integrity, coordinates concurrent users, and supports analytics safely.</p>
+</li>
+<li>
+<p><strong>Advanced Techniques Are Conceptually Portable</strong> — The same concepts apply across platforms even when implementations differ.</p>
+</li>
+</ol>
+<h3>Concept Overview</h3>
+<ol>
+<li>
+<p><strong>Indexes</strong> — Lookup structures mapping column values to row locations. Types: single-column, multi-column (composite), unique. Improve <code>SELECT</code> but add overhead to <code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code>.</p>
+</li>
+<li>
+<p><strong>Transactions</strong> — Controlled by <code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code>. Enforce atomicity (all-or-nothing), creating safety boundaries around critical operations.</p>
+</li>
+<li>
+<p><strong>Triggers</strong> — Automatic, reactive logic firing on INSERT, UPDATE, or DELETE. Defined by timing (BEFORE/AFTER), event type, and target table. Used for auditing, validation, and metadata synchronization.</p>
+</li>
+<li>
+<p><strong>Constraints Beyond Keys</strong> — <code>CHECK</code> (value validation), <code>UNIQUE</code> (duplicate prevention), <code>DEFAULT</code> (automatic value assignment).</p>
+</li>
+<li>
+<p><strong>Window Functions</strong> — <code>ROW_NUMBER()</code>, <code>RANK()</code>, <code>DENSE_RANK()</code> perform analytics alongside row-level detail using <code>OVER()</code> with <code>PARTITION BY</code> and <code>ORDER BY</code>.</p>
+</li>
+<li>
+<p><strong>Advanced Analytics Patterns</strong> — Conditional aggregation (<code>CASE</code> inside aggregates), percentages/ratios, score normalization, contribution weighting.</p>
+</li>
+<li>
+<p><strong>Security and Permissions</strong> — Authentication (identity) vs. authorization (permissions). RBAC implements least privilege via roles.</p>
+</li>
+<li>
+<p><strong>DBMS Differences</strong> — SQLite (lightweight, embedded, limited concurrency/security), PostgreSQL (enterprise, full ACID, role-based security), MS Access (visual, macro-driven, workflow-oriented).</p>
+</li>
+<li>
+<p><strong>MS Access Macros</strong> — Declarative automation tools enforcing workflows at the interaction level, complementing database-level constraints.</p>
+</li>
+</ol>
+<h3>Application in Practice</h3>
+<ol>
+<li>
+<p><strong>Indexing the Grading Database</strong> — Create indexes on <code>StudentID</code>, <code>DeliverableID</code>, and <code>DueDate</code> to speed up common queries.</p>
+</li>
+<li>
+<p><strong>Wrapping Grade Updates in Transactions</strong> — Ensure inserting a grade and updating the average either both succeed or both fail.</p>
+</li>
+<li>
+<p><strong>Triggers for Audit Trails</strong> — An <code>AFTER UPDATE</code> trigger on <code>STUDENT_GRADE</code> logs old/new scores to <code>GRADE_AUDIT</code> with timestamps.</p>
+</li>
+<li>
+<p><strong>Preventing Invalid Scores</strong> — A <code>BEFORE INSERT</code> trigger rejects scores outside 0–100 using <code>RAISE(ABORT)</code>.</p>
+</li>
+<li>
+<p><strong>Enforcing Constraints</strong> — <code>CHECK (Score BETWEEN 0 AND 100)</code>, <code>UNIQUE (StudentID, DeliverableID)</code> for one grade per deliverable, <code>DEFAULT 0</code> on <code>Attended</code>.</p>
+</li>
+<li>
+<p><strong>Ranking Students</strong> — <code>RANK() OVER (ORDER BY AVG(Score) DESC)</code> for class-wide rankings; <code>RANK() OVER (PARTITION BY DeliverableID ORDER BY Score DESC)</code> per assignment.</p>
+</li>
+<li>
+<p><strong>Running Averages</strong> — <code>AVG(Score) OVER (PARTITION BY StudentID ORDER BY DueDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)</code> for cumulative performance tracking.</p>
+</li>
+<li>
+<p><strong>Conditional Aggregation</strong> — <code>SUM(CASE WHEN Score &gt;= 60 THEN 1 ELSE 0 END)</code> to compute pass rates by deliverable.</p>
+</li>
+<li>
+<p><strong>Role-Based Access in Supabase</strong> — <code>GRANT SELECT, INSERT, UPDATE ON STUDENT_GRADE TO instructor_role;</code> with Row-Level Security for row-specific access.</p>
+</li>
+<li>
+<p><strong>Access Data Macros</strong> — <code>After Update</code> macros auto-timestamp changes; <code>Before Change</code> macros validate updates.</p>
+</li>
+<li>
+<p><strong>Split Database in Access</strong> — Separate tables (back-end) from forms/queries/reports (front-end) for access control.</p>
+</li>
+<li>
+<p><strong>EXPLAIN ANALYZE</strong> — PostgreSQL execution plan inspection to detect slow queries and optimize indexing.</p>
+</li>
+</ol>
+<h3>Real-World Examples</h3>
+<ol>
+<li>
+<p><strong>Grading Database as Production System</strong> — The running case study demonstrates how a classroom database is hardened across Access, SQLite, and PostgreSQL/Supabase to become reliable, secure, and performant.</p>
+</li>
+<li>
+<p><strong>FERPA Compliance</strong> — U.S. federal law protecting student education records; motivates RBAC, auditability, and data security in grading systems.</p>
+</li>
+<li>
+<p><strong>Academic Grade Auditing</strong> — Tracking every grade change (who, when, old/new values) is often mandatory; implemented through triggers and audit tables.</p>
+</li>
+<li>
+<p><strong>Multi-User Concurrent Access</strong> — Instructors, students, administrators, and IT staff access the same database simultaneously; transactions prevent race conditions and partial updates.</p>
+</li>
+<li>
+<p><strong>Performance Degradation at Scale</strong> — Queries that run instantly on dozens of rows become unusably slow on thousands; indexes prevent late-stage performance crises.</p>
+</li>
+<li>
+<p><strong>Dashboard-Ready SQL</strong> — Views, CTEs, and advanced aggregation produce trusted metrics for BI dashboards, keeping business logic in SQL (transparent, auditable, reusable).</p>
+</li>
+<li>
+<p><strong>Departmental Access Databases</strong> — Small-scale, workflow-oriented systems where macros enforce data entry sequences, auto-refresh reports, and validate form inputs.</p>
+</li>
+<li>
+<p><strong>Enterprise PostgreSQL via Supabase</strong> — Cloud databases with connection pooling, API authentication, Row-Level Security, and policy-based access control.</p>
+</li>
+<li>
+<p><strong>Cross-Platform Skill Transfer</strong> — Indexing, transactions, constraints, triggers, and security apply whether using SQLite for prototyping, Access for departments, or PostgreSQL for enterprise — concepts are portable.</p>
+</li>
+</ol>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>&lt;img src=&quot;../../_static/images/review.gif&quot; alt=&quot;Review&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Review: Advanced Database Techniques</h2>
+                  <h2>Key Concepts Review</h2>
+<p>Review the main concepts covered in this chapter to prepare for assessment.</p>
+<h3>Main Topics</h3>
+<ul>
+<li>Topic 1</li>
+<li>Topic 2</li>
+<li>Topic 3</li>
+</ul>
+<h2>Quick Reference</h2>
+<h3>Core Ideas</h3>
+<ul>
+<li>Concept A</li>
+<li>Concept B</li>
+<li>Concept C</li>
+</ul>
+<h2>Review Questions</h2>
+<ol>
+<li>Question about the main concept?</li>
+<li>Question about application?</li>
+<li>Question about implications?</li>
+</ol>
+<h2>Preparation Tips</h2>
+<ul>
+<li>Review your notes from the concepts section</li>
+<li>Complete the Let's Build activities before assessment</li>
+<li>Consult the Terms section for definitions</li>
+</ul>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>&lt;img src=&quot;../../_static/images/RAT.gif&quot; alt=&quot;RAT&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Readiness Assessment Test: Advanced Database Techniques</h2>
+                  <h2>Individual RAT (iRAT)</h2>
+<p>Complete this assessment individually to test your understanding of the material.</p>
+<h3>Multiple Choice Questions</h3>
+<p><strong>Question 1:</strong> What is the primary focus of this chapter?
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<p><strong>Question 2:</strong> Which of the following best describes [concept]?
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<p><strong>Question 3:</strong> In the context of this chapter, [term] refers to:
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<h3>Scoring</h3>
+<ul>
+<li>Score: _____ / 3</li>
+<li>Passing Score: 2 out of 3</li>
+</ul>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch12-business-intelligence.html"><small>Previous</small><strong>Chapter 12: Chapter 12 – Business Intelligence and Analytics for Performance Improvement</strong></a>
+          <a class="pager-card pager-card--next" href="ch14-powerbi.html"><small>Next</small><strong>Chapter 14: Chapter 14: Power BI, Microsoft Access, and Business Reporting</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

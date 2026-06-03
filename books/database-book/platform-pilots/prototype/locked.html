@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BITM330 Prototype | Access Locked</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="locked">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="prototype-notice" data-prototype-notice aria-live="polite"></div>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="book/index.html">Book</a>
+        <a href="labs.html">Labs</a>
+        <a href="locked.html" aria-current="page">Access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell page-shell--locked">
+    <section class="locked-panel">
+      <div class="locked-panel__copy">
+        <p class="eyebrow">Locked Access Page</p>
+        <h1>Sign in or purchase access to continue</h1>
+        <p>This screen is a static prototype only. It shows where login and purchase prompts would appear, but it does not connect to authentication, a database, or a payment provider.</p>
+        <ul class="plain-list plain-list--compact">
+          <li>Student access would check course registration or purchase status.</li>
+          <li>Instructor and guest access would route to separate role-based flows.</li>
+          <li>Deep links would return users to the chapter or lab they originally requested.</li>
+        </ul>
+        <div class="actions">
+          <button class="button button--primary" type="button" data-faux-action="Login is not connected in this static prototype.">Login</button>
+          <button class="button" type="button" data-faux-action="Purchase flow is not connected in this static prototype.">Purchase Access</button>
+          <a class="button" href="book/index.html">Preview Full Book</a>
+          <a class="button" href="index.html">Return to Home</a>
+        </div>
+      </div>
+      <aside class="locked-panel__aside">
+        <div class="surface-card surface-card--accent">
+          <p class="eyebrow">DIMA Publishing Placeholder</p>
+          <h2>Institution-ready textbook platform</h2>
+          <p>Responsive, accessible, and designed to grow from a reader MVP into a fuller instructional platform.</p>
+        </div>
+        <div class="surface-card">
+          <h3>Prototype Constraints</h3>
+          <ul class="plain-list plain-list--compact">
+            <li>No real login</li>
+            <li>No payment integration</li>
+            <li>No stored progress</li>
+            <li>HTML, CSS, and vanilla JavaScript only</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

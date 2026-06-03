@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BITM330 Prototype | Labs</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="labs">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="prototype-notice" data-prototype-notice aria-live="polite"></div>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="book/index.html">Book</a>
+        <a href="labs.html" aria-current="page">Labs</a>
+        <a href="locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell">
+    <section class="dashboard-hero">
+      <div class="surface-card surface-card--hero">
+        <p class="eyebrow">Labs Section</p>
+        <h1>Hands-on work tied to chapters and course outcomes</h1>
+        <p>The labs surface shows how the book can pair conceptual reading with structured activity cards, time estimates, and clear next actions.</p>
+        <div class="actions">
+          <a class="button button--primary" href="book/index.html">Open Full Book</a>
+          <a class="button" href="reader.html?chapter=ch2">Open Reader Mock</a>
+          <button class="button" type="button" data-faux-action="Lab launch is disabled in the static prototype.">Preview Access Gate</button>
+        </div>
+      </div>
+      <aside class="surface-card labs-illustration-card">
+        <img class="panel-figure" src="assets/lab-grid.svg" alt="A stylized lab board with cards, timers, and chapter references">
+      </aside>
+    </section>
+
+    <section class="catalog-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Lab Catalog</p>
+          <h2>Sample and placeholder labs</h2>
+        </div>
+        <span class="status-pill">Static cards only</span>
+      </div>
+      <div class="lab-grid" data-lab-grid="full"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

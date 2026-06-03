@@ -1,0 +1,2912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 1: | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 1:</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>6%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:6%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="is-current" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 1</p>
+          <h1></h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>82 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 1:</h2>
+                  <h1>Introduction to the Textbook</h1>
+<h2>Welcome to <em>Using Data to Drive Business Performance: Databases and Management Information Systems</em></h2>
+<p><img alt="Left-to-right roadmap diagram on a clean white background showing the book journey from raw data to tables, relationships, queries, analytics, and business decisions. Text in the image reads From data toward better business decisions. The tone is clear, organized, and encouraging." src="../../assets/book-content/.images/Ch01-Welcome-to-the-Textbook/ch01-cover.png" /></p>
+<p><em>From data toward better business decisions.</em></p>
+<p>This chapter is your <strong>orientation to the book and the Journey from Data to Decisions</strong>. It explains where the book is going, what you will build, which tools you will use, and why this material matters for business students, managers, analysts, entrepreneurs, and anyone whose work depends on data.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kpUTXxPuEuU?si=TPXRR5ALj18FrWwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p><a href="https://youtu.be/kpUTXxPuEuU?si=e1N_f9y2ZLZNvP_i">Watch the Chapter 1 overview video</a></p>
+<p>The book follows one continuous <strong>Instructional Arc</strong> that connects information systems, relational databases, <strong>SQL</strong>, analytics, and decision-making. It is built around a simple but powerful idea: data becomes valuable when people organize it, connect it, question it, analyze it, and use it to make better decisions. </p>
+<p><img alt="Introductory visual connecting business questions, database structure, and decision use across the course" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-1-introduction2" /></p>
+<p><em>This book keeps business questions, database structure, and decision use in one continuous teaching narrative.</em></p>
+<p>You will not learn databases as a pile of disconnected terms. You will learn databases as part of a larger business system that helps organizations improve performance with information technology.</p>
+<p>You will also put theory into practice. You will work with two main projects, the <strong>Grading Database</strong> and PetVax, so you can move from <strong>Guided Practice</strong> to <strong>Transfer Practice</strong>. The goal is not to memorize disconnected technical steps. The goal is to understand how data becomes structure, how structure supports analysis, and how analysis supports better business decisions.</p>
+<p><img alt="Learning objectives graphic linking Chapter 1 goals to the course's business, technical, and systems-thinking outcomes" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-figure12-objectives" />
+<em>The opening visual shows the learning goals that connect business meaning, technical structure, and the data-to-decisions journey.</em></p>
+<p>That arc gives the entire book its shape. Data becomes tables. Tables form relationships. Relationships make queries possible. <strong>Queries</strong> support analytics. Analytics inform decisions. Decisions shape business performance.</p>
+<p><img alt="Six-stage flow from data to decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-flow" />
+<em>The book's central learning arc moves from data to tables, relationships, queries, analytics, and decisions.</em></p>
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Follow the arc</strong></p>
+  <p>Data → Tables → Relationships → Queries → Analytics → Decisions</p>
+  <p>Keep this sequence in mind as you read. Every chapter helps you move from raw data to better business decisions.</p>
+</div>
+
+<p><strong>After reading this chapter, you will be able to:</strong></p>
+<ul>
+<li>explain why this book connects databases, SQL, analytics, and business performance;</li>
+<li>describe the book's central learning arc from data to decisions;</li>
+<li>identify the major tools used throughout the book and explain what each one is for;</li>
+<li>describe the role of the Grading Database and the PetVax Veterinary Hospital Database;</li>
+<li>explain how the chapters build from foundations to strategy;</li>
+<li>recognize how the book's chapter structure supports guided learning and independent application; and</li>
+<li>describe the habits that help students succeed in technical business learning.</li>
+</ul>
+<p><img alt="Chapter 1 overview infographic linking structure, insight, strategy, and project-based learning" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch01-infographic" />
+<em>Chapter 1 at a glance: the course connects structure, insight, strategy, and project-based learning.</em></p>
+<p>If you want a short visual introduction before moving into the chapter, watch the Chapter 1 overview video below.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DuRt2vlTcl0?si=AQT0LbGyRiQd0fQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<div class="page-break"></div>
+
+<h2>Why This Book Exists</h2>
+<p>When I talk to students after an information systems or database course, and you often hear some version of the same three concerns:</p>
+<blockquote>
+<p>"I understand the terms, but not how they connect."</p>
+<p>"We learned SQL, but I do not really know why it matters."</p>
+<p>"Databases feel intimidating."</p>
+</blockquote>
+<p>Those reactions are honest. They point to a real learning problem.</p>
+<p><img alt="Students confronting disconnected course ideas and uncertainty about how databases, SQL, analytics, and strategy fit together" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-frustration" />
+<em>Many students start with fragmented ideas about databases and analytics, which makes the subject feel harder than it needs to be.</em></p>
+<p>Many students do not struggle with information systems because they are unwilling to learn. They struggle because the material often feels fragmented. A typical textbook or course might teach information systems in one chapter, data in another, SQL later, dashboards near the end, and business strategy somewhere else. Each topic may be useful, but students are left to answer the most important question on their own: <strong>how does this all connect?</strong></p>
+<p><img alt="Introductory visual for the course data-to-decisions journey" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-figure-1-1-intro" /></p>
+<p><em>The chapter begins by connecting database learning to practical business questions.</em></p>
+<p>That missing connection shows up quickly. A student may learn the definition of a database but not understand why database structure affects business reporting. A student may write a SQL query but not understand what decision the query supports. A student may see a dashboard but not know whether the numbers behind it are trustworthy. In those moments, the problem is not motivation. It is structure.</p>
+<p><img alt="Business problem illustration showing the gap between disconnected technical tasks and clear business decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-problem" />
+<em>The missing link is often the connection between technical work and the decision it is supposed to support.</em></p>
+<p>This book was written to solve that problem. The goal is not to turn every business student into a software engineer. The goal is to help you understand how data systems work well enough to ask better questions, design better structures, interpret outputs, and make stronger decisions.</p>
+<p>Here is the promise of the book:</p>
+<blockquote>
+<p><strong>You will learn how data becomes business performance.</strong></p>
+</blockquote>
+<p><img alt="Visual showing how raw data moves through structure, queries, and analysis into business decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-002" />
+<em>Data becomes more useful as it moves through structure, queries, analysis, and decision use.</em></p>
+<p>That means you will learn technical skills, but always with a business purpose. You will write SQL because SQL helps answer questions. You will design tables because table structure affects accuracy. You will study relationships because relationships determine what a system can know. You will build reports and dashboards because decision-makers need clear evidence, not just stored records.</p>
+<p>This book is also written for a mixed audience. It is meant to be clear enough for business students who do not see themselves as technical, and rigorous enough for students who already have some technical background. If you are newer to data work, the chapters take you step by step. If you arrive with more experience, the relational design, SQL, and analytics sections give you room to push further.</p>
+<p><img alt="Transition roadmap showing the course moving from foundations to structure, queries, analytics, and strategy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-pathway" /></p>
+<p><em>Chapter 1 provides orientation, and the next chapters build the foundation that leads into structure, queries, analytics, and strategy.</em></p>
+<p>The work is practical for a reason. Most early business careers now expect some level of data fluency. Internships and entry-level roles in analytics, operations, marketing, finance, consulting, and product work routinely ask new hires to pull data, write a query, read a report, or question a number. This book is designed to help you arrive ready for that kind of work — not as a software engineer, but as a business person who can think clearly with data.</p>
+<p>If the technical side of this material feels new, that is fine. You do not need to arrive as a programmer. You do need curiosity, patience, and a willingness to work through examples carefully. Errors and small frustrations are part of learning here, not signs that you do not belong.</p>
+<p><img alt="Visual summary of Chapter 1 highlighting the learning arc, chapter structure, tools, and transition into Chapter 2" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch01-summary2" /></p>
+<p><em>A second summary graphic revisits the chapter's main ideas before the written wrap-up.</em></p>
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Build systems thinking</strong></p>
+  <p>The point of this course is not to memorize database terms. It is to build <strong>systems thinking</strong>: the ability to see how data, structure, analysis, and decisions work together.</p>
+</div>
+
+<p><img alt="Reliable reporting begins with well-structured records and relationships" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-003" />
+<em>Business performance depends on structured, reliable data systems that connect records to decisions.</em></p>
+<h2>The Big Idea: From Data to Decisions</h2>
+<p>As we mentioned earlier, every chapter in this book sits somewhere on one continuous arc:</p>
+<blockquote>
+<p><strong>Data -&gt; Tables -&gt; Relationships -&gt; Queries -&gt; Analytics -&gt; Decisions</strong></p>
+</blockquote>
+<p>Read it left to right.</p>
+<p><img alt="Continuous blueprint connecting data, tables, relationships, queries, analytics, and decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-master-blueprint-continuous" /></p>
+<p><em>The master blueprint shows how the book's core arc stays connected from start to finish.</em></p>
+<ul>
+<li><strong>Data</strong> is the raw material: records, numbers, categories, dates, names, transactions, clicks, payments, grades, appointments, and observations.</li>
+<li><strong>Tables</strong> give data structure by organizing it into rows and columns.</li>
+<li><strong>Relationships</strong> connect tables so the system can represent real business activity.</li>
+<li><strong>Queries</strong> ask precise questions of the data.</li>
+<li><strong>Analytics</strong> turn query results into patterns, summaries, metrics, charts, and explanations.</li>
+<li><strong>Decisions</strong> use those outputs to improve action, performance, and strategy.</li>
+</ul>
+<p><img alt="Phase 1 visual showing how real activity becomes structured data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-phase-1-structuring-reality" /></p>
+<p><em>Phase 1 focuses on structuring real-world activity into reliable data, tables, and relationships.</em></p>
+<p><img alt="Phase 2 visual showing how queries and analytics extract value from structured data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-phase-2-extracting-value" /></p>
+<p><em>Phase 2 focuses on using queries and analytics to extract business value from structured data.</em></p>
+<p>A simple real-world example makes this easier to see.</p>
+<p>Imagine a veterinary clinic that wants to reduce missed appointments. At first, the clinic may only have scattered records: pet names, owner names, appointment dates, phone numbers, treatment notes, and payment information. Those records become useful only when they are organized. The clinic needs tables for owners, pets, appointments, treatments, and invoices. Those tables need relationships so each pet is connected to the correct owner and each appointment is connected to the correct pet.</p>
+<p>Once the structure is reliable, the clinic can query the data. Which appointments are missed most often? Which reminders seem to work? Which days have the highest no-show rates? Those query results can feed analytics. The analytics can support decisions about reminders, staffing, scheduling, and customer service.</p>
+<p><img alt="Dashboard and report view showing how structured query results become usable metrics and decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-data-dashboard" /></p>
+<p><em>When data is structured well, query results can become reports, metrics, and decisions that managers can actually use.</em></p>
+<p>That is the journey from data to decisions. The same pattern appears in retail, banking, healthcare, higher education, logistics, marketing, and digital platforms. The domain changes. The logic remains.</p>
+<h2>Why Databases Matter for Business Performance</h2>
+<p>A database is not just a place to store data. It is a structure that shapes what an organization can see, measure, report, and improve. That is why database design has business consequences.</p>
+<p>A poorly designed database can make simple questions hard to answer. It can create duplicate records, inconsistent reports, missing information, and confusing dashboards. A well-designed database makes information easier to retrieve, compare, trust, and use.</p>
+<p>Think about a coffee shop. If sales, inventory, suppliers, and menu items are tracked in separate spreadsheets with inconsistent names, the owner may struggle to answer basic questions:</p>
+<ul>
+<li>Which items sell out fastest?</li>
+<li>Which ingredients are wasted most often?</li>
+<li>Which supplier problems affect daily sales?</li>
+<li>Which products have strong sales but weak profit margins?</li>
+</ul>
+<p>Those are business questions. But answering them depends on data structure.</p>
+<p>Now think about a larger organization. A hospital needs accurate patient, appointment, billing, and treatment records. A retailer needs reliable product, inventory, customer, and sales data. A university needs information about students, courses, assignments, grades, and attendance. </p>
+<p>In every case, performance depends on whether the organization can capture the right data, structure it correctly, retrieve it efficiently, and interpret it responsibly.</p>
+<p><img alt="Innovation paradox visual linking technology value to systems and decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-innovation-pardox" /></p>
+<p><em>Technology creates value only when organizations connect innovation to clear systems and decisions.</em></p>
+<p>This is why the book connects databases with management information systems. The database is not separate from the business. It is part of how the business learns.</p>
+<h2>What Makes This Book Different</h2>
+<p>This book is built around a common problem in MIS and database learning: readers are too often asked to connect the important ideas on their own.</p>
+<p>Some books stay mostly conceptual. They talk about strategy, digital change, or business value, but give students very little real data work. Other books go hard in the opposite direction. They teach tools and syntax, but leave students wondering why any of it matters. That split creates a real learning problem. Students may learn pieces of the work without seeing how structure, analysis, and judgment fit together.</p>
+<p><img alt="Introductory visual connecting business questions, database structure, and decision use across the course" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-1-introduction2" />
+<em>This book keeps business questions, database structure, and decision use in one continuous teaching narrative.</em></p>
+<p>This book tries to close that gap without making the material heavier or more intimidating. It does so through four design choices.</p>
+<ol>
+<li><strong>Business Meaning</strong> first. Technical work appears in context, not in isolation. You will usually begin with a question an organization might actually care about.</li>
+<li><strong>One continuous system narrative.</strong> You will not jump randomly from topic to topic. Each major idea prepares you for the next one.</li>
+<li><strong>Guided practice and transfer.</strong> You first learn a structure in a familiar setting, then use the same logic in a different business context.</li>
+<li><strong>Practical tools across a connected workflow.</strong> The point is not to chase software trends. The point is to show how core ideas travel across environments.</li>
+</ol>
+<p>The book is not a software manual. It is also not a purely conceptual management text. It sits in the space between business judgment and technical structure. That middle space is where real information systems work happens.</p>
+<p><img alt="Disconnected database topics shown as separate puzzle pieces with student concerns about SQL, databases, analytics, and strategy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch1-illusion-of-fragmented-knowledge" />
+<em>Students often experience databases, SQL, analytics, and strategy as disconnected topics instead of one connected system.</em></p>
+<h2>How Each Chapter Works</h2>
+<p>This section explains both how each chapter is organized and how the chapters fit together into one connected book.</p>
+<h3>How each chapter is organized</h3>
+<p>Every chapter follows a predictable rhythm so you can focus on the ideas, not on guessing what comes next.</p>
+<p><img alt="Chapter rhythm diagram" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-008" />
+<em>The chapter rhythm moves from concepts and guided building to vocabulary, reflection, assessment, and lab application.every chapter follows a repeatable learning sequence that supports steady growth.</em></p>
+<h4>Core Concepts</h4>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
+</p>
+
+<p align="center"><em>Core Concepts introduces the main ideas, explanations, examples, and diagrams that frame the chapter.</em></p>
+
+<p>The <strong>Core Concepts</strong> section introduces the essential ideas that shape each chapter. Here, you will encounter the key terms, models, principles, and examples needed to understand the topic before applying it in practice. This section helps you see not only <em>what</em> a concept means, but also <em>why</em> it matters in business and information systems.</p>
+<h4>Let’s Build</h4>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let’s Build section icon" width="220">
+</p>
+
+<p align="center"><em>Let’s Build guides you step by step through the Grading Database so you can turn concepts into practice.</em></p>
+
+<p>The <strong>Let’s Build</strong> section turns concepts into guided practice. In this part of the chapter, you will work through the Grading Database in a structured and manageable way. The goal is to help you move from understanding an idea to using it to build tables, relationships, queries, forms, reports, or other database components.</p>
+<h4>Terms Treasury</h4>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-terms-sizedmin" alt="Terms Treasury section icon" width="220">
+</p>
+
+<p align="center"><em>Terms Treasury reinforces the vocabulary you need to recognize, understand, and use correctly.</em></p>
+
+<p>The <strong>Terms Treasury</strong> section highlights the vocabulary you need throughout the chapter. Database work depends on precise language, so this section helps you recognize important terms, connect them to examples, and use them correctly in class discussions, assignments, quizzes, and technical explanations.</p>
+<h4>Review and Reflection</h4>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-revie-resized" alt="Review and Reflection section icon" width="220">
+</p>
+
+<p align="center"><em>Review and Reflection helps you connect technical ideas to business meaning and real-world decisions.</em></p>
+
+<p>The <strong>Review and Reflection</strong> section gives you an opportunity to pause, consolidate, and make meaning from what you have learned. Rather than simply repeating definitions, this section asks you to connect technical ideas to business problems, organizational decisions, and real-world information systems.</p>
+<h4>RAT / Quiz</h4>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/RAT_nqr5a3?_a=BAMAAAX00" alt="RAT or Quiz section icon" width="220">
+</p>
+
+<p align="center"><em>RAT / Quiz checks reading comprehension and conceptual understanding before class or before advanced work.</em></p>
+
+<p>The <strong>RAT / Quiz</strong> section checks your reading comprehension and conceptual understanding. These assessments are designed to help you identify what you already understand and where you may need additional review. They also reinforce the most important ideas so that you are prepared to participate, practice, and apply the material.</p>
+<h4>Lab</h4>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-lb" alt="Lab section icon" width="220">
+</p>
+
+<p align="center"><em>Lab asks you to apply the chapter’s ideas more independently, often through the PetVax case.</em></p>
+
+<p>The <strong>Lab</strong> section asks you to apply the chapter’s ideas more independently. In many chapters, the lab uses the PetVax case to help you transfer what you learned from the guided Grading Database examples into a new business context. This section gives you practice solving problems, making design choices, and working with data in a way that more closely resembles real-world database tasks.</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/00-general/ch00-all-sections" alt="Visual showing the repeatable chapter sequence that supports steady growth" >
+</p>
+
+<p align="center"><em>Every chapter follows a repeatable learning sequence — concepts, build, terms, reflection, quiz, and lab — that supports steady growth.</em></p>
+
+<p>This structure is deliberate. Each chapter moves you through several levels of learning. You begin by recognizing key terms and understanding core ideas. You then explain those ideas in your own words, apply them in guided examples, and transfer them to more independent work. As the course progresses, you will also analyze relationships, evaluate design choices, and create your own structures, queries, reports, and recommendations.</p>
+<p>In other words, assessment in this book is not only about memorizing definitions. It is about learning how to think with the material: how to ask better questions, organize information more clearly, design more reliable systems, and use data to support meaningful business decisions.</p>
+<h3>How the book flows</h3>
+<p>The book is organized as a journey from foundations to strategy. Each chapter adds a new layer. The early chapters give you the vocabulary and logic to understand why data matters. The middle chapters build technical skill with databases, SQL, and design. The later chapters connect those skills to analytics, management, and strategy.</p>
+<p><img alt="First-half course roadmap from foundations through relational design" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-updated-part-1" /></p>
+<p><em>The first half of the book builds the foundation for data, databases, SQL, and relational design.</em></p>
+<p><img alt="Second-half course roadmap from administration through analytics and strategy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-updated-part-2" /></p>
+<p><em>The second half of the book connects database skill to administration, analytics, strategy, and integration.</em></p>
+<p>The chapters are grouped into six broad parts. Each part builds on the previous one, so the book gradually moves from foundational concepts to practical database work, then to broader questions of business performance, strategy, and ethical decision-making.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Part</th>
+<th>Chapters</th>
+<th>Main Focus</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><strong>Part 1: Foundations</strong></td>
+<td><strong>1–3</strong></td>
+<td>Introduces the textbook, explains how information systems support business performance, and establishes core data concepts such as data types, metadata, quality, governance, and the data lifecycle.</td>
+<td>Gives students the conceptual foundation for understanding why data matters before they begin working with databases directly.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>Part 2: Databases and SQL</strong></td>
+<td><strong>4–5</strong></td>
+<td>Introduces databases as an improvement over spreadsheets and flat files, then presents SQL as the language used to ask structured business questions.</td>
+<td>Helps students see databases not as abstract technical tools, but as practical systems for organizing and retrieving useful business information.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>Part 3: Relational Design</strong></td>
+<td><strong>6–8</strong></td>
+<td>Explains the relational model, connected tables, redundancy reduction, normalization, and midterm integration of the first half of the course.</td>
+<td>Shows students how good database structure improves accuracy, consistency, and reliability.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>Part 4: Advanced SQL and Design</strong></td>
+<td><strong>9–10</strong></td>
+<td>Extends SQL into more advanced analytical patterns and moves from querying existing databases to designing reliable information systems.</td>
+<td>Helps students connect database querying with system design, business rules, and deeper analytical thinking.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>Part 5: Administration, BI, and Visualization</strong></td>
+<td><strong>11–14</strong></td>
+<td>Covers database administration, security, backup, recovery, access control, business intelligence, analytics, advanced database techniques, and Power BI.</td>
+<td>Connects database work to operational reliability, managerial reporting, dashboards, and decision support.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>Part 6: Strategy and Integration</strong></td>
+<td><strong>15–17</strong></td>
+<td>Connects information systems to business strategy, integrates the course as a whole, and closes with ethics, responsibility, and lifelong learning in data-driven work.</td>
+<td>Encourages students to think beyond technical skills and consider how information systems shape organizations, decisions, and professional responsibility.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Visual roadmap showing how the first half of the book is organized, covering Foundations, Databases and SQL, and Relational Design" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-how-the-book-is-organized" /></p>
+<p><em>The first half of the book establishes the core database foundations and relational design principles.</em></p>
+<p><img alt="Visual roadmap showing how the second half of the book is organized, covering Advanced SQL, Administration, Business Intelligence, and Strategy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-organized-part2" /></p>
+<p><em>The second half of the book connects database structure to administration, analytics, business intelligence, and strategy.</em></p>
+<p>The sequence is cumulative. Early chapters give you vocabulary and logic. Middle chapters build technical skill. Later chapters connect those skills to analytics, management, and strategy. You cannot write strong SQL against weak structure. You cannot build trustworthy analytics from messy data definitions. You cannot talk about strategy in a useful way if the underlying system cannot capture and report information well.</p>
+<p>You are not just learning isolated tools. You are learning a way of seeing systems.</p>
+<p><img alt="Six-part book roadmap from foundations through databases, design, analytics, and strategy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch1-six-part-journey-foundations-to-strategy" />
+<em>The book progresses through six connected parts, moving from foundations to databases, design, analytics, and strategy.</em></p>
+<p><img alt="Transition roadmap showing the course moving from foundations to structure, queries, analytics, and strategy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-pathway" />
+<em>Chapter 1 provides orientation, and the next chapters build the foundation that leads into structure, queries, analytics, and strategy.</em></p>
+<h2>What You Will Learn: Five Core Competencies</h2>
+<p>By the end of this book, you should be able to do five things well. These are the book's <strong>Core Competencies</strong>, and every chapter develops at least one of them.</p>
+<p><img alt="Five core competencies mapped across the course from foundational literacy to strategic problem solving" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-competencies-map" />
+<em>The course competencies build from foundational understanding toward stronger analysis, design, and decision-making.</em></p>
+<table>
+<thead>
+<tr>
+<th>Competency</th>
+<th>What It Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Foundational information literacy</strong></td>
+<td>Explain how data, databases, and information systems support organizational decision-making.</td>
+</tr>
+<tr>
+<td><strong>Applied database management</strong></td>
+<td>Design and query relational databases to answer realistic business questions.</td>
+</tr>
+<tr>
+<td><strong>Data integrity and system quality</strong></td>
+<td>Use relational modeling and normalization to make data accurate, consistent, and reliable.</td>
+</tr>
+<tr>
+<td><strong>Performance-oriented analysis</strong></td>
+<td>Interpret reports, metrics, and outputs in ways that connect technical work to business performance.</td>
+</tr>
+<tr>
+<td><strong>Strategic problem solving</strong></td>
+<td>Combine technical reasoning and business context to evaluate options and recommend decisions.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Five core systems competencies shown as stacked levels from information literacy to strategic problem solving" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch1-developing-five-core-systems-competencies" />
+<em>Five core systems competencies moving from foundational information literacy to strategic problem solving.</em></p>
+<p>These competencies move from foundational to integrative. The first helps you talk about data systems intelligently. The fifth helps you sit in a meeting and argue, with evidence, for one option over another.</p>
+<p><img alt="Five core systems competencies shown as connected capabilities, not isolated tasks" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-005" />
+<em>The course builds connected capabilities — information literacy, database management, data integrity, performance-oriented analysis, and strategic problem solving.</em></p>
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Anchor every chapter to a competency</strong></p>
+  <p>When a chapter feels abstract, ask which competency it is building. That single question keeps the work grounded.</p>
+</div>
+<hr />
+<div class="page-break"></div>
+
+<h2>The Tools You Will Use</h2>
+<p><img alt="Tool ecosystem showing database, spreadsheet, analytics, and workflow platforms used throughout the course" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-all-tools" /></p>
+<p><em>The book uses a practical tool ecosystem for collecting, structuring, querying, analyzing, and communicating data.</em></p>
+<p>Real data work rarely happens in one tool. Different tools support different parts of the same workflow. This book introduces a practical <strong>Tool Ecosystem</strong> so you can understand how business data moves across environments.</p>
+<table>
+<thead>
+<tr>
+<th>Tool or Environment</th>
+<th>Main Role in the Book</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Microsoft Access</strong></td>
+<td>Helps you see tables, relationships, forms, queries, and reports in a visual database environment.</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Provides the core language for asking precise questions of relational data.</td>
+</tr>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>Offers a lightweight way to practice SQL and relational database logic.</td>
+</tr>
+<tr>
+<td><strong>Supabase / PostgreSQL</strong></td>
+<td>Introduces a modern cloud database environment based on PostgreSQL.</td>
+</tr>
+<tr>
+<td><strong>Google Sheets or spreadsheets</strong></td>
+<td>Shows how raw or messy data often begins before it is cleaned, structured, and moved into database form.</td>
+</tr>
+<tr>
+<td><strong>Google Forms</strong></td>
+<td>Shows one practical way data can be collected before it enters a database workflow.</td>
+</tr>
+<tr>
+<td><strong>Google Colab</strong></td>
+<td>Supports code-based analysis and reproducible examples when that format helps.</td>
+</tr>
+<tr>
+<td><strong>Lucidchart, Mermaid, or diagramming tools</strong></td>
+<td>Support ERDs, data models, workflows, and other visual plans before a system is built.</td>
+</tr>
+<tr>
+<td><strong>BigQuery</strong></td>
+<td>Provides light exposure to larger-scale analytical environments.</td>
+</tr>
+<tr>
+<td><strong>Power BI</strong></td>
+<td>Turns cleaned and queried data into dashboards and reports for decision-makers.</td>
+</tr>
+<tr>
+<td><strong>GitHub and digital companion materials</strong></td>
+<td>Provide working files, examples, scripts, sample data, and supporting resources.</td>
+</tr>
+<tr>
+<td><strong>AI-supported workflows</strong></td>
+<td>Can help explain, debug, revise, and reflect on technical work when used carefully and responsibly.</td>
+</tr>
+</tbody>
+</table>
+<p>The goal is not to memorize every button in every platform. The goal is to understand what each tool is good for and where it fits in a larger workflow.</p>
+<p><img alt="Tool overview showing database, spreadsheet, analytics, and workflow platforms used throughout the course" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-tools" />
+<em>A summary of the platforms used across collection, modeling, querying, reporting, and reflection.</em></p>
+<p>A spreadsheet is useful for quick inspection and small-scale data entry. Access is useful for seeing relational structure and building simple database applications. SQLite is useful for direct SQL practice. Supabase and PostgreSQL show how relational databases work in modern cloud settings. Diagramming tools help you think before you build. Power BI helps turn results into communication. BigQuery gives you a glimpse of the wider analytics landscape. GitHub supports companion files, versioning, and reproducible course materials. AI tools can support learning, debugging, and reflection, but they do not replace careful thinking.</p>
+<p>The tools are different, but the workflow is connected.</p>
+<p><img alt="Workflow map showing tools for data collection, modeling, storage, querying, analytics, communication, versioning, and AI-supported workflows" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch1-tool-ecosystem-mapped-to-workflow" />
+<em>Each tool fits into a larger workflow, from data collection and modeling to querying, analytics, communication, and support.</em></p>
+<hr />
+<div class="page-break"></div>
+
+<h2>The Two Running Projects</h2>
+<p>The book uses two recurring projects.</p>
+<p><img alt="Grading Database project icon" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-grading" /></p>
+<p><em>The Grading Database provides guided practice in a familiar academic setting.</em></p>
+<p>The first is the <strong>Grading Database</strong>. This is the guided instructional case. It uses a familiar setting: students, courses, assignments, attendance, grades, and performance. Because the domain is easy to understand, you can focus on the database logic. Through the Grading Database, you will learn how tables work, how keys identify records, how relationships connect entities, how SQL queries answer questions, and how reports summarize performance. We will practice it during the "Let's Build" sections of each chapter, and you will return to it repeatedly as you learn new techniques.</p>
+<p><img alt="PetVax lab project icon" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-lab-logo" /></p>
+<p><em>PetVax provides transfer practice in a veterinary clinic setting.</em></p>
+<p>The second is the <strong>PetVax Veterinary Hospital Database</strong>. This is the applied lab case. It asks you to transfer what you learned from the Grading Database to a different business setting. Instead of students and assignments, you will work with owners, pets, appointments, treatments, invoices, and operational questions. We will practice these during the "Lab" sections of each chapter, and you will return to it repeatedly as you apply new techniques to a different domain.</p>
+<p>Together, the two projects move you from guided practice to transfer practice. The Grading Database builds confidence in a familiar setting. PetVax asks you to apply the same logic more independently in a new business context. That distinction matters because real learning is not just repeating one example. Real learning means recognizing the same structure in a new context.</p>
+<p><img alt="Comparison table contrasting the Grading Database and PetVax Veterinary Hospital projects as guided and transfer practice" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch1-two-projects-one-goal-achieving-transfer" />
+<em>The Grading Database builds confidence in a familiar setting, and PetVax asks you to transfer the same logic to a new business context.</em></p>
+<h3>Where Each Project Reappears</h3>
+<p>The table below previews where each project shows up across the book so you can see how the work compounds.</p>
+<table>
+<thead>
+<tr>
+<th>Chapter range</th>
+<th>Grading Database (Let's Build)</th>
+<th>PetVax (Lab)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ch 3–5</td>
+<td>Build first tables, run first SELECT queries</td>
+<td>Inspect PetVax tables and write parallel queries</td>
+</tr>
+<tr>
+<td>Ch 6–7</td>
+<td>Add relationships, normalize the schema</td>
+<td>Diagnose anomalies and redesign PetVax tables</td>
+</tr>
+<tr>
+<td>Ch 9</td>
+<td>Advanced SQL for grade analytics</td>
+<td>Advanced SQL for appointment and revenue analytics</td>
+</tr>
+<tr>
+<td>Ch 11–13</td>
+<td>Apply administration, views, and procedures</td>
+<td>Apply the same techniques to PetVax operations</td>
+</tr>
+<tr>
+<td>Ch 14</td>
+<td>Build a Power BI dashboard on grading data</td>
+<td>Build a Power BI dashboard on PetVax performance</td>
+</tr>
+</tbody>
+</table>
+<p>Use this table as a quick reference whenever you wonder where the next stretch of practice is going.</p>
+<hr />
+<div class="page-break"></div>
+
+<h2>Bloom's Taxonomy in Practice</h2>
+<p><img alt="Alternate learning progression graphic showing how the course deepens from basic understanding toward stronger judgment and creation" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-8-levels" /></p>
+<p><em>Alternate progression view for Bloom-style learning growth across the course.</em></p>
+<p>The chapters and assessments are designed around <strong>Bloom's Taxonomy</strong>, which describes levels of thinking from simpler to more complex forms of learning.</p>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>What It Looks Like in This Book</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Remember</strong></td>
+<td>Recall key terms such as table, field, primary key, relationship, and query.</td>
+</tr>
+<tr>
+<td><strong>Understand</strong></td>
+<td>Explain why a relational database is different from a spreadsheet.</td>
+</tr>
+<tr>
+<td><strong>Apply</strong></td>
+<td>Write a SQL query or build a small table structure.</td>
+</tr>
+<tr>
+<td><strong>Analyze</strong></td>
+<td>Identify how tables relate or where a design creates redundancy.</td>
+</tr>
+<tr>
+<td><strong>Evaluate</strong></td>
+<td>Compare two possible database designs and justify which one is stronger.</td>
+</tr>
+<tr>
+<td><strong>Create</strong></td>
+<td>Design a new structure, query, report, dashboard, or recommendation.</td>
+</tr>
+</tbody>
+</table>
+<p>Reading quizzes usually target the lower levels. Reflections and labs push you toward analysis, evaluation, and creation. The goal is to move you from recognizing terms to building things with them.</p>
+<p><img alt="Bloom's Taxonomy staircase linking remember, understand, apply, analyze and evaluate, and create to course activities" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch1-blooms-taxonomy-in-practice" />
+<em>Bloom's Taxonomy shows how the course moves from remembering terms to creating new structures, queries, dashboards, and recommendations.</em></p>
+<h2>How to Read and Use This Book</h2>
+<p>This book works best when you treat it as something to use, not just something to skim.</p>
+<p>Read the main chapter first to understand the concepts and the business meaning behind them. Pay attention to the examples. When a table, relationship, or query appears, pause and ask what business question it helps answer. Then work with the companion materials. The terms, reflections, reading assessments, and labs are not extras. They are part of how the book helps you move from recognition to application.</p>
+<p><img alt="Study workflow visual showing students moving from reading to practice, review, and self-check while using the book" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-011" />
+<em>The book works best when reading, practice, review, and self-check are treated as one connected routine.</em></p>
+<p>A few habits will help you most:</p>
+<ul>
+<li><strong>Start with the business question.</strong> Ask what problem the system is supposed to solve.</li>
+<li><strong>Pay attention to structure.</strong> Small design choices often create large reporting consequences later.</li>
+<li><strong>Test your work.</strong> Run the query, inspect the output, and ask whether the result makes sense.</li>
+<li><strong>Use errors as clues.</strong> A failed query or broken relationship usually points to something worth learning.</li>
+<li><strong>Connect technical tasks to business meaning.</strong> If you cannot explain why a query matters, the work is not finished yet.</li>
+<li><strong>Work steadily.</strong> Database learning builds over time. Gaps early in the book can return later.</li>
+<li><strong>Use the digital materials.</strong> Files, examples, and companion resources make abstract ideas easier to inspect.</li>
+</ul>
+<p>You do not need to move fast. You do need to move carefully. Database work rewards patience, checking, and revision more than guessing.</p>
+<div class="callout tip">
+  <p><strong>💡 Tip: Write the question first</strong></p>
+  <p>Before you write a query, write the business question in plain English. If you cannot state the question clearly, you cannot write a clean query for it.</p>
+</div>
+
+<p><img alt="Business transaction records showing the raw events that need consistent database structure before they can support reporting" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-transaction" /></p>
+<p><em>Every useful report starts with transactions and records that are captured consistently enough to be connected, summarized, and trusted.</em></p>
+<h2>How to Succeed in This Course</h2>
+<p>The previous section described how to use the book. These habits apply to the course as a whole.</p>
+<ul>
+<li><strong>Stay curious.</strong> Ask what a term means, why a system is designed a certain way, and what business question the data should answer.</li>
+<li><strong>Work professionally.</strong> Keep up with deadlines, organize your files, and treat each assignment as practice for real business work.</li>
+<li><strong>Stay engaged.</strong> Participate in class, use the labs and companion materials, and talk through confusing ideas before they grow.</li>
+<li><strong>Pay attention to detail.</strong> Small mistakes in names, keys, formulas, and query logic can change results, so check your work carefully.</li>
+<li>Practice <strong>Resilient Problem Solving</strong>. Errors, failed queries, and revisions are part of learning how information systems work. Treat them as clues, not as signs that you cannot do the course.</li>
+</ul>
+<p>Together, these habits form the <strong>Student Mindset</strong> that supports technical business learning.</p>
+<p><img alt="Student mindset wheel showing curiosity, professionalism, engagement, attention to detail, and resilient problem solving" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-student-success" />
+<em>Students succeed when they combine curiosity, professionalism, engagement, attention to detail, and resilient problem solving.</em></p>
+<h2>The Digital Companion</h2>
+<p>The book includes <strong>Digital Companion</strong> materials with working files, sample data, SQL scripts, database files, and lab resources.</p>
+<p><strong>Repository:</strong> https://github.com/nimdvir/dima-publishing/blob/main/books/database-book/files</p>
+<p>Use the companion materials the way you would use a lab manual. Open them alongside the chapter, run the examples, inspect the files, and experiment. The book's ideas become easier to understand once you can work with them directly.</p>
+<p><img alt="Companion-materials visual showing files, scripts, examples, and support resources gathered around the book's digital workflow" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-013" />
+<em>The digital companion extends the chapter with working files, scripts, examples, and other materials you can inspect directly.</em></p>
+<h2>About the Author</h2>
+<p>Dr. Nimrod Dvir teaches Information Systems and Business Analytics at the University at Albany, SUNY. His background includes Information Science, Human-Computer Interaction, and Management Information Systems, with experience across academia, UX research, and digital product development.</p>
+<p>This book reflects his teaching focus: databases, analytics, and information systems should be connected to real business questions, human behavior, and organizational performance. The goal is to help students build confidence with technical concepts while learning how data-driven organizations actually work.</p>
+<p><img alt="Portrait of Dr. Nimrod Dvir" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-me" />
+<em>Dr. Nimrod Dvir connects databases, analytics, and information systems to real business questions and business performance.</em></p>
+<h2>What Comes Next</h2>
+<p>Chapter 1 is meant to orient you, not overload you.</p>
+<p>At this point, you should have a clear sense of what the book is trying to do, how it is organized, and why its technical work matters. You should also have a clearer picture of the book's main logic: data becomes structure, structure supports questions, questions support analysis, and analysis supports decisions.</p>
+<p>Chapter 2 takes that orientation and builds the conceptual foundation underneath it. It explains how information systems connect data, technology, people, and processes in organizations, and it introduces the <strong>R.E.A.D.</strong> framework that you will use across the rest of the book.</p>
+<p><img alt="Progression visual showing how Chapter 1 leads into later database, SQL, analytics, and strategy work" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-progression" />
+<em>Chapter 1 leads into the chapters that follow, building from orientation toward structure, queries, analytics, and strategy.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the full book roadmap from foundations to analytics and strategy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-010" />
+<em>Alternate visual for "How the Book Flows": the textbook builds layer by layer from orientation to strategic use of information systems.</em></p>
+<h2>Key Concepts</h2>
+<ul>
+<li>The book follows a continuous arc from data to tables, relationships, queries, analytics, and decisions.</li>
+<li>Databases matter because structure affects what organizations can measure, report, trust, and improve.</li>
+<li>SQL is not just syntax. It is a language for asking precise business questions.</li>
+<li>The Grading Database provides guided practice, while the PetVax Veterinary Hospital Database provides independent application.</li>
+<li>The book uses multiple tools because real data work moves across multiple environments.</li>
+<li>The chapter structure supports learning through concepts, guided building, vocabulary, reflection, assessment, and labs.</li>
+<li>Assessment emphasizes understanding, application, analysis, evaluation, and creation.</li>
+<li>The larger goal is systems thinking: understanding how technical structure supports business performance.</li>
+</ul>
+<p><img alt="Systems thinking visual connecting technical structure to business performance" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-systems-thinking-business" /></p>
+<p><em>Systems thinking connects technical structure to business performance.</em></p>
+<h2>Chapter Summary</h2>
+<p><img alt="One-page Chapter 1 concept map summarizing the book's purpose, structure, and learning journey" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch01-info" />
+<em>This concept map pulls together the chapter's main ideas before the written wrap-up.</em></p>
+<p>Chapter 1 introduced the purpose and structure of <em>Using Data to Drive Business Performance: Databases and Management Information Systems</em>. The chapter explained why the book exists, showed the central arc from data to decisions, and connected database structure to business reporting, analysis, and performance.</p>
+<p>It also introduced the book's tools, chapter pattern, learning progression, and two running projects. The larger message is straightforward: the goal is not to memorize isolated software steps. The goal is to understand how technical structure supports better business questions, better analysis, and better decisions. Chapter 2 builds on that foundation by explaining how data, information systems, and business performance connect, starting with the R.E.A.D. framework.</p>
+<p><img alt="Visual summary of Chapter 1 highlighting the learning arc, chapter structure, tools, and transition into Chapter 2" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch01-summary2" />
+<em>A second summary graphic revisits the chapter's main ideas before the written wrap-up.</em></p>
+<h2>References</h2>
+<p>Anderson, L. W., &amp; Krathwohl, D. R. (2001). <em>A taxonomy for learning, teaching, and assessing: A revision of Bloom's taxonomy of educational objectives</em>. Longman.</p>
+<p>Davenport, T. H., &amp; Harris, J. G. (2017). <em>Competing on analytics: The new science of winning</em> (Updated ed.). Harvard Business Review Press.</p>
+<p>Krathwohl, D. R. (2002). A revision of Bloom's taxonomy: An overview. <em>Theory Into Practice, 41</em>(4), 212-218.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+<p>Stair, R. M., &amp; Reynolds, G. W. (2021). <em>Principles of information systems</em> (14th ed.). Cengage Learning.</p>
+<h2>Appendix: Alternate Chapter 1 Visuals</h2>
+<p>The following gallery preserves alternate Chapter 1 visuals that support the same concepts without crowding the main narrative.</p>
+<p><img alt="Tool overview showing database, spreadsheet, analytics, and workflow platforms used throughout the course" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-tools" />
+<em>Alternate tools visual summarizing the platforms used across collection, modeling, querying, reporting, and reflection.</em></p>
+<p><img alt="Bloom's taxonomy graphic showing the course moving from remembering and understanding toward evaluation and creation" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-bloom" />
+<em>Alternate Bloom-style visual emphasizing the move from recognition toward stronger explanation, application, and creation.</em></p>
+<p><img alt="Alternate learning progression graphic showing how the course deepens from basic understanding toward stronger judgment and creation" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-8-levels" />
+<em>Alternate progression view for Bloom-style learning growth across the course.</em></p>
+<p><img alt="Additional progression graphic summarizing the movement from Chapter 1 orientation into the rest of the course" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-progression" />
+<em>Additional progression visual showing how Chapter 1 leads into later database, SQL, analytics, and strategy work.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing why the book exists and why fragmented topics need a connected systems view" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-001" />
+<em>Alternate visual for "Why This Book Exists": the course is designed to connect ideas that students often meet in isolation.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the move from raw data toward structure, analysis, and decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-002" />
+<em>Alternate visual for "The Big Idea": data becomes more useful as it moves through structure, queries, analysis, and decision use.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing why business performance depends on structured, reliable data systems" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-003" />
+<em>Alternate visual for "Why Databases Matter": reliable reporting begins with well-structured records and relationships.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the book's practice-first approach to linking business meaning and technical work" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-004" />
+<em>Alternate visual for "What Makes This Book Different": the book keeps business questions and technical structure in the same conversation.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the five core competencies that the course develops over time" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-005" />
+<em>Alternate visual for "Five Core Competencies": the course builds connected capabilities, not isolated tasks.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the mix of tools and platforms used across the course workflow" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-006" />
+<em>Alternate visual for "The Tools You Will Use": each tool supports part of the larger data-to-decisions workflow.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the relationship between the Grading Database and the PetVax project" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-007" />
+<em>Alternate visual for "The Two Running Projects": guided practice in one project prepares you to transfer the same logic to another setting.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing Bloom's taxonomy as a progression from remembering toward creating and evaluating" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-009" />
+<em>Alternate visual for "Bloom's Taxonomy in Practice": the course is built to move you toward stronger thinking and more independent work.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the habits that support success in technical business learning" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-012" />
+<em>Alternate visual for "How to Succeed in This Course": curiosity, resilience, professionalism, and attention to detail matter throughout the semester.</em></p>
+<p><img alt="Additional Chapter 1 visual reinforcing the transition from orientation into the chapters that follow" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-015" />
+<em>Alternate visual for "What Comes Next": Chapter 1 is a starting point, and the later chapters build the structure and analysis that follow.</em></p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build: Introduction to the Course</h2>
+                  <p><img alt="Let's Build section header" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/Lets-build_fqsqux?_a=BAMAAAiu0" /></p>
+<p><em>Figure 1.1 — Let's Build section header for Chapter 1.</em></p>
+<h2>Building Your Foundation</h2>
+<h3>In This Chapter, You Are Not Building the Full Database Yet</h3>
+<p>Chapter 1 is different from the Let's Build sections that follow. At this stage, you are not yet creating tables, entering records, or writing full SQL queries. Instead, you are building the foundation for the project that runs throughout the book.</p>
+<p>Your job in this chapter is to understand the logic of the Grading Database, see how the project will evolve, preview the kinds of questions it is meant to answer, and begin thinking about the professional roles involved in database work. In other words, this chapter is about orientation, structure, and purpose before construction begins.</p>
+<p>Good <strong>database</strong> work starts before any table is built. It starts with understanding the domain, the problem, the users, and the questions the system must eventually answer.</p>
+<h3>The Grading Database Project</h3>
+<p><img alt="Grading Database project overview" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/grading_svq05h?_a=BAMAAAiu0" /></p>
+<p><em>Figure 1.2 — Overview of the Grading Database, the running project for the book.</em></p>
+<p>The central hands-on project in this book is the <strong>Grading Database</strong> — a relational database that you will design, build, populate, <strong>query</strong>, and refine across the text. This is not a hypothetical exercise. You will model a real system: one that stores grades and attendance, calculates final grades, computes running averages, and presents results through forms and reports.</p>
+<p>The <strong>Grading Database</strong> is a relational <strong>information system</strong> that tracks students, class sessions, deliverables such as quizzes, assignments, and exams, individual scores, and attendance records. It serves as the book's primary running case because it provides a consistent and familiar setting for introducing ideas across multiple chapters.</p>
+<p>By the end of the project, your database will become a working system capable of:</p>
+<ul>
+<li><strong>Storing structured academic data</strong> across multiple related tables.</li>
+<li><strong>Enforcing data integrity</strong> through <strong>primary keys</strong>, <strong>foreign keys</strong>, data types, and relationships.</li>
+<li><strong>Answering real questions with SQL</strong> such as grade retrieval, attendance percentages, and average performance by deliverable type.</li>
+<li><strong>Supporting data entry through forms</strong> that make input more consistent and less error-prone.</li>
+<li><strong>Presenting results through reports</strong> that a non-technical stakeholder can read and use.</li>
+<li><strong>Automating repetitive tasks</strong> such as refreshing outputs or calculating grades.</li>
+<li><strong>Performing what-if analysis</strong> such as minimum and maximum possible grade scenarios.</li>
+<li><strong>Mapping numeric grades to letter grades</strong> through lookup logic and relational joins.</li>
+</ul>
+<p><img alt="Simplified ERD for the Grading Database" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/bitm330book/ch01-introduction-to-course/ch01-lets-build-erd?_a=BAMAAAiu0" /></p>
+<p><em>Figure 1.3 — Simplified entity relationship diagram (ERD) for the Grading Database.</em></p>
+<h3>How the Project Evolves</h3>
+<p>The Grading Database evolves in two major phases across the book. That progression matters because the project is designed to move from foundation to integration, not from zero to complexity all at once.</p>
+<h4>Phase 1: Foundation</h4>
+<p>In the first phase, you focus on core relational structure. You will design a basic schema, create tables and relationships, enter <strong>data</strong>, and begin asking useful questions with <strong>SQL</strong>. The emphasis is on structure, accuracy, and understanding how information is represented.</p>
+<p>By the end of this phase, you should be able to work with a functioning database that supports tasks such as:</p>
+<ul>
+<li>storing student and deliverable data;</li>
+<li>recording attendance and grades;</li>
+<li>retrieving results with SQL;</li>
+<li>calculating averages and attendance percentages;</li>
+<li>using <strong>forms</strong> for cleaner data entry.</li>
+</ul>
+<h4>Phase 2: Integration and Analysis</h4>
+<p>In the second phase, the project becomes more sophisticated. You will extend the database into a more complete information system by adding formal design documentation, more advanced analysis, automation, and clearer reporting outputs.</p>
+<p>By the end of this phase, you will work on tasks such as:</p>
+<ul>
+<li>producing a formal <strong>Entity Relationship Diagram</strong>;</li>
+<li>writing SQL table-creation scripts;</li>
+<li>calculating weighted final grades;</li>
+<li>performing minimum and maximum grade analysis;</li>
+<li>building simple automation;</li>
+<li>reflecting on administration, reporting, and business intelligence issues.</li>
+</ul>
+<p>The project therefore evolves the same way many real systems do: first by getting the structure right, then by expanding what the system can reliably do.</p>
+<p><img alt="Two-phase progression of the Grading Database" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/bitm330book/ch01-introduction-to-course/ch01-lets-build-two-phase?_a=BAMAAAiu0" /></p>
+<p><em>Figure 1.4 — Two-phase progression of the Grading Database, from foundation to integration and analysis.</em></p>
+<h3>Why a Grading Database?</h3>
+<p>The Grading Database is deliberately chosen because it is a system students already understand as users. You know what grades are, how attendance works, and what a final grade means. That familiarity removes much of the guesswork about business rules and lets you focus on the real learning objectives: how to structure data, how to query it, how to protect it, and how to present it clearly.</p>
+<p>At the same time, the domain is complex enough to surface real design challenges. It includes <strong>one-to-many relationships</strong>, aggregate calculations, conditional logic, weighted scoring, and multi-table joins. These are the same patterns that appear in inventory systems, CRM platforms, healthcare records, and financial reporting, just applied to a setting that is already intuitive.</p>
+<p>That is what makes the project effective. You do not waste early energy learning an unfamiliar domain. Instead, you can focus on learning how a relational system represents a domain you already understand.</p>
+<h3>Professional Roles You Will Begin to Practice</h3>
+<p>As the project develops, you will begin practicing the kinds of thinking associated with several professional roles.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>What You Begin to Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data architect</strong></td>
+<td>Designing structure, entities, and relationships</td>
+</tr>
+<tr>
+<td><strong>SQL analyst</strong></td>
+<td>Turning business questions into queries and interpretable outputs</td>
+</tr>
+<tr>
+<td><strong>Database manager</strong></td>
+<td>Thinking about integrity, consistency, and reliability</td>
+</tr>
+<tr>
+<td><strong>Analyst</strong></td>
+<td>Transforming structured data into useful insight</td>
+</tr>
+<tr>
+<td><strong>Communicator</strong></td>
+<td>Presenting technical results clearly for non-technical audiences</td>
+</tr>
+</tbody>
+</table>
+<p>You are not expected to perform all of these roles at an advanced level in Chapter 1. The goal is to begin recognizing them. As the project grows, you will revisit them repeatedly in more direct and demanding ways.</p>
+<p><img alt="Professional roles practiced through the Grading Database" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/bitm330book/ch01-introduction-to-course/ch01-roles?_a=BAMAAAiu0" /></p>
+<p><em>Figure 1.5 — Professional roles you begin to practice through the Grading Database project.</em></p>
+<h3>What You Will Do in Chapter 1</h3>
+<p>Because this is an orientation chapter, the Chapter 1 version of Let's Build focuses on understanding the project before constructing it.</p>
+<p>In this chapter, you will:</p>
+<ul>
+<li>preview the purpose and scope of the Grading Database;</li>
+<li>inspect the kinds of entities and relationships it will eventually include;</li>
+<li>understand how the project evolves from foundation to integration;</li>
+<li>compare the instructional role of the Grading Database with the applied role of PetVax;</li>
+<li>begin identifying the professional roles involved in database work;</li>
+<li>define the kinds of business questions the project should eventually answer.</li>
+</ul>
+<h3>Chapter 1 Tasks</h3>
+<p>Complete the following tasks as your first Let's Build activity:</p>
+<ol>
+<li>
+<p><strong>Project purpose check</strong><br />
+   In one short paragraph, explain what the Grading Database is supposed to do and why it is a good teaching case.</p>
+</li>
+<li>
+<p><strong>System question list</strong><br />
+   Write at least five questions that the finished database should be able to answer. For example:<br />
+   - What is a student's average quiz score?<br />
+   - What is a student's attendance percentage?<br />
+   - Which deliverables are still missing scores?<br />
+   - What is the minimum final grade a student could still earn?<br />
+   - What letter grade corresponds to a student's current average?</p>
+</li>
+<li>
+<p><strong>Entity preview</strong><br />
+   Review the ERD preview and identify the main entities you expect the system to include. For each one, write one sentence explaining what kind of data it stores.</p>
+</li>
+<li>
+<p><strong>Project evolution summary</strong><br />
+   In a short list, explain the difference between Phase 1 and Phase 2 of the project.</p>
+</li>
+<li>
+<p><strong>Transfer reflection</strong><br />
+   Write two or three sentences explaining why the PetVax project matters in addition to the Grading Database. What does it test that the main project does not?</p>
+</li>
+<li>
+<p><strong>Role reflection</strong><br />
+   Which of the professional roles feels most familiar to you right now, and which feels least familiar? Briefly explain why.</p>
+</li>
+<li>
+<p><strong>Digital companion check</strong><br />
+   Locate the repository and confirm where the course files, scripts, or supporting materials live.</p>
+</li>
+</ol>
+<p>These tasks may seem simple, but they matter. They establish the logic of the project before you begin building, and they prepare you to work more deliberately in the chapters that follow.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 1 Term Treasury - Introduction to the Textbook</h2>
+                  <p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/terms_gqkau8?_a=BAMAAAiu0" alt="Term Treasury" />
+</p>
+
+<!-- Companion: Key terms and definitions - 2026-05-30 -->
+
+<!-- markdownlint-disable-file MD033 MD060 -->
+
+<table>
+<thead>
+<tr>
+<th>Term / Concept</th>
+<th>Definition</th>
+<th>Business Significance</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Applied Database Management</strong></td>
+<td>The competency of designing and querying relational databases to answer realistic business questions.</td>
+<td>Helps students move from knowing database terms to building useful systems that support decisions.</td>
+<td>Designing tables and later writing SQL in the Grading Database.</td>
+</tr>
+<tr>
+<td><strong>Bloom's Taxonomy</strong></td>
+<td>A learning framework that moves from remembering and understanding toward applying, analyzing, evaluating, and creating.</td>
+<td>Helps students see why the course asks them to do more than memorize definitions.</td>
+<td>RAT questions check readiness; labs and reflections push toward analysis and evaluation.</td>
+</tr>
+<tr>
+<td><strong>Business Meaning</strong></td>
+<td>The organizational purpose behind technical work; the reason a query, table, report, or dashboard is worth building.</td>
+<td>Keeps technical work connected to decisions, performance, and real organizational needs.</td>
+<td>Writing the business question before writing a SQL query.</td>
+</tr>
+<tr>
+<td><strong>Core Competencies</strong></td>
+<td>The five long-term capabilities the book develops across the course.</td>
+<td>Gives students a clear picture of the skills they are building for data-driven business roles.</td>
+<td>Foundational information literacy, applied database management, data integrity and system quality, performance-oriented analysis, and strategic problem solving.</td>
+</tr>
+<tr>
+<td><strong>Data Integrity and System Quality</strong></td>
+<td>The competency of using modeling, structure, and rules to keep data accurate, consistent, and reliable.</td>
+<td>Reduces errors and helps organizations trust reports, dashboards, and decisions.</td>
+<td>Preventing duplicate records or inconsistent grade data in the Grading Database.</td>
+</tr>
+<tr>
+<td><strong>Digital Companion</strong></td>
+<td>The book's online set of working files, sample data, SQL scripts, database files, and lab resources.</td>
+<td>Lets students inspect and practice with real materials instead of treating concepts as abstract ideas.</td>
+<td>The GitHub repository that stores course files and supporting examples.</td>
+</tr>
+<tr>
+<td><strong>Foundational Information Literacy</strong></td>
+<td>The competency of explaining how data, databases, and information systems support organizational decision-making.</td>
+<td>Gives students the language to discuss data systems clearly before building or analyzing them.</td>
+<td>Explaining how data, technology, people, and processes support business performance.</td>
+</tr>
+<tr>
+<td><strong>Grading Database</strong></td>
+<td>The guided instructional case that uses students, courses, assignments, attendance, and grades to teach database logic.</td>
+<td>Provides a familiar setting so students can focus on structure, queries, and reporting.</td>
+<td>Tracking students, deliverables, scores, attendance, and final-grade calculations.</td>
+</tr>
+<tr>
+<td><strong>Guided Practice</strong></td>
+<td>Step-by-step work in a familiar case before students attempt more independent application.</td>
+<td>Builds confidence and reduces cognitive load while students learn technical patterns.</td>
+<td>Let's Build activities using the Grading Database.</td>
+</tr>
+<tr>
+<td><strong>Instructional Arc</strong></td>
+<td>The book's continuous progression from data to tables, relationships, queries, analytics, and decisions.</td>
+<td>Shows how technical topics connect instead of appearing as isolated units.</td>
+<td>Data -&gt; Tables -&gt; Relationships -&gt; Queries -&gt; Analytics -&gt; Decisions.</td>
+</tr>
+<tr>
+<td><strong>Performance-Oriented Analysis</strong></td>
+<td>The competency of interpreting reports, metrics, and outputs in ways that connect technical work to business performance.</td>
+<td>Helps students explain what a number means and why it matters for action.</td>
+<td>Reading a Power BI dashboard or grade report and connecting it to performance questions.</td>
+</tr>
+<tr>
+<td><strong>PetVax Veterinary Hospital Database</strong></td>
+<td>The applied lab case that transfers course ideas to a veterinary clinic setting.</td>
+<td>Tests whether students can recognize familiar database patterns in a new business context.</td>
+<td>Owners, pets, appointments, treatments, invoices, and clinic operations.</td>
+</tr>
+<tr>
+<td><strong>Query</strong></td>
+<td>A precise request for data, often written in SQL, that answers a specific question.</td>
+<td>Turns stored records into usable evidence for analysis and decisions.</td>
+<td>Asking which appointments are missed most often or which deliverables are missing scores.</td>
+</tr>
+<tr>
+<td><strong>Resilient Problem Solving</strong></td>
+<td>The habit of treating errors, failed queries, and revisions as clues for learning.</td>
+<td>Helps students debug technical work calmly and persist through realistic data problems.</td>
+<td>Reading an error message, checking column names, and testing a smaller query.</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Structured Query Language, the standard language used to ask questions of relational data.</td>
+<td>Lets analysts retrieve, filter, join, and summarize data to support business decisions.</td>
+<td>Writing queries against the Grading Database or PetVax tables in later chapters.</td>
+</tr>
+<tr>
+<td><strong>Strategic Problem Solving</strong></td>
+<td>The competency of combining technical reasoning and business context to evaluate options and recommend decisions.</td>
+<td>Connects data skills to managerial judgment and evidence-based recommendations.</td>
+<td>Choosing the stronger database design or explaining a misleading metric to leadership.</td>
+</tr>
+<tr>
+<td><strong>Student Mindset</strong></td>
+<td>The set of habits that helps students succeed in technical business learning.</td>
+<td>Encourages steady, professional, detail-oriented learning rather than guessing or avoiding errors.</td>
+<td>Curiosity, professionalism, engagement, attention to detail, and resilient problem solving.</td>
+</tr>
+<tr>
+<td><strong>Systems Thinking</strong></td>
+<td>The ability to see how data, structure, analysis, and decisions work together.</td>
+<td>Helps students trace problems through the full system instead of blaming one tool or report.</td>
+<td>Following a misleading dashboard number back to source data, tables, relationships, and queries.</td>
+</tr>
+<tr>
+<td><strong>Tool Ecosystem</strong></td>
+<td>The connected set of platforms used across the workflow from collection to communication.</td>
+<td>Helps students choose tools by role instead of treating one software package as the strategy.</td>
+<td>Google Forms for collection, Access for structure, SQL for querying, and Power BI for reports.</td>
+</tr>
+<tr>
+<td><strong>Transfer Practice</strong></td>
+<td>The higher-order learning step of applying a familiar structure in a new business context.</td>
+<td>Prepares students for workplace situations where the domain changes but the logic remains.</td>
+<td>Moving from the Grading Database to PetVax clinic data.</td>
+</tr>
+</tbody>
+</table>
+<h2>Acronyms and Abbreviations</h2>
+<table>
+<thead>
+<tr>
+<th>Abbreviation</th>
+<th>Full Form</th>
+<th>Brief Meaning</th>
+<th>Where It Appears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ERD</strong></td>
+<td>Entity Relationship Diagram</td>
+<td>A visual model of entities and relationships.</td>
+<td>Chapter 1 Let's Build preview of the Grading Database</td>
+</tr>
+<tr>
+<td><strong>RAT</strong></td>
+<td>Readiness Assessment Test</td>
+<td>A readiness quiz that checks conceptual understanding before class or advanced work.</td>
+<td>Chapter rhythm and companion assessment section</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Structured Query Language</td>
+<td>A language used to query and work with relational databases.</td>
+<td>Tool table, SQL pattern callout, and later query chapters</td>
+</tr>
+</tbody>
+</table>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>Chapter 1: Review and Reflection</h2>
+                  <!-- markdownlint-disable MD025 -->
+
+<p><img alt="Reflection GIF" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" /></p>
+<p><em>Use these questions to move from reading Chapter 1 to thinking with it by connecting the data-to-decisions arc, the book's tools and projects, and the habits that will support your work all semester.</em></p>
+<h2>Review Questions</h2>
+<p><em>Use these questions to check your understanding of the core ideas, frameworks, and structures introduced in Chapter 1.</em></p>
+<ol>
+<li>State the book's central learning arc in order, and briefly describe what happens at each stage.</li>
+<li>What problem does this book try to solve for students who feel that information systems topics are fragmented?</li>
+<li>List the five core competencies introduced in the chapter and explain what each one means.</li>
+<li>What is the difference between the role of the Grading Database and the role of the PetVax Veterinary Hospital Database in this book?</li>
+<li>Describe the repeatable structure of every chapter, naming each section and what it is for.</li>
+<li>Using the chapter's table of tools, identify which tools support data collection, which support modeling and storage, which support querying, and which support reporting and communication.</li>
+<li>Summarize how the book's six parts move from foundations to strategy, and give one example chapter from each part.</li>
+<li>Explain how Bloom's Taxonomy is used in this book, and give one example of an activity at the "Apply" level and one at the "Evaluate" or "Create" level.</li>
+</ol>
+<h2>Reflection Questions</h2>
+<p><em>Use these questions to interpret the chapter's ideas, weigh trade-offs, and connect them to realistic business situations.</em></p>
+<ol>
+<li>The chapter argues that "data becomes business performance." Choose one business setting (for example, a coffee shop, hospital, or online retailer) and explain how a weak database design could quietly hurt performance there.</li>
+<li>Why does the chapter insist on starting with a business question before writing a SQL query? What can go wrong when students or analysts skip that step?</li>
+<li>The book teaches the same logic twice: first with the Grading Database, then with PetVax. Why is "transfer practice" treated as a higher level of learning than repeating one example, and where do you think students are most likely to struggle in that transfer?</li>
+<li>Compare the value of a spreadsheet and a relational database for the coffee shop example in the chapter. When does the spreadsheet stop being enough, and what specifically does the database give the owner that the spreadsheet cannot?</li>
+<li>The chapter lists several tools (Access, SQL, SQLite, Supabase, Power BI, BigQuery, AI-supported workflows, and others). Why does the chapter argue that the workflow is more important than any single tool, and what risk does an organization take when it treats a tool choice as the strategy?</li>
+<li>The chapter says decisions depend on whether data is captured, structured, retrieved, and interpreted responsibly. Pick one of those four steps and describe a realistic business situation where weakness at that step would lead to a bad decision even if the other three steps were strong.</li>
+<li>Consider the five core competencies. Which one do you think is hardest for a business student to build, and why? Which one do you think employers value most in entry-level analytics, operations, or consulting roles?</li>
+<li>The chapter frames errors and small frustrations as "clues" rather than signs of failure. How does this framing change the way a student should respond when a SQL query returns the wrong result or a table will not import?</li>
+</ol>
+<h2>Personal Reflection Questions</h2>
+<p><em>Use these questions to connect Chapter 1 to your own habits, goals, and professional development.</em></p>
+<ol>
+<li>When you read the three student concerns at the start of the chapter ("I understand the terms, but not how they connect," etc.), which one feels closest to your own experience with technical material, and why?</li>
+<li>Of the five core competencies, which one is closest to the kind of work you want to do after graduation, and which one feels furthest from your current strengths?</li>
+<li>Look at the list of success habits (curiosity, professionalism, engagement, attention to detail, resilient problem solving). Which habit do you already practice well, and which one will you need to build intentionally this semester?</li>
+<li>The chapter says database work "rewards patience, checking, and revision more than guessing." How does that match or clash with the way you usually approach technical assignments under time pressure?</li>
+<li>Think about a time you saw data used poorly in a job, internship, club, or class (for example, a confusing report, a duplicated record, a metric no one trusted). What would you ask differently about that situation after reading this chapter?</li>
+<li>Which tool in the chapter's ecosystem are you most curious to learn, and which one are you most nervous about? What is one small step you could take this week to reduce the nervousness?</li>
+<li>The chapter frames this book as preparation for the moment when an employer asks you to "pull data, write a query, read a report, or question a number." What would help you feel ready for that moment by the end of the semester?</li>
+</ol>
+<h2>Answer Key</h2>
+<h3>Review</h3>
+<p><strong>Question 1: State the book's central learning arc in order, and briefly describe what happens at each stage.</strong></p>
+<p>Suggested Answer: The Instructional Arc is Data -&gt; Tables -&gt; Relationships -&gt; Queries -&gt; Analytics -&gt; Decisions. Data is the raw material, including records, numbers, transactions, and observations. Tables give that data structure in rows and columns. Relationships connect tables so the system can represent real business activity. Queries ask precise questions of the structured data. Analytics turn query results into patterns, metrics, and explanations. Decisions use those outputs to improve action, performance, and strategy.</p>
+<p><strong>Question 2: What problem does this book try to solve for students who feel that information systems topics are fragmented?</strong></p>
+<p>Suggested Answer: Many textbooks teach information systems, data, SQL, dashboards, and strategy as separate units, leaving students to figure out how they connect. This book builds Systems Thinking by following one continuous arc from data to decisions, keeping Business Meaning in front of every technical topic, and using two running projects so the same logic appears in more than one context.</p>
+<p><strong>Question 3: List the five core competencies introduced in the chapter and explain what each one means.</strong></p>
+<p>Suggested Answer: The five Core Competencies are: (1) Foundational Information Literacy, explaining how data, databases, and information systems support decision-making; (2) Applied Database Management, designing and querying relational databases to answer business questions; (3) Data Integrity and System Quality, using modeling and normalization so data is accurate and reliable; (4) Performance-Oriented Analysis, interpreting reports and metrics in ways that link technical work to business performance; and (5) Strategic Problem Solving, combining technical reasoning and business context to evaluate options and recommend decisions.</p>
+<p><strong>Question 4: What is the difference between the role of the Grading Database and the role of the PetVax Veterinary Hospital Database in this book?</strong></p>
+<p>Suggested Answer: The Grading Database is the Guided Practice instructional case used in Let's Build sections. Its domain (students, courses, assignments, grades) is familiar, so students can focus on database logic. The PetVax Veterinary Hospital Database is the Transfer Practice case used in labs. It moves the same logic into a different business setting with owners, pets, appointments, treatments, and invoices. The Grading Database builds confidence; PetVax asks students to apply the same structures more independently.</p>
+<p><strong>Question 5: Describe the repeatable structure of every chapter, naming each section and what it is for.</strong></p>
+<p>Suggested Answer: Each chapter follows the same rhythm: Core Concepts introduce the main ideas with explanations and diagrams; Let's Build guides hands-on work in the Grading Database; Terms Treasury reinforces vocabulary; Review and Reflection connects ideas to Business Meaning; the RAT or Quiz checks reading comprehension before class; and the Lab asks students to apply the same ideas more independently in PetVax.</p>
+<p><strong>Question 6: Using the chapter's table of tools, identify which tools support data collection, which support modeling and storage, which support querying, and which support reporting and communication.</strong></p>
+<p>Suggested Answer: The Tool Ecosystem supports several workflow stages. Collection tools include Google Forms and Google Sheets or spreadsheets. Modeling and storage tools include Microsoft Access, SQLite, Supabase / PostgreSQL, BigQuery, and diagramming tools such as Lucidchart or Mermaid for planning structures. Querying centers on SQL across SQLite, Access, Supabase / PostgreSQL, and BigQuery. Reporting and communication use Power BI for dashboards and reports, while GitHub and digital companion materials support reproducibility. AI-supported workflows assist learning and debugging across the workflow.</p>
+<p><strong>Question 7: Summarize how the book's six parts move from foundations to strategy, and give one example chapter from each part.</strong></p>
+<p>Suggested Answer: Part 1 (Foundations, Ch 1-3) orients students to information systems and data fundamentals, such as Chapter 2 on foundations of information systems. Part 2 (Databases and SQL, Ch 4-5) covers database basics and SQL, such as Chapter 5 on SQL. Part 3 (Relational Design, Ch 6-8) teaches the relational model and normalization, such as Chapter 7 on normalization. Part 4 (Advanced SQL and Design, Ch 9-10) deepens querying and moves toward design, such as Chapter 9 on advanced SQL. Part 5 (Administration, BI, and Visualization, Ch 11-14) covers administration, analytics, and dashboards, such as Chapter 14 on Power BI. Part 6 (Strategy and Integration, Ch 15-17) connects systems to strategy and responsibility, such as Chapter 15 on business strategy and information systems.</p>
+<p><strong>Question 8: Explain how Bloom's Taxonomy is used in this book, and give one example of an activity at the "Apply" level and one at the "Evaluate" or "Create" level.</strong></p>
+<p>Suggested Answer: The chapters and assessments span Bloom's Taxonomy from Remember through Create. Reading quizzes (RATs) often target Remember and Understand, while reflections and labs push toward Analyze, Evaluate, and Create. An Apply activity is writing a SQL query against the Grading Database. An Evaluate or Create activity is comparing two possible database designs for PetVax and justifying which one better supports a business question, or designing a new dashboard or schema for a given scenario.</p>
+<h3>Reflection</h3>
+<p><strong>Question 1: The chapter argues that "data becomes business performance." Choose one business setting (for example, a coffee shop, hospital, or online retailer) and explain how a weak database design could quietly hurt performance there.</strong></p>
+<p>Suggested Answer: In a hospital, if patient, appointment, treatment, and billing records live in inconsistent systems or use different identifiers, the same patient may appear under several IDs. Reports on readmissions, no-shows, or billing errors become unreliable. Managers may make staffing or quality decisions based on numbers that understate or overstate problems. The clinical work may be excellent, but performance still suffers because the data structure cannot capture, connect, and summarize reality clearly.</p>
+<p><strong>Question 2: Why does the chapter insist on starting with a business question before writing a SQL query? What can go wrong when students or analysts skip that step?</strong></p>
+<p>Suggested Answer: A SQL query is only useful if it answers a question someone actually has. Starting with the business question forces the analyst to clarify what counts, what the unit of analysis is, and how the result will be used. Skipping that step produces queries that are technically correct but answer the wrong question, generate misleading metrics, or get rebuilt repeatedly because no one agreed on what was being measured. The SQL Pattern callout in the chapter, "Write the question first," captures this discipline.</p>
+<p><strong>Question 3: The book teaches the same logic twice: first with the Grading Database, then with PetVax. Why is "transfer practice" treated as a higher level of learning than repeating one example, and where do you think students are most likely to struggle in that transfer?</strong></p>
+<p>Suggested Answer: Repeating one example can be done from memory, but Transfer Practice requires recognizing the same underlying structure in a new context. Students, courses, and grades become owners, pets, appointments, and invoices. That recognition is closer to Analyze and Create in Bloom's Taxonomy. Students often struggle when surface vocabulary changes, when the new domain has more entities, or when the business question is less familiar; they need to translate the relational pattern rather than copy the prior solution.</p>
+<p><strong>Question 4: Compare the value of a spreadsheet and a relational database for the coffee shop example in the chapter. When does the spreadsheet stop being enough, and what specifically does the database give the owner that the spreadsheet cannot?</strong></p>
+<p>Suggested Answer: A spreadsheet is fine for quick inspection and small, single-sheet tracking. It stops being enough once sales, inventory, suppliers, and menu items need to be linked, when names become inconsistent across sheets, and when the owner needs to answer multi-table questions like "which suppliers cause sales losses on best-selling items." A relational database enforces consistent identifiers, supports relationships across tables, prevents many forms of duplication, and lets SQL combine those tables to produce trustworthy answers that the spreadsheet cannot generate reliably.</p>
+<p><strong>Question 5: The chapter lists several tools (Access, SQL, SQLite, Supabase, Power BI, BigQuery, AI-supported workflows, and others). Why does the chapter argue that the workflow is more important than any single tool, and what risk does an organization take when it treats a tool choice as the strategy?</strong></p>
+<p>Suggested Answer: Each tool covers only part of the journey from data to decisions. Confusing a tool with the strategy leads organizations to buy software without fixing the underlying data structure, governance, or business questions. The dashboard may look modern while the inputs stay messy. The chapter emphasizes that the Tool Ecosystem supports a workflow: collection, modeling, storage, querying, analytics, communication, and reflection. Systems Thinking lets people pick the right tool for each step and replace tools later without losing the larger system.</p>
+<p><strong>Question 6: The chapter says decisions depend on whether data is captured, structured, retrieved, and interpreted responsibly. Pick one of those four steps and describe a realistic business situation where weakness at that step would lead to a bad decision even if the other three steps were strong.</strong></p>
+<p>Suggested Answer: Example (capture): A retailer's point-of-sale system does not record which staff member processed a return. The database is well structured, queries run fast, and the dashboard is clean, but the manager cannot evaluate return patterns by employee. A training decision based on the available data may target the wrong store or team because the original capture step missed a field that mattered.</p>
+<p><strong>Question 7: Consider the five core competencies. Which one do you think is hardest for a business student to build, and why? Which one do you think employers value most in entry-level analytics, operations, or consulting roles?</strong></p>
+<p>Suggested Answer: Many students find Data Integrity and System Quality hardest because it requires patience with structure, normalization, and edge cases that feel invisible until something breaks. Employers in entry-level roles often value Performance-Oriented Analysis most: the ability to take a report or metric and explain what it means for the business. Both answers are defensible; what matters is reasoning that connects the competency to real workplace tasks.</p>
+<p><strong>Question 8: The chapter frames errors and small frustrations as "clues" rather than signs of failure. How does this framing change the way a student should respond when a SQL query returns the wrong result or a table will not import?</strong></p>
+<p>Suggested Answer: Treating an error as a clue moves the student from "I cannot do this" to "what is the system telling me?" The next step is to read the error message, check the structure (column names, data types, keys, joins), and test a smaller version of the query or import. This habit builds Resilient Problem Solving, part of the Student Mindset the chapter presents as essential for technical business learning.</p>
+<h3>Personal Reflection</h3>
+<p><strong>Question 1: When you read the three student concerns at the start of the chapter ("I understand the terms, but not how they connect," etc.), which one feels closest to your own experience with technical material, and why?</strong></p>
+<p>Suggested Answer: A typical strong response identifies one specific quote, gives a concrete prior experience (a stats class, an Excel project, a previous IS course), and names what was missing, often the connection between technical steps and the decision they were supposed to support. The best answers are honest and specific rather than generic.</p>
+<p><strong>Question 2: Of the five core competencies, which one is closest to the kind of work you want to do after graduation, and which one feels furthest from your current strengths?</strong></p>
+<p>Suggested Answer: A strong response names a target role (analyst, consultant, product, operations, marketing) and connects it to one competency, for example, Performance-Oriented Analysis for a marketing analytics role. It also names a competency that feels weaker today, often Data Integrity and System Quality or Applied Database Management, and explains why without treating that gap as permanent.</p>
+<p><strong>Question 3: Look at the list of success habits (curiosity, professionalism, engagement, attention to detail, resilient problem solving). Which habit do you already practice well, and which one will you need to build intentionally this semester?</strong></p>
+<p>Suggested Answer: A strong response treats the habits as part of a Student Mindset. It picks one habit as a current strength with a concrete example (meeting deadlines, asking questions in class) and one habit as a growth area with a small, specific plan. For example: "I will treat each failed query as a debugging exercise instead of restarting from scratch."</p>
+<p><strong>Question 4: The chapter says database work "rewards patience, checking, and revision more than guessing." How does that match or clash with the way you usually approach technical assignments under time pressure?</strong></p>
+<p>Suggested Answer: A strong response is honest about default behavior under pressure (guessing, copying, restarting) and identifies one or two checking habits to adopt. Examples include running a query on a small sample first, inspecting the result before reporting it, writing the business question above the query in a comment, or using Attention to Detail as a deliberate work habit.</p>
+<p><strong>Question 5: Think about a time you saw data used poorly in a job, internship, club, or class (for example, a confusing report, a duplicated record, a metric no one trusted). What would you ask differently about that situation after reading this chapter?</strong></p>
+<p>Suggested Answer: A strong response describes a specific situation and then maps it to the Instructional Arc, asking where in capture, structure, retrieval, analysis, or interpretation the problem started, who the decision-maker was, and what business question the report was supposed to answer.</p>
+<p><strong>Question 6: Which tool in the chapter's ecosystem are you most curious to learn, and which one are you most nervous about? What is one small step you could take this week to reduce the nervousness?</strong></p>
+<p>Suggested Answer: A strong response names one tool from the Tool Ecosystem with a reason, such as being curious about Power BI because of an internship goal or nervous about SQL because of limited coding background. It also identifies a specific small step: installing SQLite, watching a short SQL intro, opening the Grading Database in Access, or running one example from the digital companion repository.</p>
+<p><strong>Question 7: The chapter frames this book as preparation for the moment when an employer asks you to "pull data, write a query, read a report, or question a number." What would help you feel ready for that moment by the end of the semester?</strong></p>
+<p>Suggested Answer: A strong response describes a personal definition of readiness, such as being able to read an unfamiliar schema, write a basic SELECT with a join, explain what a metric measures, and flag at least one risk in a report. The best answers also name one habit from the chapter, such as steady work, business-question framing, or the error-as-clue mindset, that will support that readiness.</p>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>Readiness Assessment Test (RAT): Introduction to the Textbook</h2>
+                  <p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/RAT_nqr5a3?_a=BAMAAAiu0" alt="RAT" />
+</p>
+
+<!-- markdownlint-disable-file MD024 MD033 MD036 MD060 -->
+
+<h2>Assessment Design Notes</h2>
+<p>This RAT checks that students completed Chapter 1 and can reason with the book's orientation before class. It emphasizes the data-to-decisions arc, the five core competencies, the Tool Ecosystem, the two running projects, the chapter rhythm, Bloom's Taxonomy, the GD/GDB preview, PetVax transfer practice, and the success habits that support technical business learning.</p>
+<p>Because Chapter 1 is an orientation chapter, it previews GD/GDB entities, SQL tasks, and platform roles but does not yet ask students to execute SQL or inspect a full schema. The RAT therefore grounds schema and SQL readiness in the Let's Build preview: students, class sessions, deliverables, individual scores, attendance records, grade retrieval, attendance percentages, missing scores, minimum final grades, and letter-grade mapping.</p>
+<p><strong>Bloom Distribution</strong></p>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Required Count</th>
+<th>Intent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>8</td>
+<td>Foundational vocabulary and structural facts with minimal pure recall</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>8</td>
+<td>Explain why concepts matter, interpret, and paraphrase</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>8</td>
+<td>Use chapter concepts in realistic scenarios and technical tasks</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>8</td>
+<td>Compare alternatives, break down systems, and diagnose trade-offs</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>8</td>
+<td>Judge design quality and choose the best approach under constraints</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design Criterion Coverage</strong></p>
+<p>The design criteria below identify the strongest examples for each target category. They are not intended to label every question because several Chapter 1 questions bridge concept recognition and application readiness.</p>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Bloom Sections Used</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>Understand, Apply, Analyze, Evaluate</td>
+<td>11, 21, 22, 23, 27, 28, 30, 31, 32, 36, 37, 38, 39, 40</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>Understand, Apply, Analyze, Evaluate</td>
+<td>13, 17, 18, 19, 20, 24, 25, 26, 29, 33, 34, 35</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>Remember, Understand</td>
+<td>1, 2, 3, 4, 5, 6, 7, 8, 12, 16</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>AI-Resistance Strategies Used</strong></p>
+<ul>
+<li>Chapter-specific reasoning over generic knowledge: questions use the Chapter 1 arc, competencies, projects, rhythm, and source examples.</li>
+<li>Schema-specific context where Chapter 1 allows it: questions reference GD/GDB entities and tasks such as deliverables, attendance, quiz averages, missing scores, and letter-grade mapping.</li>
+<li>Scenario stems with embedded traps: coffee shop, clinic, hospital, retailer, and analyst scenarios require applying chapter logic, not generic business sense.</li>
+<li>Multi-answer options requiring fine-grained discrimination: Select ALL questions mix real chapter terms with plausible distractors.</li>
+<li>Distractors drawn from adjacent but distinct concepts: options contrast tools, workflow stages, Bloom levels, companion sections, and core competencies.</li>
+<li>Stage-progression reasoning: questions use the data-to-decisions arc, chapter rhythm, six-part course sequence, and GD/GDB-to-PetVax transfer path.</li>
+<li>Platform-specific details: questions distinguish Access, SQLite, Supabase / PostgreSQL, BigQuery, Power BI, Google Forms, Lucidchart, GitHub, and AI-supported workflows.</li>
+</ul>
+<div class="page-break"></div>
+
+<h2>Remember</h2>
+<p><strong>1. According to Chapter 1, what is the book's central learning arc, in order?</strong></p>
+<p>A. Decisions -&gt; Analytics -&gt; Queries -&gt; Relationships -&gt; Tables -&gt; Data</p>
+<p>B. Data -&gt; Queries -&gt; Tables -&gt; Relationships -&gt; Analytics -&gt; Decisions</p>
+<p>C. Data -&gt; Tables -&gt; Relationships -&gt; Queries -&gt; Analytics -&gt; Decisions</p>
+<p>D. Tables -&gt; Data -&gt; Relationships -&gt; Analytics -&gt; Queries -&gt; Decisions</p>
+<p><strong>2. Which two recurring projects does the book use across chapters?</strong></p>
+<p>A. The Grading Database and the PetVax Veterinary Hospital Database</p>
+<p>B. The Grading Database and the Coffee Shop Database</p>
+<p>C. The PetVax Veterinary Hospital Database and the Hospital Billing Database</p>
+<p>D. The Northwind Database and the Grading Database</p>
+<p><strong>3. Which tool does Chapter 1 describe as turning cleaned and queried data into dashboards and reports for decision-makers?</strong></p>
+<p>A. SQLite</p>
+<p>B. Microsoft Access</p>
+<p>C. Power BI</p>
+<p>D. Google Forms</p>
+<p><strong>4. Which chapter section guides students through the Grading Database one step at a time?</strong></p>
+<p>A. Core Concepts</p>
+<p>B. Let's Build</p>
+<p>C. Terms Treasury</p>
+<p>D. Lab</p>
+<p><strong>5. Which Bloom level does Chapter 1 associate with designing a new structure, query, report, dashboard, or recommendation?</strong></p>
+<p>A. Remember</p>
+<p>B. Apply</p>
+<p>C. Evaluate</p>
+<p>D. Create</p>
+<p><strong>6. Select ALL that apply: According to Chapter 1, which of the following are listed as the book's core competencies?</strong></p>
+<p>A. Foundational information literacy</p>
+<p>B. Applied database management</p>
+<p>C. Cloud network administration</p>
+<p>D. Data integrity and system quality</p>
+<p>E. Strategic problem solving</p>
+<p><strong>7. Select ALL that apply: Which of the following are named in Chapter 1's table of tools and environments?</strong></p>
+<p>A. Microsoft Access</p>
+<p>B. Supabase / PostgreSQL</p>
+<p>C. Oracle Forms</p>
+<p>D. Power BI</p>
+<p>E. BigQuery</p>
+<p><strong>8. Which chapter range does Chapter 1 place in Part 6: Strategy and Integration?</strong></p>
+<p>A. Chapters 1-3</p>
+<p>B. Chapters 4-5</p>
+<p>C. Chapters 11-14</p>
+<p>D. Chapters 15-17</p>
+<h2>Understand</h2>
+<p><strong>9. Why does Chapter 1 argue that database design has business consequences?</strong></p>
+<p>A. Because databases are expensive to license</p>
+<p>B. Because structure shapes what an organization can see, measure, report, and improve</p>
+<p>C. Because most managers prefer relational databases over spreadsheets</p>
+<p>D. Because cloud databases scale better than on-premises systems</p>
+<p><strong>10. In the chapter's explanation, what is the main difference between guided practice with the Grading Database and transfer practice with PetVax?</strong></p>
+<p>A. Guided practice uses SQL while transfer practice avoids SQL</p>
+<p>B. Guided practice is graded while transfer practice is optional</p>
+<p>C. Guided practice teaches structure in a familiar setting; transfer practice asks students to apply the same logic in a new business context</p>
+<p>D. Guided practice uses Access while transfer practice uses Power BI</p>
+<p><strong>11. Why does Chapter 1 say students should start with the business question before writing a query?</strong></p>
+<p>A. Because SQL only runs after the question is documented</p>
+<p>B. Because writing the question clarifies what the query should measure and why it matters</p>
+<p>C. Because the question is required by most database management systems</p>
+<p>D. Because Power BI cannot read queries without a question header</p>
+<p><strong>12. Which statement best describes systems thinking as Chapter 1 defines it?</strong></p>
+<p>A. Memorizing database terminology</p>
+<p>B. Choosing the most modern database software</p>
+<p>C. Seeing how data, structure, analysis, and decisions work together</p>
+<p>D. Building one large spreadsheet that holds all company data</p>
+<p><strong>13. In the coffee shop example, why does the owner struggle with questions such as which ingredients are wasted most often?</strong></p>
+<p>A. Because spreadsheets cannot store text data</p>
+<p>B. Because sales, inventory, suppliers, and menu items are tracked separately with inconsistent names</p>
+<p>C. Because Power BI is not installed on the shop's computer</p>
+<p>D. Because the SQL standard does not allow waste calculations</p>
+<p><strong>14. Select ALL that apply: According to Chapter 1, which statements describe what makes this book different from typical MIS or database texts?</strong></p>
+<p>A. It puts business meaning before technical work</p>
+<p>B. It treats SQL syntax as the primary learning goal</p>
+<p>C. It teaches one continuous system narrative across chapters</p>
+<p>D. It uses guided practice followed by transfer practice</p>
+<p>E. It avoids treating any one tool as the whole workflow</p>
+<p><strong>15. Select ALL that apply: Which statements correctly describe the role of the Grading Database in Chapter 1?</strong></p>
+<p>A. It is the applied lab case that students complete independently</p>
+<p>B. It is the guided instructional case for Let's Build sections</p>
+<p>C. Its familiar academic domain helps students focus on database logic</p>
+<p>D. It is previewed as a project that can eventually support grade retrieval, attendance percentages, and reports</p>
+<p>E. It is the case used to teach PetVax clinical operations directly</p>
+<p><strong>16. According to Chapter 1, what is the main purpose of including Bloom's Taxonomy in the book's design?</strong></p>
+<p>A. To match reading quizzes to lab assignments</p>
+<p>B. To rank students by ability</p>
+<p>C. To move students from recognizing terms to building things with them</p>
+<p>D. To replace traditional letter grades</p>
+<h2>Apply</h2>
+<p><strong>17. A student finishes a SQL chapter but cannot explain why a query matters for a business decision. Which Chapter 1 habit most directly addresses this problem?</strong></p>
+<p>A. Work steadily</p>
+<p>B. Use the digital materials</p>
+<p>C. Connect technical tasks to business meaning</p>
+<p>D. Pay attention to structure</p>
+<p><strong>18. A clinic wants to reduce missed appointments. Using the chapter's data-to-decisions arc, which stage turns reliable appointment records into a missed-appointment rate by weekday?</strong></p>
+<p>A. Data</p>
+<p>B. Tables</p>
+<p>C. Queries feeding analytics</p>
+<p>D. Relationships</p>
+<p><strong>19. A new analyst is asked to pull the customers who churned last quarter. Applying Chapter 1's SQL Pattern callout, what should the analyst do first?</strong></p>
+<p>A. Open Power BI and build a dashboard</p>
+<p>B. Write the business question in plain English before writing the query</p>
+<p>C. Export every table to a spreadsheet</p>
+<p>D. Email the manager for a list of churned customers</p>
+<p><strong>20. A student understands the Grading Database but freezes when starting the PetVax lab. According to Chapter 1, what is this student being asked to do that goes beyond repeating one example?</strong></p>
+<p>A. Memorize PetVax field names</p>
+<p>B. Recognize the same relational structure in a new business context</p>
+<p>C. Learn a new query language for PetVax</p>
+<p>D. Switch from SQL to spreadsheets</p>
+<p><strong>21. A retailer wants to compare two possible database designs and recommend the stronger one. Which Bloom level, as described in Chapter 1, does this task target?</strong></p>
+<p>A. Remember</p>
+<p>B. Understand</p>
+<p>C. Apply</p>
+<p>D. Evaluate</p>
+<p><strong>22. Select ALL that apply: In the Chapter 1 Let's Build preview, which finished Grading Database questions would likely require SQL or query logic later in the book?</strong></p>
+<p>A. What is a student's average quiz score?</p>
+<p>B. Which deliverables are still missing scores?</p>
+<p>C. What is the minimum final grade a student could still earn?</p>
+<p>D. What color should the course homepage use?</p>
+<p>E. What letter grade corresponds to a student's current average?</p>
+<p><strong>23. Select ALL that apply: A team is choosing tools for a workflow that collects customer feedback, stores it relationally, queries it, and shows results to managers. Based on Chapter 1's tool table, which pairings are sensible?</strong></p>
+<p>A. Google Forms for collection</p>
+<p>B. Supabase / PostgreSQL for relational storage</p>
+<p>C. Lucidchart for live dashboards</p>
+<p>D. SQL for querying</p>
+<p>E. Power BI for managerial reporting</p>
+<p><strong>24. A student keeps getting wrong results from a query in Let's Build. Which Chapter 1 success habit best frames the student's next move?</strong></p>
+<p>A. Treat errors as clues that point to something worth learning</p>
+<p>B. Move on to the next chapter and return later</p>
+<p>C. Replace the query with a spreadsheet pivot table</p>
+<p>D. Avoid running the query until the instructor reviews it</p>
+<h2>Analyze</h2>
+<p><strong>25. In the chapter's coffee shop example, which of the following is the root reason the owner cannot determine which supplier problems affect daily sales?</strong></p>
+<p>A. The owner does not know SQL</p>
+<p>B. The data is stored across disconnected spreadsheets with inconsistent identifiers, so the records cannot be linked</p>
+<p>C. The shop does not use Power BI</p>
+<p>D. The owner has not enrolled in BITM330</p>
+<p><strong>26. Chapter 1 says decisions depend on whether data is captured, structured, retrieved, and interpreted responsibly. If a hospital captures patient IDs inconsistently, which downstream step is most directly weakened first?</strong></p>
+<p>A. Interpretation, because dashboards will look odd</p>
+<p>B. Structure and retrieval, because the same patient cannot be reliably linked across tables</p>
+<p>C. Capture, because the form will reject entries</p>
+<p>D. Decisions, because managers will refuse to act</p>
+<p><strong>27. Which statement best describes the relationship among Core Concepts, Let's Build, Terms Treasury, Review and Reflection, RAT, and Lab?</strong></p>
+<p>A. They are independent, and students may safely skip any of them</p>
+<p>B. They build on each other, moving from concepts and vocabulary toward readiness checks and applied transfer</p>
+<p>C. They are alternative formats covering exactly the same content</p>
+<p>D. They are graded sections, so reading the main chapter is optional</p>
+<p><strong>28. According to the Chapter 1 table about where each project reappears, which chapter range pairs advanced SQL for grade analytics in Let's Build with advanced SQL for appointment and revenue analytics in the PetVax lab?</strong></p>
+<p>A. Chapters 4-5</p>
+<p>B. Chapters 6-7</p>
+<p>C. Chapter 9</p>
+<p>D. Chapter 14</p>
+<p><strong>29. A reader argues, "We could skip normalization and go straight to dashboards." Which Chapter 1 idea most directly refutes this argument?</strong></p>
+<p>A. The book uses Bloom's Taxonomy</p>
+<p>B. The sequence is cumulative; trustworthy analytics cannot be built from messy data definitions</p>
+<p>C. The book includes a digital companion repository</p>
+<p>D. Power BI requires a license</p>
+<p><strong>30. Select ALL that apply: Which consequences of a poorly designed database are described in Chapter 1?</strong></p>
+<p>A. Duplicate records</p>
+<p>B. Inconsistent reports</p>
+<p>C. Faster query performance</p>
+<p>D. Missing information</p>
+<p>E. Confusing dashboards</p>
+<p><strong>31. Select ALL that apply: Which statements accurately describe how Chapter 1 positions tools versus workflow?</strong></p>
+<p>A. The tools differ, but the workflow is connected</p>
+<p>B. The book's goal is to memorize every button in every platform</p>
+<p>C. Each tool fits into a larger workflow from collection to communication</p>
+<p>D. Choosing the most modern tool is the most important decision</p>
+<p>E. Understanding what each tool is good for matters more than mastering every feature</p>
+<p><strong>32. A student says, "I learned SQL in another class, but I do not really know why it matters." Which Chapter 1 design choice is most directly aimed at this gap?</strong></p>
+<p>A. The use of GitHub for companion materials</p>
+<p>B. Business meaning first: technical work appears in context, not in isolation</p>
+<p>C. The inclusion of AI-supported workflows</p>
+<p>D. The use of diagramming tools</p>
+<h2>Evaluate</h2>
+<p><strong>33. Two student teams propose study plans. Team A reads each main chapter only. Team B reads the main chapter, then uses Let's Build, Terms, Review and Reflection, RAT, and Lab. Based on Chapter 1, which plan is stronger and why?</strong></p>
+<p>A. Team A, because main chapters cover all material</p>
+<p>B. Team B, because the companion sections move students from recognition to application and transfer</p>
+<p>C. Team A, because reading is the only assessed activity</p>
+<p>D. Team B, but only for students aiming for an A grade</p>
+<p><strong>34. A manager must choose where to invest first: a new dashboarding tool or a redesign of inconsistent source tables. Using Chapter 1's logic, which choice is better justified?</strong></p>
+<p>A. The dashboarding tool, because managers want visuals</p>
+<p>B. The dashboarding tool, because BigQuery is mentioned in the chapter</p>
+<p>C. The source-table redesign, because trustworthy analytics depend on structured, reliable data</p>
+<p>D. Either choice is equally valid</p>
+<p><strong>35. Which critique is strongest for an analytics report whose underlying database has duplicate customer records?</strong></p>
+<p>A. The report uses the wrong color palette</p>
+<p>B. The report's metrics may be inflated or fragmented because the database cannot reliably link records to a single customer</p>
+<p>C. The report should be built in Access instead of Power BI</p>
+<p>D. The report violates the chapter's SQL Pattern callout</p>
+<p><strong>36. Among the five core competencies, which one does Chapter 1 position as the most integrative because it combines technical reasoning with business context to recommend decisions?</strong></p>
+<p>A. Foundational information literacy</p>
+<p>B. Applied database management</p>
+<p>C. Data integrity and system quality</p>
+<p>D. Strategic problem solving</p>
+<p><strong>37. A student claims, "Errors and failed queries mean I am not cut out for this course." Based on Chapter 1, which response is best justified?</strong></p>
+<p>A. Agree; database work requires natural talent</p>
+<p>B. Disagree; the chapter frames errors as clues and resilient problem solving as a success habit</p>
+<p>C. Agree; the chapter says students should avoid mistakes</p>
+<p>D. Disagree; the chapter says errors do not occur in well-designed databases</p>
+<p><strong>38. Select ALL that apply: Which study habits are most defensible for a student starting this course, based directly on Chapter 1?</strong></p>
+<p>A. Start with the business question before writing a query</p>
+<p>B. Skip companion materials to save time</p>
+<p>C. Treat small design choices as having large downstream consequences</p>
+<p>D. Use errors as clues rather than signs of failure</p>
+<p>E. Wait until the final week to inspect the digital companion files</p>
+<p><strong>39. Select ALL that apply: An employer asks an entry-level analyst to question a number in a weekly report. Which Chapter 1 competencies most directly support doing this well?</strong></p>
+<p>A. Performance-oriented analysis</p>
+<p>B. Data integrity and system quality</p>
+<p>C. Foundational information literacy</p>
+<p>D. Cloud network engineering</p>
+<p>E. Strategic problem solving</p>
+<p><strong>40. Two analysts must explain a misleading metric to leadership. Analyst A blames the dashboarding tool. Analyst B traces the issue back through queries, tables, relationships, and capture. Which response better reflects Chapter 1's framing of systems thinking?</strong></p>
+<p>A. Analyst A, because the dashboard is what leadership sees</p>
+<p>B. Analyst B, because systems thinking traces problems through the data-to-decisions arc</p>
+<p>C. Analyst A, because tools drive performance</p>
+<p>D. Both are equally defensible</p>
+<div class="page-break"></div>
+
+<h2>Answer Key</h2>
+<h3>Remember</h3>
+<p><strong>1. According to Chapter 1, what is the book's central learning arc, in order?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: In the opening orientation and "The Big Idea" section, Chapter 1 states the arc as Data -&gt; Tables -&gt; Relationships -&gt; Queries -&gt; Analytics -&gt; Decisions and uses it as the spine of the book.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>This reverses the chapter's arc.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>This puts queries before tables and relationships.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This exactly matches the chapter's stated arc.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>This begins with tables rather than data and misorders analytics and queries.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Which two recurring projects does the book use across chapters?</strong></p>
+<p>Correct: A</p>
+<p>Explanation: The "Two Running Projects" section names the Grading Database as the guided instructional case and the PetVax Veterinary Hospital Database as the applied transfer case.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>These are the two recurring projects named in Chapter 1.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The coffee shop is an example, not a running project.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>PetVax is named, but Hospital Billing Database is not a running project.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Northwind is not named as a project in Chapter 1.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. Which tool does Chapter 1 describe as turning cleaned and queried data into dashboards and reports for decision-makers?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: In "The Tools You Will Use," the tool table says Power BI turns cleaned and queried data into dashboards and reports for decision-makers.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>SQLite is described as a lightweight SQL practice environment.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Microsoft Access helps students see tables, relationships, forms, queries, and reports.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Power BI is the dashboard and reporting tool in the chapter's tool table.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Google Forms is used for data collection before data enters the workflow.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. Which chapter section guides students through the Grading Database one step at a time?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: The chapter rhythm section says Let's Build guides students step by step through the Grading Database.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Core Concepts introduces ideas, examples, and diagrams.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Let's Build is the guided GD/GDB practice section.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Terms Treasury reinforces vocabulary.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Lab asks students to transfer ideas more independently, often through PetVax.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5. Which Bloom level does Chapter 1 associate with designing a new structure, query, report, dashboard, or recommendation?</strong></p>
+<p>Correct: D</p>
+<p>Explanation: In "Bloom's Taxonomy in Practice," the Create row is described as designing a new structure, query, report, dashboard, or recommendation.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Remember is recall of terms.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Apply is writing a query or building a small table structure.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Evaluate is comparing and justifying design choices.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Create matches the chapter's description.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>6. Select ALL that apply: According to Chapter 1, which of the following are listed as the book's core competencies?</strong></p>
+<p>Correct: A, B, D, E</p>
+<p>Explanation: The "Five Core Competencies" table lists foundational information literacy, applied database management, data integrity and system quality, performance-oriented analysis, and strategic problem solving.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Foundational information literacy is listed as a core competency.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Applied database management is listed as a core competency.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Cloud network administration is not one of the chapter's core competencies.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Data integrity and system quality is listed as a core competency.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Strategic problem solving is listed as a core competency.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7. Select ALL that apply: Which of the following are named in Chapter 1's table of tools and environments?</strong></p>
+<p>Correct: A, B, D, E</p>
+<p>Explanation: The tool table names Microsoft Access, SQL, SQLite, Supabase / PostgreSQL, spreadsheets, Google Forms, Google Colab, diagramming tools, BigQuery, Power BI, GitHub, and AI-supported workflows.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Microsoft Access appears in the table.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Supabase / PostgreSQL appears in the table.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Oracle Forms is not named in Chapter 1.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Power BI appears in the table.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>BigQuery appears in the table.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>8. Which chapter range does Chapter 1 place in Part 6: Strategy and Integration?</strong></p>
+<p>Correct: D</p>
+<p>Explanation: In the six-part book structure table, Part 6: Strategy and Integration covers Chapters 15-17.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Chapters 1-3 are Part 1: Foundations.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Chapters 4-5 are Part 2: Databases and SQL.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Chapters 11-14 are Part 5: Administration, BI, and Visualization.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Chapters 15-17 are Part 6: Strategy and Integration.</td>
+</tr>
+</tbody>
+</table>
+<h3>Understand</h3>
+<p><strong>9. Why does Chapter 1 argue that database design has business consequences?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "Why Databases Matter for Business Performance," Chapter 1 says a database is a structure that shapes what an organization can see, measure, report, and improve.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Cost is not the chapter's main argument.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This closely paraphrases the chapter's claim.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter is not about manager preference.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Cloud scaling is not the reason given in this section.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>10. In the chapter's explanation, what is the main difference between guided practice with the Grading Database and transfer practice with PetVax?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: The "Two Running Projects" section says the Grading Database builds confidence in a familiar setting, while PetVax asks students to apply the same logic more independently in a new business context.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>PetVax does not avoid SQL.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The distinction is not graded versus optional.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This matches Chapter 1's guided-practice and transfer-practice distinction.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The distinction is about learning transfer, not Access versus Power BI.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>11. Why does Chapter 1 say students should start with the business question before writing a query?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "How to Read and Use This Book," the SQL Pattern callout says that if students cannot state the business question clearly, they cannot write a clean query for it.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>SQL systems do not require a written question before running.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This captures the chapter's reason for writing the question first.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A DBMS does not require this as a technical rule.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Power BI does not require a question header.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>12. Which statement best describes systems thinking as Chapter 1 defines it?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: A Chapter 1 Key Takeaway says systems thinking means seeing how data, structure, analysis, and decisions work together.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter says the point is not memorizing database terms.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Systems thinking is not the same as choosing a modern tool.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This matches the chapter's definition.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A single large spreadsheet conflicts with the chapter's relational workflow.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>13. In the coffee shop example, why does the owner struggle with questions such as which ingredients are wasted most often?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "Why Databases Matter for Business Performance," the coffee shop example says sales, inventory, suppliers, and menu items tracked in separate spreadsheets with inconsistent names make business questions hard to answer.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Spreadsheets can store text.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's stated reason.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The problem is upstream data structure, not missing Power BI.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>SQL can support waste calculations when data is structured well.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>14. Select ALL that apply: According to Chapter 1, which statements describe what makes this book different from typical MIS or database texts?</strong></p>
+<p>Correct: A, C, D, E</p>
+<p>Explanation: In "What Makes This Book Different," Chapter 1 lists business meaning first, one continuous system narrative, guided practice and transfer, and practical tools across a connected workflow.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Business meaning first is one of the four design choices.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The chapter explicitly avoids making SQL syntax the main goal.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>One continuous system narrative is one of the design choices.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Guided practice and transfer is one of the design choices.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>This paraphrases practical tools across a connected workflow.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>15. Select ALL that apply: Which statements correctly describe the role of the Grading Database in Chapter 1?</strong></p>
+<p>Correct: B, C, D</p>
+<p>Explanation: The "Two Running Projects" section and Chapter 1 Let's Build preview describe the Grading Database as the guided instructional case in a familiar academic domain that will eventually support query, reporting, and grade-analysis work.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The applied lab case is PetVax, not the Grading Database.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The Grading Database is the guided instructional case for Let's Build.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Its familiar domain helps students focus on database logic.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>The Let's Build preview lists grade retrieval, attendance percentages, and reports as eventual capabilities.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>PetVax is a separate transfer-practice project, not clinical operations taught directly through GD/GDB.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>16. According to Chapter 1, what is the main purpose of including Bloom's Taxonomy in the book's design?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: In "Bloom's Taxonomy in Practice," the chapter says the goal is to move students from recognizing terms to building things with them.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The purpose is broader than matching quizzes to labs.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Bloom's Taxonomy is not used to rank students by ability.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This closely paraphrases the chapter's stated purpose.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Bloom's Taxonomy does not replace letter grades.</td>
+</tr>
+</tbody>
+</table>
+<h3>Apply</h3>
+<p><strong>17. A student finishes a SQL chapter but cannot explain why a query matters for a business decision. Which Chapter 1 habit most directly addresses this problem?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: In "How to Read and Use This Book," Chapter 1 says to connect technical tasks to business meaning and adds that if students cannot explain why a query matters, the work is not finished.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Working steadily helps learning but does not directly address business meaning.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Digital materials can support practice but do not by themselves explain purpose.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This directly matches the chapter habit.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Structure matters, but the immediate gap is the business purpose of the query.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>18. A clinic wants to reduce missed appointments. Using the chapter's data-to-decisions arc, which stage turns reliable appointment records into a missed-appointment rate by weekday?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: In "The Big Idea," the veterinary clinic example shows structured appointment records being queried and analyzed to produce patterns such as no-show rates.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Raw data contains appointment facts but not the summarized rate.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Tables organize records but do not produce the rate by themselves.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Queries and analytics produce the metric the manager can act on.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Relationships enable the query but are not the metric-producing stage.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>19. A new analyst is asked to pull the customers who churned last quarter. Applying Chapter 1's SQL Pattern callout, what should the analyst do first?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: The SQL Pattern callout says to write the business question in plain English before writing the query.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>A dashboard comes after clarifying the question and retrieving data.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This directly follows the SQL Pattern callout.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Exporting every table skips the question-framing step.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Asking for a list avoids doing the analytical work.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>20. A student understands the Grading Database but freezes when starting the PetVax lab. According to Chapter 1, what is this student being asked to do that goes beyond repeating one example?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: The "Two Running Projects" section says real learning means recognizing the same structure in a new context, which is why PetVax matters after GD/GDB guided practice.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Memorizing field names is not the purpose of transfer practice.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This matches the chapter's transfer-practice idea.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>PetVax does not require a different query language.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>PetVax is not a shift from SQL to spreadsheets.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>21. A retailer wants to compare two possible database designs and recommend the stronger one. Which Bloom level, as described in Chapter 1, does this task target?</strong></p>
+<p>Correct: D</p>
+<p>Explanation: In the Bloom's Taxonomy table, Evaluate is described as comparing two possible database designs and justifying which one is stronger.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Remember is recall of key terms.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Understand is explaining concepts.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Apply is using a concept in a task.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Evaluate matches comparing designs and justifying a choice.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>22. Select ALL that apply: In the Chapter 1 Let's Build preview, which finished Grading Database questions would likely require SQL or query logic later in the book?</strong></p>
+<p>Correct: A, B, C, E</p>
+<p>Explanation: The Chapter 1 Let's Build task list includes questions about average quiz score, missing scores, minimum final grade, and letter-grade mapping as examples the finished GD/GDB should answer.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>A student's average quiz score is named as a finished database question.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Missing deliverable scores are named as a finished database question.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Minimum final grade is named as a finished database question.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Homepage color is unrelated to the GD/GDB data questions.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Letter-grade mapping is named as a finished database question.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>23. Select ALL that apply: A team is choosing tools for a workflow that collects customer feedback, stores it relationally, queries it, and shows results to managers. Based on Chapter 1's tool table, which pairings are sensible?</strong></p>
+<p>Correct: A, B, D, E</p>
+<p>Explanation: The Chapter 1 tool table maps Google Forms to collection, Supabase / PostgreSQL to cloud relational storage, SQL to querying, and Power BI to dashboards and reports.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Google Forms is named as a collection tool.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Supabase / PostgreSQL is named as a cloud relational database environment.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Lucidchart supports diagrams and ERDs, not live dashboards.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>SQL is the language for asking precise questions of relational data.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Power BI is named for managerial dashboards and reports.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>24. A student keeps getting wrong results from a query in Let's Build. Which Chapter 1 success habit best frames the student's next move?</strong></p>
+<p>Correct: A</p>
+<p>Explanation: In "How to Read and Use This Book" and "How to Succeed in This Course," Chapter 1 says errors and failed queries should be treated as clues, not signs of failure.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This matches the resilient problem-solving habit.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Avoiding the issue works against the chapter's learning advice.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Switching tools bypasses the query problem rather than diagnosing it.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The chapter encourages testing and careful revision, not waiting passively.</td>
+</tr>
+</tbody>
+</table>
+<h3>Analyze</h3>
+<p><strong>25. In the chapter's coffee shop example, which of the following is the root reason the owner cannot determine which supplier problems affect daily sales?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "Why Databases Matter for Business Performance," the chapter says disconnected spreadsheets with inconsistent names make it difficult to answer linked business questions.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>SQL skill matters later, but the root issue is disconnected structure.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's root-cause explanation.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Power BI would not fix disconnected source data.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>This is a distractor unrelated to the data problem.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>26. Chapter 1 says decisions depend on whether data is captured, structured, retrieved, and interpreted responsibly. If a hospital captures patient IDs inconsistently, which downstream step is most directly weakened first?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: The chapter's hospital example and data-to-decisions logic imply that inconsistent capture first harms structure and retrieval because records cannot be reliably connected.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Interpretation may suffer later, but the first downstream weakness is linking and retrieval.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Inconsistent IDs make structure and retrieval unreliable.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Capture is the upstream cause, not the downstream step weakened first.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Decisions are affected later in the arc.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>27. Which statement best describes the relationship among Core Concepts, Let's Build, Terms Treasury, Review and Reflection, RAT, and Lab?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "How the Book and Each Chapter Work," the chapter says these parts move students through levels of learning from concepts and vocabulary toward practice, reflection, readiness checks, and transfer.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter presents the sections as connected, not optional islands.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This captures the chapter rhythm.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The sections serve different learning purposes.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The main chapter remains the conceptual foundation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>28. According to the Chapter 1 table about where each project reappears, which chapter range pairs advanced SQL for grade analytics in Let's Build with advanced SQL for appointment and revenue analytics in the PetVax lab?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: In "Where Each Project Reappears," the Chapter 9 row pairs advanced SQL for grade analytics with advanced SQL for appointment and revenue analytics.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Chapters 4-5 cover first tables and first SELECT queries.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Chapters 6-7 cover relationships, normalization, and anomalies.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Chapter 9 is the advanced SQL pairing.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Chapter 14 is the Power BI dashboard pairing.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>29. A reader argues, "We could skip normalization and go straight to dashboards." Which Chapter 1 idea most directly refutes this argument?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "How the book flows," Chapter 1 says the sequence is cumulative and that students cannot build trustworthy analytics from messy data definitions.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Bloom's Taxonomy supports learning progression but does not directly refute the skip.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This directly addresses why later analytics depend on earlier structure.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The digital companion supports practice but is not the sequencing argument.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Licensing is not the issue.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>30. Select ALL that apply: Which consequences of a poorly designed database are described in Chapter 1?</strong></p>
+<p>Correct: A, B, D, E</p>
+<p>Explanation: In "Why Databases Matter for Business Performance," the chapter says a poorly designed database can create duplicate records, inconsistent reports, missing information, and confusing dashboards.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Duplicate records are named as a consequence.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Inconsistent reports are named as a consequence.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Faster query performance is not listed as a consequence of poor design.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Missing information is named as a consequence.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Confusing dashboards are named as a consequence.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>31. Select ALL that apply: Which statements accurately describe how Chapter 1 positions tools versus workflow?</strong></p>
+<p>Correct: A, C, E</p>
+<p>Explanation: In "The Tools You Will Use," Chapter 1 says the tools are different but the workflow is connected, and the goal is to know what each tool is good for rather than memorize every feature.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is stated directly in the chapter.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The chapter explicitly says the goal is not to memorize every button.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This matches the tool ecosystem explanation.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The chapter warns against treating tool choice as the strategy.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>This captures the chapter's tool-use goal.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>32. A student says, "I learned SQL in another class, but I do not really know why it matters." Which Chapter 1 design choice is most directly aimed at this gap?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "What Makes This Book Different," the first design choice is business meaning first: technical work appears in context, not in isolation.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>GitHub supports companion files and reproducibility, but it is not the main design choice for meaning.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This directly addresses SQL without business purpose.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>AI-supported workflows are a tool support, not the central design choice.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Diagramming tools support planning but do not directly solve the purpose gap.</td>
+</tr>
+</tbody>
+</table>
+<h3>Evaluate</h3>
+<p><strong>33. Two student teams propose study plans. Team A reads each main chapter only. Team B reads the main chapter, then uses Let's Build, Terms, Review and Reflection, RAT, and Lab. Based on Chapter 1, which plan is stronger and why?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "How each chapter is organized," Chapter 1 says the repeated sequence moves students from recognizing terms to explaining, applying, analyzing, evaluating, and creating.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The main chapter is important, but companion sections are part of the learning design.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This matches the chapter's claim about moving from recognition to application and transfer.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Reading is not the only assessed or practiced activity.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The benefit applies to all students, not only high-grade seekers.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>34. A manager must choose where to invest first: a new dashboarding tool or a redesign of inconsistent source tables. Using Chapter 1's logic, which choice is better justified?</strong></p>
+<p>Correct: C</p>
+<p>Explanation: In "Why Databases Matter for Business Performance," the chapter argues that structure shapes what organizations can trust, report, and improve, so reliable source tables come before trustworthy dashboards.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Visuals do not fix unreliable inputs.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Mentioning BigQuery does not justify dashboard-first investment.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This follows the chapter's structure-before-analytics logic.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The chapter does not treat the two choices as equally strong.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>35. Which critique is strongest for an analytics report whose underlying database has duplicate customer records?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: Chapter 1 says poor database design can create duplicate records and inconsistent reports, which makes metrics less trustworthy.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Color palette is cosmetic and not the chapter's core concern.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This connects duplicate records to unreliable metrics.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Switching tools does not fix duplicate customer records.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The SQL Pattern callout is about writing the business question first, not duplicate records.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>36. Among the five core competencies, which one does Chapter 1 position as the most integrative because it combines technical reasoning with business context to recommend decisions?</strong></p>
+<p>Correct: D</p>
+<p>Explanation: The "Five Core Competencies" table defines strategic problem solving as combining technical reasoning and business context to evaluate options and recommend decisions.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Foundational information literacy is important but foundational.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Applied database management focuses on designing and querying databases.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Data integrity and system quality focuses on accuracy, consistency, and reliability.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Strategic problem solving is the integrative competency described in the question.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>37. A student claims, "Errors and failed queries mean I am not cut out for this course." Based on Chapter 1, which response is best justified?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: In "How to Succeed in This Course," the chapter says errors, failed queries, and revisions are part of learning and should be treated as clues, not signs that students cannot do the course.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>This contradicts the chapter's supportive framing.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This matches resilient problem solving.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter does not say students should avoid all mistakes.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Good designs reduce some problems, but the chapter does not claim errors disappear.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>38. Select ALL that apply: Which study habits are most defensible for a student starting this course, based directly on Chapter 1?</strong></p>
+<p>Correct: A, C, D</p>
+<p>Explanation: In "How to Read and Use This Book" and "How to Succeed in This Course," Chapter 1 advises students to start with the business question, pay attention to structure, and use errors as clues.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is a direct chapter habit.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The chapter says companion materials are part of how learning moves from recognition to application.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This reflects the chapter's warning that small design choices can create large consequences.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>This directly matches the resilient-problem-solving habit.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>The chapter encourages steady use of digital companion materials.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>39. Select ALL that apply: An employer asks an entry-level analyst to question a number in a weekly report. Which Chapter 1 competencies most directly support doing this well?</strong></p>
+<p>Correct: A, B, C, E</p>
+<p>Explanation: The five core competencies support workplace data reasoning: performance-oriented analysis helps interpret metrics, data integrity and system quality helps judge trustworthiness, foundational information literacy explains how data supports decisions, and strategic problem solving connects evidence to recommendations.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Performance-oriented analysis is directly about interpreting reports and metrics.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Data integrity and system quality help judge whether the number is reliable.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Foundational information literacy supports reasoning about how data supports decisions.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Cloud network engineering is not a Chapter 1 competency.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Strategic problem solving connects technical reasoning to recommended action.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>40. Two analysts must explain a misleading metric to leadership. Analyst A blames the dashboarding tool. Analyst B traces the issue back through queries, tables, relationships, and capture. Which response better reflects Chapter 1's framing of systems thinking?</strong></p>
+<p>Correct: B</p>
+<p>Explanation: Chapter 1 defines systems thinking as seeing how data, structure, analysis, and decisions work together. Analyst B traces the issue through the data-to-decisions arc rather than stopping at the visible dashboard.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The dashboard is visible, but Chapter 1 asks students to look at the system behind it.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This response follows the data-to-decisions arc and systems-thinking frame.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter says tools are part of a workflow, not the whole cause of performance.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The two responses are not equally aligned with Chapter 1.</td>
+</tr>
+</tbody>
+</table>
+<h2>Question Distribution Summary</h2>
+<p><strong>Table 1: Bloom Level</strong></p>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>1, 2, 3, 4, 5, 6, 7, 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>9, 10, 11, 12, 13, 14, 15, 16</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>17, 18, 19, 20, 21, 22, 23, 24</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>25, 26, 27, 28, 29, 30, 31, 32</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>33, 34, 35, 36, 37, 38, 39, 40</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2: Question Type</strong></p>
+<table>
+<thead>
+<tr>
+<th>Question Type</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-answer MC</td>
+<td>1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 29, 32, 33, 34, 35, 36, 37, 40</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Multiple-answer (Select ALL)</td>
+<td>6, 7, 14, 15, 22, 23, 30, 31, 38, 39</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3: Design Criterion</strong></p>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>11, 21, 22, 23, 27, 28, 30, 31, 32, 36, 37, 38, 39, 40</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>13, 17, 18, 19, 20, 24, 25, 26, 29, 33, 34, 35</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>1, 2, 3, 4, 5, 6, 7, 8, 12, 16</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="../index.html"><small>Previous</small><strong>Home</strong></a>
+          <a class="pager-card pager-card--next" href="ch02-mis-and-bitm.html"><small>Next</small><strong>Chapter 2: Chapter 2: Foundations of Information Systems</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

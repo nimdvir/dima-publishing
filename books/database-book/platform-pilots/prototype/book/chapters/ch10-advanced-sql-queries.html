@@ -1,0 +1,2564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 9: Advanced SQL with the Grading Database | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 9: Advanced SQL with the Grading Database</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>59%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:59%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="is-current" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 10</p>
+          <h1>Advanced SQL with the Grading Database</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>51 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 9: Advanced SQL with the Grading Database</h2>
+                  <p><em>Using SQL to Analyze, Transform, and Report Data</em></p>
+<p>Chapter 5 introduced SQL as the language of relational databases. Chapter 8 brought the first half of the course together through the midterm review and project. This chapter returns to SQL with a more advanced goal: using queries to diagnose data problems, connect normalized tables, calculate meaningful metrics, and create reusable reporting logic.</p>
+<p>Advanced SQL is not a different language. It is the same core logic you already know—<code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, <code>JOIN</code>, <code>GROUP BY</code>, and <code>ORDER BY</code>—used in more deliberate combinations. The shift is from asking isolated questions to building reliable analytical workflows.</p>
+<p>In this chapter, SQL becomes a bridge between <strong>relational design</strong> and <strong>business intelligence</strong>. You will use the Grading Database to answer questions such as:</p>
+<ul>
+<li>Which students are missing work?</li>
+<li>Which deliverables are most difficult?</li>
+<li>Which students are at risk?</li>
+<li>How should weighted grades be calculated?</li>
+<li>How can we reuse the same query logic across reports?</li>
+<li>How do Access-specific functions compare with more portable SQL patterns?</li>
+</ul>
+<p>The goal is not to memorize more syntax. The goal is to learn how to think with SQL.</p>
+<hr />
+<h2>Learning Objectives</h2>
+<p>After completing this chapter, you will be able to:</p>
+<ol>
+<li>Explain how advanced SQL extends basic query logic into analysis, reporting, and decision support.</li>
+<li>Diagnose redundancy, inconsistency, missing data, and duplicate records using SQL.</li>
+<li>Write multi-table queries that reconstruct useful reports from normalized tables.</li>
+<li>Use <code>INNER JOIN</code>, <code>LEFT JOIN</code>, and <code>CROSS JOIN</code> appropriately in grading-database scenarios.</li>
+<li>Use <code>GROUP BY</code>, <code>HAVING</code>, <code>COUNT(DISTINCT)</code>, and conditional aggregation to produce performance metrics.</li>
+<li>Use <code>CASE</code>, Access <code>IIf()</code>, <code>COALESCE()</code>, and Access <code>Nz()</code> to create interpretable output.</li>
+<li>Write date-aware queries using Access, SQLite, PostgreSQL, and SQL Server-style patterns.</li>
+<li>Calculate weighted grades using policy tables rather than hard-coded assumptions.</li>
+<li>Explain how window functions differ from ordinary aggregation.</li>
+<li>Use views, CTEs, and subqueries to build reusable and readable query pipelines.</li>
+<li>Apply safe workflows for <code>UPDATE</code> and <code>DELETE</code> statements.</li>
+<li>Design an end-to-end query set that turns normalized grading data into decision-ready reports.</li>
+</ol>
+<hr />
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Section</th>
+<th>Main Focus</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">9.1</td>
+<td>From Basic SQL to Advanced SQL</td>
+<td>Establishes the mental shift from retrieval to analysis.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.2</td>
+<td>Grading Database Refresher</td>
+<td>Reviews the schema used throughout the chapter.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.3</td>
+<td>Diagnosing Data Problems</td>
+<td>Shows how SQL reveals redundancy, inconsistency, and missing data.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.4</td>
+<td>Advanced JOIN Patterns</td>
+<td>Uses joins to reconstruct reports and find missing records.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.5</td>
+<td>Cleaning and Conditional Functions</td>
+<td>Compares Access-specific and portable SQL patterns.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.6</td>
+<td>Analytical Aggregation</td>
+<td>Builds metrics using <code>GROUP BY</code>, <code>HAVING</code>, and conditional counts.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.7</td>
+<td>Date and Time Queries</td>
+<td>Handles due dates, deadlines, weeks, and time windows.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.8</td>
+<td>Weighted Grades</td>
+<td>Calculates final grades using policy tables.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.9</td>
+<td>Window Functions</td>
+<td>Introduces ranking, running totals, and moving averages.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.10</td>
+<td>Reusable Reporting Pipelines</td>
+<td>Uses views, CTEs, and subqueries to manage complexity.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.11</td>
+<td>Safe Data Modification</td>
+<td>Updates and deletes data carefully.</td>
+</tr>
+<tr>
+<td style="text-align: right;">9.12</td>
+<td>Integrated Reporting Example</td>
+<td>Pulls the chapter together through an at-risk student report.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>9.1 From Basic SQL to Advanced SQL</h2>
+<p>Chapter 5 focused on the grammar of SQL. You learned how to retrieve rows, filter results, sort output, join tables, summarize data, and modify records. Those skills are still the foundation.</p>
+<p>Chapter 9 asks a more advanced question:</p>
+<blockquote>
+<p>How can SQL support reliable analysis and decision-making across a real relational database?</p>
+</blockquote>
+<p>A beginner might write one query to answer one question. An advanced SQL user asks how the query fits into a larger workflow:</p>
+<ul>
+<li>Is the data clean enough to trust?</li>
+<li>Which table stores the main event?</li>
+<li>Which tables provide context?</li>
+<li>Should the result show detail rows, summary rows, or both?</li>
+<li>Should the logic be saved for future reuse?</li>
+<li>Is the calculation based on a business rule that should live in a table?</li>
+</ul>
+<p>That is the difference between using SQL as a lookup tool and using SQL as an analytical system.</p>
+<h3>Four Questions Before Writing an Advanced Query</h3>
+<p>Before writing an advanced SQL query, ask four questions.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why It Matters</th>
+<th>SQL Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What is the business question?</strong></td>
+<td>A query should answer a clear question, not just return data.</td>
+<td>Determines filters, calculations, and output columns.</td>
+</tr>
+<tr>
+<td><strong>Which table stores the main event?</strong></td>
+<td>Most analysis begins with the transaction or event table.</td>
+<td>Start from tables such as <code>STUDENT_GRADE</code> or <code>ATTENDANCE</code>.</td>
+</tr>
+<tr>
+<td><strong>Which tables provide context?</strong></td>
+<td>Event rows often need names, dates, categories, or rules.</td>
+<td>Join to <code>STUDENT</code>, <code>DELIVERABLE</code>, <code>ASSIGNMENT_TYPE</code>, or <code>SCHEDULE</code>.</td>
+</tr>
+<tr>
+<td><strong>What kind of output is needed?</strong></td>
+<td>Detail, summary, ranking, and reports require different query patterns.</td>
+<td>Choose joins, aggregation, window functions, views, or CTEs.</td>
+</tr>
+</tbody>
+</table>
+<h3>Example: Turning a Business Question into SQL Logic</h3>
+<p>Suppose the question is:</p>
+<blockquote>
+<p>Which students are currently at risk because their average score is below 75?</p>
+</blockquote>
+<p>That question implies a sequence:</p>
+<ol>
+<li>The main event table is <code>STUDENT_GRADE</code>, because grades are stored there.</li>
+<li>Student context comes from <code>STUDENT</code>.</li>
+<li>The metric is average score, so we need <code>AVG()</code> and <code>GROUP BY</code>.</li>
+<li>The result should include only students below a threshold, so we need <code>HAVING</code>.</li>
+</ol>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(AVG(sg.Score), 2) AS AverageScore
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName
+HAVING AVG(sg.Score) &lt; 75
+ORDER BY AverageScore ASC;
+</code></pre>
+<p>This is not just a query. It is a small decision-support tool. It identifies students who may need attention.</p>
+<h4>Key Takeaway</h4>
+<p>Advanced SQL begins when you stop asking, “What syntax do I need?” and start asking, “What decision does this query support?”</p>
+<hr />
+<h2>9.2 Grading Database Refresher</h2>
+<p>The Grading Database is the running case for this chapter. It is useful because it contains the same design challenges found in business systems: people, events, rules, transactions, deadlines, and performance measures.</p>
+<h3>Core Tables</h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>What It Stores</th>
+<th>Typical Questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Student identity and contact information</td>
+<td>Who is enrolled? Which session is a student in?</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td>Category-level grading rules</td>
+<td>How many quizzes are there? How much is each category worth?</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Specific graded items</td>
+<td>When is Quiz 2 due? What topic does Exam 1 cover?</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>One student's score on one deliverable</td>
+<td>What did each student earn? Who is missing work?</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Class meetings, weeks, dates, and topics</td>
+<td>What happened in Week 6? Which classes occurred before spring break?</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Whether a student attended a class meeting</td>
+<td>How often did each student attend?</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Letter-grade thresholds</td>
+<td>Which letter grade corresponds to a numeric score?</td>
+</tr>
+</tbody>
+</table>
+<h3>The Main Relational Pathways</h3>
+<p>Most Chapter 9 queries use one of three pathways.</p>
+<h4>Student Performance Pathway</h4>
+<pre><code class="language-text">STUDENT -&gt; STUDENT_GRADE -&gt; DELIVERABLE -&gt; ASSIGNMENT_TYPE
+</code></pre>
+<p>Use this path when analyzing scores, deliverables, weighted grades, and assignment categories.</p>
+<h4>Attendance Pathway</h4>
+<pre><code class="language-text">STUDENT -&gt; ATTENDANCE -&gt; SCHEDULE
+</code></pre>
+<p>Use this path when analyzing attendance rates, weekly trends, or class-session participation.</p>
+<h4>Grade Interpretation Pathway</h4>
+<pre><code class="language-text">STUDENT_GRADE -&gt; GRADE_SCALE
+</code></pre>
+<p>Use this path when converting numeric scores into letter grades or performance bands.</p>
+<h3>Why the Schema Matters</h3>
+<p>In a flat spreadsheet, a report may already contain student names, deliverable labels, due dates, and scores in one row. In a relational database, those facts are intentionally separated. That separation reduces redundancy, but it means useful reports must be reconstructed through joins.</p>
+<p>That is not a weakness. It is the point of relational design.</p>
+<p>A normalized database stores facts cleanly. SQL turns those facts into views, summaries, and decisions.</p>
+<hr />
+<h2>9.3 Diagnosing Data Problems with SQL</h2>
+<p>Advanced SQL is not only for producing polished reports. It also helps diagnose whether the data can be trusted.</p>
+<p>Before building dashboards or calculating grades, an analyst should ask:</p>
+<ul>
+<li>Are there duplicate records?</li>
+<li>Are there conflicting values?</li>
+<li>Are required values missing?</li>
+<li>Are there impossible scores?</li>
+<li>Are there orphaned records?</li>
+<li>Are business rules being violated?</li>
+</ul>
+<p>SQL can answer those questions directly.</p>
+<h3>9.3.1 Detecting Repeated Student Details in a Flat Table</h3>
+<p>Suppose you inherit a flat table named <code>GRADE_FLAT</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>DeliverableType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@uni.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-02-05</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@uni.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-02-12</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@uni.edu</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-03-10</td>
+<td style="text-align: right;">91</td>
+</tr>
+<tr>
+<td style="text-align: right;">102</td>
+<td>Bob</td>
+<td>Lee</td>
+<td>bob@uni.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-02-05</td>
+<td style="text-align: right;">77</td>
+</tr>
+</tbody>
+</table>
+<p>Alice's information repeats because one row combines student facts and grade facts.</p>
+<pre><code class="language-sql">SELECT StudentID,
+       FirstName,
+       LastName,
+       Email,
+       COUNT(*) AS TimesRepeated
+FROM GRADE_FLAT
+GROUP BY StudentID, FirstName, LastName, Email
+HAVING COUNT(*) &gt; 1;
+</code></pre>
+<p>If Alice appears in three rows, the result shows that her student details are stored three times. In a normalized design, Alice should appear once in <code>STUDENT</code>.</p>
+<h3>9.3.2 Detecting Conflicting Emails</h3>
+<p>Repeated data becomes dangerous when the copies disagree.</p>
+<pre><code class="language-sql">SELECT StudentID,
+       COUNT(DISTINCT Email) AS EmailVersions
+FROM GRADE_FLAT
+GROUP BY StudentID
+HAVING COUNT(DISTINCT Email) &gt; 1;
+</code></pre>
+<p>If this query returns rows, the same student has more than one email value. That is an update anomaly. Someone corrected the email in one row but not all rows.</p>
+<h4>Common Mistake</h4>
+<p>Do not assume duplicate data is harmless. Duplicate data creates more places where reality can split into competing versions.</p>
+<h3>9.3.3 Detecting Inconsistent Deliverable Definitions</h3>
+<p>Deliverable details should be stable. Quiz 1 should not have different due dates in different rows.</p>
+<pre><code class="language-sql">SELECT DeliverableType,
+       DeliverableNumber,
+       COUNT(DISTINCT DueDate) AS DueDateVersions
+FROM GRADE_FLAT
+GROUP BY DeliverableType, DeliverableNumber
+HAVING COUNT(DISTINCT DueDate) &gt; 1;
+</code></pre>
+<p>If this returns results, the same deliverable has conflicting due dates. That means the table is mixing deliverable facts with student-grade facts.</p>
+<h3>9.3.4 Detecting Duplicate Grade Records</h3>
+<p>In a normalized grade table, the business rule is usually:</p>
+<blockquote>
+<p>One student should have one score for one deliverable.</p>
+</blockquote>
+<p>Even if <code>STUDENT_GRADE</code> has a surrogate key such as <code>GradeID</code>, the pair <code>(StudentID, DeliverableID)</code> should usually be unique.</p>
+<pre><code class="language-sql">SELECT StudentID,
+       DeliverableID,
+       COUNT(*) AS NumberOfRows
+FROM STUDENT_GRADE
+GROUP BY StudentID, DeliverableID
+HAVING COUNT(*) &gt; 1;
+</code></pre>
+<p>If this query returns rows, the database may contain duplicate score records.</p>
+<p>A structural fix is a composite <code>UNIQUE</code> constraint:</p>
+<pre><code class="language-sql">ALTER TABLE STUDENT_GRADE
+ADD CONSTRAINT uq_student_deliverable
+UNIQUE (StudentID, DeliverableID);
+</code></pre>
+<p>Platform note: Some systems, including SQLite, have limits on adding constraints after table creation. In those systems, define the constraint when creating the table or recreate the table with the correct structure.</p>
+<h3>9.3.5 Detecting Scores Outside the Valid Range</h3>
+<pre><code class="language-sql">SELECT GradeID,
+       StudentID,
+       DeliverableID,
+       Score
+FROM STUDENT_GRADE
+WHERE Score &lt; 0
+   OR Score &gt; 100;
+</code></pre>
+<p>This query checks whether values violate the expected grading range.</p>
+<p>A structural fix is a <code>CHECK</code> constraint:</p>
+<pre><code class="language-sql">CHECK (Score BETWEEN 0 AND 100)
+</code></pre>
+<h3>9.3.6 Detecting Orphaned Grade Records</h3>
+<p>An orphan record occurs when a child table refers to a parent record that does not exist.</p>
+<pre><code class="language-sql">SELECT sg.GradeID,
+       sg.StudentID
+FROM STUDENT_GRADE AS sg
+LEFT JOIN STUDENT AS s
+  ON sg.StudentID = s.StudentID
+WHERE s.StudentID IS NULL;
+</code></pre>
+<p>This query finds grade records linked to nonexistent students. In a correctly enforced relational database, referential integrity should prevent this.</p>
+<h4>Key Takeaway</h4>
+<p>Diagnostic SQL helps you test the health of a database before trusting its reports.</p>
+<hr />
+<h2>9.4 Advanced JOIN Patterns</h2>
+<p>Joins are the everyday language of relational databases. Basic joins retrieve related facts. Advanced joins help answer richer questions: complete reports, missing work, orphan records, expected-but-absent events, and category-level performance.</p>
+<h3>9.4.1 Complete Gradebook Report</h3>
+<p>A complete gradebook report needs student names, deliverable labels, due dates, topics, and scores.</p>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       d.DeliverableType,
+       d.DeliverableNumber,
+       d.DueDate,
+       d.Topic,
+       sg.Score
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+  ON sg.DeliverableID = d.DeliverableID
+ORDER BY s.LastName,
+         s.FirstName,
+         d.DeliverableType,
+         d.DeliverableNumber;
+</code></pre>
+<p>The stored data is normalized. The query reconstructs a report-friendly view.</p>
+<h3>9.4.2 Adding Assignment-Type Rules</h3>
+<p>Sometimes a score needs context. A score of 18 is excellent if the deliverable is worth 20 points, but weak if it is worth 100.</p>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       d.DeliverableType,
+       d.DeliverableNumber,
+       at.PointsPerOne,
+       sg.Score
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+  ON sg.DeliverableID = d.DeliverableID
+JOIN ASSIGNMENT_TYPE AS at
+  ON d.DeliverableType = at.DeliverableType
+ORDER BY s.LastName, d.DeliverableType, d.DeliverableNumber;
+</code></pre>
+<p>This query follows the pathway:</p>
+<pre><code class="language-text">STUDENT -&gt; STUDENT_GRADE -&gt; DELIVERABLE -&gt; ASSIGNMENT_TYPE
+</code></pre>
+<h3>9.4.3 Finding Missing Grades with <code>CROSS JOIN</code> and <code>LEFT JOIN</code></h3>
+<p>Missing work is tricky because missing rows are not visible unless we first generate the rows that should exist.</p>
+<p>The logic is:</p>
+<ol>
+<li>Every student should be paired with every deliverable.</li>
+<li>A recorded grade may or may not exist for that pair.</li>
+<li>Missing grades are the expected pairs with no matching grade row.</li>
+</ol>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       d.DeliverableID,
+       d.DeliverableType,
+       d.DeliverableNumber,
+       d.DueDate
+FROM STUDENT AS s
+CROSS JOIN DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+ AND d.DeliverableID = sg.DeliverableID
+WHERE sg.GradeID IS NULL
+ORDER BY s.LastName, d.DueDate;
+</code></pre>
+<p><code>CROSS JOIN</code> creates the expected grid. <code>LEFT JOIN</code> checks whether each expected student-deliverable pair has a grade. <code>WHERE sg.GradeID IS NULL</code> keeps only missing grade rows.</p>
+<h4>Common Mistake</h4>
+<p>Do not try to find missing grades by searching only <code>STUDENT_GRADE</code>. Missing grades are absent from that table. You need an expected list first.</p>
+<h3>9.4.4 Finding Deliverables with No Submissions</h3>
+<pre><code class="language-sql">SELECT d.DeliverableID,
+       d.DeliverableType,
+       d.DeliverableNumber,
+       d.DueDate,
+       d.Topic
+FROM DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+  ON d.DeliverableID = sg.DeliverableID
+WHERE sg.GradeID IS NULL;
+</code></pre>
+<p>This query is useful for checking whether a deliverable has been created but no grade records have been entered.</p>
+<h3>9.4.5 Joining Attendance to the Schedule</h3>
+<p>Attendance analysis uses a different relational path.</p>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       sch.Week,
+       sch.ClassDate,
+       sch.Topic,
+       a.Attended
+FROM STUDENT AS s
+JOIN ATTENDANCE AS a
+  ON s.StudentID = a.StudentID
+JOIN SCHEDULE AS sch
+  ON a.ClassNum = sch.ClassNum
+ORDER BY s.LastName, sch.ClassDate;
+</code></pre>
+<p>The query reconstructs attendance history from three tables.</p>
+<h3>9.4.6 Join Checklist</h3>
+<p>Before writing a join, ask:</p>
+<ol>
+<li>What is the main event table?</li>
+<li>Which table provides labels or context?</li>
+<li>Which key connects the tables?</li>
+<li>Should unmatched rows be preserved?</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Preferred Join</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Only matched records matter</td>
+<td><code>INNER JOIN</code></td>
+</tr>
+<tr>
+<td>Need all rows from the left table</td>
+<td><code>LEFT JOIN</code></td>
+</tr>
+<tr>
+<td>Need expected combinations</td>
+<td><code>CROSS JOIN</code> followed by <code>LEFT JOIN</code></td>
+</tr>
+<tr>
+<td>Need to diagnose missing parent records</td>
+<td><code>LEFT JOIN</code> plus <code>IS NULL</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>9.5 Cleaning and Conditional Functions</h2>
+<p>Real data is rarely clean. Names have extra spaces. Emails use inconsistent case. Scores may be missing. Access uses functions such as <code>Nz()</code> and <code>IIf()</code>, while other SQL systems use functions such as <code>COALESCE()</code> and <code>CASE</code>.</p>
+<p>This section treats Access as a gateway. You learn the idea in Access, then recognize the portable SQL equivalent.</p>
+<h3>9.5.1 Access SQL and Portable SQL Compared</h3>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Microsoft Access</th>
+<th>SQLite / PostgreSQL / Common SQL Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Replace <code>NULL</code> with a default</td>
+<td><code>Nz([Score], 0)</code></td>
+<td><code>COALESCE(Score, 0)</code></td>
+</tr>
+<tr>
+<td>Conditional value</td>
+<td><code>IIf([Score] &gt;= 60, "Pass", "Fail")</code></td>
+<td><code>CASE WHEN Score &gt;= 60 THEN 'Pass' ELSE 'Fail' END</code></td>
+</tr>
+<tr>
+<td>Current date</td>
+<td><code>Date()</code></td>
+<td><code>CURRENT_DATE</code> or <code>DATE('now')</code> in SQLite</td>
+</tr>
+<tr>
+<td>Current date and time</td>
+<td><code>Now()</code></td>
+<td><code>CURRENT_TIMESTAMP</code> or <code>datetime('now')</code> in SQLite</td>
+</tr>
+<tr>
+<td>Days between dates</td>
+<td><code>DateDiff("d", [StartDate], [EndDate])</code></td>
+<td>Platform-specific: <code>DATEDIFF(...)</code>, date subtraction, or <code>JULIANDAY()</code></td>
+</tr>
+<tr>
+<td>Add days to a date</td>
+<td><code>DateAdd("d", 30, [DueDate])</code></td>
+<td>Platform-specific: <code>DATEADD(...)</code>, <code>+ INTERVAL</code>, or <code>DATE(..., '+30 days')</code></td>
+</tr>
+<tr>
+<td>Extract year</td>
+<td><code>DatePart("yyyy", [DueDate])</code></td>
+<td><code>EXTRACT(YEAR FROM DueDate)</code>, <code>YEAR(DueDate)</code>, or <code>strftime('%Y', DueDate)</code></td>
+</tr>
+</tbody>
+</table>
+<p>The concept is portable. The function name is not always portable.</p>
+<h3>9.5.2 Replacing Missing Scores for Display</h3>
+<p>A missing score is not automatically a zero. It may mean not graded yet, not submitted, or not applicable. Be careful.</p>
+<h4>Access</h4>
+<pre><code class="language-sql">SELECT StudentID,
+       DeliverableID,
+       Nz([Score], 0) AS DisplayScore
+FROM STUDENT_GRADE;
+</code></pre>
+<h4>Standard-style SQL</h4>
+<pre><code class="language-sql">SELECT StudentID,
+       DeliverableID,
+       COALESCE(Score, 0) AS DisplayScore
+FROM STUDENT_GRADE;
+</code></pre>
+<p>This changes the query result. It does not change the stored value.</p>
+<h4>Warning</h4>
+<p>Only treat missing scores as zero if the grading policy says missing work should count as zero. Otherwise, display a label such as <code>Not Graded</code>.</p>
+<pre><code class="language-sql">SELECT StudentID,
+       DeliverableID,
+       COALESCE(CAST(Score AS TEXT), 'Not Graded') AS ScoreStatus
+FROM STUDENT_GRADE;
+</code></pre>
+<h3>9.5.3 Conditional Labels with <code>IIf()</code> and <code>CASE</code></h3>
+<h4>Access</h4>
+<pre><code class="language-sql">SELECT FirstName,
+       LastName,
+       IIf([Score] &gt;= 60, &quot;Pass&quot;, &quot;Fail&quot;) AS PassFail
+FROM STUDENT_GRADE;
+</code></pre>
+<p>This example assumes the score is available in the query context.</p>
+<h4>Portable SQL</h4>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       sg.Score,
+       CASE
+           WHEN sg.Score &gt;= 60 THEN 'Pass'
+           ELSE 'Fail'
+       END AS PassFail
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID;
+</code></pre>
+<p><code>CASE</code> is more verbose than <code>IIf()</code>, but it is more portable and easier to extend.</p>
+<h3>9.5.4 Multi-Level Performance Bands</h3>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       ROUND(AVG(sg.Score), 2) AS AverageScore,
+       CASE
+           WHEN AVG(sg.Score) &gt;= 90 THEN 'High Performance'
+           WHEN AVG(sg.Score) &gt;= 80 THEN 'On Track'
+           WHEN AVG(sg.Score) &gt;= 70 THEN 'Needs Attention'
+           ELSE 'At Risk'
+       END AS PerformanceBand
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName
+ORDER BY AverageScore ASC;
+</code></pre>
+<p>This query converts raw averages into meaningful categories.</p>
+<h3>9.5.5 Cleaning Text Values</h3>
+<h4>Remove Extra Spaces</h4>
+<pre><code class="language-sql">SELECT TRIM(FirstName) AS CleanFirstName,
+       TRIM(LastName) AS CleanLastName
+FROM STUDENT;
+</code></pre>
+<h4>Standardize Emails</h4>
+<pre><code class="language-sql">UPDATE STUDENT
+SET Email = LOWER(TRIM(Email));
+</code></pre>
+<p>Use this only after checking the target rows. In production data, always verify before modifying.</p>
+<h4>Find Suspicious Email Formats</h4>
+<pre><code class="language-sql">SELECT StudentID,
+       FirstName,
+       LastName,
+       Email
+FROM STUDENT
+WHERE Email NOT LIKE '%@%.%';
+</code></pre>
+<p>This is not perfect email validation, but it catches obvious problems.</p>
+<hr />
+<h2>9.6 Analytical Aggregation</h2>
+<p>Aggregation turns many rows into summary information. This is where SQL becomes a business analytics tool.</p>
+<h3>9.6.1 Average Score Per Student</h3>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(AVG(sg.Score), 2) AS AverageScore,
+       COUNT(sg.GradeID) AS NumberOfGrades
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName
+ORDER BY AverageScore DESC;
+</code></pre>
+<p>This query produces student-level performance summaries.</p>
+<h3>9.6.2 Average Score Per Deliverable</h3>
+<pre><code class="language-sql">SELECT d.DeliverableType,
+       d.DeliverableNumber,
+       d.Topic,
+       ROUND(AVG(sg.Score), 2) AS ClassAverage,
+       MIN(sg.Score) AS LowestScore,
+       MAX(sg.Score) AS HighestScore,
+       MAX(sg.Score) - MIN(sg.Score) AS ScoreSpread
+FROM DELIVERABLE AS d
+JOIN STUDENT_GRADE AS sg
+  ON d.DeliverableID = sg.DeliverableID
+GROUP BY d.DeliverableID,
+         d.DeliverableType,
+         d.DeliverableNumber,
+         d.Topic
+ORDER BY ClassAverage ASC;
+</code></pre>
+<p>This identifies difficult or uneven deliverables.</p>
+<h3>9.6.3 Assignment-Type Averages</h3>
+<pre><code class="language-sql">SELECT d.DeliverableType,
+       ROUND(AVG(sg.Score), 2) AS TypeAverage,
+       COUNT(*) AS TotalGradeRows
+FROM DELIVERABLE AS d
+JOIN STUDENT_GRADE AS sg
+  ON d.DeliverableID = sg.DeliverableID
+GROUP BY d.DeliverableType
+ORDER BY TypeAverage ASC;
+</code></pre>
+<p>This helps compare quizzes, exams, projects, and other categories.</p>
+<h3>9.6.4 <code>HAVING</code> for Group Filters</h3>
+<p><code>WHERE</code> filters rows before aggregation. <code>HAVING</code> filters groups after aggregation.</p>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(AVG(sg.Score), 2) AS AverageScore
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName
+HAVING AVG(sg.Score) &lt; 75
+ORDER BY AverageScore ASC;
+</code></pre>
+<p>This returns groups—students—whose average is below 75.</p>
+<h4>Common Mistake</h4>
+<p>Do not write <code>WHERE AVG(Score) &lt; 75</code>. Aggregate functions belong in <code>HAVING</code>, not <code>WHERE</code>.</p>
+<h3>9.6.5 Conditional Aggregation</h3>
+<p>Conditional aggregation counts or sums only the rows that meet a condition.</p>
+<pre><code class="language-sql">SELECT d.DeliverableType,
+       d.DeliverableNumber,
+       COUNT(CASE WHEN sg.Score &gt;= 70 THEN 1 END) AS PassingCount,
+       COUNT(CASE WHEN sg.Score &lt; 70 THEN 1 END) AS FailingCount,
+       COUNT(CASE WHEN sg.Score IS NULL THEN 1 END) AS MissingCount
+FROM DELIVERABLE AS d
+CROSS JOIN STUDENT AS s
+LEFT JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+ AND d.DeliverableID = sg.DeliverableID
+GROUP BY d.DeliverableID, d.DeliverableType, d.DeliverableNumber
+ORDER BY d.DeliverableType, d.DeliverableNumber;
+</code></pre>
+<p>This query creates a deliverable-level performance dashboard.</p>
+<h3>9.6.6 Score Bands</h3>
+<pre><code class="language-sql">SELECT CASE
+           WHEN Score &gt;= 90 THEN '90-100'
+           WHEN Score &gt;= 80 THEN '80-89'
+           WHEN Score &gt;= 70 THEN '70-79'
+           WHEN Score &gt;= 60 THEN '60-69'
+           ELSE 'Below 60'
+       END AS ScoreBand,
+       COUNT(*) AS NumberOfScores
+FROM STUDENT_GRADE
+GROUP BY CASE
+             WHEN Score &gt;= 90 THEN '90-100'
+             WHEN Score &gt;= 80 THEN '80-89'
+             WHEN Score &gt;= 70 THEN '70-79'
+             WHEN Score &gt;= 60 THEN '60-69'
+             ELSE 'Below 60'
+         END
+ORDER BY ScoreBand;
+</code></pre>
+<p>Some systems allow grouping by the alias <code>ScoreBand</code>; others require repeating the expression. Repeating the expression is more portable.</p>
+<h3>9.6.7 Attendance Rate Per Student</h3>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       COUNT(*) AS ClassesRecorded,
+       SUM(CASE WHEN a.Attended = 1 THEN 1 ELSE 0 END) AS ClassesAttended,
+       ROUND(
+           100.0 * SUM(CASE WHEN a.Attended = 1 THEN 1 ELSE 0 END) / COUNT(*),
+           1
+       ) AS AttendanceRate
+FROM STUDENT AS s
+JOIN ATTENDANCE AS a
+  ON s.StudentID = a.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName
+ORDER BY AttendanceRate ASC;
+</code></pre>
+<p>The <code>100.0</code> forces decimal arithmetic. Without it, some systems may perform integer division.</p>
+<h3>9.6.8 <code>COUNT(*)</code> vs. <code>COUNT(column)</code></h3>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COUNT(*)</code></td>
+<td>Counts rows, including rows with <code>NULL</code> values.</td>
+</tr>
+<tr>
+<td><code>COUNT(Score)</code></td>
+<td>Counts rows where <code>Score</code> is not <code>NULL</code>.</td>
+</tr>
+<tr>
+<td><code>COUNT(DISTINCT StudentID)</code></td>
+<td>Counts unique student IDs.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-sql">SELECT COUNT(*) AS TotalRows,
+       COUNT(Score) AS RowsWithScores
+FROM STUDENT_GRADE;
+</code></pre>
+<p>If <code>TotalRows</code> is larger than <code>RowsWithScores</code>, some scores are missing.</p>
+<hr />
+<h2>9.7 Date and Time Queries</h2>
+<p>Dates are central to business logic. Organizations care about deadlines, delivery windows, transaction dates, payment dates, attendance dates, and reporting periods. In the Grading Database, dates support due-date tracking, attendance windows, weekly trends, and late-work reports.</p>
+<p>Date syntax varies across platforms, so this section emphasizes the concept and then shows platform patterns.</p>
+<h3>9.7.1 Date Function Reference</h3>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Access</th>
+<th>SQLite</th>
+<th>PostgreSQL</th>
+<th>SQL Server-style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current date</td>
+<td><code>Date()</code></td>
+<td><code>DATE('now')</code></td>
+<td><code>CURRENT_DATE</code></td>
+<td><code>CAST(GETDATE() AS date)</code></td>
+</tr>
+<tr>
+<td>Current date/time</td>
+<td><code>Now()</code></td>
+<td><code>datetime('now')</code></td>
+<td><code>CURRENT_TIMESTAMP</code></td>
+<td><code>GETDATE()</code></td>
+</tr>
+<tr>
+<td>Add 7 days</td>
+<td><code>DateAdd("d", 7, [DueDate])</code></td>
+<td><code>DATE(DueDate, '+7 days')</code></td>
+<td><code>DueDate + INTERVAL '7 days'</code></td>
+<td><code>DATEADD(day, 7, DueDate)</code></td>
+</tr>
+<tr>
+<td>Days between dates</td>
+<td><code>DateDiff("d", [Start], [End])</code></td>
+<td><code>JULIANDAY(End) - JULIANDAY(Start)</code></td>
+<td><code>EndDate - StartDate</code></td>
+<td><code>DATEDIFF(day, StartDate, EndDate)</code></td>
+</tr>
+<tr>
+<td>Extract year</td>
+<td><code>DatePart("yyyy", [DueDate])</code></td>
+<td><code>strftime('%Y', DueDate)</code></td>
+<td><code>EXTRACT(YEAR FROM DueDate)</code></td>
+<td><code>YEAR(DueDate)</code></td>
+</tr>
+<tr>
+<td>Extract month</td>
+<td><code>DatePart("m", [DueDate])</code></td>
+<td><code>strftime('%m', DueDate)</code></td>
+<td><code>EXTRACT(MONTH FROM DueDate)</code></td>
+<td><code>MONTH(DueDate)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Do not memorize every dialect. Learn the pattern: current date, add time, subtract dates, extract parts.</p>
+<h3>9.7.2 Upcoming Deliverables</h3>
+<h4>SQLite</h4>
+<pre><code class="language-sql">SELECT DeliverableType,
+       DeliverableNumber,
+       DueDate,
+       Topic
+FROM DELIVERABLE
+WHERE DueDate BETWEEN DATE('now') AND DATE('now', '+14 days')
+ORDER BY DueDate;
+</code></pre>
+<h4>Access</h4>
+<pre><code class="language-sql">SELECT DeliverableType,
+       DeliverableNumber,
+       DueDate,
+       Topic
+FROM DELIVERABLE
+WHERE DueDate BETWEEN Date() AND DateAdd(&quot;d&quot;, 14, Date())
+ORDER BY DueDate;
+</code></pre>
+<h3>9.7.3 Overdue Deliverables Without Grades</h3>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       d.DeliverableType,
+       d.DeliverableNumber,
+       d.DueDate
+FROM STUDENT AS s
+CROSS JOIN DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+ AND d.DeliverableID = sg.DeliverableID
+WHERE d.DueDate &lt; CURRENT_DATE
+  AND sg.GradeID IS NULL
+ORDER BY d.DueDate, s.LastName;
+</code></pre>
+<p>For SQLite, replace <code>CURRENT_DATE</code> with <code>DATE('now')</code>. For Access, use <code>Date()</code>.</p>
+<h3>9.7.4 Days Since Due Date</h3>
+<h4>Access</h4>
+<pre><code class="language-sql">SELECT DeliverableType,
+       DeliverableNumber,
+       DueDate,
+       DateDiff(&quot;d&quot;, [DueDate], Date()) AS DaysPastDue
+FROM DELIVERABLE
+WHERE DueDate &lt; Date();
+</code></pre>
+<h4>SQLite</h4>
+<pre><code class="language-sql">SELECT DeliverableType,
+       DeliverableNumber,
+       DueDate,
+       CAST(JULIANDAY(DATE('now')) - JULIANDAY(DueDate) AS INTEGER) AS DaysPastDue
+FROM DELIVERABLE
+WHERE DueDate &lt; DATE('now');
+</code></pre>
+<h3>9.7.5 Attendance Trend by Week</h3>
+<pre><code class="language-sql">SELECT sch.Week,
+       COUNT(*) AS AttendanceRows,
+       SUM(CASE WHEN a.Attended = 1 THEN 1 ELSE 0 END) AS PresentRows,
+       ROUND(
+           100.0 * SUM(CASE WHEN a.Attended = 1 THEN 1 ELSE 0 END) / COUNT(*),
+           1
+       ) AS AttendanceRate
+FROM SCHEDULE AS sch
+JOIN ATTENDANCE AS a
+  ON sch.ClassNum = a.ClassNum
+GROUP BY sch.Week
+ORDER BY sch.Week;
+</code></pre>
+<p>This query turns attendance records into a weekly engagement trend.</p>
+<hr />
+<h2>9.8 Weighted Grades and Policy Tables</h2>
+<p>A final grade is rarely a simple average of all scores. Different categories may carry different weights. Quizzes may count for 20 percent, exams for 40 percent, projects for 30 percent, and participation for 10 percent.</p>
+<p>The correct design principle is:</p>
+<blockquote>
+<p>Store grading policy in a table, not inside scattered formulas.</p>
+</blockquote>
+<h3>9.8.1 Example Weight Table</h3>
+<pre><code class="language-text">GRADE_WEIGHT(
+    DeliverableType,
+    CategoryWeight
+)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>DeliverableType</th>
+<th style="text-align: right;">CategoryWeight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr>
+<td>Homework</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">0.35</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+</tbody>
+</table>
+<p>The weights should sum to 1.0.</p>
+<pre><code class="language-sql">SELECT SUM(CategoryWeight) AS TotalWeight
+FROM GRADE_WEIGHT;
+</code></pre>
+<p>If the result is not 1.0, the grading policy is incomplete or inconsistent.</p>
+<h3>9.8.2 Average Score by Student and Category</h3>
+<p>First compute each student's average within each category.</p>
+<pre><code class="language-sql">SELECT sg.StudentID,
+       d.DeliverableType,
+       ROUND(AVG(sg.Score), 2) AS CategoryAverage
+FROM STUDENT_GRADE AS sg
+JOIN DELIVERABLE AS d
+  ON sg.DeliverableID = d.DeliverableID
+GROUP BY sg.StudentID, d.DeliverableType;
+</code></pre>
+<p>This is the first stage of weighted grading.</p>
+<h3>9.8.3 Weighted Final Grade Using a CTE</h3>
+<pre><code class="language-sql">WITH CategoryAverages AS (
+    SELECT sg.StudentID,
+           d.DeliverableType,
+           AVG(sg.Score) AS CategoryAverage
+    FROM STUDENT_GRADE AS sg
+    JOIN DELIVERABLE AS d
+      ON sg.DeliverableID = d.DeliverableID
+    GROUP BY sg.StudentID, d.DeliverableType
+)
+SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(SUM(ca.CategoryAverage * gw.CategoryWeight), 2) AS WeightedFinalGrade
+FROM STUDENT AS s
+JOIN CategoryAverages AS ca
+  ON s.StudentID = ca.StudentID
+JOIN GRADE_WEIGHT AS gw
+  ON ca.DeliverableType = gw.DeliverableType
+GROUP BY s.StudentID, s.FirstName, s.LastName
+ORDER BY WeightedFinalGrade DESC;
+</code></pre>
+<p>This query has two stages:</p>
+<ol>
+<li>Calculate category averages.</li>
+<li>Multiply each category average by its category weight and sum the result.</li>
+</ol>
+<h3>9.8.4 Handling Missing Categories</h3>
+<p>A student may not yet have grades in every category. That creates a policy question:</p>
+<ul>
+<li>Should missing categories be ignored until graded?</li>
+<li>Should missing work count as zero?</li>
+<li>Should the grade be calculated only through completed deliverables?</li>
+</ul>
+<p>SQL can implement any of these policies, but the policy must be explicit.</p>
+<h4>Example: Calculate Using Only Completed Categories</h4>
+<pre><code class="language-sql">WITH CategoryAverages AS (
+    SELECT sg.StudentID,
+           d.DeliverableType,
+           AVG(sg.Score) AS CategoryAverage
+    FROM STUDENT_GRADE AS sg
+    JOIN DELIVERABLE AS d
+      ON sg.DeliverableID = d.DeliverableID
+    GROUP BY sg.StudentID, d.DeliverableType
+)
+SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(
+           SUM(ca.CategoryAverage * gw.CategoryWeight) / SUM(gw.CategoryWeight),
+           2
+       ) AS CurrentWeightedGrade
+FROM STUDENT AS s
+JOIN CategoryAverages AS ca
+  ON s.StudentID = ca.StudentID
+JOIN GRADE_WEIGHT AS gw
+  ON ca.DeliverableType = gw.DeliverableType
+GROUP BY s.StudentID, s.FirstName, s.LastName;
+</code></pre>
+<p>This divides by the sum of weights represented by completed categories. It is an up-to-date grade, not necessarily the final semester grade.</p>
+<h3>9.8.5 Joining to the Grade Scale</h3>
+<pre><code class="language-sql">WITH FinalGrades AS (
+    SELECT s.StudentID,
+           s.FirstName,
+           s.LastName,
+           ROUND(SUM(ca.CategoryAverage * gw.CategoryWeight), 2) AS FinalNumericGrade
+    FROM STUDENT AS s
+    JOIN (
+        SELECT sg.StudentID,
+               d.DeliverableType,
+               AVG(sg.Score) AS CategoryAverage
+        FROM STUDENT_GRADE AS sg
+        JOIN DELIVERABLE AS d
+          ON sg.DeliverableID = d.DeliverableID
+        GROUP BY sg.StudentID, d.DeliverableType
+    ) AS ca
+      ON s.StudentID = ca.StudentID
+    JOIN GRADE_WEIGHT AS gw
+      ON ca.DeliverableType = gw.DeliverableType
+    GROUP BY s.StudentID, s.FirstName, s.LastName
+)
+SELECT fg.StudentID,
+       fg.FirstName,
+       fg.LastName,
+       fg.FinalNumericGrade,
+       gs.LetterGrade
+FROM FinalGrades AS fg
+JOIN GRADE_SCALE AS gs
+  ON fg.FinalNumericGrade BETWEEN gs.MinScore AND gs.MaxScore
+ORDER BY fg.FinalNumericGrade DESC;
+</code></pre>
+<p>The grading scale is stored as data. The query uses it as a lookup rule.</p>
+<h4>Common Mistake</h4>
+<p>Do not average category averages unless every category has the same weight. Use a weight table.</p>
+<hr />
+<h2>9.9 Window Functions</h2>
+<p>Ordinary aggregation collapses rows. Window functions calculate summaries while preserving detail rows.</p>
+<p>That distinction matters.</p>
+<p>A <code>GROUP BY</code> query can tell you each student's average score. A window function can show each individual score and the student's average next to it.</p>
+<h3>9.9.1 <code>GROUP BY</code> vs. Window Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One row per group</td>
+<td><code>GROUP BY</code></td>
+</tr>
+<tr>
+<td>Keep detail rows and add summary values</td>
+<td>Window function</td>
+</tr>
+<tr>
+<td>Rank rows</td>
+<td>Window function</td>
+</tr>
+<tr>
+<td>Running totals</td>
+<td>Window function</td>
+</tr>
+<tr>
+<td>Moving averages</td>
+<td>Window function</td>
+</tr>
+</tbody>
+</table>
+<h3>9.9.2 Student Average Next to Each Score</h3>
+<pre><code class="language-sql">SELECT sg.StudentID,
+       sg.DeliverableID,
+       sg.Score,
+       ROUND(
+           AVG(sg.Score) OVER (PARTITION BY sg.StudentID),
+           2
+       ) AS StudentAverage
+FROM STUDENT_GRADE AS sg
+ORDER BY sg.StudentID, sg.DeliverableID;
+</code></pre>
+<p>Each grade row remains visible, but the student's average appears alongside it.</p>
+<h3>9.9.3 Ranking Students by Average</h3>
+<pre><code class="language-sql">WITH StudentAverages AS (
+    SELECT s.StudentID,
+           s.FirstName,
+           s.LastName,
+           AVG(sg.Score) AS AverageScore
+    FROM STUDENT AS s
+    JOIN STUDENT_GRADE AS sg
+      ON s.StudentID = sg.StudentID
+    GROUP BY s.StudentID, s.FirstName, s.LastName
+)
+SELECT StudentID,
+       FirstName,
+       LastName,
+       ROUND(AverageScore, 2) AS AverageScore,
+       RANK() OVER (ORDER BY AverageScore DESC) AS ClassRank
+FROM StudentAverages;
+</code></pre>
+<p><code>RANK()</code> assigns equal rank to ties and leaves gaps. <code>DENSE_RANK()</code> assigns equal rank to ties without gaps. <code>ROW_NUMBER()</code> assigns a unique sequence number even when values tie.</p>
+<h3>9.9.4 Running Total by Student</h3>
+<pre><code class="language-sql">SELECT StudentID,
+       DeliverableID,
+       Score,
+       SUM(Score) OVER (
+           PARTITION BY StudentID
+           ORDER BY DeliverableID
+       ) AS RunningScoreTotal
+FROM STUDENT_GRADE
+ORDER BY StudentID, DeliverableID;
+</code></pre>
+<p>The running total resets for each student because of <code>PARTITION BY StudentID</code>.</p>
+<h3>9.9.5 Moving Average</h3>
+<pre><code class="language-sql">SELECT StudentID,
+       DeliverableID,
+       Score,
+       ROUND(
+           AVG(Score) OVER (
+               PARTITION BY StudentID
+               ORDER BY DeliverableID
+               ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+           ),
+           2
+       ) AS ThreeItemMovingAverage
+FROM STUDENT_GRADE
+ORDER BY StudentID, DeliverableID;
+</code></pre>
+<p>This smooths performance across the current and previous two deliverables.</p>
+<h3>Platform Note</h3>
+<p>Window functions are supported in PostgreSQL and modern SQLite. Microsoft Access does not support SQL window functions directly. In Access, similar results usually require saved queries, aggregate queries, or reports.</p>
+<h4>Key Takeaway</h4>
+<p>Window functions are useful when you need detail and summary in the same result.</p>
+<hr />
+<h2>9.10 Reusable Reporting Pipelines</h2>
+<p>Writing one correct query is useful. Writing query logic that can be reused is more valuable.</p>
+<p>Three tools help manage reusable SQL logic:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best For</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Subquery</strong></td>
+<td>One calculation inside another query</td>
+<td>Temporary, inside one query</td>
+</tr>
+<tr>
+<td><strong>CTE</strong></td>
+<td>Multi-step readable query logic</td>
+<td>Temporary, inside one query</td>
+</tr>
+<tr>
+<td><strong>View</strong></td>
+<td>Saved reporting logic</td>
+<td>Persistent database object</td>
+</tr>
+</tbody>
+</table>
+<h3>9.10.1 Views as Saved Reports</h3>
+<p>A view is a saved query that behaves like a virtual table.</p>
+<pre><code class="language-sql">CREATE VIEW StudentPerformanceSummary AS
+SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(AVG(sg.Score), 2) AS AverageScore,
+       COUNT(sg.GradeID) AS NumberOfGrades,
+       CASE
+           WHEN AVG(sg.Score) &lt; 70 THEN 'At Risk'
+           WHEN AVG(sg.Score) &lt; 80 THEN 'Needs Attention'
+           ELSE 'On Track'
+       END AS Status
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName;
+</code></pre>
+<p>You can query the view like a table:</p>
+<pre><code class="language-sql">SELECT *
+FROM StudentPerformanceSummary
+WHERE Status = 'At Risk';
+</code></pre>
+<p>Views reduce repetition. Instead of rewriting the same join and average logic in many reports, define it once.</p>
+<h4>Access Note</h4>
+<p>Microsoft Access uses saved queries rather than SQL views in the same way PostgreSQL or SQLite do. Conceptually, a saved Access query can serve a similar role as a reusable reporting object.</p>
+<h3>9.10.2 CTEs for Multi-Step Logic</h3>
+<p>A Common Table Expression, or CTE, creates named temporary results inside one query.</p>
+<pre><code class="language-sql">WITH StudentAverages AS (
+    SELECT StudentID,
+           AVG(Score) AS AverageScore
+    FROM STUDENT_GRADE
+    GROUP BY StudentID
+),
+StudentStatus AS (
+    SELECT StudentID,
+           AverageScore,
+           CASE
+               WHEN AverageScore &lt; 70 THEN 'At Risk'
+               WHEN AverageScore &lt; 80 THEN 'Needs Attention'
+               ELSE 'On Track'
+           END AS Status
+    FROM StudentAverages
+)
+SELECT s.FirstName,
+       s.LastName,
+       ROUND(ss.AverageScore, 2) AS AverageScore,
+       ss.Status
+FROM StudentStatus AS ss
+JOIN STUDENT AS s
+  ON ss.StudentID = s.StudentID
+ORDER BY ss.AverageScore ASC;
+</code></pre>
+<p>The CTE makes the query easier to read because each stage has a name.</p>
+<h3>9.10.3 Subqueries for One-Step Comparisons</h3>
+<p>A subquery is a query inside another query.</p>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       sg.Score
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+WHERE sg.Score &gt; (
+    SELECT AVG(Score)
+    FROM STUDENT_GRADE
+);
+</code></pre>
+<p>The inner query calculates the overall average. The outer query returns scores above that average.</p>
+<h3>9.10.4 <code>EXISTS</code> for Relationship Checks</h3>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName
+FROM STUDENT AS s
+WHERE EXISTS (
+    SELECT 1
+    FROM STUDENT_GRADE AS sg
+    JOIN DELIVERABLE AS d
+      ON sg.DeliverableID = d.DeliverableID
+    WHERE sg.StudentID = s.StudentID
+      AND d.DeliverableType = 'Exam'
+);
+</code></pre>
+<p>This returns students who have at least one exam score.</p>
+<h3>9.10.5 <code>UNION</code> and <code>UNION ALL</code></h3>
+<p><code>UNION</code> combines compatible query results and removes duplicates. <code>UNION ALL</code> keeps duplicates.</p>
+<pre><code class="language-sql">SELECT StudentID, 'Grade' AS ActivitySource
+FROM STUDENT_GRADE
+UNION ALL
+SELECT StudentID, 'Attendance' AS ActivitySource
+FROM ATTENDANCE;
+</code></pre>
+<p>This creates a combined activity list. <code>UNION ALL</code> is appropriate because each grade and attendance record is a distinct activity.</p>
+<h3>9.10.6 Choosing the Right Tool</h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Best Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Short one-time comparison</td>
+<td>Subquery</td>
+</tr>
+<tr>
+<td>Multi-step logic that should remain readable</td>
+<td>CTE</td>
+</tr>
+<tr>
+<td>Logic reused across reports or dashboards</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Combining similar result sets</td>
+<td><code>UNION</code> or <code>UNION ALL</code></td>
+</tr>
+<tr>
+<td>Access-based reusable query</td>
+<td>Saved query</td>
+</tr>
+</tbody>
+</table>
+<h4>Key Takeaway</h4>
+<p>Reusable SQL logic is part of database design. Good queries become analytical infrastructure.</p>
+<hr />
+<h2>9.11 Safe Data Modification</h2>
+<p>Advanced SQL includes modifying data. That power requires discipline.</p>
+<p>The safest workflow is:</p>
+<ol>
+<li>Write a <code>SELECT</code> statement to identify the rows.</li>
+<li>Verify the result.</li>
+<li>Convert the <code>SELECT</code> into <code>UPDATE</code> or <code>DELETE</code>.</li>
+<li>Run the modification only when the target rows are correct.</li>
+</ol>
+<h3>9.11.1 Safe <code>UPDATE</code></h3>
+<p>Suppose Alice's email needs correction.</p>
+<p>First verify:</p>
+<pre><code class="language-sql">SELECT StudentID,
+       FirstName,
+       LastName,
+       Email
+FROM STUDENT
+WHERE StudentID = 101;
+</code></pre>
+<p>Then update:</p>
+<pre><code class="language-sql">UPDATE STUDENT
+SET Email = 'alice.johnson@albany.edu'
+WHERE StudentID = 101;
+</code></pre>
+<p>Then verify again:</p>
+<pre><code class="language-sql">SELECT StudentID,
+       FirstName,
+       LastName,
+       Email
+FROM STUDENT
+WHERE StudentID = 101;
+</code></pre>
+<h3>9.11.2 Updating Scores</h3>
+<pre><code class="language-sql">SELECT GradeID,
+       StudentID,
+       DeliverableID,
+       Score
+FROM STUDENT_GRADE
+WHERE GradeID = 42;
+</code></pre>
+<pre><code class="language-sql">UPDATE STUDENT_GRADE
+SET Score = 88
+WHERE GradeID = 42;
+</code></pre>
+<p>The <code>WHERE</code> clause should target one known row.</p>
+<h3>9.11.3 Safe <code>DELETE</code></h3>
+<p>Before deleting, select.</p>
+<pre><code class="language-sql">SELECT *
+FROM ATTENDANCE
+WHERE AttendanceID = 10;
+</code></pre>
+<p>Then delete only if the selected row is truly wrong.</p>
+<pre><code class="language-sql">DELETE FROM ATTENDANCE
+WHERE AttendanceID = 10;
+</code></pre>
+<h3>9.11.4 Dangerous Patterns</h3>
+<h4>Missing <code>WHERE</code></h4>
+<pre><code class="language-sql">UPDATE STUDENT
+SET Email = 'unknown@albany.edu';
+</code></pre>
+<p>This changes every student. That is almost never what you want.</p>
+<pre><code class="language-sql">DELETE FROM STUDENT_GRADE;
+</code></pre>
+<p>This removes every grade row. Again: little query, big disaster. SQL has no shame; it will do what you asked, not what you meant.</p>
+<h3>9.11.5 Transactions as a Safety Preview</h3>
+<p>Some systems allow changes inside a transaction.</p>
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+UPDATE STUDENT_GRADE
+SET Score = 88
+WHERE GradeID = 42;
+
+-- If correct:
+COMMIT;
+
+-- If wrong:
+ROLLBACK;
+</code></pre>
+<p>Transactions are covered more fully later in the book. For now, remember the principle: when modifying important data, build in a way to verify and recover.</p>
+<hr />
+<h2>9.12 Integrated Example: At-Risk Student Report</h2>
+<p>This section pulls the chapter together. Suppose an instructor wants a report that identifies students who may need support.</p>
+<p>The report should include:</p>
+<ul>
+<li>student name,</li>
+<li>average score,</li>
+<li>number of missing grades,</li>
+<li>attendance rate,</li>
+<li>risk category.</li>
+</ul>
+<p>This requires several ideas from the chapter:</p>
+<ul>
+<li>joins,</li>
+<li>expected student-deliverable combinations,</li>
+<li>missing-grade detection,</li>
+<li>aggregation,</li>
+<li>conditional logic,</li>
+<li>CTEs.</li>
+</ul>
+<h3>Step 1: Count Missing Grades</h3>
+<pre><code class="language-sql">WITH MissingGrades AS (
+    SELECT s.StudentID,
+           COUNT(*) AS MissingGradeCount
+    FROM STUDENT AS s
+    CROSS JOIN DELIVERABLE AS d
+    LEFT JOIN STUDENT_GRADE AS sg
+      ON s.StudentID = sg.StudentID
+     AND d.DeliverableID = sg.DeliverableID
+    WHERE sg.GradeID IS NULL
+    GROUP BY s.StudentID
+)
+SELECT *
+FROM MissingGrades;
+</code></pre>
+<h3>Step 2: Compute Score Averages</h3>
+<pre><code class="language-sql">WITH ScoreAverages AS (
+    SELECT StudentID,
+           AVG(Score) AS AverageScore
+    FROM STUDENT_GRADE
+    GROUP BY StudentID
+)
+SELECT *
+FROM ScoreAverages;
+</code></pre>
+<h3>Step 3: Compute Attendance Rates</h3>
+<pre><code class="language-sql">WITH AttendanceRates AS (
+    SELECT StudentID,
+           100.0 * SUM(CASE WHEN Attended = 1 THEN 1 ELSE 0 END) / COUNT(*) AS AttendanceRate
+    FROM ATTENDANCE
+    GROUP BY StudentID
+)
+SELECT *
+FROM AttendanceRates;
+</code></pre>
+<h3>Step 4: Combine the Stages</h3>
+<pre><code class="language-sql">WITH MissingGrades AS (
+    SELECT s.StudentID,
+           COUNT(*) AS MissingGradeCount
+    FROM STUDENT AS s
+    CROSS JOIN DELIVERABLE AS d
+    LEFT JOIN STUDENT_GRADE AS sg
+      ON s.StudentID = sg.StudentID
+     AND d.DeliverableID = sg.DeliverableID
+    WHERE sg.GradeID IS NULL
+    GROUP BY s.StudentID
+),
+ScoreAverages AS (
+    SELECT StudentID,
+           AVG(Score) AS AverageScore
+    FROM STUDENT_GRADE
+    GROUP BY StudentID
+),
+AttendanceRates AS (
+    SELECT StudentID,
+           100.0 * SUM(CASE WHEN Attended = 1 THEN 1 ELSE 0 END) / COUNT(*) AS AttendanceRate
+    FROM ATTENDANCE
+    GROUP BY StudentID
+)
+SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       ROUND(COALESCE(sa.AverageScore, 0), 2) AS AverageScore,
+       COALESCE(mg.MissingGradeCount, 0) AS MissingGradeCount,
+       ROUND(COALESCE(ar.AttendanceRate, 0), 1) AS AttendanceRate,
+       CASE
+           WHEN COALESCE(sa.AverageScore, 0) &lt; 70
+             OR COALESCE(ar.AttendanceRate, 0) &lt; 70
+             OR COALESCE(mg.MissingGradeCount, 0) &gt;= 3
+           THEN 'High Risk'
+           WHEN COALESCE(sa.AverageScore, 0) &lt; 80
+             OR COALESCE(ar.AttendanceRate, 0) &lt; 80
+             OR COALESCE(mg.MissingGradeCount, 0) &gt;= 1
+           THEN 'Needs Attention'
+           ELSE 'On Track'
+       END AS RiskCategory
+FROM STUDENT AS s
+LEFT JOIN ScoreAverages AS sa
+  ON s.StudentID = sa.StudentID
+LEFT JOIN MissingGrades AS mg
+  ON s.StudentID = mg.StudentID
+LEFT JOIN AttendanceRates AS ar
+  ON s.StudentID = ar.StudentID
+ORDER BY RiskCategory, AverageScore ASC;
+</code></pre>
+<h3>Reading the Query</h3>
+<p>This query is long, but it is not mysterious.</p>
+<table>
+<thead>
+<tr>
+<th>CTE</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MissingGrades</code></td>
+<td>Counts expected student-deliverable pairs with no grade.</td>
+</tr>
+<tr>
+<td><code>ScoreAverages</code></td>
+<td>Calculates each student's average score.</td>
+</tr>
+<tr>
+<td><code>AttendanceRates</code></td>
+<td>Calculates each student's attendance percentage.</td>
+</tr>
+<tr>
+<td>Final <code>SELECT</code></td>
+<td>Joins the pieces and labels each student by risk category.</td>
+</tr>
+</tbody>
+</table>
+<p>This is what advanced SQL looks like in practice: not a single clever trick, but a readable pipeline of smaller logical steps.</p>
+<h4>Key Takeaway</h4>
+<p>Advanced SQL helps transform normalized data into actionable reports without giving up data integrity.</p>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ul>
+<li>Advanced SQL extends basic query logic into reusable analysis and reporting workflows.</li>
+<li>A query should begin with a clear business question.</li>
+<li>The main event table often determines the structure of the query.</li>
+<li>Normalized storage requires joins, but it produces cleaner and more trustworthy reporting.</li>
+<li>Diagnostic SQL can reveal redundancy, inconsistency, duplicates, impossible values, and orphan records.</li>
+</ul>
+<h3>Query Patterns</h3>
+<ul>
+<li><code>INNER JOIN</code> returns matched records.</li>
+<li><code>LEFT JOIN</code> preserves all rows from the left table and helps identify missing matches.</li>
+<li><code>CROSS JOIN</code> is useful for creating expected combinations, such as every student paired with every deliverable.</li>
+<li><code>GROUP BY</code> summarizes rows into groups.</li>
+<li><code>HAVING</code> filters groups after aggregation.</li>
+<li>Conditional aggregation uses <code>CASE</code> inside aggregate functions to count or summarize selected rows.</li>
+<li>Window functions calculate rankings, running totals, and moving averages while preserving detail rows.</li>
+<li>Views, CTEs, and subqueries help manage query complexity and reuse.</li>
+</ul>
+<h3>Platform Awareness</h3>
+<ul>
+<li>Access uses functions such as <code>Nz()</code>, <code>IIf()</code>, <code>DateAdd()</code>, <code>DateDiff()</code>, <code>DatePart()</code>, <code>Date()</code>, and <code>Now()</code>.</li>
+<li>Portable SQL patterns often use <code>COALESCE()</code>, <code>CASE</code>, <code>CURRENT_DATE</code>, <code>CURRENT_TIMESTAMP</code>, and platform-specific date functions.</li>
+<li>Date syntax varies widely across systems, so the concept matters more than memorizing one dialect.</li>
+<li>Access saved queries can play a similar instructional role to SQL views, although they are not identical.</li>
+</ul>
+<h3>Practical Warnings</h3>
+<ul>
+<li>Missing scores are not automatically zero.</li>
+<li>Do not join on names when stable IDs exist.</li>
+<li>Do not average category averages unless weights are equal.</li>
+<li>Do not use <code>WHERE</code> with aggregate conditions; use <code>HAVING</code>.</li>
+<li>Do not run <code>UPDATE</code> or <code>DELETE</code> without first verifying the target rows.</li>
+<li>Do not treat long SQL queries as proof of sophistication. The best advanced SQL is readable, testable, and tied to a clear question.</li>
+</ul>
+<hr />
+<h2>Chapter Summary</h2>
+<p>Chapter 9 moved SQL from basic retrieval into advanced analysis and reporting. The chapter began by reframing SQL as a way to support business questions, not merely return rows. You reviewed the Grading Database schema and learned how its normalized structure shapes query design.</p>
+<p>The chapter then showed how SQL can diagnose data problems. Queries can reveal repeated values, conflicting emails, inconsistent deliverable definitions, duplicate grade records, invalid scores, and orphaned rows. These diagnostic patterns help determine whether a database is trustworthy before reports are built on top of it.</p>
+<p>You then used advanced join patterns to reconstruct gradebook reports, identify missing work, connect attendance to schedules, and preserve unmatched records when needed. From there, the chapter moved into analytical SQL: aggregation, <code>HAVING</code>, conditional counts, score bands, attendance rates, and weighted-grade calculations. These examples showed how SQL can turn raw rows into metrics and decision support.</p>
+<p>The chapter also addressed platform differences. Access functions such as <code>Nz()</code>, <code>IIf()</code>, <code>DateAdd()</code>, <code>DateDiff()</code>, and <code>DatePart()</code> are useful in Access-based workflows, while portable SQL relies on patterns such as <code>COALESCE()</code>, <code>CASE</code>, and platform-specific date functions. Understanding the concept behind each function matters more than memorizing one system's syntax.</p>
+<p>Finally, the chapter introduced window functions, views, CTEs, subqueries, <code>UNION</code>, and safe update/delete workflows. The integrated at-risk student report showed how these ideas can work together in a readable query pipeline.</p>
+<p>The main lesson is simple: advanced SQL is not about making queries complicated. It is about making data work reliable, explainable, and useful for decisions.</p>
+<hr />
+<h2>Review Questions</h2>
+<ol>
+<li>What makes SQL “advanced” in this chapter?</li>
+<li>Why should an advanced query begin with a business question?</li>
+<li>What is the difference between the main event table and context tables?</li>
+<li>How can SQL detect conflicting values in a flat table?</li>
+<li>Why is <code>(StudentID, DeliverableID)</code> an important business-rule combination in <code>STUDENT_GRADE</code>?</li>
+<li>When should you use <code>LEFT JOIN</code> instead of <code>INNER JOIN</code>?</li>
+<li>Why is <code>CROSS JOIN</code> useful for finding missing grades?</li>
+<li>What is the difference between <code>WHERE</code> and <code>HAVING</code>?</li>
+<li>Why is a missing score not automatically the same as a score of zero?</li>
+<li>What is the difference between Access <code>Nz()</code> and SQL <code>COALESCE()</code>?</li>
+<li>What is the difference between Access <code>IIf()</code> and SQL <code>CASE</code>?</li>
+<li>Why do date functions vary across SQL platforms?</li>
+<li>Why should grading weights be stored in a table?</li>
+<li>What problem do window functions solve that <code>GROUP BY</code> cannot solve as easily?</li>
+<li>When would you use a view instead of a CTE?</li>
+<li>What is the safest workflow before running an <code>UPDATE</code> or <code>DELETE</code> statement?</li>
+<li>Why are reusable query artifacts important for reporting and dashboards?</li>
+<li>How does the integrated at-risk student report combine multiple advanced SQL ideas?</li>
+</ol>
+<hr />
+<h2>Suggested Figures</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Figure</th>
+<th>Suggested Placement</th>
+<th>Caption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">Figure 9.1</td>
+<td>After Chapter Roadmap</td>
+<td>Advanced SQL as the bridge from normalized storage to reporting and decisions.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.2</td>
+<td>Section 9.3</td>
+<td>Diagnostic queries reveal redundancy, conflicts, missing values, and invalid records.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.3</td>
+<td>Section 9.4</td>
+<td><code>CROSS JOIN</code> plus <code>LEFT JOIN</code> creates expected student-deliverable pairs and finds missing grades.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.4</td>
+<td>Section 9.6</td>
+<td>Aggregation turns detail rows into performance metrics.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.5</td>
+<td>Section 9.7</td>
+<td>Access, SQLite, PostgreSQL, and SQL Server date functions compared.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.6</td>
+<td>Section 9.8</td>
+<td>Weighted-grade calculation using category averages and a weight table.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.7</td>
+<td>Section 9.9</td>
+<td><code>GROUP BY</code> collapses rows; window functions preserve rows while adding analytical values.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.8</td>
+<td>Section 9.10</td>
+<td>Views, CTEs, and subqueries as different levels of reusable query logic.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Figure 9.9</td>
+<td>Section 9.12</td>
+<td>At-risk student reporting pipeline built from missing grades, averages, and attendance rates.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>References</h2>
+<p>Connolly, T., &amp; Begg, C. (2015). <em>Database systems: A practical approach to design, implementation, and management</em> (6th ed.). Pearson.</p>
+<p>Date, C. J. (2004). <em>An introduction to database systems</em> (8th ed.). Pearson/Addison Wesley.</p>
+<p>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of database systems</em> (7th ed.). Pearson.</p>
+<p>Hoffer, J. A., Venkataraman, R., &amp; Topi, H. (2019). <em>Modern database management</em> (13th ed.). Pearson.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+<p>Silberschatz, A., Korth, H. F., &amp; Sudarshan, S. (2020). <em>Database system concepts</em> (7th ed.). McGraw-Hill Education.</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build: Advanced SQL Queries</h2>
+                  <p><img alt="Let's Build" src="/_content/BITM330-Book-draft/chapter-drafts/.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif&gt;" /></p>
+<h2>Overview</h2>
+<p>These exercises extend the Grading Database you built in Chapter 5's Let's Build activity. Each problem applies a concept from Chapter 8 to the seven-table schema (<code>STUDENT</code>, <code>DELIVERABLE</code>, <code>STUDENT_GRADE</code>, <code>ASSIGNMENT</code>, <code>SCHEDULE</code>, <code>ATTENDANCE</code>, <code>GRADE_SCALE</code>). Work in SQLite Online or Supabase -- specify which platform you are using if syntax differs.</p>
+<p><strong>What you will need:</strong>
+- The Grading Database from Chapter 5 (populated with sample data)
+- A browser with <a href="https://sqliteonline.com/">sqliteonline.com</a> or your Supabase project</p>
+<hr />
+<h2>Exercise 1: Diagnostic Query -- Spelling Inconsistencies</h2>
+<p><strong>Objective:</strong> Practice using diagnostic queries to detect data quality problems before normalization.</p>
+<p><strong>Scenario:</strong> Imagine that <code>GRADES_FLAT</code> (from Section 8.1) contains deliverables whose <code>Topic</code> field was entered inconsistently -- for example, "Database Basics" vs. "database basics" vs. "DB Basics."</p>
+<p><strong>Task:</strong> Write a query against the <code>DELIVERABLE</code> table that finds any <code>Type</code> + <code>DeliverableNumber</code> combination where the <code>Topic</code> appears in more than one distinct form.</p>
+<p><strong>Hint:</strong> Use <code>GROUP BY</code>, <code>COUNT(DISTINCT)</code>, and <code>HAVING</code>. Consider whether case sensitivity matters in your platform.</p>
+<details><summary>Solution</summary>
+
+
+<pre><code class="language-sql">SELECT Type, DeliverableNumber,
+       COUNT(DISTINCT Topic) AS TopicVariations,
+       GROUP_CONCAT(DISTINCT Topic) AS AllTopics
+FROM DELIVERABLE
+GROUP BY Type, DeliverableNumber
+HAVING COUNT(DISTINCT Topic) &gt; 1;
+</code></pre>
+
+
+In PostgreSQL, use `STRING_AGG(DISTINCT Topic, ', ')` instead of `GROUP_CONCAT`.
+
+If the Grading Database data is clean, this returns zero rows -- which is the expected result for well-maintained data.
+
+</details>
+
+<hr />
+<h2>Exercise 2: CTE Pipeline -- Weighted Final Grades with Risk Flags</h2>
+<p><strong>Objective:</strong> Build a multi-stage CTE that computes weighted final grades, assigns letter grades, and flags at-risk students.</p>
+<p><strong>Task:</strong> Write a single query with three CTE stages:
+1. <strong>CategoryAverages</strong> -- Compute each student's average score per assignment type (<code>Quiz</code>, <code>Exam</code>, <code>Project</code>).
+2. <strong>WeightedGrades</strong> -- Multiply each category average by its weight (Quiz = 0.20, Exam = 0.40, Project = 0.40) and sum to produce a <code>WeightedFinalGrade</code>.
+3. <strong>FlaggedStudents</strong> -- Assign a letter grade and a risk flag (<code>At Risk</code> if below 70, <code>Needs Attention</code> if below 80, <code>On Track</code> otherwise).</p>
+<p>The final <code>SELECT</code> should return: <code>StudentName</code>, <code>WeightedFinalGrade</code>, <code>LetterGrade</code>, <code>RiskFlag</code>, ordered by grade ascending.</p>
+<p><strong>Hint:</strong> You will need to join <code>STUDENT_GRADE</code> to <code>DELIVERABLE</code> (for <code>Type</code>) in stage 1. Stage 2 can use hard-coded weights or a <code>GRADE_WEIGHT</code> table if you created one.</p>
+<details><summary>Solution</summary>
+
+
+<pre><code class="language-sql">WITH CategoryAverages AS (
+    SELECT sg.StudentID, d.Type,
+           AVG(sg.Score) AS TypeAverage
+    FROM STUDENT_GRADE sg
+    JOIN DELIVERABLE d ON sg.DeliverableID = d.DeliverableID
+    GROUP BY sg.StudentID, d.Type
+),
+WeightedGrades AS (
+    SELECT ca.StudentID,
+           ROUND(
+               SUM(ca.TypeAverage * CASE ca.Type
+                   WHEN 'Quiz' THEN 0.20
+                   WHEN 'Exam' THEN 0.40
+                   WHEN 'Project' THEN 0.40
+                   ELSE 0
+               END), 2
+           ) AS WeightedFinalGrade
+    FROM CategoryAverages ca
+    GROUP BY ca.StudentID
+),
+FlaggedStudents AS (
+    SELECT wg.StudentID, wg.WeightedFinalGrade,
+           CASE
+               WHEN wg.WeightedFinalGrade &gt;= 90 THEN 'A'
+               WHEN wg.WeightedFinalGrade &gt;= 80 THEN 'B'
+               WHEN wg.WeightedFinalGrade &gt;= 70 THEN 'C'
+               WHEN wg.WeightedFinalGrade &gt;= 60 THEN 'D'
+               ELSE 'F'
+           END AS LetterGrade,
+           CASE
+               WHEN wg.WeightedFinalGrade &lt; 70 THEN 'At Risk'
+               WHEN wg.WeightedFinalGrade &lt; 80 THEN 'Needs Attention'
+               ELSE 'On Track'
+           END AS RiskFlag
+    FROM WeightedGrades wg
+)
+SELECT s.FirstName || ' ' || s.LastName AS StudentName,
+       fs.WeightedFinalGrade,
+       fs.LetterGrade,
+       fs.RiskFlag
+FROM FlaggedStudents fs
+JOIN STUDENT s ON fs.StudentID = s.StudentID
+ORDER BY fs.WeightedFinalGrade ASC;
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2>Exercise 3: View -- Attendance Rate Alongside Grade Average</h2>
+<p><strong>Objective:</strong> Create a view that combines attendance and grade data for each student.</p>
+<p><strong>Task:</strong> Create a view called <code>StudentPerformanceDashboard</code> that returns:
+- <code>StudentName</code> (first + last)
+- <code>AttendanceRate</code> (percentage of classes attended, rounded to 1 decimal)
+- <code>AverageScore</code> (rounded to 2 decimals)
+- <code>SubmissionCount</code> (number of graded deliverables)</p>
+<p>Then query the view to list all students ordered by attendance rate descending.</p>
+<p><strong>Hint:</strong> You will need to aggregate from both <code>ATTENDANCE</code> and <code>STUDENT_GRADE</code>, then join the results. A CTE or subquery approach within the view works well.</p>
+<details><summary>Solution</summary>
+
+
+<pre><code class="language-sql">CREATE VIEW StudentPerformanceDashboard AS
+SELECT s.FirstName || ' ' || s.LastName AS StudentName,
+       ROUND(100.0 * SUM(a.Attended) / COUNT(DISTINCT a.AttendanceID), 1) AS AttendanceRate,
+       ROUND(AVG(sg.Score), 2) AS AverageScore,
+       COUNT(DISTINCT sg.GradeID) AS SubmissionCount
+FROM STUDENT s
+LEFT JOIN ATTENDANCE a ON s.StudentID = a.StudentID
+LEFT JOIN STUDENT_GRADE sg ON s.StudentID = sg.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName;
+
+-- Query the view
+SELECT * FROM StudentPerformanceDashboard
+ORDER BY AttendanceRate DESC;
+</code></pre>
+
+
+The `LEFT JOIN` ensures students with no attendance or no grades still appear in the view.
+
+</details>
+
+<hr />
+<h2>Exercise 4: Window Function -- Running Quiz Average</h2>
+<p><strong>Objective:</strong> Use a window function to show each student's score on each quiz alongside a running average of their quiz scores.</p>
+<p><strong>Task:</strong> Write a query that returns:
+- <code>StudentID</code>
+- <code>DeliverableNumber</code> (quiz number)
+- <code>Score</code>
+- <code>RunningQuizAvg</code> -- the average of all quiz scores for that student up to and including the current quiz</p>
+<p>Filter to only quizzes (<code>Type = 'Quiz'</code>). Order by <code>StudentID</code>, then <code>DeliverableNumber</code>.</p>
+<p><strong>Hint:</strong> Use <code>AVG() OVER (PARTITION BY ... ORDER BY ... ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)</code>.</p>
+<details><summary>Solution</summary>
+
+
+<pre><code class="language-sql">SELECT sg.StudentID,
+       d.DeliverableNumber,
+       sg.Score,
+       ROUND(AVG(sg.Score) OVER (
+           PARTITION BY sg.StudentID
+           ORDER BY d.DeliverableNumber
+           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ), 2) AS RunningQuizAvg
+FROM STUDENT_GRADE sg
+JOIN DELIVERABLE d ON sg.DeliverableID = d.DeliverableID
+WHERE d.Type = 'Quiz'
+ORDER BY sg.StudentID, d.DeliverableNumber;
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2>Exercise 5: Transaction -- Curve Exam Scores Safely</h2>
+<p><strong>Objective:</strong> Practice using transactions to apply a bulk grade change with verification before committing.</p>
+<p><strong>Task:</strong> Write a transaction that:
+1. Adds 3 bonus points to all exam scores (cap at 100).
+2. Verifies that no score exceeds 100 after the update.
+3. Commits if verification passes; includes a comment showing where you would <code>ROLLBACK</code> if it does not.</p>
+<p><strong>Hint:</strong> Use <code>CASE</code> inside the <code>UPDATE</code> to cap scores. Use a <code>SELECT COUNT(*)</code> to verify.</p>
+<details><summary>Solution</summary>
+
+
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+-- Apply 3-point curve to all exam scores, capped at 100
+UPDATE STUDENT_GRADE
+SET Score = CASE
+    WHEN Score + 3 &gt; 100 THEN 100
+    ELSE Score + 3
+END
+WHERE DeliverableID IN (
+    SELECT DeliverableID FROM DELIVERABLE WHERE Type = 'Exam'
+);
+
+-- Verify no scores exceed 100
+SELECT COUNT(*) AS OverflowCount
+FROM STUDENT_GRADE
+WHERE Score &gt; 100;
+
+-- If OverflowCount = 0, commit:
+COMMIT;
+-- If OverflowCount &gt; 0, roll back instead:
+-- ROLLBACK;
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2>Next Steps</h2>
+<p>These exercises cover the core patterns from Chapter 8. To extend your practice:</p>
+<ul>
+<li>Modify Exercise 2 to read weights from a <code>GRADE_WEIGHT</code> table instead of hard-coding them.</li>
+<li>Add a trigger (Section 8.25) that logs every grade change made during Exercise 5 to a <code>GRADE_AUDIT</code> table.</li>
+<li>Create a view that combines the outputs of Exercises 3 and 4 into a single student performance report.</li>
+</ul>
+<p>These activities connect directly to the database design work in Chapter 10 and the reporting pipelines in Chapter 12.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 8: Advanced SQL Queries — Term Treasury</h2>
+                  <h2>Essential Vocabulary</h2>
+<p>Understand the key terms used throughout this chapter.</p>
+<h2>Chapter-End Core Terms</h2>
+<p>This file now serves as the companion glossary for the edited chapter. If you want the shortest must-know set to mirror a chapter-end key terms section, start with these terms:</p>
+<ul>
+<li><strong>Anomaly</strong></li>
+<li><strong>Normalization</strong></li>
+<li><strong>Natural Key</strong></li>
+<li><strong>Surrogate Key</strong></li>
+<li><strong>Referential Integrity</strong></li>
+<li><strong>Junction Table</strong></li>
+<li><strong>View</strong></li>
+<li><strong>CTE (Common Table Expression)</strong></li>
+<li><strong>Scalar Subquery</strong></li>
+<li><strong>Correlated Subquery</strong></li>
+<li><strong>Full Table Scan</strong></li>
+<li><strong>Transaction</strong></li>
+<li><strong>Trigger</strong></li>
+<li><strong>Audit Trail</strong></li>
+<li><strong>Weighted Average</strong></li>
+<li><strong>Window Function</strong></li>
+</ul>
+<h3>A</h3>
+<ul>
+<li><strong>Aggregate Expression</strong>: A function (AVG, SUM, MIN, MAX, COUNT) summarizing values across a column or group, producing a single result from multiple inputs.</li>
+<li><strong>Alias</strong>: A temporary name given to a column or table using <code>AS</code> for readability.</li>
+<li><strong>Analytical Clarity</strong>: Knowing which questions to ask of data and how to structure them precisely in SQL.</li>
+<li><strong>Anomaly</strong>: A data problem caused by poor schema design: update, insertion, or deletion.</li>
+<li><strong>Arithmetic Expression</strong>: A calculation within a query using +, -, *, / to compute new values (bonus points, scaled scores, weighted calculations).</li>
+<li><strong>Associative Entity</strong>: Synonym for junction/intersection table resolving a many-to-many relationship.</li>
+<li><strong>Audit Trail</strong>: A record of all changes made to data, typically maintained by database triggers.</li>
+</ul>
+<h3>B</h3>
+<ul>
+<li><strong>Business Logic</strong>: Rules, policies, and calculations (grading rules, thresholds, averages, trends) expressed in SQL precisely and repeatably.</li>
+</ul>
+<h3>C</h3>
+<ul>
+<li><strong>CASE Expression</strong>: Translates raw values into meaningful classifications (numeric scores to letter grades); conditional logic within queries.</li>
+<li><strong>CAST</strong>: Converts a value from one data type to another; important for correct arithmetic like averages.</li>
+<li><strong>CHECK Constraint</strong>: Ensures values fall within a valid range (e.g., scores 0-100).</li>
+<li><strong>COALESCE</strong>: Returns the first non-NULL value from a list; replaces missing values with defaults.</li>
+<li><strong>Composite Index</strong>: An index built on two or more columns for queries filtering or joining on multiple columns.</li>
+<li><strong>Composite Key</strong>: A primary or unique key made of two or more columns working together.</li>
+<li><strong>Conditional Aggregation</strong>: CASE expressions inside aggregate functions (COUNT, SUM) to count or sum only rows meeting conditions; essential for KPI reporting.</li>
+<li><strong>Correlated Subquery</strong>: A subquery referencing the outer query's columns, re-executing for each outer row.</li>
+<li><strong>CREATE TABLE AS SELECT (CTAS)</strong>: Creates a new table populated from query results in one step; supported by PostgreSQL and SQLite.</li>
+<li><strong>CROSS JOIN</strong>: Produces every possible combination of rows from two tables (Cartesian product).</li>
+<li><strong>CTE (Common Table Expression)</strong>: A named temporary result set defined with <code>WITH</code>; readable multi-stage queries. Supported in SQLite 3.8.3+, PostgreSQL, SQL Server, MySQL 8+; not Access.</li>
+<li><strong>Cumulative Score</strong>: A running total computed with SUM() OVER, showing accumulated performance.</li>
+</ul>
+<h3>D</h3>
+<ul>
+<li><strong>Dashboard</strong>: A visual reporting interface relying on views and aggregation queries built from SQL.</li>
+<li><strong>Data Cleaning</strong>: Trimming whitespace, standardizing case, handling NULLs, validating patterns, and casting types before analysis.</li>
+<li><strong>Data Governance</strong>: Policies, constraints, audit trails, and reproducibility standards ensuring data quality.</li>
+<li><strong>Data Migration</strong>: Moving data from one structure to another using INSERT INTO...SELECT during normalization.</li>
+<li><strong>Data-Driven Normalization</strong>: Transforming an overloaded table into a clean relational schema using SQL queries.</li>
+<li><strong>De-Duplication</strong>: Removing duplicate records during migration using SELECT DISTINCT.</li>
+<li><strong>Decision-Support System</strong>: A system depending on joins, window functions, and reusable query layers to surface patterns.</li>
+<li><strong>Deletion Anomaly</strong>: Deleting rows destroys unrelated facts.</li>
+<li><strong>DENSE_RANK()</strong>: A window function assigning rankings without gaps for ties (1, 2, 2, 3).</li>
+<li><strong>Derived Table</strong>: A subquery in the FROM clause creating a temporary result set.</li>
+<li><strong>Diagnostic Query</strong>: A SQL query detecting problems (duplication, inconsistency, ambiguity) before normalization.</li>
+<li><strong>DISTINCT</strong>: Eliminates duplicate rows; the workhorse for entity extraction during normalization.</li>
+<li><strong>DROP TABLE</strong>: Permanently removes a table and all its data.</li>
+</ul>
+<h3>E</h3>
+<ul>
+<li><strong>Engineering Discipline</strong>: Making queries reusable, performant, and safe — a hallmark of advanced SQL.</li>
+<li><strong>Entity Extraction</strong>: Identifying and isolating distinct entities from a flat table using DISTINCT or GROUP BY.</li>
+<li><strong>EXISTS</strong>: Returns true if a subquery returns at least one row; often faster than IN for large datasets.</li>
+<li><strong>EXPLAIN / EXPLAIN QUERY PLAN</strong>: Shows the database engine's execution strategy, revealing whether indexes are used.</li>
+</ul>
+<h3>F</h3>
+<ul>
+<li><strong>Flat Table</strong>: A single table storing all data; "a report masquerading as a database."</li>
+<li><strong>Foreign Key</strong>: References the primary key of another table, enforcing referential integrity.</li>
+<li><strong>Full Table Scan</strong>: Reading every row to find matches — avoided by indexing.</li>
+</ul>
+<h3>G</h3>
+<ul>
+<li><strong>GROUP BY</strong>: Groups rows sharing common values for aggregate calculations; workhorse for entity extraction.</li>
+<li><strong>GROUP_CONCAT / STRING_AGG</strong>: Concatenates values from grouped rows into a single string.</li>
+</ul>
+<h3>H</h3>
+<ul>
+<li><strong>HAVING</strong>: Filters groups after aggregation, unlike WHERE which filters before.</li>
+</ul>
+<h3>I</h3>
+<ul>
+<li><strong>IN Operator</strong>: Filters rows where a value matches any in a returned set.</li>
+<li><strong>Index</strong>: A data structure speeding up row lookups at the cost of additional storage and slower writes.</li>
+<li><strong>INNER JOIN</strong>: Returns only rows with matches in both tables.</li>
+<li><strong>INSERT INTO...SELECT</strong>: Populates a table with query results; the workhorse of data migration.</li>
+<li><strong>Insertion Anomaly</strong>: Cannot record a fact without providing unrelated data.</li>
+<li><strong>Integer Division</strong>: A pitfall where dividing integers truncates results (88/3 = 29); avoided by casting to REAL or multiplying by 1.0.</li>
+<li><strong>Intersection Table</strong>: Resolves a many-to-many relationship; also called junction table or associative entity.</li>
+</ul>
+<h3>J</h3>
+<ul>
+<li><strong>Junction Table</strong>: Synonym for intersection table.</li>
+</ul>
+<h3>K</h3>
+<ul>
+<li><strong>KPI (Key Performance Indicator)</strong>: Measurable metrics (weighted averages, attendance rates, pass/fail ratios) encoded using SQL aggregation, CASE, and business logic.</li>
+</ul>
+<h3>L</h3>
+<ul>
+<li><strong>LEFT JOIN</strong>: Returns all rows from the left table with NULLs where no right-side match exists; finds what is missing.</li>
+<li><strong>LIKE</strong>: Pattern matching in strings for simple validation.</li>
+<li><strong>LIMIT</strong>: Restricts the number of rows returned.</li>
+<li><strong>LOWER / UPPER</strong>: Convert text to lowercase or uppercase for standardization.</li>
+</ul>
+<h3>M</h3>
+<ul>
+<li><strong>Many-to-Many Relationship</strong>: Entities on both sides relate to multiple instances; resolved with an intersection table.</li>
+<li><strong>Materialized View</strong>: Stores query results physically (PostgreSQL); improves read performance at freshness cost.</li>
+<li><strong>Moving Average</strong>: AVG() OVER with ROWS BETWEEN to smooth fluctuations and reveal trends.</li>
+<li><strong>Multi-Table Join</strong>: Joining three or more tables; STUDENT → STUDENT_GRADE → DELIVERABLE is the "relational spine."</li>
+</ul>
+<h3>N</h3>
+<ul>
+<li><strong>Natural Key</strong>: A key with inherent business meaning (university-assigned StudentID).</li>
+<li><strong>Non-Correlated Subquery</strong>: Runs once independently, producing a single result for the outer query.</li>
+<li><strong>Normalization</strong>: Organizing data to eliminate redundancy and anomalies by separating entities into tables connected by keys.</li>
+<li><strong>NOT NULL Constraint</strong>: Requires a column to always contain a value.</li>
+<li><strong>NULLIF</strong>: Returns NULL if two values are equal; avoids division-by-zero errors.</li>
+</ul>
+<h3>O</h3>
+<ul>
+<li><strong>ORDER BY</strong>: Sorts results in ascending or descending order.</li>
+<li><strong>Orphaned Record</strong>: A row referencing a nonexistent parent — a referential integrity failure.</li>
+<li><strong>OVER Clause</strong>: Defines the window a window function considers, with optional PARTITION BY and ORDER BY.</li>
+</ul>
+<h3>P</h3>
+<ul>
+<li><strong>PARTITION BY</strong>: Divides rows into groups without collapsing them, resetting calculations per partition.</li>
+<li><strong>Portability (SQL)</strong>: SQL logic works across multiple platforms with the same relational thinking.</li>
+<li><strong>PRIMARY KEY</strong>: Ensures every record is uniquely identifiable; basis for referential integrity.</li>
+</ul>
+<h3>Q</h3>
+<ul>
+<li><strong>Query Plan</strong>: The engine's execution strategy viewable with EXPLAIN.</li>
+</ul>
+<h3>R</h3>
+<ul>
+<li><strong>RANK()</strong>: Assigns rankings with gaps for ties (1, 2, 2, 4).</li>
+<li><strong>Referential Integrity</strong>: Foreign key values always point to existing parent records.</li>
+<li><strong>Relational Spine</strong>: The central join pathway; in the grading database: STUDENT → STUDENT_GRADE → DELIVERABLE.</li>
+<li><strong>Relational Thinking</strong>: Seeing data as connected entities rather than isolated rows.</li>
+<li><strong>ROLLBACK</strong>: Undoes all changes within a transaction, restoring the prior state.</li>
+<li><strong>ROUND</strong>: Rounds a numeric value to specified decimal places.</li>
+<li><strong>ROW_NUMBER()</strong>: Assigns unique sequential positions regardless of ties (1, 2, 3, 4).</li>
+</ul>
+<h3>S</h3>
+<ul>
+<li><strong>Scalar Subquery</strong>: Returns exactly one value, used in SELECT for computed comparison columns.</li>
+<li><strong>Schema Refactoring</strong>: Using SQL to restructure an existing schema — extracting entities, creating tables, migrating data.</li>
+<li><strong>Self-Join</strong>: A table joined to itself for comparing rows within the same table.</li>
+<li><strong>Spread</strong>: Difference between highest and lowest scores (MAX - MIN), revealing variability.</li>
+<li><strong>Stored Procedure</strong>: A precompiled set of SQL statements stored in the database.</li>
+<li><strong>Subquery</strong>: A SELECT nested inside another SQL statement, enabling multi-step reasoning.</li>
+<li><strong>Surrogate Key</strong>: An auto-generated identifier with no business meaning, guaranteed unique.</li>
+</ul>
+<h3>T</h3>
+<ul>
+<li><strong>Transaction</strong>: SQL operations executing atomically (all or none). Uses BEGIN, COMMIT, ROLLBACK.</li>
+<li><strong>TRIM</strong>: Removes leading and trailing whitespace; critical for correct JOINs and GROUP BY.</li>
+<li><strong>Trigger</strong>: A stored procedure executing automatically on data changes (INSERT, UPDATE, DELETE).</li>
+</ul>
+<h3>U</h3>
+<ul>
+<li><strong>UNION</strong>: Combines multiple SELECTs, removing duplicates.</li>
+<li><strong>UNION ALL</strong>: Preserves all rows including duplicates; faster.</li>
+<li><strong>UNIQUE Constraint</strong>: No duplicate values in a column or combination.</li>
+<li><strong>Update Anomaly</strong>: Changing a fact requires updating many rows; missing some creates inconsistency.</li>
+<li><strong>UPDATE</strong>: Modifies existing data; always requires WHERE to avoid mass changes.</li>
+</ul>
+<h3>V</h3>
+<ul>
+<li><strong>View</strong>: A saved SQL query as a virtual table; executes fresh each time. Does not store data.</li>
+</ul>
+<h3>W</h3>
+<ul>
+<li><strong>Weighted Average</strong>: Items contribute proportionally to their weight, computed by joining scores to weight definitions.</li>
+<li><strong>Window Frame</strong>: ROWS BETWEEN clause defining which rows participate in a window calculation.</li>
+<li><strong>Window Function</strong>: Analytical function computing values (rankings, running totals, moving averages) across rows without collapsing them. Uses OVER().</li>
+</ul>
+<hr />
+<h2>Acronyms</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACID</td>
+<td>Atomicity, Consistency, Isolation, Durability</td>
+</tr>
+<tr>
+<td>ASC</td>
+<td>Ascending (sort order)</td>
+</tr>
+<tr>
+<td>AVG</td>
+<td>Average (aggregate function)</td>
+</tr>
+<tr>
+<td>BITM</td>
+<td>Business IT Management</td>
+</tr>
+<tr>
+<td>CTAS</td>
+<td>CREATE TABLE AS SELECT</td>
+</tr>
+<tr>
+<td>CTE</td>
+<td>Common Table Expression</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>Database</td>
+</tr>
+<tr>
+<td>DBMS</td>
+<td>Database Management System</td>
+</tr>
+<tr>
+<td>DDL</td>
+<td>Data Definition Language</td>
+</tr>
+<tr>
+<td>DML</td>
+<td>Data Manipulation Language</td>
+</tr>
+<tr>
+<td>ER</td>
+<td>Entity-Relationship</td>
+</tr>
+<tr>
+<td>IS</td>
+<td>Information Systems</td>
+</tr>
+<tr>
+<td>KPI</td>
+<td>Key Performance Indicator</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>Maximum (aggregate function)</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>Minimum (aggregate function)</td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>Marker for missing or unknown data</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>Structured Query Language</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>Sum (aggregate function)</td>
+</tr>
+<tr>
+<td>UUID</td>
+<td>Universally Unique Identifier</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ul>
+<li><strong>Advanced SQL Is Relational Thinking, Not Memorization</strong>: The same SELECT, FROM, WHERE applied to harder problems. The shift is from retrieving data to transforming, protecting, and optimizing it.</li>
+<li><strong>SQL Is a Business Competency</strong>: Dashboards, reports, and analytics platforms rely on SQL underneath. Understanding reusable queries and normalized tables gives control over how information is interpreted.</li>
+<li><strong>SQL Logic Is Portable</strong>: Same queries work across SQLite, PostgreSQL, SQL Server, and cloud platforms.</li>
+<li><strong>Three Pillars of Advanced SQL</strong>: Relational thinking (connected entities), Analytical clarity (right questions, right structure), Engineering discipline (reusable, performant, safe queries).</li>
+<li><strong>Normalization Is a Practice</strong>: Real normalization happens after data exists, using SQL as the primary cleanup tool.</li>
+<li><strong>Clean First, Constrain Second</strong>: Migrate and verify data before adding keys and constraints — messy data blocks constraint enforcement.</li>
+<li><strong>If SQL Can Detect Inconsistency, Your Design Is Too Permissive</strong>: Diagnostic queries reveal structural flaws before they surface in reports.</li>
+</ul>
+<h3>Concept Overview</h3>
+<ul>
+<li><strong>The Three Anomalies</strong>: Update (many-row changes), Insertion (can't add without unrelated data), Deletion (destroying facts). All cured by normalization.</li>
+<li><strong>Entity Extraction</strong>: Columns repeating together represent separate entities that need their own tables. DISTINCT and GROUP BY are the workhorses.</li>
+<li><strong>The Relational Spine</strong>: STUDENT → STUDENT_GRADE → DELIVERABLE — the central join pathway. STUDENT_GRADE bridges both parents.</li>
+<li><strong>Reusable SQL Artifacts</strong>: Subqueries (localized logic), CTEs (readable multi-step), Views (shared long-term reporting).</li>
+<li><strong>Window Functions</strong>: Rankings, running totals, moving averages, individual-vs-group comparisons — without collapsing rows.</li>
+<li><strong>Conditional Logic (CASE)</strong>: Translates numeric values into business categories. Embeddable in aggregates for conditional counting.</li>
+<li><strong>Weighted Grade Calculation</strong>: Join scores to weights, scale by weight, sum for final grade.</li>
+<li><strong>Transaction Safety (ACID)</strong>: Atomicity (all or nothing), Consistency (valid states), Isolation (no interference), Durability (survives crashes).</li>
+<li><strong>Indexes as Trade-offs</strong>: Speed reads but slow writes. Worth it for frequently queried, rarely modified tables.</li>
+<li><strong>Triggers for Automation</strong>: Enforce business rules (score validation) and maintain audit trails (logging changes).</li>
+<li><strong>Constraints as Governance</strong>: PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK are governance policies encoded in the database.</li>
+</ul>
+<h3>Application in Practice</h3>
+<ul>
+<li><strong>Diagnosing Flat-Table Problems</strong>: GROUP BY + HAVING + COUNT(DISTINCT) to detect duplication, conflicts, and spelling inconsistencies.</li>
+<li><strong>Migrating Data</strong>: INSERT INTO...SELECT with DISTINCT, JOIN for key mapping, WHERE IS NOT NULL for completeness.</li>
+<li><strong>Building a Complete Gradebook</strong>: Three-table INNER JOIN (STUDENT → STUDENT_GRADE → DELIVERABLE). Four-table with ASSIGNMENT for max points.</li>
+<li><strong>Finding Missing Submissions</strong>: CROSS JOIN all students with deliverables → LEFT JOIN to grades → WHERE Score IS NULL.</li>
+<li><strong>Performance Metrics</strong>: AVG per student/deliverable/type; COUNT for submissions; MIN/MAX for spread; HAVING for threshold flags.</li>
+<li><strong>Time-Aware Reporting</strong>: Filter by DueDate using DATE('now') or CURRENT_DATE; combine with LEFT JOIN for overdue unsubmitted work.</li>
+<li><strong>Multi-Stage CTE Pipelines</strong>: Stage 1 (averages) → Stage 2 (letter grades) → Stage 3 (at-risk flags). Final SELECT joins for names.</li>
+<li><strong>Views as Reporting Interfaces</strong>: HighPerformers, GradebookSummary, DeliverableAverages, UpcomingDeliverables.</li>
+<li><strong>Safe Data Modification</strong>: Always WHERE with UPDATE/DELETE. Transactions for bulk operations. Verify before COMMIT.</li>
+<li><strong>Audit Logging with Triggers</strong>: GRADE_AUDIT table capturing old/new scores, timestamps, and change types automatically.</li>
+</ul>
+<h3>Real-World Examples</h3>
+<ul>
+<li><strong>Flat GRADES_FLAT Table</strong>: Alice's info repeated 6 times across deliverables — "a report masquerading as a database."</li>
+<li><strong>Seven-Table Grading Schema</strong>: STUDENT, DELIVERABLE, STUDENT_GRADE, ASSIGNMENT, SCHEDULE, ATTENDANCE, GRADE_SCALE — each with its own primary key.</li>
+<li><strong>Weighted Grading</strong>: Quiz 20%, Exam 40%, Project 40%. Weights in a separate table so policy changes update one table, not rewriting queries.</li>
+<li><strong>At-Risk Student Identification</strong>: HAVING AVG(Score) &lt; 70 flags students. CASE classifies "At Risk," "Needs Attention," or "On Track."</li>
+<li><strong>Late Penalty Application</strong>: Transaction applies 10% reduction, verifies, then COMMIT or ROLLBACK.</li>
+<li><strong>Missing Submission Detection</strong>: CROSS JOIN + LEFT JOIN + WHERE IS NULL — actionable list for instructor follow-up.</li>
+<li><strong>Score Validation Trigger</strong>: Rejects INSERT of scores outside 0-100 with descriptive error messages.</li>
+<li><strong>Tool Portability</strong>: Same SQL logic runs in Supabase (cloud), SQLiteOnline (browser), and DB Browser for SQLite (desktop).</li>
+</ul>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>&lt;img src=&quot;../../_static/images/review.gif&quot; alt=&quot;Review&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Review: Advanced SQL Queries</h2>
+                  <h2>Key Concepts Review</h2>
+<p>Review the main concepts covered in this chapter to prepare for assessment.</p>
+<h3>Main Topics</h3>
+<ul>
+<li>Topic 1</li>
+<li>Topic 2</li>
+<li>Topic 3</li>
+</ul>
+<h2>Quick Reference</h2>
+<h3>Core Ideas</h3>
+<ul>
+<li>Concept A</li>
+<li>Concept B</li>
+<li>Concept C</li>
+</ul>
+<h2>Review Questions</h2>
+<ol>
+<li>Question about the main concept?</li>
+<li>Question about application?</li>
+<li>Question about implications?</li>
+</ol>
+<h2>Preparation Tips</h2>
+<ul>
+<li>Review your notes from the concepts section</li>
+<li>Complete the Let's Build activities before assessment</li>
+<li>Consult the Terms section for definitions</li>
+</ul>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>&lt;img src=&quot;../../_static/images/RAT.gif&quot; alt=&quot;RAT&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Readiness Assessment Test: Advanced SQL Queries</h2>
+                  <hr />
+<h2>Assessment Design Notes</h2>
+<h3>Bloom's Taxonomy Distribution</h3>
+<table>
+<thead>
+<tr>
+<th>Bloom's Level</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Remember</strong></td>
+<td>Q1, Q2, Q3, Q4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Understand</strong></td>
+<td>Q5, Q6, Q7, Q8</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Apply</strong></td>
+<td>Q9, Q10, Q11, Q12</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Analyze</strong></td>
+<td>Q13, Q14</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Evaluate</strong></td>
+<td>Q15</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3>AI-Resistance Strategies</h3>
+<ol>
+<li><strong>Chapter-specific framing</strong>: Questions use the chapter's grading database terms and patterns, not generic SQL trivia.</li>
+<li><strong>Plausible distractors</strong>: Wrong answers use real SQL vocabulary in subtly incorrect ways.</li>
+<li><strong>Pattern recognition over memorization</strong>: Several questions ask students to choose the right design or query pattern, not just repeat definitions.</li>
+<li><strong>Flashcard-to-application bridge</strong>: Core chapter concepts are tested in scenario form so students must connect vocabulary to actual SQL work.</li>
+</ol>
+<hr />
+<h2>Individual RAT (iRAT)</h2>
+<p>Complete this assessment individually to test your understanding of the material.</p>
+<hr />
+<h3>Multiple Choice Questions (Single Answer)</h3>
+<p><strong>Question 1</strong> <em>(Remember)</em>
+What type of anomaly occurs when deleting a row also destroys unrelated facts stored in that row?</p>
+<ul>
+<li>A. Update anomaly</li>
+<li>B. Deletion anomaly</li>
+<li>C. Referential anomaly</li>
+<li>D. Aggregation anomaly</li>
+</ul>
+<hr />
+<p><strong>Question 2</strong> <em>(Remember)</em>
+Which keyword starts a Common Table Expression?</p>
+<ul>
+<li>A. VIEW</li>
+<li>B. BEGIN</li>
+<li>C. WITH</li>
+<li>D. OVER</li>
+</ul>
+<hr />
+<p><strong>Question 3</strong> <em>(Remember)</em>
+Which table in the grading database acts as the junction table connecting students to deliverables?</p>
+<ul>
+<li>A. ASSIGNMENT</li>
+<li>B. GRADE_SCALE</li>
+<li>C. STUDENT_GRADE</li>
+<li>D. ATTENDANCE</li>
+</ul>
+<hr />
+<p><strong>Question 4</strong> <em>(Remember)</em>
+Which command saves all changes made during a transaction?</p>
+<ul>
+<li>A. SAVE</li>
+<li>B. COMMIT</li>
+<li>C. APPLY</li>
+<li>D. MERGE</li>
+</ul>
+<hr />
+<p><strong>Question 5</strong> <em>(Understand)</em>
+In a flat table, what does a query using <code>GROUP BY StudentID HAVING COUNT(DISTINCT Email) &gt; 1</code> help diagnose?</p>
+<ul>
+<li>A. Students with too many grades</li>
+<li>B. Conflicting values recorded for the same student</li>
+<li>C. Missing foreign keys in the STUDENT table</li>
+<li>D. Students who earned more than one letter grade</li>
+</ul>
+<hr />
+<p><strong>Question 6</strong> <em>(Understand)</em>
+Why does the chapter use an aggregate like <code>MIN(DueDate)</code> when extracting deliverables with <code>GROUP BY</code>?</p>
+<ul>
+<li>A. To sort results from earliest to latest</li>
+<li>B. To force the database to create an index automatically</li>
+<li>C. To choose one stable value when messy source rows contain conflicting dates</li>
+<li>D. To convert the due date into a surrogate key</li>
+</ul>
+<hr />
+<p><strong>Question 7</strong> <em>(Understand)</em>
+What is the main disadvantage of <code>CREATE TABLE AS SELECT</code> when building a final production schema?</p>
+<ul>
+<li>A. It cannot copy rows from an existing table</li>
+<li>B. It does not automatically create primary keys, foreign keys, or other constraints</li>
+<li>C. It only works in SQL Server</li>
+<li>D. It requires every column to be renamed during creation</li>
+</ul>
+<hr />
+<p><strong>Question 8</strong> <em>(Understand)</em>
+Why does the chapter recommend storing grading policy in tables such as <code>GRADE_SCALE</code> or weight tables instead of hard-coding all logic in <code>CASE</code> statements?</p>
+<ul>
+<li>A. Because policy tables eliminate the need for joins</li>
+<li>B. Because data-driven policy is easier to update, audit, and reuse across reports</li>
+<li>C. Because <code>CASE</code> expressions are invalid inside grouped queries</li>
+<li>D. Because the database cannot evaluate <code>CASE</code> expressions efficiently</li>
+</ul>
+<hr />
+<p><strong>Question 9</strong> <em>(Apply)</em>
+An instructor wants to identify missing submissions. Which query pattern from the chapter is designed for that task?</p>
+<ul>
+<li>A. <code>INNER JOIN</code> plus <code>ORDER BY</code></li>
+<li>B. <code>UNION ALL</code> between STUDENT and DELIVERABLE</li>
+<li>C. <code>CROSS JOIN</code> to generate expected pairs, <code>LEFT JOIN</code> to grades, then <code>WHERE ... IS NULL</code></li>
+<li>D. <code>GROUP BY DeliverableID HAVING COUNT(*) &gt; 1</code></li>
+</ul>
+<hr />
+<p><strong>Question 10</strong> <em>(Apply)</em>
+If a query calculates <code>88 / 3</code> and returns <code>29</code>, what fix from the chapter prevents integer truncation?</p>
+<ul>
+<li>A. Wrap the result in <code>TRIM()</code></li>
+<li>B. Cast one operand to a decimal or multiply by <code>1.0</code></li>
+<li>C. Replace the division with <code>COUNT()</code></li>
+<li>D. Use <code>ROW_NUMBER()</code> instead</li>
+</ul>
+<hr />
+<p><strong>Question 11</strong> <em>(Apply)</em>
+Which SQL pattern shows a student's score and the class average in the same row?</p>
+<ul>
+<li>A. A scalar subquery in the <code>SELECT</code> clause</li>
+<li>B. A <code>DELETE</code> followed by <code>INSERT</code></li>
+<li>C. A <code>CROSS JOIN</code> with <code>GRADE_SCALE</code></li>
+<li>D. A trigger function</li>
+</ul>
+<hr />
+<p><strong>Question 12</strong> <em>(Apply)</em>
+When filtering by date in PostgreSQL, which keyword replaces SQLite's <code>DATE('now')</code> function?</p>
+<ul>
+<li>A. NOWTEXT</li>
+<li>B. CURRENT_DATE</li>
+<li>C. TODAY()</li>
+<li>D. SYSTEM_DATE</li>
+</ul>
+<hr />
+<p><strong>Question 13</strong> <em>(Analyze)</em>
+The chapter distinguishes a composite key from the chapter's <code>UNIQUE (StudentID, DeliverableID)</code> rule. Why does it implement that rule as a composite unique constraint instead of making <code>(StudentID, DeliverableID)</code> the primary key?</p>
+<ul>
+<li>A. Because composite keys are invalid in relational databases</li>
+<li>B. Because the table already uses <code>GradeID</code> as a surrogate primary key while still enforcing one score per student per deliverable</li>
+<li>C. Because <code>UNIQUE</code> constraints are faster than primary keys in every database engine</li>
+<li>D. Because foreign keys can only point to surrogate keys</li>
+</ul>
+<hr />
+<p><strong>Question 14</strong> <em>(Analyze)</em>
+If <code>EXPLAIN QUERY PLAN</code> shows a scan of a large table instead of using an index, what should you infer?</p>
+<ul>
+<li>A. The query is being executed inside a transaction</li>
+<li>B. The database has detected duplicate rows automatically</li>
+<li>C. The database is performing a full table scan because no suitable index is being used</li>
+<li>D. The query must contain a correlated subquery</li>
+</ul>
+<hr />
+<p><strong>Question 15</strong> <em>(Evaluate)</em>
+An advisor should see student names, average score, and risk status, but not birthdays or internal audit details. Which design choice best matches the chapter's governance approach?</p>
+<ul>
+<li>A. Put all columns directly into <code>STUDENT_GRADE</code> so one query can show everything</li>
+<li>B. Create an advisor-facing view that exposes only the needed reporting columns</li>
+<li>C. Use <code>UNION ALL</code> to combine STUDENT and GRADE_AUDIT</li>
+<li>D. Remove the BIRTHDAY column from the STUDENT table permanently</li>
+</ul>
+<hr />
+<h3>Scoring</h3>
+<ul>
+<li>Score: _____ / 15</li>
+<li>Passing Score: 11 out of 15</li>
+</ul>
+<hr />
+<h2>Answer Key</h2>
+<ol>
+<li><strong>B</strong> -- A deletion anomaly occurs when removing a row also removes unrelated facts that should have been stored independently.</li>
+<li><strong>C</strong> -- A CTE begins with <code>WITH</code>.</li>
+<li><strong>C</strong> -- <code>STUDENT_GRADE</code> resolves the many-to-many relationship between students and deliverables.</li>
+<li><strong>B</strong> -- <code>COMMIT</code> makes transaction changes permanent.</li>
+<li><strong>B</strong> -- The query detects conflicting email values recorded for the same student.</li>
+<li><strong>C</strong> -- <code>MIN(DueDate)</code> chooses one consistent value when grouped source rows may disagree.</li>
+<li><strong>B</strong> -- CTAS is fast for migration but does not automatically harden the schema with keys and constraints.</li>
+<li><strong>B</strong> -- Policy tables make grading logic data-driven, easier to change, and easier to audit.</li>
+<li><strong>C</strong> -- The chapter's missing-submission pattern is <code>CROSS JOIN</code> plus <code>LEFT JOIN</code> plus <code>IS NULL</code>.</li>
+<li><strong>B</strong> -- Casting or multiplying by <code>1.0</code> forces numeric division.</li>
+<li><strong>A</strong> -- A scalar subquery can return the class average once and display it alongside each row.</li>
+<li><strong>B</strong> -- PostgreSQL uses <code>CURRENT_DATE</code>.</li>
+<li><strong>B</strong> -- The chapter keeps <code>GradeID</code> as the surrogate primary key and uses a composite <code>UNIQUE</code> constraint to enforce the business rule.</li>
+<li><strong>C</strong> -- A scan indicates a full table scan rather than a targeted index lookup.</li>
+<li><strong>B</strong> -- A reporting view is the chapter's preferred way to expose only the columns a role needs.</li>
+</ol>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch09-database-design.html"><small>Previous</small><strong>Chapter 9: Chapter 10: From Data to Design</strong></a>
+          <a class="pager-card pager-card--next" href="ch11-database-administration.html"><small>Next</small><strong>Chapter 11: Chapter 11: Database Administration</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

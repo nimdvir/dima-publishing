@@ -17,6 +17,7 @@ interface SidebarProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   onBackToCover?: () => void;
+  isCoverActive?: boolean;
 
   // Multi-Scope Navigation Extensions
   currentScope: 'welcome' | 'chapter' | 'lab' | 'appendix' | 'ai_chat';
@@ -46,6 +47,7 @@ export function Sidebar({
   isOpen,
   setIsOpen,
   onBackToCover,
+  isCoverActive,
 
   currentScope,
   activeLabId,
@@ -68,6 +70,13 @@ export function Sidebar({
       [activeChapterId]: true
     }));
   }, [activeChapterId]);
+
+  // Auto-collapse sidebar on load for mobile responsiveness
+  React.useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setIsOpen(false);
+    }
+  }, [setIsOpen]);
 
   const toggleChapterHeader = (id: string) => {
     setExpandedChapters(prev => ({
@@ -312,78 +321,53 @@ export function Sidebar({
           </div>
         )}
 
-        {/* Global Progress Indicators (Only when Expanded) */}
-        {isOpen && onBackToCover && (
-          <div className="px-4 pt-4 pb-1 shrink-0 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                onBackToCover?.();
-                if (window.innerWidth < 768) {
-                  setIsOpen(false);
-                }
-              }}
-              className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-150 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
-            >
-              <BookOpen className="w-4 h-4 text-indigo-600 shrink-0" />
-              <span>Book Cover & Overview</span>
-            </button>
-
-            {/* Welcome lesson Orientation page */}
-            <button
-              onClick={() => {
-                onSelectScope('welcome');
-                if (window.innerWidth < 768) {
-                  setIsOpen(false);
-                }
-              }}
-              className={cn(
-                "w-full flex items-center justify-between px-3 py-2 rounded-xl border transition-all text-xs font-bold cursor-pointer",
-                currentScope === 'welcome'
-                  ? "bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-100"
-                  : "bg-white hover:bg-zinc-50 border-zinc-200/60 text-zinc-700"
+        {/* Search Panel Area (First - high on top!) */}
+        {isOpen && (
+          <div className="p-3 border-b border-zinc-200 bg-white shrink-0 relative">
+            <div className="relative">
+              <Search className="w-4 h-4 text-zinc-400 absolute left-2.5 top-2.5" />
+              <input
+                type="text"
+                placeholder="Search index & content..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-8 pr-7 py-1.5 text-xs bg-zinc-100 rounded-lg border-0 focus:bg-white focus:ring-1 focus:ring-indigo-500 transition-all outline-hidden text-zinc-800"
+              />
+              {searchQuery && (
+                <button 
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2 top-2 text-zinc-400 hover:text-zinc-600"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
               )}
-            >
-              <div className="flex items-center gap-2">
-                <LayoutDashboard className="w-4 h-4 shrink-0" />
-                <span>Video Welcome Intro</span>
-              </div>
-              <span className={cn(
-                "text-[9px] px-1.5 py-0.2 rounded font-black font-mono border uppercase tracking-wider",
-                currentScope === 'welcome' ? "bg-indigo-500 text-white border-indigo-400" : "bg-zinc-100 text-zinc-500 border-zinc-200"
-              )}>
-                Start
-              </span>
-            </button>
+            </div>
+          </div>
+        )}
 
-            {/* AI Syllabus Companion (Premium) */}
-            <button
-              onClick={() => {
-                onSelectScope('ai_chat');
-                if (window.innerWidth < 768) {
-                  setIsOpen(false);
-                }
-              }}
-              className={cn(
-                "w-full flex items-center justify-between px-3 py-2.5 rounded-xl border transition-all text-xs font-bold cursor-pointer mt-0.5",
-                currentScope === 'ai_chat'
-                  ? "bg-amber-600 text-white border-amber-500 shadow-md shadow-amber-100"
-                  : "bg-white hover:bg-amber-50/30 border-zinc-200/60 text-zinc-700"
-              )}
-            >
-              <div className="flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>AI Syllabus Tutor</span>
-              </div>
-              <span className="text-[8px] px-1.5 py-0.5 rounded font-black font-mono border uppercase tracking-wider flex items-center gap-0.5 bg-amber-55 bg-indigo-50 text-indigo-700 border-indigo-100">
-                PRO AI
+        {/* Global Progress Indicators (Second - right under search!) */}
+        {isOpen && (
+          <div className="p-3 border-b border-zinc-200 bg-white/50 space-y-2 shrink-0">
+            <div className="flex justify-between items-center text-[10px] font-semibold text-zinc-500">
+              <span className="flex items-center gap-1 uppercase tracking-wider">
+                Progress Status
               </span>
-            </button>
+              <span>
+                {stats.completedSecs}/{stats.totalSecs} Sections
+              </span>
+            </div>
+            <div className="w-full h-1 bg-zinc-200 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-indigo-600 transition-all duration-500"
+                style={{ width: `${stats.pct}%` }}
+              />
+            </div>
           </div>
         )}
 
         {/* Category segment tabs switcher for quick swap */}
         {isOpen && (
-          <div className="px-4 py-1 flex gap-1 bg-zinc-50 border-b border-zinc-200/50 shrink-0">
+          <div className="px-4 py-1.5 flex gap-1 bg-zinc-50 border-b border-zinc-200/50 shrink-0">
             {[
               { scope: 'chapter', label: 'Lectures', activeColor: "bg-indigo-600 text-white border-indigo-600" },
               { scope: 'lab', label: 'Labs', activeColor: "bg-emerald-600 text-white border-emerald-600" },
@@ -408,7 +392,7 @@ export function Sidebar({
                   className={cn(
                     "flex-1 py-1.5 rounded-lg text-[9px] font-extrabold uppercase tracking-widest text-center border transition-all cursor-pointer leading-none",
                     isActive
-                      ? tab.activeColor + " shadow-sm font-black"
+                      ? tab.activeColor + " shadow-xs font-black"
                       : "bg-white border-zinc-200 text-zinc-400 hover:text-zinc-600 hover:bg-zinc-102"
                   )}
                 >
@@ -416,53 +400,6 @@ export function Sidebar({
                 </button>
               );
             })}
-          </div>
-        )}
-
-        {isOpen && (
-          <div className="p-4 border-b border-zinc-200 bg-white/50 space-y-2 shrink-0">
-            <div className="flex justify-between items-center text-xs font-semibold text-zinc-500">
-              <span className="flex items-center gap-1.5 uppercase tracking-wider">
-                Progress Status
-              </span>
-              <span>
-                {stats.completedSecs}/{stats.totalSecs} Sections
-              </span>
-            </div>
-            <div className="w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-indigo-600 transition-all duration-500"
-                style={{ width: `${stats.pct}%` }}
-              />
-            </div>
-            <div className="flex justify-between items-center text-[10px] text-zinc-400">
-              <span>Overall Completion</span>
-              <span className="font-bold text-indigo-600">{stats.pct}%</span>
-            </div>
-          </div>
-        )}
-
-        {/* Search Panel Area (Only when Expanded) */}
-        {isOpen && (
-          <div className="p-3 border-b border-zinc-200 bg-white shrink-0 relative">
-            <div className="relative">
-              <Search className="w-4 h-4 text-zinc-400 absolute left-2.5 top-2.5" />
-              <input
-                type="text"
-                placeholder="Search index & content..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-8 pr-7 py-1.5 text-xs bg-zinc-100 rounded-lg border-0 focus:bg-white focus:ring-1 focus:ring-indigo-500 transition-all outline-hidden text-zinc-800"
-              />
-              {searchQuery && (
-                <button 
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-2 top-2 text-zinc-400 hover:text-zinc-600"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </div>
           </div>
         )}
 
@@ -694,132 +631,224 @@ export function Sidebar({
             </div>
           ) : (
             /* Standard Chapter Accordion List (Lectures scope) */
-            chapters.map((chapter) => {
-              const isChapterExpanded = expandedChapters[chapter.id];
-              const isActiveChapter = chapter.id === activeChapterId;
-              
-              // Compute chapter completion statistics
-              const chapterSectionCompletions = SECTIONS.filter(sec => 
-                completedSections.includes(`${chapter.id}_${sec.id}`)
-              ).length;
-              
-              const isChapterFullyComplete = chapterSectionCompletions === SECTIONS.length;
-
-              return (
-                <div key={chapter.id} className="space-y-0.5">
-                  {/* Chapter Heading Bar */}
-                  <div className="flex items-center gap-1">
-                    {/* Collapsed side bar - just render chapter number icon */}
-                    {!isOpen ? (
-                      <button
-                        onClick={() => {
-                          setIsOpen(true);
-                          setExpandedChapters(prev => ({ ...prev, [chapter.id]: true }));
-                        }}
-                        className={cn(
-                          "w-12 h-10 rounded-lg flex flex-col items-center justify-center border transition-all hover:bg-indigo-50/40 relative cursor-pointer",
-                          isActiveChapter 
-                            ? "bg-indigo-50 border-indigo-200 text-indigo-600" 
-                            : isChapterFullyComplete 
-                              ? "bg-emerald-50 border-emerald-100 text-emerald-600"
-                              : "bg-white border-zinc-200 text-zinc-700"
-                        )}
-                        title={chapter.title}
-                      >
-                        <span className="text-xs font-bold leading-none">{chapter.id.replace('ch', '')}</span>
-                        {isChapterFullyComplete ? (
-                          <CheckCircle2 className="w-2.5 h-2.5 text-emerald-500 absolute bottom-1 right-1" />
-                        ) : (
-                          <div className="text-[9px] text-zinc-400 font-bold mt-0.5">{chapterSectionCompletions}/6</div>
-                        )}
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => toggleChapterHeader(chapter.id)}
-                        className={cn(
-                          "flex-1 text-left px-3 py-2.5 rounded-lg flex items-center justify-between transition-all font-semibold break-words min-w-0 cursor-pointer border",
-                          isActiveChapter
-                            ? "bg-indigo-50/60 border-indigo-150 text-indigo-950 font-bold"
-                            : isChapterFullyComplete
-                              ? "bg-emerald-50/60 border-emerald-150 text-emerald-800 hover:bg-emerald-100/40"
-                              : "text-zinc-700 hover:bg-zinc-100 bg-white/70 border border-zinc-200/40"
-                        )}
-                      >
-                        <div className="flex items-center gap-2 min-w-0 flex-1 pr-1">
-                          {isChapterFullyComplete ? (
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                          ) : (
-                            <div className="w-4 h-4 rounded-full border border-zinc-300 flex items-center justify-center shrink-0">
-                              <span className="text-[8px] font-bold text-zinc-400">{chapterSectionCompletions}</span>
-                            </div>
-                          )}
-                          <span className="truncate text-xs tracking-tight">{chapter.title}</span>
-                        </div>
-                        <span className="text-[10px] text-zinc-400 self-center shrink-0">
-                          {isChapterExpanded ? '▼' : '▶'}
-                        </span>
-                      </button>
+            <>
+              {isOpen && (
+                <div className="space-y-1 mb-2">
+                  {/* Book Cover and Overview item */}
+                  <button
+                    onClick={() => {
+                      onBackToCover?.();
+                      if (window.innerWidth < 768) {
+                        setIsOpen(false);
+                      }
+                    }}
+                    className={cn(
+                      "w-full text-left px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-between",
+                      isCoverActive
+                        ? "bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-100"
+                        : "bg-white hover:bg-zinc-50 border-zinc-200/60 text-zinc-700"
                     )}
-                  </div>
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className={cn("p-1.5 rounded-lg shrink-0", isCoverActive ? "bg-indigo-700" : "bg-indigo-50 text-indigo-700")}>
+                        <BookOpen className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="text-left min-w-0">
+                        <div className={cn("text-xs font-bold truncate", isCoverActive ? "text-white" : "text-zinc-800")}>Book Cover & Overview</div>
+                        <div className={cn("text-[9px] truncate", isCoverActive ? "text-indigo-200" : "text-zinc-400")}>Textbook Frontpage & Cover</div>
+                      </div>
+                    </div>
+                  </button>
 
-                  {/* Chapter Section listings (nested accordion) */}
-                  {isOpen && isChapterExpanded && (
-                    <div className="pl-6 pr-1 py-0.5 space-y-0.5 border-l border-zinc-200 ml-5 my-0.5">
-                      {SECTIONS.map((sec) => {
-                        const isSecActive = isActiveChapter && activeSectionId === sec.id;
-                        const isSecCompleted = completedSections.includes(`${chapter.id}_${sec.id}`);
-                        const readingTime = calculateReadingTime(chapter, sec.id);
+                  {/* Video Welcome Intro item */}
+                  <button
+                    onClick={() => {
+                      onSelectScope('welcome');
+                      if (window.innerWidth < 768) {
+                        setIsOpen(false);
+                      }
+                    }}
+                    className={cn(
+                      "w-full text-left px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-between",
+                      currentScope === 'welcome'
+                        ? "bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-100"
+                        : "bg-white hover:bg-zinc-50 border-zinc-200/60 text-zinc-700"
+                    )}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className={cn("p-1.5 rounded-lg shrink-0", currentScope === 'welcome' ? "bg-indigo-700" : "bg-indigo-50 text-indigo-700")}>
+                        <LayoutDashboard className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="text-left min-w-0">
+                        <div className={cn("text-xs font-bold truncate", currentScope === 'welcome' ? "text-white" : "text-zinc-800")}>Video Welcome Intro</div>
+                        <div className={cn("text-[9px] truncate", currentScope === 'welcome' ? "text-indigo-200" : "text-zinc-400")}>Syllabus & Course Orientation</div>
+                      </div>
+                    </div>
+                  </button>
 
-                        return (
-                          <button
-                            key={sec.id}
-                            onClick={() => {
-                              onSelectSection(chapter.id, sec.id);
-                              // Close sidebar on mobile
-                              if (window.innerWidth < 768) {
-                                setIsOpen(false);
-                              }
-                            }}
-                            className={cn(
-                              "w-full text-left px-3 py-1.5 rounded-lg text-[11px] flex items-center justify-between transition-all font-medium cursor-pointer gap-2",
-                              isSecActive
-                                ? "bg-indigo-600 text-white shadow-xs"
-                                : isSecCompleted
-                                  ? "text-emerald-700 hover:bg-emerald-50 bg-emerald-50/25"
-                                  : "text-zinc-650 hover:bg-zinc-150"
+                  {/* AI Syllabus Tutor item */}
+                  <button
+                    onClick={() => {
+                      onSelectScope('ai_chat');
+                      if (window.innerWidth < 768) {
+                        setIsOpen(false);
+                      }
+                    }}
+                    className={cn(
+                      "w-full text-left px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-between",
+                      currentScope === 'ai_chat'
+                        ? "bg-amber-600 text-white border-amber-600 shadow-md shadow-amber-100"
+                        : "bg-white hover:bg-zinc-50 border-zinc-200/60 text-zinc-700"
+                    )}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className={cn("p-1.5 rounded-lg shrink-0", currentScope === 'ai_chat' ? "bg-amber-700" : "bg-amber-50 text-amber-650")}>
+                        <MessageSquare className="w-3.5 h-3.5 shrink-0" />
+                      </div>
+                      <div className="text-left min-w-0">
+                        <div className={cn("text-xs font-bold truncate", currentScope === 'ai_chat' ? "text-white" : "text-zinc-800")}>AI Syllabus Tutor</div>
+                        <div className={cn("text-[9px] truncate", currentScope === 'ai_chat' ? "text-amber-200" : "text-zinc-400")}>Personalized Study Buddy</div>
+                      </div>
+                    </div>
+                    <span className={cn(
+                      "text-[8px] px-1.5 py-0.5 rounded font-black font-mono border uppercase tracking-wider",
+                      currentScope === 'ai_chat' ? "bg-amber-700 border-amber-500 text-white" : "bg-amber-50 text-amber-700 border-amber-100"
+                    )}>
+                      PRO AI
+                    </span>
+                  </button>
+
+                  <div className="h-px bg-zinc-200/60 my-2" />
+                </div>
+              )}
+
+              {chapters.map((chapter) => {
+                const isChapterExpanded = expandedChapters[chapter.id];
+                const isActiveChapter = chapter.id === activeChapterId;
+                
+                // Compute chapter completion statistics
+                const chapterSectionCompletions = SECTIONS.filter(sec => 
+                  completedSections.includes(`${chapter.id}_${sec.id}`)
+                ).length;
+                
+                const isChapterFullyComplete = chapterSectionCompletions === SECTIONS.length;
+
+                return (
+                  <div key={chapter.id} className="space-y-0.5">
+                    {/* Chapter Heading Bar */}
+                    <div className="flex items-center gap-1">
+                      {/* Collapsed side bar - just render chapter number icon */}
+                      {!isOpen ? (
+                        <button
+                          onClick={() => {
+                            setIsOpen(true);
+                            setExpandedChapters(prev => ({ ...prev, [chapter.id]: true }));
+                          }}
+                          className={cn(
+                            "w-12 h-10 rounded-lg flex flex-col items-center justify-center border transition-all hover:bg-indigo-50/40 relative cursor-pointer",
+                            isActiveChapter 
+                              ? "bg-indigo-50 border-indigo-200 text-indigo-600" 
+                              : isChapterFullyComplete 
+                                ? "bg-emerald-50 border-emerald-100 text-emerald-600"
+                                : "bg-white border-zinc-200 text-zinc-700"
+                          )}
+                          title={chapter.title}
+                        >
+                          <span className="text-xs font-bold leading-none">{chapter.id.replace('ch', '')}</span>
+                          {isChapterFullyComplete ? (
+                            <CheckCircle2 className="w-2.5 h-2.5 text-emerald-500 absolute bottom-1 right-1" />
+                          ) : (
+                            <div className="text-[9px] text-zinc-400 font-bold mt-0.5">{chapterSectionCompletions}/6</div>
+                          )}
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => toggleChapterHeader(chapter.id)}
+                          className={cn(
+                            "flex-1 text-left px-3 py-2.5 rounded-lg flex items-center justify-between transition-all font-semibold break-words min-w-0 cursor-pointer border",
+                            isActiveChapter
+                              ? "bg-indigo-50/60 border-indigo-150 text-indigo-950 font-bold"
+                              : isChapterFullyComplete
+                                ? "bg-emerald-50/60 border-emerald-150 text-emerald-800 hover:bg-emerald-100/40"
+                                : "text-zinc-700 hover:bg-zinc-100 bg-white/70 border border-zinc-200/40"
+                          )}
+                        >
+                          <div className="flex items-center gap-2 min-w-0 flex-1 pr-1">
+                            {isChapterFullyComplete ? (
+                              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                            ) : (
+                              <div className="w-4 h-4 rounded-full border border-zinc-300 flex items-center justify-center shrink-0">
+                                <span className="text-[8px] font-bold text-zinc-400">{chapterSectionCompletions}</span>
+                              </div>
                             )}
-                          >
-                            <span className="flex items-center gap-1.5 truncate min-w-0 flex-1">
-                              {sectionIcon(sec.id)}
-                              <span className="truncate">{sec.title}</span>
-                            </span>
-                            
-                            <div className="flex items-center gap-1.5 shrink-0">
-                              <span 
-                                className={cn(
-                                  "text-[9px] font-semibold flex items-center gap-0.5 opacity-60",
-                                  isSecActive ? "text-indigo-200" : "text-zinc-400"
-                                )}
-                                title={`Estimated reading time: ${readingTime} mins`}
-                              >
-                                <Clock className="w-2.5 h-2.5 shrink-0" />
-                                {readingTime}m
+                            <span className="truncate text-xs tracking-tight">{chapter.title}</span>
+                          </div>
+                          <span className="text-[10px] text-zinc-400 self-center shrink-0">
+                            {isChapterExpanded ? '▼' : '▶'}
+                          </span>
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Chapter Section listings (nested accordion) */}
+                    {isOpen && isChapterExpanded && (
+                      <div className="pl-6 pr-1 py-0.5 space-y-0.5 border-l border-zinc-200 ml-5 my-0.5">
+                        {SECTIONS.map((sec) => {
+                          const isSecActive = isActiveChapter && activeSectionId === sec.id;
+                          const isSecCompleted = completedSections.includes(`${chapter.id}_${sec.id}`);
+                          const readingTime = calculateReadingTime(chapter, sec.id);
+
+                          return (
+                            <button
+                              key={sec.id}
+                              onClick={() => {
+                                onSelectSection(chapter.id, sec.id);
+                                // Close sidebar on mobile
+                                if (window.innerWidth < 768) {
+                                  setIsOpen(false);
+                                }
+                              }}
+                              className={cn(
+                               "w-full text-left px-3 py-1.5 rounded-lg text-[11px] flex items-center justify-between transition-all font-medium cursor-pointer gap-2",
+                                isSecActive
+                                  ? "bg-indigo-600 text-white shadow-xs"
+                                  : isSecCompleted
+                                    ? "text-emerald-700 hover:bg-emerald-50 bg-emerald-50/25"
+                                    : "text-zinc-650 hover:bg-zinc-150"
+                              )}
+                            >
+                              <span className="flex items-center gap-1.5 truncate min-w-0 flex-1">
+                                {sectionIcon(sec.id)}
+                                <span className="truncate">{sec.title}</span>
                               </span>
                               
-                              {isSecCompleted ? (
-                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                              ) : (
-                                <Circle className={cn("w-3 h-3 shrink-0", isSecActive ? "text-indigo-400" : "text-zinc-300")} />
-                              )}
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })
+                              <div className="flex items-center gap-1.5 shrink-0">
+                                <span 
+                                  className={cn(
+                                    "text-[9px] font-semibold flex items-center gap-0.5 opacity-60",
+                                    isSecActive ? "text-indigo-200" : "text-zinc-400"
+                                  )}
+                                  title={`Estimated reading time: ${readingTime} mins`}
+                                >
+                                  <Clock className="w-2.5 h-2.5 shrink-0" />
+                                  {readingTime}m
+                                </span>
+                                
+                                {isSecCompleted ? (
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                                ) : (
+                                  <Circle className={cn("w-3 h-3 shrink-0", isSecActive ? "text-indigo-400" : "text-zinc-300")} />
+                                )}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </>
           )}
         </div>
       </div>

@@ -166,6 +166,7 @@ export default function App() {
         isOpen={isSidebarOpen}
         setIsOpen={setIsSidebarOpen}
         onBackToCover={() => setShowCoverPage(true)}
+        isCoverActive={showCoverPage}
         currentScope={currentScope}
         activeLabId={activeLabId}
         activeAppendixId={activeAppendixId}

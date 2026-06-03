@@ -6,3 +6,76 @@
   --font-serif: "Lora", Georgia, ui-serif, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
+
+/* Custom Textbook components styling */
+.callout {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.callout.info, .callout.key-takeaway {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e3a8a;
+}
+.callout.success {
+  background-color: #f0fdf4;
+  border-color: #10b981;
+  color: #064e3b;
+}
+.callout.warning {
+  background-color: #fffbeb;
+  border-color: #f59e0b;
+  color: #78350f;
+}
+
+/* Page break styles for both screen and printing */
+.page-break, .pagebreak {
+  page-break-after: always;
+  break-after: page;
+}
+
+@media screen {
+  .page-break, .pagebreak {
+    margin: 3rem 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+  .page-break::before, .pagebreak::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: repeating-linear-gradient(to right, #cbd5e1, #cbd5e1 4px, transparent 4px, transparent 8px);
+  }
+  .page-break::after, .pagebreak::after {
+    content: "📖 Page Break / Printed Page Cut";
+    position: relative;
+    background: #ffffff;
+    padding: 0 1rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ef4444;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Custom embedded YouTube videos */
+iframe {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 1.5rem 0;
+}

@@ -1,10 +1,12 @@
 import { Chapter } from './types';
+// @ts-ignore
+import ch1Content from './content/chapter1.md?raw';
 
 export const CHAPTERS: Chapter[] = [
   {
     id: 'ch1',
     title: 'Chapter 1: Introduction to the Textbook',
-    introduction: 'Welcome to BITM330. This chapter orients you to the course syllabus, the R.E.A.D. framework, our five core competencies, and the systems-thinking approach. We introduce our continuous chapter case study: the Grading Database (GDB), demonstrating how simple records track your course performance and guide your learning journey.',
+    introduction: ch1Content || 'Welcome to BITM330. This chapter orients you to the course syllabus, the R.E.A.D. framework, our five core competencies, and the systems-thinking approach. We introduce our continuous chapter case study: the Grading Database (GDB), demonstrating how simple records track your course performance and guide your learning journey.',
     concepts: {
       title: 'Systems-Thinking and Course Orientation',
       subsections: [
