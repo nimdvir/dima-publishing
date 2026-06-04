@@ -1,8 +1,10 @@
 ## Let's Build
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/Lets-build_fqsqux?_a=BAMAAAiu0" alt="Let's Build" />
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
+
+<p align="center">
 
 In this Let's Build, you turn the Chapter 4 ideas into a working database. You will create a small grading database in **Microsoft Access** with two tables, a primary key, a validation rule, required fields, a data-entry form, a handful of queries (including one query-level join), and two reports. The companion **Lab 04** applies these same skills to the PetVax veterinary clinic for a grade. The chapter previewed a more relational structure with separate `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` tables. This build deliberately stays one step behind that target: it uses a flat `GRADEBOOK` table and a `GRADE_WEIGHT` lookup table, with no formal relationships. That gap is intentional. Chapter 5 will query these same tables with SQL, and Chapter 6 will refactor this design into a proper relational structure.
 

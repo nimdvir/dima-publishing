@@ -11,3 +11,4 @@ desktop.ini
 **/.next/
 **/out/
 .vercel
+.env*

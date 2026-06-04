@@ -1,11 +1,12 @@
 # Chapter 2: Foundations of Information Systems
 
-Chapter 2 explains why that path matters. It shows how information systems turn raw observations into business decisions. Along the way, it introduces two simple frameworks: the **DIKW hierarchy** (data, information, knowledge, wisdom) and the **R.E.A.D. framework** (representation and retrieval, expression and experience, association and acquisition, decision-making and deployment). The chapter also separates **information technology** (the tools) from the broader **information system** (the tools plus people, data, and processes). Finally, it explains why **data quality** and **strategic alignment** are managerial concerns, not just technical ones.
+This chapter introduces the core vocabulary and frameworks of information systems — DIKW, R.E.A.D., KPIs, the five-component framework, and the distinction between IS, IT, MIS, and BITM — connecting data to organizational performance and managerial decision-making.
 
 ## Chapter Files
 
-- [Main Chapter](ch02-main-2026-06-02.md)
-- [Let's Build](ch02-lets-build-2026-05-22.md)
-- [Review & Reflection](ch02-reflection-2026-06-02.md)
+- [Main Chapter](ch02-main-2026-06-03.md)
+- [Let's Build](ch02-lets-build-2026-06-03.md)
+- [Review & Reflection](ch02-reflection-2026-06-03.md)
 - [Terms Treasury](ch02-terms-2026-06-02.md)
-- [Readiness Assessment Test](ch02-rat-2026-06-02.md)
+- [Readiness Assessment Test](ch02-rat-2026-06-03.md)
+- [Lab 02: PetVax System Analysis](lab-02-questions-2026-06-03.md)

@@ -3,22 +3,22 @@
 ## Let's Build
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/Lets-build_fqsqux?_a=BAMAAAiu0" alt="Let's Build" />
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/Lets-build_fqsqux" alt="Let's Build" />
 </p>
 
 Chapter 3 explained what data is, how it becomes meaningful, and why fields, types, metadata, and quality matter before any database tool enters the picture. In this Let's Build (LB), you will turn those ideas into something you can see and touch. You will build a small Google Sheets workbook based on the Grading Database (GD), then deliberately stress it until its spreadsheet limits become visible. There is no submission required for this LB; it is the rehearsal for **Lab 03 — Transferring Data Fundamentals to PetVax**, where you will apply the same moves to a messy veterinary clinic record and submit your workbook for a grade.
 
-![Grading Database fields flowing from data cards into a simple table and small database tables](../.images/optimized/ch03-lb-grading-database-preview.png)
+![Grading Database fields flowing from data cards into a simple table and small database tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-grading-database-preview)
 
-*The Grading Database starts as a simple gradebook, but the same fields will later support a more reliable database structure.*
+*Figure 3.1 — The Grading Database starts as a simple gradebook, but the same fields will later support a more reliable database structure.*
 
 ### Purpose
 
 The point of this build is not to create a database — that begins in Chapter 4. The point is to feel how data behaves inside a spreadsheet: how fields and records work, how types and metadata give values meaning, how filters and pivots produce information, and where the structure begins to crack when data is repeated, shared, and updated. By the end, you should be able to explain in your own words why organizations eventually move from spreadsheets and flat files toward databases.
 
-![Grading Database fields organized as a simple structured table before becoming separate database tables](../.images/optimized/ch03-lb-grading-database-small-system.png)
+![Grading Database fields organized as a simple structured table before becoming separate database tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-grading-database-small-system)
 
-*This build keeps the Grading Database small enough to inspect while previewing why structured tables matter.*
+*Figure 3.2 — This build keeps the Grading Database small enough to inspect while previewing why structured tables matter.*
 
 ### What You Will Practice
 
@@ -32,9 +32,9 @@ The point of this build is not to create a database — that begins in Chapter 4
 * naming the data-quality dimensions when a value goes wrong
 * recognizing where lifecycle and stewardship gaps appear in everyday data work
 
-![Sample grading fields connected to grouping aggregation trends and dashboard outcomes](../.images/optimized/ch03-lb-data-types-dashboard-outcomes.png)
+![Sample grading fields connected to grouping aggregation trends and dashboard outcomes](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-data-types-dashboard-outcomes)
 
-*Different field types support different analytical behaviors: grouping, aggregation, trends, and status filters.*
+*Figure 3.3 — Different field types support different analytical behaviors: grouping, aggregation, trends, and status filters.*
 
 ### Before You Begin
 
@@ -54,9 +54,9 @@ Add three sheet tabs in this order: `GRADEBOOK`, `GRADE_WEIGHT`, `DATA_DICTIONAR
 
 A table is more than a grid. Before typing any values, decide what each column means.
 
-![Data hierarchy from bits and bytes to fields records tables and databases](../.images/optimized/ch03-lb-data-hierarchy.png)
+![Data hierarchy from bits and bytes to fields records tables and databases](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-data-hierarchy)
 
-*The data hierarchy reminds you that a spreadsheet table is one level in a larger data structure.*
+*Figure 3.4 — The data hierarchy reminds you that a spreadsheet table is one level in a larger data structure.*
 
 In row 1 of `GRADEBOOK`, enter these headers (column A through K):
 
@@ -68,9 +68,9 @@ In row 1 of `GRADE_WEIGHT`, enter (column A through D):
 
 **One row, one record.** Each row in `GRADEBOOK` will represent one student receiving one score on one deliverable. Each row in `GRADE_WEIGHT` will describe one grading category.
 
-![Compact data hierarchy showing bit byte field record table and database levels](../.images/optimized/ch03-lb-data-hierarchy-detail.png)
+![Compact data hierarchy showing bit byte field record table and database levels](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-data-hierarchy-detail)
 
-*A field such as `Score` only becomes useful when it sits inside a record, table, and larger data system.*
+*Figure 3.5 — A field such as Score only becomes useful when it sits inside a record, table, and larger data system.*
 
 ### Build the Data Dictionary
 
@@ -96,17 +96,17 @@ Metadata is "data about data." It tells the next person (and your future self) w
 
 **Why this small artifact matters.** Without a dictionary, anyone using the workbook has to guess. With one, you have written down the shared meaning the chapter calls metadata. This same idea, scaled up, is what data governance teams maintain for real systems.
 
-![Metadata notes surrounding a grading data dictionary table](../.images/optimized/ch03-lb-metadata-data-dictionary.png)
+![Metadata notes surrounding a grading data dictionary table](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch03-what-is-data/ch03-lb-metadata-data-dictionary)
 
-*A data dictionary turns field names into shared rules that another person can follow.*
+*Figure 3.6 — A data dictionary turns field names into shared rules that another person can follow.*
 
 ### Classify Your Fields by Measurement Level
 
 The chapter introduced four measurement levels — **nominal**, **ordinal**, **interval**, **ratio** — because the level decides which calculations make sense. Try this quick classification in your own words, then check the model answers.
 
-![Measurement ladder from nominal to ratio with classroom examples](../.images/optimized/ch03-lb-measurement-level-ladder.png)
+![Measurement ladder from nominal to ratio with classroom examples](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-measurement-level-ladder)
 
-*The measurement level tells you whether a field can be counted, ordered, compared by distance, or used in full arithmetic.*
+*Figure 3.7 — The measurement level tells you whether a field can be counted, ordered, compared by distance, or used in full arithmetic.*
 
 **Quick classify.** Label each field as Nominal, Ordinal, Interval, or Ratio.
 
@@ -120,13 +120,13 @@ The chapter introduced four measurement levels — **nominal**, **ordinal**, **i
 
 **Why this matters.** A spreadsheet will happily average an identifier and produce a number. The number is meaningless. Knowing the measurement level is what tells you which operations are honest.
 
-![Measurement levels with valid operations shown for each level](../.images/optimized/ch03-lb-measurement-level-operations.png)
+![Measurement levels with valid operations shown for each level](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-measurement-level-operations)
 
-*Valid operations depend on the meaning of the field, not just on whether the value looks like a number.*
+*Figure 3.8 — Valid operations depend on the meaning of the field, not just on whether the value looks like a number.*
 
-![Nominal ordinal interval and ratio fields matched to appropriate operations](../.images/optimized/ch03-lb-nominal-ratio-operations.png)
+![Nominal ordinal interval and ratio fields matched to appropriate operations](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-nominal-ratio-operations)
 
-*Moving from nominal to ratio data expands the calculations you can use, but only when the field meaning supports them.*
+*Figure 3.9 — Moving from nominal to ratio data expands the calculations you can use, but only when the field meaning supports them.*
 
 ### Enter the Sample Data
 
@@ -142,9 +142,9 @@ Starting in row 2 of `GRADEBOOK`, enter these seven records:
 |        6 |      1003 | Carla     | Mendez   | carla@university.edu    | 2004-02-09 | Exam            |                 1 | 2026-10-01 | Midterm         |    91 |
 |        7 |      1004 | Daniel    | Kim      | daniel@university.edu   | 2004-08-17 | Project         |                 1 | 2026-11-05 | Final Project   |    89 |
 
-![Common business and classroom fields grouped by qualitative quantitative categorical and numerical types](../.images/optimized/ch03-lb-common-data-fields.png)
+![Common business and classroom fields grouped by qualitative quantitative categorical and numerical types](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch03-what-is-data/ch03-lb-common-data-fields)
 
-*The same gradebook includes labels, categories, dates, identifiers, and measurements that each need different handling.*
+*Figure 3.10 — The same gradebook includes labels, categories, dates, identifiers, and measurements that each need different handling.*
 
 Then enter four rows in `GRADE_WEIGHT`:
 
@@ -155,9 +155,9 @@ Then enter four rows in `GRADE_WEIGHT`:
 | Exam            |         2 |             40 |            20 |
 | Project         |         1 |             10 |            10 |
 
-![Business data examples classified by qualitative quantitative identifier and amount roles](../.images/optimized/ch03-lb-classifying-business-data.png)
+![Business data examples classified by qualitative quantitative identifier and amount roles](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch03-what-is-data/ch03-lb-classifying-business-data)
 
-*Classifying fields helps you decide which spreadsheet operation is meaningful and which would be misleading.*
+*Figure 3.11 — Classifying fields helps you decide which spreadsheet operation is meaningful and which would be misleading.*
 
 **Notice the repetition already.** Alice's name, email, and birthday already appear twice. So do Brian's and Carla's. That repetition will matter in a few sections.
 
@@ -176,13 +176,13 @@ Add two validation rules to `GRADEBOOK`:
 * On `DeliverableType` (column G), add a **dropdown** populated from `GRADE_WEIGHT!A2:A5`.
 * On `Score` (column K), add a **number rule** that values must be between `0` and `100`.
 
-![Grading database fields mapped to text numeric date and Boolean analytical uses](../.images/optimized/ch03-lb-data-types-analytical-uses.png)
+![Grading database fields mapped to text numeric date and Boolean analytical uses](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-data-types-analytical-uses)
 
-*This example extends the gradebook idea to show how each data type supports a different analytical behavior.*
+*Figure 3.12 — This example extends the gradebook idea to show how each data type supports a different analytical behavior.*
 
-![Structured semi-structured and unstructured data examples shown as different storage patterns](../.images/optimized/ch03-lb-data-structure-types.png)
+![Structured semi-structured and unstructured data examples shown as different storage patterns](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-data-structure-types)
 
-*The LB uses structured data, but real organizations often also manage semi-structured and unstructured data.*
+*Figure 3.13 — The LB uses structured data, but real organizations often also manage semi-structured and unstructured data.*
 
 **Why this counts as metadata.** A dropdown is not just a UI feature. It is a written rule that says "these are the only valid categories." That rule lives outside the values themselves, which is exactly what metadata does.
 
@@ -311,9 +311,9 @@ Check: did your `=FILTER(...)` formula include row 8? (No — it still uses `A2:
 
 The previous section showed *symptoms*. This section names the underlying *problems*. These four terms are the structural reason organizations move from spreadsheets to databases, and you will meet them again in Chapter 4.
 
-![Spreadsheet strengths contrasted with database strengths](../.images/optimized/ch03-lb-spreadsheet-database-strengths.png)
+![Spreadsheet strengths contrasted with database strengths](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch03-what-is-data/ch03-lb-spreadsheet-database-strengths)
 
-*Spreadsheets are useful for quick individual work, while databases become stronger when shared structure, validation, and reuse matter.*
+*Figure 3.14 — Spreadsheets are useful for quick individual work, while databases become stronger when shared structure, validation, and reuse matter.*
 
 **Data redundancy.** Look at `GRADEBOOK`. You have **four students** (1001, 1002, 1003, 1004) but **eight stored copies** of their identity data — Alice's name, email, and birthday appear three times; Brian's and Carla's each appear twice. Every new grade for an existing student copies their identity again. Storage is cheap; the real cost is that every copy is a future chance for the copies to disagree.
 
@@ -408,3 +408,22 @@ In Chapter 4, you will move from a spreadsheet to **Microsoft Access**, and the 
 * **Query fragility** is replaced by typed columns, validation rules the system actually enforces, and queries that refer to tables by name rather than to fragile cell ranges.
 
 Every place this LB felt fragile is a place Chapter 4 will show how a database is designed to be sturdy.
+
+## Figures Index
+
+| Figure | Section | Caption | Source file |
+|---|---|---|---|
+| Figure 3.1 | Let's Build | The Grading Database starts as a simple gradebook, but the same fields will later support a more reliable database structure. | `ch03-lb-grading-database-preview.png` |
+| Figure 3.2 | Purpose | This build keeps the Grading Database small enough to inspect while previewing why structured tables matter. | `ch03-lb-grading-database-small-system.png` |
+| Figure 3.3 | What You Will Practice | Different field types support different analytical behaviors: grouping, aggregation, trends, and status filters. | `ch03-lb-data-types-dashboard-outcomes.png` |
+| Figure 3.4 | Define the Structure Before Entering Data | The data hierarchy reminds you that a spreadsheet table is one level in a larger data structure. | `ch03-lb-data-hierarchy.png` |
+| Figure 3.5 | Define the Structure Before Entering Data | A field such as Score only becomes useful when it sits inside a record, table, and larger data system. | `ch03-lb-data-hierarchy-detail.png` |
+| Figure 3.6 | Build the Data Dictionary | A data dictionary turns field names into shared rules that another person can follow. | `ch03-lb-metadata-data-dictionary.png` |
+| Figure 3.7 | Classify Your Fields by Measurement Level | The measurement level tells you whether a field can be counted, ordered, compared by distance, or used in full arithmetic. | `ch03-lb-measurement-level-ladder.png` |
+| Figure 3.8 | Classify Your Fields by Measurement Level | Valid operations depend on the meaning of the field, not just on whether the value looks like a number. | `ch03-lb-measurement-level-operations.png` |
+| Figure 3.9 | Classify Your Fields by Measurement Level | Moving from nominal to ratio data expands the calculations you can use, but only when the field meaning supports them. | `ch03-lb-nominal-ratio-operations.png` |
+| Figure 3.10 | Enter the Sample Data | The same gradebook includes labels, categories, dates, identifiers, and measurements that each need different handling. | `ch03-lb-common-data-fields.png` |
+| Figure 3.11 | Enter the Sample Data | Classifying fields helps you decide which spreadsheet operation is meaningful and which would be misleading. | `ch03-lb-classifying-business-data.png` |
+| Figure 3.12 | Add Metadata, Validation, and Formatting | This example extends the gradebook idea to show how each data type supports a different analytical behavior. | `ch03-lb-data-types-analytical-uses.png` |
+| Figure 3.13 | Add Metadata, Validation, and Formatting | The LB uses structured data, but real organizations often also manage semi-structured and unstructured data. | `ch03-lb-data-structure-types.png` |
+| Figure 3.14 | Why a Flat File Breaks — Redundancy and Anomalies | Spreadsheets are useful for quick individual work, while databases become stronger when shared structure, validation, and reuse matter. | `ch03-lb-spreadsheet-database-strengths.png` |
