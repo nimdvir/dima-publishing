@@ -6,11 +6,10 @@ import HomePage from './components/HomePage';
 import DemoLogin from './components/DemoLogin';
 import ChapterReader from './components/ChapterReader';
 import LabsView from './components/LabsView';
-import AiAssistant from './components/AiAssistant';
 
 const LS_DEMO_USER = 'reader-hybrid:demoUser';
 
-const VALID_SCOPES = new Set(['welcome', 'book', 'labs', 'ai-assistant', 'login']);
+const VALID_SCOPES = new Set(['welcome', 'book', 'labs', 'login']);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map(c => c.id));
 
 function parseQueryParams(): {
@@ -174,6 +173,18 @@ export default function App() {
     ) || null;
   }, [activeSectionId, activePageIndex]);
 
+  // Progress calculation
+  const progress = useMemo(() => {
+    if (!currentPage) return 0;
+    const idx = FLAT_READER_PAGES.findIndex(p => p.id === currentPage.id);
+    return FLAT_READER_PAGES.length > 0 ? ((idx + 1) / FLAT_READER_PAGES.length) * 100 : 0;
+  }, [currentPage]);
+
+  // Scroll to top on page change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage?.id]);
+
   const currentSectionPages = useMemo(() => {
     return FLAT_READER_PAGES.filter(p => p.sectionId === activeSectionId);
   }, [activeSectionId]);
@@ -228,8 +239,10 @@ export default function App() {
       onToggleSidebar={() => setSidebarOpen(o => !o)}
       onNavigateScope={navigateScope}
       chapters={BOOK_CHAPTERS}
+      progress={progress}
       activeChapterId={activeChapterId}
       activeSectionId={activeSectionId}
+      activePageId={currentPage?.id || ''}
       onSelectSection={(sectionId) => {
         setActiveSectionId(sectionId);
         setActivePageIndex(0);
@@ -258,7 +271,6 @@ export default function App() {
         <HomePage
           onEnterReader={() => navigateScope('book')}
           onOpenLabs={() => navigateScope('labs')}
-          onOpenAI={() => navigateScope('ai-assistant')}
           onOpenLogin={() => navigateScope('login')}
         />
       )}
@@ -283,11 +295,6 @@ export default function App() {
           labs={BOOK_LABS}
           activeLab={activeLab}
           onSelectLab={navigateToLab}
-        />
-      )}
-      {scope === 'ai-assistant' && (
-        <AiAssistant
-          currentPage={currentPage}
         />
       )}
     </Layout>

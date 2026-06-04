@@ -8,6 +8,7 @@ interface SidebarProps {
   chapters: BookChapter[];
   activeChapterId: string;
   activeSectionId: string;
+  activePageId: string;
   onSelectSection: (sectionId: string) => void;
   onSelectPage: (page: BookPage) => void;
   labs: BookLab[];
@@ -22,6 +23,7 @@ export default function Sidebar({
   chapters,
   activeChapterId,
   activeSectionId,
+  activePageId,
   onSelectSection,
   onSelectPage,
   labs,
@@ -59,12 +61,6 @@ export default function Sidebar({
           <span className="scope-icon">&#x1F9EA;</span> Labs
         </button>
         <button
-          className={`scope-link ${scope === 'ai-assistant' ? 'active' : ''}`}
-          onClick={() => onNavigateScope('ai-assistant')}
-        >
-          <span className="scope-icon">&#x1F916;</span> AI Assistant
-        </button>
-        <button
           className={`scope-link ${scope === 'login' ? 'active' : ''}`}
           onClick={() => onNavigateScope('login')}
         >
@@ -99,12 +95,12 @@ export default function Sidebar({
                           {sec.title}
                           {!sec.exists && <span className="badge-placeholder">missing</span>}
                         </button>
-                        {activeSectionId === sec.id && sectionPages.length > 1 && (
+                        {sectionPages.length > 1 && (
                           <div className="section-pages">
                             {sectionPages.map(p => (
                               <button
                                 key={p.id}
-                                className="page-link"
+                                className={`page-link ${p.id === activePageId ? 'active' : ''}`}
                                 onClick={() => onSelectPage(p)}
                               >
                                 {p.title}

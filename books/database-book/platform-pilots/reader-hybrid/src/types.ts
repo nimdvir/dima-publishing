@@ -10,7 +10,6 @@ export type ReaderScope =
   | 'welcome'
   | 'book'
   | 'labs'
-  | 'ai-assistant'
   | 'login';
 
 // ── Demo user (localStorage only) ──
