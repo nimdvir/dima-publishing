@@ -1,13 +1,18 @@
 /**
- * generateBookData.ts — Reader Hybrid v1
+ * generateBookData.ts — Reader Hybrid v1.1
  *
  * Scans chapters 1-4 and first 4 labs, resolves files via
  * stable → dated-fallback → placeholder, splits on page-break
  * markers, and writes src/generated/bookData.ts.
+ *
+ * Incremental: compares source file hashes against a generation
+ * manifest and skips the rebuild when nothing changed.
+ * Use --force to bypass the check.
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
+import * as crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 // ── Resolve repo root relative to this script ──
@@ -17,6 +22,39 @@ const PROJECT_ROOT = path.join(REPO_ROOT, 'books', 'database-book');
 const SOURCE_CHAPTERS = path.join(PROJECT_ROOT, 'files', 'source', 'chapters');
 const SOURCE_LABS = path.join(PROJECT_ROOT, 'files', 'source', 'labs');
 const OUTPUT = path.resolve(__dirname, '..', 'src', 'generated', 'bookData.ts');
+const MANIFEST_PATH = path.resolve(__dirname, '..', 'src', 'generated', '.generation-manifest.json');
+const FORCE = process.argv.includes('--force');
+
+// ── Generation manifest types ──
+interface ManifestEntry { file: string; hash: string; }
+interface GenerationManifest {
+  generated_at: string;
+  chapters: Record<string, Record<string, ManifestEntry>>;
+  labs: Record<string, ManifestEntry>;
+}
+
+function hashFile(filePath: string): string {
+  try {
+    const content = fs.readFileSync(filePath);
+    return 'sha256:' + crypto.createHash('sha256').update(content).digest('hex');
+  } catch {
+    return 'missing';
+  }
+}
+
+function loadManifest(): GenerationManifest | null {
+  try {
+    return JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf-8'));
+  } catch {
+    return null;
+  }
+}
+
+function saveManifest(manifest: GenerationManifest): void {
+  const dir = path.dirname(MANIFEST_PATH);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2), 'utf-8');
+}
 
 // ── Types mirroring src/types.ts (duplicated for standalone script) ──
 type SourceType = 'stable' | 'dated-fallback' | 'chapter-fallback' | 'placeholder';
@@ -293,6 +331,54 @@ function main() {
     process.exit(1);
   }
 
+  // ── Incremental check: hash source files and compare to manifest ──
+  if (!FORCE) {
+    const prevManifest = loadManifest();
+    if (prevManifest && fs.existsSync(OUTPUT)) {
+      let allMatch = true;
+      const changed: string[] = [];
+
+      for (const ch of CHAPTERS) {
+        const chDir = path.join(SOURCE_CHAPTERS, ch.folderName);
+        for (const sec of SECTIONS) {
+          const { sourceFile } = resolveSection(chDir, ch.id, ch.slug, sec);
+          const filePath = sourceFile ? path.join(chDir, sourceFile) : '';
+          const currentHash = sourceFile ? hashFile(filePath) : 'placeholder';
+          const prev = prevManifest.chapters?.[ch.id]?.[sec.slug];
+          if (!prev || prev.hash !== currentHash || prev.file !== (sourceFile || '')) {
+            allMatch = false;
+            changed.push(`${ch.id}/${sec.slug}`);
+          }
+        }
+      }
+
+      for (const labDef of LABS) {
+        const { sourceFile } = resolveLab(labDef);
+        const labDir = path.join(SOURCE_LABS, labDef.folderName);
+        const filePath = sourceFile ? path.join(labDir, sourceFile) : '';
+        const currentHash = sourceFile ? hashFile(filePath) : 'placeholder';
+        const prev = prevManifest.labs?.[labDef.id];
+        if (!prev || prev.hash !== currentHash || prev.file !== (sourceFile || '')) {
+          allMatch = false;
+          changed.push(labDef.id);
+        }
+      }
+
+      if (allMatch) {
+        console.log('  No source changes detected — skipping regeneration.');
+        console.log('  (Use --force to rebuild anyway.)\n');
+        process.exit(0);
+      } else {
+        console.log(`  Changes detected in: ${changed.join(', ')}`);
+        console.log('  Rebuilding...\n');
+      }
+    } else {
+      console.log('  No previous manifest — full build.\n');
+    }
+  } else {
+    console.log('  --force: skipping incremental check.\n');
+  }
+
   const chapters: BookChapter[] = [];
   const allPages: BookPage[] = [];
 
@@ -434,6 +520,34 @@ export const GENERATION_WARNINGS: string[] = ${JSON.stringify(WARNINGS, null, 2)
 
   fs.writeFileSync(OUTPUT, ts, 'utf-8');
   console.log(`\n  Wrote ${OUTPUT}`);
+
+  // ── Write generation manifest ──
+  const manifest: GenerationManifest = {
+    generated_at: new Date().toISOString(),
+    chapters: {},
+    labs: {},
+  };
+  for (const ch of chapters) {
+    manifest.chapters[ch.id] = {};
+    for (const sec of ch.sections) {
+      const chDir = path.join(SOURCE_CHAPTERS, ch.folderName);
+      const filePath = sec.sourceFile ? path.join(chDir, sec.sourceFile) : '';
+      manifest.chapters[ch.id][sec.slug] = {
+        file: sec.sourceFile || '',
+        hash: sec.sourceFile ? hashFile(filePath) : 'placeholder',
+      };
+    }
+  }
+  for (const lab of labs) {
+    const labDir = path.join(SOURCE_LABS, lab.folderName);
+    const filePath = lab.sourceFile ? path.join(labDir, lab.sourceFile) : '';
+    manifest.labs[lab.id] = {
+      file: lab.sourceFile || '',
+      hash: lab.sourceFile ? hashFile(filePath) : 'placeholder',
+    };
+  }
+  saveManifest(manifest);
+  console.log(`  Wrote generation manifest`);
 
   // ── Console summary ──
   console.log('\n═══════════════════════════════════════');
