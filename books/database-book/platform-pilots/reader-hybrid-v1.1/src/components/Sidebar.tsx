@@ -1,7 +1,30 @@
 import { useState } from 'react';
 import type { ReaderScope, BookChapter, BookLab, BookPage } from '../types';
 import { FLAT_READER_PAGES } from '../generated/bookData';
-import { BookOpen, FlaskConical, LogIn, ChevronDown, ChevronRight } from 'lucide-react';
+import {
+  BookOpen, FlaskConical, LogIn, ChevronDown, ChevronRight,
+  LayoutDashboard, BookMarked, Layers, Terminal, HelpCircle, Sparkles, Award,
+} from 'lucide-react';
+
+/** Icons for each reader area (keyed by section title). */
+const SECTION_ICONS: Record<string, React.ReactNode> = {
+  'Introduction': <BookMarked size={14} />,
+  'Core Concepts': <Layers size={14} />,
+  "Let's Build": <Terminal size={14} />,
+  'Review Questions': <HelpCircle size={14} />,
+  'Terms Treasury': <Sparkles size={14} />,
+  'RAT: Reading Test': <Award size={14} />,
+};
+
+/** Subtitles for reader areas. */
+const SECTION_SUBTITLES: Record<string, string> = {
+  'Introduction': 'Hook & Core Alignment',
+  'Core Concepts': 'Theory & Core Frameworks',
+  "Let's Build": 'Hands-on Code Laboratory',
+  'Review Questions': 'Self-explanation Exercises',
+  'Terms Treasury': 'Key Glossary & Core Definitions',
+  'RAT: Reading Test': 'Verify Knowledge Retention',
+};
 
 interface SidebarProps {
   scope: ReaderScope;
@@ -50,6 +73,12 @@ export default function Sidebar({
       {/* Scope nav */}
       <div className="sidebar-scope-nav">
         <button
+          className={`scope-link ${scope === 'welcome' ? 'active' : ''}`}
+          onClick={() => { onNavigateScope('welcome'); onClose(); }}
+        >
+          <LayoutDashboard size={16} className="scope-icon" /> Home
+        </button>
+        <button
           className={`scope-link ${scope === 'book' ? 'active' : ''}`}
           onClick={() => onNavigateScope('book')}
         >
@@ -93,7 +122,15 @@ export default function Sidebar({
                           className={`section-link ${activeSectionId === sec.id ? 'active' : ''}`}
                           onClick={() => onSelectSection(sec.id)}
                         >
-                          {sec.title}
+                          <span className="section-icon">
+                            {SECTION_ICONS[sec.title] || null}
+                          </span>
+                          <span className="section-text">
+                            <span className="section-title">{sec.title}</span>
+                            {SECTION_SUBTITLES[sec.title] && (
+                              <span className="section-subtitle">{SECTION_SUBTITLES[sec.title]}</span>
+                            )}
+                          </span>
                           {!sec.exists && <span className="badge-placeholder">missing</span>}
                         </button>
                         {sectionPages.length > 1 && (

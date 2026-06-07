@@ -1,8 +1,10 @@
+import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import type { Options } from 'rehype-sanitize';
+import { slugifyHeading, uniqueId, textFromChildren, type HeadingTocItem } from '../utils/headings';
 
 // Custom sanitize schema: allow callout classes and YouTube iframes only
 const customSchema: Options = {
@@ -26,6 +28,8 @@ const customSchema: Options = {
     figcaption: ['className', 'class'],
     pre: ['className', 'class'],
     code: ['className', 'class'],
+    h2: ['id'],
+    h3: ['id'],
     th: ['style', 'align'],
     td: ['style', 'align'],
   },
@@ -38,9 +42,14 @@ const customSchema: Options = {
 
 interface MarkdownRendererProps {
   content: string;
+  /** Callback fired with all H2/H3 headings found during render (for "On this page"). */
+  onHeadingsExtracted?: (headings: HeadingTocItem[]) => void;
 }
 
-export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
+export default function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRendererProps) {
+  // Per-render heading counter for unique IDs (reset per content string)
+  const headingCounts = useMemo(() => new Map<string, number>(), [content]);
+
   return (
     <div className="markdown-body">
       <ReactMarkdown
@@ -50,6 +59,17 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
           [rehypeSanitize, customSchema],
         ]}
         components={{
+          // Custom H2/H3 with stable IDs for "On this page" navigation
+          h2: ({ children, ...props }: any) => {
+            const text = textFromChildren(children);
+            const id = uniqueId(slugifyHeading(text), headingCounts);
+            return <h2 id={id} {...props}>{children}</h2>;
+          },
+          h3: ({ children, ...props }: any) => {
+            const text = textFromChildren(children);
+            const id = uniqueId(slugifyHeading(text), headingCounts);
+            return <h3 id={id} {...props}>{children}</h3>;
+          },
           // Custom iframe handler: only allow YouTube / youtube-nocookie
           iframe: ({ src, ...props }: any) => {
             if (src && /^https:\/\/(www\.)?(youtube\.com|youtube-nocookie\.com)\//.test(src)) {

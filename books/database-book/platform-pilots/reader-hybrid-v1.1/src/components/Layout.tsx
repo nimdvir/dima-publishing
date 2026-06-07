@@ -56,6 +56,9 @@ export default function Layout({
 }: LayoutProps) {
   return (
     <div className="app-shell">
+      {/* Skip link — first focusable element for keyboard users */}
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+
       {/* Header */}
       <header className="site-header">
         <div className="header-inner">
@@ -139,7 +142,7 @@ export default function Layout({
         </MobileNav>
 
         {/* Main content */}
-        <main className="main-content">
+        <main className="main-content" id="main-content">
           {children}
         </main>
       </div>

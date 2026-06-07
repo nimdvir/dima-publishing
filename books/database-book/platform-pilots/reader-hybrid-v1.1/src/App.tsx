@@ -248,7 +248,7 @@ export default function App() {
           .flatMap(c => c.sections)
           .find(s => s.id === sectionId);
         if (section) {
-          setActiveChapterId(section.id.split('-').slice(0, 2).join('-'));
+          setActiveChapterId(section.pages[0]?.chapterId || section.id.split('-').slice(0, 2).join('-'));
           writeQueryParams('book', { chapter: section.pages[0]?.chapterId, section: section.slug, page: 1 });
         }
         setScope('book');

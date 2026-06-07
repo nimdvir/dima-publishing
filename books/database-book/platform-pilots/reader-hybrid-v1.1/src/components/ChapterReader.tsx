@@ -1,5 +1,8 @@
+import { useMemo } from 'react';
 import type { BookPage } from '../types';
+import { extractHeadingToc } from '../utils/headings';
 import MarkdownRenderer from './MarkdownRenderer';
+import OnThisPage, { OnThisPageMobile } from './OnThisPage';
 import BottomNavigation from './BottomNavigation';
 
 interface ChapterReaderProps {
@@ -25,6 +28,9 @@ export default function ChapterReader({
   onPrev,
   onNext,
 }: ChapterReaderProps) {
+  // Extract H2/H3 headings from the current page content for "On this page"
+  const headings = useMemo(() => extractHeadingToc(page.content), [page.content]);
+
   return (
     <div className="chapter-reader">
       {/* Reader header */}
@@ -62,9 +68,15 @@ export default function ChapterReader({
         </div>
       )}
 
-      {/* Content */}
-      <div className="reader-content">
-        <MarkdownRenderer content={page.content} />
+      {/* Mobile: collapsible "On this page" above the article */}
+      <OnThisPageMobile headings={headings} />
+
+      {/* Reader body: main article + right-side "On this page" rail */}
+      <div className="reader-body">
+        <div className="reader-content">
+          <MarkdownRenderer content={page.content} />
+        </div>
+        <OnThisPage headings={headings} />
       </div>
 
       {/* Bottom navigation */}
