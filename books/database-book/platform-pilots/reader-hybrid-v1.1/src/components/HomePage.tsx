@@ -36,6 +36,15 @@ export default function HomePage({
   return (
     <div className="home-page">
       <div className="home-hero">
+        {/* ── Cover image (top) ── */}
+        <div className="cover-image-card">
+          <img
+            src={coverUrl}
+            alt="Using Data to Drive Business Performance — Book Cover"
+            className="cover-img"
+          />
+        </div>
+
         {/* ── Hero section ── */}
         <div className="home-hero-card">
           <p className="home-prototype-label">Frontend Prototype</p>
@@ -90,16 +99,7 @@ export default function HomePage({
           </button>
         </div>
 
-        {/* ── Cover image ── */}
-        <div className="cover-image-card">
-          <img
-            src={coverUrl}
-            alt="Using Data to Drive Business Performance — Book Cover"
-            className="cover-img"
-          />
-        </div>
-
-        {/* ── Video preview (demoted below description) ── */}
+        {/* ── Video preview ── */}
         <div className="home-video-card">
           <h2 className="home-section-title">
             <Video size={16} className="cta-icon" />
