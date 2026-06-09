@@ -1565,6 +1565,8 @@ The collapsed sidebar shows an icon rail only; the expanded sidebar shows the fu
 | AI Assistant | `MessageSquare` |
 | Access | `ShieldCheck` |
 
+
+
 ### Completed Sections Key Format
 
 Compound string key: `${chapterId}_${sectionId}`. Store in localStorage for v1.1; persist to Supabase `completed_sections` in v2A+.

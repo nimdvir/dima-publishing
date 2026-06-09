@@ -84,4 +84,13 @@ Vite, React 18, TypeScript, react-markdown, remark-gfm, rehype-raw, rehype-sanit
 
 ---
 
-**Reader Hybrid v1** — frontend prototype, not production-ready.
+**Reader Hybrid v1.1** — frontend prototype, not production-ready.
+
+## Deployment
+
+| Target | Root Directory | Build | Output | Notes |
+|---|---|---|---|---|
+| Vercel | `books/database-book/platform-pilots/reader-hybrid-v1.1` | `npm run build` | `dist` | Leave `VITE_BASE_PATH` unset |
+| GitHub Pages | nested under combined site | same build with `VITE_BASE_PATH=/dima-publishing/platform-pilots/reader-hybrid-v1.1/` | `dist` | Entry: `?scope=welcome` |
+
+See `../README.md` for the full platform-pilots deployment guide.

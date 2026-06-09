@@ -1,0 +1,193 @@
+name: Deploy database-book platform pilots to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "books/database-book/platform-pilots/**"
+      - ".github/workflows/deploy-platform-pilots-pages.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: database-book-platform-pilots-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Create Pages artifact directory
+        run: |
+          set -euo pipefail
+          mkdir -p pages/platform-pilots
+          touch pages/.nojekyll
+
+      - name: Build ai-studio
+        working-directory: books/database-book/platform-pilots/ai-studio
+        env:
+          VITE_BASE_PATH: /dima-publishing/platform-pilots/ai-studio/
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+
+      - name: Stage ai-studio
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/ai-studio/dist/index.html
+          mkdir -p pages/platform-pilots/ai-studio
+          cp -R books/database-book/platform-pilots/ai-studio/dist/. \
+            pages/platform-pilots/ai-studio/
+
+      - name: Build google-ai-studio
+        working-directory: books/database-book/platform-pilots/google-ai-studio
+        env:
+          VITE_BASE_PATH: /dima-publishing/platform-pilots/google-ai-studio/
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+
+      - name: Stage google-ai-studio
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/google-ai-studio/dist/index.html
+          mkdir -p pages/platform-pilots/google-ai-studio
+          cp -R books/database-book/platform-pilots/google-ai-studio/dist/. \
+            pages/platform-pilots/google-ai-studio/
+
+      - name: Build cursor-online-reader
+        working-directory: books/database-book/platform-pilots/cursor-online-reader
+        env:
+          VITE_BASE_PATH: /dima-publishing/platform-pilots/cursor-online-reader/
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+
+      - name: Stage cursor-online-reader
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/cursor-online-reader/dist/index.html
+          mkdir -p pages/platform-pilots/cursor-online-reader
+          cp -R books/database-book/platform-pilots/cursor-online-reader/dist/. \
+            pages/platform-pilots/cursor-online-reader/
+
+      - name: Build reader-hybrid
+        working-directory: books/database-book/platform-pilots/reader-hybrid
+        env:
+          VITE_BASE_PATH: /dima-publishing/platform-pilots/reader-hybrid/
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+
+      - name: Stage reader-hybrid
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/reader-hybrid/dist/index.html
+          mkdir -p pages/platform-pilots/reader-hybrid
+          cp -R books/database-book/platform-pilots/reader-hybrid/dist/. \
+            pages/platform-pilots/reader-hybrid/
+
+      - name: Build reader-hybrid-alt
+        working-directory: books/database-book/platform-pilots/reader-hybrid-alt
+        env:
+          VITE_BASE_PATH: /dima-publishing/platform-pilots/reader-hybrid-alt/
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+
+      - name: Stage reader-hybrid-alt
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/reader-hybrid-alt/dist/index.html
+          mkdir -p pages/platform-pilots/reader-hybrid-alt
+          cp -R books/database-book/platform-pilots/reader-hybrid-alt/dist/. \
+            pages/platform-pilots/reader-hybrid-alt/
+
+      - name: Build reader-hybrid-v1.1
+        working-directory: books/database-book/platform-pilots/reader-hybrid-v1.1
+        env:
+          VITE_BASE_PATH: /dima-publishing/platform-pilots/reader-hybrid-v1.1/
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+
+      - name: Stage reader-hybrid-v1.1
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/reader-hybrid-v1.1/dist/index.html
+          mkdir -p pages/platform-pilots/reader-hybrid-v1.1
+          cp -R books/database-book/platform-pilots/reader-hybrid-v1.1/dist/. \
+            pages/platform-pilots/reader-hybrid-v1.1/
+
+      - name: Build chat-gpt temp-online-reader
+        working-directory: books/database-book/platform-pilots/chat-gpt/temp-online-reader
+        env:
+          VITE_BASE_PATH: /dima-publishing/platform-pilots/chat-gpt/temp-online-reader/
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+
+      - name: Stage chat-gpt temp-online-reader
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/chat-gpt/temp-online-reader/dist/index.html
+          mkdir -p pages/platform-pilots/chat-gpt/temp-online-reader
+          cp -R books/database-book/platform-pilots/chat-gpt/temp-online-reader/dist/. \
+            pages/platform-pilots/chat-gpt/temp-online-reader/
+
+      - name: Stage prototype static HTML
+        run: |
+          set -euo pipefail
+          test -f books/database-book/platform-pilots/prototype/index.html
+          mkdir -p pages/platform-pilots/prototype
+          cp -R books/database-book/platform-pilots/prototype/. \
+            pages/platform-pilots/prototype/
+          rm -f pages/platform-pilots/prototype/build_static_book.py
+
+      - name: Generate Pages gallery and manifest
+        run: |
+          set -euo pipefail
+          node books/database-book/platform-pilots/scripts/generate-pages-gallery.mjs pages
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: pages
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

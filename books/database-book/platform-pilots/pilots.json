@@ -1,0 +1,82 @@
+[
+  {
+    "folder": "reader-hybrid-v1.1",
+    "title": "Reader Hybrid v1.1",
+    "description": "Current reader and interaction prototype with query-param navigation, labs, and demo login.",
+    "status": "Current",
+    "framework": "Vite",
+    "entryQuery": "?scope=welcome",
+    "pages": true,
+    "vercel": true
+  },
+  {
+    "folder": "google-ai-studio",
+    "title": "Google AI Studio",
+    "description": "AI Studio export with Tailwind UI and Gemini integration hooks.",
+    "status": "Reference",
+    "framework": "Vite",
+    "entryQuery": "",
+    "pages": true,
+    "vercel": true
+  },
+  {
+    "folder": "reader-hybrid",
+    "title": "Reader Hybrid v1",
+    "description": "Original frontend-only reader prototype for chapters 1-4 and four labs.",
+    "status": "Archived",
+    "framework": "Vite",
+    "entryQuery": "?scope=welcome",
+    "pages": true,
+    "vercel": true
+  },
+  {
+    "folder": "reader-hybrid-alt",
+    "title": "Reader Hybrid Alt",
+    "description": "Comparison prototype with right-rail mini-TOC and alternate reader UX.",
+    "status": "Alternative",
+    "framework": "Vite",
+    "entryQuery": "?scope=welcome",
+    "pages": true,
+    "vercel": true
+  },
+  {
+    "folder": "cursor-online-reader",
+    "title": "Cursor Online Reader",
+    "description": "Collapsible sidebar reader built from canonical six-file chapter contract.",
+    "status": "Experimental",
+    "framework": "Vite",
+    "entryQuery": "?chapter=ch01&section=core-concepts",
+    "pages": true,
+    "vercel": true
+  },
+  {
+    "folder": "ai-studio",
+    "title": "AI Studio",
+    "description": "Google AI Studio pilot with labs UI and chapter navigation experiments.",
+    "status": "Experimental",
+    "framework": "Vite",
+    "entryQuery": "",
+    "pages": true,
+    "vercel": true
+  },
+  {
+    "folder": "chat-gpt/temp-online-reader",
+    "title": "Temp Online Reader",
+    "description": "Temporary four-chapter reader scoped to early synced chapters.",
+    "status": "Experimental",
+    "framework": "Vite",
+    "entryQuery": "?chapter=ch01&section=core-concepts",
+    "pages": true,
+    "vercel": true
+  },
+  {
+    "folder": "prototype",
+    "title": "Static HTML Prototype",
+    "description": "Legacy warm-cream static HTML shell. Pages deploys the committed snapshot; CI cannot regenerate chapter HTML without external book-platform.",
+    "status": "Static Preview",
+    "framework": "Static HTML",
+    "entryQuery": "",
+    "pages": true,
+    "vercel": true
+  }
+]
