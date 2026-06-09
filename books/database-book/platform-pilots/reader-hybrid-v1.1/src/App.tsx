@@ -244,12 +244,14 @@ export default function App() {
       onSelectSection={(sectionId) => {
         setActiveSectionId(sectionId);
         setActivePageIndex(0);
-        const section = BOOK_CHAPTERS
-          .flatMap(c => c.sections)
-          .find(s => s.id === sectionId);
+        const chapter = BOOK_CHAPTERS.find(c => c.sections.some(s => s.id === sectionId));
+        const section = chapter?.sections.find(s => s.id === sectionId);
         if (section) {
-          setActiveChapterId(section.pages[0]?.chapterId || section.id.split('-').slice(0, 2).join('-'));
-          writeQueryParams('book', { chapter: section.pages[0]?.chapterId, section: section.slug, page: 1 });
+          const chapterId = section.pages[0]?.chapterId || chapter?.id;
+          if (chapterId) {
+            setActiveChapterId(chapterId);
+            writeQueryParams('book', { chapter: chapterId, section: section.slug, page: 1 });
+          }
         }
         setScope('book');
         setSidebarOpen(false);

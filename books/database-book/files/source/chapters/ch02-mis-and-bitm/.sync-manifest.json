@@ -1,0 +1,30 @@
+﻿{
+    "sections":  {
+                     "main":  {
+                                  "source_date":  "2026-06-06",
+                                  "file":  "ch02-main-2026-06-06.md",
+                                  "hash":  "sha256:402565AB89E967B5288EAF07505E5FC20E8D4822EB37675A385938E7277E3200"
+                              },
+                     "lets-build":  {
+                                        "source_date":  "2026-06-03",
+                                        "file":  "ch02-lets-build-2026-06-03.md",
+                                        "hash":  "sha256:5EE4A48BF67BD65E74EDA2F4A0DE374DAB0B423558ED65256C2886B8C44D2389"
+                                    },
+                     "terms":  {
+                                   "source_date":  "2026-06-02",
+                                   "file":  "ch02-terms-2026-06-02.md",
+                                   "hash":  "sha256:821959A0E0B08C8988CE621E7879DE3DAA269E767021092119AC93210E27A4A7"
+                               },
+                     "reflection":  {
+                                        "source_date":  "2026-06-03",
+                                        "file":  "ch02-reflection-2026-06-03.md",
+                                        "hash":  "sha256:5CB23CFE288163C3207C04E57ECAFC40500BE4724F651BACFEB397FA46E98FFA"
+                                    },
+                     "rat":  {
+                                 "source_date":  "2026-06-03",
+                                 "file":  "ch02-rat-2026-06-03.md",
+                                 "hash":  "sha256:021246AC348AF612036E31291E69324C06097A4D0241C3255F710E48CCC058A2"
+                             }
+                 },
+    "synced_at":  "2026-06-06T23:13:18-04:00"
+}

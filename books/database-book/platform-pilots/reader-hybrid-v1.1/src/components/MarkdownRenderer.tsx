@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -19,7 +18,7 @@ const customSchema: Options = {
   ],
   attributes: {
     ...defaultSchema.attributes,
-    div: ['className', 'class', 'style'],
+    div: ['className', 'class'],
     span: ['className', 'class'],
     iframe: ['src', 'title', 'width', 'height', 'allow', 'allowFullScreen', 'frameBorder'],
     img: ['src', 'alt', 'width', 'height', 'title'],
@@ -30,8 +29,8 @@ const customSchema: Options = {
     code: ['className', 'class'],
     h2: ['id'],
     h3: ['id'],
-    th: ['style', 'align'],
-    td: ['style', 'align'],
+    th: ['align'],
+    td: ['align'],
   },
   protocols: {
     ...defaultSchema.protocols,
@@ -47,8 +46,8 @@ interface MarkdownRendererProps {
 }
 
 export default function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRendererProps) {
-  // Per-render heading counter for unique IDs (reset per content string)
-  const headingCounts = useMemo(() => new Map<string, number>(), [content]);
+  // Per-render heading counter keeps DOM IDs aligned with extracted H2/H3 IDs.
+  const headingCounts = new Map<string, number>();
 
   return (
     <div className="markdown-body">
