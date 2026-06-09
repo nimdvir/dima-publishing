@@ -1,0 +1,14 @@
+---
+description: Use the canonical project agents and skills
+alwaysApply: true
+---
+
+The canonical project instructions are in:
+
+- `AGENTS.md`
+- `.agents/README.md`
+- `.agents/skills/`
+
+Before performing a textbook task, identify and read the relevant skill.
+
+Do not use files under `.agents/archive/` as active instructions.
