@@ -437,3 +437,4 @@ These are not required and are not graded.
 - Add a query that returns the average `PaymentAmount` per `AnimalType` (Dog vs. Cat).
 - Write a query that counts appointments per `AppointmentDate`.
 - Add a `DELETE` *preview* from the Let's Build: write the `SELECT` that would identify a removable row, but do **not** run the `DELETE`.
+

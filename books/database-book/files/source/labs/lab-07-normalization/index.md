@@ -306,3 +306,4 @@ Optional. Not required. Do not turn in if you do not complete them.
 ## Peek Ahead — Chapter 8
 
 Chapter 8 is the midterm review. The PetVax schema you just built is the kind of design you should be able to read, query, and explain from memory. Chapter 9 then returns to SQL with multi-table queries built on exactly this style of normalized schema.
+

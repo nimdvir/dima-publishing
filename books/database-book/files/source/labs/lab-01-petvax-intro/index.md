@@ -190,3 +190,4 @@ What do you submit for Lab 01?
 - B. A SQL script and result screenshots.
 - C. Only this quiz; Lab 01 has no file submission.
 - D. A Power BI dashboard of clinic revenue.
+

@@ -21,12 +21,14 @@ For non-chapter rows, the Ch column is `—`.
 | Category | Ch  | Task | Next | Done | Updated |
 | -------- | --- | ---- | ---- | ---- | ------- |
 
-| General | — | v1.1 reader verification | · Run generate/lint/build in `platform-pilots/reader-hybrid-v1.1/` · Verify hero motion, reader width, OTP highlight, mobile On this page, and favicon wiring · Quarantine dead `AiAssistant.tsx` if it remains unrouted |  | 2026-06-10 |
-| General | — | Source migration validation | · Verify stable chapter and lab files against `source-import-manifest.csv` · Check for answer leakage, missing sections, and raw Windows paths · Confirm stale `.sync-manifest.json` cleanup |  | 2026-06-10 |
 | Build | — | Formal build provenance | · Run formal reader, DOCX, EPUB, and PDF builds · Write `files/manifests/build-manifest.json` |  | 2026-06-10 |
 | Book Structure | — | Repo edit tracking rollout | · Keep `books/database-book/.edits/edit-log.md` updated for each session · Use `chapter-tracker.md` for book-level tasks |  | 2026-06-10 |
 
 ## Archive
 
-| Date | Ch  | Summary |
-| ---- | --- | ------- |
+<!-- markdownlint-disable MD060 -->
+| Date       | Ch  | Summary                                                                                                                      |
+| ---------- | --- | ---------------------------------------------------------------------------------------------------------------------------- |
+| 2026-06-10 | —   | Verified v1.1 reader build, browser layout, favicon wiring, mobile on-this-page behavior, and removed dead `AiAssistant.tsx` |
+| 2026-06-10 | —   | Validated the source migration, confirmed no stale `.sync-manifest.json` files, removed answer-link leakage from migrated lab indexes, and taught the importer to sanitize lab answer references on copy |
+<!-- markdownlint-enable MD060 -->

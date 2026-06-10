@@ -97,6 +97,54 @@ function Get-FileHash256 {
     (Get-FileHash -Path $Path -Algorithm SHA256).Hash.ToLower()
 }
 
+function Remove-LabAnswerReferences {
+    param([string]$Content)
+
+    if ([string]::IsNullOrEmpty($Content)) {
+        return $Content
+    }
+
+    $patterns = @(
+        '(?m)^\s*-\s+\[Centralized answer outline\].*\r?\n?',
+        '(?m)^\s*-\s+\[Answer key draft\].*\r?\n?'
+    )
+
+    $updated = $Content
+    foreach ($pattern in $patterns) {
+        $updated = [regex]::Replace($updated, $pattern, '')
+    }
+
+    return $updated
+}
+
+function Add-ManifestRow {
+    param(
+        [string]$ContentId,
+        [string]$Component,
+        [string]$SourcePath = '',
+        [string]$SourceFilename = '',
+        [string]$SourceDate = '',
+        [string]$SourceSha256 = '',
+        [string]$DestinationPath = '',
+        [string]$ImportedAt = '',
+        [string]$Status = '',
+        [string]$Notes = ''
+    )
+
+    $manifestRows.Add([pscustomobject][ordered]@{
+        content_id       = $ContentId
+        component        = $Component
+        source_path      = $SourcePath
+        source_filename  = $SourceFilename
+        source_date      = $SourceDate
+        source_sha256    = $SourceSha256
+        destination_path = $DestinationPath
+        imported_at      = $ImportedAt
+        status           = $Status
+        notes            = $Notes
+    }) | Out-Null
+}
+
 function Select-LatestCanonical {
     param(
         [string]$FolderPath,
@@ -145,8 +193,7 @@ function Select-LatestCanonical {
 # ── Main ───────────────────────────────────────────────────────────────
 
 $timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ssK'
-$manifestRows = [System.Collections.Generic.List[string]]::new()
-$manifestRows.Add('content_id,component,source_path,source_filename,source_date,source_sha256,destination_path,imported_at,status,notes')
+$manifestRows = [System.Collections.Generic.List[object]]::new()
 
 $totalImported  = 0
 $totalMissing   = 0
@@ -179,7 +226,7 @@ foreach ($ch in $Chapters) {
     if (-not (Test-Path -LiteralPath $chDraftDir)) {
         Write-Host "    WARN: Draft folder not found: $($ch.DraftFolder)" -ForegroundColor Red
         $warnings.Add("Chapter $($ch.Id): draft folder missing at $chDraftDir")
-        $manifestRows.Add("$($ch.Id),all,$chDraftDir,,,,$chDestDir,$timestamp,missing-source,draft folder not found")
+        Add-ManifestRow -ContentId $ch.Id -Component 'all' -SourcePath $chDraftDir -DestinationPath $chDestDir -ImportedAt $timestamp -Status 'missing-source' -Notes 'draft folder not found'
         $totalMissing++
         continue
     }
@@ -206,23 +253,23 @@ foreach ($ch in $Chapters) {
                     Copy-Item -LiteralPath $srcFile.FullName -Destination $destFile -Force
                 }
 
-                $manifestRows.Add("$($ch.Id),$($sec.StableFile -replace '\.md$',''),$relSrc,$($srcFile.Name),$($result.Date),$hash,$relDest,$timestamp,imported,")
+                Add-ManifestRow -ContentId $ch.Id -Component ($sec.StableFile -replace '\.md$','') -SourcePath $relSrc -SourceFilename $srcFile.Name -SourceDate $result.Date -SourceSha256 $hash -DestinationPath $relDest -ImportedAt $timestamp -Status 'imported'
                 $totalImported++
             }
             'missing-folder' {
                 Write-Host "    SKIP $($sec.Subfolder)/  (folder not found)" -ForegroundColor DarkGray
-                $manifestRows.Add("$($ch.Id),$($sec.StableFile -replace '\.md$',''),$secDir,,,,,$timestamp,missing-source,subfolder not found")
+                Add-ManifestRow -ContentId $ch.Id -Component ($sec.StableFile -replace '\.md$','') -SourcePath $secDir -ImportedAt $timestamp -Status 'missing-source' -Notes 'subfolder not found'
                 $totalMissing++
             }
             'missing-source' {
                 Write-Host "    MISS $($sec.Subfolder)/  (no canonical file)" -ForegroundColor Yellow
-                $manifestRows.Add("$($ch.Id),$($sec.StableFile -replace '\.md$',''),$secDir,,,,,$timestamp,missing-source,no canonical file matched pattern")
+                Add-ManifestRow -ContentId $ch.Id -Component ($sec.StableFile -replace '\.md$','') -SourcePath $secDir -ImportedAt $timestamp -Status 'missing-source' -Notes 'no canonical file matched pattern'
                 $totalMissing++
             }
             'same-date-conflict' {
                 Write-Host "    CONFLICT $($sec.Subfolder)/  same-date: $($result.Date)" -ForegroundColor Red
                 $warnings.Add("Chapter $($ch.Id) $($sec.Subfolder): same-date conflict on $($result.Date)")
-                $manifestRows.Add("$($ch.Id),$($sec.StableFile -replace '\.md$',''),$secDir,,$($result.Date),,,,$timestamp,manual-review,same-date conflict")
+                Add-ManifestRow -ContentId $ch.Id -Component ($sec.StableFile -replace '\.md$','') -SourcePath $secDir -SourceDate $result.Date -ImportedAt $timestamp -Status 'manual-review' -Notes 'same-date conflict'
                 $totalConflicts++
             }
         }
@@ -230,7 +277,7 @@ foreach ($ch in $Chapters) {
         foreach ($sk in $result.Skipped) {
             $totalSkipped++
             Write-Host "    skip $($sec.Subfolder)/$($sk.Name)  ($($sk.Reason))" -ForegroundColor DarkGray
-            $manifestRows.Add("$($ch.Id),$($sec.StableFile -replace '\.md$',''),,`"$($sk.Name)`",,,,,$timestamp,skipped-noncanonical,$($sk.Reason)")
+            Add-ManifestRow -ContentId $ch.Id -Component ($sec.StableFile -replace '\.md$','') -SourceFilename $sk.Name -ImportedAt $timestamp -Status 'skipped-noncanonical' -Notes $sk.Reason
         }
     }
 
@@ -253,7 +300,7 @@ foreach ($lab in $Labs) {
 
     if (-not (Test-Path -LiteralPath $labDraftDir)) {
         Write-Host "  MISS $($lab.Id)  (folder not found: $($lab.Folder))" -ForegroundColor Yellow
-        $manifestRows.Add("$($lab.Id),lab-questions,$labDraftDir,,,,,$timestamp,missing-source,lab folder not found")
+        Add-ManifestRow -ContentId $lab.Id -Component 'lab-questions' -SourcePath $labDraftDir -ImportedAt $timestamp -Status 'missing-source' -Notes 'lab folder not found'
         $totalMissing++
         continue
     }
@@ -266,7 +313,7 @@ foreach ($lab in $Labs) {
     foreach ($f in $files) {
         if ($f.Name -match $labAnswerPattern) {
             $answerFiles += $f.Name
-            $manifestRows.Add("$($lab.Id),lab-answers,,$($f.Name),,,,,$timestamp,skipped-answer-file,")
+            Add-ManifestRow -ContentId $lab.Id -Component 'lab-answers' -SourceFilename $f.Name -ImportedAt $timestamp -Status 'skipped-answer-file'
             continue
         }
         if ($f.Name -match $labPattern) {
@@ -282,7 +329,7 @@ foreach ($lab in $Labs) {
 
     if (@($candidates).Count -eq 0) {
         Write-Host "  MISS $($lab.Id)  (no canonical questions file)" -ForegroundColor Yellow
-        $manifestRows.Add("$($lab.Id),lab-questions,$labDraftDir,,,,,$timestamp,missing-source,no canonical file")
+        Add-ManifestRow -ContentId $lab.Id -Component 'lab-questions' -SourcePath $labDraftDir -ImportedAt $timestamp -Status 'missing-source' -Notes 'no canonical file'
         $totalMissing++
         continue
     }
@@ -294,7 +341,7 @@ foreach ($lab in $Labs) {
     if ($sameDateCount -gt 1) {
         Write-Host "  CONFLICT $($lab.Id)  same-date: $($latest.Date)" -ForegroundColor Red
         $warnings.Add("Lab $($lab.Id): same-date conflict on $($latest.Date)")
-        $manifestRows.Add("$($lab.Id),lab-questions,$labDraftDir,,$($latest.Date),,,,$timestamp,manual-review,same-date conflict")
+        Add-ManifestRow -ContentId $lab.Id -Component 'lab-questions' -SourcePath $labDraftDir -SourceDate $latest.Date -ImportedAt $timestamp -Status 'manual-review' -Notes 'same-date conflict'
         $totalConflicts++
         continue
     }
@@ -303,14 +350,20 @@ foreach ($lab in $Labs) {
     $hash = Get-FileHash256 -Path $srcFile.FullName
     Write-Host "  OK   $($lab.Id)  $($srcFile.Name)  ->  index.md  [$($latest.Date)]" -ForegroundColor Green
 
+    $sourceText = Get-Content -LiteralPath $srcFile.FullName -Raw
+    $sanitizedText = Remove-LabAnswerReferences -Content $sourceText
+    $wasSanitized = $sanitizedText -ne $sourceText
+
     if (-not $DryRun) {
         if (-not (Test-Path -LiteralPath $labDestDir)) {
             New-Item -ItemType Directory -Path $labDestDir -Force | Out-Null
         }
-        Copy-Item -LiteralPath $srcFile.FullName -Destination $destFile -Force
+        Set-Content -LiteralPath $destFile -Value $sanitizedText -Encoding utf8NoBOM
     }
 
-    $manifestRows.Add("$($lab.Id),lab-questions,$($srcFile.FullName),$($srcFile.Name),$($latest.Date),$hash,$relDest,$timestamp,imported,")
+    $labNotes = if ($wasSanitized) { 'sanitized answer references' } else { '' }
+
+    Add-ManifestRow -ContentId $lab.Id -Component 'lab-questions' -SourcePath $srcFile.FullName -SourceFilename $srcFile.Name -SourceDate $latest.Date -SourceSha256 $hash -DestinationPath $relDest -ImportedAt $timestamp -Status 'imported' -Notes $labNotes
     $totalImported++
 }
 
@@ -338,15 +391,15 @@ if ($warnings.Count -gt 0) {
 
 if ($DryRun) {
     Write-Host '── Manifest preview (first 20 rows) ──' -ForegroundColor Cyan
-    $manifestRows | Select-Object -First 21 | ForEach-Object { Write-Host "  $_" }
-    if ($manifestRows.Count -gt 21) {
+    $manifestRows | Select-Object -First 20 | ConvertTo-Csv -NoTypeInformation | Select-Object -Skip 1 | ForEach-Object { Write-Host "  $_" }
+    if ($manifestRows.Count -gt 20) {
         Write-Host "  ... ($($manifestRows.Count - 1) total rows)"
     }
     Write-Host ''
     Write-Host 'DRY RUN complete. No files were written.' -ForegroundColor Yellow
 } else {
     $manifestPath = Join-Path $ManifestsDir 'source-import-manifest.csv'
-    $manifestRows | Out-File -FilePath $manifestPath -Encoding utf8
+    $manifestRows | Export-Csv -Path $manifestPath -NoTypeInformation -Encoding utf8
     Write-Host "Manifest written: $manifestPath" -ForegroundColor Green
     Write-Host "Import complete. Review the manifest and commit." -ForegroundColor Green
 }

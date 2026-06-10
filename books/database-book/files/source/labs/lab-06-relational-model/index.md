@@ -335,3 +335,4 @@ Not required. Try one of these only if you have time after the main lab is compl
 - Add an `OwnerPhone` field to `OWNER` and update at least two existing rows.
 - Modify `qryOwnerPetSummary` to also show the number of appointments per owner (hint: you will need to join through `PET_OWNER`, `PET`, and `APPOINTMENT`).
 - Add a new service category to `SERVICE_TYPE` and write a test that proves your `qryMissingRequiredVaccinations` query still works.
+

@@ -26,8 +26,6 @@ This file preserves the current section-based lab handout inside the new numbere
 ## Source Links
 
 - [Centralized section lab](../../../Labs/sections/part-02-databases-and-the-relational-model/ch09-advanced-sql-queries/lab.md)
-- [Centralized answer outline](../../../Labs/sections/part-02-databases-and-the-relational-model/ch09-advanced-sql-queries/answer-sheet-outline.md)
-- [Answer key draft](./lab-09-answers-2026-05-22.md)
 
 ## Migration Notes
 
@@ -101,4 +99,5 @@ For advanced learners:
 - Modification 1
 - Modification 2
 - Modification 3
+
 

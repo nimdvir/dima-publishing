@@ -406,3 +406,4 @@ These are not required and are not graded.
 - Build `qryNoReminder`: appointments where `ReminderSent = No`. How many rows do you get?
 - Build `qryPaymentsHighToLow`: `PetName`, `OwnerName`, `ServiceType`, `PaymentAmount`, sorted by `PaymentAmount` descending. Which pet is on top?
 - Build a second report, `rptVaccineDue`, from `qryVaccineDue`, and tidy its layout.
+

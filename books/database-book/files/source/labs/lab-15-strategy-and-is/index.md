@@ -26,8 +26,6 @@ This file preserves the current section-based lab handout inside the new numbere
 ## Source Links
 
 - [Centralized section lab](../../../Labs/sections/part-04-from-data-to-strategy-and-integration/ch15-business-strategy-is/lab.md)
-- [Centralized answer outline](../../../Labs/sections/part-04-from-data-to-strategy-and-integration/ch15-business-strategy-is/answer-sheet-outline.md)
-- [Answer key draft](./lab-15-answers-2026-05-22.md)
 
 ## Migration Notes
 
@@ -36,6 +34,7 @@ This file preserves the current section-based lab handout inside the new numbere
 - Status: content moved into the numbered lab sequence; a later pass can rebuild this into the full SAM-style format if needed.
 
 ## Migrated Section Draft
+
 
 
 

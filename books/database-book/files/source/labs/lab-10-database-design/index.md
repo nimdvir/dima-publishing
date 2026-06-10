@@ -26,8 +26,6 @@ This file preserves the current section-based lab handout inside the new numbere
 ## Source Links
 
 - [Centralized section lab](../../../Labs/sections/part-03-building-and-managing-systems/ch10-database-design/lab.md)
-- [Centralized answer outline](../../../Labs/sections/part-03-building-and-managing-systems/ch10-database-design/answer-sheet-outline.md)
-- [Answer key draft](./lab-10-answers-2026-05-22.md)
 
 ## Migration Notes
 
@@ -101,4 +99,5 @@ For advanced learners:
 - Modification 1
 - Modification 2
 - Modification 3
+
 
