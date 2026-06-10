@@ -1,7 +1,7 @@
 # Database Book — Consolidated Development Plan
 
-**Date:** 2026-06-10
-**Status:** Approved — ready for phased implementation
+**Date:** 2026-06-10 (current-state updated 2026-06-10)  
+**Status:** Superseded by `book-plan-codex.md` — retained as overview index  
 **Source:** Consolidated from `database-book-plan-06-09-chatgpt.md` and prior planning sessions
 
 ## Project Identity
@@ -25,36 +25,47 @@
 ## Development Sequence
 
 ```
-Phase 1: v1.1 Reader Completion Pass       ← this sprint
-Phase 2: Source Migration — Drive → Git     ← next sprint
-Phase 3: v2A Paid Platform Proof            ← after migration
-Phase 4: v2B Persistent Learning Features   ← after v2A stable
+Phase 0: Reconcile docs                     ← done (book-plan-codex.md)
+Phase 1: Close v1.1 (verification)          ← this sprint
+Phase 2: Source infrastructure              ← next sprint
+Phase 3: Dry-run import                     ← next sprint
+Phase 4: Execute migration                  ← next sprint
+Phase 5: Validate readers and builds        ← after migration
+Phase 6: Deferred (v2A, v2B, media)         ← after validation
 ```
 
 ## Plan Files
 
 | File | Contents |
 |---|---|
-| [01-v1.1-reader-completion.md](01-v1.1-reader-completion.md) | Phase 1: motion, hero, layout, favicon, CSS, acceptance criteria |
-| [02-source-migration.md](02-source-migration.md) | Phase 2: Drive→Git migration, chapter registry, manifests, policy |
-| [03-v2a-paid-platform.md](03-v2a-paid-platform.md) | Phase 3: Next.js, Supabase Auth, Stripe, access grants |
-| [04-v2b-learning-features.md](04-v2b-learning-features.md) | Phase 4: progress, notes, labs, search, accessibility |
-| [05-architecture-reference.md](05-architecture-reference.md) | Reader architecture, generator pipeline, image strategy, prototype adoption guide |
+| [book-plan-codex.md](book-plan-codex.md) | **Canonical plan** — supersedes all others; conflict resolutions, Phase 0-6 sequence |
+| [01-v1.1-reader-completion.md](01-v1.1-reader-completion.md) | Phase 1 reference spec (mostly implemented) |
+| [02-source-migration.md](02-source-migration.md) | Phase 2 detail (3 conflicts fixed in codex) |
+| [03-v2a-paid-platform.md](03-v2a-paid-platform.md) | Phase 3: Next.js, Supabase Auth, Stripe (deferred) |
+| [04-v2b-learning-features.md](04-v2b-learning-features.md) | Phase 4: progress, notes, labs, search (deferred) |
+| [05-architecture-reference.md](05-architecture-reference.md) | Reader architecture, generator pipeline, image strategy |
 | [06-locked-decisions.md](06-locked-decisions.md) | All settled decisions from planning sessions |
+| [canonical-book-edit-source-workflow-2026-06-10.md](canonical-book-edit-source-workflow-2026-06-10.md) | Detailed migration implementation steps (conflicts fixed in codex) |
 
-## Current State
+## Current State (updated 2026-06-10)
 
-### Completed or mostly completed (v1.1)
+### v1.1 Reader — mostly complete
 
 | Area | Status |
 |---|---|
-| White/zinc/indigo palette | Mostly done |
+| White/zinc/indigo palette | Done |
 | Sticky white header | Done |
-| Home page copy | Mostly done |
+| Home page copy | Done |
 | Feature cards | Done |
+| `motion` dependency | Done (installed) |
+| AnimatedBookCover component | Done |
+| Two-column home hero | Done |
+| Reader width cleanup (780px cap removed) | Done |
 | "On this page" H2/H3 nav | Done |
+| Active "On this page" highlighting (IntersectionObserver) | Done |
 | Mobile "On this page" block | Done |
-| Sidebar icons/subtitles | Mostly done |
+| Sidebar icons/subtitles | Done |
+| Reader page transitions | Done |
 | Skip link | Done |
 | Reduced-motion CSS | Done |
 | Generator preserved | Done |
@@ -62,27 +73,33 @@ Phase 4: v2B Persistent Learning Features   ← after v2A stable
 | Scroll-to-top | Done |
 | Dismissible prototype notice | Done |
 | Separate v1.1 localStorage keys | Done |
+| Favicon / manifest wiring | Done (site.webmanifest + index.html refs) |
 
-### Not completed — Phase 1 scope
+### v1.1 — needs verification
 
 | Area | Status |
 |---|---|
-| `motion` dependency | Missing |
-| AnimatedBookCover component | Missing |
-| Two-column home hero | Missing / incomplete |
-| Reader width cleanup (780px cap) | Needs fix |
-| Active "On this page" highlighting | Missing |
-| Reader page transitions | Missing |
-| Favicon / manifest | Not confirmed |
+| Favicon binary files in `public/` | Confirm present (only manifest found by scan) |
+| `npm run generate / lint / build` | Not verified this session |
+| Visual QA (hero, reader, mobile) | Not verified this session |
+| Dead `AiAssistant.tsx` | Exists but unrouted; quarantine or delete |
 | CSS cleanup (duplicate selectors) | Still needed |
 
-### Not started — later phases
+### Not started — next milestone: Source Migration
 
 | Area | Phase |
 |---|---|
-| Chapters 5–17 migration | Phase 2 |
-| chapter-registry.yml / book.yml | Phase 2 |
-| Stable filenames (replace dated) | Phase 2 |
-| Next.js v2A | Phase 3 |
-| Supabase Auth + Stripe | Phase 3 |
-| Progress, notes, search | Phase 4 |
+| Chapters 5-17 migration | Phase 2 (codex) |
+| `book.yml` / `chapter-registry.yml` | Phase 2 (codex) |
+| Stable filenames (replace dated) | Phase 2 (codex) |
+| `source-import-manifest.csv` | Phase 2 (codex) |
+| Full-book reader validation | Phase 5 (codex) |
+
+### Deferred
+
+| Area | Phase |
+|---|---|
+| Next.js v2A | Phase 3 (codex) — after migration stable |
+| Supabase Auth + Stripe | Phase 3 (codex) |
+| Progress, notes, search | Phase 4 (codex) |
+| Media inventory / organization | Parallel (`media-plan-codex.md`) |
