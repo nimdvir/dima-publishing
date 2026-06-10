@@ -1,0 +1,17 @@
+Git
+→ exact textual changes
+
+Pull requests
+→ major-change explanation and review
+
+editorial-decisions.md
+→ lasting pedagogical and structural rationale
+
+CHANGELOG.md
+→ significant publication milestones
+
+source-import-manifest.csv
+→ initial Drive provenance
+
+build-manifest.json
+→ reproducible build provenance
