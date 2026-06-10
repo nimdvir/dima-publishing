@@ -1,0 +1,3988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 4: Introduction to Databases | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 4: Introduction to Databases</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>24%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:24%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="is-current" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 4</p>
+          <h1>Introduction to Databases</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>86 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 4: Introduction to Databases</h2>
+                  <!-- Chapter edit: light polish pass -- trimmed intro, strengthened Ch5 forward link, general readability. Technical meaning preserved. -->
+<p><a href="https://youtu.be/Pge4HSn5LIk">Video intro: Chapter 4, Introduction to Databases</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Pge4HSn5LIk?si=L4L6eSA7uN-_0Ao2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p><em>Video Overview: A short introduction to Chapter 4. We explore why flat files and spreadsheets fail as organizational data grows, and how a Database Management System (DBMS) steps in to provide a single, reliable source of truth.</em></p>
+<hr />
+<p>title: "Chapter 4: Introduction to Databases"
+chapter: 4
+section: "Core Concepts"
+description: "Introduces databases as the structural foundation of reliable information systems, explains why spreadsheets and file-based approaches break down, and prepares students to use SQL with relational tables."
+keywords:
+    - databases
+    - relational tables
+    - SQL
+    - DBMS
+    - data integrity
+    - primary keys
+    - foreign keys
+    - constraints
+    - data independence
+    - business performance
+date: 2026-06-02
+author: "Nimrod Dvir, PhD"
+lang: en-US
+toc: true</p>
+<hr />
+<p><em>From Spreadsheets to Structured Systems</em></p>
+<p><img alt="Figure 4.0s1 - Slide 1: Introduction to Business Performance IT" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-001" />
+<em>Figure 4.0s1: Lecture Slide - Introduction to Business Performance IT. Highlights the foundational role of technology in structuring business processes and information workflows, linking IT directly to business operations and value.</em></p>
+<p>Chapter 3 explained what data is, how it gains meaning, and why structure matters. Chapter 4 asks the next question: <strong>where does that data live, and how do organizations work with it reliably once it becomes important to daily operations?</strong></p>
+<p>The answer is the <strong>database</strong>. You use databases every day, often without seeing them directly. When you check a bank balance, order food, register for a class, stream a playlist, or look up an online order, a database is storing records and returning the right information at the right time.</p>
+<p>A database is more than a place to store values. It is a structured environment that helps organizations preserve data, retrieve it, protect it, and use it consistently. Reports, dashboards, apps, and analytics all depend on data being stored in a form that people and systems can trust.</p>
+<p>As introduced in Chapter 3, good data must be defined clearly before it can be useful. Chapter 4 extends that idea by showing how databases preserve that structure at scale. When you finish, you will see why the structure matters once data becomes important to daily operations.</p>
+<p><img alt="Figure 4.0s4 - Slide 4: Data Types Overview" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-004" />
+<em>Figure 4.0s4: Lecture Slide - Data Classification. Overview of qualitative, quantitative, categorical, and numerical data types, showing the high-level division of data.</em></p>
+<p><img alt="Figure 4.0s3 - Slide 3: Quiz / Checkpoint" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-003" />
+<em>Figure 4.0s3: Lecture Slide - Knowledge Check. Serves as a quiz checkpoint for data structures from Chapter 3 to test readiness for Chapter 4's concepts.</em></p>
+<p>In <strong>Lab 03</strong> you already felt the problem firsthand. A flat PetVax appointment sheet could hold useful data, but it struggled with repeated owner information, two pets named Coco, co-ownership of one pet, fragile <code>FILTER()</code> ranges that missed new rows, and the familiar trio of update, insertion, and deletion anomalies. Chapter 4 explains the database structures that solve those problems and prepares you to rebuild that work the right way in the chapters ahead.</p>
+<p>After completing this chapter, you will be able to:</p>
+<ol>
+<li>Define what a database is and explain how it differs from files and spreadsheets.</li>
+<li>Distinguish among a database, a DBMS, and a complete database system.</li>
+<li>Explain why spreadsheets and traditional file environments create redundancy, inconsistency, and program-data dependence.</li>
+<li>Describe how the database approach supports shared access, data independence, and a centralized source of truth.</li>
+<li>Identify the basic parts of relational tables, including rows, columns, primary keys, foreign keys, and integrity constraints.</li>
+<li>Recognize how SQL works as the shared language of relational systems.</li>
+<li>Compare Microsoft Access, SQLite, and PostgreSQL/Supabase at a high level.</li>
+</ol>
+<p><img alt="Figure 4.0s2 - Slide 2: Getting Started with Databases" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-002" />
+<em>Figure 4.0s2: Lecture Slide - Getting Started with Databases. Outlines the progression from data structures and file limitations to SQL queries, framing the learning pathway.</em></p>
+<p><img alt="Figure 4.0 - Grid of records becoming useful database output" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-database-intro" />
+<em>Figure 4.0: Raw records become useful when a database organizes them for queries, reports, and decisions.</em></p>
+<p><img alt="Figure 4.0b - Chapter Roadmap" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-40b-chapter-roadmapcreate-a-textboo" />
+<em>Figure 4.0b: Roadmap tracking the transition from Chapter 3's data fundamentals to Chapter 4's database structures and Chapter 5's queries.</em></p>
+<p><img alt="Figure 4.0c - Concept Map" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-chapter-4-concept-mapcreate-a-cl" />
+<em>Figure 4.0c: Concept map illustrating how day-to-day user interactions link to underlying database structures.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Why Databases Matter</h2>
+<p>Nearly everything modern organizations do with information depends on databases. A customer portal, retail checkout system, payroll application, student record system, and streaming recommendation engine all rely on stored data that is organized well enough to support reliable retrieval and decision-making.</p>
+<p>Think about a point-of-sale system in a retail store. The cashier sees a simple screen. Under that screen, a database keeps product, price, tax, inventory, and transaction data consistent enough for the business to operate. If the database is unreliable, the visible system may still look polished, but the company will struggle with incorrect prices, wrong inventory counts, and misleading reports.</p>
+<p>The same logic applies to the Grading Database used in this book and to the PetVax veterinary clinic you started in Lab 03. At first, student grades or pet appointments can be tracked in a spreadsheet. But once those records need to be reused, validated, queried, shared, and reported, the structure must become more disciplined. That is the point where databases become necessary.</p>
+<p>Databases matter because they turn scattered records into shared organizational infrastructure.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Centralized source of truth</strong></td>
+<td>Everyone works from the same official data rather than competing copies.</td>
+</tr>
+<tr>
+<td><strong>Reduced redundancy</strong></td>
+<td>Important facts are stored once and referenced where needed.</td>
+</tr>
+<tr>
+<td><strong>Improved accuracy</strong></td>
+<td>Rules and constraints prevent many bad values from entering the system.</td>
+</tr>
+<tr>
+<td><strong>Historical analysis</strong></td>
+<td>Stored records allow organizations to study patterns over time.</td>
+</tr>
+<tr>
+<td><strong>Timely access</strong></td>
+<td>Users and applications can retrieve current information when decisions need to be made.</td>
+</tr>
+<tr>
+<td><strong>Shared governance</strong></td>
+<td>Ownership, access, and quality rules can be managed more consistently.</td>
+</tr>
+</tbody>
+</table>
+<p>These strengths connect directly to the R.E.A.D. framework from earlier in the book. Databases support representation by storing data in structured form. They support expression by making data retrievable and reportable. They support association by linking related records across tables and time. They support deployment when trustworthy information leads to action.</p>
+<p><img alt="Audio - Connecting Database Design to Business Decisions" src="../../assets/book-content/.images/Ch4%20Databases/media/Connecting_Database_Design_to_Business_Decisions.m4a" />
+<em>Audio: Connecting Database Design to Business Decisions - A discussion on why structural database design rules directly affect organizational performance.</em></p>
+<p><em>Audio summary: In this brief discussion, we examine the direct link between database structural integrity and business performance. We explore how design rules—such as primary keys, foreign keys, and unique constraints—prevent operational chaos (like missing records, duplicate customer entries, or orphaned transaction data) and ensure that reports, dashboards, and strategic decisions are built on a foundation of verifiable truth.</em></p>
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Databases are organizational infrastructure</strong></p>
+  <p>Databases are not only technical infrastructure. They are one of the main ways organizations improve coordination, accountability, and business performance.</p>
+</div>
+
+<p><img alt="Figure 4.1a - Shared database and outputs" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-41a-one-shared-database-multiple-outp" />
+<em>Figure 4.1a: One shared database supports multiple users, outputs, and decisions across the organization.</em></p>
+<p><img alt="Figure 4.1b - Shared Database Hub" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-datbase-in-center" />
+<em>Figure 4.1b: Hub-and-spoke view of a centralized database driving business operations across different organizational roles.</em></p>
+<p><img alt="Figure 4.1c - Data Management Lifecycle" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-datamanagement-lifecyclecreate" />
+<em>Figure 4.1c: How a single transaction coordinates updates to multiple tables (inventory, sales, loyalty) in the data management lifecycle.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>What a Database and DBMS Are</h2>
+<p>A database is a structured collection of related data designed for reliable storage, retrieval, and management. In business settings, it serves as the official record of activity. It stores facts about customers, products, transactions, students, grades, employees, inventory, and operations in a form that can be reused and trusted over time.</p>
+<p>Students often use the words database, DBMS, and <strong>database system</strong> as if they mean the same thing. They do not.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Grading Example</th>
+<th>PetVax Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Database</strong></td>
+<td>The structured collection of related data and metadata</td>
+<td>The Grading tables, relationships, and rules</td>
+<td>The pet, owner, appointment, and vaccine tables</td>
+</tr>
+<tr>
+<td><strong>DBMS</strong></td>
+<td>The software engine that creates, manages, queries, secures, and administers databases</td>
+<td>Access, SQLite, PostgreSQL</td>
+<td>Access managing the PetVax tables</td>
+</tr>
+<tr>
+<td><strong>Database system</strong></td>
+<td>The full arrangement of users, applications, DBMS, and database</td>
+<td>A grade-entry form connected to Access tables through the Access DBMS</td>
+<td>An appointment form used by clinic staff, the Access DBMS, and the PetVax reports</td>
+</tr>
+</tbody>
+</table>
+<p>A good way to think about the difference is this: the database is the organized closet where records are placed according to rules, the DBMS is the system that labels, retrieves, protects, and reorganizes those records, and the database system includes the people and applications that use it.</p>
+<p>Database systems also separate <strong>data storage</strong> from <strong>data processing</strong>. Storage means preserving organized records over time. Processing means retrieving, filtering, summarizing, or updating those records. When storage is stable and well designed, many different analyses can be run without damaging the underlying data.</p>
+<p>The database approach also separates the <strong>logical view</strong> from the <strong>physical view</strong>. The logical view is what users see: tables, columns, relationships, and query results. The physical view is how the DBMS stores and optimizes the data behind the scenes. This gives users <strong>data independence</strong>.</p>
+<p>For example, a DBMS might add an <strong>index</strong> so grade lookups run faster. The professor still sees the same <code>STUDENT</code> and <code>STUDENT_GRADE</code> tables, and the grade-entry form does not need to be rewritten. The storage strategy changed, but the user's logical view stayed stable.</p>
+<pre><code class="language-mermaid">graph TB
+    A[&quot;Users&quot;] --&gt; B[&quot;Applications&quot;]
+    B --&gt; C[&quot;DBMS&quot;]
+    C --&gt; D[&quot;Database&quot;]
+</code></pre>
+<p><img alt="Figure 4.3b - Database system layers" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-43b-database-system-layerscreate-a" />
+<em>Figure 4.3b: Users, applications, the DBMS, and the database shown as a layered system.</em></p>
+<p>When a professor enters a quiz score through a form, several layers work together. The <strong>database application</strong> captures the input. The DBMS checks that the student exists and that the score is valid. The database stores the result according to its rules. The professor sees one screen, but the system behind it is doing much more than simple file storage.</p>
+<div class="callout good-practice">
+  <p><strong>✅ Good Practice: Diagnose by layer</strong></p>
+  <p>When diagnosing a data problem, ask which layer is failing. The problem may be the stored structure, the DBMS settings, the application interface, or the process used by people.</p>
+</div>
+
+<p><img alt="Figure 4.3c - Grading Database Process Preview" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-grading-database-preview" />
+<em>Figure 4.3c: Grading system trace following a quiz score from form entry, validation by the DBMS, and storage in the database.</em></p>
+<p><img alt="Figure 4.3d - Logical vs. Physical Views" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-logical-vs-physical-views-of-data" />
+<em>Figure 4.3d: Separation of logical view (tables and fields) from physical view (indexes and disk optimization), supporting data independence.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Why Spreadsheets and File Systems Break Down</h2>
+<p><img alt="Figure 4.2b - Spreadsheet vs. Database Strengths" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-spreadsheet-vs-database-strengths" />
+<em>Figure 4.2b: High-level contrast between flexible spreadsheet sheets and structured database tables.</em></p>
+<h3>From Spreadsheets to File Silos</h3>
+<p>Spreadsheets are useful. They are flexible, visual, and easy to start with. For quick calculations, small local datasets, and early exploration, Excel and Google Sheets are often the right first tools.</p>
+<p><img alt="Figure 4.2c - Spreadsheet Limitations" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-spreadsheet-vs-database-detailed" />
+<em>Figure 4.2c: Common structural failures in multi-theme spreadsheet files compared to relational structures.</em></p>
+<p><img alt="Figure 4.2d - Siloed File Systems" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-database-vs-filesystem" />
+<em>Figure 4.2d: Inconsistencies and redundancies when customer records are scattered across billing, sales, and support files.</em></p>
+<p>But spreadsheets are not databases. A spreadsheet behaves like a flexible grid. Users can often type almost anything into almost any cell. That flexibility is helpful at first, but it also means the system may not enforce what a column means, what type of value belongs there, or how one sheet should relate to another.</p>
+<p>Imagine tracking the Grading Database in one spreadsheet. Every row contains a student's name, email, deliverable type, deliverable number, due date, and score. For 30 students and 20 deliverables, the same student name and email may be repeated hundreds of times. If one email changes, every copy must be updated. Miss one, and the spreadsheet now contains conflicting versions of the truth.</p>
+<p>That problem grows in the traditional <strong>file environment</strong>. Before databases became standard, organizations often stored data in separate files maintained by different departments or applications. One office might keep a billing file. Another might keep a sales file. Another might keep a support file. Each file may contain part of the same customer record, but not necessarily the same version.</p>
+<p>The classic problems of the file environment are straightforward:</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>What It Means</th>
+<th>Business Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Redundancy</strong></td>
+<td>The same fact is stored in many places</td>
+<td>Waste and repeated updates</td>
+</tr>
+<tr>
+<td><strong>Inconsistency</strong></td>
+<td>Different copies stop matching</td>
+<td>Conflicting reports and bad decisions</td>
+</tr>
+<tr>
+<td><strong>Program-data dependence</strong></td>
+<td>Programs are tightly tied to file structure</td>
+<td>Small file changes break reports and apps</td>
+</tr>
+<tr>
+<td><strong>Low flexibility</strong></td>
+<td>It is hard to combine data across sources</td>
+<td>Slow, fragile analysis</td>
+</tr>
+<tr>
+<td><strong>Weak control</strong></td>
+<td>Rules and access are often informal</td>
+<td>More errors and less trust</td>
+</tr>
+</tbody>
+</table>
+<p>Spreadsheets also struggle with modification anomalies when too many facts are mixed into one flat table.</p>
+<table>
+<thead>
+<tr>
+<th>Anomaly</th>
+<th>What Happens</th>
+<th>Grading Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Insertion anomaly</strong></td>
+<td>You cannot add one kind of fact without another</td>
+<td>A new deliverable cannot be recorded cleanly until a student has a score</td>
+</tr>
+<tr>
+<td><strong>Update anomaly</strong></td>
+<td>One fact must be changed in many rows</td>
+<td>A student's email must be updated everywhere it appears</td>
+</tr>
+<tr>
+<td><strong>Deletion anomaly</strong></td>
+<td>Removing one row removes another fact too</td>
+<td>Deleting the last score for a deliverable erases evidence that the deliverable existed</td>
+</tr>
+</tbody>
+</table>
+<h3>Anomalies in Flat Tables</h3>
+<p>Spreadsheet users often try to avoid these problems with lookup formulas such as <code>VLOOKUP</code> or <code>XLOOKUP</code>. Those tools can help, but they are still workarounds. They do not create enforced relationships, shared integrity rules, or real centralized storage.</p>
+<p>You met every one of these problems in Lab 03. The table below ties what you felt in the PetVax sheet back to the formal database concepts in this chapter.</p>
+<p><img alt="Figure 4.2e - Flat Table vs. Related Tables" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-one-big-table-vs-related-tablesc" />
+<em>Figure 4.2e: Visual representation of insertion, update, and deletion anomalies occurring within a single flat table.</em></p>
+<table>
+<thead>
+<tr>
+<th>Lab 03 problem</th>
+<th>Database concept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sarah Perry's email changed in one row only</td>
+<td>Update anomaly</td>
+</tr>
+<tr>
+<td>Rex could not be stored cleanly without an appointment</td>
+<td>Insertion anomaly</td>
+</tr>
+<tr>
+<td>Deleting Angel's appointment erased evidence Angel existed</td>
+<td>Deletion anomaly</td>
+</tr>
+<tr>
+<td>A fixed <code>FILTER()</code> range missed newly added rows</td>
+<td>Query fragility</td>
+</tr>
+<tr>
+<td>Two pets named Charlie or Coco could not be told apart</td>
+<td>Need for stable identifiers (primary keys)</td>
+</tr>
+<tr>
+<td>One pet (Coco) had two owners</td>
+<td>Need for related tables and a link table</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Figure 4.2 - File environment vs database" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-file-vs-db" />
+<em>Figure 4.2: File silos compared with the centralized database approach.</em></p>
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Neat-looking does not mean reliable</strong></p>
+  <p>The biggest weakness of spreadsheets is not appearance. It is the lack of enforced structure. A spreadsheet may still look neat while quietly allowing inconsistent dates, duplicate records, missing values, and fragile relationships.</p>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>The Database Approach</h2>
+<p>The <strong>database approach</strong> answers each of the problems above. It stores related facts in structured tables, defines metadata that describes the structure, uses keys to identify and connect records, enforces rules through the DBMS, and allows many users or applications to retrieve consistent data from the same shared source.</p>
+<p><img alt="Figure 4.2f - Separating Subjects into Related Tables" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-users-to-tables" />
+<em>Figure 4.2f: How moving customer and order subjects to independent tables eliminates redundancy.</em></p>
+<p><img alt="Figure 4.2g - Relational Data Integration" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch04-databases/ch04-data-flow" />
+<em>Figure 4.2g: Flow diagram demonstrating data integration through metadata, keys, constraints, and shared queries.</em></p>
+<p><img alt="Figure 4.2h - Data Hierarchy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-hierarchy" />
+<em>Figure 4.2h: The data hierarchy, showing how bits build fields, fields build records, and records build tables in a database.</em></p>
+<p>The contrast is sharp when you place the two approaches side by side.</p>
+<table>
+<thead>
+<tr>
+<th>Spreadsheet or flat file</th>
+<th>Database approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One big sheet mixes many subjects</td>
+<td>Separate tables store different subjects</td>
+</tr>
+<tr>
+<td>Repeated facts are typed many times</td>
+<td>Shared facts are stored once and referenced</td>
+</tr>
+<tr>
+<td>Formulas simulate connections between sheets</td>
+<td>Keys define real relationships between tables</td>
+</tr>
+<tr>
+<td>Users manually try to avoid errors</td>
+<td>Constraints enforce many rules automatically</td>
+</tr>
+<tr>
+<td>Queries depend on fragile ranges</td>
+<td>Queries use table and field names</td>
+</tr>
+<tr>
+<td>One file may become many conflicting copies</td>
+<td>One database can serve as a shared source of truth</td>
+</tr>
+</tbody>
+</table>
+<p>You do not need to know how to design tables yet. The point for now is that the database approach is a different way of thinking about data, not just a fancier spreadsheet. The rest of this chapter unpacks the pieces that make it work.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Tables, Keys, and Constraints</h2>
+<h3>Rows, Columns, and Table Rules</h3>
+<p>At the heart of a relational database is the <strong>relational table</strong>. A table stores data about one subject in a clear and consistent way. Rows, also called records, represent individual instances. Columns, also called fields or attributes, represent characteristics of those instances. Each cell contains one value for one attribute of one record.</p>
+<p><img alt="Figure 4.4b - Relational Table Anatomy" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-anatomy-of-a-relational-tablecre" />
+<em>Figure 4.4b: Structure of a relational table, highlighting columns (attributes), rows (records), and cells.</em></p>
+<p><img alt="Figure 4.4c - Table Design Discipline" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-normalization" />
+<em>Figure 4.4c: Comparison between a disciplined, single-theme table and a mixed, unstructured table.</em></p>
+<p>Here is a simple <code>STUDENT</code> table:</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>Birthday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1001</td>
+<td>Maria</td>
+<td>Santos</td>
+<td><code>msantos@albany.edu</code></td>
+<td>2003-05-14</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>James</td>
+<td>Chen</td>
+<td><code>jchen@albany.edu</code></td>
+<td>2002-11-22</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>Aisha</td>
+<td>Rahman</td>
+<td><code>arahman@albany.edu</code></td>
+<td>2004-01-08</td>
+</tr>
+</tbody>
+</table>
+<p>Each row represents one student. Each column has one clear meaning. The table works well because the structure is disciplined.</p>
+<p>Relational tables follow a few core rules:</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Each table has a unique name</strong></td>
+<td>Queries and documentation can refer to it without ambiguity</td>
+</tr>
+<tr>
+<td><strong>Each row represents one instance of one entity</strong></td>
+<td>Student facts do not get mixed with deliverable facts</td>
+</tr>
+<tr>
+<td><strong>No two rows are identical</strong></td>
+<td>The database can distinguish one record from another</td>
+</tr>
+<tr>
+<td><strong>Each cell contains one atomic value</strong></td>
+<td>Filtering, sorting, and aggregation stay possible</td>
+</tr>
+<tr>
+<td><strong>Each column has one clear meaning</strong></td>
+<td>Users and systems interpret values consistently</td>
+</tr>
+<tr>
+<td><strong>Values in a column follow a consistent type</strong></td>
+<td>Dates behave like dates, numbers like numbers, text like text</td>
+</tr>
+<tr>
+<td><strong>Rows must be uniquely identifiable</strong></td>
+<td>A specific record can be found and referenced reliably</td>
+</tr>
+<tr>
+<td><strong>Row and column order do not create meaning</strong></td>
+<td>Data is retrieved by names and values, not by position</td>
+</tr>
+</tbody>
+</table>
+<p>When database designers document a table, they often use a compact schema notation:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email, Birthday)
+</code></pre>
+<p>The table name is usually written in all caps. Column names appear inside parentheses. The primary key is marked separately in diagrams, data dictionaries, or SQL definitions. The notation is simple, but the rule behind it matters: a database table should have one clear subject, clearly named attributes, and a reliable way to identify each row.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h3>Primary and Foreign Keys</h3>
+<p>Keys make this structure usable. A key is one or more columns used to identify a row. A <strong>primary key</strong> is the key chosen as the official unique identifier for a table. It uniquely identifies each row and can never be <code>NULL</code>. A <strong>foreign key</strong> is a column in one table that references the primary key of another table.</p>
+<p>Primary keys solve a practical business problem: names are not unique, emails change, and descriptive fields can be duplicated. A well-designed database should not depend on a student's name to identify that student. It should use a stable identifier such as <code>StudentID</code>. The same logic applies to PetVax. <code>PetName = Coco</code> is not enough, because two pets can share a name and one pet can have two owners. A stable <code>PetID</code> identifies the pet, and a separate link table can connect a pet to more than one owner.</p>
+<p><img alt="Figure 4.4d - Slide 10: Nominal Data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-010" />
+<em>Figure 4.4d: Lecture Slide - Unordered Labels (Nominal Data). Nominal values represent discrete labels with no qualitative hierarchy or ordering (e.g., StudentID, Major).</em></p>
+<p><img alt="Figure 4.4e - Primary and Foreign Key Connection" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-sql-relationships" />
+<em>Figure 4.4e: How primary and foreign keys connect STUDENT and STUDENT_GRADE tables.</em></p>
+<p><img alt="Figure 4.4f - Key Types Definitions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-keys" />
+<em>Figure 4.4f: Terminology map for candidate, primary, composite, natural, and surrogate keys.</em></p>
+<p>In the Grading Database, <code>STUDENT.StudentID</code> is a primary key. <code>STUDENT_GRADE.StudentID</code> is a foreign key that references it. That design lets student information be stored once while still linking each grade to the correct student.</p>
+<p>Those links also make SQL joins possible. In Chapter 5, you will join <code>STUDENT</code> to <code>STUDENT_GRADE</code> yourself and see how SQL uses matching key values to reconnect facts that were stored in separate tables. Without keys, the database would have no reliable way to know which grade belongs to which student.</p>
+<p>For now, focus on <strong>primary keys</strong> and <strong>foreign keys</strong>. The other key terms below are useful vocabulary you will see again in Chapter 6, but you do not need to design complex keys in this chapter.</p>
+<table>
+<thead>
+<tr>
+<th>Key Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Candidate key</strong></td>
+<td>Any column or set of columns that could uniquely identify rows; one is chosen as the primary key and the others become alternates</td>
+<td>A <code>StudentID</code> or a unique university email</td>
+</tr>
+<tr>
+<td><strong>Primary key</strong></td>
+<td>The candidate key selected as the table's official row identifier</td>
+<td><code>StudentID</code> in <code>STUDENT</code></td>
+</tr>
+<tr>
+<td><strong>Composite key</strong></td>
+<td>A key made from two or more columns together</td>
+<td><code>BuildingNumber</code> + <code>ApartmentNumber</code> in an apartment table</td>
+</tr>
+<tr>
+<td><strong>Natural key</strong></td>
+<td>A key based on a real-world value that already has meaning</td>
+<td>A stable course code or letter grade value</td>
+</tr>
+<tr>
+<td><strong>Surrogate key</strong></td>
+<td>An artificial identifier created for the database</td>
+<td>An auto-numbered <code>StudentID</code> or <code>GradeID</code></td>
+</tr>
+</tbody>
+</table>
+<p>Surrogate keys are common in business databases because they are stable and short. A student's email might change, but a <code>StudentID</code> can remain the same. Natural keys can still be useful when the real-world value is stable and controlled, but designers should be careful before relying on values that people may rename, reuse, or mistype.</p>
+<p><img alt="Figure 4.4g - Slide 11: Ordinal Data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-011" />
+<em>Figure 4.4g: Lecture Slide - Ordered Labels (Ordinal Data). Ordinal values represent ranked or ordered categories (e.g., class standing, course level) where differences are not mathematically uniform.</em></p>
+<div class="callout good-practice">
+  <p><strong>✅ Good Practice: Identify rows with stable keys</strong></p>
+  <p>Use stable identifiers for primary keys. Descriptive values such as names, emails, and addresses are useful attributes, but they often change and should rarely be the only way to identify a record.</p>
+</div>
+
+<p>Do not worry if the diagram below looks formal. For now, read it as a picture showing that students and deliverables are stored separately, while grades connect them through shared key values.</p>
+<pre><code class="language-mermaid">erDiagram
+    STUDENT {
+        int StudentID PK
+        text FirstName
+        text LastName
+        text Email
+    }
+    DELIVERABLE {
+        int DeliverableID PK
+        text Type
+        date DueDate
+    }
+    STUDENT_GRADE {
+        int GradeID PK
+        int StudentID FK
+        int DeliverableID FK
+        decimal Score
+    }
+    STUDENT ||--o{ STUDENT_GRADE : earns
+    DELIVERABLE ||--o{ STUDENT_GRADE : is_graded_in
+</code></pre>
+<div class="callout example">
+  <p><strong>🧪 Example: Why PetName is not enough</strong></p>
+  <p>In PetVax, two pets named Coco may visit the clinic. Storing only <code>PetName</code> makes it impossible to tell their records apart, and one pet with two owners cannot be modeled cleanly at all. Giving each pet its own stable <code>PetID</code> and connecting pets to owners through a relationship solves both problems at once. You will build this structure in later chapters.</p>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h3>Constraints That Protect Data</h3>
+<p><strong>Constraints</strong> add another layer of protection. They are rules enforced by the DBMS. Some constraints protect identity. Some protect relationships. Others protect the values that may be entered into a field.</p>
+<p><img alt="Figure 4.4h - DBMS Constraint Enforcement" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch04-databases/ch04-constraint-enforcementcreate-a-s" />
+<em>Figure 4.4h: Constraint rules (NOT NULL, UNIQUE, CHECK, FOREIGN KEY) serving as structural filters for database input.</em></p>
+<p><img alt="Figure 4.4i - Dimensions of Data Quality" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-quality-dimensions" />
+<em>Figure 4.4i: Key dimensions of data quality (accuracy, consistency, timeliness) enforced by database constraints.</em></p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>What It Protects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>NOT NULL</code></strong></td>
+<td>Requires a value</td>
+</tr>
+<tr>
+<td><strong><code>UNIQUE</code></strong></td>
+<td>Prevents duplicates in a field that should stay unique</td>
+</tr>
+<tr>
+<td><strong><code>PRIMARY KEY</code></strong></td>
+<td>Ensures unique, non-null row identity</td>
+</tr>
+<tr>
+<td><strong><code>FOREIGN KEY</code></strong></td>
+<td>Preserves valid relationships across tables</td>
+</tr>
+<tr>
+<td><strong><code>CHECK</code></strong></td>
+<td>Restricts values to an allowed range or rule</td>
+</tr>
+</tbody>
+</table>
+<p>For example, a <strong>CHECK constraint</strong> such as <code>CHECK (Score BETWEEN 0 AND 100)</code> prevents impossible scores. A foreign key prevents a grade from referring to a student who does not exist. A <strong>NOT NULL constraint</strong> can require an email address, score, or due date when that value is essential.</p>
+<p>Different platforms expose these ideas differently. In SQL systems such as SQLite or PostgreSQL, constraints are written directly in SQL when the table is created. In Microsoft Access, the same ideas appear through table design settings: required fields, <strong>validation rules</strong>, field-size limits, indexes, and the Relationships window. The vocabulary may differ, but the protection the database provides is the same.</p>
+<p>A short SQLite-style table definition shows what these constraints look like in code:</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT (
+    StudentID INTEGER PRIMARY KEY,
+    Email     TEXT    NOT NULL UNIQUE
+);
+
+CREATE TABLE STUDENT_GRADE (
+    GradeID    INTEGER PRIMARY KEY,
+    StudentID  INTEGER NOT NULL REFERENCES STUDENT(StudentID),
+    Score      NUMERIC CHECK (Score BETWEEN 0 AND 100)
+);
+</code></pre>
+<p>You do not need to write SQL like this yet. Notice only that every rule shown in the constraints table appears in the code: <code>PRIMARY KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code>, <code>REFERENCES</code> (a foreign key), and <code>CHECK</code>.</p>
+<p>These rules are part of the database's <strong>metadata</strong>: data about the database itself. Metadata includes table names, column names, data types, keys, relationships, and constraints. A <strong>data dictionary</strong> collects that metadata in a form people can read. A small slice looks like this:</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Column</th>
+<th>Type</th>
+<th>Key</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>StudentID</code></td>
+<td>INTEGER</td>
+<td>Primary</td>
+<td>Not null, unique</td>
+</tr>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>Email</code></td>
+<td>TEXT</td>
+<td>—</td>
+<td>Not null, unique</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td><code>StudentID</code></td>
+<td>INTEGER</td>
+<td>Foreign → <code>STUDENT</code></td>
+<td>Must match a real <code>StudentID</code></td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td><code>Score</code></td>
+<td>NUMERIC</td>
+<td>—</td>
+<td>Between 0 and 100</td>
+</tr>
+</tbody>
+</table>
+<p>The DBMS uses the same structural information to enforce these rules automatically.</p>
+<p>This is why constraints are different from asking users to "be careful." The system rejects many bad values before they can distort a report, dashboard, or decision.</p>
+<p>This chapter keeps keys and constraints at an introductory level. Later chapters will go deeper into relationships, referential integrity, anomalies, and normalization. For now, the main idea is simple: tables create structure, keys create identity and connection, constraints protect data quality, and metadata explains the rules the database is using.</p>
+<blockquote>
+<p>We will use this structure directly in Chapter 5 when SQL starts working against real tables, and we will return to relationship design more fully in Chapter 6.</p>
+</blockquote>
+<p><img alt="Figure 4.4 - Relational table structure" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-database-schema" />
+<em>Figure 4.4: A relational table shown with labeled columns, sample rows, and a clearly marked primary key.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>SQL and Platforms as the Next Step</h2>
+<p>SQL, or Structured Query Language, is the standard language used to work with relational databases. SQL matters because it gives users and applications a consistent way to retrieve, filter, update, and summarize structured data.</p>
+<p><img alt="Figure 4.5b - SQL Declarative Logic" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-sqlquestions" />
+<em>Figure 4.5b: SQL statement translating a user's analytical question into structural data criteria.</em></p>
+<p><img alt="Figure 4.5c - Local vs. Server Architecture Spectrum" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-local-vs-server" />
+<em>Figure 4.5c: Architectural spectrum contrasting lightweight, local file-based systems (Access, SQLite) with multi-user server databases (PostgreSQL).</em></p>
+<p>At this stage, you do not need deep SQL fluency. The goal is recognition. SQL is declarative, which means users state what result they want and let the DBMS decide how to retrieve it. When someone writes a <code>SELECT</code> query, they are describing the result, not giving the computer a step-by-step storage procedure.</p>
+<p>The chapters ahead will build this skill carefully. Chapter 5 will focus on writing SQL directly. For now, it is enough to see why SQL belongs wherever relational tables, keys, and constraints exist.</p>
+<p>The same SQL logic works across many platforms because the relational structure is shared. A query that asks, "Which students scored above 90 on the midterm?" depends on tables, columns, keys, and conditions. The screen may look different in Access, SQLite, or Supabase, but the reasoning stays the same.</p>
+<p>This course uses three platforms because each teaches a different part of database work.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Best For</th>
+<th>What It Helps Students See</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Microsoft Access</strong></td>
+<td>Visual learning and small local databases</td>
+<td>Tables, relationships, forms, and reports in one environment</td>
+</tr>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>Lightweight SQL practice</td>
+<td>Portable, file-based database behavior with little setup</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL / Supabase</strong></td>
+<td>Shared and production-style systems</td>
+<td>Strong typing, multi-user access, and server-based workflows</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Figure 4.5d - Microsoft Access Objects" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-ms-access-objects" />
+<em>Figure 4.5d: Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports.</em></p>
+<p>The most useful architectural contrast is between local file-based databases and server-based databases. Access and SQLite are local or file-based tools. PostgreSQL is a server-based system. Local tools are easier to start with. Server systems are better when many users, applications, and services need to connect at the same time, because the DBMS manages <strong>concurrency</strong>: the rules that keep data consistent and protected when two or more users try to read or update the same record at once.</p>
+<p>One final preview matters here. Early database work sometimes uses one big table because it keeps rows and columns visible. That simplicity can help students learn. As a long-term design, though, one big table becomes fragile because it repeats facts and mixes too many themes together. Later chapters will show how related tables solve that problem more fully.</p>
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Valid SQL can still produce weak insight</strong></p>
+  <p>SQL syntax can be correct while the business meaning is wrong. For example, a system may let you average an ID field, but an identifier is not a meaningful measurement. The data-type and measurement ideas from Chapter 3 still matter once you begin querying.</p>
+</div>
+
+<p><img alt="Figure 4.5e - Data Types and Analytical Uses" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-types-analytical-uses" />
+<em>Figure 4.5e: How data types and measurement scales align with their analytical and business applications.</em></p>
+<p><img alt="Figure 4.5s5 - Slide 5: Core Types Transition" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-005" />
+<em>Figure 4.5s5: Lecture Slide - Core Types Transition. Acts as a transition slide summarizing why qualitative properties differ fundamentally from measurable numbers.</em></p>
+<p><img alt="Figure 4.5s6 - Slide 6: Qualitative vs. Quantitative Data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-006" />
+<em>Figure 4.5s6: Lecture Slide - Descriptive vs. Numeric Data. Qualitative data captures qualities or descriptive attributes (e.g., major, gender), whereas quantitative data measures numeric quantities (e.g., GPA, counts).</em></p>
+<p><img alt="Figure 4.5s7 - Slide 7: Definitions &amp; Examples" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-007" />
+<em>Figure 4.5s7: Lecture Slide - Measurement Definitions. Explains the difference between properties defined by quality versus numeric scale values.</em></p>
+<p><img alt="Figure 4.5s8 - Slide 8: Categorical and Numerical Data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-008" />
+<em>Figure 4.5s8: Lecture Slide - Data Categories. Distinguishes between categories representing discrete classes and numerical values representing scale-based values.</em></p>
+<p><img alt="Figure 4.5s9 - Slide 9: Categorical Data Characteristics" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-009" />
+<em>Figure 4.5s9: Lecture Slide - Characteristics Representation. Shows that categorical data can take numerical values (e.g., 0 and 1) but these numbers carry no mathematical weight.</em></p>
+<p><img alt="Figure 4.5s12 - Slide 12: Interval Data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-012" />
+<em>Figure 4.5s12: Lecture Slide - Ordered Units with Equal Intervals. Defines interval data as numeric values where exact differences are uniform, but there is no absolute zero.</em></p>
+<p><img alt="Figure 4.5s13 - Slide 13: Ratio Data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-013" />
+<em>Figure 4.5s13: Lecture Slide - Equal Intervals with Absolute Zero. Defines ratio data as numeric measurements where a true zero point exists, making mathematical ratios valid.</em></p>
+<p><img alt="Figure 4.5s14 - Slide 14: Measurement Summary Matrix" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-014" />
+<em>Figure 4.5s14: Lecture Slide - NOIR Framework Summary. Summarizes nominal, ordinal, interval, and ratio characteristics in a visual matrix to serve as a cheat-sheet for query logic.</em></p>
+<p><img alt="Figure 4.6 - Course platform spectrum" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-dbms-compare" />
+<em>Figure 4.6: Access, SQLite, and PostgreSQL shown along a spectrum of database environments.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Summary</h2>
+<p>Chapter 4 introduced databases as the structural foundation of reliable information systems. It showed why spreadsheets and file-based environments become fragile as data grows in importance, reuse, and scale. Spreadsheets remain useful for quick local work, but they do not reliably enforce relationships, integrity rules, shared access, or consistent structure.</p>
+<p>The chapter then explained the database approach. A database is the structured collection of related data. A DBMS is the software engine that manages it. A full database system also includes users and applications. Together, these layers allow organizations to store data once, reuse it widely, and protect it with shared rules.</p>
+<p>You also learned the basic structure of relational tables. Rows represent records. Columns represent attributes. Primary keys identify rows. Foreign keys connect tables. Candidate, composite, natural, and surrogate keys describe different ways records can be identified. Constraints such as <code>NOT NULL</code>, <code>UNIQUE</code>, <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, and <code>CHECK</code> help preserve trustworthy data.</p>
+<p>Finally, the chapter introduced SQL and the three course platforms at a high level. That work prepares you for Chapter 5, where you will begin using SQL directly, and for Chapter 6, where you will study relationships and relational structure in more depth.</p>
+<p>You are now ready to talk about data using the right vocabulary, recognize when a spreadsheet has outgrown its role, and read a simple table definition with a clear sense of what each rule is protecting. Keep one idea above all the others as you move on:</p>
+<blockquote>
+<p>A database is not just a better spreadsheet. It is a structured system for storing related data reliably, protecting it with rules, and making it reusable across questions, reports, applications, and decisions.</p>
+</blockquote>
+<p><img alt="Chapter 4 summary visual" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-summary" />
+<em>Chapter 4 summary visual: Databases, tables, SQL, and platforms brought together in one closing recap image.</em></p>
+<p><img alt="Figure 4.7 - Chapter 4 Learning Map" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-learning-map" />
+<em>Figure 4.7: Conceptual pathway from file system limitations to database tables, keys, constraints, and SQL.</em></p>
+<p><img alt="Figure 4.7s15 - Slide 15: Review &amp; Team Exercise" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-015" />
+<em>Figure 4.7s15: Lecture Slide - In-Class Review. Prompts students to evaluate how data types affect database structural modeling and practice translating concepts.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Further Reading</h2>
+<p>Connolly, T., &amp; Begg, C. (2015). <em>Database systems: A practical approach to design, implementation, and management</em> (6th ed.). Pearson.</p>
+<p>Date, C. J. (2004). <em>An introduction to database systems</em> (8th ed.). Pearson/Addison Wesley.</p>
+<p>Davenport, T. H., &amp; Harris, J. G. (2017). <em>Competing on analytics: The new science of winning</em> (Updated ed.). Harvard Business Review Press.</p>
+<p>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of database systems</em> (7th ed.). Pearson.</p>
+<p>Hoffer, J. A., Venkataraman, R., &amp; Topi, H. (2019). <em>Modern database management</em> (13th ed.). Pearson.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+<h2>Figures Index</h2>
+<table>
+<thead>
+<tr>
+<th>Figure</th>
+<th>Section</th>
+<th>Caption</th>
+<th>Source file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.0</td>
+<td>Chapter 4: Introduction to Databases</td>
+<td>Raw records become useful when a database organizes them for queries, reports, and decisions.</td>
+<td><code>database-intro.jpg</code></td>
+</tr>
+<tr>
+<td>4.0b</td>
+<td>Chapter 4: Introduction to Databases</td>
+<td>Roadmap tracking the transition from Chapter 3's data fundamentals to Chapter 4's database structures and Chapter 5's queries.</td>
+<td><code>figure_40b_chapter_roadmapcreate_a_textboo.jpg</code></td>
+</tr>
+<tr>
+<td>4.0c</td>
+<td>Chapter 4: Introduction to Databases</td>
+<td>Concept map illustrating how day-to-day user interactions link to underlying database structures.</td>
+<td><code>figure_40_chapter_4_concept_mapcreate_a_cl.jpg</code></td>
+</tr>
+<tr>
+<td>4.0s1</td>
+<td>Chapter 4: Introduction to Databases</td>
+<td>Lecture Slide - Introduction to Business Performance IT. Highlights the foundational role of technology in structuring business processes and information workflows, linking IT directly to business operations and value.</td>
+<td><code>database-foundations-001.png</code></td>
+</tr>
+<tr>
+<td>4.0s2</td>
+<td>Chapter 4: Introduction to Databases</td>
+<td>Lecture Slide - Getting Started with Databases. Outlines the progression from data structures and file limitations to SQL queries, framing the learning pathway.</td>
+<td><code>database-foundations-002.png</code></td>
+</tr>
+<tr>
+<td>4.0s3</td>
+<td>Chapter 4: Introduction to Databases</td>
+<td>Lecture Slide - Knowledge Check. Serves as a quiz checkpoint for data structures from Chapter 3 to test readiness for Chapter 4's concepts.</td>
+<td><code>database-foundations-003.png</code></td>
+</tr>
+<tr>
+<td>4.0s4</td>
+<td>Chapter 4: Introduction to Databases</td>
+<td>Lecture Slide - Data Classification. Overview of qualitative, quantitative, categorical, and numerical data types, showing the high-level division of data.</td>
+<td><code>database-foundations-004.png</code></td>
+</tr>
+<tr>
+<td>4.1a</td>
+<td>Why Databases Matter</td>
+<td>One shared database supports multiple users, outputs, and decisions across the organization.</td>
+<td><code>figure_41a_one_shared_database_multiple_outp.jpg</code></td>
+</tr>
+<tr>
+<td>4.1b</td>
+<td>Why Databases Matter</td>
+<td>Hub-and-spoke view of a centralized database driving business operations across different organizational roles.</td>
+<td><code>datbase-in-center.jpg</code></td>
+</tr>
+<tr>
+<td>4.1c</td>
+<td>Why Databases Matter</td>
+<td>How a single transaction coordinates updates to multiple tables (inventory, sales, loyalty) in the data management lifecycle.</td>
+<td><code>figure_41_datamanagement_lifecyclecreate_.jpg</code></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Anomalies in Flat Tables</td>
+<td>File silos compared with the centralized database approach.</td>
+<td><code>file-vs-db.jpg</code></td>
+</tr>
+<tr>
+<td>4.2b</td>
+<td>Why Spreadsheets and File Systems Break Down</td>
+<td>High-level contrast between flexible spreadsheet sheets and structured database tables.</td>
+<td><code>ch04-to-add-spreadsheet-vs-database-strengths.png</code></td>
+</tr>
+<tr>
+<td>4.2c</td>
+<td>From Spreadsheets to File Silos</td>
+<td>Common structural failures in multi-theme spreadsheet files compared to relational structures.</td>
+<td><code>ch04-to-add-spreadsheet-vs-database-detailed.png</code></td>
+</tr>
+<tr>
+<td>4.2d</td>
+<td>From Spreadsheets to File Silos</td>
+<td>Inconsistencies and redundancies when customer records are scattered across billing, sales, and support files.</td>
+<td><code>database-vs-filesystem.jpg</code></td>
+</tr>
+<tr>
+<td>4.2e</td>
+<td>Anomalies in Flat Tables</td>
+<td>Visual representation of insertion, update, and deletion anomalies occurring within a single flat table.</td>
+<td><code>figure_47_one_big_table_vs_related_tablesc.jpg</code></td>
+</tr>
+<tr>
+<td>4.2f</td>
+<td>The Database Approach</td>
+<td>How moving customer and order subjects to independent tables eliminates redundancy.</td>
+<td><code>users-to-tables.jpg</code></td>
+</tr>
+<tr>
+<td>4.2g</td>
+<td>The Database Approach</td>
+<td>Flow diagram demonstrating data integration through metadata, keys, constraints, and shared queries.</td>
+<td><code>data-flow.png</code></td>
+</tr>
+<tr>
+<td>4.2h</td>
+<td>The Database Approach</td>
+<td>The data hierarchy, showing how bits build fields, fields build records, and records build tables in a database.</td>
+<td><code>ch04-to-add-data-hierarchy.png</code></td>
+</tr>
+<tr>
+<td>4.3b</td>
+<td>What a Database and DBMS Are</td>
+<td>Users, applications, the DBMS, and the database shown as a layered system.</td>
+<td><code>figure_43b_database_system_layerscreate_a_.jpg</code></td>
+</tr>
+<tr>
+<td>4.3c</td>
+<td>What a Database and DBMS Are</td>
+<td>Grading system trace following a quiz score from form entry, validation by the DBMS, and storage in the database.</td>
+<td><code>ch04-to-add-grading-database-preview.png</code></td>
+</tr>
+<tr>
+<td>4.3d</td>
+<td>What a Database and DBMS Are</td>
+<td>Separation of logical view (tables and fields) from physical view (indexes and disk optimization), supporting data independence.</td>
+<td><code>figure_43_logical_vs_physical_views_of_data.jpg</code></td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>Constraints That Protect Data</td>
+<td>A relational table shown with labeled columns, sample rows, and a clearly marked primary key.</td>
+<td><code>database-schema.jpg</code></td>
+</tr>
+<tr>
+<td>4.4b</td>
+<td>Rows, Columns, and Table Rules</td>
+<td>Structure of a relational table, highlighting columns (attributes), rows (records), and cells.</td>
+<td><code>new_figure_anatomy_of_a_relational_tablecre.jpg</code></td>
+</tr>
+<tr>
+<td>4.4c</td>
+<td>Rows, Columns, and Table Rules</td>
+<td>Comparison between a disciplined, single-theme table and a mixed, unstructured table.</td>
+<td><code>normalization.jpg</code></td>
+</tr>
+<tr>
+<td>4.4d</td>
+<td>Primary and Foreign Keys</td>
+<td>Lecture Slide - Unordered Labels (Nominal Data). Nominal values represent discrete labels with no qualitative hierarchy or ordering (e.g., StudentID, Major).</td>
+<td><code>database-foundations-010.png</code></td>
+</tr>
+<tr>
+<td>4.4e</td>
+<td>Primary and Foreign Keys</td>
+<td>How primary and foreign keys connect STUDENT and STUDENT_GRADE tables.</td>
+<td><code>sql-relationships.jpg</code></td>
+</tr>
+<tr>
+<td>4.4f</td>
+<td>Primary and Foreign Keys</td>
+<td>Terminology map for candidate, primary, composite, natural, and surrogate keys.</td>
+<td><code>keys.jpg</code></td>
+</tr>
+<tr>
+<td>4.4g</td>
+<td>Primary and Foreign Keys</td>
+<td>Lecture Slide - Ordered Labels (Ordinal Data). Ordinal values represent ranked or ordered categories (e.g., class standing, course level) where differences are not mathematically uniform.</td>
+<td><code>database-foundations-011.png</code></td>
+</tr>
+<tr>
+<td>4.4h</td>
+<td>Constraints That Protect Data</td>
+<td>Constraint rules (NOT NULL, UNIQUE, CHECK, FOREIGN KEY) serving as structural filters for database input.</td>
+<td><code>new_figure_constraint_enforcementcreate_a_s.png</code></td>
+</tr>
+<tr>
+<td>4.4i</td>
+<td>Constraints That Protect Data</td>
+<td>Key dimensions of data quality (accuracy, consistency, timeliness) enforced by database constraints.</td>
+<td><code>ch04-to-add-data-quality-dimensions.png</code></td>
+</tr>
+<tr>
+<td>4.5b</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>SQL statement translating a user's analytical question into structural data criteria.</td>
+<td><code>SQL=questions.jpg</code></td>
+</tr>
+<tr>
+<td>4.5c</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Architectural spectrum contrasting lightweight, local file-based systems (Access, SQLite) with multi-user server databases (PostgreSQL).</td>
+<td><code>local-vs-server.jpg</code></td>
+</tr>
+<tr>
+<td>4.5d</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports.</td>
+<td><code>ms-access-objects.jpg</code></td>
+</tr>
+<tr>
+<td>4.5e</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>How data types and measurement scales align with their analytical and business applications.</td>
+<td><code>ch04-to-add-data-types-analytical-uses.png</code></td>
+</tr>
+<tr>
+<td>4.5s5</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - Core Types Transition. Acts as a transition slide summarizing why qualitative properties differ fundamentally from measurable numbers.</td>
+<td><code>database-foundations-005.png</code></td>
+</tr>
+<tr>
+<td>4.5s6</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - Descriptive vs. Numeric Data. Qualitative data captures qualities or descriptive attributes (e.g., major, gender), whereas quantitative data measures numeric quantities (e.g., GPA, counts).</td>
+<td><code>database-foundations-006.png</code></td>
+</tr>
+<tr>
+<td>4.5s7</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - Measurement Definitions. Explains the difference between properties defined by quality versus numeric scale values.</td>
+<td><code>database-foundations-007.png</code></td>
+</tr>
+<tr>
+<td>4.5s8</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - Data Categories. Distinguishes between categories representing discrete classes and numerical values representing scale-based values.</td>
+<td><code>database-foundations-008.png</code></td>
+</tr>
+<tr>
+<td>4.5s9</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - Characteristics Representation. Shows that categorical data can take numerical values (e.g., 0 and 1) but these numbers carry no mathematical weight.</td>
+<td><code>database-foundations-009.png</code></td>
+</tr>
+<tr>
+<td>4.5s12</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - Ordered Units with Equal Intervals. Defines interval data as numeric values where exact differences are uniform, but there is no absolute zero.</td>
+<td><code>database-foundations-012.png</code></td>
+</tr>
+<tr>
+<td>4.5s13</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - Equal Intervals with Absolute Zero. Defines ratio data as numeric measurements where a true zero point exists, making mathematical ratios valid.</td>
+<td><code>database-foundations-013.png</code></td>
+</tr>
+<tr>
+<td>4.5s14</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Lecture Slide - NOIR Framework Summary. Summarizes nominal, ordinal, interval, and ratio characteristics in a visual matrix to serve as a cheat-sheet for query logic.</td>
+<td><code>database-foundations-014.png</code></td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>SQL and Platforms as the Next Step</td>
+<td>Access, SQLite, and PostgreSQL shown along a spectrum of database environments.</td>
+<td><code>dbms-compare.jpg</code></td>
+</tr>
+<tr>
+<td>4.7</td>
+<td>Summary</td>
+<td>Conceptual pathway from file system limitations to database tables, keys, constraints, and SQL.</td>
+<td><code>learning-map.jpg</code></td>
+</tr>
+<tr>
+<td>4.7s15</td>
+<td>Summary</td>
+<td>Lecture Slide - In-Class Review. Prompts students to evaluate how data types affect database structural modeling and practice translating concepts.</td>
+<td><code>database-foundations-015.png</code></td>
+</tr>
+</tbody>
+</table>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build</h2>
+                  <h2>Let's Build</h2>
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/Lets-build_fqsqux?_a=BAMAAAiu0" alt="Let's Build" />
+</p>
+
+<p>In this Let's Build, you turn the Chapter 4 ideas into a working database. You will create a small grading database in <strong>Microsoft Access</strong> with two tables, a primary key, a validation rule, required fields, a data-entry form, a handful of queries (including one query-level join), and two reports. The companion <strong>Lab 04</strong> applies these same skills to the PetVax veterinary clinic for a grade. The chapter previewed a more relational structure with separate <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code> tables. This build deliberately stays one step behind that target: it uses a flat <code>GRADEBOOK</code> table and a <code>GRADE_WEIGHT</code> lookup table, with no formal relationships. That gap is intentional. Chapter 5 will query these same tables with SQL, and Chapter 6 will refactor this design into a proper relational structure.</p>
+<h3>Purpose</h3>
+<p>Make the Chapter 4 concepts concrete by building, inspecting, and querying a real Access database. By the end you should be able to recognize how tables, primary keys, constraints, forms, queries, and reports fit together inside a DBMS, and you should be able to name what this design still does not protect against.</p>
+<h3>What You Will Practice</h3>
+<ul>
+<li>Defining fields with appropriate data types in Access Design View.</li>
+<li>Setting a primary key.</li>
+<li>Enforcing a validation rule and required fields.</li>
+<li>Entering records into a table and through a form.</li>
+<li>Building single-table queries with the Query Design grid.</li>
+<li>Combining two tables through a query-level join.</li>
+<li>Generating reports from queries.</li>
+<li>Diagnosing the redundancy and anomaly risks that still remain.</li>
+</ul>
+<h3>Before You Begin</h3>
+<p><strong>Step 1 — Create the database file.</strong></p>
+<ol>
+<li>Open <strong>Microsoft Access</strong>.</li>
+<li>Choose <strong>Blank database</strong>.</li>
+<li>Name the file <code>LB04-GradingDatabase-YourName.accdb</code> (replace <code>YourName</code>).</li>
+<li>Pick a folder where you can find it later and click <strong>Create</strong>.</li>
+</ol>
+<p>Access opens an empty database with a blank <code>Table1</code>. You will rename it in the next section.</p>
+<h3>Build the GRADEBOOK Table</h3>
+<p><code>GRADEBOOK</code> is a <strong>flat grade-record table</strong>. One row equals one student receiving one score on one deliverable. It is not a Brightspace-style wide gradebook with one column per deliverable.</p>
+<p><strong>Step 2 — Switch to Design View and name the table.</strong> Right-click the <code>Table1</code> tab, choose <strong>Design View</strong>, and save it as <code>GRADEBOOK</code>.</p>
+<p><strong>Step 3 — Define the GRADEBOOK fields.</strong> Enter the following in Design View.</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Access Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RecordID</code></td>
+<td>AutoNumber</td>
+<td>Unique identifier for each grade record</td>
+</tr>
+<tr>
+<td><code>StudentID</code></td>
+<td>Short Text</td>
+<td>Student identifier, such as <code>S1001</code></td>
+</tr>
+<tr>
+<td><code>FirstName</code></td>
+<td>Short Text</td>
+<td>Student first name</td>
+</tr>
+<tr>
+<td><code>LastName</code></td>
+<td>Short Text</td>
+<td>Student last name</td>
+</tr>
+<tr>
+<td><code>Email</code></td>
+<td>Short Text</td>
+<td>Student email</td>
+</tr>
+<tr>
+<td><code>Birthday</code></td>
+<td>Date/Time</td>
+<td>Student birth date</td>
+</tr>
+<tr>
+<td><code>DeliverableType</code></td>
+<td>Short Text</td>
+<td>Quiz, Homework, Exam, or Project</td>
+</tr>
+<tr>
+<td><code>DeliverableNumber</code></td>
+<td>Number</td>
+<td>Sequence number within the category</td>
+</tr>
+<tr>
+<td><code>DueDate</code></td>
+<td>Date/Time</td>
+<td>Due date for the deliverable</td>
+</tr>
+<tr>
+<td><code>Topic</code></td>
+<td>Short Text</td>
+<td>Topic or label for the deliverable</td>
+</tr>
+<tr>
+<td><code>Score</code></td>
+<td>Number</td>
+<td>Score on a 0–100 scale</td>
+</tr>
+</tbody>
+</table>
+<p><code>StudentID</code> is stored as Short Text on purpose. It looks numeric, but it is an identifier, not a quantity. You are never going to average or add it. Values like <code>S1001</code> keep that signal visible. <code>Score</code>, by contrast, is a real measurement and stays Number.</p>
+<p><strong>Step 4 — Set the primary key.</strong> Click the row selector for <code>RecordID</code>, then click the <strong>Primary Key</strong> button in the ribbon. A small key icon should appear next to <code>RecordID</code>. A primary key uniquely identifies each row. <code>RecordID</code> identifies the grade record. <code>StudentID</code> identifies the student. They are not the same: Alice can appear in many grade records, but each row still needs its own <code>RecordID</code>.</p>
+<p><strong>Step 5 — Add a validation rule on Score.</strong> Click the <code>Score</code> field. In <strong>Field Properties</strong> at the bottom of the screen, set:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Validation Rule</td>
+<td><code>Between 0 And 100</code></td>
+</tr>
+<tr>
+<td>Validation Text</td>
+<td><code>Score must be between 0 and 100.</code></td>
+</tr>
+</tbody>
+</table>
+<p>This is one of the chapter's <code>CHECK</code>-style constraints in the form Access exposes through table design.</p>
+<p><strong>Step 6 — Make important fields required.</strong> In Field Properties, set <strong>Required</strong> to <code>Yes</code> for <code>StudentID</code>, <code>FirstName</code>, <code>LastName</code>, <code>DeliverableType</code>, <code>DeliverableNumber</code>, <code>DueDate</code>, and <code>Score</code>. Leave <code>Email</code> and <code>Topic</code> optional for now.</p>
+<p><strong>Step 7 — Save the table.</strong></p>
+<h3>Enter the Starter Records</h3>
+<p><strong>Step 8 — Enter six starter rows.</strong> Switch <code>GRADEBOOK</code> to <strong>Datasheet View</strong> and enter the six rows below. Do not type <code>RecordID</code> — Access fills it in automatically.</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>Birthday</th>
+<th>DeliverableType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th>Topic</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>5/14/2004</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>9/8/2026</td>
+<td>Database Basics</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+<td>11/22/2003</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>9/8/2026</td>
+<td>Database Basics</td>
+<td style="text-align: right;">84</td>
+</tr>
+<tr>
+<td>S1003</td>
+<td>Carla</td>
+<td>Mendez</td>
+<td>carla@university.edu</td>
+<td>2/9/2004</td>
+<td>Homework</td>
+<td style="text-align: right;">1</td>
+<td>9/10/2026</td>
+<td>Entity Design</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>5/14/2004</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>9/15/2026</td>
+<td>SQL Basics</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+<td>11/22/2003</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>9/15/2026</td>
+<td>SQL Basics</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr>
+<td>S1003</td>
+<td>Carla</td>
+<td>Mendez</td>
+<td>carla@university.edu</td>
+<td>2/9/2004</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>10/1/2026</td>
+<td>Midterm</td>
+<td style="text-align: right;">91</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected result.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of records</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Students appearing more than once</td>
+<td>Alice, Brian, Carla</td>
+</tr>
+<tr>
+<td>Number of quiz records</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Highest score</td>
+<td>Carla, 95</td>
+</tr>
+<tr>
+<td>Lowest score</td>
+<td>Brian, 77</td>
+</tr>
+</tbody>
+</table>
+<h3>Test the Validation Rule</h3>
+<p><strong>Step 9 — Try an out-of-range score.</strong> In any row, temporarily try to enter <code>150</code> in the <code>Score</code> field and press Tab. Access should refuse the value and show the message <code>Score must be between 0 and 100.</code> Restore the original score and move on.</p>
+<p>The database just enforced a rule that a spreadsheet would have silently accepted. That is one of the chapter's core differences between a flat file and a DBMS.</p>
+<h3>Build the GRADE_WEIGHT Table</h3>
+<p><code>GRADE_WEIGHT</code> stores grading-category metadata, not student scores.</p>
+<p><strong>Step 10 — Create the table.</strong> On the <strong>Create</strong> tab, click <strong>Table Design</strong>. Save it as <code>GRADE_WEIGHT</code>.</p>
+<p><strong>Step 11 — Define the fields.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Access Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DeliverableType</code></td>
+<td>Short Text</td>
+<td>Category name</td>
+</tr>
+<tr>
+<td><code>ItemCount</code></td>
+<td>Number</td>
+<td>Number of items in that category</td>
+</tr>
+<tr>
+<td><code>CategoryWeight</code></td>
+<td>Number</td>
+<td>Total course weight for the category</td>
+</tr>
+<tr>
+<td><code>WeightPerItem</code></td>
+<td>Number</td>
+<td>Weight assigned to each item</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 12 — Set the primary key.</strong> Set <code>DeliverableType</code> as the primary key. This works only because each deliverable type appears once in this simplified table; in a more realistic design, the category would get its own surrogate ID.</p>
+<p><strong>Step 13 — Save the table</strong>, switch to <strong>Datasheet View</strong>, and enter:</p>
+<table>
+<thead>
+<tr>
+<th>DeliverableType</th>
+<th style="text-align: right;">ItemCount</th>
+<th style="text-align: right;">CategoryWeight</th>
+<th style="text-align: right;">WeightPerItem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>Homework</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected result.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Records in <code>GRADE_WEIGHT</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td>Primary key field</td>
+<td><code>DeliverableType</code></td>
+</tr>
+<tr>
+<td>Weight per quiz</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Total course weight for exams</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<h3>Create a Data-Entry Form</h3>
+<p>A form is another interface for the same table, not a separate copy of the data. It makes record entry easier to read and reduces accidental edits to neighboring rows.</p>
+<p><strong>Step 14 — Create <code>frmGRADEBOOK</code>.</strong> In the Navigation Pane, click the <code>GRADEBOOK</code> table. On the <strong>Create</strong> tab, click <strong>Form</strong>. Access generates a form from the table. Save it as <code>frmGRADEBOOK</code>.</p>
+<p><strong>Step 15 — Use the form to add a new record.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StudentID</td>
+<td>S1004</td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>Daniel</td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>Kim</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>daniel@university.edu</td>
+</tr>
+<tr>
+<td>Birthday</td>
+<td>8/17/2004</td>
+</tr>
+<tr>
+<td>DeliverableType</td>
+<td>Project</td>
+</tr>
+<tr>
+<td>DeliverableNumber</td>
+<td>1</td>
+</tr>
+<tr>
+<td>DueDate</td>
+<td>11/5/2026</td>
+</tr>
+<tr>
+<td>Topic</td>
+<td>Final Project</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>89</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 16 (optional) — Create <code>frmGRADE_WEIGHT</code>.</strong> Repeat the process with the <code>GRADE_WEIGHT</code> table and save the form as <code>frmGRADE_WEIGHT</code>. It makes editing category weights easier later.</p>
+<p><strong>Expected result.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Records in <code>GRADEBOOK</code> after Daniel is added</td>
+<td>7</td>
+</tr>
+<tr>
+<td>New student added</td>
+<td>Daniel Kim</td>
+</tr>
+<tr>
+<td>New deliverable type now present in <code>GRADEBOOK</code></td>
+<td>Project</td>
+</tr>
+<tr>
+<td>Object used to enter the record</td>
+<td><code>frmGRADEBOOK</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Build Single-Table Queries</h3>
+<p>A query asks a question of the data. You will use the <strong>Query Design</strong> grid here. Chapter 5 will rewrite these as SQL.</p>
+<p><strong>Step 17 — Build <code>qryQuizRecords</code> (which records are quizzes?).</strong> On the <strong>Create</strong> tab, click <strong>Query Design</strong>, add <code>GRADEBOOK</code>, drop <code>FirstName</code>, <code>LastName</code>, <code>DeliverableType</code>, <code>DeliverableNumber</code>, and <code>Score</code> into the grid. Under <code>DeliverableType</code>, type <code>Quiz</code> in the <strong>Criteria</strong> row. Run, then save as <code>qryQuizRecords</code>.</p>
+<p>Expected result — 4 rows:</p>
+<table>
+<thead>
+<tr>
+<th>FirstName</th>
+<th>LastName</th>
+<th>DeliverableType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alice</td>
+<td>Johnson</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td>Brian</td>
+<td>Lee</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">84</td>
+</tr>
+<tr>
+<td>Alice</td>
+<td>Johnson</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td>Brian</td>
+<td>Lee</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">77</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 18 — Build <code>qryLowScores</code> (scores below 80).</strong> New query in Query Design, add <code>GRADEBOOK</code>, drop <code>FirstName</code>, <code>LastName</code>, <code>DeliverableType</code>, <code>DeliverableNumber</code>, <code>Score</code>. Under <code>Score</code>, type <code>&lt;80</code>. Run and save as <code>qryLowScores</code>.</p>
+<p>Expected result — 1 row:</p>
+<table>
+<thead>
+<tr>
+<th>FirstName</th>
+<th>LastName</th>
+<th>DeliverableType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brian</td>
+<td>Lee</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">77</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 19 — Build <code>qryScoresDescending</code> (highest scores first).</strong> New query, add <code>GRADEBOOK</code>, drop the same five fields. Under <code>Score</code>, set the <strong>Sort</strong> row to <strong>Descending</strong>. Run and save as <code>qryScoresDescending</code>.</p>
+<p>Expected top and bottom rows:</p>
+<table>
+<thead>
+<tr>
+<th>FirstName</th>
+<th>LastName</th>
+<th>DeliverableType</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carla</td>
+<td>Mendez</td>
+<td>Homework</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td style="text-align: right;">...</td>
+</tr>
+<tr>
+<td>Brian</td>
+<td>Lee</td>
+<td>Quiz</td>
+<td style="text-align: right;">77</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 20 — Build <code>qryAverageScoreByType</code> (average score per category).</strong> New query, add <code>GRADEBOOK</code>, drop <code>DeliverableType</code> and <code>Score</code>. Click <strong>Totals</strong> in the ribbon — a new <strong>Total</strong> row appears. Leave <code>Group By</code> under <code>DeliverableType</code> and change <code>Group By</code> to <code>Avg</code> under <code>Score</code>. Run and save as <code>qryAverageScoreByType</code>.</p>
+<p>Expected result (after adding Daniel):</p>
+<table>
+<thead>
+<tr>
+<th>DeliverableType</th>
+<th style="text-align: right;">AvgOfScore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">91</td>
+</tr>
+<tr>
+<td>Homework</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">89</td>
+</tr>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">85.25</td>
+</tr>
+</tbody>
+</table>
+<p>This is the database version of a pivot-table summary, except it lives as a reusable, named object.</p>
+<h3>Build a Query-Level Join</h3>
+<p>This is the first time you combine two tables. Read carefully: this is a <strong>query-level join</strong>, not a formal relational design. You are not creating relationships or referential integrity yet. You are asking Access to match rows from two tables inside one query so you can display grade records alongside their category-level weights.</p>
+<p><strong>Step 21 — Build <code>qryGradebookWithWeights</code> (student records with category weights).</strong> New query in Query Design. Add <strong>both</strong> tables: <code>GRADEBOOK</code> and <code>GRADE_WEIGHT</code>. If Access does not draw a join line automatically, drag <code>DeliverableType</code> from <code>GRADEBOOK</code> onto <code>DeliverableType</code> in <code>GRADE_WEIGHT</code>. A line should appear between the two tables.</p>
+<p>Add these fields:</p>
+<ul>
+<li>From <code>GRADEBOOK</code>: <code>FirstName</code>, <code>LastName</code>, <code>DeliverableType</code>, <code>DeliverableNumber</code>, <code>Score</code>.</li>
+<li>From <code>GRADE_WEIGHT</code>: <code>CategoryWeight</code>, <code>WeightPerItem</code>.</li>
+</ul>
+<p>Run and save as <code>qryGradebookWithWeights</code>.</p>
+<p>Expected result — 7 rows, each showing the category weight alongside the score. For example:</p>
+<table>
+<thead>
+<tr>
+<th>DeliverableType</th>
+<th style="text-align: right;">CategoryWeight</th>
+<th style="text-align: right;">WeightPerItem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p>This feels like a spreadsheet <code>VLOOKUP</code> or <code>XLOOKUP</code>, but Access is doing it as part of a saved query. The database design itself is still not relational — that comes in Chapter 6.</p>
+<h3>Build Two Reports</h3>
+<p>A report turns query output into a layout you can print or share.</p>
+<p><strong>Step 22 — Build <code>rptLowScores</code>.</strong> In the Navigation Pane, click <code>qryLowScores</code>. On the <strong>Create</strong> tab, click <strong>Report</strong>. Save as <code>rptLowScores</code>. It should show Brian Lee's Quiz 2 score of 77.</p>
+<p><strong>Step 23 — Build <code>rptAverageScoreByType</code>.</strong> Select <code>qryAverageScoreByType</code>, click <strong>Create</strong> → <strong>Report</strong>, save as <code>rptAverageScoreByType</code>. It should list the four deliverable types and their averages (Exam 91, Homework 95, Project 89, Quiz 85.25).</p>
+<p>If you have time, open either report in <strong>Layout View</strong> and clean up the title, column widths, and label names.</p>
+<h3>Check Your Work</h3>
+<p>Your database should now contain these objects:</p>
+<table>
+<thead>
+<tr>
+<th>Object Type</th>
+<th>Required</th>
+<th>Optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table</td>
+<td><code>GRADEBOOK</code>, <code>GRADE_WEIGHT</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Form</td>
+<td><code>frmGRADEBOOK</code></td>
+<td><code>frmGRADE_WEIGHT</code></td>
+</tr>
+<tr>
+<td>Query</td>
+<td><code>qryQuizRecords</code>, <code>qryLowScores</code>, <code>qryScoresDescending</code>, <code>qryAverageScoreByType</code>, <code>qryGradebookWithWeights</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Report</td>
+<td><code>rptLowScores</code>, <code>rptAverageScoreByType</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>And these results should match:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Records in <code>GRADEBOOK</code> after Daniel is added</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Records in <code>GRADE_WEIGHT</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>Score = 150</code> rejected by validation rule</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>qryQuizRecords</code> row count</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>qryLowScores</code> row count</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Highest score</td>
+<td>Carla Mendez, 95</td>
+</tr>
+<tr>
+<td>Quiz average</td>
+<td>85.25</td>
+</tr>
+<tr>
+<td><code>qryGradebookWithWeights</code> row count</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<h3>What This Shows</h3>
+<p>You now have a small but real DBMS environment instead of a spreadsheet. Tables enforce structure and data types. A primary key uniquely identifies each row. A validation rule rejects bad input before it lands. A form is a friendlier interface to the same underlying table. Queries answer specific questions and live as reusable objects. A query-level join can combine two tables on demand. Reports present query results in a readable layout. None of this required SQL — but everything you just did, you will do again in SQL in Chapter 5.</p>
+<p>Three questions worth sitting with before you move on:</p>
+<ul>
+<li><strong>Why is <code>StudentID</code> not the same thing as <code>RecordID</code>?</strong></li>
+<li><strong>What did the <code>Score</code> validation rule prevent that a spreadsheet would have allowed?</strong></li>
+<li><strong>Why is <code>qryGradebookWithWeights</code> not the same as a real relational design?</strong></li>
+</ul>
+<h3>What This Build Does Not Fix Yet</h3>
+<p>This is the bridge to Chapter 6. The database works, but five problems remain visible in the design:</p>
+<ul>
+<li><strong>Redundancy.</strong> Alice's name, email, and birthday repeat on every row she appears in. So do Brian's and Carla's.</li>
+<li><strong>Update anomaly risk.</strong> If Alice changes her email, you have to update multiple rows. Miss one, and the database disagrees with itself.</li>
+<li><strong>Insertion anomaly risk.</strong> There is no clean place to add a new student who has not submitted anything yet. Students only exist as grade rows.</li>
+<li><strong>Deletion anomaly risk.</strong> If you delete the only grade row for a project, you may also delete the only evidence that the project existed.</li>
+<li><strong>No formal relationships.</strong> The join in <code>qryGradebookWithWeights</code> is a query-time match. Access is not enforcing that every <code>DeliverableType</code> in <code>GRADEBOOK</code> must exist in <code>GRADE_WEIGHT</code>, or that every grade must belong to a known student.</li>
+</ul>
+<p>Chapter 6 will refactor this into a relational design with separate <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code> tables connected by foreign keys.</p>
+<h3>Common Mistakes</h3>
+<ul>
+<li><strong>Typed <code>RecordID</code> values.</strong> <code>RecordID</code> is AutoNumber — Access fills it in. If you try to type a value, Access ignores it or warns you.</li>
+<li><strong>Set <code>StudentID</code> as Number.</strong> Then later realized you wanted <code>S1001</code>-style IDs. Changing the data type after data is entered can be painful. Set it to Short Text up front.</li>
+<li><strong>Validation rule won't accept the syntax.</strong> It is <code>Between 0 And 100</code>, not <code>0-100</code> or <code>&gt;=0 AND &lt;=100</code>. Quotes are not needed.</li>
+<li><strong>Required field left blank.</strong> If you set <strong>Required</strong> to Yes, Access blocks the row until you fill that field. Either fill it or change Required back to No.</li>
+<li><strong>Join line missing in the two-table query.</strong> Without the line connecting <code>DeliverableType</code> to <code>DeliverableType</code>, Access returns a Cartesian product (every row of one table paired with every row of the other) instead of a clean join.</li>
+<li><strong>Totals row hidden.</strong> The <strong>Total</strong> row only appears after you click <strong>Totals</strong> in the ribbon. If you don't see it, that's why.</li>
+<li><strong>Saved the table instead of the query, or vice versa.</strong> When Access prompts to save, check whether you're saving <code>GRADEBOOK</code>, <code>qryQuizRecords</code>, or something else. The active object's name appears in the prompt.</li>
+<li><strong>Tried to make a report from a table instead of a query.</strong> You can, but reports built from queries inherit your filters and sorts. That's usually what you want.</li>
+</ul>
+<h3>Submit or Save</h3>
+<p>Save and close the database. Confirm the file is named <code>LB04-GradingDatabase-YourName.accdb</code>. Keep it somewhere you can find it again — Chapter 5 will reuse these same two tables to introduce SQL, and Chapter 6 will use them as the starting point for normalization.</p>
+<h3>Peek Ahead — Chapter 5</h3>
+<p>In Chapter 5 you will stop clicking and start writing. The same questions you just answered with the Query Design grid — show the quizzes, show the low scores, sort by score, average by category, combine <code>GRADEBOOK</code> with <code>GRADE_WEIGHT</code> — become short SQL statements you can read, edit, and share. Chapter 5 will use the same table logic in SQL, including Access SQL View and/or SQLite, so you will start to see why SQL is the lingua franca that every relational database in the chapter's platform table speaks.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 04 Term Treasury - Introduction to Databases</h2>
+                  <p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/terms_gqkau8?_a=BAMAAAiu0" alt="Term Treasury" />
+</p>
+
+<!-- Companion: Key terms and definitions - 2026-05-30 -->
+
+<table>
+<thead>
+<tr>
+<th>Term / Concept</th>
+<th>Definition</th>
+<th>Business Significance</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CHECK Constraint</strong></td>
+<td>A rule that restricts a field to a defined range or condition before a value can be stored.</td>
+<td>Prevents invalid values from entering operational records and later distorting reports or decisions.</td>
+<td><code>CHECK (Score BETWEEN 0 AND 100)</code> in the chapter's <code>STUDENT_GRADE</code> example.</td>
+</tr>
+<tr>
+<td><strong>Concurrency</strong></td>
+<td>The ability of a DBMS to manage two or more users or applications reading or changing data at the same time.</td>
+<td>Protects shared data when multiple people or systems work with the same records.</td>
+<td>A server database managing two staff members updating appointment records.</td>
+</tr>
+<tr>
+<td><strong>Constraint</strong></td>
+<td>A DBMS-enforced rule that protects validity, identity, or relationships in stored data.</td>
+<td>Makes data quality structural rather than dependent only on user memory or careful typing.</td>
+<td><code>NOT NULL</code>, <code>UNIQUE</code>, <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, and <code>CHECK</code>.</td>
+</tr>
+<tr>
+<td><strong>Data Dictionary</strong></td>
+<td>A readable collection of metadata that documents tables, columns, data types, keys, and rules.</td>
+<td>Helps people understand and govern the structure of a database before using it for reports or decisions.</td>
+<td>A table listing <code>STUDENT_GRADE.StudentID</code> as a foreign key to <code>STUDENT</code>.</td>
+</tr>
+<tr>
+<td><strong>Data Independence</strong></td>
+<td>The ability to change physical storage details without changing the user's logical view of the data.</td>
+<td>Lets a DBMS improve storage or speed while keeping applications, forms, and queries stable.</td>
+<td>Adding an index so grade lookups run faster without changing the grade-entry form.</td>
+</tr>
+<tr>
+<td><strong>Data Integrity</strong></td>
+<td>The condition in which stored data remains accurate, consistent, valid, and trustworthy.</td>
+<td>Supports reliable reports, dashboards, KPIs, and managerial decisions.</td>
+<td>Rejecting an impossible score such as <code>150</code> before it enters the Grading Database.</td>
+</tr>
+<tr>
+<td><strong>Data Processing</strong></td>
+<td>The work of retrieving, filtering, summarizing, updating, or analyzing stored data.</td>
+<td>Turns stored records into usable information for operations and decisions.</td>
+<td>Calculating an average score by deliverable type.</td>
+</tr>
+<tr>
+<td><strong>Data Storage</strong></td>
+<td>The organized recording and preservation of data so it can be retrieved and reused later.</td>
+<td>Gives organizations a stable record of activity instead of scattered temporary files.</td>
+<td>Storing student, deliverable, and score records in database tables.</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>A structured collection of related data designed for reliable storage, retrieval, and management.</td>
+<td>Serves as an official record of activity that can support queries, reports, applications, and decisions.</td>
+<td>The Grading Database tables used throughout the chapter.</td>
+</tr>
+<tr>
+<td><strong>Database Application</strong></td>
+<td>The interface layer through which users work with database data.</td>
+<td>Lets users enter, view, and report on data without directly editing raw storage structures.</td>
+<td>Access forms, dashboards, query tools, and reports.</td>
+</tr>
+<tr>
+<td><strong>Database Approach</strong></td>
+<td>A way of organizing data in shared, structured tables with metadata, keys, constraints, and DBMS control.</td>
+<td>Replaces scattered files and fragile spreadsheets with governed data that can be reused consistently.</td>
+<td>Separating student facts from grade facts instead of repeating everything in one sheet.</td>
+</tr>
+<tr>
+<td><strong>Database Management System</strong></td>
+<td>The software engine that creates, manages, queries, secures, and administers databases.</td>
+<td>Provides the services that individual files lack, including integrity enforcement, querying, shared access, backup, and recovery.</td>
+<td>Microsoft Access, SQLite, PostgreSQL, and Supabase.</td>
+</tr>
+<tr>
+<td><strong>Database System</strong></td>
+<td>The full arrangement of users, applications, the DBMS, and the database itself.</td>
+<td>Shows that useful database work depends on people, interfaces, software, and stored structure working together.</td>
+<td>A professor using a grade-entry form that sends data through Access into database tables.</td>
+</tr>
+<tr>
+<td><strong>File Environment</strong></td>
+<td>An older data-management approach in which separate files are maintained independently by departments, programs, or users.</td>
+<td>Creates redundancy, inconsistency, and fragile reporting when data must be shared across an organization.</td>
+<td>Sales and billing files storing different versions of a customer's address.</td>
+</tr>
+<tr>
+<td><strong>Foreign Key</strong></td>
+<td>A field in one table that references the primary key of another table.</td>
+<td>Preserves relationships across tables and helps prevent orphaned or mismatched records.</td>
+<td><code>STUDENT_GRADE.StudentID</code> pointing to <code>STUDENT.StudentID</code>.</td>
+</tr>
+<tr>
+<td><strong>Index</strong></td>
+<td>A storage structure that helps the DBMS find rows more efficiently.</td>
+<td>Improves retrieval speed while preserving the same logical table view for users.</td>
+<td>An index added to speed up grade lookups.</td>
+</tr>
+<tr>
+<td><strong>Logical View</strong></td>
+<td>The way data appears to users and applications through tables, columns, relationships, and query results.</td>
+<td>Lets users work with meaningful names and structures without managing storage details.</td>
+<td>Seeing <code>STUDENT</code> and <code>STUDENT_GRADE</code> tables in Access.</td>
+</tr>
+<tr>
+<td><strong>Metadata</strong></td>
+<td>Data about the database structure, such as table names, column names, data types, keys, and constraints.</td>
+<td>Makes the database self-describing and easier to govern, maintain, and explain.</td>
+<td>A data dictionary row showing <code>Score</code> as numeric with a 0-100 rule.</td>
+</tr>
+<tr>
+<td><strong>NOT NULL Constraint</strong></td>
+<td>A rule that requires a field to contain a value.</td>
+<td>Prevents important business facts from being left blank when the record cannot be useful without them.</td>
+<td>Requiring <code>StudentID</code> or <code>Score</code> in a grade record.</td>
+</tr>
+<tr>
+<td><strong>Physical View</strong></td>
+<td>The behind-the-scenes way data is stored, indexed, and optimized by the DBMS.</td>
+<td>Allows administrators and the DBMS to improve storage without changing user-facing forms or queries.</td>
+<td>Moving database files to faster storage or adding indexes.</td>
+</tr>
+<tr>
+<td><strong>Primary Key</strong></td>
+<td>The chosen field or set of fields that uniquely identifies each row in a table.</td>
+<td>Gives every record a stable identity so it can be found, updated, and referenced reliably.</td>
+<td><code>STUDENT.StudentID</code> identifying one student row.</td>
+</tr>
+<tr>
+<td><strong>Program-Data Dependence</strong></td>
+<td>A file-environment problem in which programs are tightly tied to the structure of the files they read.</td>
+<td>Makes systems fragile because changing a file layout can break reports or applications.</td>
+<td>A report failing after a department changes the order of fields in a file.</td>
+</tr>
+<tr>
+<td><strong>Query-Level Join</strong></td>
+<td>A match between two tables made inside a query rather than through an enforced database relationship.</td>
+<td>Helps students see how data can be combined while recognizing that query-time matching is not the same as referential integrity.</td>
+<td><code>qryGradebookWithWeights</code> matching <code>GRADEBOOK.DeliverableType</code> to <code>GRADE_WEIGHT.DeliverableType</code>.</td>
+</tr>
+<tr>
+<td><strong>Relational Table</strong></td>
+<td>A database table that stores one subject in rows and columns with clear meaning and reliable row identity.</td>
+<td>Helps reduce duplication and prepares data for keys, constraints, joins, and later normalization.</td>
+<td>A <code>STUDENT</code> table with <code>StudentID</code>, <code>FirstName</code>, <code>LastName</code>, <code>Email</code>, and <code>Birthday</code>.</td>
+</tr>
+<tr>
+<td><strong>SQL (Structured Query Language)</strong></td>
+<td>The standard declarative language used to work with relational databases.</td>
+<td>Lets users and applications ask precise questions of structured data across platforms.</td>
+<td>A <code>SELECT</code> query that retrieves students who scored above 90.</td>
+</tr>
+<tr>
+<td><strong>UNIQUE Constraint</strong></td>
+<td>A rule that prevents duplicate values in a field or combination of fields.</td>
+<td>Protects identifiers and other values that should appear only once.</td>
+<td>Requiring each student email to be unique.</td>
+</tr>
+<tr>
+<td><strong>Validation Rule (Access)</strong></td>
+<td>An Access table-design rule that limits allowed input for a field.</td>
+<td>Gives Access users a visual way to apply constraint-like protection without writing SQL.</td>
+<td><code>Between 0 And 100</code> on the <code>Score</code> field in the Let's Build activity.</td>
+</tr>
+</tbody>
+</table>
+<h2>Acronyms and Abbreviations</h2>
+<table>
+<thead>
+<tr>
+<th>Abbreviation</th>
+<th>Full Form</th>
+<th>Brief Meaning</th>
+<th>Where It Appears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DBMS</strong></td>
+<td>Database Management System</td>
+<td>Software that creates, manages, queries, secures, and administers databases.</td>
+<td>Database architecture and platform discussion</td>
+</tr>
+<tr>
+<td><strong>FK</strong></td>
+<td>Foreign Key</td>
+<td>A field that connects one table to a related row in another table.</td>
+<td>Mermaid ERD and relationship examples</td>
+</tr>
+<tr>
+<td><strong>PK</strong></td>
+<td>Primary Key</td>
+<td>A field or fields that uniquely identify each row.</td>
+<td>Table design, ERD notation, and key discussion</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Structured Query Language</td>
+<td>A standard language for querying and managing relational databases.</td>
+<td>SQL preview and platform comparison</td>
+</tr>
+</tbody>
+</table>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>Chapter 4: Review and Reflection</h2>
+                  <!-- markdownlint-disable-next-line MD025 -->
+<p><img alt="Reflection GIF" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" /></p>
+<p><em>Use these questions to move from knowing database terms to explaining why structured data matters for reliable business decisions.</em></p>
+<h2>Review Questions</h2>
+<p><em>Use these questions to check your understanding of the chapter's core database concepts, examples, and vocabulary.</em></p>
+<ol>
+<li>What is a database, and how does it differ from a spreadsheet or ordinary file used to store business data?</li>
+<li>How does the chapter distinguish a database, a DBMS, and a database system?</li>
+<li>What problems do redundancy, inconsistency, and program-data dependence create in a traditional file environment?</li>
+<li>What is the database approach, and how does it support shared access, data independence, and a centralized source of truth?</li>
+<li>What are logical and physical views of data, and why does separating them matter for users and technical staff?</li>
+<li>What are primary keys and foreign keys, and how do they help tables such as STUDENT, DELIVERABLE, and STUDENT_GRADE work together?</li>
+<li>What do constraints such as NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, and CHECK do in a relational database?</li>
+<li>How do Microsoft Access, SQLite, and PostgreSQL or Supabase differ as database platforms in the chapter's learning path?</li>
+</ol>
+<h2>Reflection Questions</h2>
+<p><em>Use these questions to interpret the chapter, compare alternatives, and connect database design to organizational decisions.</em></p>
+<ol>
+<li>Why can a spreadsheet that looks organized still fail as a reliable organizational data system?</li>
+<li>In the PetVax example, how do repeated owner information, two pets named Coco, and co-ownership show the need for stable identifiers and related tables?</li>
+<li>When is a flat table useful for learning, and when does it become risky for long-term data management?</li>
+<li>How does the database approach improve coordination, accountability, and decision quality across an organization?</li>
+<li>Why is the query-level join in the Chapter 4 Let's Build activity not the same thing as a formal relationship enforced by the database?</li>
+<li>How should a business balance flexibility with constraints when deciding what values a database should allow or reject?</li>
+<li>How does understanding tables, keys, and constraints prepare students for the chapter's SQL preview and later query work?</li>
+<li>If a small clinic needed to choose between Access, SQLite, and PostgreSQL or Supabase, what business and technical factors should guide the choice?</li>
+</ol>
+<h2>Personal Reflection Questions</h2>
+<p><em>Use these questions to connect the chapter's database ideas to your own experience, habits, and professional growth.</em></p>
+<ol>
+<li>Have you ever used a spreadsheet, shared file, or form that became difficult to trust? What warning signs from this chapter did you see?</li>
+<li>Which Chapter 4 concept most changes how you think about data quality, and why?</li>
+<li>In the Chapter 4 Let's Build activity, which design choice would require the most careful attention from you: data types, required fields, validation rules, queries, or reports? Why?</li>
+<li>How can thinking in database layers, such as users, applications, DBMS, and stored data, help you troubleshoot technology problems more carefully?</li>
+<li>What habit can you build to distinguish identifiers, such as StudentID, from measurements or descriptive values, such as scores and names?</li>
+<li>How might understanding structured databases help you in a future role as a manager, analyst, accountant, marketer, operations employee, or entrepreneur?</li>
+<li>What question would you ask before deciding whether a new business process should stay in a spreadsheet or move into a database?</li>
+</ol>
+<h2>Answer Key</h2>
+<h3>Review</h3>
+<p><strong>Question 1: What is a database, and how does it differ from a spreadsheet or ordinary file used to store business data?</strong>
+Suggested Answer: A database is a structured collection of related data and metadata designed for reliable storage, retrieval, and management. A spreadsheet or ordinary file can hold data, but it usually does not enforce relationships, constraints, shared definitions, or controlled access in the same way. Chapter 4 emphasizes that databases are built for dependable organizational records, while spreadsheets are often better for smaller, personal, or temporary analysis tasks.</p>
+<p><strong>Question 2: How does the chapter distinguish a database, a DBMS, and a database system?</strong>
+Suggested Answer: The database is the organized collection of data and metadata. The DBMS, or Database Management System, is the software engine that creates, queries, secures, and manages that database. The database system is the larger working environment that includes users, database applications, the DBMS, and the database itself. In the Grading Database, the stored grade records are the database, Access acts as the DBMS and application environment, and the professor or student user is part of the full system.</p>
+<p><strong>Question 3: What problems do redundancy, inconsistency, and program-data dependence create in a traditional file environment?</strong>
+Suggested Answer: Redundancy means the same fact is stored in more than one place. Inconsistency happens when those copies no longer match. Program-data dependence means applications are tightly tied to the structure of specific files, so a change in storage can break processing logic. Chapter 4 presents these as common reasons file environments become hard to maintain and hard to trust as organizations grow.</p>
+<p><strong>Question 4: What is the database approach, and how does it support shared access, data independence, and a centralized source of truth?</strong>
+Suggested Answer: The database approach organizes related data in a managed database instead of scattering separate files across people, departments, or tools. It supports shared access because multiple authorized users and applications can work from the same managed data source. It supports data independence because users can work with a logical view without needing to know every physical storage detail. It also helps create a centralized source of truth, reducing the risk that different teams maintain conflicting copies of the same business facts.</p>
+<p><strong>Question 5: What are logical and physical views of data, and why does separating them matter for users and technical staff?</strong>
+Suggested Answer: A logical view is the way users and applications understand the data, such as students, deliverables, scores, and reports. A physical view concerns how the data is stored, indexed, and managed internally. Separating these views matters because users can focus on business meaning while technical staff can improve storage, indexing, and performance without forcing every report or form to be redesigned.</p>
+<p><strong>Question 6: What are primary keys and foreign keys, and how do they help tables such as STUDENT, DELIVERABLE, and STUDENT_GRADE work together?</strong>
+Suggested Answer: A primary key uniquely identifies each row in a table, such as a StudentID for one student. A foreign key stores a value that points to a primary key in another table, connecting related facts across tables. In the chapter's later Grading Database direction, STUDENT stores student facts, DELIVERABLE stores assignment facts, and STUDENT_GRADE connects students to deliverables and scores. Keys allow these tables to work together without repeating every student or deliverable detail in every grade row.</p>
+<p><strong>Question 7: What do constraints such as NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, and CHECK do in a relational database?</strong>
+Suggested Answer: Constraints are rules that protect data quality. NOT NULL requires a value, UNIQUE prevents duplicate values where duplicates should not be allowed, PRIMARY KEY uniquely identifies each row, FOREIGN KEY protects valid relationships between tables, and CHECK limits allowed values based on a rule. The chapter's score example uses a CHECK idea by allowing scores only within a valid range, such as 0 through 100.</p>
+<p><strong>Question 8: How do Microsoft Access, SQLite, and PostgreSQL or Supabase differ as database platforms in the chapter's learning path?</strong>
+Suggested Answer: Access is useful for learning database concepts with tables, queries, forms, and reports in one visual environment. SQLite is a lightweight local database engine often used in embedded or small application contexts. PostgreSQL, including cloud services such as Supabase, supports more scalable, multi-user, server-based database work. Chapter 4 uses these platforms to show a learning path from local practice toward more professional and collaborative database systems.</p>
+<h3>Reflection</h3>
+<p><strong>Question 1: Why can a spreadsheet that looks organized still fail as a reliable organizational data system?</strong>
+Suggested Answer: A spreadsheet can look clean because rows and columns are neatly arranged, but visual order is not the same as database control. A spreadsheet may allow duplicate names, inconsistent spelling, missing required values, broken formulas, or conflicting copies across departments. Chapter 4 argues that reliable organizational systems need structure, constraints, shared access rules, and stable identifiers, not just a tidy grid.</p>
+<p><strong>Question 2: In the PetVax example, how do repeated owner information, two pets named Coco, and co-ownership show the need for stable identifiers and related tables?</strong>
+Suggested Answer: Repeated owner information creates redundancy and makes updates risky. Two pets named Coco show that names are not reliable identifiers because different real-world entities can share the same descriptive value. Co-ownership shows that one pet can be connected to more than one owner, which is hard to represent correctly in one flat table. These issues point toward stable IDs and related tables that separate owners, pets, and their relationships.</p>
+<p><strong>Question 3: When is a flat table useful for learning, and when does it become risky for long-term data management?</strong>
+Suggested Answer: A flat table is useful when students are first learning how records, fields, data types, validation rules, queries, and reports work. It keeps the early learning task visible and manageable. It becomes risky when repeated facts, update anomalies, insertion anomalies, deletion anomalies, or unclear identifiers start to appear. At that point, the flat table is no longer just simple; it is structurally weak for reliable long-term use.</p>
+<p><strong>Question 4: How does the database approach improve coordination, accountability, and decision quality across an organization?</strong>
+Suggested Answer: The database approach improves coordination by giving teams a shared record structure and common definitions. It improves accountability by making it clearer which records exist, what rules apply, and which values are accepted or rejected. It improves decision quality because reports and queries draw from more consistent, governed data rather than disconnected files. Managers can spend less time reconciling conflicting numbers and more time interpreting what the numbers mean.</p>
+<p><strong>Question 5: Why is the query-level join in the Chapter 4 Let's Build activity not the same thing as a formal relationship enforced by the database?</strong>
+Suggested Answer: A query-level join combines tables for a specific query result, such as matching GRADEBOOK records to GRADE_WEIGHT rows by DeliverableType. It helps students see how related data can be used together, but it does not by itself enforce referential integrity for all future data entry. A formal relationship would be part of the database design and would help prevent invalid references, such as a grade record pointing to a deliverable type that does not exist in the related table.</p>
+<p><strong>Question 6: How should a business balance flexibility with constraints when deciding what values a database should allow or reject?</strong>
+Suggested Answer: A business should allow enough flexibility to reflect real operations, but not so much flexibility that invalid or meaningless values enter the system. For example, a score field should allow valid scores but reject values outside the business rule, such as a negative score or a score above 100 when that is not allowed. Good constraints turn business rules into system safeguards. Poorly chosen constraints can block legitimate cases, so they should be based on real requirements rather than guesses.</p>
+<p><strong>Question 7: How does understanding tables, keys, and constraints prepare students for the chapter's SQL preview and later query work?</strong>
+Suggested Answer: SQL depends on the structure of the database. Students need to know what tables represent, how rows are identified, how tables connect, and what rules protect the data before they can write meaningful queries. Keys make joins possible, constraints make query results more trustworthy, and table design determines which business questions can be answered cleanly. Chapter 4 therefore prepares students for SQL by explaining the structure SQL will query.</p>
+<p><strong>Question 8: If a small clinic needed to choose between Access, SQLite, and PostgreSQL or Supabase, what business and technical factors should guide the choice?</strong>
+Suggested Answer: The clinic should consider number of users, need for remote access, data sensitivity, growth expectations, reporting needs, technical support, budget, and integration with other systems. Access may fit a small internal prototype or local office workflow with forms and reports. SQLite may fit a lightweight local application. PostgreSQL or Supabase may fit a growing clinic that needs cloud access, stronger multi-user support, APIs, and future scalability. The best choice depends on the work the database must support.</p>
+<h3>Personal Reflection</h3>
+<p><strong>Question 1: Have you ever used a spreadsheet, shared file, or form that became difficult to trust? What warning signs from this chapter did you see?</strong>
+Suggested Answer: A strong response might describe signs such as duplicate records, conflicting versions, missing required values, formulas that no one wanted to touch, or team members disagreeing about which file was current. The important connection is that trust problems often come from weak structure, not just careless users. Chapter 4 helps students name these issues as redundancy, inconsistency, lack of constraints, and weak shared access control.</p>
+<p><strong>Question 2: Which Chapter 4 concept most changes how you think about data quality, and why?</strong>
+Suggested Answer: Answers will vary. A strong answer might choose constraints because they show that data quality can be designed into a system instead of left only to user effort. Another strong answer might choose primary keys because they show why stable identity matters more than familiar labels such as names. The response should connect the chosen concept to more reliable records, better reporting, or fewer business errors.</p>
+<p><strong>Question 3: In the Chapter 4 Let's Build activity, which design choice would require the most careful attention from you: data types, required fields, validation rules, queries, or reports? Why?</strong>
+Suggested Answer: Answers will vary, but the justification should be chapter-grounded. For example, data types require care because StudentID should be treated as an identifier rather than a quantity. Required fields matter because missing StudentID, DeliverableType, DueDate, or Score values can weaken later reporting. Validation rules matter because scores outside the valid range should be rejected before they affect analysis. Queries and reports matter because they turn stored records into useful business views.</p>
+<p><strong>Question 4: How can thinking in database layers, such as users, applications, DBMS, and stored data, help you troubleshoot technology problems more carefully?</strong>
+Suggested Answer: Thinking in layers helps a student avoid blaming every problem on the same source. A bad value might come from user entry, a form design problem, a missing validation rule in the DBMS, or a poor table structure. By separating users, applications, DBMS logic, and stored data, a person can ask better diagnostic questions and fix the problem at the layer where it actually occurs.</p>
+<p><strong>Question 5: What habit can you build to distinguish identifiers, such as StudentID, from measurements or descriptive values, such as scores and names?</strong>
+Suggested Answer: A useful habit is to ask what the value is meant to do. If the value identifies a specific entity, it should remain stable and should not be treated as a number for calculation, even if it contains digits. If the value measures performance, such as Score, then calculations may make sense. If the value describes an entity, such as FirstName or LastName, it should not be assumed to be unique. This habit supports better table design and cleaner analysis.</p>
+<p><strong>Question 6: How might understanding structured databases help you in a future role as a manager, analyst, accountant, marketer, operations employee, or entrepreneur?</strong>
+Suggested Answer: A strong answer should connect database understanding to practical work, such as asking better questions about data sources, noticing when reports may be unreliable, planning cleaner customer or transaction records, or communicating more effectively with technical teams. Even if the student does not become a database administrator, knowing how databases structure facts can improve decisions, reduce errors, and support more responsible use of analytics.</p>
+<p><strong>Question 7: What question would you ask before deciding whether a new business process should stay in a spreadsheet or move into a database?</strong>
+Suggested Answer: A strong answer might ask whether the process needs shared access, stable identifiers, repeated use, controlled values, relationships among entities, auditability, or reliable reporting over time. If the process is simple, temporary, and used by one person, a spreadsheet may be enough. If it supports ongoing operations, multiple users, related records, or important decisions, Chapter 4 suggests that a database may be the safer foundation.</p>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>Readiness Assessment Test (RAT): Introduction to Databases</h2>
+                  <p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/RAT_nqr5a3?_a=BAMAAAiu0" alt="RAT" />
+</p>
+
+<h2>Remember</h2>
+<p><strong>1. Which statement best defines a database in Chapter 4?</strong></p>
+<p>A. A spreadsheet with formulas, charts, and several tabs</p>
+<p>B. A structured collection of related data designed for reliable storage, retrieval, and management</p>
+<p>C. A printed report that summarizes business activity</p>
+<p>D. A single file that stores unrelated values without rules</p>
+<p><strong>2. Which term names the software engine that creates, manages, queries, secures, and administers databases?</strong></p>
+<p>A. Database application</p>
+<p>B. Database Management System</p>
+<p>C. Logical view</p>
+<p>D. Data dictionary</p>
+<p><strong>3. Which term describes the full arrangement of users, applications, DBMS, and database?</strong></p>
+<p>A. Physical view</p>
+<p>B. File environment</p>
+<p>C. Database system</p>
+<p>D. Constraint set</p>
+<p><strong>4. Which term names a column in one table that references the primary key of another table?</strong></p>
+<p>A. Candidate key</p>
+<p>B. Foreign key</p>
+<p>C. Natural key</p>
+<p>D. Surrogate key</p>
+<p><strong>5. Select ALL that apply: Which constraints are introduced in Chapter 4?</strong></p>
+<p>A. <code>NOT NULL</code></p>
+<p>B. <code>CHECK</code></p>
+<p>C. <code>DISPLAY FORMAT</code></p>
+<p>D. <code>FOREIGN KEY</code></p>
+<p>E. <code>UNIQUE</code></p>
+<p><strong>6. Select ALL that apply: Which items belong to the logical view of data as Chapter 4 describes it?</strong></p>
+<p>A. Tables and columns visible to users</p>
+<p>B. Query results returned to an application</p>
+<p>C. Exact disk-page locations</p>
+<p>D. Relationships between tables</p>
+<p>E. Internal storage blocks managed by the DBMS</p>
+<p><strong>7. Select ALL that apply: Which platform descriptions match Chapter 4?</strong></p>
+<p>A. Microsoft Access helps students see tables, forms, queries, and reports in one visual environment.</p>
+<p>B. SQLite is useful for lightweight, portable SQL practice with little setup.</p>
+<p>C. PostgreSQL or Supabase supports more shared, server-style database work.</p>
+<p>D. Microsoft Access is presented as the main cloud production platform for this course.</p>
+<p>E. SQLite is described as easier to start with than a full server database.</p>
+<p><strong>8. Select ALL that apply: Which problems are associated with spreadsheets or traditional file environments in Chapter 4?</strong></p>
+<p>A. Redundancy</p>
+<p>B. Inconsistency</p>
+<p>C. Program-data dependence</p>
+<p>D. Weak control</p>
+<p>E. Automatic foreign-key enforcement</p>
+<h2>Understand</h2>
+<p><strong>9. Why does Chapter 4 say spreadsheets are not databases?</strong></p>
+<p>A. Spreadsheets cannot store rows or columns.</p>
+<p>B. Spreadsheets are flexible grids that usually do not enforce relationships, data types, and integrity constraints like a DBMS.</p>
+<p>C. Spreadsheets cannot be used for quick calculations.</p>
+<p>D. Spreadsheets are always larger than databases.</p>
+<p><strong>10. Why does the chapter separate logical view from physical view?</strong></p>
+<p>A. To hide all data from users</p>
+<p>B. To let users work with stable tables and fields while the DBMS changes storage details behind the scenes</p>
+<p>C. To make every table store exactly four columns</p>
+<p>D. To remove the need for applications</p>
+<p><strong>11. Why is <code>StudentID</code> a stronger primary-key choice than a student's name in the chapter's examples?</strong></p>
+<p>A. Names can be duplicated or changed, while a stable identifier can distinguish each row.</p>
+<p>B. Names are never stored in databases.</p>
+<p>C. A student's name is always a numeric measurement.</p>
+<p>D. A primary key must always be a date.</p>
+<p><strong>12. Why is SQL described as declarative?</strong></p>
+<p>A. Users state what result they want, and the DBMS decides how to retrieve it.</p>
+<p>B. Users must describe every physical disk operation.</p>
+<p>C. SQL works only for creating tables.</p>
+<p>D. SQL removes the need for table names.</p>
+<p><strong>13. Select ALL that apply: Why do constraints matter in Chapter 4?</strong></p>
+<p>A. They can reject impossible scores before the data enters the database.</p>
+<p>B. They replace all human judgment and training.</p>
+<p>C. They can prevent a grade from referencing a student who does not exist.</p>
+<p>D. They help enforce required values and uniqueness.</p>
+<p>E. They protect reports and dashboards from some bad input.</p>
+<p><strong>14. Select ALL that apply: Which statements explain the database approach from Chapter 4?</strong></p>
+<p>A. It supports a centralized source of truth.</p>
+<p>B. It requires every organization to abandon all spreadsheets immediately.</p>
+<p>C. It separates related subjects into structured tables.</p>
+<p>D. It uses keys, metadata, and constraints to make data more reliable.</p>
+<p>E. It lets multiple users or applications retrieve consistent data from the same source.</p>
+<p><strong>15. Select ALL that apply: What information belongs in metadata or a data dictionary?</strong></p>
+<p>A. Table names</p>
+<p>B. Column names and data types</p>
+<p>C. Keys and constraints</p>
+<p>D. Decorative report colors</p>
+<p>E. Rules such as <code>Score BETWEEN 0 AND 100</code></p>
+<p><strong>16. Select ALL that apply: Why does the chapter warn that one big table becomes fragile?</strong></p>
+<p>A. It repeats facts such as student names and emails.</p>
+<p>B. It can create update, insertion, and deletion anomaly risks.</p>
+<p>C. It always makes every report impossible.</p>
+<p>D. It mixes too many subjects into one place.</p>
+<p>E. It often depends on manual care or fragile formulas instead of enforced relationships.</p>
+<h2>Apply</h2>
+<p><strong>17. In the chapter's SQLite-style example, which insert would violate the <code>NOT NULL</code> rule for <code>Email</code>?</strong></p>
+<p>A. <code>INSERT INTO STUDENT (StudentID, Email) VALUES (1001, 'msantos@albany.edu');</code></p>
+<p>B. <code>INSERT INTO STUDENT (StudentID, Email) VALUES (1002, 'jchen@albany.edu');</code></p>
+<p>C. <code>INSERT INTO STUDENT (StudentID, Email) VALUES (1003, NULL);</code></p>
+<p>D. <code>INSERT INTO STUDENT (StudentID, Email) VALUES (1004, 'arahman@albany.edu');</code></p>
+<p><strong>18. In the Chapter 4 Let's Build, which Access object is most appropriate for entering grades through a guided user interface?</strong></p>
+<p>A. Table</p>
+<p>B. Query</p>
+<p>C. Form</p>
+<p>D. Report</p>
+<p><strong>19. A mobile app needs a lightweight local database file with little setup and limited concurrent writing. Which course platform is the best fit?</strong></p>
+<p>A. Microsoft Access</p>
+<p>B. SQLite</p>
+<p>C. PostgreSQL or Supabase</p>
+<p>D. A shared spreadsheet</p>
+<p><strong>20. In the PetVax Lab 03 example, Sarah Perry's email changes in one row but not in another. Which chapter concept does this illustrate?</strong></p>
+<p>A. Update anomaly caused by repeated facts</p>
+<p>B. Data independence from physical storage</p>
+<p>C. SQL declarative syntax</p>
+<p>D. A successful primary-key constraint</p>
+<p><strong>21. Select ALL that apply: Which objects or design choices appear in the Chapter 4 Let's Build Access activity?</strong></p>
+<p>A. <code>GRADEBOOK</code> table</p>
+<p>B. <code>GRADE_WEIGHT</code> table</p>
+<p>C. <code>frmGRADEBOOK</code> form</p>
+<p>D. <code>qryAverageScoreByType</code> query</p>
+<p>E. Enforced formal relationships between <code>GRADEBOOK</code> and <code>GRADE_WEIGHT</code></p>
+<p><strong>22. Select ALL that apply: In the chapter's SQL table-definition example, which interpretations are correct?</strong></p>
+<p>A. <code>StudentID INTEGER PRIMARY KEY</code> identifies each row in <code>STUDENT</code>.</p>
+<p>B. <code>Email TEXT NOT NULL UNIQUE</code> requires an email and prevents duplicate email values.</p>
+<p>C. <code>StudentID INTEGER NOT NULL REFERENCES STUDENT(StudentID)</code> creates a foreign-key reference.</p>
+<p>D. <code>Score NUMERIC CHECK (Score BETWEEN 0 AND 100)</code> limits scores to the allowed range.</p>
+<p>E. The code says every student must have a <code>Birthday</code> value.</p>
+<p><strong>23. Select ALL that apply: A professor wants the average score by deliverable type. Which choices match the chapter and Let's Build logic?</strong></p>
+<p>A. Group records by <code>DeliverableType</code>.</p>
+<p>B. Calculate the average of <code>Score</code>.</p>
+<p>C. Sort by <code>Score</code> only and stop there.</p>
+<p>D. Save the query so it can be reused.</p>
+<p>E. Interpret the output as one summary row per deliverable type.</p>
+<p><strong>24. Select ALL that apply: A PetVax database must handle two pets named Coco and one pet with two owners. Which design choices fit Chapter 4's logic?</strong></p>
+<p>A. Give each pet a stable <code>PetID</code>.</p>
+<p>B. Store owners in a separate owner table.</p>
+<p>C. Use a link table when a pet can have more than one owner.</p>
+<p>D. Use <code>PetName</code> alone as the primary key.</p>
+<p>E. Connect appointments to the correct pet identifier.</p>
+<h2>Analyze</h2>
+<p><strong>25. A sales file and a billing file both store customer addresses. Sales updates an address, but billing keeps the old value. Which diagnosis best fits Chapter 4?</strong></p>
+<p>A. Redundancy has led to inconsistency.</p>
+<p>B. A foreign-key constraint has worked correctly.</p>
+<p>C. The physical view is now visible to users.</p>
+<p>D. SQL has become procedural.</p>
+<p><strong>26. A professor enters <code>150</code> into the <code>Score</code> field in Access and the system rejects it with a validation message. Which layer is doing the most important work?</strong></p>
+<p>A. Report layout</p>
+<p>B. Physical disk storage</p>
+<p>C. DBMS rule enforcement through a table constraint or validation rule</p>
+<p>D. User memory alone</p>
+<p><strong>27. In the Let's Build, <code>qryGradebookWithWeights</code> matches <code>GRADEBOOK.DeliverableType</code> to <code>GRADE_WEIGHT.DeliverableType</code>. What is the strongest analysis of this design?</strong></p>
+<p>A. It proves the database is fully normalized.</p>
+<p>B. It can display matched data in a query, but it is not the same as enforced referential integrity.</p>
+<p>C. It removes the need for primary keys.</p>
+<p>D. It prevents every possible data-entry mistake.</p>
+<p><strong>28. In the data dictionary slice, <code>STUDENT_GRADE.StudentID</code> is listed as a foreign key to <code>STUDENT</code>. What does that imply?</strong></p>
+<p>A. <code>StudentID</code> should be averaged as a numeric measure.</p>
+<p>B. A grade row should point to a real student row.</p>
+<p>C. <code>STUDENT_GRADE</code> and <code>STUDENT</code> must be the same table.</p>
+<p>D. The physical storage order controls the relationship.</p>
+<p><strong>29. Select ALL that apply: A library keeps <code>LoanID</code>, <code>StudentName</code>, <code>StudentEmail</code>, <code>BookTitle</code>, <code>Author</code>, <code>CheckoutDate</code>, and <code>ReturnDate</code> in one flat table. Which problems are likely as data grows?</strong></p>
+<p>A. Student information repeats across loan rows.</p>
+<p>B. Book information repeats across loan rows.</p>
+<p>C. Changing an email may require multiple row updates.</p>
+<p>D. Deleting the last loan for a book may remove the only stored evidence of that book.</p>
+<p>E. The table automatically separates students and books into related tables.</p>
+<p><strong>30. Select ALL that apply: Which key statements are consistent with Chapter 4?</strong></p>
+<p>A. A primary key uniquely identifies rows.</p>
+<p>B. A foreign key connects a row to a related row in another table.</p>
+<p>C. A candidate key is a possible unique identifier.</p>
+<p>D. A composite key uses more than one column together.</p>
+<p>E. A surrogate key must always have business meaning outside the database.</p>
+<p><strong>31. Select ALL that apply: Which statements about SQL and platforms fit Chapter 4?</strong></p>
+<p>A. SQL is the shared language of relational systems.</p>
+<p>B. SQL logic can transfer across Access, SQLite, and PostgreSQL-style systems.</p>
+<p>C. SQL is the same thing as a DBMS.</p>
+<p>D. A <code>SELECT</code> statement describes the desired result rather than every storage step.</p>
+<p>E. SQL removes the need for meaningful table and column design.</p>
+<p><strong>32. Select ALL that apply: Which statements correctly analyze logical and physical views?</strong></p>
+<p>A. A DBMS can add an index without changing the user's table names.</p>
+<p>B. Users usually work with tables, columns, relationships, and query results.</p>
+<p>C. Physical changes can improve storage or retrieval while preserving the logical view.</p>
+<p>D. Moving data to faster disks should not require rewriting a grade-entry form.</p>
+<p>E. Row order on disk should be used as the business meaning of the data.</p>
+<h2>Evaluate</h2>
+<p><strong>33. A professor wants students to see tables, queries, forms, and reports in one small local teaching environment. Which platform choice is best supported by Chapter 4?</strong></p>
+<p>A. Microsoft Access</p>
+<p>B. SQLite only</p>
+<p>C. PostgreSQL or Supabase only</p>
+<p>D. A plain text file</p>
+<p><strong>34. A manager says constraints should be removed because flexible data entry is faster. Which response best reflects Chapter 4?</strong></p>
+<p>A. Remove constraints because speed is always more important than trustworthy data.</p>
+<p>B. Keep appropriate constraints because they prevent many bad values before they distort reports and decisions.</p>
+<p>C. Replace constraints with row colors in a spreadsheet.</p>
+<p>D. Use constraints only after all reports are finished.</p>
+<p><strong>35. A single <code>GRADEBOOK</code> table repeats student name, email, birthday, deliverable type, and score on every row. Which long-term improvement is best supported by Chapter 4?</strong></p>
+<p>A. Keep the one table because repeated facts are harmless.</p>
+<p>B. Separate student facts from grade facts and connect the tables with stable keys.</p>
+<p>C. Remove the primary key so duplicate rows are easier to enter.</p>
+<p>D. Store each student's grades in a separate spreadsheet file.</p>
+<p><strong>36. An organization needs a shared, production-style system with stronger typing and multi-user access. Which platform direction is strongest?</strong></p>
+<p>A. A one-person spreadsheet</p>
+<p>B. Microsoft Access as the only long-term server option</p>
+<p>C. PostgreSQL or Supabase</p>
+<p>D. A flat CSV file with formulas</p>
+<p><strong>37. Select ALL that apply: A retailer is deciding whether customer orders, returns, and inventory should move from spreadsheets to a database. Which factors justify the database choice?</strong></p>
+<p>A. Multiple related subjects need to be connected.</p>
+<p>B. Integrity rules need to be enforced centrally.</p>
+<p>C. Several users or applications need shared access.</p>
+<p>D. The team mainly wants more decorative charts.</p>
+<p>E. Reports and dashboards need consistent source data.</p>
+<p><strong>38. Select ALL that apply: A clinic wants to use <code>PetName</code> as the only primary key. Which chapter-based objections are strongest?</strong></p>
+<p>A. <code>PetName</code> is guaranteed to be unique in all clinics.</p>
+<p>B. Two pets can share the same name.</p>
+<p>C. A stable <code>PetID</code> is a better row identifier.</p>
+<p>D. <code>PetName</code> can still remain a useful attribute.</p>
+<p>E. A link table can support a pet with more than one owner.</p>
+<p><strong>39. Select ALL that apply: A student says, "Our spreadsheet looks neat, so it must be reliable." Which replies best match Chapter 4?</strong></p>
+<p>A. Neat appearance does not guarantee enforced structure.</p>
+<p>B. The sheet may still allow duplicate records and inconsistent values.</p>
+<p>C. A clean-looking spreadsheet automatically creates foreign keys.</p>
+<p>D. Relationships and constraints need to be defined and enforced.</p>
+<p>E. Fragile ranges and manual updates can still break analysis.</p>
+<p><strong>40. Select ALL that apply: Which readiness outcomes show that a student is prepared for Chapters 5 and 6 after reading Chapter 4?</strong></p>
+<p>A. The student can explain why SQL needs named tables and fields.</p>
+<p>B. The student can distinguish primary keys from foreign keys.</p>
+<p>C. The student can recognize why one big table is useful for learning but weak as a final design.</p>
+<p>D. The student believes a flat table is always the best relational design.</p>
+<p>E. The student can describe how constraints protect data quality.</p>
+<h2>Assessment Design Notes</h2>
+<p>This RAT checks whether students completed Chapter 4 and can reason with its central movement from spreadsheets and file environments to structured database systems. It prepares students for Chapter 5 SQL work and Chapter 6 relational design by emphasizing tables, keys, constraints, DBMS layers, platform trade-offs, and the Grading Database/PetVax examples.</p>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Required Count</th>
+<th>Intent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>8</td>
+<td>Foundational vocabulary and structural facts with minimal pure recall</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>8</td>
+<td>Explain why concepts matter, interpret, and paraphrase</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>8</td>
+<td>Use chapter concepts in realistic scenarios and technical tasks</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>8</td>
+<td>Compare alternatives, break down systems, and diagnose trade-offs</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>8</td>
+<td>Judge design quality and choose the best approach under constraints</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Bloom Sections Used</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>Apply, Analyze, Evaluate</td>
+<td>17, 18, 19, 20, 21, 22, 23, 24, 26, 28, 31, 34, 36, 40</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>Understand, Apply, Analyze, Evaluate</td>
+<td>11, 20, 24, 25, 27, 29, 33, 35, 37, 38, 39, 40</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>Remember, Understand</td>
+<td>1, 2, 3, 4, 5, 6, 7, 8, 12, 15</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>AI-resistance strategies used:</p>
+<ul>
+<li>Chapter-specific reasoning over generic database vocabulary.</li>
+<li>Schema-specific context using <code>STUDENT</code>, <code>STUDENT_GRADE</code>, <code>GRADEBOOK</code>, <code>GRADE_WEIGHT</code>, <code>StudentID</code>, <code>Email</code>, <code>Score</code>, and <code>DeliverableType</code>.</li>
+<li>Scenario stems from the Grading Database, PetVax, Access Let's Build, and business file-silo examples.</li>
+<li>Multi-answer questions requiring discrimination between nearby concepts such as redundancy, inconsistency, constraints, keys, and views.</li>
+<li>Distractors drawn from adjacent but distinct concepts, such as reports versus tables, SQL versus DBMS, and logical versus physical view.</li>
+<li>Platform-specific details for Access, SQLite, and PostgreSQL/Supabase.</li>
+<li>Stage-progression reasoning that prepares students for Chapter 5 SQL and Chapter 6 relational design.</li>
+</ul>
+<h2>Answer Key</h2>
+<h3>Answer Key - Remember</h3>
+<p><strong>Question 1: Which statement best defines a database in Chapter 4?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: In "What a Database and DBMS Are," the chapter defines a database as "a structured collection of related data designed for reliable storage, retrieval, and management."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>A spreadsheet can hold data, but the chapter distinguishes it from a governed database.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This matches the chapter definition.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A report is an output, not the database itself.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A loose unrelated file does not match the chapter's definition.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 2: Which term names the software engine that creates, manages, queries, secures, and administers databases?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: The chapter's term table defines the DBMS as the software engine that manages and administers databases.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>A database application is an interface layer, such as a form or report.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The DBMS is the software engine.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Logical view describes what users see, not the engine.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A data dictionary documents metadata; it is not the engine.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 3: Which term describes the full arrangement of users, applications, DBMS, and database?</strong></p>
+<p><strong>Correct answer:</strong> C</p>
+<p>Chapter reference: The chapter distinguishes database, DBMS, and database system, and defines database system as the full arrangement of users, applications, DBMS, and database.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Physical view is about storage behind the scenes.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>A file environment is the older siloed approach.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This is the chapter's definition of database system.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Constraint set is not the chapter term for the whole environment.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 4: Which term names a column in one table that references the primary key of another table?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: In "Primary and Foreign Keys," the chapter defines a foreign key as a column that references another table's primary key.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>A candidate key is a possible unique identifier.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>A foreign key references another table's primary key.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A natural key is based on a real-world value.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A surrogate key is an artificial identifier.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 5: Select ALL that apply: Which constraints are introduced in Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, B, D, E</p>
+<p>Chapter reference: "Constraints That Protect Data" lists <code>NOT NULL</code>, <code>UNIQUE</code>, <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, and <code>CHECK</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>NOT NULL</code> is one of the listed constraints.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>CHECK</code> is one of the listed constraints.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>DISPLAY FORMAT</code> is not presented as a database constraint in the chapter.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td><code>FOREIGN KEY</code> is one of the listed constraints.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td><code>UNIQUE</code> is one of the listed constraints.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 6: Select ALL that apply: Which items belong to the logical view of data as Chapter 4 describes it?</strong></p>
+<p><strong>Correct answers:</strong> A, B, D</p>
+<p>Chapter reference: The chapter says the logical view is what users see: tables, columns, relationships, and query results.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Tables and columns are part of the logical view.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Query results are part of the user-facing logical view.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Disk-page locations belong to physical storage.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Relationships are part of the logical view.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Internal storage blocks are part of the physical view.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 7: Select ALL that apply: Which platform descriptions match Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, E</p>
+<p>Chapter reference: The platform table compares Access, SQLite, and PostgreSQL/Supabase by use and learning value.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Access is presented as visual and useful for forms, queries, and reports.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>SQLite is presented as lightweight and portable.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>PostgreSQL/Supabase is presented as more shared and server-style.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Access is not presented as the main cloud production platform.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>SQLite has little setup compared with a full server database.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 8: Select ALL that apply: Which problems are associated with spreadsheets or traditional file environments in Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, D</p>
+<p>Chapter reference: "Why Spreadsheets and File Systems Break Down" lists redundancy, inconsistency, program-data dependence, low flexibility, and weak control.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Redundancy is one of the classic problems.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Inconsistency is one of the classic problems.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Program-data dependence is one of the classic problems.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Weak control is one of the classic problems.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Automatic foreign-key enforcement is a database benefit, not a spreadsheet/file-environment problem.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key - Understand</h3>
+<p><strong>Question 9: Why does Chapter 4 say spreadsheets are not databases?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: The chapter says spreadsheets are flexible grids that usually do not enforce meaning, types, or relationships.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Spreadsheets do store rows and columns.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This captures the chapter's distinction.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter acknowledges spreadsheets are useful for quick calculations.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Size is not the key distinction.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 10: Why does the chapter separate logical view from physical view?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: The chapter says data independence allows storage changes, such as indexes, without rewriting user-facing tables or forms.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The purpose is not to hide all data.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's data-independence logic.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter does not require every table to have four columns.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Applications remain part of the database system.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 11: Why is <code>StudentID</code> a stronger primary-key choice than a student's name in the chapter's examples?</strong></p>
+<p><strong>Correct answer:</strong> A</p>
+<p>Chapter reference: In "Primary and Foreign Keys," the chapter explains that names are not unique and can change, while stable identifiers distinguish rows.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This matches the chapter's stable-key rule.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Names can still be stored as attributes.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A name is descriptive text, not a numeric measure.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A primary key does not have to be a date.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 12: Why is SQL described as declarative?</strong></p>
+<p><strong>Correct answer:</strong> A</p>
+<p>Chapter reference: "SQL and Platforms as the Next Step" says users state what result they want while the DBMS decides how to retrieve it.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is declarative SQL.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>That would be a physical storage procedure.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>SQL is used for querying and defining structures.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>SQL depends on meaningful table and column names.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 13: Select ALL that apply: Why do constraints matter in Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, C, D, E</p>
+<p>Chapter reference: The constraints section says rules reject many bad values before they distort reports, dashboards, or decisions.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>The chapter uses score range checks as an example.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Constraints support human judgment; they do not replace it entirely.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Foreign keys can prevent references to missing records.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Required and unique values are common constraint uses.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Cleaner inputs protect downstream outputs.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 14: Select ALL that apply: Which statements explain the database approach from Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, C, D, E</p>
+<p>Chapter reference: "The Database Approach" says databases store related facts in structured tables, define metadata, use keys, enforce rules, and support shared access.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>A shared source of truth is a core benefit.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>The chapter says spreadsheets remain useful for quick local work.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Separating subjects into tables is core to the approach.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Keys, metadata, and constraints are named mechanisms.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Shared, consistent retrieval is a database benefit.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 15: Select ALL that apply: What information belongs in metadata or a data dictionary?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, E</p>
+<p>Chapter reference: The chapter says metadata includes table names, column names, data types, keys, relationships, and constraints.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Table names are metadata.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Column names and types are metadata.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Keys and constraints are metadata.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Decorative report colors are presentation choices, not database metadata.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>A score-range rule is a constraint and belongs in the data dictionary.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 16: Select ALL that apply: Why does the chapter warn that one big table becomes fragile?</strong></p>
+<p><strong>Correct answers:</strong> A, B, D, E</p>
+<p>Chapter reference: The spreadsheet and anomaly sections explain that one big table repeats facts, mixes subjects, and creates anomaly risks.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Repeated student facts create redundancy.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The chapter names update, insertion, and deletion anomalies.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A flat table can still produce some reports, but it is fragile.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Mixing subjects is a core design problem.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Manual care and fragile formulas are not enforced relationships.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key - Apply</h3>
+<p><strong>Question 17: In the chapter's SQLite-style example, which insert would violate the <code>NOT NULL</code> rule for <code>Email</code>?</strong></p>
+<p><strong>Correct answer:</strong> C</p>
+<p>Chapter reference: The example table declares <code>Email TEXT NOT NULL UNIQUE</code>, so <code>NULL</code> is not allowed for <code>Email</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>This provides a non-null email.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>This provides a non-null email.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This attempts to store <code>NULL</code> in a <code>NOT NULL</code> field.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>This provides a non-null email.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 18: In the Chapter 4 Let's Build, which Access object is most appropriate for entering grades through a guided user interface?</strong></p>
+<p><strong>Correct answer:</strong> C</p>
+<p>Chapter reference: The Let's Build creates <code>frmGRADEBOOK</code> to enter data through a guided interface.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>A table stores records, but it is not the guided user interface.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>A query retrieves or summarizes data.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>A form is the guided interface for data entry.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A report presents output for reading or sharing.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 19: A mobile app needs a lightweight local database file with little setup and limited concurrent writing. Which course platform is the best fit?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: Chapter 4 describes SQLite as lightweight, local, file-based, and good for portable SQL practice.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Access is visual and local, but not the best fit for an embedded mobile database.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>SQLite is the lightweight local-file option.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>PostgreSQL/Supabase is a shared server-style option.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A spreadsheet does not provide DBMS structure.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 20: In the PetVax Lab 03 example, Sarah Perry's email changes in one row but not in another. Which chapter concept does this illustrate?</strong></p>
+<p><strong>Correct answer:</strong> A</p>
+<p>Chapter reference: The chapter ties this PetVax problem directly to an update anomaly.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Repeated facts create the risk that only one copy is updated.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Data independence is about logical and physical view separation.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>This is not about SQL being declarative.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The problem shows weak structure, not a successful key rule.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 21: Select ALL that apply: Which objects or design choices appear in the Chapter 4 Let's Build Access activity?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, D</p>
+<p>Chapter reference: The Let's Build creates <code>GRADEBOOK</code>, <code>GRADE_WEIGHT</code>, <code>frmGRADEBOOK</code>, and queries such as <code>qryAverageScoreByType</code>; it explicitly says formal relationships are not created yet.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>GRADEBOOK</code> is the main flat grade-record table.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>GRADE_WEIGHT</code> stores category metadata.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>frmGRADEBOOK</code> is the form for guided entry.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td><code>qryAverageScoreByType</code> is one of the queries.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>The Let's Build says the join is query-level, not enforced referential integrity.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 22: Select ALL that apply: In the chapter's SQL table-definition example, which interpretations are correct?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, D</p>
+<p>Chapter reference: The constraints example shows <code>PRIMARY KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code>, <code>REFERENCES</code>, and <code>CHECK</code> in code.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>StudentID INTEGER PRIMARY KEY</code> identifies student rows.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>NOT NULL UNIQUE</code> requires a value and prevents duplicates.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>REFERENCES STUDENT(StudentID)</code> creates a foreign-key reference.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>The <code>CHECK</code> rule limits <code>Score</code> to 0 through 100.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>The shown code does not require <code>Birthday</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 23: Select ALL that apply: A professor wants the average score by deliverable type. Which choices match the chapter and Let's Build logic?</strong></p>
+<p><strong>Correct answers:</strong> A, B, D, E</p>
+<p>Chapter reference: The Let's Build query <code>qryAverageScoreByType</code> groups by <code>DeliverableType</code> and averages <code>Score</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Grouping by category is required.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Averaging <code>Score</code> answers the question.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Sorting alone does not calculate averages.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>A named query can be reused.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>The output has one summary row per deliverable type.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 24: Select ALL that apply: A PetVax database must handle two pets named Coco and one pet with two owners. Which design choices fit Chapter 4's logic?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, E</p>
+<p>Chapter reference: The PetVax example says <code>PetName</code> is not enough, a stable <code>PetID</code> is needed, and a link table can handle co-ownership.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>A stable <code>PetID</code> distinguishes pets with the same name.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Owner facts should be stored as their own subject.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>A link table supports more than one owner per pet.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>PetName</code> alone is not stable or unique enough.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Appointments should point to the correct pet identifier.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key - Analyze</h3>
+<p><strong>Question 25: A sales file and a billing file both store customer addresses. Sales updates an address, but billing keeps the old value. Which diagnosis best fits Chapter 4?</strong></p>
+<p><strong>Correct answer:</strong> A</p>
+<p>Chapter reference: The file-environment section explains that redundant copies can stop matching, producing inconsistency.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Duplicate data has drifted into inconsistent values.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>A foreign-key constraint is not what is happening.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The physical view is not the issue.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>SQL declarativeness is unrelated to the mismatch.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 26: A professor enters <code>150</code> into the <code>Score</code> field in Access and the system rejects it with a validation message. Which layer is doing the most important work?</strong></p>
+<p><strong>Correct answer:</strong> C</p>
+<p>Chapter reference: The Let's Build connects Access validation rules to the chapter's CHECK-style constraint idea.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Reports present output; they do not enforce the score range.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Physical disk storage is not the visible enforcement layer.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>The DBMS applies the field rule before accepting the value.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The point is that the system enforces the rule, not memory alone.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 27: In the Let's Build, <code>qryGradebookWithWeights</code> matches <code>GRADEBOOK.DeliverableType</code> to <code>GRADE_WEIGHT.DeliverableType</code>. What is the strongest analysis of this design?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: The Let's Build says this is a query-level join, not a formal relational design with enforced relationships.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The activity explicitly says normalization comes later.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The query matches rows but does not enforce referential integrity.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Primary keys still matter.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Query-level matching does not prevent every data-entry mistake.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 28: In the data dictionary slice, <code>STUDENT_GRADE.StudentID</code> is listed as a foreign key to <code>STUDENT</code>. What does that imply?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: The data dictionary row says <code>STUDENT_GRADE.StudentID</code> must match a real <code>StudentID</code> in <code>STUDENT</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td><code>StudentID</code> is an identifier, not a measurement to average.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>A grade row should reference a real student row.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Related tables are separate tables, not one table.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Relationships are defined by keys, not disk order.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 29: Select ALL that apply: A library keeps <code>LoanID</code>, <code>StudentName</code>, <code>StudentEmail</code>, <code>BookTitle</code>, <code>Author</code>, <code>CheckoutDate</code>, and <code>ReturnDate</code> in one flat table. Which problems are likely as data grows?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, D</p>
+<p>Chapter reference: The anomaly discussion explains that flat tables repeat facts and can create update and deletion anomaly risks.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Student facts repeat across loan rows.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Book facts repeat across loan rows.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Repeated emails create update-anomaly risk.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Deleting the last loan can remove the only copy of book facts.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>A flat table does not automatically split into related tables.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 30: Select ALL that apply: Which key statements are consistent with Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, D</p>
+<p>Chapter reference: The key table defines primary, foreign, candidate, composite, natural, and surrogate keys.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Primary keys identify rows uniquely.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Foreign keys connect related rows across tables.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Candidate keys are possible unique identifiers.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Composite keys use more than one column.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>A surrogate key is artificial and does not need business meaning outside the database.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 31: Select ALL that apply: Which statements about SQL and platforms fit Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, B, D</p>
+<p>Chapter reference: The SQL/platform section says SQL is declarative and its core logic transfers across Access, SQLite, and PostgreSQL/Supabase.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>SQL is the shared language of relational systems.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Core SQL logic transfers across the course platforms.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>SQL is a language; a DBMS is the software engine.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td><code>SELECT</code> describes the result rather than storage steps.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>SQL depends on meaningful design; it does not replace it.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 32: Select ALL that apply: Which statements correctly analyze logical and physical views?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, D</p>
+<p>Chapter reference: The chapter's index example shows that physical changes can improve retrieval while the user's logical view remains stable.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>An index can be added behind the scenes.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Tables, columns, relationships, and results are user-facing logical elements.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Physical changes can preserve the logical view.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>A grade-entry form should not need rewriting because storage moved.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Row order on disk should not carry business meaning.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key - Evaluate</h3>
+<p><strong>Question 33: A professor wants students to see tables, queries, forms, and reports in one small local teaching environment. Which platform choice is best supported by Chapter 4?</strong></p>
+<p><strong>Correct answer:</strong> A</p>
+<p>Chapter reference: The platform table says Microsoft Access supports visual learning with tables, relationships, forms, and reports in one environment.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Access best matches this teaching need.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>SQLite is better for lightweight SQL practice, not visual forms and reports.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>PostgreSQL/Supabase is more production-style and server-oriented.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A plain text file is not a DBMS environment.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 34: A manager says constraints should be removed because flexible data entry is faster. Which response best reflects Chapter 4?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: The constraints section says the system rejects many bad values before they distort reports, dashboards, or decisions.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter values trustworthy data over unrestricted entry.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This captures the chapter's argument for constraints.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Colors are presentation, not integrity rules.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Constraints protect input before reports are built.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 35: A single <code>GRADEBOOK</code> table repeats student name, email, birthday, deliverable type, and score on every row. Which long-term improvement is best supported by Chapter 4?</strong></p>
+<p><strong>Correct answer:</strong> B</p>
+<p>Chapter reference: The database approach separates subjects into related tables and connects them with keys.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter treats repetition as a design problem.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This reduces redundancy and prepares for relational design.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Removing the primary key weakens row identity.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Separate spreadsheets recreate file-silo problems.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 36: An organization needs a shared, production-style system with stronger typing and multi-user access. Which platform direction is strongest?</strong></p>
+<p><strong>Correct answer:</strong> C</p>
+<p>Chapter reference: The chapter describes PostgreSQL/Supabase as better for shared and production-style systems.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>A one-person spreadsheet does not meet the shared DBMS need.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Access is useful locally, but not the strongest server-style choice.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>PostgreSQL/Supabase best matches the stated requirements.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A flat CSV lacks DBMS enforcement and concurrency.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 37: Select ALL that apply: A retailer is deciding whether customer orders, returns, and inventory should move from spreadsheets to a database. Which factors justify the database choice?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, E</p>
+<p>Chapter reference: The chapter says databases matter when data needs to be reused, validated, queried, shared, and reported.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Customers, orders, returns, and inventory are related subjects.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Central integrity rules are a core database advantage.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Shared access is a core DBMS strength.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Decorative charts are not the main justification.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Reliable reports need consistent source data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 38: Select ALL that apply: A clinic wants to use <code>PetName</code> as the only primary key. Which chapter-based objections are strongest?</strong></p>
+<p><strong>Correct answers:</strong> B, C, D, E</p>
+<p>Chapter reference: The PetVax callout says two pets named Coco may visit the clinic and that a stable <code>PetID</code> plus relationships solve the problem.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter warns that pet names are not guaranteed unique.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Duplicate names are exactly the problem.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>A stable <code>PetID</code> is the better identifier.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td><code>PetName</code> remains useful as a descriptive attribute.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>A link table supports co-ownership.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 39: Select ALL that apply: A student says, "Our spreadsheet looks neat, so it must be reliable." Which replies best match Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, B, D, E</p>
+<p>Chapter reference: The warning callout says neat-looking spreadsheets can still allow inconsistent dates, duplicate records, missing values, and fragile relationships.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Appearance does not equal enforced structure.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Duplicate and inconsistent values can still exist.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Spreadsheets do not automatically create foreign keys.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Relationships and constraints must be defined and enforced.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Fragile ranges and manual updates remain risks.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 40: Select ALL that apply: Which readiness outcomes show that a student is prepared for Chapters 5 and 6 after reading Chapter 4?</strong></p>
+<p><strong>Correct answers:</strong> A, B, C, E</p>
+<p>Chapter reference: The summary says students are ready for Chapter 5 SQL and Chapter 6 relationship design when they understand tables, keys, constraints, and why spreadsheets outgrow their role.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>SQL depends on named tables and fields.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Primary and foreign keys are core Chapter 4 concepts.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>The chapter previews why one big table is fragile long term.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Chapter 4 argues that flat tables are not a final relational design.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Constraints are central to data quality.</td>
+</tr>
+</tbody>
+</table>
+<h2>Question Distribution Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>1-8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>9-16</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>17-24</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>25-32</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>33-40</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Question Type</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-answer MC</td>
+<td>1-4, 9-12, 17-20, 25-28, 33-36</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Multiple-answer (Select ALL)</td>
+<td>5-8, 13-16, 21-24, 29-32, 37-40</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>17, 18, 19, 20, 21, 22, 23, 24, 26, 28, 31, 34, 36, 40</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>11, 20, 24, 25, 27, 29, 33, 35, 37, 38, 39, 40</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>1, 2, 3, 4, 5, 6, 7, 8, 12, 15</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch03-what-is-data.html"><small>Previous</small><strong>Chapter 3: Chapter 3: Understanding Data Fundamentals</strong></a>
+          <a class="pager-card pager-card--next" href="ch05-sql.html"><small>Next</small><strong>Chapter 5: Chapter 5: SQL — The Language of Databases</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

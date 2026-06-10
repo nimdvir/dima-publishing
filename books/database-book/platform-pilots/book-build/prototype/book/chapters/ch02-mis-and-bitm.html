@@ -1,0 +1,3484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 2: Foundations of Information Systems | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 2: Foundations of Information Systems</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>12%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:12%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="is-current" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 2</p>
+          <h1>Foundations of Information Systems</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>100 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 2: Foundations of Information Systems</h2>
+                  <!-- Chapter edit: processed 12 pending .edits items, converted 4 legacy :::callout blocks to canonical HTML, removed figure-suggestion blocks from student-facing prose, tightened data-quality and emerging-tech sections, added Framing the Course Title subsection + five-part IS operating loop + plain-language recap + IT/IS/MIS/BITM comparison table + application exercise, strengthened book-arc callback. Technical meaning preserved. -->
+<hr />
+<p>title: "Chapter 2: Foundations of Information Systems"
+author: "Nimrod Dvir, PhD"
+date: 2026-06-02
+lang: en-US
+toc: true</p>
+<hr />
+<p><em>How Data Drives Business Performance</em></p>
+<p><img alt="Slide 1: Foundations of Information Systems" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-01" /></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TtQPqJm5BIs?si=LBI1rRg0eEznsDbl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p><a href="https://youtu.be/TtQPqJm5BIs?si=LBI1rRg0eEznsDbl">Watch the Chapter 2 video</a></p>
+<p>As introduced in Chapter 1, this book follows a clear path: data becomes tables, tables form relationships, relationships enable queries, queries support analytics, and analytics inform decisions.</p>
+<p><img alt="Figure 2.1: Business Activity, Data, Systems, and Decisions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-business-activity-data-systems-decisions" />
+<em>Figure 2.1 — Business Activity, Data, Systems, and Decisions.</em></p>
+<p>Chapter 2 explains why that path matters. It shows how information systems turn raw observations into business decisions. Along the way, it introduces two simple frameworks: the <strong>DIKW hierarchy</strong> (data, information, knowledge, wisdom) and the <strong>R.E.A.D. framework</strong> (representation and retrieval, expression and experience, association and acquisition, decision-making and deployment). The chapter also separates <strong>information technology</strong> (the tools) from the broader <strong>information system</strong> (the tools plus people, data, and processes). Finally, it explains why <strong>data quality</strong> and <strong>strategic alignment</strong> are managerial concerns, not just technical ones.</p>
+<p>"G:\My Drive\0-Projects!-important\BITM330-book-drive.images\ch02\2-9.png"</p>
+<h3>Framing the Course Title</h3>
+<p>The course this book supports is called <em>Business Information Technology Management</em>. Each word in that title matters. <strong>Business</strong> reminds us that the starting point is not technology. The starting point is an organization that creates value under constraints. <strong>Information</strong> reminds us that data becomes useful when it is organized, interpreted, and connected to decisions. <strong>Technology</strong> reminds us that tools — databases, software, networks, analytics platforms — make information work scalable and repeatable. <strong>Management</strong> reminds us that every technology choice is also a resource decision, a people decision, and a strategy decision.</p>
+<p>Together, those four words describe the work of turning data into performance. That is the arc this chapter, and this book, follows.</p>
+<p>Before we move into databases, SQL, and analytics, we need a foundation.</p>
+<p><img alt="Study Questions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-study-questions" />
+<em>Figure 2.2 — Study Questions.</em></p>
+<p>Specifically, ask yourself whether you can answer these questions:</p>
+<ul>
+<li><strong>What is data?</strong></li>
+<li><strong>What is a business?</strong></li>
+<li><strong>What is business performance?</strong></li>
+<li><strong>How can data improve business performance?</strong></li>
+<li><strong>What is an information system?</strong></li>
+<li><strong>What is information technology?</strong></li>
+<li><strong>What are Management Information Systems (MIS)?</strong></li>
+<li><strong>What is Business Information Technology Management (BITM)?</strong></li>
+</ul>
+<p>Those questions are the foundation of this chapter.</p>
+<p><img alt="Chapter Objectives" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-learning-objectives" /></p>
+<p><em>Figure 2.3 — Learning Objectives.</em></p>
+<ul>
+<li>define data, information, knowledge, and wisdom;</li>
+<li>explain how raw data becomes useful for business decisions;</li>
+<li>describe business performance and explain why it is multidimensional;</li>
+<li>explain how KPIs translate goals into measurable signals;</li>
+<li>define information systems and distinguish them from information technology;</li>
+<li>describe the five components of an information system;</li>
+<li>explain how MIS and BITM connect systems, management, and strategy.</li>
+</ul>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Introduction: Why Foundations Matter</h2>
+<p>Every business activity leaves a trail.</p>
+<p>A sale, a shipment, a website click, a customer complaint, a late assignment, a hospital visit, a delivery delay, or a payment record can all become data. These records may look small by themselves. But together, they allow organizations to see what is happening.</p>
+<p>That is the starting point.</p>
+<p>Data helps organizations observe activity. Information systems help organizations organize that activity. Managers use those systems to understand problems, evaluate options, and decide what to do next.</p>
+<p>This is why information systems are not just technical tools. They are business systems. They shape what people can see, what they can measure, what they can trust, and what they can improve.</p>
+<p>A coffee shop might use data to decide how much milk to order. A hospital might use data to manage staffing. A university might use data to identify students who need support. A retailer might use data to understand which products sell quickly and which sit on shelves. In each case, data becomes useful only when it is organized and connected to a decision.</p>
+<p><img alt="Innovation Paradox" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-innovation-paradox" />
+<em>Figure 2.4 — Innovation Paradox: Technology value depends on process and organization.</em>
+<img alt="Sweet Spot of Innovation" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-sweet-spot-innovation" />
+<em>Figure 2.5 — Sweet Spot of Innovation: Intersection of technology, business, and human needs.</em></p>
+<p>This chapter builds the conceptual foundation for the rest of the book. Later chapters focus more directly on data types, databases, SQL, relational design, analytics, and strategy. Here, we begin with the larger logic: how data, systems, management, and performance fit together.</p>
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Data alone does not improve performance</strong></p>
+  <p>Data becomes valuable only when people use information systems to organize it, interpret it, and act on it. Storing records is not the same as using them.</p>
+</div>
+
+<p><img alt="Examples of business data from retail transactions, website analytics, patient monitoring, and student systems" src="../../assets/book-content/.images/ch02/interaction-data.png" />
+<em>Figure 2.6 — Business activity creates data everywhere, and information systems make those records usable for decisions.</em></p>
+<p><strong>Running example.</strong> Throughout this chapter, we will return to a single business: an <strong>online retailer</strong> that wants to improve sales, reduce delivery problems, and keep customers satisfied. The retailer captures raw transaction data, runs day-to-day operations, measures performance, and makes management decisions. Revisiting the same context makes it easier to see how the chapter's concepts fit together.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>From Data to Business Meaning</h2>
+<p>The book is titled <em>Using Data to Drive Business Performance</em>. Before we go further, we need a clear idea of what data is and how it becomes meaningful in a business context.</p>
+<p><img alt="Chapter 2 Infographic Overview" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-infographic-overview" />
+<em>Figure 2.7 — Chapter 2 Infographic Overview.</em></p>
+<h3>What Is Data?</h3>
+<p><strong>Data</strong> consists of raw observations, symbols, identifiers, measurements, and recorded facts that represent aspects of reality.</p>
+<p>In a business setting, data can include:</p>
+<ul>
+<li>customer IDs;</li>
+<li>transaction amounts;</li>
+<li>product codes;</li>
+<li>timestamps;</li>
+<li>attendance records;</li>
+<li>appointment dates;</li>
+<li>inventory counts;</li>
+<li>ratings;</li>
+<li>addresses;</li>
+<li>payment statuses.</li>
+</ul>
+<p>A single piece of data often means very little by itself. The number <code>42</code> could mean 42 dollars, 42 students, 42 minutes, 42 units sold, or 42 customer complaints. A date like <code>2026-03-08</code> might be a delivery date, a payment date, a birthday, or an appointment date.</p>
+<p>Data needs context.</p>
+<p>Context tells us what a value represents, where it came from, when it was recorded, and how it should be interpreted. Without context, data is just a recorded trace. With context, data can become evidence.</p>
+<p>For example, a retailer may record that Product A sold 120 units last week. That number becomes more useful when the retailer also knows the prior week's sales, the product category, the price, the promotion history, and the inventory level. The value is no longer just a number. It becomes part of a business story.</p>
+<p><img alt="Data as Raw Material" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-as-raw-material" />
+<em>Figure 2.8 — Data as Raw Material: Data is processed into information, knowledge, and wisdom.</em></p>
+<p>Data matters because modern organizations depend on visibility. Managers cannot improve what they cannot observe, and they cannot observe at scale without records. Every interaction, workflow, and decision leaves a trace. Those traces become the raw material for measurement, analysis, and control.</p>
+<p>That is why data is the starting point, not the endpoint.</p>
+<p><img alt="Slide 2: Learning Objectives" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-02" /></p>
+<p><em>what is data</em></p>
+<h3>The DIKW Hierarchy</h3>
+<p>What is data? What is information? What is knowledge? What is wisdom? These four questions sit at the heart of one of the most useful frameworks in information systems: the <strong>DIKW hierarchy</strong> (Ackoff, 1989).</p>
+<p>The hierarchy can be understood through four guiding questions:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Guiding Question</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data</strong></td>
+<td>What was recorded?</td>
+<td>Raw observations, values, symbols, or facts</td>
+</tr>
+<tr>
+<td><strong>Information</strong></td>
+<td>What happened?</td>
+<td>Data organized into a meaningful pattern or summary</td>
+</tr>
+<tr>
+<td><strong>Knowledge</strong></td>
+<td>Why is it happening?</td>
+<td>Interpretation based on context, comparison, and experience</td>
+</tr>
+<tr>
+<td><strong>Wisdom</strong></td>
+<td>What should we do?</td>
+<td>Judgment about action, priorities, and consequences</td>
+</tr>
+</tbody>
+</table>
+<p>A student example helps. A student receives an exam score of 68. That score is data. If the class average was 82 and the student missed most questions about SQL joins, the score becomes information. If the instructor recognizes that several students struggled with joins, that becomes knowledge about a learning gap. If the instructor adds a new practice activity before the next assessment, that is wisdom in action.</p>
+<p>G:\My Drive\0-Projects!-important\BITM330-book-drive.images\ch02\data-iwsom.jpg</p>
+<p>The same pattern appears in business. A grocery store records sales transactions. Those transactions are data. A report showing that dairy products sell faster on weekends is information. A manager recognizing that weekend demand is tied to family shopping patterns is using knowledge. Adjusting staffing and inventory before the weekend is a decision based on wisdom.</p>
+<p><img alt="Slide 3: What Is Data?" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-03" /></p>
+<p><em>The DIKW Hierarchy.</em>
+<em>Figure 2.9 — The DIKW Hierarchy: Moving from data to information, knowledge, and wisdom.</em></p>
+<p><img alt="DIKW Staircase Exam Example" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-dikw-staircase-exam" />
+<em>Figure 2.10 — DIKW Staircase Exam Example.</em></p>
+<p>The key point is simple: storing data is not the same as using data. Organizations create value when they move from records to interpretation and from interpretation to action.</p>
+<h3>The R.E.A.D. Framework</h3>
+<p>The DIKW hierarchy describes stages of meaning. But this book is also concerned with the organizational and technical work that makes those stages possible. That is why we introduce the <strong>R.E.A.D. framework</strong>.</p>
+<p>Where DIKW describes stages of meaning, R.E.A.D. describes the work required to move through those stages.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Name</th>
+<th>What It Involves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>R</strong></td>
+<td><strong>Representation and Retrieval</strong></td>
+<td>Structuring raw inputs so data is accurate, accessible, and consistently stored. This is where database design and SQL begin.</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td><strong>Expression and Experience</strong></td>
+<td>Presenting information through forms, reports, dashboards, and interfaces that people can understand and use.</td>
+</tr>
+<tr>
+<td><strong>A</strong></td>
+<td><strong>Association and Acquisition</strong></td>
+<td>Identifying patterns, relationships, and explanations that turn information into knowledge. Analytics and business intelligence emerge here.</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td><strong>Decision-Making and Deployment</strong></td>
+<td>Translating insight into action, strategy, process changes, or system improvements.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="The R.E.A.D. Framework" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-04" /></p>
+<p>The same four stages show up in very different settings. The two examples below — a university grading database and an online retailer — will both come back in later chapters.</p>
+<table>
+<thead>
+<tr>
+<th>R.E.A.D. stage</th>
+<th>Grading database example</th>
+<th>Online retailer example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Representation and Retrieval</strong></td>
+<td>Grade records are entered consistently and stored in a structured database.</td>
+<td>Orders, returns, payments, and shipping scans are captured in shared systems.</td>
+</tr>
+<tr>
+<td><strong>Expression and Experience</strong></td>
+<td>A report shows which students have missing assignments.</td>
+<td>Dashboards show order volume, late shipments, and customer complaints.</td>
+</tr>
+<tr>
+<td><strong>Association and Acquisition</strong></td>
+<td>Patterns reveal that students who miss early assignments are more likely to fall behind later.</td>
+<td>Analysis reveals that late deliveries spike when one warehouse runs low on staff.</td>
+</tr>
+<tr>
+<td><strong>Decision-Making and Deployment</strong></td>
+<td>The instructor reaches out earlier or redesigns the first two weeks of the term.</td>
+<td>Managers reassign inventory, change staffing, and update delivery rules.</td>
+</tr>
+</tbody>
+</table>
+<p>DIKW explains how meaning develops. R.E.A.D. explains how organizations and systems help that development happen in practice. Later chapters return to these stages in more applied ways — Chapter 3 examines data itself in detail before the book moves into database design and SQL.</p>
+<p><img alt="Figure 2.2: DIKW and R.E.A.D. Compared" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-dikw-read-compared" />
+<em>Figure 2.11 — DIKW and R.E.A.D. Compared: DIKW describes how meaning develops, while R.E.A.D. shows the organizational work that helps move data toward action.</em></p>
+<p><img alt="R.E.A.D. online-retailer walkthrough" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-read-online-retailer-walkthrough" />
+<em>Figure 2.12 — R.E.A.D. online-retailer walkthrough.</em></p>
+<h3>Why Data Quality Matters</h3>
+<p><img alt="The data-to-performance Chain" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-11" /></p>
+<p><em>The data-to-performance Chain.</em></p>
+<p>Not all data is equally useful.</p>
+<p>If data is inaccurate, incomplete, inconsistent, or outdated, every later step becomes weaker. A dashboard may look impressive, but if the data behind it is wrong, the dashboard only helps people make wrong decisions faster.</p>
+<p>Four data quality dimensions matter throughout this book:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Meaning</th>
+<th>Example Problem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td>Data matches reality</td>
+<td>A customer address is entered incorrectly</td>
+</tr>
+<tr>
+<td><strong>Completeness</strong></td>
+<td>Required data is present</td>
+<td>A patient record is missing allergy information</td>
+</tr>
+<tr>
+<td><strong>Timeliness</strong></td>
+<td>Data is current enough for the decision</td>
+<td>Inventory data updates after orders are already placed</td>
+</tr>
+<tr>
+<td><strong>Consistency</strong></td>
+<td>The same idea is recorded the same way</td>
+<td>One system uses "NY" while another uses "New York"</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Slide 5: " src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-05" /></p>
+<p>Data quality is a management issue. Poor data quality distorts KPIs, misleads managers, frustrates customers, and reduces trust in systems. Good decisions require trustworthy data. Chapter 3 examines data quality, classification, and governance in more depth.</p>
+<p><img alt="KPI Before and After Cleaning" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-kpi-before-after-cleaning" />
+<em>Figure 2.13 — KPI Before and After Cleaning: Quality data leads to trustworthy metrics.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Business as a Performance System</h2>
+<h3>What Is a Business?</h3>
+<p>To understand what information systems must support, we need a clear idea of what a business is. In this book, a business is not limited to a private company that earns profit. The term includes any organization that transforms resources into valued outcomes under constraints.</p>
+<p>A <strong>business</strong> is an organization that creates value by transforming inputs into outputs under conditions of limited resources, competing priorities, and uncertainty.</p>
+<p>That definition includes retailers, manufacturers, hospitals, nonprofits, schools, banks, and government agencies. Each of these organizations pursues goals, allocates resources, and works under constraints. Profit may matter in some cases, but the broader pattern is the same: organizations exist to create outcomes that matter to stakeholders.</p>
+<p><strong>Stakeholders</strong> are the people and groups affected by the organization's actions. They include customers, employees, owners, suppliers, students, regulators, patients, and the broader public. Because stakeholders care about different outcomes, business performance is always multidimensional. A hospital may track patient safety, operating efficiency, regulatory compliance, and financial sustainability at the same time. A university may track enrollment, retention, learning outcomes, and budget stability. A retailer may track revenue, margin, customer satisfaction, and supply reliability.</p>
+<p>This is why data matters. Organizations need evidence about how well they are creating value, where processes are breaking down, and what adjustments are needed. Without that evidence, management depends too heavily on anecdote and guesswork.</p>
+<h3>The Input-Process-Output Model</h3>
+<p>A useful way to understand how organizations work is the <strong>Input-Process-Output (IPO) model</strong>.</p>
+<p><img alt="Basic Input-Process-Output Model" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-input-process-output-model" />
+<em>Figure 2.14 — Basic Input-Process-Output Model.</em></p>
+<p>Every business takes in inputs, transforms them through processes, and produces outputs.</p>
+<table>
+<thead>
+<tr>
+<th>IPO Element</th>
+<th>Meaning</th>
+<th>Business Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Inputs</strong></td>
+<td>Resources used by the organization</td>
+<td>Labor, materials, money, time, data</td>
+</tr>
+<tr>
+<td><strong>Processes</strong></td>
+<td>Activities that transform inputs</td>
+<td>Production, service delivery, analysis, scheduling</td>
+</tr>
+<tr>
+<td><strong>Outputs</strong></td>
+<td>Results produced by the organization</td>
+<td>Products, services, reports, experiences, decisions</td>
+</tr>
+</tbody>
+</table>
+<p>The IPO model gives students a practical mental map. Instead of seeing an organization as a confusing set of departments, the model highlights transformation. Something enters the system. Work is performed. Something of value comes out.</p>
+<p>The model also helps explain why data belongs in a business textbook. Data can function as both an input and an output. Organizations use data as an input to decisions, planning, and analysis. At the same time, every business process produces new data as an output. Data is part of a continuous feedback loop, not a one-time resource.</p>
+<p>For the online retailer, inputs include inventory, labor, warehouse space, software tools, and incoming customer orders. Processes include payment validation, picking, packing, shipping, and customer-service follow-up. Outputs include delivered orders, updated inventory levels, customer experiences, and new operational data that managers can analyze.</p>
+<p>The IPO model will appear again when the chapter defines information systems. That is not an accident. Information systems are themselves organized arrangements that take in inputs, process them, and generate outputs.</p>
+<h3>Efficiency, Effectiveness, and KPIs</h3>
+<p>Once a business is understood as a value-creating system, the next question is how to judge whether it is performing well.</p>
+<p><strong>Business performance</strong> refers to how well an organization achieves important goals for relevant stakeholders. Performance is not the same as activity. An organization can be busy without being effective. It can produce many reports without improving decisions. It can use advanced technology without improving outcomes.</p>
+<p>Two of the most important dimensions of performance are efficiency and effectiveness.</p>
+<ul>
+<li><strong>Efficiency</strong> means doing things right. The focus is on using resources well and reducing waste.</li>
+<li><strong>Effectiveness</strong> means doing the right things. The focus is on achieving goals that actually matter.</li>
+</ul>
+<p>Organizations usually need both. A company can be efficient but ineffective if it produces the wrong product well. A university office can process forms quickly but still fail students if the process does not solve their problems.</p>
+<p>Because performance is complex, organizations use <strong>Key Performance Indicators (KPIs)</strong>. A KPI is a quantifiable signal used to evaluate progress toward an important goal.</p>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Possible KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Improve customer loyalty</td>
+<td>Customer retention rate</td>
+</tr>
+<tr>
+<td>Improve delivery reliability</td>
+<td>On-time delivery percentage</td>
+</tr>
+<tr>
+<td>Improve student success</td>
+<td>Course completion rate</td>
+</tr>
+<tr>
+<td>Improve profitability</td>
+<td>Gross margin</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="KPI Dashboard Examples" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-kpi-dashboard-examples" />
+<em>Figure 2.15 — KPI Dashboard Examples.</em></p>
+<p>A KPI is useful only when people understand what it means, where the data comes from, and what decision it should support. A trustworthy KPI usually needs several design decisions behind it: a clear business goal, a precise formula, a reliable data source, a refresh cycle, an owner who is expected to act on it, and thresholds that indicate acceptable or risky performance.</p>
+<p><img alt="KPI Design Breakdown" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-kpi-design-breakdown" />
+<em>Figure 2.16 — KPI Design Breakdown.</em></p>
+<p>When KPI design is sloppy, behavior gets distorted. If a call center tracks average handling time without tracking resolution quality, employees may rush customers off the phone. If a school tracks pass rates without checking learning depth, instructors may lower standards. Metrics shape attention, incentives, and action, which is why measurement is always a management issue, not just a reporting issue.</p>
+<div class="callout business-insight">
+  <p><strong>📊 Business Insight: KPIs shape behavior</strong></p>
+  <p>When you evaluate a KPI, ask not only what it measures but also what behavior it encourages. A KPI that looks neutral on a dashboard can drive teams toward speed at the cost of quality, or short-term wins at the cost of long-term performance.</p>
+</div>
+
+<p><img alt="Efficiency vs Effectiveness 2x2 Matrix" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-efficiency-vs-effectiveness-matrix" />
+<em>Figure 2.17 — Efficiency vs Effectiveness 2x2 Matrix.</em></p>
+<h3>The Data-to-Performance Chain</h3>
+<p>The central logic of this chapter can be stated simply:</p>
+<pre><code class="language-text">Data -&gt; Information -&gt; Insight -&gt; Decision -&gt; Performance
+</code></pre>
+<p>Data is captured from activity. Data becomes information when it is organized and placed in context. Information becomes insight when people recognize a pattern, cause, risk, or opportunity. Insight becomes valuable when it informs a decision. A decision matters when it changes behavior, operations, or outcomes.</p>
+<p>Consider a delivery company. Each delivery creates data: pickup time, drop-off time, route, driver, distance, customer rating, and delay reason. A weekly report showing delays in one region is information. Further analysis that reveals warehouse congestion is insight. A staffing or routing change is a decision. If on-time delivery improves, the decision affects performance.</p>
+<p>This chain helps explain why the book connects technical and managerial topics. A database is not valuable merely because it stores records. It is valuable when its structure helps an organization ask better questions and make better decisions.</p>
+<p><img alt="Figure 2.3: The Data-to-Performance Chain" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-chain" />
+<em>Figure 2.18 — The Data-to-Performance Chain: Performance improves when organizations collect new data, summarize it, choose a response, act, and learn from the results.</em></p>
+<h3>Management as Decision-Making</h3>
+<p>Management can be understood as decision-making under uncertainty (Simon, 1997). Managers decide what to prioritize, what to measure, how to allocate resources, when to intervene, and how to evaluate results.</p>
+<p>Information improves management because it reduces uncertainty and makes decisions more disciplined. Without reliable information, managers may depend too heavily on guesses, habits, anecdotes, or the loudest voice in the room.</p>
+<p>Organizations make decisions at different levels.</p>
+<table>
+<thead>
+<tr>
+<th>Decision Level</th>
+<th>Time Horizon</th>
+<th>Common Information Need</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Operational</strong></td>
+<td>Short term</td>
+<td>Current status, alerts, task queues</td>
+<td>Which orders need attention today?</td>
+</tr>
+<tr>
+<td><strong>Managerial</strong></td>
+<td>Medium term</td>
+<td>Reports, KPIs, trends, comparisons</td>
+<td>Which department is falling behind?</td>
+</tr>
+<tr>
+<td><strong>Strategic</strong></td>
+<td>Long term</td>
+<td>Forecasts, scenarios, investment analysis</td>
+<td>Should we open a new location?</td>
+</tr>
+</tbody>
+</table>
+<p>The same data can support more than one level. The difference is often aggregation, interpretation, time horizon, and responsibility. In the online-retailer example, one order record can trigger an operational alert about a late shipment, feed a managerial dashboard on warehouse performance, and contribute to a strategic discussion about whether the company should invest in a new fulfillment center.</p>
+<p><img alt="Three levels of organizational decision support: operational, managerial, and strategic" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-organizational-decision-levels" />
+<em>Figure 2.19 — Operational, managerial, and strategic decisions each require different kinds of information and different time horizons.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Information Systems as Organizational Engines</h2>
+<p>Data alone does not create value. Organizations need systems that help people capture, store, process, retrieve, interpret, and use data consistently.</p>
+<h3>Why Data Alone Is Not Enough</h3>
+<p>Small groups can sometimes manage with memory, informal conversations, and ad hoc spreadsheets. Larger organizations cannot. As operations grow, problems of scale, consistency, accountability, and coordination become too large for informal methods.</p>
+<p>Several recurring organizational problems explain why formal systems are necessary:</p>
+<ul>
+<li><strong>Scale</strong>: people cannot manually coordinate large volumes of activity.</li>
+<li><strong>Memory</strong>: organizations need records that outlast individual employees.</li>
+<li><strong>Visibility</strong>: managers need reliable operational truth, not scattered stories.</li>
+<li><strong>Control</strong>: standardized processes make auditing, comparison, and accountability possible.</li>
+<li><strong>Learning</strong>: improvement depends on comparing results over time.</li>
+</ul>
+<p>An information system makes information work repeatable. The same event can be recorded the same way, calculated the same way, and reported the same way across time and users. That repeatability turns information work from an improvised task into an organizational capability. The online retailer might begin with a spreadsheet that tracks late orders once a week. A full information system makes that calculation reliable every day, across customer service, warehouse, and management teams, using the same data definitions and business rules.</p>
+<h3>Information Behavior: How People Search for and Use Information</h3>
+<p><img alt="T.D. Wilson's Information Behavior Model" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-wilson-information-behavior-model" />
+<em>Figure 2.20 — T.D. Wilson's Information Behavior Model.</em></p>
+<p>Systems work better when designers understand the human side of information. In information science, <strong>information behavior</strong> refers to how people recognize information needs, search for information, encounter information, retrieve it, evaluate it, and use it in context (Wilson, 1981, 2000).</p>
+<p>For this chapter, three ideas are especially useful.</p>
+<p><strong>Information need.</strong> An information need is the gap between what a person knows and what they need to know in order to solve a problem, answer a question, or make a decision. Wilson (1981) argued that understanding a need means understanding three things together: <em>why</em> the person decided to look, <em>what purpose</em> the information will serve, and <em>how</em> it will be used once found. A dashboard pulled up without those three answers is activity, not inquiry.</p>
+<p><strong>Information-seeking behavior.</strong> Information-seeking behavior is the set of actions people take to search for, find, retrieve, and evaluate information — running a query, opening a report, filtering a dashboard, scanning notes, or asking a colleague. Seeking is usually better understood as a <em>session</em> than as a single search: people refine queries, change directions, and combine sources as their understanding develops (Wilson, 2000). Not all useful information comes from active search either — people also encounter it through alerts, peer conversations, or dashboards they happen to glance at.</p>
+<p><strong>Information use.</strong> Information use is what people actually do with information once they have it: decide, explain, share, act, redesign a process, or set it aside. A report that is never used does not improve performance, no matter how accurate it is.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+<th>Online-retailer example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Information need</strong></td>
+<td>The gap between what a person knows and what they need to know in order to solve a problem, answer a question, or make a decision.</td>
+<td>A customer-service lead notices a spike in complaints and needs to know whether one warehouse, carrier, or product category is causing the issue.</td>
+</tr>
+<tr>
+<td><strong>Information-seeking behavior</strong></td>
+<td>The actions people take to search for, find, retrieve, and evaluate information.</td>
+<td>The lead opens a dashboard, filters late shipments by warehouse and week, checks recent complaint notes, and asks a logistics manager for context.</td>
+</tr>
+<tr>
+<td><strong>Information use</strong></td>
+<td>What people do with information once they have it: decide, explain, share, act, redesign a process, or ignore it.</td>
+<td>The lead reassigns support staff, updates customer-service scripts, and escalates the warehouse staffing problem to operations.</td>
+</tr>
+</tbody>
+</table>
+<p>Information behavior matters because a database is not useful merely because it contains records. It is useful when people can connect those records to real questions and actions. Barriers such as unclear labels, poor search tools, missing permissions, inconsistent definitions, or low trust in the data can prevent users from moving from information need to information use.</p>
+<p><img alt="Slide 9: Management as Decision-Making" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-09" /></p>
+<div class="callout business-insight">
+  <p><strong>📊 Business Insight: Information that no one uses has no value</strong></p>
+  <p>When you evaluate a report or dashboard, ask three questions in order: What need does it serve? How will people find and read it? What decision will it support? If any answer is unclear, the system is producing data, not information.</p>
+</div>
+
+<p>These three ideas map directly onto R.E.A.D. <strong>Representation and Retrieval</strong> supplies the records people search through. <strong>Expression and Experience</strong> shapes how information is encountered, scanned, and trusted. <strong>Decision-Making and Deployment</strong> is information use in action. The rest of the book moves through these layers in order: Chapters 4 and 5 build the retrieval layer with databases and SQL; Chapters 9 and 14 shape the experience layer with analytics and Power BI; later strategy and decision chapters return to how information is actually used. Designing a good information system means designing for all three.</p>
+<p><img alt="Workflow showing an employee moving from information need to information seeking to information use, with barriers such as unclear labels, missing permissions, delayed data updates, inconsistent definitions of late shipment, and low trust in the data" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-information-behavior-workflow" />
+<em>Figure 2.21 — Information behavior links need, seeking, and use; barriers at any stage can prevent information from turning into action.</em></p>
+<h3>What Is an Information System?</h3>
+<p>An <strong>information system</strong> is a coordinated arrangement of people, processes, data, and technology that collects, processes, stores, and distributes information to support coordination, control, analysis, and decision-making (Laudon &amp; Laudon, 2024).</p>
+<p>The important word is <strong>coordinated</strong>. An information system is not just software. It includes the people who use it, the rules they follow, the data they enter, and the technology that supports the work.</p>
+<p>A full information system can be described as a five-part operating loop:</p>
+<ol>
+<li><strong>Input</strong> — capturing raw data from business activity (orders, scans, entries, sensors).</li>
+<li><strong>Processing</strong> — checking, calculating, sorting, and organizing that data into usable form.</li>
+<li><strong>Storage</strong> — keeping data accessible, secure, and consistent over time.</li>
+<li><strong>Output</strong> — delivering information through reports, dashboards, alerts, and recommendations.</li>
+<li><strong>Feedback</strong> — using output to adjust inputs, processes, or decisions, closing the learning loop.</li>
+</ol>
+<p>Feedback is the piece that ties information systems back to managerial learning and performance improvement. Without feedback, an information system is a one-way pipeline. With feedback, it becomes a cycle — and cycles improve over time.</p>
+<p>For example, a customer relationship management (CRM) system is not only CRM software. The full system also includes customer data, sales workflows, follow-up rules, dashboards, training, and reporting routines. Failures often come from unclear processes, weak data standards, poor training, or lack of trust in the output — not from the software alone.</p>
+<p><img alt="Input-Process-Output Model" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-06" /></p>
+<p><em>An information system follows the same input-process-output logic as the business processes it supports.</em></p>
+<h3>Information Systems vs. Information Technology</h3>
+<p>Students often use <strong>information system</strong> and <strong>information technology</strong> as if they mean the same thing. They are related, but they are not identical.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Information Technology (IT)</strong></td>
+<td>The technical tools and infrastructure used to support digital work</td>
+<td>Software, servers, networks, devices, databases</td>
+</tr>
+<tr>
+<td><strong>Information System (IS)</strong></td>
+<td>The full arrangement of people, processes, data, and technology that supports work and decisions</td>
+<td>A complete sales process that uses software, shared data standards, dashboards, and follow-up routines</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Slide 7: Efficiency, Effectiveness, and KPIs" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-07" /></p>
+<p><img alt="IS vs IT Comparison Panels" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-is-vs-it-comparison" />
+<em>Figure 2.23 — IS vs IT Comparison Panels.</em></p>
+<p>This distinction matters because many organizations treat system problems as software problems. Sometimes the real issue is unclear data, weak processes, poor training, low trust, or a mismatch between the system and the work.</p>
+<div class="callout avoid">
+  <p><strong>❌ Avoid: Buying a tool is not building a system</strong></p>
+  <p>A CRM application is information technology. A sales process that defines what customer stages mean, trains staff to update records consistently, uses dashboards in weekly review meetings, and follows up on overdue opportunities is an information system. Buying the tool does not guarantee the system.</p>
+</div>
+
+<h3>The Five-Component Framework</h3>
+<p>One useful way to describe an information system is the <strong>five-component framework</strong> (Kroenke &amp; Boyle, 2021).</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hardware</strong></td>
+<td>Physical devices</td>
+<td>Computers, servers, scanners, phones</td>
+</tr>
+<tr>
+<td><strong>Software</strong></td>
+<td>Programs and applications</td>
+<td>Databases, operating systems, business apps</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>Recorded facts and values</td>
+<td>Transactions, customer records, grades, inventory</td>
+</tr>
+<tr>
+<td><strong>Processes</strong></td>
+<td>Rules and workflows</td>
+<td>Approvals, standards, procedures, reporting routines</td>
+</tr>
+<tr>
+<td><strong>People</strong></td>
+<td>Users and stakeholders</td>
+<td>Employees, managers, analysts, customers, administrators</td>
+</tr>
+</tbody>
+</table>
+<p>All five components matter. A system can fail because the hardware is unreliable, the software is confusing, the data is inaccurate, the process is weak, or people do not trust or use the system well. A database project is therefore never only a database project. It is also a people project, a process project, and a decision-making project.</p>
+<p><img alt="The Five-Component Framework" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-08" />
+<em>The five components of an information system.</em></p>
+<p>People are especially important because they define goals, interpret outputs, and choose actions. Hardware and software can automate parts of the process, but they do not decide what the organization should value or how competing goals should be balanced. That is why business courses pay such close attention to the managerial side of systems.</p>
+<p>In the online-retailer example, hardware includes scanners, warehouse devices, and servers. Software includes the storefront, payment platform, order-management system, and database. Data includes orders, inventory counts, delivery timestamps, and complaint records. Processes define how orders are validated, packed, shipped, and refunded. People include customers, warehouse staff, managers, analysts, and support agents. If delivery times worsen, the cause could lie in any one of the five components or in the relationships among them.</p>
+<p><img alt="Figure 2.4: The Five Components of an Information System" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-five-components-information-system" />
+<em>Figure 2.24 — Information systems work only when hardware, software, data, processes, and people support one another.</em></p>
+<div class="callout tip">
+  <p><strong>💡 Tip: Remember the five components with a simple frame</strong></p>
+  <p>Hardware is the machinery. Software is the logic. Data is the raw material. Processes are the rules. People give the system purpose. All five must work together for the system to deliver value.</p>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Managing Information Systems for Business Value</h2>
+<p><img alt="Figure 2.5: MIS, BITM, Alignment, and Governance" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-mis-bitm-alignment-governance" />
+<em>Figure 2.25 — MIS, BITM, Alignment, and Governance.</em></p>
+<p>Information systems matter because they make better managerial action possible — not because the technology exists on its own. A system that no one trusts, no one uses, or no one connects to a real decision is just overhead. The next sections explore how organizations manage information systems to create business value: through MIS (managerial use of information), BITM (strategic management of technology), alignment (fitting systems to goals), and governance (deciding who decides).</p>
+<h3>Putting the Terms Side by Side</h3>
+<p>Before going deeper, it helps to see the four key terms — IT, IS, MIS, and BITM — compared directly.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Focus</th>
+<th>Central question</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Information Technology (IT)</strong></td>
+<td>Tools and infrastructure</td>
+<td>What technology do we have?</td>
+<td>Servers, networks, software licenses, cloud platforms</td>
+</tr>
+<tr>
+<td><strong>Information System (IS)</strong></td>
+<td>Coordinated people-process-data-technology arrangement</td>
+<td>How do we turn data into decisions?</td>
+<td>A complete sales system with software, workflows, data standards, and training</td>
+</tr>
+<tr>
+<td><strong>Management Information Systems (MIS)</strong></td>
+<td>Using information for management</td>
+<td>What information do managers need, and how do they get it?</td>
+<td>Dashboards, reports, KPIs that support planning, organizing, and controlling</td>
+</tr>
+<tr>
+<td><strong>Business Information Technology Management (BITM)</strong></td>
+<td>Managing technology as a strategic resource</td>
+<td>Which technologies should we invest in, and how do we govern them?</td>
+<td>Technology roadmaps, investment decisions, governance structures, risk management</td>
+</tr>
+</tbody>
+</table>
+<p>IT is the toolbox. IS is the workshop. MIS is the manager's view of the workshop. BITM is the leadership's strategy for the toolbox and the workshop together.</p>
+<h3>Management Information Systems (MIS)</h3>
+<p><strong>Management Information Systems (MIS)</strong> is the field of study and practice focused on using information systems to support managerial work, organizational coordination, and business performance.</p>
+<p>MIS asks practical questions:</p>
+<ul>
+<li>What information do managers need?</li>
+<li>How should that information be captured?</li>
+<li>How should it be reported?</li>
+<li>Who should have access to it?</li>
+<li>How can systems improve coordination and decisions?</li>
+</ul>
+<p>MIS is not just about tools. It is about how information supports management. It supports planning through forecasting and trend analysis, organizing through workflow visibility and resource allocation, leading through communication and accountability, and controlling through KPIs, exception reports, and audit trails. An operations manager who uses daily reports on late shipments, return rates, and packing errors to decide whether to reassign labor or adjust service promises is doing the work MIS is designed to support.</p>
+<h3>Business Information Technology Management (BITM)</h3>
+<p><strong>Business Information Technology Management (BITM)</strong> focuses on how organizations select, design, govern, and adapt technology to support business goals.</p>
+<p>BITM is closely related to MIS, but it puts more emphasis on managing technology as a business resource. It asks which technologies an organization should invest in, how risks should be managed, and how technology value should be measured.</p>
+<p>In simple terms, MIS focuses on how information systems support management. BITM focuses on how technology choices are managed as strategic business decisions. The retailer uses MIS when managers monitor late shipments and return rates. It uses BITM when leadership decides whether to adopt a new order-management platform, redesign fulfillment workflows, retrain staff, and define who can approve major system changes.</p>
+<p><img alt="Conceptual comparison of MIS and BITM showing their overlap around value creation" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-mis-vs-bitm-comparison" />
+<em>Figure 2.26 — MIS focuses on information for decisions, while BITM focuses on managing technology choices in support of business value.</em></p>
+<h3>Strategic Alignment</h3>
+<p><strong>Strategic alignment</strong> means that information systems and technology investments should support the organization's goals, structure, and strategy (Henderson &amp; Venkatraman, 1993).</p>
+<p>A system can be technically impressive and still fail if it does not fit the organization. A retailer that competes on low cost needs systems that support inventory control and operational discipline. A hospital that competes on quality needs systems that support accurate records, safe care, and coordinated decisions. The better question is not only, "Does the system work?" The better question is, "Does the system help the organization do what it is trying to do?"</p>
+<p><img alt="Strategic Alignment" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-10" /></p>
+<p>Strategic alignment can support several common business aims:</p>
+<ul>
+<li><strong>Cost leadership</strong> through efficiency, standardization, and waste reduction.</li>
+<li><strong>Differentiation</strong> through service quality, personalization, and customer experience.</li>
+<li><strong>Innovation</strong> through new business models, platforms, and digital capabilities.</li>
+</ul>
+<p>If the online retailer competes on fast and reliable delivery, its systems must support accurate inventory visibility, dependable checkout, timely shipping updates, and rapid issue resolution. If those capabilities are weak, the strategy fails in execution no matter how good the technology looks on paper.</p>
+<p><img alt="Simplified strategic alignment model linking business strategy, IT strategy, organizational infrastructure, and IT infrastructure" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-strategic-alignment-model" />
+<em>Figure 2.27 — Strategic alignment happens when business goals, organizational design, IT strategy, and IT infrastructure reinforce one another.</em></p>
+<h3>Governance and Accountability</h3>
+<p><strong>IT governance</strong> refers to the decision rights, accountability structures, priorities, and oversight mechanisms used to guide technology investments and system use (Weill &amp; Ross, 2004).</p>
+<p>Governance is not the same as day-to-day system administration. Administration focuses on operating the systems well. Governance focuses on deciding whether the organization is investing in the right systems, under the right controls, for the right reasons. Governance asks:</p>
+<ul>
+<li>Who decides which systems are built or purchased?</li>
+<li>Who owns the data?</li>
+<li>Who is responsible for security?</li>
+<li>How are risks managed?</li>
+<li>Who can change records, reports, or system settings?</li>
+<li>How does the organization know whether a system creates value?</li>
+</ul>
+<p><img alt="Additional Chapter 1 visual reinforcing the author's role in connecting databases, analytics, and business questions" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-image-014" />
+<em>Alternate visual for "About the Author": the book is shaped by teaching that connects technical structure to real organizational questions.</em></p>
+<p>These questions matter because technology value is often harder to judge than managers expect. Brynjolfsson's work on the productivity paradox (1993) reminds us that the benefits of IT may be delayed, distributed, or difficult to isolate. A support platform may not increase revenue immediately, but it may reduce churn, improve retention, or lower error rates over time. Governance helps organizations define what value means before disappointment sets in.</p>
+<p>Governance also matters because systems shape trust and accountability. Access controls, audit logs, data definitions, approval workflows, and ownership assignments all determine whether a system is safe, fair, and reliable. A technically capable system can still fail if no one knows who is responsible for data quality, security, or follow-up action.</p>
+<p><img alt="IT governance structure showing executives, a governance committee, leadership, business leaders, risk oversight, and operational teams" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-it-governance-structure" />
+<em>Figure 2.28 — Governance gives organizations a structure for oversight, accountability, risk management, and technology decision rights.</em></p>
+<h3>Foundations That Carry Forward</h3>
+<p>Organizations now work with cloud platforms, artificial intelligence, big data analytics, Internet of Things devices, automation tools, and digital transformation initiatives. These tools can be powerful, but they do not remove the need for strong foundations. Artificial intelligence still depends on data quality. Cloud systems still require governance. Dashboards still require clear definitions. Automation still requires good process design.</p>
+<div class="callout info">
+  <p><strong>ℹ️ AI connection: New tools, same foundations</strong></p>
+  <p>Generative AI assistants can draft reports, summarize dashboards, and suggest queries. They still depend on the same foundations this chapter introduced: clean data, clear processes, sensible KPIs, and governance over who can act on what. When AI is added to a weak information system, it scales the weaknesses too.</p>
+</div>
+
+<p>The tools change. The core challenge remains. Organizations still need to turn data into useful, trustworthy, actionable intelligence.</p>
+<p><img alt="Figure 2.6: Foundations Leading into Data Fundamentals" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-foundations-leading-data-fundamentals" />
+<em>Figure 2.29 — Foundations Leading into Data Fundamentals.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Apply the Concepts</h2>
+<p>Before moving on, test your understanding by working through a short exercise. Choose a business you know — a coffee shop, a campus office, a delivery app, a streaming service, or any organization you interact with regularly. For that business, answer these five questions in order:</p>
+<ol>
+<li><strong>Identify a business need.</strong> What problem or opportunity does the organization face?</li>
+<li><strong>Identify relevant data.</strong> What records, measurements, or observations would help address that need?</li>
+<li><strong>Trace the DIKW path.</strong> How would that data become information, knowledge, and a possible decision?</li>
+<li><strong>Name the five IS components.</strong> What hardware, software, data, processes, and people would the supporting system need?</li>
+<li><strong>Name the performance outcome.</strong> What KPI or result would tell you whether the system improved performance?</li>
+</ol>
+<p>This exercise is not about getting a perfect answer. It is about practicing the habit of connecting data, systems, and decisions — the habit this entire book is designed to build.</p>
+<p><img alt="The data-to-performance Chain" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-11" /></p>
+<p><em>The data-to-performance Chain.</em></p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<h2>Chapter Summary</h2>
+<p>Chapter 2 explained why information systems matter for business performance.</p>
+<p>The chapter began with the basic question of what data is and how it gains meaning. It used the DIKW hierarchy to show how raw records can become information, knowledge, and wisdom. It then introduced the R.E.A.D. framework to show the organizational and technical work required to move through those stages in practice.</p>
+<p>The chapter then defined a business as a value-creating system that transforms inputs into outputs under constraints. The Input-Process-Output model offered a simple way to understand that transformation. The discussion of efficiency, effectiveness, KPIs, and decision levels showed how organizations judge whether they are performing well and how the same data supports different kinds of decisions.</p>
+<p>From there, the chapter explained why organizations need information systems — and what those systems actually are. It distinguished information systems from information technology, added the five-part operating loop (input, processing, storage, output, feedback), and used the five-component framework to show that hardware, software, data, processes, and people all matter.</p>
+<p>Finally, the chapter connected systems to management with a side-by-side comparison of IT, IS, MIS, and BITM. MIS emphasizes the managerial use of information. BITM emphasizes technology as a strategic business resource. Strategic alignment explains why systems must fit organizational goals. IT governance explains how decision rights, accountability, risk, and value review shape results.</p>
+<p>This foundation matters because the rest of the book builds directly on it. Chapter 3 examines data itself — classification, structure, metadata, and governance. Chapter 4 introduces databases as the core technology for reliable data management. Every later chapter — on SQL, the relational model, normalization, analytics, and strategy — depends on the ideas established here: that data gains meaning through organization, that systems are more than tools, and that performance improves when managers connect information to action.</p>
+<p><img alt="The Data-to-Performance Chain" src="../../assets/book-content/.images/ch02/The_Data-to-Performance_Chain.png" /></p>
+<p><em>The Data-to-Performance Chain.</em></p>
+<h2>References</h2>
+<p>Ackoff, R. L. (1989). From data to wisdom. <em>Journal of Applied Systems Analysis, 16</em>(1), 3-9.</p>
+<p>Brynjolfsson, E. (1993). The productivity paradox of information technology. <em>Communications of the ACM, 36</em>(12), 66-77.</p>
+<p>Henderson, J. C., &amp; Venkatraman, N. (1993). Strategic alignment: Leveraging information technology for transforming organizations. <em>IBM Systems Journal, 32</em>(1), 4-16.</p>
+<p>Kroenke, D. M., &amp; Boyle, R. J. (2021). <em>Experiencing MIS</em> (9th ed.). Pearson.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+<p>Simon, H. A. (1997). <em>Administrative behavior: A study of decision-making processes in administrative organizations</em> (4th ed.). Free Press.</p>
+<p>Weill, P., &amp; Ross, J. W. (2004). <em>IT governance: How top performers manage IT decision rights for superior results</em>. Harvard Business School Press.</p>
+<p>Wilson, T. D. (1981). On user studies and information needs. <em>Journal of Documentation, 37</em>(1), 3-15. https://doi.org/10.1108/eb026702</p>
+<p>Wilson, T. D. (2000). Human information behavior. <em>Informing Science, 3</em>(2), 49-56.</p>
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+<p>*</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build</h2>
+                  <!-- markdownlint-disable MD060 -->
+
+<h2>Let's Build — Managing a Course as a Business System</h2>
+<p><img alt="Let's Build" src="https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/LetsBuild_big?_a=BAMAAAhK0" /></p>
+<p>Chapter 2 introduced a lot of vocabulary quickly: business performance, KPIs, decisions, processes, the DIKW hierarchy, R.E.A.D., information behavior, and the five components of an information system. Each idea makes sense on its own; the hard part is seeing how they fit together. This Let's Build forces that connection by applying the major Chapter 2 ideas to one example you already know intimately — <em>this course</em> — and using it to sketch the logic that the rest of the book will turn into a working database.</p>
+<blockquote>
+<p><strong>Main chapter file:</strong> <a href="../main/ch02-main-2026-05-21.md">ch02-main-2026-05-21.md</a>
+<strong>Companion lab:</strong> Lab 02 — <em>Managing PetVax as a Business System</em> (Brightspace quiz + Google Doc deliverable)</p>
+</blockquote>
+<hr />
+<h3>What You'll Build</h3>
+<p>A short <strong>thinking workbook</strong> — a Google Doc you keep for yourself — that turns this course into a worked example of every major idea from Chapter 2. You will not build tables, schemas, or software yet. You will build the <strong>logic</strong> that the rest of the book will eventually turn into a database.</p>
+<p>There is no submission for this Let's Build. Lab 02 is where you do this work for a grade, on a different scenario (PetVax, a small veterinary clinic).</p>
+<h3>What You'll Need</h3>
+<ul>
+<li>The Chapter 2 main reading.</li>
+<li>A blank Google Doc titled <code>LB02 — Course as a System — &lt;Your Name&gt;</code>.</li>
+<li>About 45-60 minutes.</li>
+<li>Your own honest answers. The point is to think, not to be right on the first try.</li>
+</ul>
+<h3>How To Use This File</h3>
+<p>Every question follows the same pattern:</p>
+<ul>
+<li><strong>Ask</strong> — a question is posed.</li>
+<li><strong>Try it</strong> — you answer first in your workbook.</li>
+<li><strong>Guided answer</strong> — a short model answer to compare against.</li>
+<li><strong>Concept connection</strong> — the Chapter 2 idea this question is teaching.</li>
+<li><strong>Reflection</strong> — a quick check before moving on.</li>
+</ul>
+<p>Do not skip ahead to the guided answer. The model answer is most useful <em>after</em> you have written something of your own.</p>
+<hr />
+<h3>The Course as a System</h3>
+<p>We usually think of a course as a class on a schedule. In Chapter 2 terms, a course is also a <strong>business-like system</strong>: it has goals, stakeholders, inputs, processes, outputs, performance measures, and decisions. This section makes that frame explicit.</p>
+<p><strong>If this course were a business, what would count as good performance?</strong></p>
+<p><img alt="Visual showing how a business question becomes a usable data insight" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-question-to-insight" /></p>
+<p><em>Business questions become more useful when they can be translated into structured data and analysis.</em></p>
+<p><strong>Try it.</strong> In your workbook, write 2-3 sentences. Do not just say <em>good grades</em>. Push on what the course is trying to accomplish.</p>
+<p><strong>Guided answer.</strong> Good performance means the course is helping students actually learn the material, stay engaged with it, build skills they can use later, and finish in a position to apply what they learned. Grades are one signal of that, but they are not the whole story. A course where everyone scores 90 percent because the quizzes were trivial is not performing well. A course where students struggle but build real skill might be performing better than its averages suggest.</p>
+<p><strong>Concept connection.</strong> Chapter 2 frames every organization as a system with goals, stakeholders, and measurable outcomes. A course fits that frame. Defining performance is the <em>first</em> design decision — everything else (what to measure, what to record, what to act on) depends on it.</p>
+<p><strong>Reflection.</strong> Did you define performance only as grades, or did you include learning, engagement, and skill?</p>
+<hr />
+<p><strong>Who are the stakeholders, and what does each one need from the course?</strong></p>
+<p><strong>Try it.</strong> List the stakeholders. For each, write one sentence about what they need to know.</p>
+<p><strong>Guided answer.</strong> The two primary stakeholders are:</p>
+<ul>
+<li><strong>Students</strong> need to know where they stand, what is missing, how they are doing in different categories, and what to do next.</li>
+<li><strong>Instructor</strong> needs accurate records, reliable calculations, fast summaries, and early signals when a student may need help.</li>
+</ul>
+<p>Several other stakeholders also depend on the course, even if they interact with it less directly: <strong>teaching assistants</strong> (grading and feedback), the <strong>department head</strong> and <strong>dean</strong> (program quality, accreditation, comparisons across sections), <strong>parents</strong> (often paying tuition and asking how things are going), <strong>peer students in later courses</strong> (who inherit whatever skills this course built or failed to build), and the <strong>ITS team</strong> (which keeps Brightspace, email, and campus accounts running). Same course, very different information needs.</p>
+<p><strong>Concept connection.</strong> Chapter 2 defines a stakeholder as anyone who affects or is affected by an organization's activities. One system usually serves several stakeholders at once, with different summaries and different decisions for each.</p>
+<p><strong>Reflection.</strong> Whose needs did you forget? Most students remember themselves and the instructor and stop there.</p>
+<div class="page-break"></div>
+
+<h3>From Performance to KPIs to Decisions</h3>
+<p>If performance is the goal, <strong>KPIs</strong> are how we make performance visible, and <strong>decisions</strong> are how we act on what we see. This section forces the link between the three.</p>
+<p><strong>What KPIs would tell you the course is performing well?</strong></p>
+<p><strong>Try it.</strong> Brainstorm 5-7 measures. Push past grades. Think about engagement, preparation, participation, and risk.</p>
+<p><strong>Guided answer.</strong> A useful first KPI set goes well beyond grades:</p>
+<ul>
+<li><strong>Current weighted average</strong> — overall performance so far.</li>
+<li><strong>Missing deliverables count</strong> — workflow and completion behavior.</li>
+<li><strong>Attendance rate</strong> — physical or virtual presence.</li>
+<li><strong>Participation rate</strong> — questions asked, discussion contributions.</li>
+<li><strong>Reading and material access</strong> — did students open the assigned chapter, video, or Brightspace page?</li>
+<li><strong>Lab and assignment completion rate</strong> — by category, not just overall.</li>
+<li><strong>Improvement over time</strong> — is a student trending up or down?</li>
+<li><strong>Risk indicators</strong> — combinations like <em>no submission in two weeks AND falling average</em>.</li>
+</ul>
+<p>Grades alone are a lagging signal. Most of these other measures appear <em>before</em> a grade drops, which is why they are worth tracking.</p>
+<p><strong>Concept connection.</strong> Chapter 2 argues that KPIs translate goals into measurable signals, and that good KPI design is a managerial choice. What you choose to measure shapes attention, and attention shapes behavior.</p>
+<p><strong>Reflection.</strong> Which of your KPIs would <em>change instructor behavior</em> if it went red?</p>
+<hr />
+<p><strong>For each KPI, what decision could the instructor actually make?</strong></p>
+<p><strong>Try it.</strong> Take 4-5 KPIs from the list above. For each, write the decision it would support if it went red.</p>
+<p><strong>Guided answer.</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Decision it supports if it goes red</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low quiz scores on one topic</td>
+<td>Reteach the topic; revise the quiz; add practice material</td>
+</tr>
+<tr>
+<td>Low attendance</td>
+<td>Check engagement; review class pacing; reach out individually</td>
+</tr>
+<tr>
+<td>Low reading/material use</td>
+<td>Improve visibility; explain why the reading matters; rework the assignment that depends on it</td>
+</tr>
+<tr>
+<td>Missing labs</td>
+<td>Contact the student early; adjust reminders; check for a structural issue (unclear submission, broken link)</td>
+</tr>
+<tr>
+<td>Low participation</td>
+<td>Redesign discussion format; add small-group structure; lower the barrier to speaking</td>
+</tr>
+<tr>
+<td>Risk indicator triggered</td>
+<td>Personal outreach; referral to advising or tutoring</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Concept connection.</strong> This is the <strong>data-to-performance chain</strong> from Chapter 2 in miniature. A KPI is only useful if it points to a decision. A dashboard tile with no decision attached is decoration, not management.</p>
+<p><strong>Reflection.</strong> Did any of your KPIs <em>not</em> connect to a decision? Those are candidates to drop.</p>
+<hr />
+<p><strong>Quick classify — is each item Data, a KPI, or a Decision?</strong></p>
+<p>Students consistently blur these three. Before moving on, label each item below.</p>
+<p><strong>Try it.</strong> For each row, write <em>Data</em>, <em>KPI</em>, or <em>Decision</em> in your workbook.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Data, KPI, or Decision?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maya scored 85 on Quiz 1</td>
+<td></td>
+</tr>
+<tr>
+<td>Average quiz score this term</td>
+<td></td>
+</tr>
+<tr>
+<td>Missing-deliverables count</td>
+<td></td>
+</tr>
+<tr>
+<td>The instructor emails students with two missing assignments</td>
+<td></td>
+</tr>
+<tr>
+<td>The instructor reteaches a topic after low quiz scores</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model answers.</strong> <em>Data, KPI, KPI, Decision, Decision.</em> If you missed one, slow down — this distinction drives the rest of the activity.</p>
+<p><strong>Concept connection.</strong> <strong>Data</strong> is a single recorded fact. A <strong>KPI</strong> is a measure built from many facts to make performance visible. A <strong>decision</strong> is the action a person takes because of what the KPI shows. Mixing them up is how dashboards end up full of numbers nobody acts on.</p>
+<p><strong>Reflection.</strong> Which of the three is hardest for you to spot in everyday life — raw data, the measure built from it, or the decision it should drive?</p>
+<p><img alt="Grading database diagram" src="../../assets/book-content/.images/ch02/dikw-grading.png" /></p>
+<p><em>DIKW Grading Database</em></p>
+<hr />
+<h3>Where the Evidence Comes From</h3>
+<p>KPIs do not appear from nowhere. Every measure depends on a <strong>business process</strong> that produces a <strong>record</strong>. If the process is sloppy, the record is sloppy, the KPI is sloppy, and the decision is sloppy.</p>
+<p><strong>What course processes generate the evidence behind your KPIs?</strong></p>
+<p><strong>Try it.</strong> List the activities that happen in this course. For each, write what record it produces.</p>
+<p><strong>Guided answer.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Record it creates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reading the assigned chapter</td>
+<td>Brightspace page-view log</td>
+</tr>
+<tr>
+<td>Showing up to class</td>
+<td>Attendance mark for that session</td>
+</tr>
+<tr>
+<td>Asking or answering questions</td>
+<td>Participation note or chat log</td>
+</tr>
+<tr>
+<td>Submitting an assignment or lab</td>
+<td>Submission record with timestamp</td>
+</tr>
+<tr>
+<td>Grading a deliverable</td>
+<td>Score, comment, possibly a rubric row</td>
+</tr>
+<tr>
+<td>Returning feedback</td>
+<td>Feedback record visible to the student</td>
+</tr>
+<tr>
+<td>Reaching out to a struggling student</td>
+<td>Email log, advising note</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that none of these records <em>appear in the database</em> — they happen first in the world, and then somebody captures them. The capture step is where most data quality lives or dies.</p>
+<p><strong>Concept connection.</strong> Chapter 2's <strong>IPO model</strong> treats every organization (and every information system inside it) as turning inputs into outputs through a process. The records that fill the Grading Database are the <em>outputs of course processes</em>. Weak processes produce weak data, no matter how good the database design is.</p>
+<p><img alt="&quot;The IPO model&quot;" src="../../assets/book-content/.images/ch02/figure-2.2-ipo-model.png" />
+<em>The IPO model: every system turns inputs into outputs through a process.</em></p>
+<p><strong>Reflection.</strong> Which process in your list is the most fragile? Where is data most likely to be missed or recorded inconsistently?</p>
+<hr />
+<h3>From Records to Action</h3>
+<p>So far you have performance, KPIs, decisions, processes, and records. This section asks the harder question: <strong>how do records become action?</strong> This is where DIKW and R.E.A.D. earn their keep.</p>
+<p><strong>Pick one KPI. Climb the DIKW ladder for it.</strong></p>
+<p><strong>Try it.</strong> Choose one KPI (the missing-deliverables count is a good one) and fill in the four levels.</p>
+<p><strong>Guided answer (using missing-deliverables count).</strong></p>
+<table>
+<thead>
+<tr>
+<th>DIKW Level</th>
+<th>In the course</th>
+<th>Guiding question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data</strong></td>
+<td>A single submission record — or its absence — for one student on one deliverable</td>
+<td>What was recorded?</td>
+</tr>
+<tr>
+<td><strong>Information</strong></td>
+<td>A list of every student with the number of missing deliverables this term</td>
+<td>What happened?</td>
+</tr>
+<tr>
+<td><strong>Knowledge</strong></td>
+<td>A pattern: students who miss early-term work are far more likely to fail the course</td>
+<td>Why is it happening?</td>
+</tr>
+<tr>
+<td><strong>Wisdom</strong></td>
+<td>Decision: contact at-risk students by Week 4 instead of Week 10</td>
+<td>What should we do?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Concept connection.</strong> DIKW is not a vocabulary exercise. It is a ladder, and every step requires work — counting, comparing, interpreting, deciding. The Grading Database is valuable only because it lets people climb that ladder reliably.</p>
+<p><strong>Reflection.</strong> At what step on your ladder does <em>judgment</em> start to matter more than software?</p>
+<hr />
+<p><strong>Trace the same KPI through R.E.A.D.</strong></p>
+<p><strong>Try it.</strong> Map your KPI to the four R.E.A.D. stages.</p>
+<p><strong>Guided answer (still using missing-deliverables count).</strong></p>
+<table>
+<thead>
+<tr>
+<th>R.E.A.D. stage</th>
+<th>What happens here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Representation and Retrieval</strong></td>
+<td>Record submissions, due dates, and student identifiers so the system can later answer "who is missing what?"</td>
+</tr>
+<tr>
+<td><strong>Expression and Experience</strong></td>
+<td>Display a missing-work view or dashboard the instructor can scan in under a minute</td>
+</tr>
+<tr>
+<td><strong>Association and Acquisition</strong></td>
+<td>Spot the pattern that missing work clusters early in the term and predicts later trouble</td>
+</tr>
+<tr>
+<td><strong>Decision-Making and Deployment</strong></td>
+<td>Send outreach, adjust deadlines, revise reminder structure, then watch whether the pattern improves</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Concept connection.</strong> Chapter 2 pairs DIKW and R.E.A.D. on purpose. <strong>DIKW</strong> describes the stages of meaning. <strong>R.E.A.D.</strong> describes the organizational and technical <em>work</em> required to move through those stages. One is the staircase, the other is the climbing.</p>
+<p><img alt="R.E.A.D. Framework" src="../../assets/book-content/.images/Ch01-Welcome-to-the-Textbook/read-framework.png" /></p>
+<div class="callout question">
+  <p><strong>❓ Question:  Which R.E.A.D. stage in your trace depends most on human judgment, and which depends most on the system?</strong></p>
+
+</div>
+
+<div class="page-break"></div>
+
+<h3>Information Behavior</h3>
+<p><strong>Who needs this information, why, and where do they look for it?</strong></p>
+<p><strong>Try it.</strong> For your KPI, write one or two sentences for the instructor and one or two sentences for the student.</p>
+<p><strong>Guided answer.</strong> The <strong>instructor</strong> needs missing-work information to intervene early, so they look at it weekly in a Brightspace report or a custom view. A <strong>student</strong> needs the same information to recover before grades collapse, so they look in the Brightspace "Grades" tab — usually on their phone, often the night before something is due. Teaching assistants, advisors, and parents may also have an interest, but their needs are narrower and less frequent.</p>
+<p><strong>Concept connection.</strong> This is <strong>information behavior</strong> from Chapter 2: people recognize a need, seek information, process what they find, and apply it. The same data feeds different people through different channels for different reasons. A system that ignores those differences will be technically correct and practically useless.</p>
+<p><strong>Reflection.</strong> If the only place this information lived were a printed report on the instructor's desk, who would lose access?</p>
+<hr />
+<div class="page-break"></div>
+
+<h3>Naming the System</h3>
+<p>You have now described a working information system — you just have not named it yet. This section names it, diagnoses it with the five-component framework, and lists the data it would need to capture.</p>
+<p><strong>Diagnose the course system with the five-component framework.</strong></p>
+<p><strong>Try it.</strong> For each component, write what currently exists in <em>this</em> course. Be concrete.</p>
+<p><strong>Guided answer.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>In this course</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hardware</strong></td>
+<td>Students bring a mix of MacBooks, Windows laptops, and phones. Many do most of their Brightspace checking on a phone. The instructor uses a desktop with two monitors. Classrooms have a projector and instructor PC.</td>
+</tr>
+<tr>
+<td><strong>Software</strong></td>
+<td>Brightspace (LMS), email, Google Docs and Sheets, Microsoft Access on the instructor's machine, sometimes Excel for quick analysis, browser-based readings.</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>Grades, attendance marks, submission timestamps, material-view logs, participation notes, contact information.</td>
+</tr>
+<tr>
+<td><strong>Processes</strong></td>
+<td>Submit assignments by 11:59 PM, attendance taken about ten minutes into class, late penalty applied consistently, weekly grading turnaround, end-of-term grade calculation.</td>
+</tr>
+<tr>
+<td><strong>People</strong></td>
+<td>Students, instructor, teaching assistants, advisors, department head, dean, parents, peer students in later courses, the <strong>ITS team</strong> that keeps Brightspace and accounts running.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Concept connection.</strong> Chapter 2 defines an information system as a <strong>socio-technical arrangement</strong> — not just software. The five-component framework forces you to see all of it at once.</p>
+<p><strong>Reflection.</strong> Which component, in <em>your</em> version of this course, is the weakest link?</p>
+<hr />
+<p><strong>If student performance is poor, is that automatically a technology problem?</strong></p>
+<p><strong>Try it.</strong> Write one paragraph. Use the five-component framework to push back on the easy answer.</p>
+<p><strong>Guided answer.</strong> Almost never. Poor performance can come from any of the five components. The hardware could be fine and the software flawless, but the <strong>process</strong> of submitting work might be unclear, the <strong>data</strong> about who is missing what might be inconsistent, or the <strong>people</strong> part — student engagement, instructor follow-up, TA grading speed — might be the actual bottleneck. "Buy better software" is usually the most expensive and least useful response to a system problem.</p>
+<p><strong>Concept connection.</strong> This is the chapter's distinction between <strong>information systems and information technology</strong>. Technology is one component of five. Treating a system failure as a technology failure misdiagnoses most real cases.</p>
+<p><strong>Reflection.</strong> Name a past frustration you blamed on "the technology" that was probably actually about process or people.</p>
+<hr />
+<p><strong>Name the system. What data would it need to capture?</strong></p>
+<p>Everything you have described so far is a working information system. In the rest of this book we will call it the <strong>Grading Database</strong>. The name is misleading on purpose — it is not just a place to store grades. It is a course-performance information system that helps the instructor and students monitor learning, engagement, preparation, participation, and risk, and that helps everyone make better decisions because of what it shows.</p>
+<p><img alt="Grading Database project icon" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-grading" /></p>
+<p><strong>Try it.</strong> Given the KPIs you chose and the decisions they support, list (in plain bullets, no tables) what the Grading Database would need to capture. No field types, no schema, no relationships yet.</p>
+<p><strong>Guided answer.</strong> At minimum, the Grading Database would need to capture:</p>
+<ul>
+<li>which students are enrolled;</li>
+<li>which deliverables exist, what category they belong to, and when they are due;</li>
+<li>whether each student submitted each deliverable, and the score they received;</li>
+<li>attendance for each class session;</li>
+<li>material- and reading-access events tied to a student and a moment in time;</li>
+<li>the weighting rules the course uses to combine all of the above into a grade.</li>
+</ul>
+<p>That is the shopping list. Chapter 3 starts to wrestle with the <em>shape</em> that shopping list should take.</p>
+<p><strong>Concept connection.</strong> This closes the backward-design loop: performance → KPIs → decisions → processes → records → DIKW/R.E.A.D. → <strong>data the system needs</strong>. You did not start by listing data. You earned the list by working backward from what the course is trying to accomplish.</p>
+<p><strong>Reflection.</strong> Look at your list. Which item is most likely to be captured inconsistently in the real world?</p>
+<hr />
+<h3>Your Course Performance Logic Map</h3>
+<p>By the end of this activity, you should be able to summarize your whole chain of thinking on a single page. Fill this in for the KPI you traced across the earlier sections. Nothing to submit — the goal is that you can re-draw it from memory.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Your answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Course-performance problem</td>
+<td></td>
+</tr>
+<tr>
+<td>KPI</td>
+<td></td>
+</tr>
+<tr>
+<td>Raw data needed</td>
+<td></td>
+</tr>
+<tr>
+<td>Information summary</td>
+<td></td>
+</tr>
+<tr>
+<td>Knowledge / pattern</td>
+<td></td>
+</tr>
+<tr>
+<td>Wisdom / decision</td>
+<td></td>
+</tr>
+<tr>
+<td>Process that creates the data</td>
+<td></td>
+</tr>
+<tr>
+<td>R.E.A.D. stage most involved</td>
+<td></td>
+</tr>
+<tr>
+<td>Weakest five-component link</td>
+<td></td>
+</tr>
+<tr>
+<td>Why this is an information system</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>If any row is hard to fill in, that is the row to go back and re-think — it is usually a sign of a weak link in the chain.</p>
+<hr />
+<h3>Final Reflection</h3>
+<p>Write 4-5 sentences in your workbook answering one of these:</p>
+<ol>
+<li>Before this exercise, what did you think a "grading database" was for? Has that changed?</li>
+<li>If you had to choose one KPI to start with — knowing it would shape what the system measures and what the instructor pays attention to — which one would you choose, and why?</li>
+<li>Where in this course do you see the <em>biggest gap</em> between what is currently captured and what would be useful to capture?</li>
+</ol>
+<hr />
+<h3>Peek Ahead — Chapter 3</h3>
+<p>When you wrote your list of what the Grading Database needs to capture, you probably pictured something familiar: a Brightspace-style gradebook with one row per student and columns labeled Quiz 1, Quiz 2, Lab 1, and so on. That <strong>wide</strong> layout works fine for one section of thirty students. It quietly breaks the moment you add an assignment, run a second section, or try to answer a question like <em>what is the average score across all quizzes?</em> In Chapter 3 we will build exactly that wide gradebook in Google Sheets, feel the pain on purpose, and discover why rethinking the shape of the data unlocks everything that comes after.</p>
+<hr />
+<h3>What This Prepares You For</h3>
+<ul>
+<li><strong>Lab 02</strong> asks you to run the same analysis for <strong>PetVax</strong>, a small veterinary clinic — different domain, same questions, graded deliverable.</li>
+<li><strong>Chapter 3</strong> moves your data-capture list into a flat spreadsheet and exposes its limits.</li>
+<li><strong>Chapter 4</strong> turns the cleaned-up list into the first real database tables in Access.</li>
+</ul>
+<p>For now, the point is small but important: a database is the answer to a management question, not the starting point.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 2 Term Treasury - Foundations of Information Systems</h2>
+                  <p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/terms_gqkau8?_a=BAMAAAiu0" alt="Term Treasury" />
+</p>
+
+<!-- Companion: Key terms and definitions - 2026-06-02 -->
+
+<table>
+<thead>
+<tr>
+<th>Term / Concept</th>
+<th>Definition</th>
+<th>Business Significance</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Artificial Intelligence (AI)</strong></td>
+<td>Computer systems that recognize patterns, make predictions, generate content, or automate tasks that usually require human judgment.</td>
+<td>AI tools depend on the same foundations as any information system — clean data, clear processes, sensible KPIs, and governance. When added to a weak system, AI scales the weaknesses too.</td>
+<td>Generative AI assistants drafting reports, summarizing dashboards, or suggesting queries — all of which depend on trustworthy underlying data.</td>
+</tr>
+<tr>
+<td><strong>Association and Acquisition</strong></td>
+<td>The R.E.A.D. stage in which people and systems connect information, compare cases, identify patterns, and build deeper understanding.</td>
+<td>Turns information into knowledge. Without this stage, organizations have reports but no insight — they know what happened but not why.</td>
+<td>Analyzing late-delivery data and discovering the spike is tied to one understaffed warehouse.</td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>An organization that creates value by transforming inputs into outputs under conditions of limited resources, competing priorities, and uncertainty.</td>
+<td>Defines the context information systems serve. Every system exists to help an organization create outcomes that matter — the system is never the goal.</td>
+<td>Retailers, hospitals, universities, nonprofits, banks, and government agencies are all businesses in this sense.</td>
+</tr>
+<tr>
+<td><strong>Business Information Technology Management (BITM)</strong></td>
+<td>A managerial approach focused on selecting, designing, governing, and adapting technology as a strategic business resource.</td>
+<td>Ensures technology investments are not just operational expenses but deliberate strategic choices aligned with business goals.</td>
+<td>Leadership deciding whether to adopt a new order-management platform, redesign workflows, retrain staff, and assign approval rights.</td>
+</tr>
+<tr>
+<td><strong>Business Performance</strong></td>
+<td>The degree to which an organization achieves important goals for its stakeholders.</td>
+<td>Defines what success looks like and why measurement matters. Without a clear definition of performance, systems have no purpose.</td>
+<td>A hospital tracking patient safety, efficiency, compliance, and financial sustainability simultaneously.</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>Raw observations, symbols, identifiers, measurements, and recorded facts that represent aspects of reality.</td>
+<td>The starting point for every decision, report, and system. Data enables organizations to observe activity at scale instead of relying on anecdote and guesswork.</td>
+<td>Customer IDs, transaction amounts, timestamps, inventory counts, attendance records, payment statuses.</td>
+</tr>
+<tr>
+<td><strong>Data Quality</strong></td>
+<td>The degree to which data is accurate, complete, timely, consistent, and fit for use.</td>
+<td>Poor data quality distorts KPIs, misleads managers, frustrates customers, and erodes trust in systems. Good decisions require trustworthy data.</td>
+<td>A customer address entered incorrectly (accuracy), a patient record missing allergy information (completeness), inventory data updated too late (timeliness).</td>
+</tr>
+<tr>
+<td><strong>Data-to-Performance Chain</strong></td>
+<td>The progression by which data becomes information, informs decisions, changes outcomes, and generates new data: Data → Information → Insight → Decision → Performance.</td>
+<td>Explains why databases and analytics matter for business. A database is valuable only when its structure helps an organization ask better questions and make better decisions.</td>
+<td>A delivery company tracking late shipments by region (information), discovering warehouse congestion is the cause (insight), and reassigning staff (decision) to improve on-time delivery (performance).</td>
+</tr>
+<tr>
+<td><strong>Decision-Making and Deployment</strong></td>
+<td>The R.E.A.D. stage in which understanding is turned into actions, policies, interventions, or system redesigns.</td>
+<td>The payoff stage — where insight becomes change. Without deployment, even the best analysis produces no business value.</td>
+<td>A manager reassigning inventory, changing staffing rules, and updating delivery promises after analyzing late-shipment patterns.</td>
+</tr>
+<tr>
+<td><strong>DIKW Hierarchy</strong></td>
+<td>A model showing how data becomes information, knowledge, and wisdom through context, interpretation, and judgment (Ackoff, 1989).</td>
+<td>Provides the mental map for moving from raw records to actionable decisions. Every level adds meaning: Data (what was recorded), Information (what happened), Knowledge (why), Wisdom (what to do).</td>
+<td>A student score of 68 (data), compared to a class average of 82 with missed SQL questions (information), revealing a learning gap (knowledge), leading to a new practice activity (wisdom).</td>
+</tr>
+<tr>
+<td><strong>Effectiveness</strong></td>
+<td>Doing the right things by pursuing goals that actually matter for stakeholders.</td>
+<td>Efficiency without effectiveness is wasted effort. Organizations must ensure they are improving the right outcomes, not just optimizing activity.</td>
+<td>A university office that processes forms quickly but still fails to solve students' underlying problems.</td>
+</tr>
+<tr>
+<td><strong>Efficiency</strong></td>
+<td>Doing things right by minimizing waste and using resources well.</td>
+<td>Efficiency keeps organizations sustainable, but it must be paired with effectiveness. Measuring efficiency alone can drive the wrong behavior.</td>
+<td>Reducing call handling time (efficiency) without checking whether customer problems are actually resolved (effectiveness).</td>
+</tr>
+<tr>
+<td><strong>Expression and Experience</strong></td>
+<td>The R.E.A.D. stage in which stored records are presented through reports, dashboards, interfaces, and alerts that people can interpret and use.</td>
+<td>Shapes how information is encountered, scanned, and trusted. A poorly designed dashboard buries insight; a well-designed one surfaces it.</td>
+<td>A report showing which students have missing assignments; a dashboard displaying late shipments by warehouse and week.</td>
+</tr>
+<tr>
+<td><strong>Feedback</strong></td>
+<td>The fifth step of the information system operating loop — using output to adjust inputs, processes, or decisions, closing the learning cycle.</td>
+<td>Turns a one-way information pipeline into an improvement cycle. Without feedback, systems cannot learn; with feedback, they get better over time.</td>
+<td>A late-shipment report that prompts a manager to reassign staff; the next report shows whether on-time delivery improved.</td>
+</tr>
+<tr>
+<td><strong>Five-Component Framework</strong></td>
+<td>A model of an information system built from five interdependent parts: hardware, software, data, processes, and people (Kroenke &amp; Boyle, 2021).</td>
+<td>Shows that system failures can come from any component. A database project is never only a database project — it is also a people project, a process project, and a decision-making project.</td>
+<td>Hardware (scanners, servers), software (storefront, database), data (orders, inventory), processes (packing rules, refund workflows), people (staff, managers, customers).</td>
+</tr>
+<tr>
+<td><strong>Information</strong></td>
+<td>Data that has been organized and contextualized so it carries meaning.</td>
+<td>Raw data becomes useful only when structured, summarized, and connected to a question. Information bridges the gap between recording and understanding.</td>
+<td>A weekly report showing that dairy products sell faster on weekends, built from individual transaction records.</td>
+</tr>
+<tr>
+<td><strong>Information Behavior</strong></td>
+<td>How people recognize information needs, seek or retrieve information, interpret it, and use it in context (Wilson, 1981, 2000).</td>
+<td>A database is useful only when people can connect its records to real questions and actions. Ignoring information behavior leads to dashboards nobody uses and reports nobody reads.</td>
+<td>A customer-service lead noticing a complaint spike (need), filtering a late-shipment dashboard (seeking), and reassigning support staff (use).</td>
+</tr>
+<tr>
+<td><strong>Information System (IS)</strong></td>
+<td>A coordinated arrangement of people, processes, data, and technology that collects, processes, stores, and distributes information to support coordination, control, analysis, and decision-making (Laudon &amp; Laudon, 2024).</td>
+<td>The organizational engine that turns data into decisions. An IS is more than software — it includes the people who use it, the rules they follow, and the data they depend on.</td>
+<td>A CRM system that includes the software plus customer data, sales workflows, follow-up rules, dashboards, training, and reporting routines.</td>
+</tr>
+<tr>
+<td><strong>Information Technology (IT)</strong></td>
+<td>The technical tools and infrastructure — software, servers, networks, devices, databases — used to support digital work.</td>
+<td>IT is the toolbox, not the workshop. Buying a tool does not guarantee a working system. Distinguishing IT from IS helps organizations diagnose problems correctly.</td>
+<td>A CRM application (IT) versus the complete sales process that uses it along with data standards, training, and review meetings (IS).</td>
+</tr>
+<tr>
+<td><strong>Input-Process-Output (IPO) Model</strong></td>
+<td>A framework showing how organizations or systems take inputs, transform them through processes, and produce outputs.</td>
+<td>Gives students a practical mental map for understanding any organization. Highlights that data functions as both input and output — part of a continuous feedback loop.</td>
+<td>Online retailer: inputs (inventory, labor, orders), processes (picking, packing, shipping), outputs (delivered orders, updated inventory, new operational data).</td>
+</tr>
+<tr>
+<td><strong>IT Governance</strong></td>
+<td>The decision rights, accountability structures, priorities, and oversight mechanisms used to guide technology investments and system use (Weill &amp; Ross, 2004).</td>
+<td>Ensures organizations invest in the right systems, under the right controls, for the right reasons. Governance defines who decides, who owns the data, and how value is measured.</td>
+<td>A governance committee deciding who can approve major system changes, who owns customer data, and how security risks are managed.</td>
+</tr>
+<tr>
+<td><strong>Key Performance Indicator (KPI)</strong></td>
+<td>A quantifiable signal used to evaluate progress toward an important goal.</td>
+<td>KPIs translate goals into measurable signals and shape behavior — what you measure drives what people pay attention to. Poor KPI design can encourage speed at the cost of quality.</td>
+<td>Customer retention rate, on-time delivery percentage, course completion rate, gross margin.</td>
+</tr>
+<tr>
+<td><strong>Knowledge</strong></td>
+<td>Interpretation based on context, comparison, and experience that explains why something is happening (DIKW level 3).</td>
+<td>Knowledge bridges information and action. It is the stage where patterns are recognized and causes are understood — the foundation for good decisions.</td>
+<td>A manager recognizing that weekend dairy demand is tied to family shopping patterns, not random fluctuation.</td>
+</tr>
+<tr>
+<td><strong>Management Information Systems (MIS)</strong></td>
+<td>The field of study and practice focused on using information systems to support managerial work, organizational coordination, and business performance.</td>
+<td>Focuses on the managerial use of information — what managers need to know, how they get it, and how systems improve planning, organizing, leading, and controlling.</td>
+<td>An operations manager using daily reports on late shipments, return rates, and packing errors to decide whether to reassign labor.</td>
+</tr>
+<tr>
+<td><strong>R.E.A.D. Framework</strong></td>
+<td>A framework describing the four kinds of organizational and technical work needed to move from raw data to action: Representation and Retrieval, Expression and Experience, Association and Acquisition, and Decision-Making and Deployment.</td>
+<td>Explains how organizations build the engine that DIKW describes. Tells students what work is needed at each stage — databases and SQL for R, dashboards for E, analytics for A, and decision processes for D.</td>
+<td>A grading database: storing grades (R), reporting missing assignments (E), discovering that early absences predict later failure (A), and redesigning the first two weeks of the term (D).</td>
+</tr>
+<tr>
+<td><strong>Representation and Retrieval</strong></td>
+<td>The R.E.A.D. stage in which raw inputs are structured so data is accurate, accessible, and consistently stored. This is where database design and SQL begin.</td>
+<td>The foundation of every later stage. If data is poorly structured or inaccessible, every report, dashboard, and analysis built on it will be weak.</td>
+<td>Grade records entered consistently into a structured database; orders, returns, and shipping scans captured in shared systems.</td>
+</tr>
+<tr>
+<td><strong>Stakeholders</strong></td>
+<td>The people and groups affected by an organization's actions — customers, employees, owners, suppliers, students, regulators, patients, and the broader public.</td>
+<td>Because stakeholders care about different outcomes, business performance is always multidimensional. Systems must serve multiple stakeholders with different information needs.</td>
+<td>Students need to know where they stand; instructors need accurate records and early warning signals; department heads need program quality comparisons.</td>
+</tr>
+<tr>
+<td><strong>Strategic Alignment</strong></td>
+<td>The principle that information systems and technology investments should support the organization's goals, structure, and strategy (Henderson &amp; Venkatraman, 1993).</td>
+<td>A technically impressive system still fails if it does not fit what the organization is trying to do. Alignment ensures systems serve strategy, not the other way around.</td>
+<td>A low-cost retailer needs inventory control systems; a quality-focused hospital needs accurate records and coordinated care systems.</td>
+</tr>
+<tr>
+<td><strong>Value Creation</strong></td>
+<td>The process by which an organization transforms resources into outcomes that matter to stakeholders.</td>
+<td>The reason systems exist. Every technology investment should be evaluated by whether it helps the organization create more or better value, not by whether the technology is impressive.</td>
+<td>A support platform that reduces customer churn and improves retention over time, even if it does not increase immediate revenue.</td>
+</tr>
+<tr>
+<td><strong>Wisdom</strong></td>
+<td>Judgment about action, priorities, and consequences that answers "What should we do?" (DIKW level 4).</td>
+<td>The ultimate goal of the entire data-to-decision arc. Wisdom is where information and knowledge become better choices, better processes, and better outcomes.</td>
+<td>An instructor adding a new practice activity before the next assessment after recognizing a learning gap; a manager adjusting staffing before the weekend after recognizing shopping patterns.</td>
+</tr>
+</tbody>
+</table>
+<h2>Acronyms and Abbreviations</h2>
+<table>
+<thead>
+<tr>
+<th>Abbreviation</th>
+<th>Full Form</th>
+<th>Brief Meaning</th>
+<th>Where It Appears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI</strong></td>
+<td>Artificial Intelligence</td>
+<td>Computer systems that recognize patterns, make predictions, or automate cognitive tasks.</td>
+<td>Emerging technology discussion and AI connection callout</td>
+</tr>
+<tr>
+<td><strong>BITM</strong></td>
+<td>Business Information Technology Management</td>
+<td>Managing technology as a strategic business resource.</td>
+<td>MIS vs BITM discussion, strategic alignment, governance</td>
+</tr>
+<tr>
+<td><strong>DIKW</strong></td>
+<td>Data, Information, Knowledge, Wisdom</td>
+<td>A hierarchy showing how raw data gains meaning through context, interpretation, and judgment.</td>
+<td>DIKW Hierarchy section and throughout the chapter</td>
+</tr>
+<tr>
+<td><strong>IPO</strong></td>
+<td>Input-Process-Output</td>
+<td>A model describing how organizations take inputs, transform them through processes, and produce outputs.</td>
+<td>IPO Model section and information system definition</td>
+</tr>
+<tr>
+<td><strong>IS</strong></td>
+<td>Information System</td>
+<td>A coordinated arrangement of people, processes, data, and technology for decision support.</td>
+<td>IS vs IT comparison, five-component framework</td>
+</tr>
+<tr>
+<td><strong>IT</strong></td>
+<td>Information Technology</td>
+<td>The technical tools and infrastructure supporting digital work.</td>
+<td>IS vs IT comparison, throughout the chapter</td>
+</tr>
+<tr>
+<td><strong>KPI</strong></td>
+<td>Key Performance Indicator</td>
+<td>A quantifiable signal of progress toward an important goal.</td>
+<td>Efficiency, Effectiveness, and KPIs section</td>
+</tr>
+<tr>
+<td><strong>MIS</strong></td>
+<td>Management Information Systems</td>
+<td>The field focused on using information systems to support managerial work.</td>
+<td>MIS section and MIS vs BITM comparison</td>
+</tr>
+<tr>
+<td><strong>R.E.A.D.</strong></td>
+<td>Representation, Expression, Association, Decision-Making</td>
+<td>A framework describing the organizational work needed to move data toward action.</td>
+<td>R.E.A.D. Framework section and throughout the chapter</td>
+</tr>
+</tbody>
+</table>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>Chapter 2: Review and Reflection</h2>
+                  <p><img alt="Reflection GIF" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" /></p>
+<p><em>Move from reading the chapter to thinking with it — consolidate the frameworks, then reflect on how information systems shape business performance, managerial decisions, and your own approach to data-driven thinking.</em></p>
+<h2>Review Questions</h2>
+<p><em>These questions help you recall and explain the core concepts, frameworks, and definitions from the chapter. Answer each one in your own words before checking the Answer Key.</em></p>
+<ol>
+<li>
+<p>What are the four levels of the DIKW hierarchy, and what guiding question does each level answer?</p>
+</li>
+<li>
+<p>How does the R.E.A.D. framework differ from the DIKW hierarchy? What does R.E.A.D. explain that DIKW does not?</p>
+</li>
+<li>
+<p>Define an information system. How is it different from information technology?</p>
+</li>
+<li>
+<p>What are the five components of an information system according to the five-component framework? Give a brief example of each.</p>
+</li>
+<li>
+<p>What five steps make up the operating loop of a full information system? Why is feedback especially important?</p>
+</li>
+<li>
+<p>What is a KPI, and what design decisions make a KPI trustworthy rather than misleading?</p>
+</li>
+<li>
+<p>How are MIS and BITM related, and what is the main difference between them?</p>
+</li>
+<li>
+<p>What does strategic alignment mean, and why does a technically impressive system still fail without it?</p>
+</li>
+</ol>
+<h2>Reflection Questions</h2>
+<p><em>These questions ask you to interpret, compare, evaluate, and apply the chapter's ideas. Think through the reasoning — there is often more than one defensible answer.</em></p>
+<ol>
+<li>
+<p>The chapter argues that "storing data is not the same as using data." Choose one of the chapter's examples (online retailer, hospital, university) and explain what must happen between storing a record and making a decision based on it.</p>
+</li>
+<li>
+<p>The DIKW hierarchy and the R.E.A.D. framework describe the same journey from two angles. How would you explain the difference to a classmate who is confused about why the chapter needs both?</p>
+</li>
+<li>
+<p>A company buys an expensive CRM application, installs it, and gives everyone a login. Six months later, customer data is still inconsistent, sales teams are not using the dashboards, and management sees no improvement. Using the chapter's concepts, explain at least three reasons this might have happened.</p>
+</li>
+<li>
+<p>Look at the IT/IS/MIS/BITM comparison table in the chapter. Choose a real organization you know (a workplace, a campus office, a retailer you shop at) and give one concrete example of IT, IS, MIS, and BITM in that organization. If you cannot find all four, explain what is missing.</p>
+</li>
+<li>
+<p>The chapter says "KPIs shape behavior." Choose one of the following KPIs and describe a way it could accidentally encourage the wrong behavior: (a) average call handling time in a customer service center, (b) course pass rate at a university, (c) on-time delivery percentage for an online retailer.</p>
+</li>
+<li>
+<p>Why does information behavior — information need, information-seeking behavior, and information use — matter for designing a good information system? What happens when designers ignore it?</p>
+</li>
+<li>
+<p>The chapter introduces strategic alignment with three business aims: cost leadership, differentiation, and innovation. Can one information system support more than one of these aims at the same time? Explain your reasoning with an example.</p>
+</li>
+<li>
+<p>Consider the "Apply the Concepts" exercise at the end of the chapter. If you completed it, what was the hardest part of tracing the DIKW path for your chosen business? If you have not completed it yet, which of the five questions do you expect to be the hardest, and why?</p>
+</li>
+</ol>
+<h2>Personal Reflection Questions</h2>
+<p><em>These questions invite you to connect the chapter to your own experience, habits, and professional growth. There are no right answers — only honest ones.</em></p>
+<ol>
+<li>
+<p>Think about a time you made a decision based on poor or incomplete information. What went wrong, and which of the four data quality dimensions (accuracy, completeness, timeliness, consistency) was most at fault?</p>
+</li>
+<li>
+<p>You interact with information systems every day — Brightspace, your phone, streaming platforms, banking apps, campus systems. Pick one and quickly list its five components (hardware, software, data, processes, people). Which component do you think is the weakest link, and why?</p>
+</li>
+<li>
+<p>The chapter frames management as decision-making under uncertainty. Reflect on a group project, job, or student organization where you had to make a decision without having all the information you wanted. How did you handle the gap? Would a better information system have changed your approach?</p>
+</li>
+<li>
+<p>The "Framing the Course Title" subsection breaks down <em>Business Information Technology Management</em> into four words. Which of the four — Business, Information, Technology, or Management — do you feel strongest in right now? Which do you most need to develop? Be specific.</p>
+</li>
+<li>
+<p>Information behavior includes passive encountering — learning something useful from a dashboard you happened to glance at, an alert you did not expect, or a conversation you did not plan. Describe a recent example from your own life where you learned something useful without actively searching for it.</p>
+</li>
+<li>
+<p>The chapter argues that people give an information system its purpose. Have you ever used a system (at school, work, or home) where people worked around the system instead of with it — using spreadsheets, sticky notes, or informal workarounds? Why do you think that happened, and which of the five components was the root cause?</p>
+</li>
+<li>
+<p>After reading this chapter, what is one question you would now ask before trusting a dashboard, report, or KPI that someone shows you?</p>
+</li>
+<li>
+<p>This chapter is the conceptual foundation for the rest of the book. Looking ahead, which later topic are you most curious about — databases (Ch 4), SQL (Ch 5), the relational model (Ch 6), normalization (Ch 7), analytics (Ch 9/14), or strategy (Ch 15)? Why does that topic interest you?</p>
+</li>
+</ol>
+<h2>Answer Key</h2>
+<h3>Review</h3>
+<p><strong>Question 1: What are the four levels of the DIKW hierarchy, and what guiding question does each level answer?</strong>
+<strong>Suggested Answer:</strong> The four levels are Data ("What was recorded?" — raw observations and values), Information ("What happened?" — data organized into a meaningful pattern or summary), Knowledge ("Why is it happening?" — interpretation based on context, comparison, and experience), and Wisdom ("What should we do?" — judgment about action, priorities, and consequences). The hierarchy shows how meaning deepens at each level, from raw records to actionable decisions.</p>
+<p><strong>Question 2: How does the R.E.A.D. framework differ from the DIKW hierarchy? What does R.E.A.D. explain that DIKW does not?</strong>
+<strong>Suggested Answer:</strong> DIKW describes stages of meaning — how raw data becomes information, knowledge, and wisdom. R.E.A.D. describes the organizational and technical work required to move through those stages: Representation and Retrieval (structuring and storing data), Expression and Experience (presenting information through reports and dashboards), Association and Acquisition (finding patterns and building knowledge), and Decision-Making and Deployment (translating insight into action). DIKW says <em>what</em> develops; R.E.A.D. says <em>how</em> organizations make that development happen.</p>
+<p><strong>Question 3: Define an information system. How is it different from information technology?</strong>
+<strong>Suggested Answer:</strong> An information system is a coordinated arrangement of people, processes, data, and technology that collects, processes, stores, and distributes information to support coordination, control, analysis, and decision-making. Information technology is the technical tools and infrastructure — software, servers, networks, devices, databases. IT is one component inside an IS. The IS also includes the people who use it, the rules they follow, and the data they depend on. Buying the tool (IT) is not the same as building the system (IS).</p>
+<p><strong>Question 4: What are the five components of an information system according to the five-component framework? Give a brief example of each.</strong>
+<strong>Suggested Answer:</strong> Hardware (physical devices — computers, servers, scanners), Software (programs and applications — databases, operating systems, business apps), Data (recorded facts and values — transactions, customer records, inventory counts), Processes (rules and workflows — approval procedures, reporting routines, data standards), and People (users and stakeholders — employees, managers, analysts, customers). A simple memory aid from the chapter: hardware is the machinery, software is the logic, data is the raw material, processes are the rules, and people give the system purpose.</p>
+<p><strong>Question 5: What five steps make up the operating loop of a full information system? Why is feedback especially important?</strong>
+<strong>Suggested Answer:</strong> The five steps are Input (capturing raw data from business activity), Processing (checking, calculating, sorting, and organizing data), Storage (keeping data accessible, secure, and consistent), Output (delivering information through reports, dashboards, alerts), and Feedback (using output to adjust inputs, processes, or decisions). Feedback is especially important because it closes the learning loop. Without feedback, an information system is a one-way pipeline. With feedback, it becomes a cycle — and cycles improve over time.</p>
+<p><strong>Question 6: What is a KPI, and what design decisions make a KPI trustworthy rather than misleading?</strong>
+<strong>Suggested Answer:</strong> A KPI (Key Performance Indicator) is a quantifiable signal used to evaluate progress toward an important goal. A trustworthy KPI needs: a clear business goal it connects to, a precise formula, a reliable data source, a refresh cycle, an owner who is expected to act on it, and thresholds that indicate acceptable or risky performance. Without these design decisions, a KPI can mislead — for example, measuring call handling time without measuring resolution quality can encourage employees to rush customers off the phone.</p>
+<p><strong>Question 7: How are MIS and BITM related, and what is the main difference between them?</strong>
+<strong>Suggested Answer:</strong> Both MIS (Management Information Systems) and BITM (Business Information Technology Management) connect information and technology to business performance. The difference is focus: MIS focuses on using information to support managerial work — what information do managers need, how should it be reported, how can systems improve coordination and decisions? BITM focuses on managing technology as a strategic business resource — which technologies should the organization invest in, how should risks be managed, how should technology value be measured? The chapter's shorthand: MIS is the manager's view of the workshop; BITM is the leadership's strategy for the toolbox and the workshop together.</p>
+<p><strong>Question 8: What does strategic alignment mean, and why does a technically impressive system still fail without it?</strong>
+<strong>Suggested Answer:</strong> Strategic alignment means that information systems and technology investments should support the organization's goals, structure, and strategy. A system can fail without alignment because it may not fit what the organization is actually trying to do. A retailer that competes on low cost needs systems that support inventory control and operational discipline. A hospital that competes on quality needs systems that support accurate records and coordinated care. The better question is not "Does the system work?" but "Does the system help the organization do what it is trying to do?"</p>
+<h3>Reflection</h3>
+<p><strong>Question 1: The chapter argues that "storing data is not the same as using data." Choose one of the chapter's examples (online retailer, hospital, university) and explain what must happen between storing a record and making a decision based on it.</strong>
+<strong>Suggested Answer:</strong> Using the online retailer example: storing an order record is step one. The record must then be organized with other orders (information — a report showing late shipments by warehouse), analyzed for patterns (knowledge — discovering that late deliveries spike when one warehouse is understaffed), and connected to a decision (wisdom — reassigning staff or adjusting delivery promises). Between storing and deciding, the organization needs data organization (a query or report), interpretation (someone recognizes the pattern), and action (someone with authority makes a change). The R.E.A.D. framework maps this exactly: Representation and Retrieval stores the record, Expression and Experience surfaces the pattern, Association and Acquisition reveals the cause, and Decision-Making and Deployment changes the outcome.</p>
+<p><strong>Question 2: The DIKW hierarchy and the R.E.A.D. framework describe the same journey from two angles. How would you explain the difference to a classmate who is confused about why the chapter needs both?</strong>
+<strong>Suggested Answer:</strong> DIKW is the "what" — it names the stages of meaning and the questions each stage answers. R.E.A.D. is the "how" — it names the organizational and technical work that moves data through those stages. You can think of DIKW as the map and R.E.A.D. as the engine. The map tells you where you are going (from data to wisdom). The engine tells you what you need to build to get there (databases and SQL for Representation, dashboards and reports for Expression, analytics for Association, and decision processes for Deployment). A business student needs both: the map to understand the logic, and the engine to understand what organizations actually do.</p>
+<p><strong>Question 3: A company buys an expensive CRM application, installs it, and gives everyone a login. Six months later, customer data is still inconsistent, sales teams are not using the dashboards, and management sees no improvement. Using the chapter's concepts, explain at least three reasons this might have happened.</strong>
+<strong>Suggested Answer:</strong> Several chapter concepts explain this failure. First, the company confused IT with IS — buying the CRM software (IT) is not the same as building a working information system. The IS is missing key components: (a) Processes — there may be no clear rules for when and how sales staff should update customer records, so data stays inconsistent; (b) People — staff may not have been trained, may not trust the system, or may not see how it helps their work, so they avoid the dashboards; (c) Data quality — if the data going in is inaccurate or incomplete, the reports coming out are unreliable, and managers correctly ignore them. Additionally, the system may lack strategic alignment — if the CRM does not support how this company actually sells, it will not fit. And without governance, no one owns the data or is accountable for fixing these problems.</p>
+<p><strong>Question 4: Look at the IT/IS/MIS/BITM comparison table in the chapter. Choose a real organization you know (a workplace, a campus office, a retailer you shop at) and give one concrete example of IT, IS, MIS, and BITM in that organization. If you cannot find all four, explain what is missing.</strong>
+<strong>Suggested Answer:</strong> Answers will vary. A strong answer for a university example: IT = the campus learning management system (Brightspace), campus Wi-Fi network, and student information database. IS = the complete course delivery system — Brightspace plus the instructor's grading workflows, the registrar's enrollment processes, the ITS support team, and the academic integrity policies. MIS = the department chair's enrollment and retention dashboard, which shows which courses are filling, which students are at risk, and where instructors may need support. BITM = the provost's decision about whether to renew the Brightspace contract, adopt a new analytics platform, or invest in accessibility tools — a strategic technology decision tied to the university's goals. If BITM is hardest to find, that is itself a useful observation: many organizations treat technology as an operational expense rather than a strategic resource.</p>
+<p><strong>Question 5: The chapter says "KPIs shape behavior." Choose one of the following KPIs and describe a way it could accidentally encourage the wrong behavior: (a) average call handling time in a customer service center, (b) course pass rate at a university, (c) on-time delivery percentage for an online retailer.</strong>
+<strong>Suggested Answer:</strong> (a) Average call handling time: agents may rush customers off the phone to keep their average low, leaving problems unresolved and customers frustrated. The KPI improves while actual service quality declines. (b) Course pass rate: instructors may lower standards — easier exams, generous grading, fewer challenging assignments — to push the pass rate up. The KPI looks better while actual learning declines. (c) On-time delivery percentage: the retailer may mark orders as "delivered" when they reach a local hub rather than the customer's door, or may refuse orders to difficult addresses. The KPI rises while customer experience worsens. In all three cases, the KPI measured activity, not outcome, and people optimized for the measurement rather than the goal.</p>
+<p><strong>Question 6: Why does information behavior — information need, information-seeking behavior, and information use — matter for designing a good information system? What happens when designers ignore it?</strong>
+<strong>Suggested Answer:</strong> Information behavior matters because a system is only useful if people connect its records to real questions and actions. Designers must understand: what gaps users are trying to fill (information need), how they search for and encounter information (information-seeking behavior), and what they actually do with it (information use). When designers ignore this, several failures occur: dashboards that answer questions nobody asked, reports buried where nobody looks, labels and filters that do not match how users think, and data that is retrieved but never acted on. The chapter's warning captures this: "Information that no one uses has no value." A database is not useful merely because it contains records — it is useful when people can connect those records to real decisions.</p>
+<p><strong>Question 7: The chapter introduces strategic alignment with three business aims: cost leadership, differentiation, and innovation. Can one information system support more than one of these aims at the same time? Explain your reasoning with an example.</strong>
+<strong>Suggested Answer:</strong> Yes, one system can support multiple aims, though there are often trade-offs. For example, a hospital's electronic health records system can support cost leadership (by reducing duplicate tests and administrative waste), differentiation (by enabling more personalized, coordinated patient care), and innovation (by providing data for clinical research and new treatment protocols). However, the same system may need different features, reports, and access rules for each aim — and those features may compete for resources. A system optimized purely for cost reduction may strip out the flexibility needed for innovation. Good strategic alignment means making these trade-offs consciously rather than assuming one system can do everything equally well.</p>
+<p><strong>Question 8: Consider the "Apply the Concepts" exercise at the end of the chapter. If you completed it, what was the hardest part of tracing the DIKW path for your chosen business? If you have not completed it yet, which of the five questions do you expect to be the hardest, and why?</strong>
+<strong>Suggested Answer:</strong> Answers will vary. A common difficulty is moving from information to knowledge (question 3 in the exercise) — identifying what pattern or cause the data reveals. This step requires judgment and context, not just calculation, which makes it harder than organizing data into a report. Another common difficulty is naming specific hardware, software, and processes (question 4) for a business you only see from the outside — it reveals how much of an information system is invisible to customers. The exercise is valuable precisely because it exposes which steps of the chain feel natural and which feel unfamiliar.</p>
+<h3>Personal Reflection</h3>
+<p><strong>Question 1: Think about a time you made a decision based on poor or incomplete information. What went wrong, and which of the four data quality dimensions (accuracy, completeness, timeliness, consistency) was most at fault?</strong>
+<strong>Suggested Answer:</strong> Answers will be personal. A strong response names a specific decision (choosing a course section, buying a product, accepting a job, planning a trip), identifies what information was missing or wrong, and maps the failure to one or more of the four dimensions. For example: accepting a job based on an outdated salary range (timeliness), or choosing a course section based on an instructor rating that turned out to be for a different course (accuracy). The reflection is most useful when it connects a personal experience to the chapter's vocabulary — this is the same pattern managers face at organizational scale.</p>
+<p><strong>Question 2: You interact with information systems every day — Brightspace, your phone, streaming platforms, banking apps, campus systems. Pick one and quickly list its five components (hardware, software, data, processes, people). Which component do you think is the weakest link, and why?</strong>
+<strong>Suggested Answer:</strong> Answers will vary by system. For Brightspace: Hardware = university servers and your laptop or phone. Software = the Brightspace platform, your browser. Data = course content, grades, submission records, announcements. Processes = assignment submission workflows, grading rubrics, attendance tracking. People = students, instructors, TAs, ITS support staff. Many students identify people or processes as the weakest link — for example, instructors who post materials inconsistently (processes) or students who do not check announcements (people). This matches the chapter's point: system failures often come from the non-technical components.</p>
+<p><strong>Question 3: The chapter frames management as decision-making under uncertainty. Reflect on a group project, job, or student organization where you had to make a decision without having all the information you wanted. How did you handle the gap? Would a better information system have changed your approach?</strong>
+<strong>Suggested Answer:</strong> Answers will be personal. A strong response describes a specific decision context, acknowledges what was unknown, and explains what the person did instead — gathered partial data, asked someone with more experience, made a reasonable assumption and monitored results, or delayed the decision. The follow-up question about a better information system is key: sometimes a system would have helped (if the missing information existed but was inaccessible), and sometimes it would not have (if the information simply did not exist yet — uncertainty is inherent, not always fixable). Recognizing the difference is itself a managerial skill.</p>
+<p><strong>Question 4: The "Framing the Course Title" subsection breaks down <em>Business Information Technology Management</em> into four words. Which of the four — Business, Information, Technology, or Management — do you feel strongest in right now? Which do you most need to develop? Be specific.</strong>
+<strong>Suggested Answer:</strong> Answers will be personal. A student with work experience in retail or service might feel strongest in Business (understanding how organizations operate) and weakest in Technology (databases, SQL, analytics tools). A student with a technical background might feel strongest in Technology and weakest in Management (strategic thinking, governance, stakeholder analysis). A student who has led teams or projects might feel strongest in Management and weakest in Information (how to structure data, design KPIs, trace the DIKW path). The chapter is designed so that every student has somewhere to grow — the question is which growth edge is yours.</p>
+<p><strong>Question 5: Information behavior includes passive encountering — learning something useful from a dashboard you happened to glance at, an alert you did not expect, or a conversation you did not plan. Describe a recent example from your own life where you learned something useful without actively searching for it.</strong>
+<strong>Suggested Answer:</strong> Answers will be personal. Common examples include: a notification from a banking app about an unusual charge, a weather alert that changed weekend plans, a social media post that surfaced a job opening, a friend mentioning a deadline you had forgotten, or a Brightspace announcement that clarified an assignment. The point of the question is to notice how much information reaches us passively — and to recognize that good information systems design for this, not just for active search. Dashboards, alerts, and well-placed summaries are not decorative; they are how people encounter information they did not know they needed.</p>
+<p><strong>Question 6: The chapter argues that people give an information system its purpose. Have you ever used a system (at school, work, or home) where people worked around the system instead of with it — using spreadsheets, sticky notes, or informal workarounds? Why do you think that happened, and which of the five components was the root cause?</strong>
+<strong>Suggested Answer:</strong> Answers will be personal. Common examples: a team using a shared spreadsheet instead of the official project management tool because the official tool was too complicated (software), a restaurant server writing orders on paper because the POS terminal was slow (hardware), or students sharing a Google Doc of notes because the instructor's Brightspace page was disorganized (processes). The most valuable part of the answer is diagnosing which component was the root cause — often it is processes (the official workflow does not match how work is actually done) or people (lack of training, trust, or motivation), not the technology itself. This is the chapter's central point: system problems are rarely just software problems.</p>
+<p><strong>Question 7: After reading this chapter, what is one question you would now ask before trusting a dashboard, report, or KPI that someone shows you?</strong>
+<strong>Suggested Answer:</strong> Strong answers draw directly from the chapter. Examples: "Where did the data come from, and how recently was it updated?" (timeliness and data quality), "What exactly is this KPI measuring, and what is it not measuring?" (KPI design and the risk of shaping the wrong behavior), "Who owns this number, and who is expected to act on it?" (governance and accountability), "Does this metric reflect what the organization is actually trying to achieve?" (strategic alignment), or "What would I not know if I only looked at this number?" (the limits of any single KPI). The best answers show that the student has internalized the chapter's skepticism toward numbers without context.</p>
+<p><strong>Question 8: This chapter is the conceptual foundation for the rest of the book. Looking ahead, which later topic are you most curious about — databases (Ch 4), SQL (Ch 5), the relational model (Ch 6), normalization (Ch 7), analytics (Ch 9/14), or strategy (Ch 15)? Why does that topic interest you?</strong>
+<strong>Suggested Answer:</strong> Answers will be personal and there is no wrong answer. A student interested in databases might want to understand how the "Representation and Retrieval" layer actually works. A student curious about SQL might want to learn the practical language that turns raw data into reports. A student drawn to analytics might want to build the dashboards and insights this chapter described. A student interested in strategy might want to connect technology decisions to business outcomes. The question is designed to help students see themselves in the book's arc — and to recognize that Chapter 2's foundations are the platform for everything that follows.</p>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>Readiness Assessment Test (RAT): Chapter 2: Foundations of Information Systems</h2>
+                  <p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/RAT_nqr5a3?_a=BAMAAAiu0" alt="RAT" />
+</p>
+
+<blockquote>
+<p><strong>Main chapter:</strong> ch02-main-2026-06-02.md
+<strong>Let's Build:</strong> ch02-lets-build-2026-05-22.md
+<strong>Terms:</strong> ch02-terms-2026-06-02.md</p>
+</blockquote>
+<hr />
+<h2>Remember</h2>
+<p><strong>1. What does the "D" in the DIKW hierarchy stand for?</strong></p>
+<p>A. Decision</p>
+<p>B. Data</p>
+<p>C. Deployment</p>
+<p>D. Database</p>
+<p><strong>2. In the R.E.A.D. framework, what does the "R" stand for?</strong></p>
+<p>A. Reporting and Retrieval</p>
+<p>B. Representation and Retrieval</p>
+<p>C. Records and Relationships</p>
+<p>D. Retrieval and Review</p>
+<p><strong>3. Select ALL that apply: Which of the following are components of the five-component framework for information systems?</strong></p>
+<p>A. Hardware</p>
+<p>B. Software</p>
+<p>C. Budget</p>
+<p>D. Data</p>
+<p>E. People</p>
+<p><strong>4. What is the guiding question at the Knowledge level of the DIKW hierarchy?</strong></p>
+<p>A. What was recorded?</p>
+<p>B. What happened?</p>
+<p>C. Why is it happening?</p>
+<p>D. What should we do?</p>
+<p><strong>5. Select ALL that apply: Which data quality dimensions does the chapter identify as essential?</strong></p>
+<p>A. Accuracy</p>
+<p>B. Popularity</p>
+<p>C. Timeliness</p>
+<p>D. Consistency</p>
+<p>E. Complexity</p>
+<p><strong>6. In the Input-Process-Output (IPO) model, what does the "P" stand for?</strong></p>
+<p>A. Performance</p>
+<p>B. Planning</p>
+<p>C. Processes</p>
+<p>D. People</p>
+<p><strong>7. What does the acronym KPI stand for?</strong></p>
+<p>A. Key Process Indicator</p>
+<p>B. Key Performance Indicator</p>
+<p>C. Knowledge Performance Index</p>
+<p>D. Known Process Input</p>
+<p><strong>8. Select ALL that apply: Which are stages in the R.E.A.D. framework?</strong></p>
+<p>A. Representation and Retrieval</p>
+<p>B. Reporting and Analysis</p>
+<p>C. Expression and Experience</p>
+<p>D. Association and Acquisition</p>
+<p>E. Design and Development</p>
+<hr />
+<h2>Understand</h2>
+<p><strong>9. Why does the chapter argue that "storing data is not the same as using data"?</strong></p>
+<p>A. Because storage technology is unreliable</p>
+<p>B. Because data must be organized, interpreted, and connected to a decision before it creates value</p>
+<p>C. Because most organizations store too much data</p>
+<p>D. Because databases are expensive to maintain</p>
+<p><strong>10. Select ALL that apply: According to the chapter, how does information behavior map onto the R.E.A.D. framework?</strong></p>
+<p>A. Representation and Retrieval supplies the records people search through</p>
+<p>B. Expression and Experience shapes how information is encountered and trusted</p>
+<p>C. Association and Acquisition replaces the need for information-seeking behavior</p>
+<p>D. Decision-Making and Deployment is information use in action</p>
+<p>E. Information need is the same as the Wisdom level of DIKW</p>
+<p><strong>11. What is the main reason the chapter distinguishes information systems from information technology?</strong></p>
+<p>A. IT is more expensive than IS</p>
+<p>B. Organizations often treat system problems as software problems, when the real issue may be people, processes, or data</p>
+<p>C. IS is a newer term than IT</p>
+<p>D. IT only includes hardware</p>
+<p><strong>12. Select ALL that apply: Why is feedback important in the five-part information system operating loop?</strong></p>
+<p>A. It closes the learning cycle so systems improve over time</p>
+<p>B. It replaces the need for output</p>
+<p>C. It ties systems back to managerial learning and performance improvement</p>
+<p>D. Without it, an information system is a one-way pipeline</p>
+<p>E. It eliminates the need for data quality checks</p>
+<p><strong>13. What does the chapter mean by "strategic alignment"?</strong></p>
+<p>A. Making sure all computers use the same operating system</p>
+<p>B. Aligning the IT department with the finance department</p>
+<p>C. Ensuring information systems and technology investments support the organization's goals, structure, and strategy</p>
+<p>D. Standardizing all business processes across departments</p>
+<p><strong>14. Why does the chapter state that "KPIs shape behavior"?</strong></p>
+<p>A. Because employees are afraid of dashboards</p>
+<p>B. Because what you measure drives what people pay attention to, and poorly designed KPIs can encourage the wrong actions</p>
+<p>C. Because KPIs are legally binding contracts</p>
+<p>D. Because KPIs only work in manufacturing settings</p>
+<p><strong>15. Select ALL that apply: What does the five-component framework help explain?</strong></p>
+<p>A. Why a system can fail even when the software works perfectly</p>
+<p>B. Why a database project is also a people project and a process project</p>
+<p>C. Why hardware is the only component that matters</p>
+<p>D. Why all five components must work together for the system to deliver value</p>
+<p>E. Why technology alone cannot guarantee system success</p>
+<p><strong>16. According to the chapter, how does MIS differ from BITM?</strong></p>
+<p>A. MIS focuses on managing technology as a strategic resource; BITM focuses on managerial use of information</p>
+<p>B. MIS focuses on using information to support managerial work; BITM focuses on managing technology as a strategic business resource</p>
+<p>C. MIS and BITM are the same thing</p>
+<p>D. MIS is only about software; BITM is only about hardware</p>
+<hr />
+<h2>Apply</h2>
+<p><strong>17. An online retailer notices late deliveries spike on weekends. A manager reassigns warehouse staff to cover Saturday shifts. Which R.E.A.D. stage does this action represent?</strong></p>
+<p>A. Representation and Retrieval</p>
+<p>B. Expression and Experience</p>
+<p>C. Association and Acquisition</p>
+<p>D. Decision-Making and Deployment</p>
+<p><strong>18. Select ALL that apply: A university wants to measure whether its courses are performing well. According to the chapter, which of the following could serve as useful KPIs?</strong></p>
+<p>A. Course completion rate</p>
+<p>B. The color of the classroom walls</p>
+<p>C. Student improvement over time</p>
+<p>D. Number of missing assignments per student</p>
+<p>E. The brand of computers in the lab</p>
+<p><strong>19. A company buys CRM software and gives everyone a login, but six months later customer data is inconsistent and dashboards go unused. According to the chapter's concepts, which component is most likely the root cause?</strong></p>
+<p>A. Hardware — the servers are too slow</p>
+<p>B. Processes — there are no clear rules for when and how staff should update records</p>
+<p>C. Software — the CRM application has a bug</p>
+<p>D. Data — the database ran out of storage space</p>
+<p><strong>20. A hospital administrator looks at a dashboard showing that patient wait times in the emergency department have increased by 30% this month. What DIKW level does this dashboard represent?</strong></p>
+<p>A. Data</p>
+<p>B. Information</p>
+<p>C. Knowledge</p>
+<p>D. Wisdom</p>
+<p><strong>21. Select ALL that apply: A coffee shop owner records daily sales transactions. According to the chapter's data-to-performance chain, which steps are needed to turn those records into a business decision?</strong></p>
+<p>A. Organize the transaction data into a report showing sales by day and product</p>
+<p>B. Recognize a pattern, such as higher pastry sales on weekday mornings</p>
+<p>C. Decide to increase pastry orders before weekday morning shifts</p>
+<p>D. Immediately buy more coffee beans regardless of the data</p>
+<p>E. Delete all transaction records to save storage space</p>
+<p><strong>22. A customer-service lead opens a dashboard and filters late shipments by warehouse and week to investigate a spike in complaints. Which information behavior concept does this action best represent?</strong></p>
+<p>A. Information need</p>
+<p>B. Information-seeking behavior</p>
+<p>C. Information use</p>
+<p>D. Information storage</p>
+<p><strong>23. Using the chapter's IT/IS/MIS/BITM comparison framework, at which layer is a Chief Information Officer deciding whether to adopt a new cloud platform for the entire organization?</strong></p>
+<p>A. IT — selecting the technical tools</p>
+<p>B. IS — designing the coordinated arrangement</p>
+<p>C. MIS — supporting managerial decisions</p>
+<p>D. BITM — managing technology as a strategic business resource</p>
+<p><strong>24. Select ALL that apply: According to the chapter, which design decisions help make a KPI trustworthy rather than misleading?</strong></p>
+<p>A. A clear business goal that the KPI connects to</p>
+<p>B. A precise formula for calculating the KPI</p>
+<p>C. A flashy dashboard with bright colors</p>
+<p>D. A reliable data source and a regular refresh cycle</p>
+<p>E. An owner who is expected to act on the KPI</p>
+<hr />
+<h2>Analyze</h2>
+<p><strong>25. A company produces low-cost furniture quickly and with minimal waste, but customers return 40% of purchases because the furniture breaks within weeks. Using the chapter's terms, how would you describe this situation?</strong></p>
+<p>A. The company is both efficient and effective</p>
+<p>B. The company is efficient but ineffective</p>
+<p>C. The company is effective but inefficient</p>
+<p>D. The company is neither efficient nor effective</p>
+<p><strong>26. Select ALL that apply: A delivery company's tracking system fails — packages are consistently marked as delivered when they have not arrived. The hardware and software are functioning correctly. Using the five-component framework, what could explain the failure?</strong></p>
+<p>A. Data — the scanning process captures the wrong status code</p>
+<p>B. Processes — there is no verification step before marking a package as delivered</p>
+<p>C. People — delivery staff are rushing and scanning packages before reaching the door</p>
+<p>D. Hardware — the scanners need to be replaced</p>
+<p>E. Software — the tracking application must have a bug</p>
+<p><strong>27. How does the DIKW hierarchy relate to the R.E.A.D. framework, according to the chapter?</strong></p>
+<p>A. They are two names for the same thing</p>
+<p>B. DIKW describes stages of meaning (what develops); R.E.A.D. describes the organizational work needed to move through those stages (how it happens)</p>
+<p>C. DIKW is about technology; R.E.A.D. is about management</p>
+<p>D. R.E.A.D. replaces DIKW in later chapters</p>
+<p><strong>28. A call center tracks "average call handling time" as its main KPI. Call times drop by 40%, but customer satisfaction surveys show a sharp decline. What most likely happened?</strong></p>
+<p>A. The KPI accurately measured improved performance</p>
+<p>B. Agents began rushing customers off the phone to keep their average low, sacrificing resolution quality</p>
+<p>C. The call center hired better agents</p>
+<p>D. Customers started preferring longer calls</p>
+<p><strong>29. Select ALL that apply: According to the chapter's discussion of information behavior, which barriers could prevent someone from moving from information need to information use?</strong></p>
+<p>A. Unclear dashboard labels that make data hard to interpret</p>
+<p>B. Missing permissions that block access to needed reports</p>
+<p>C. Inconsistent definitions — one department defines "late shipment" differently than another</p>
+<p>D. Low trust in the data because past reports were inaccurate</p>
+<p>E. Having too many perfectly accurate and well-labeled reports</p>
+<p><strong>30. In the chapter's data-to-performance chain (Data → Information → Insight → Decision → Performance), what occurs between Information and Decision?</strong></p>
+<p>A. Data is captured from business activity</p>
+<p>B. Performance is measured against KPIs</p>
+<p>C. Insight is formed — a pattern, cause, risk, or opportunity is recognized</p>
+<p>D. New data is generated as an output</p>
+<p><strong>31. Why might a technically impressive information system still fail, according to the chapter's discussion of strategic alignment?</strong></p>
+<p>A. Because the system does not fit what the organization is actually trying to do</p>
+<p>B. Because all technically impressive systems eventually become obsolete</p>
+<p>C. Because users always resist new technology</p>
+<p>D. Because the system was built with the wrong programming language</p>
+<p><strong>32. Select ALL that apply: According to the chapter, which questions does IT governance address?</strong></p>
+<p>A. Who decides which systems are built or purchased?</p>
+<p>B. Who owns the data?</p>
+<p>C. Which brand of server should be purchased?</p>
+<p>D. Who is responsible for security?</p>
+<p>E. How does the organization know whether a system creates value?</p>
+<hr />
+<h2>Evaluate</h2>
+<p><strong>33. A low-cost retailer must choose between two inventory management systems. System X has more features and better reviews. System Y has fewer features but is designed specifically for low-cost retail operations with tight margins. Based on the chapter's principles, which system should the retailer choose and why?</strong></p>
+<p>A. System X, because more features always produce better results</p>
+<p>B. System Y, because strategic alignment matters more than feature count — the system must fit the organization's competitive strategy</p>
+<p>C. System X, because better reviews guarantee business success</p>
+<p>D. Neither, because inventory systems are irrelevant for retailers</p>
+<p><strong>34. Select ALL that apply: Based on the chapter, which questions should a manager ask before trusting a KPI that someone presents in a meeting?</strong></p>
+<p>A. Where did the data come from, and how recently was it updated?</p>
+<p>B. What exactly is this KPI measuring, and what is it NOT measuring?</p>
+<p>C. Does this metric reflect what the organization is actually trying to achieve?</p>
+<p>D. Who owns this number, and who is expected to act on it?</p>
+<p>E. Is the dashboard visually appealing?</p>
+<p><strong>35. A company's CRM implementation fails — customer data is inconsistent, dashboards are ignored, and management sees no improvement. Which diagnosis is most complete according to the chapter's concepts?</strong></p>
+<p>A. The CRM software was defective</p>
+<p>B. The company confused IT with IS — it bought a tool but did not build the full system of people, processes, data, and technology working together</p>
+<p>C. The sales team was not trained on the software</p>
+<p>D. The database ran out of storage</p>
+<p><strong>36. Based on the chapter, which approach best ensures that a new information system will actually improve business performance?</strong></p>
+<p>A. Buy the most expensive system available</p>
+<p>B. Start by defining the business need, identify what data and KPIs matter, design the full system (people, processes, data, technology) to support those goals, and build in feedback to learn and improve</p>
+<p>C. Install the software first and figure out processes later</p>
+<p>D. Focus exclusively on hardware reliability</p>
+<p><strong>37. Select ALL that apply: A university is redesigning its student information system. Which principles from Chapter 2 should guide the design?</strong></p>
+<p>A. Define performance first — what outcomes should the system improve for students, instructors, and administrators?</p>
+<p>B. Treat the system as more than software — include data standards, workflows, training, and governance</p>
+<p>C. Ensure strategic alignment — the system should support the university's goals, not just whichever features are available</p>
+<p>D. Design for information behavior — understand how students and instructors actually search for and use information</p>
+<p>E. Buy the most popular system and adapt the university's processes to match it</p>
+<p><strong>38. A manager must decide whether to invest in a new analytics dashboard. According to the chapter, which question is most important to ask first?</strong></p>
+<p>A. How much does the dashboard software cost?</p>
+<p>B. What decision will this dashboard support, and who will act on the information?</p>
+<p>C. What color scheme should the dashboard use?</p>
+<p>D. How many rows of data can the dashboard display?</p>
+<p><strong>39. The chapter's "Apply the Concepts" exercise asks students to choose a business and trace the DIKW path from raw data to a performance outcome. Based on the chapter, what makes this exercise challenging for many students?</strong></p>
+<p>A. The exercise requires memorizing exact definitions</p>
+<p>B. Moving from information to knowledge — identifying a pattern or cause — requires judgment and context, not just calculation</p>
+<p>C. The exercise can only be done with access to a real database</p>
+<p>D. The exercise only works for online retailers</p>
+<p><strong>40. Select ALL that apply: Which of the following statements are most consistent with Chapter 2's view of the relationship between data, systems, and decisions?</strong></p>
+<p>A. Data alone does not improve performance — it must be organized, interpreted, and connected to action</p>
+<p>B. An information system is more than its technology — it includes people, processes, data, and governance</p>
+<p>C. The best KPI is the one that is easiest to measure, regardless of what it actually tracks</p>
+<p>D. Strategic alignment means technology should serve the organization's goals, not the other way around</p>
+<p>E. Feedback turns a one-way information pipeline into a learning cycle that improves over time</p>
+<hr />
+<h2>Assessment Design Notes</h2>
+<p>This RAT supports readiness assessment for Chapter 2: Foundations of Information Systems. The questions are drawn from the chapter's four-part arc — Data Meaning (DIKW, R.E.A.D., data quality), Business Performance (IPO, efficiency, effectiveness, KPIs), Information Systems as Engines (IS vs IT, five components, information behavior, operating loop), and Managing for Value (MIS, BITM, strategic alignment, governance). The Let's Build course-as-a-system framing and the chapter's online-retailer running example inform the scenario-based questions.</p>
+<h3>Bloom Distribution</h3>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>1–8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>9–16</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>17–24</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>25–32</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>33–40</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h3>Design Criterion Coverage</h3>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Bloom Sections Used</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>Apply, Analyze, Evaluate</td>
+<td>1, 2, 4, 8, 9, 10, 12, 17, 20, 21, 22, 24, 28</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>Apply, Analyze, Evaluate</td>
+<td>17, 18, 19, 21, 25, 26, 28, 33, 35, 37, 38</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>Remember, Understand</td>
+<td>1, 3, 5, 6, 7, 11, 13, 14, 16</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<h3>AI-Resistance Strategies Used</h3>
+<ol>
+<li><strong>Chapter-specific reasoning</strong> — questions require the chapter's exact frameworks (DIKW guiding questions, R.E.A.D. stage names, five-component names, five-part operating loop).</li>
+<li><strong>Schema-specific context</strong> — questions reference the chapter's IT/IS/MIS/BITM comparison table and the five-part operating loop.</li>
+<li><strong>Scenario stems with embedded traps</strong> — CRM failure and KPI distortion scenarios require distinguishing surface symptoms from root causes.</li>
+<li><strong>Multi-answer options requiring fine-grained discrimination</strong> — Select ALL questions include distractors from adjacent concepts.</li>
+<li><strong>Non-obvious correct answers paraphrased</strong> — Q9 and Q31 paraphrase chapter arguments rather than using keyword-matched definitions.</li>
+<li><strong>Stage-progression reasoning</strong> — Q17 and Q30 require identifying correct stages in R.E.A.D. and data-to-performance chains.</li>
+<li><strong>Distractors from adjacent but distinct concepts</strong> — Q2 includes "Reporting and Retrieval" and "Records and Relationships" as near-miss distractors.</li>
+</ol>
+<hr />
+<h2>Answer Key</h2>
+<h3>Remember</h3>
+<p><strong>Question 1: What does the "D" in the DIKW hierarchy stand for?</strong>
+<strong>Correct Answer:</strong> B. Data
+<strong>Explanation:</strong> DIKW = Data, Information, Knowledge, Wisdom. Data is raw observations and facts.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Decision relates to Wisdom and Deployment, not the "D" in DIKW.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Data is the first level of the DIKW hierarchy.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Deployment is the "D" in R.E.A.D., not DIKW.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Database is a technology for storing data, not a DIKW level.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 2: In the R.E.A.D. framework, what does the "R" stand for?</strong>
+<strong>Correct Answer:</strong> B. Representation and Retrieval
+<strong>Explanation:</strong> The chapter defines R as "Representation and Retrieval — Structuring raw inputs so data is accurate, accessible, and consistently stored."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>"Reporting" is closer to Expression; the correct term is "Representation."</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Representation and Retrieval is the first stage of R.E.A.D.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>"Records and Relationships" is not a R.E.A.D. stage name.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>"Retrieval and Review" reverses the order and uses the wrong companion word.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 3: Select ALL that apply: Which of the following are components of the five-component framework for information systems?</strong>
+<strong>Correct Answers:</strong> A, B, D, E
+<strong>Explanation:</strong> The five components are Hardware, Software, Data, Processes, and People. Budget is not one of them.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Hardware — physical devices.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Software — programs and applications.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Budget is a resource constraint, not a five-component element.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Data — recorded facts and values.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>People — users and stakeholders.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 4: What is the guiding question at the Knowledge level of the DIKW hierarchy?</strong>
+<strong>Correct Answer:</strong> C. Why is it happening?
+<strong>Explanation:</strong> Data = "What was recorded?", Information = "What happened?", Knowledge = "Why is it happening?", Wisdom = "What should we do?"</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>"What was recorded?" is Data.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>"What happened?" is Information.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>"Why is it happening?" is Knowledge.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>"What should we do?" is Wisdom.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 5: Select ALL that apply: Which data quality dimensions does the chapter identify as essential?</strong>
+<strong>Correct Answers:</strong> A, C, D
+<strong>Explanation:</strong> The four dimensions are Accuracy, Completeness, Timeliness, and Consistency. Popularity and Complexity are not among them.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Accuracy — data matches reality.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Popularity is not a data quality dimension.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Timeliness — data is current enough.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Consistency — same idea recorded the same way.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Complexity is not a data quality dimension.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 6: In the Input-Process-Output (IPO) model, what does the "P" stand for?</strong>
+<strong>Correct Answer:</strong> C. Processes
+<strong>Explanation:</strong> IPO = Inputs, Processes, Outputs. "Every business takes in inputs, transforms them through processes, and produces outputs."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Performance is an outcome, not the "P" in IPO.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Planning is a management activity.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Processes — activities that transform inputs.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>People are in the five-component framework.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 7: What does the acronym KPI stand for?</strong>
+<strong>Correct Answer:</strong> B. Key Performance Indicator
+<strong>Explanation:</strong> "A KPI is a quantifiable signal used to evaluate progress toward an important goal."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>"Key Process Indicator" is not correct.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Key Performance Indicator.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>"Knowledge Performance Index" is not correct.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>"Known Process Input" is not a chapter term.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 8: Select ALL that apply: Which are stages in the R.E.A.D. framework?</strong>
+<strong>Correct Answers:</strong> A, C, D
+<strong>Explanation:</strong> The four stages: Representation and Retrieval, Expression and Experience, Association and Acquisition, Decision-Making and Deployment.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Representation and Retrieval.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>"Reporting and Analysis" is not a R.E.A.D. stage.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Expression and Experience.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Association and Acquisition.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>"Design and Development" is not a R.E.A.D. stage.</td>
+</tr>
+</tbody>
+</table>
+<h3>Understand</h3>
+<p><strong>Question 9: Why does the chapter argue that "storing data is not the same as using data"?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> The key-takeaway callout: "Data becomes valuable only when people use information systems to organize it, interpret it, and act on it."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Storage reliability is not the argument.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Data needs organization, interpretation, and connection to decisions.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter does not argue organizations store too much data.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Database cost is not the basis of the distinction.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 10: Select ALL that apply: According to the chapter, how does information behavior map onto the R.E.A.D. framework?</strong>
+<strong>Correct Answers:</strong> A, B, D
+<strong>Explanation:</strong> The chapter maps: R = records to search, E = how info is encountered/trusted, D = information use in action.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>R supplies the records people search through.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>E shapes how information is encountered and trusted.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Association finds patterns; it does not replace seeking.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>D is information use in action.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Information need is a gap, not equivalent to Wisdom.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 11: What is the main reason the chapter distinguishes information systems from information technology?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> "Many organizations treat system problems as software problems. Sometimes the real issue is unclear data, weak processes, poor training, low trust."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Cost is not the basis.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>System failures often come from non-technical components.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The distinction is conceptual, not chronological.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>IT includes software, networks, databases as well.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 12: Select ALL that apply: Why is feedback important in the five-part information system operating loop?</strong>
+<strong>Correct Answers:</strong> A, C, D
+<strong>Explanation:</strong> "Feedback ties systems back to managerial learning... Without feedback, an IS is a one-way pipeline. With feedback, it becomes a cycle."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Closes the learning loop.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Supplements output, does not replace it.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Ties systems to managerial learning.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Without feedback = one-way pipeline.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Does not eliminate need for data quality.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 13: What does the chapter mean by "strategic alignment"?</strong>
+<strong>Correct Answer:</strong> C
+<strong>Explanation:</strong> "Information systems and technology investments should support the organization's goals, structure, and strategy."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>OS standardization is a technical detail.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Alignment is about systems supporting strategy.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Matches the chapter's definition.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Standardizing processes is one outcome, not the definition.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 14: Why does the chapter state that "KPIs shape behavior"?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> "When you evaluate a KPI, ask not only what it measures but also what behavior it encourages."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The chapter does not claim employees fear dashboards.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>What you measure drives attention; poor KPIs encourage wrong actions.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>KPIs are not legally binding.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>KPIs apply across sectors per the chapter's examples.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 15: Select ALL that apply: What does the five-component framework help explain?</strong>
+<strong>Correct Answers:</strong> A, B, D, E
+<strong>Explanation:</strong> "All five components matter. A database project is never only a database project."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Failures can originate in any component.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>A database project is also a people and process project.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>All five matter, not just hardware.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>All five must work together.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Technology alone is insufficient.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 16: According to the chapter, how does MIS differ from BITM?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> "MIS focuses on how information systems support management. BITM focuses on how technology choices are managed as strategic business decisions."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Reverses the relationship.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Matches the chapter's explicit distinction.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Related but distinct fields.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Neither is limited to software or hardware alone.</td>
+</tr>
+</tbody>
+</table>
+<h3>Apply</h3>
+<p><strong>Question 17: An online retailer notices late deliveries spike on weekends. A manager reassigns warehouse staff to cover Saturday shifts. Which R.E.A.D. stage does this action represent?</strong>
+<strong>Correct Answer:</strong> D. Decision-Making and Deployment
+<strong>Explanation:</strong> "Translating insight into action, strategy, process changes, or system improvements." Reassigning staff = deployment.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>R is about storing data.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>E is about presenting information.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A is about identifying the pattern, not acting on it.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Turning insight into action = Decision-Making and Deployment.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 18: Select ALL that apply: A university wants to measure whether its courses are performing well. According to the chapter, which of the following could serve as useful KPIs?</strong>
+<strong>Correct Answers:</strong> A, C, D
+<strong>Explanation:</strong> Course completion rate and improvement are chapter KPI examples; missing deliverables is from the Let's Build.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Course completion rate is a chapter KPI example.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Wall color is not a performance measure.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Improvement over time is discussed in chapter and Let's Build.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Missing deliverables is a Let's Build workflow KPI.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Computer brand is infrastructure, not performance.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 19: A company buys CRM software... customer data is inconsistent and dashboards go unused. Which component is most likely the root cause?</strong>
+<strong>Correct Answer:</strong> B. Processes
+<strong>Explanation:</strong> The "Avoid" callout: "A CRM application is IT. A sales process that defines stages, trains staff... is an IS." Missing processes best explains inconsistent data and non-use.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Hardware speed not the cause.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Missing rules for updating records = process failure.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter frames this as process + people + data, not primarily software.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Storage space would cause technical failures, not usage patterns.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 20: A hospital administrator looks at a dashboard showing patient wait times increased 30%. What DIKW level?</strong>
+<strong>Correct Answer:</strong> B. Information
+<strong>Explanation:</strong> Information = "Data organized into a meaningful pattern or summary" answering "What happened?"</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Data would be individual wait-time records.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Dashboard organizes raw data into a summary = Information.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Knowledge would explain why wait times increased.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Wisdom would be deciding what action to take.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 21: Select ALL that apply: A coffee shop owner records daily sales. Which steps turn records into a business decision per the data-to-performance chain?</strong>
+<strong>Correct Answers:</strong> A, B, C
+<strong>Explanation:</strong> Chain: Data → Information (organize into report) → Insight (recognize pattern) → Decision (act). D and E contradict the logic.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Organizing into a report = Information step.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Recognizing a pattern = Insight step.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Deciding to increase orders = Decision step.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Buying regardless of data contradicts the chain.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Deleting records prevents the chain.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 22: A lead opens a dashboard and filters late shipments. Which information behavior concept?</strong>
+<strong>Correct Answer:</strong> B. Information-seeking behavior
+<strong>Explanation:</strong> Defined as "actions people take to search for, find, retrieve, and evaluate information — running a query, opening a report, filtering a dashboard."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Need is the gap recognized earlier (noticing the complaint spike).</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Opening/filtering a dashboard = active search = seeking behavior.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Use would be what the lead does after finding the pattern.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>"Information storage" is not a Wilson concept.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 23: CIO deciding whether to adopt a new cloud platform. Which IT/IS/MIS/BITM layer?</strong>
+<strong>Correct Answer:</strong> D. BITM
+<strong>Explanation:</strong> BITM = "how organizations select, design, govern, and adapt technology." Platform adoption = strategic technology choice = BITM.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>IT is the tools, not the strategic decision.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>IS is the arrangement; CIO decides which IS to build.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>MIS is day-to-day managerial information use.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>BITM = managing technology as strategic business resource.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 24: Select ALL that apply: Which design decisions make a KPI trustworthy?</strong>
+<strong>Correct Answers:</strong> A, B, D, E
+<strong>Explanation:</strong> Chapter lists: clear goal, precise formula, reliable source, refresh cycle, accountable owner, thresholds.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Clear business goal is listed first.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Precise formula for consistent calculation.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Visual appearance is not a trustworthiness criterion.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Reliable source and refresh cycle.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Accountable owner who acts on the KPI.</td>
+</tr>
+</tbody>
+</table>
+<h3>Analyze</h3>
+<p><strong>Question 25: Company produces low-cost furniture quickly with minimal waste, but 40% returns due to breakage. Describe using chapter terms.</strong>
+<strong>Correct Answer:</strong> B. Efficient but ineffective
+<strong>Explanation:</strong> Efficient = doing things right (low cost, fast, minimal waste). Ineffective = not doing the right things (product breaks, customers dissatisfied).</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Not effective — 40% returns.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Efficient (production) but ineffective (product quality).</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Company is efficient, not effective.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Company is efficient — produces quickly with minimal waste.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 26: Select ALL that apply: Delivery tracking fails — packages marked delivered when not. Hardware/software functioning. Five-component explanations?</strong>
+<strong>Correct Answers:</strong> A, B, C
+<strong>Explanation:</strong> Since hardware/software work, the failure must be in Data, Processes, or People per the five-component framework.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Data — wrong status code captured.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Processes — no verification step.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>People — staff scanning prematurely.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Scenario states hardware is functioning.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Scenario states software is functioning.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 27: How does DIKW relate to R.E.A.D.?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> "DIKW describes stages of meaning. R.E.A.D. describes the work required to move through those stages."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Not the same — different purposes.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>DIKW = what develops; R.E.A.D. = how it happens.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Both address meaning and work.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Both frameworks are used; R.E.A.D. does not replace DIKW.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 28: Call center KPI "average handling time" drops 40% but satisfaction declines. What happened?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> Chapter's explicit example: "If a call center tracks average handling time without tracking resolution quality, employees may rush customers off the phone."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>KPI improved but outcome worsened — not accurate measurement.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Matches the chapter's explicit KPI distortion example.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Better agents would improve both speed and satisfaction.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>No evidence of customer preference change.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 29: Select ALL that apply: Barriers preventing movement from information need to information use?</strong>
+<strong>Correct Answers:</strong> A, B, C, D
+<strong>Explanation:</strong> Chapter lists: "unclear labels, poor search tools, missing permissions, inconsistent definitions, or low trust in the data."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Unclear labels explicitly listed.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Missing permissions explicitly listed.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Inconsistent definitions explicitly listed.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Low trust explicitly listed.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Too many accurate reports is not a listed barrier.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 30: In Data → Information → Insight → Decision → Performance, what occurs between Information and Decision?</strong>
+<strong>Correct Answer:</strong> C. Insight
+<strong>Explanation:</strong> "Information becomes insight when people recognize a pattern, cause, risk, or opportunity."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Data capture occurs at the start.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Performance measurement occurs at the end.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Insight — recognizing a pattern — sits between Information and Decision.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>New data generation is at the end (Performance output).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 31: Why might a technically impressive system still fail per strategic alignment?</strong>
+<strong>Correct Answer:</strong> A
+<strong>Explanation:</strong> "A system can be technically impressive and still fail if it does not fit the organization."</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>System does not fit organizational goals/strategy.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Obsolescence is not the alignment argument.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>User resistance is not the alignment argument.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Programming language is irrelevant to alignment.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 32: Select ALL that apply: Which questions does IT governance address?</strong>
+<strong>Correct Answers:</strong> A, B, D, E
+<strong>Explanation:</strong> Governance asks: who decides, who owns data, who is responsible for security, how is value measured.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Build/buy decisions = governance.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Data ownership = governance.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Server brand = operational procurement, not governance.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Security responsibility = governance.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Value measurement = governance.</td>
+</tr>
+</tbody>
+</table>
+<h3>Evaluate</h3>
+<p><strong>Question 33: Low-cost retailer choosing between System X (more features) and System Y (designed for low-cost retail). Which and why?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> Strategic alignment: "A retailer that competes on low cost needs systems that support inventory control and operational discipline." Fit matters more than feature count.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>More features ≠ better results without alignment.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Strategic alignment — system must fit competitive strategy.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Reviews ≠ guarantee of fit for specific strategy.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Inventory systems are relevant for retailers.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 34: Select ALL that apply: Questions a manager should ask before trusting a KPI?</strong>
+<strong>Correct Answers:</strong> A, B, C, D
+<strong>Explanation:</strong> Covers data quality (A), KPI design (B), strategic alignment (C), and governance (D). Visual appeal is not a criterion.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Data source and timeliness = data quality.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>What it measures and does not measure = KPI design.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Alignment with organizational goals = strategy.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Ownership and accountability = governance.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Visual appeal is not a trustworthiness criterion.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 35: CRM fails — inconsistent data, ignored dashboards, no improvement. Most complete diagnosis?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> "Buying a tool is not building a system." The IT/IS confusion explains all symptoms: inconsistent data (processes + data), ignored dashboards (people), no improvement (missing alignment).</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Blaming only software misses people, process, data components.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Captures full five-component and IT/IS distinction.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Training is only the People component; misses processes, data, alignment.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Storage is a narrow technical explanation not matching symptoms.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 36: Best approach to ensure new IS improves business performance?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> Integrates chapter's full arc: define need → design full IS (all 5 components) → align with goals → build in feedback.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Cost ≠ guarantee; alignment matters more.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Integrates the chapter's complete arc.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Contradicts IS-over-IT message.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Hardware is only 1 of 5 components.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 37: Select ALL that apply: University redesigning student IS. Which Chapter 2 principles should guide?</strong>
+<strong>Correct Answers:</strong> A, B, C, D
+<strong>Explanation:</strong> All four reflect core principles. E reverses the logic — system should fit organization, not vice versa.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Define performance first = KPI/goal emphasis.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Treat as more than software = five-component framework.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Strategic alignment = fit systems to goals.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Design for information behavior = user-centered design.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Chapter argues systems should fit the organization.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 38: Manager deciding on analytics dashboard. Most important first question?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> Business Insight callout: "Ask three questions in order: What need? How will people find/read it? What decision will it support?"</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Cost is secondary to purpose.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Chapter explicitly prioritizes the decision information will support.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Color scheme is a design detail.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Data capacity is a technical detail.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 39: What makes the "Apply the Concepts" DIKW tracing exercise challenging?</strong>
+<strong>Correct Answer:</strong> B
+<strong>Explanation:</strong> Knowledge step requires judgment and context — recognizing why a pattern exists, not just calculating. The Let's Build emphasizes thinking over being right.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Exercise is about applying concepts, not memorizing.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Knowledge requires judgment and context — harder than calculation.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Exercise is a thinking exercise, no database needed.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Exercise works for any business per the chapter.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question 40: Select ALL that apply: Which statements are most consistent with Chapter 2's view of data, systems, and decisions?</strong>
+<strong>Correct Answers:</strong> A, B, D, E
+<strong>Explanation:</strong> A = key takeaway. B = IS vs IT. D = strategic alignment. E = feedback loop. C contradicts — chapter warns against measuring easiest rather than what matters.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Key takeaway: data alone does not improve performance.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Core argument: IS &gt; technology alone.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Chapter argues opposite — measure what matters.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Strategic alignment: technology serves goals.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Feedback turns pipeline into learning cycle.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Question Distribution Summary</h2>
+<h3>Bloom Level</h3>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>1, 2, 3, 4, 5, 6, 7, 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>9, 10, 11, 12, 13, 14, 15, 16</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>17, 18, 19, 20, 21, 22, 23, 24</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>25, 26, 27, 28, 29, 30, 31, 32</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>33, 34, 35, 36, 37, 38, 39, 40</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h3>Question Type</h3>
+<table>
+<thead>
+<tr>
+<th>Question Type</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-answer MC</td>
+<td>1, 2, 4, 6, 7, 9, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 27, 28, 30, 31, 33, 35, 36, 38, 39</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Multiple-answer (Select ALL)</td>
+<td>3, 5, 8, 10, 12, 15, 18, 21, 24, 26, 29, 32, 34, 37, 40</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<h3>Design Criterion</h3>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>1, 2, 4, 8, 9, 10, 12, 17, 20, 21, 22, 24, 28</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>17, 18, 19, 21, 25, 26, 28, 33, 35, 37, 38</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>1, 3, 5, 6, 7, 11, 13, 14, 16</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch01-introduction-to-course.html"><small>Previous</small><strong>Chapter 1: Chapter 1:</strong></a>
+          <a class="pager-card pager-card--next" href="ch03-what-is-data.html"><small>Next</small><strong>Chapter 3: Chapter 3: Understanding Data Fundamentals</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

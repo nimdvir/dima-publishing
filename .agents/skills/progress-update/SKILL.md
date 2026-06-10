@@ -1,22 +1,23 @@
 ---
 name: progress-update
 description: >
-  Append progress notes and todos to the BITM330 daily edits log at
-  `.docs/.edits/edits-YYYY-MM-DD`. Use when: logging what was done today;
-  capturing new ideas, follow-ups, or pending edits; adding a checked or
-  unchecked task under today's date; recording session outcomes in the
-  shared daily edits file. Each entry becomes a Markdown task list item
-  ("- [ ]" for pending, "- [x]" for done) under a single H2 for the date.
-  Always offers to append both completed session work and related ideas
-  surfaced by the agent, and only writes items the user confirms.
+  Append progress notes and todos to the BITM330 rolling edit log at
+  `books/database-book/.edits/edit-log.md`. Use when: logging what was done
+  today; capturing new ideas, follow-ups, or pending edits; adding a checked
+  or unchecked task under today's date; recording session outcomes in the
+  repo-side edit log. Each entry becomes a Markdown task list item ("- [ ]"
+  for pending, "- [x]" for done) under a single H2 for the date.
+  Prefer to apply this automatically during normal book-edit work, then ask
+  only before adding agent-surfaced follow-up ideas that the user has not
+  already requested.
 argument-hint: Optional — items to log, or "today" to record this session's work
 ---
 
 # Progress Update
 
 Append daily progress notes, completed work, and follow-up ideas to the BITM330
-daily edits log. One file per day. One H2 per day. One checkbox list item per
-entry.
+repo edit log. One rolling file for the whole book. One H2 per day. One checkbox
+list item per entry.
 
 ## When to Use
 
@@ -25,6 +26,8 @@ entry.
 - The user wants to capture what was just done in this session.
 - The user wants to record a new idea, follow-up, or pending edit.
 - The end of a working session, before closing the chat.
+- The assistant just completed a substantive book-edit task and should
+  automatically record the result in the repo log.
 
 Do **not** use this skill for:
 
@@ -36,16 +39,16 @@ Do **not** use this skill for:
 
 Workspace-relative:
 
-    .docs/.edits/edits-YYYY-MM-DD
+books/database-book/.edits/edit-log.md
 
 Absolute on this machine:
 
-    G:\My Drive\0-Projects\!-important\BITM330-book-drive\.docs\.edits\edits-YYYY-MM-DD
+c:\Users\nd115232\Documents\GitHub\dima-publishing\books\database-book\.edits\edit-log.md
 
-- `YYYY-MM-DD` is today's date.
-- The file has no extension. Do not add `.md`.
-- If the file does not exist for today, create it with the minimal top matter
-  shown in the Template below.
+- The file is a single rolling log for the whole book.
+- The file uses `.md` and lives in the repository.
+- If the file does not exist, create it with the minimal top matter shown in
+  the Template below.
 
 ## Entry Format
 
@@ -69,12 +72,9 @@ Absolute on this machine:
      for clarity).
    - Work completed in the current session.
    - Related follow-up ideas surfaced by the agent.
-5. Before writing anything beyond what the user explicitly requested, ask
-   once with both lists previewed as bullets so the user can accept, edit,
-   or drop individual lines:
-   - "Also add today's completed session work?"
-   - "Also add these follow-up ideas?"
-   Default to **not** adding anything the user did not confirm.
+5. Append completed session work automatically when the user is already
+   working in the book-edit workflow. Ask once before adding related follow-up
+   ideas that were not explicitly requested.
 6. Append each confirmed entry as a single task list item under today's H2.
    Mark items completed in this session as `- [x]`; mark new ideas and
    pending work as `- [ ]`.
@@ -83,10 +83,10 @@ Absolute on this machine:
 
 ## Template (only when creating a new daily file)
 
-    # Edits
+    # Edit Log
 
-    This folder contains edit reports for recently edited files. Each report
-    lists the problems to address in the next round of edits.
+    This file contains the rolling edit log for the database book. Each date
+    heading groups task-list items for that day.
 
     ## YYYY-MM-DD Edits
 
@@ -94,8 +94,7 @@ Absolute on this machine:
 
 - Creating a new H2 for the same date instead of appending under the
   existing one.
-- Adding `.md` to the filename.
-- Logging session work or agent-suggested ideas without explicit user
-  confirmation.
+- Using a daily file per date instead of a rolling repo log.
+- Logging agent-suggested ideas without explicit user confirmation.
 - Editing or removing existing items the user already logged.
 - Using this skill for chapter-level tracking (use `chapter-tracker`).

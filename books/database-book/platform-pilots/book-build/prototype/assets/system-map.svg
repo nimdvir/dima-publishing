@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc">
+  <title id="title">Information systems map</title>
+  <desc id="desc">A system map showing business activity becoming data, information, analysis, and decisions.</desc>
+  <rect width="1100" height="560" rx="28" fill="#f7f1e7"/>
+  <g fill="#ffffff" stroke="rgba(25,50,60,0.12)">
+    <rect x="70" y="118" width="194" height="122" rx="22"/>
+    <rect x="320" y="118" width="194" height="122" rx="22"/>
+    <rect x="570" y="118" width="194" height="122" rx="22"/>
+    <rect x="820" y="118" width="210" height="122" rx="22"/>
+  </g>
+  <g font-family="Georgia, serif" font-size="30" fill="#19323c">
+    <text x="110" y="184">Activity</text>
+    <text x="356" y="184">Records</text>
+    <text x="604" y="184">Reports</text>
+    <text x="848" y="184">Decisions</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="18" fill="#46606b">
+    <text x="94" y="214">Sales, enrollment,</text>
+    <text x="94" y="238">staffing, service</text>
+    <text x="344" y="214">Tables, events,</text>
+    <text x="344" y="238">transaction logs</text>
+    <text x="596" y="214">Dashboards, KPIs,</text>
+    <text x="596" y="238">alerts, summaries</text>
+    <text x="848" y="214">Intervention, action,</text>
+    <text x="848" y="238">resource allocation</text>
+  </g>
+  <path d="M264 178 H320" stroke="#245d62" stroke-width="8" stroke-linecap="round"/>
+  <path d="M514 178 H570" stroke="#245d62" stroke-width="8" stroke-linecap="round"/>
+  <path d="M764 178 H820" stroke="#245d62" stroke-width="8" stroke-linecap="round"/>
+  <g>
+    <rect x="112" y="332" width="876" height="136" rx="28" fill="#14393e"/>
+    <text x="154" y="392" fill="#ffffff" font-family="Georgia, serif" font-size="34">Information systems organize activity so managers can evaluate options and act.</text>
+    <text x="154" y="434" fill="#d9e7e8" font-family="Arial, sans-serif" font-size="24">This visual treatment supports Chapter 2 themes without requiring a working backend.</text>
+  </g>
+</svg>

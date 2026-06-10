@@ -1,0 +1,5016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 6: The Relational Model | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 6: The Relational Model</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>35%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:35%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="is-current" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 6</p>
+          <h1>The Relational Model</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>84 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 6: The Relational Model</h2>
+                  <!-- This text explains the **relational model**, a fundamental framework for organizing database data into distinct, connected tables rather than single, flat files. By separating different subjects into their own tables, designers can avoid **redundancy** and prevent **modification anomalies** that occur when data is updated, inserted, or deleted. The author details how **primary keys** provide unique identities for records, while **foreign keys** establish relationships between entities like students and grades. **Entity and referential integrity** serve as essential rules that protect the accuracy of these connections over time. Through a practical redesign of a **grading database**, the source demonstrates how **SQL joins** efficiently reconstruct information for analysis. Ultimately, the material serves as a guide for transitioning from fragile spreadsheets to **scalable, structured database systems**. -->
+<!-- Chapter edit (2026-05-29): received the full joins treatment from Chapter 5 (Ch5 now keeps only a brief INNER JOIN teaser). Added a "Reading a Join" four-question lead-in before §8.1 and a "Join Types at a Glance" recognition table (INNER/LEFT/RIGHT/FULL/CROSS) at the end of §8, both adapted from Ch5's former Part 5 to the relational schema. The verbatim Ch5 Part 5 source is preserved in .edits/ch06-from-ch05-2026-05-29.md. Terms/glossary kept as-is for a later reconciliation pass. Technical meaning preserved. -->
+<!-- Chapter edit: aligned dataset and cast with Ch04/05 (Alice/Brian/Carla/Daniel, S1001-style StudentID, 0–100 Score, locked weights 20/30/40/10, Score REAL); flat table shows both CategoryWeight and WeightPerItem; made Access tutorial fail-proof (text PK + integer FK); trimmed §10 to a sharper bridge; reframed §8.5 as Advanced Preview; routed appendices to terms/reflection companions via .edits. Technical meaning preserved. -->
+<hr />
+<p>title: "Chapter 6: The Relational Model"
+author: "Nimrod Dvir, PhD"
+date: 2026-05-29
+lang: en-US
+toc: true</p>
+<hr />
+<!-- markdownlint-disable MD036 -->
+
+<p><em>How Connected Tables Replace Redundancy with Structure, Integrity, and Analytical Power</em></p>
+<p><a href="https://youtu.be/vWVWVtFS070">Video intro: Chapter 6, The Relational Model</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vWVWVtFS070?si=00FlymQi8mWqjCj6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p>Chapter 4 introduced databases as structured systems for storing organizational data. Chapter 5 showed how SQL retrieves, filters, joins, and summarizes that data. Chapter 6 asks a deeper design question:</p>
+<p><strong>Why should database data be separated into multiple connected tables in the first place?</strong></p>
+<p>The answer is the <strong>relational model</strong>.</p>
+<p>The relational model is the foundation of modern database design. It organizes data into separate tables, connects those tables through keys, and uses integrity rules to keep the connections valid over time. This chapter uses the Grading Database to show why one large table eventually breaks down and how relational design replaces repetition with structure.</p>
+<p>A flat table feels easier at first. Everything appears in one place. You can scroll, filter, and sort. But once the table repeats student names, email addresses, assignment rules, due dates, attendance records, and scores, the design becomes fragile. The same fact appears in multiple places. Updates become risky. Deleted rows may remove facts that should have remained. New facts may be impossible to store without inventing unrelated data.</p>
+<p>Relational design solves these problems by separating different kinds of facts into different tables and connecting them through shared identifiers. Instead of copying a student's name into every grade record, the database stores the student once in <code>STUDENT</code>. Grade records refer to that student by <code>StudentID</code>. Instead of repeating the rules for quizzes in every quiz row, the database stores the rules once in <code>ASSIGNMENT_TYPE</code>. Specific quizzes refer to that category.</p>
+<p>This chapter details the <strong>relational model</strong> as the essential framework for creating organized and reliable database systems. It argues that <strong>flat tables</strong> are inherently flawed because they cause <strong>redundancy</strong>, leading to problematic update, insertion, and deletion <strong>anomalies</strong>. To resolve these issues, the model separates data into distinct <strong>relations</strong> connected by <strong>primary and foreign keys</strong>, ensuring each table represents a single subject. The source uses a grading database example to demonstrate how <strong>entity and referential integrity</strong> protect data accuracy and how <strong>SQL joins</strong> reconstruct information for analysis. Ultimately, these design principles, supported by an understanding of <strong>functional dependencies</strong>, establish the structural foundation necessary for advanced <strong>database normalization</strong>.</p>
+<p>This design is cleaner, more reliable, more scalable, and easier to query.</p>
+<h2>Learning Objectives</h2>
+<p>After completing this chapter, you will be able to:</p>
+<ol>
+<li>Explain why a single-table design breaks down as data volume and business complexity grow.</li>
+<li>Identify update, insertion, and deletion anomalies in a flat-table design.</li>
+<li>Define the relational model and explain its core design logic.</li>
+<li>Distinguish among entities, attributes, relationships, and relations.</li>
+<li>Use relational terminology such as relation, tuple, and attribute correctly.</li>
+<li>Distinguish among candidate, primary, composite, natural, and surrogate keys.</li>
+<li>Explain how foreign keys represent one-to-one, one-to-many, and many-to-many relationships.</li>
+<li>Explain entity integrity and referential integrity.</li>
+<li>Trace the Grading Database from a flat table to a multi-table relational schema.</li>
+<li>Use joins to reconstruct meaningful information from related tables.</li>
+<li>Build the core of the Grading Database in Microsoft Access and enforce referential integrity.</li>
+<li>Explain how functional dependencies prepare the way for normalization in Chapter 7.</li>
+</ol>
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Main Question</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Why one table fails</td>
+<td>What goes wrong when everything is stored together?</td>
+<td>Introduces redundancy and modification anomalies.</td>
+</tr>
+<tr>
+<td>Relational model basics</td>
+<td>What does the relational model do differently?</td>
+<td>Explains the logic of tables, rows, columns, and relationships.</td>
+</tr>
+<tr>
+<td>Entities and relations</td>
+<td>What real-world things are we modeling?</td>
+<td>Connects business concepts to schema design.</td>
+</tr>
+<tr>
+<td>Keys</td>
+<td>How does each row get a stable identity?</td>
+<td>Shows how records are uniquely identified.</td>
+</tr>
+<tr>
+<td>Foreign keys and relationships</td>
+<td>How do tables connect?</td>
+<td>Explains one-to-many and many-to-many relationships.</td>
+</tr>
+<tr>
+<td>Referential integrity</td>
+<td>How does the database protect valid connections?</td>
+<td>Prevents orphan records and invalid references.</td>
+</tr>
+<tr>
+<td>Grading Database redesign</td>
+<td>How does a flat gradebook become relational?</td>
+<td>Applies the model to a concrete course database.</td>
+</tr>
+<tr>
+<td>Joins and queries</td>
+<td>How do separated tables become useful reports?</td>
+<td>Shows why relational structure supports SQL analysis.</td>
+</tr>
+<tr>
+<td>Access as a visual tool</td>
+<td>How does this look in Microsoft Access?</td>
+<td>Builds the design hands-on and makes integrity visible.</td>
+</tr>
+<tr>
+<td>Functional dependencies</td>
+<td>How do we know what belongs together?</td>
+<td>Prepares the transition to normalization.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. Why One Big Table Fails</h2>
+<p>Relational thinking begins with a simple observation:</p>
+<p><strong>Different kinds of data should not be forced into one table.</strong></p>
+<p>Students are not assignments. Assignments are not attendance records. Assignment-type rules are not individual student scores. These things are related, but they are not the same thing.</p>
+<p>A spreadsheet hides this distinction because it is easy to place many facts side by side in one row. That convenience is useful for quick work, but it creates structural problems when the file becomes an organizational record.</p>
+<h3>1.1 The Flat-Table Temptation</h3>
+<p>Imagine an instructor starts with one simple gradebook table:</p>
+<pre><code class="language-text">GRADE_FLAT(
+    GradeID,
+    StudentID,
+    FirstName,
+    LastName,
+    Email,
+    AssignmentType,
+    DeliverableNumber,
+    DueDate,
+    CategoryWeight,
+    WeightPerItem,
+    Score
+)
+</code></pre>
+<p>At first this seems reasonable. One row tells a complete story: a student completed a deliverable and received a score. Scores are stored on a 0–100 scale, matching the convention used in Chapters 4 and 5. The table records both <code>CategoryWeight</code> (how much the whole category counts — Quiz 20%, Exam 40%) and <code>WeightPerItem</code> (how much one specific deliverable counts — 5% for one quiz, 20% for one exam):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th style="text-align: right;">CategoryWeight</th>
+<th style="text-align: right;">WeightPerItem</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-17</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>S1003</td>
+<td>Carla</td>
+<td>Mendez</td>
+<td>carla@university.edu</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">92</td>
+</tr>
+</tbody>
+</table>
+<p>This table can answer simple questions, but it repeats the same facts many times. Alice's name and email appear in every row related to Alice. The quiz weight appears in every quiz row. Due dates repeat for every student who completed the same deliverable. The two weight columns repeat in every row of the same category. These repeated values are the first warning sign that the table is mixing different subjects.</p>
+<p>:::callout{type="design-rule" title="🛠️ Database design rule: One table, one subject"}
+Each table should describe one main subject. A <code>STUDENT</code> table describes students. A <code>DELIVERABLE</code> table describes assignments. A <code>STUDENT_GRADE</code> table connects students to scores. When one table tries to describe everything, no part of it stays clean.
+:::</p>
+<h3>1.2 What the Flat Table Is Mixing</h3>
+<p>The <code>GRADE_FLAT</code> table stores at least four different categories of information.</p>
+<table>
+<thead>
+<tr>
+<th>Category of information</th>
+<th>Columns in the flat table</th>
+<th>Better relational destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student identity</td>
+<td><code>StudentID</code>, <code>FirstName</code>, <code>LastName</code>, <code>Email</code></td>
+<td><code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Assignment category rules</td>
+<td><code>AssignmentType</code>, <code>CategoryWeight</code>, <code>WeightPerItem</code></td>
+<td><code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td>Specific deliverables</td>
+<td><code>AssignmentType</code>, <code>DeliverableNumber</code>, <code>DueDate</code></td>
+<td><code>DELIVERABLE</code></td>
+</tr>
+<tr>
+<td>Student performance</td>
+<td><code>StudentID</code>, deliverable, <code>Score</code></td>
+<td><code>STUDENT_GRADE</code></td>
+</tr>
+</tbody>
+</table>
+<p>A mixed-purpose table creates three common problems: update anomalies, insertion anomalies, and deletion anomalies.</p>
+<h3>1.3 Update Anomaly</h3>
+<p>An <strong>update anomaly</strong> occurs when the same fact appears in multiple rows and must be changed in multiple places.</p>
+<p>Suppose Alice changes her email from <code>alice@university.edu</code> to <code>alice.johnson@albany.edu</code>. In the flat table, Alice appears in three rows. The instructor must update all three. If one row is missed, the database now stores two emails for the same student.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice.johnson@albany.edu</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice.johnson@albany.edu</td>
+</tr>
+</tbody>
+</table>
+<p>The database now gives conflicting answers to a basic question. In a relational design, Alice's email lives once in <code>STUDENT</code>. One update covers every future query.</p>
+<h3>1.4 Insertion Anomaly</h3>
+<p>An <strong>insertion anomaly</strong> occurs when the database cannot store one fact unless another, unrelated fact is also available.</p>
+<p>Suppose Daniel enrolls before completing any assignment. The flat table is built around grade events. There is no clean place to store Daniel unless the instructor invents a grade row with missing values:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">8</td>
+<td>S1004</td>
+<td>Daniel</td>
+<td>Kim</td>
+<td>daniel@university.edu</td>
+<td>NULL</td>
+<td style="text-align: right;">NULL</td>
+<td style="text-align: right;">NULL</td>
+</tr>
+</tbody>
+</table>
+<p>In a relational design, Daniel goes into <code>STUDENT</code> immediately, even if he has no rows yet in <code>STUDENT_GRADE</code>.</p>
+<h3>1.5 Deletion Anomaly</h3>
+<p>A <strong>deletion anomaly</strong> occurs when deleting one row unintentionally removes facts that should have remained.</p>
+<p>Suppose Carla has only one row in the flat table. If that row is deleted because the score was entered by mistake, the database may also lose Carla's only stored name and email address. In a relational design, deleting a score from <code>STUDENT_GRADE</code> does not delete Carla from <code>STUDENT</code>. The two facts live in different tables because they describe different things.</p>
+<h3>1.6 Summary of Modification Anomalies</h3>
+<table>
+<thead>
+<tr>
+<th>Anomaly</th>
+<th>What Happens</th>
+<th>Grading Example</th>
+<th>Relational Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Update</td>
+<td>One fact must change in many rows</td>
+<td>Alice's email repeats in every grade row</td>
+<td>Store Alice once in <code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Insertion</td>
+<td>One fact cannot be added without another</td>
+<td>Daniel cannot exist without a score</td>
+<td>Add Daniel to <code>STUDENT</code> without grades</td>
+</tr>
+<tr>
+<td>Deletion</td>
+<td>Deleting one fact removes another</td>
+<td>Deleting Carla's only score deletes Carla</td>
+<td>Keep scores in <code>STUDENT_GRADE</code>, students in <code>STUDENT</code></td>
+</tr>
+</tbody>
+</table>
+<p>:::callout{type="takeaway" title="💡 Key takeaway: Mixed tables become unreliable"}
+A flat table looks simple because everything is visible at once. It becomes unreliable because it repeats facts, mixes subjects, and makes ordinary updates dangerous.
+:::</p>
+<!-- 🎨 Figure Suggestions
+Figure 1: A flat grading table with student identity, assignment rules, and scores color-coded to show the four mixed subjects.
+-->
+
+<hr />
+<h2>2. What the Relational Model Does Differently</h2>
+<p>The <strong>relational model</strong> was introduced by Edgar F. Codd in 1970 as a formal way to organize data into relations, which we usually call tables. It is the discipline behind the flat-table fix.</p>
+<h3>2.1 Definition</h3>
+<p><strong>The relational model</strong> organizes data into tables called relations, where each relation represents one well-defined subject and relationships among subjects are represented through keys.</p>
+<p>The model rests on three practical principles.</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Meaning</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Store data in tables</td>
+<td>Each table represents one subject</td>
+<td><code>STUDENT</code> stores student identity</td>
+</tr>
+<tr>
+<td>One occurrence per row</td>
+<td>Each row is one instance of that subject</td>
+<td>One row in <code>STUDENT</code> = one student</td>
+</tr>
+<tr>
+<td>Use keys instead of duplication</td>
+<td>Related tables connect through identifiers</td>
+<td><code>STUDENT_GRADE.StudentID</code> refers to <code>STUDENT.StudentID</code></td>
+</tr>
+</tbody>
+</table>
+<p>Instead of one large report-ready table, a relational database stores connected pieces. SQL joins reconstruct the view needed for any specific question.</p>
+<h3>2.2 The Relational Model Is Not a Software Product</h3>
+<p>The relational model is not Microsoft Access, SQLite, PostgreSQL, Oracle, or SQL Server. Those are database management systems that implement relational ideas. The same relational design can appear in any of them:</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Access</th>
+<th>SQLite</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table</td>
+<td>Table object</td>
+<td>Table</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>Primary key</td>
+<td>Primary Key field</td>
+<td><code>PRIMARY KEY</code></td>
+<td><code>PRIMARY KEY</code></td>
+</tr>
+<tr>
+<td>Foreign key</td>
+<td>Relationship window</td>
+<td><code>FOREIGN KEY</code></td>
+<td><code>FOREIGN KEY</code></td>
+</tr>
+<tr>
+<td>Query</td>
+<td>Query Design or SQL View</td>
+<td>SQL statement</td>
+<td>SQL statement</td>
+</tr>
+</tbody>
+</table>
+<p>The interfaces differ. The relational logic stays the same.</p>
+<h3>2.3 Properties of a Formal Relation</h3>
+<p>Not every spreadsheet-like grid is a relation. A formal relation follows structural rules.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Meaning</th>
+<th>Concrete Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One subject</td>
+<td>The table represents one clear subject</td>
+<td><code>STUDENT</code> stores student facts, not score facts</td>
+</tr>
+<tr>
+<td>Rows are instances</td>
+<td>Each row is one occurrence</td>
+<td>One row = one student</td>
+</tr>
+<tr>
+<td>Columns are attributes</td>
+<td>Each column describes one property</td>
+<td><code>Email</code> describes a student's email</td>
+</tr>
+<tr>
+<td>Atomic values</td>
+<td>Each cell holds one indivisible value</td>
+<td>Do not store <code>"Quiz 1, Quiz 2"</code> in one cell</td>
+</tr>
+<tr>
+<td>Consistent domain</td>
+<td>Values in a column are the same kind</td>
+<td><code>Score</code> stores numbers only</td>
+</tr>
+<tr>
+<td>Unique column names</td>
+<td>Each column has a distinct name</td>
+<td>Avoid two columns named <code>Date</code></td>
+</tr>
+<tr>
+<td>Row order is irrelevant</td>
+<td>Meaning does not depend on row position</td>
+<td>Use <code>ORDER BY</code>, not row numbers</td>
+</tr>
+<tr>
+<td>Column order is irrelevant</td>
+<td>Meaning does not depend on column position</td>
+<td>Queries refer to column names</td>
+</tr>
+<tr>
+<td>No duplicate rows</td>
+<td>Each row must be distinguishable</td>
+<td>A primary key prevents duplicate identities</td>
+</tr>
+</tbody>
+</table>
+<h3>2.4 Relational Vocabulary</h3>
+<table>
+<thead>
+<tr>
+<th>Everyday term</th>
+<th>Relational term</th>
+<th>Legacy file term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table</td>
+<td>Relation</td>
+<td>File</td>
+<td>Collection of related rows</td>
+</tr>
+<tr>
+<td>Row</td>
+<td>Tuple</td>
+<td>Record</td>
+<td>One occurrence or instance</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>Attribute</td>
+<td>Field</td>
+<td>One property or characteristic</td>
+</tr>
+<tr>
+<td>Cell</td>
+<td>Attribute value</td>
+<td>Field value</td>
+<td>One stored value</td>
+</tr>
+</tbody>
+</table>
+<p>This book usually uses <em>table</em>, <em>row</em>, and <em>column</em>. You should still recognize <em>relation</em>, <em>tuple</em>, and <em>attribute</em> because they appear in database theory and documentation.</p>
+<h3>2.5 Where This Chapter Is Going: The Seven-Table Schema</h3>
+<p>Before working through keys, relationships, and integrity, it helps to see where the chapter is heading. The redesigned Grading Database will use seven connected tables:</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Student identities and contact information</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td>Category-level grading rules (Quiz, Exam, etc.)</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Specific graded items (Quiz 1, Exam 1)</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>One student's score on one deliverable</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Class meetings</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Student attendance at class meetings</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Letter-grade thresholds</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-mermaid">graph LR
+    STUDENT --&gt; STUDENT_GRADE
+    DELIVERABLE --&gt; STUDENT_GRADE
+    ASSIGNMENT_TYPE --&gt; DELIVERABLE
+    SCHEDULE --&gt; ATTENDANCE
+    STUDENT --&gt; ATTENDANCE
+</code></pre>
+<p>Keep this map in mind. Section 7 returns to it in full detail; the next several sections develop the vocabulary you need to read it.</p>
+<!-- 🎨 Figure Suggestions
+Figure 1: A simple "before and after" pair: one wide flat table on the left, the seven connected Grading Database tables on the right linked by keys.
+-->
+
+<hr />
+<h2>3. Entities, Attributes, Relationships, and Relations</h2>
+<p>Relational design starts by identifying what the database needs to represent.</p>
+<h3>3.1 Entities</h3>
+<p>An <strong>entity</strong> is a real-world object, person, place, concept, or event the database needs to store information about.</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Why the database cares about it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student</td>
+<td>Students receive grades and attend class sessions</td>
+</tr>
+<tr>
+<td>Deliverable</td>
+<td>Deliverables are assignments students complete</td>
+</tr>
+<tr>
+<td>Class meeting</td>
+<td>Class meetings are sessions students may attend</td>
+</tr>
+<tr>
+<td>Assignment type</td>
+<td>Assignment types define grading rules</td>
+</tr>
+<tr>
+<td>Grade scale</td>
+<td>Grade scales convert final numeric results to letter grades</td>
+</tr>
+</tbody>
+</table>
+<p>Entities become tables when they need to be represented in the database.</p>
+<h3>3.2 Attributes</h3>
+<p>An <strong>attribute</strong> is a property that describes an entity.</p>
+<pre><code class="language-text">STUDENT     -&gt; StudentID, FirstName, LastName, Email, Birthday
+DELIVERABLE -&gt; DeliverableID, AssignmentType, DeliverableNumber, DueDate, Topic
+</code></pre>
+<p>The important design question is not "What attributes exist?" but "Which entity does each attribute describe?"</p>
+<ul>
+<li><code>Email</code> describes a student → <code>STUDENT</code>.</li>
+<li><code>DueDate</code> describes a deliverable → <code>DELIVERABLE</code>.</li>
+<li><code>Score</code> describes one student's result on one deliverable → <code>STUDENT_GRADE</code>.</li>
+</ul>
+<h3>3.3 Relationships</h3>
+<p>A <strong>relationship</strong> describes how entities are connected.</p>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Plain-English meaning</th>
+<th>Relational representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student earns grade</td>
+<td>One student can receive many grades</td>
+<td><code>STUDENT.StudentID</code> → <code>STUDENT_GRADE.StudentID</code></td>
+</tr>
+<tr>
+<td>Deliverable receives scores</td>
+<td>One deliverable has many scores</td>
+<td><code>DELIVERABLE.DeliverableID</code> → <code>STUDENT_GRADE.DeliverableID</code></td>
+</tr>
+<tr>
+<td>Student attends class</td>
+<td>One student has many attendance rows</td>
+<td><code>STUDENT.StudentID</code> → <code>ATTENDANCE.StudentID</code></td>
+</tr>
+<tr>
+<td>Class meeting has attendance</td>
+<td>One meeting has many attendance rows</td>
+<td><code>SCHEDULE.ClassNum</code> → <code>ATTENDANCE.ClassNum</code></td>
+</tr>
+<tr>
+<td>Assignment type categorizes deliverables</td>
+<td>One type covers many deliverables</td>
+<td><code>ASSIGNMENT_TYPE.AssignmentType</code> → <code>DELIVERABLE.AssignmentType</code></td>
+</tr>
+</tbody>
+</table>
+<p>Relationships are implemented with keys, especially foreign keys.</p>
+<h3>3.4 Relations</h3>
+<p>A <strong>relation</strong> is the formal table structure used to store data about an entity, relationship, event, or clearly bounded subject. Not every table represents a simple entity.</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>What it represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>An entity: a student</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td>A lookup/category entity: a grading category</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>An entity/event: a specific assignment item</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>A relationship/event: a student receiving a score on a deliverable</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>A relationship/event: a student attending a class meeting</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>An entity/event: one class session</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>A lookup table: letter-grade thresholds</td>
+</tr>
+</tbody>
+</table>
+<h3>3.5 Schema Notation</h3>
+<p>A <strong>schema</strong> is a formal description of database structure: table names, columns, keys, and relationships. In this book, schemas are written like this:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email, Birthday)
+DELIVERABLE(DeliverableID, AssignmentType, DeliverableNumber, DueDate, Topic)
+STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p>Conventions:</p>
+<ul>
+<li>Table names are ALL CAPS and usually singular (<code>STUDENT</code>, not <code>STUDENTS</code>).</li>
+<li>Column names use readable capitalization, no spaces.</li>
+<li>The primary key is listed first.</li>
+<li>Foreign keys often reuse the name of the referenced primary key.</li>
+</ul>
+<p>With data types (matching the Chapter 4/5 convention of <code>StudentID</code> as a text label, not a number):</p>
+<pre><code class="language-text">STUDENT(
+    StudentID TEXT PRIMARY KEY,    -- e.g., 'S1001'
+    FirstName TEXT,
+    LastName TEXT,
+    Email TEXT,
+    Birthday DATE
+)
+</code></pre>
+<!-- 🎨 Figure Suggestions
+Figure 1: Side-by-side cards labeled Entity, Attribute, Relationship, and Relation, each with a Grading Database example, to anchor the four vocabulary terms.
+-->
+
+<hr />
+<h2>4. Keys: How Tables Identify Rows</h2>
+<p>Keys are the foundation of relational identity. They let the database know exactly which row is being referenced.</p>
+<h3>4.1 Why Keys Are Necessary</h3>
+<p>Names are not reliable identifiers. Two students may share a name. A student may change an email. A deliverable topic may be revised. A database needs stable identifiers that survive changes to descriptive details.</p>
+<h3>4.2 Candidate and Primary Keys</h3>
+<p>A <strong>candidate key</strong> is any column, or combination of columns, that could uniquely identify each row. A <strong>primary key</strong> is the candidate key chosen as the official unique identifier for the table. A primary key must be unique and must never be <code>NULL</code> — a rule called <strong>entity integrity</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Candidate key for <code>STUDENT</code></th>
+<th>Strength</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StudentID</code></td>
+<td>Stable institutional identifier</td>
+<td>Requires system assignment</td>
+</tr>
+<tr>
+<td><code>Email</code></td>
+<td>Often unique</td>
+<td>May change over time</td>
+</tr>
+<tr>
+<td><code>(FirstName, LastName, Birthday)</code></td>
+<td>Often distinguishes students</td>
+<td>Not guaranteed unique</td>
+</tr>
+<tr>
+<td>Phone number</td>
+<td>Often unique</td>
+<td>Can change or be shared</td>
+</tr>
+</tbody>
+</table>
+<p>In <code>STUDENT(StudentID, FirstName, LastName, Email)</code>, <code>StudentID</code> is chosen as the primary key. Every student has one, and no row can exist without it.</p>
+<h3>4.3 Composite Keys</h3>
+<p>A <strong>composite key</strong> is made from two or more columns. It is useful when no single column uniquely identifies a row, but a combination does.</p>
+<pre><code class="language-text">COURSE_ENROLLMENT(StudentID, CourseID, Semester)
+APARTMENT(BuildingNumber, ApartmentNumber, Rent)
+</code></pre>
+<p>A student can take many courses; a course runs many semesters. The combination <code>(StudentID, CourseID, Semester)</code> may uniquely identify one enrollment. Likewise, many buildings have Apartment 1, but <code>(BuildingNumber, ApartmentNumber)</code> identifies one apartment.</p>
+<h3>4.4 Natural Keys</h3>
+<p>A <strong>natural key</strong> is a real-world attribute that already has business meaning and could identify a row.</p>
+<table>
+<thead>
+<tr>
+<th>Natural key</th>
+<th>Possible table</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td><code>STUDENT</code></td>
+<td>Emails can change</td>
+</tr>
+<tr>
+<td>ISBN</td>
+<td><code>BOOK</code></td>
+<td>Strong if carefully governed</td>
+</tr>
+<tr>
+<td>State abbreviation</td>
+<td><code>STATE</code></td>
+<td>Stable in a controlled lookup</td>
+</tr>
+<tr>
+<td>Letter grade</td>
+<td><code>GRADE_SCALE</code></td>
+<td>Stable inside a small course lookup</td>
+</tr>
+</tbody>
+</table>
+<p>Natural keys are tempting because they carry meaning, but business values can change, be reused, or be entered inconsistently.</p>
+<h3>4.5 Surrogate Keys</h3>
+<p>A <strong>surrogate key</strong> is an artificial identifier created only for the database, with no business meaning. It is often an auto-incrementing integer, such as <code>GradeID</code>, <code>DeliverableID</code>, or <code>AttendanceID</code>.</p>
+<p>Surrogate keys are short, stable, simple to join, and independent of changing business details. For example, identifying a property by street address is fragile: a renamed street or rezoned ZIP code can break references. A <code>PropertyID</code> surrogate stays the same:</p>
+<pre><code class="language-text">PROPERTY(PropertyID, Street, City, State, ZIP, OwnerID)
+</code></pre>
+<p>Note that <code>StudentID</code> in this book is treated as a <em>labeled</em> identifier (values like <code>S1001</code>) rather than a pure surrogate integer. It still has no arithmetic meaning, but it follows the institutional convention that student IDs are short codes, not numbers.</p>
+<h3>4.6 Business-Rule Uniqueness</h3>
+<p>A surrogate primary key does not remove the need for business-rule constraints. <code>STUDENT_GRADE</code> uses <code>GradeID</code> as a surrogate primary key:</p>
+<pre><code class="language-text">STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p>But the business rule may also say: <em>a student should have only one score for each deliverable.</em> That rule is captured by a unique constraint on <code>(StudentID, DeliverableID)</code>. Similarly, <code>(StudentID, ClassNum)</code> should be unique in <code>ATTENDANCE</code> if a student can have only one attendance record per class meeting.</p>
+<h3>4.7 Key Types at a Glance</h3>
+<table>
+<thead>
+<tr>
+<th>Key type</th>
+<th>Definition</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidate key</td>
+<td>Any field or set of fields that could uniquely identify a row</td>
+<td><code>StudentID</code>, possibly <code>Email</code></td>
+</tr>
+<tr>
+<td>Primary key</td>
+<td>The chosen official identifier</td>
+<td><code>STUDENT.StudentID</code></td>
+</tr>
+<tr>
+<td>Composite key</td>
+<td>A key made of more than one column</td>
+<td><code>(StudentID, DeliverableID)</code> as a unique constraint</td>
+</tr>
+<tr>
+<td>Natural key</td>
+<td>A meaningful real-world identifier</td>
+<td><code>GRADE_SCALE.LetterGrade</code></td>
+</tr>
+<tr>
+<td>Surrogate key</td>
+<td>An artificial system-generated identifier</td>
+<td><code>STUDENT_GRADE.GradeID</code></td>
+</tr>
+<tr>
+<td>Foreign key</td>
+<td>A column that refers to a key in another table</td>
+<td><code>STUDENT_GRADE.StudentID</code></td>
+</tr>
+</tbody>
+</table>
+<p>:::callout{type="takeaway" title="💡 Key takeaway: Identity first, then connection"}
+Primary keys give rows identity. Foreign keys use that identity to connect tables. Without keys, relational design collapses into guesswork.
+:::</p>
+<!-- 🎨 Figure Suggestions
+Figure 1: One table with a primary key column highlighted and a child table whose foreign key arrow points back at it, with candidate/natural/surrogate variations labeled below.
+-->
+
+<hr />
+<h2>5. Foreign Keys and Relationship Types</h2>
+<p>A primary key identifies a row. A foreign key connects one table to another.</p>
+<h3>5.1 Foreign Keys</h3>
+<p>A <strong>foreign key</strong> is a column in one table that references a key in another table.</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email)
+STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p><code>STUDENT_GRADE.StudentID</code> is a foreign key because it refers to <code>STUDENT.StudentID</code>. The student is stored once, and many grade records connect to that student.</p>
+<h3>5.2 One-to-One Relationships</h3>
+<p>A <strong>one-to-one relationship</strong> means one row in Table A relates to at most one row in Table B.</p>
+<pre><code class="language-text">EMPLOYEE(EmployeeID, FirstName, LastName)
+EMPLOYEE_PARKING(EmployeeID, ParkingSpotNumber)
+</code></pre>
+<p>One-to-one relationships are less common than one-to-many. They are often used to separate optional, sensitive, or rarely used information:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName)
+STUDENT_PROFILE(StudentID, PreferredName, Pronouns, AccessibilityNotes)
+</code></pre>
+<h3>5.3 One-to-Many Relationships</h3>
+<p>A <strong>one-to-many relationship</strong> means one row in one table can relate to many rows in another. This is the most common pattern in relational databases.</p>
+<table>
+<thead>
+<tr>
+<th>One side</th>
+<th>Many side</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>STUDENT_GRADE</code></td>
+<td>One student has many grade records</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td><code>STUDENT_GRADE</code></td>
+<td>One deliverable has many student scores</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td><code>ATTENDANCE</code></td>
+<td>One class meeting has many attendance rows</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td><code>DELIVERABLE</code></td>
+<td>One type covers many deliverables</td>
+</tr>
+</tbody>
+</table>
+<p>One-to-many relationships place the foreign key on the <em>many</em> side.</p>
+<h3>5.4 Many-to-Many Relationships</h3>
+<p>A <strong>many-to-many relationship</strong> means many rows in Table A can relate to many rows in Table B. One student completes many deliverables; one deliverable is completed by many students.</p>
+<p>You should not store this as a comma-separated list:</p>
+<pre><code class="language-text">STUDENT(StudentID, DeliverablesCompleted)   -- bad: &quot;Quiz1, Quiz2, Exam1&quot;
+</code></pre>
+<p>That violates atomicity and breaks filtering, joining, and aggregation. Instead, relational databases resolve many-to-many relationships with a <strong>junction table</strong>:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName)
+DELIVERABLE(DeliverableID, AssignmentType, DeliverableNumber)
+STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1003</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+<p><code>STUDENT_GRADE</code> is the junction table. It turns the many-to-many relationship into two one-to-many relationships:</p>
+<pre><code class="language-text">STUDENT     1 ─── many STUDENT_GRADE
+DELIVERABLE 1 ─── many STUDENT_GRADE
+</code></pre>
+<h3>5.5 Relationship Types Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Example</th>
+<th>How it is represented</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-to-one</td>
+<td>One student has one profile</td>
+<td>Shared primary key or unique foreign key</td>
+</tr>
+<tr>
+<td>One-to-many</td>
+<td>One student has many grades</td>
+<td>Foreign key on the many side</td>
+</tr>
+<tr>
+<td>Many-to-many</td>
+<td>Students complete many deliverables; deliverables have many students</td>
+<td>Junction table such as <code>STUDENT_GRADE</code></td>
+</tr>
+</tbody>
+</table>
+<!-- 🎨 Figure Suggestions
+Figure 1: Three side-by-side mini-diagrams illustrating 1:1, 1:N, and M:N relationships using Grading Database examples.
+-->
+
+<hr />
+<h2>6. Integrity Rules: Protecting Identity and Relationships</h2>
+<p>Relational databases do not rely on good intentions. They enforce rules. Two integrity rules matter most at this stage: <strong>entity integrity</strong> and <strong>referential integrity</strong>.</p>
+<h3>6.1 Entity Integrity</h3>
+<p><strong>Entity integrity</strong> means every primary key value must be unique and not <code>NULL</code>. This protects row identity.</p>
+<p>Invalid examples:</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td>Alicia</td>
+<td>Jones</td>
+</tr>
+</tbody>
+</table>
+<p>The database cannot accept both rows if <code>StudentID</code> is the primary key. A row with <code>StudentID = NULL</code> has no identity, and other tables cannot safely refer to it.</p>
+<h3>6.2 Referential Integrity</h3>
+<p><strong>Referential integrity</strong> means every non-null foreign key value must match an existing key value in the referenced table.</p>
+<p><code>STUDENT</code>:</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+</tr>
+</tbody>
+</table>
+<p><code>STUDENT_GRADE</code>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S9999</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">80</td>
+</tr>
+</tbody>
+</table>
+<p>The second row is invalid because no student has <code>StudentID = S9999</code>. It is an <strong>orphan record</strong>: a child row whose parent does not exist. A DBMS with referential integrity enabled rejects it.</p>
+<h3>6.3 SQL Example</h3>
+<pre><code class="language-sql">CREATE TABLE STUDENT (
+    StudentID TEXT PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName  TEXT NOT NULL,
+    Email     TEXT
+);
+
+CREATE TABLE STUDENT_GRADE (
+    GradeID       INTEGER PRIMARY KEY,
+    StudentID     TEXT    NOT NULL,
+    DeliverableID INTEGER NOT NULL,
+    Score         REAL,
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
+);
+</code></pre>
+<p>This insert is valid if student <code>S1001</code> exists:</p>
+<pre><code class="language-sql">INSERT INTO STUDENT_GRADE (GradeID, StudentID, DeliverableID, Score)
+VALUES (1, 'S1001', 1, 90);
+</code></pre>
+<p>This insert fails if student <code>S9999</code> does not exist:</p>
+<pre><code class="language-sql">INSERT INTO STUDENT_GRADE (GradeID, StudentID, DeliverableID, Score)
+VALUES (2, 'S9999', 1, 80);
+</code></pre>
+<h3>6.4 Cascade Update and Cascade Delete</h3>
+<p>Some systems allow cascading actions. A cascading action automatically applies a parent-table change to related child rows.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Meaning</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cascade update</td>
+<td>If a parent key changes, child foreign keys change too</td>
+<td>Usually safe, but primary keys should rarely change</td>
+</tr>
+<tr>
+<td>Cascade delete</td>
+<td>If a parent row is deleted, related child rows are deleted too</td>
+<td>Dangerous if child records have independent value</td>
+</tr>
+</tbody>
+</table>
+<p>:::callout{type="warning" title="⚠️ Warning: Be careful with cascade delete"}
+Deleting a student should probably not automatically delete every grade and attendance record. Those records may be needed for audit, advising, grade appeals, or institutional reporting. Cascade delete is appropriate for things like temporary line items on an unsubmitted draft order, but it should be used carefully.
+:::</p>
+<p>:::callout{type="takeaway" title="💡 Key takeaway: Two rules protect the model"}
+Entity integrity protects row identity. Referential integrity protects relationships between tables. Together, they keep a relational database from drifting into contradiction.
+:::</p>
+<!-- 🎨 Figure Suggestions
+Figure 1: A parent–child table pair with a valid foreign key arrow and an orphan-row arrow visibly blocked by a referential-integrity "X."
+-->
+
+<hr />
+<h2>7. Redesigning the Grading Database</h2>
+<p>The Grading Database is the main example in this chapter because it makes relational design visible. The flat table started with one row per student deliverable. The relational design separates the different subjects into connected tables.</p>
+<h3>7.1 Stage-by-Stage Progression</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Added requirement</th>
+<th>What happens in a flat table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Store student identity</td>
+<td>One student row may work temporarily</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Add deliverables and scores</td>
+<td>Student data repeats across many rows</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Add assignment-type rules</td>
+<td>Quiz, homework, exam rules repeat</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Add schedule and attendance</td>
+<td>Class meetings mix with grades</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Add final letter-grade rules</td>
+<td>Thresholds repeat or float outside the structure</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Redesign relationally</td>
+<td>Each subject gets its own table</td>
+</tr>
+</tbody>
+</table>
+<h3>7.2 Final Seven-Table Schema</h3>
+<p>:::callout{type="design-rule" title="🛠️ Canonical Grading Database keys (used throughout Chapters 6–10)"}
+| Table | Primary key | Type |
+|---|---|---|
+| <code>STUDENT</code> | <code>StudentID</code> | TEXT (e.g., <code>S1001</code>) |
+| <code>ASSIGNMENT_TYPE</code> | <code>AssignmentType</code> | TEXT (natural key) |
+| <code>DELIVERABLE</code> | <code>DeliverableID</code> | INTEGER (surrogate) |
+| <code>STUDENT_GRADE</code> | <code>GradeID</code> | INTEGER (surrogate) |
+| <code>SCHEDULE</code> | <code>ClassNum</code> | INTEGER |
+| <code>ATTENDANCE</code> | <code>AttendanceID</code> | INTEGER (surrogate) |
+| <code>GRADE_SCALE</code> | <code>LetterGrade</code> | TEXT (natural key) |
+:::</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+<th>Example columns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Student identities</td>
+<td><code>StudentID</code>, <code>FirstName</code>, <code>LastName</code>, <code>Email</code>, <code>Birthday</code></td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td>Category-level grading rules</td>
+<td><code>AssignmentType</code>, <code>Quantity</code>, <code>PointsPerType</code>, <code>Weight</code>, <code>WeightPerItem</code></td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Specific graded items</td>
+<td><code>DeliverableID</code>, <code>AssignmentType</code>, <code>DeliverableNumber</code>, <code>DueDate</code>, <code>Topic</code></td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>Student performance on deliverables</td>
+<td><code>GradeID</code>, <code>StudentID</code>, <code>DeliverableID</code>, <code>Score</code></td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Class meetings</td>
+<td><code>ClassNum</code>, <code>Week</code>, <code>ClassDate</code>, <code>Topic</code>, <code>Format</code></td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Student attendance at meetings</td>
+<td><code>AttendanceID</code>, <code>ClassNum</code>, <code>StudentID</code>, <code>Attended</code></td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Letter-grade thresholds</td>
+<td><code>LetterGrade</code>, <code>MinScore</code>, <code>MaxScore</code></td>
+</tr>
+</tbody>
+</table>
+<h3>7.3 Sample Rows</h3>
+<p><code>STUDENT</code> stores student identity once, fixing the update anomaly:</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>Birthday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@university.edu</td>
+<td>2004-05-14</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@university.edu</td>
+<td>2003-11-22</td>
+</tr>
+<tr>
+<td>S1003</td>
+<td>Carla</td>
+<td>Mendez</td>
+<td>carla@university.edu</td>
+<td>2004-02-09</td>
+</tr>
+<tr>
+<td>S1004</td>
+<td>Daniel</td>
+<td>Kim</td>
+<td>daniel@university.edu</td>
+<td>2004-08-17</td>
+</tr>
+</tbody>
+</table>
+<p><code>ASSIGNMENT_TYPE</code> stores category rules once. Weights match the locked Chapter 4/5 grading model (Quiz 20%, Homework 30%, Exam 40%, Project 10%). <code>WeightPerItem</code> is <code>Weight</code> divided by <code>Quantity</code>, stored once so queries do not need to recompute it:</p>
+<table>
+<thead>
+<tr>
+<th>AssignmentType</th>
+<th style="text-align: right;">Quantity</th>
+<th style="text-align: right;">PointsPerType</th>
+<th style="text-align: right;">Weight</th>
+<th style="text-align: right;">WeightPerItem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>Homework</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p><code>DELIVERABLE</code> stores individual graded items. IDs start at 1 so the design matches what Access AutoNumber will actually produce in §9:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">DeliverableID</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td>Database Basics</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-17</td>
+<td>SQL Basics</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td>Midterm</td>
+</tr>
+</tbody>
+</table>
+<p><code>STUDENT_GRADE</code> records one student's score on one deliverable. Scores are 0–100, matching Chapters 4 and 5:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1001</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>S1003</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+<p><code>SCHEDULE</code>, <code>ATTENDANCE</code>, and <code>GRADE_SCALE</code> follow the same pattern: each stores one subject. Attendance resolves the many-to-many relationship between students and class meetings. The grade scale stores letter-grade thresholds in one place so a grading-policy change updates one row.</p>
+<h3>7.4 ERD Overview</h3>
+<pre><code class="language-mermaid">erDiagram
+    STUDENT ||--o{ STUDENT_GRADE : earns
+    DELIVERABLE ||--o{ STUDENT_GRADE : receives
+    ASSIGNMENT_TYPE ||--o{ DELIVERABLE : categorizes
+    SCHEDULE ||--o{ ATTENDANCE : schedules
+    STUDENT ||--o{ ATTENDANCE : attends
+
+    STUDENT {
+        text StudentID PK
+        text FirstName
+        text LastName
+        text Email
+        date Birthday
+    }
+    ASSIGNMENT_TYPE {
+        text AssignmentType PK
+        int Quantity
+        int PointsPerType
+        int Weight
+        int WeightPerItem
+    }
+    DELIVERABLE {
+        int DeliverableID PK
+        text AssignmentType FK
+        int DeliverableNumber
+        date DueDate
+        text Topic
+    }
+    STUDENT_GRADE {
+        int GradeID PK
+        text StudentID FK
+        int DeliverableID FK
+        int Score
+    }
+    SCHEDULE {
+        int ClassNum PK
+        int Week
+        date ClassDate
+        text Topic
+        text Format
+    }
+    ATTENDANCE {
+        int AttendanceID PK
+        int ClassNum FK
+        text StudentID FK
+        int Attended
+    }
+    GRADE_SCALE {
+        text LetterGrade PK
+        int MinScore
+        int MaxScore
+    }
+</code></pre>
+<h3>7.5 What the Redesign Solves</h3>
+<table>
+<thead>
+<tr>
+<th>Flat-table problem</th>
+<th>Relational solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student emails repeat in every grade row</td>
+<td>Student data appears once in <code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Assignment rules repeat across every student score</td>
+<td>Category rules appear once in <code>ASSIGNMENT_TYPE</code></td>
+</tr>
+<tr>
+<td>Specific deliverables cannot exist independently</td>
+<td>Deliverables appear once in <code>DELIVERABLE</code></td>
+</tr>
+<tr>
+<td>Scores are mixed with student identity</td>
+<td>Scores live in <code>STUDENT_GRADE</code></td>
+</tr>
+<tr>
+<td>Attendance is mixed with grade records</td>
+<td>Attendance lives in <code>ATTENDANCE</code></td>
+</tr>
+<tr>
+<td>Letter-grade thresholds float outside the structure</td>
+<td>Thresholds live in <code>GRADE_SCALE</code></td>
+</tr>
+</tbody>
+</table>
+<p>The relational design is longer not because it is more complicated but because it separates meaning.</p>
+<!-- 🎨 Figure Suggestions
+Figure 1: A full seven-table ERD for the Grading Database with crow's-foot notation and color-coded entity, lookup, and junction tables.
+-->
+
+<hr />
+<h2>8. Querying a Relational Design with Joins</h2>
+<p>Relational design separates data into tables. SQL joins put related data back together when a question requires it.</p>
+<ul>
+<li><strong>Storage is separated</strong> to reduce redundancy.</li>
+<li><strong>Queries are joined</strong> to reconstruct meaning.</li>
+</ul>
+<p>Chapter 5 introduced the basic shape of an <code>INNER JOIN</code> as a preview. This section is the full treatment: it is where joins matter most, because the relational schema you just designed only becomes report-ready when joins reconstruct it.</p>
+<h3>8.0 Reading a Join</h3>
+<p>Every join answers four questions. Asking them before you write SQL keeps even a multi-table query manageable:</p>
+<ol>
+<li><strong>What is the left table?</strong> The table you start from.</li>
+<li><strong>What is the right table?</strong> The table you are pulling related data from.</li>
+<li><strong>Which columns create the match?</strong> The shared key — usually a primary key on one side and a foreign key on the other.</li>
+<li><strong>Which columns should appear in the output?</strong> The fields the question actually needs.</li>
+</ol>
+<p>For the first query below, the answers are:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left table</td>
+<td><code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Right table</td>
+<td><code>STUDENT_GRADE</code></td>
+</tr>
+<tr>
+<td>Matching columns</td>
+<td><code>STUDENT.StudentID = STUDENT_GRADE.StudentID</code></td>
+</tr>
+<tr>
+<td>Output columns</td>
+<td>name fields, deliverable details, and <code>Score</code></td>
+</tr>
+</tbody>
+</table>
+<p>The match works because <code>STUDENT_GRADE.StudentID</code> is a foreign key that refers to <code>STUDENT.StudentID</code> — exactly the relationship defined in Section 5.</p>
+<h3>8.1 Basic Student Scores</h3>
+<blockquote>
+<p>What scores did each student receive, and on which deliverables?</p>
+</blockquote>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       d.AssignmentType,
+       d.DeliverableNumber,
+       d.Topic,
+       sg.Score
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE   AS d  ON sg.DeliverableID = d.DeliverableID
+ORDER BY s.LastName, d.AssignmentType, d.DeliverableNumber;
+</code></pre>
+<p>The result looks like a report, but the database does not store it as one repeated table.</p>
+<h3>8.2 Adding Assignment Rules</h3>
+<blockquote>
+<p>How much is each deliverable worth toward the final grade?</p>
+</blockquote>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       d.AssignmentType,
+       d.DeliverableNumber,
+       at.WeightPerItem,
+       sg.Score
+FROM STUDENT AS s
+JOIN STUDENT_GRADE   AS sg ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE     AS d  ON sg.DeliverableID = d.DeliverableID
+JOIN ASSIGNMENT_TYPE AS at ON d.AssignmentType = at.AssignmentType
+ORDER BY s.LastName, d.DueDate;
+</code></pre>
+<p>The join works because <code>DELIVERABLE.AssignmentType</code> connects each specific deliverable to the category rules in <code>ASSIGNMENT_TYPE</code>.</p>
+<h3>8.3 Calculating Weighted Contribution</h3>
+<blockquote>
+<p>How much does each score contribute to the final grade?</p>
+</blockquote>
+<p>Because <code>Score</code> is on a 0–100 scale and <code>WeightPerItem</code> is the points each individual deliverable contributes (<code>Weight / Quantity</code>), the weighted contribution is simply <code>Score × WeightPerItem / 100</code>:</p>
+<pre><code class="language-sql">SELECT s.FirstName,
+       s.LastName,
+       d.AssignmentType,
+       d.DeliverableNumber,
+       sg.Score,
+       at.WeightPerItem,
+       ROUND(sg.Score * at.WeightPerItem / 100.0, 2) AS WeightedContribution
+FROM STUDENT AS s
+JOIN STUDENT_GRADE   AS sg ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE     AS d  ON sg.DeliverableID = d.DeliverableID
+JOIN ASSIGNMENT_TYPE AS at ON d.AssignmentType = at.AssignmentType;
+</code></pre>
+<p><code>Score</code> belongs to one student-deliverable result, while <code>WeightPerItem</code> belongs to the assignment category. A flat table would repeat those category rules in every row.</p>
+<h3>8.4 Attendance Summary</h3>
+<blockquote>
+<p>How many classes did each student attend?</p>
+</blockquote>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       COUNT(a.AttendanceID) AS ClassesRecorded,
+       SUM(a.Attended)       AS ClassesAttended
+FROM STUDENT AS s
+LEFT JOIN ATTENDANCE AS a ON s.StudentID = a.StudentID
+GROUP BY s.StudentID, s.FirstName, s.LastName
+ORDER BY s.LastName;
+</code></pre>
+<p>The <code>LEFT JOIN</code> keeps students even if they have no attendance rows yet, which is useful when looking for missing records.</p>
+<h3>8.5 Advanced Preview: Finding Missing Grades</h3>
+<blockquote>
+<p>Which student-deliverable combinations do not yet have a score?</p>
+</blockquote>
+<p>This query is heavier than the others — it uses <code>CROSS JOIN</code> and an "anti-join" pattern with <code>LEFT JOIN ... WHERE ... IS NULL</code>. Treat it as a preview of the analytical payoff; the companion Let's Build walks through it step by step.</p>
+<pre><code class="language-sql">SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       d.DeliverableID,
+       d.AssignmentType,
+       d.DeliverableNumber
+FROM STUDENT AS s
+CROSS JOIN DELIVERABLE AS d
+LEFT JOIN STUDENT_GRADE AS sg
+       ON s.StudentID = sg.StudentID
+      AND d.DeliverableID = sg.DeliverableID
+WHERE sg.GradeID IS NULL
+ORDER BY s.LastName, d.DueDate;
+</code></pre>
+<p>The database generates the expected student-deliverable pairs and then identifies which expected records are missing. A flat table cannot answer this cleanly.</p>
+<h3>8.6 Join Types at a Glance</h3>
+<p>The queries above use the two joins you will reach for most often. It helps to see them alongside the others so you recognize the names when they appear:</p>
+<table>
+<thead>
+<tr>
+<th>Join Type</th>
+<th>What It Keeps</th>
+<th>Best Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INNER JOIN</code></td>
+<td>Only rows that match in both tables</td>
+<td>Standard reporting when both tables should match</td>
+</tr>
+<tr>
+<td><code>LEFT JOIN</code></td>
+<td>All left-table rows, plus matching right-table data</td>
+<td>Finding unmatched or incomplete related data</td>
+</tr>
+<tr>
+<td><code>RIGHT JOIN</code></td>
+<td>All right-table rows, plus matching left-table data</td>
+<td>Same idea as <code>LEFT JOIN</code>, mirrored; support varies by tool</td>
+</tr>
+<tr>
+<td><code>FULL OUTER JOIN</code></td>
+<td>All rows from both tables</td>
+<td>Comparing two sets for matches and gaps; support varies by tool</td>
+</tr>
+<tr>
+<td><code>CROSS JOIN</code></td>
+<td>Every possible row combination</td>
+<td>Generating all pairings, as in the §8.5 missing-grades query</td>
+</tr>
+</tbody>
+</table>
+<p>Master <code>INNER JOIN</code> and <code>LEFT JOIN</code>; recognize the rest. A <code>CROSS JOIN</code> multiplies rows: a 4-row table and a 6-row table produce 24 rows, which is occasionally useful (it builds the full set of expected student-deliverable pairs in §8.5) but easy to trigger by accident.</p>
+<p>:::callout{type="takeaway" title="💡 Key takeaway: Joins are the payoff of relational design"}
+Joins are not just SQL syntax. They are the practical consequence of separating subjects into tables. The database stores each subject once and reconstructs the exact view you need on demand.
+:::</p>
+<!-- 🎨 Figure Suggestions
+Figure 1: Three small tables flowing into one joined result set to show how relational storage rebuilds a report-ready view.
+-->
+
+<hr />
+<h2>9. Microsoft Access as a Visual Learning Tool</h2>
+<p>Microsoft Access makes relational structure visible. You can see tables, primary keys, relationship lines, and integrity rules in a graphical interface and inspect the SQL behind every visual query. This section walks through building the core of the Grading Database (<code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code>) well enough to see the relational model at work. The companion <strong>Let's Build</strong> extends this walkthrough to the full seven-table Grading Database, including <code>ATTENDANCE</code>, <code>ASSIGNMENT_TYPE</code>, <code>SCHEDULE</code>, and <code>GRADE_SCALE</code>.</p>
+<h3>9.1 What Access Makes Visible</h3>
+<table>
+<thead>
+<tr>
+<th>Access feature</th>
+<th>What it helps students see</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table Design View</td>
+<td>Field names, data types, primary keys, required fields</td>
+</tr>
+<tr>
+<td>Relationships window</td>
+<td>Primary-key / foreign-key links across tables</td>
+</tr>
+<tr>
+<td>Enforce Referential Integrity checkbox</td>
+<td>How the DBMS protects valid relationships</td>
+</tr>
+<tr>
+<td>Query Design View</td>
+<td>Joins as visible lines between tables</td>
+</tr>
+<tr>
+<td>SQL View</td>
+<td>The SQL statement behind the visual query</td>
+</tr>
+</tbody>
+</table>
+<p>Access is not the relational model; it is one implementation that makes the model visible.</p>
+<h3>9.2 Building the Core Tables</h3>
+<p>Create three tables in Table Design View. Notice the key-type pattern: <code>StudentID</code> is a <strong>Short Text</strong> primary key (a labeled ID like <code>S1001</code>), while <code>DeliverableID</code> and <code>GradeID</code> are <strong>AutoNumber</strong> surrogate keys. Foreign keys must match the parent's type exactly — so the <code>StudentID</code> foreign key in <code>STUDENT_GRADE</code> is also Short Text.</p>
+<p><strong><code>STUDENT</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StudentID</code></td>
+<td>Short Text</td>
+<td>Primary key; enter values manually: <code>S1001</code>, <code>S1002</code>, <code>S1003</code>, <code>S1004</code></td>
+</tr>
+<tr>
+<td><code>FirstName</code></td>
+<td>Short Text</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>LastName</code></td>
+<td>Short Text</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>Email</code></td>
+<td>Short Text</td>
+<td>Indexed (no duplicates)</td>
+</tr>
+<tr>
+<td><code>Birthday</code></td>
+<td>Date/Time</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>DELIVERABLE</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DeliverableID</code></td>
+<td>AutoNumber</td>
+<td>Primary key; Access assigns 1, 2, 3, … automatically</td>
+</tr>
+<tr>
+<td><code>AssignmentType</code></td>
+<td>Short Text</td>
+<td>(Quiz, Homework, Exam, Project)</td>
+</tr>
+<tr>
+<td><code>DeliverableNumber</code></td>
+<td>Number</td>
+<td></td>
+</tr>
+<tr>
+<td><code>DueDate</code></td>
+<td>Date/Time</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Topic</code></td>
+<td>Short Text</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>STUDENT_GRADE</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GradeID</code></td>
+<td>AutoNumber</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>StudentID</code></td>
+<td>Short Text</td>
+<td>Foreign key → <code>STUDENT.StudentID</code> (must match parent's text type)</td>
+</tr>
+<tr>
+<td><code>DeliverableID</code></td>
+<td>Number (Long Integer)</td>
+<td>Foreign key → <code>DELIVERABLE.DeliverableID</code> (matches AutoNumber)</td>
+</tr>
+<tr>
+<td><code>Score</code></td>
+<td>Number</td>
+<td>0–100</td>
+</tr>
+</tbody>
+</table>
+<p>For each table, set the primary key by selecting the field and clicking the key icon. Save with the table name in CAPS.</p>
+<p>:::callout{type="warning" title="⚠️ Watch the data types"}
+Access only allows a relationship between fields of compatible types. If <code>STUDENT.StudentID</code> is Short Text but <code>STUDENT_GRADE.StudentID</code> is a Number, Access will refuse to create the relationship. The fix is to make both Short Text.
+:::</p>
+<h3>9.3 Defining Relationships and Enforcing Integrity</h3>
+<ol>
+<li>Close all open tables.</li>
+<li>Open <strong>Database Tools → Relationships</strong>.</li>
+<li>Add <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code> to the layout.</li>
+<li>Drag <code>STUDENT.StudentID</code> onto <code>STUDENT_GRADE.StudentID</code>. In the dialog:
+   - check <strong>Enforce Referential Integrity</strong>
+   - leave <strong>Cascade Update Related Fields</strong> off (primary keys should not change)
+   - leave <strong>Cascade Delete Related Records</strong> off (see Section 6.4 warning)</li>
+<li>Drag <code>DELIVERABLE.DeliverableID</code> onto <code>STUDENT_GRADE.DeliverableID</code> and check <strong>Enforce Referential Integrity</strong> again.</li>
+</ol>
+<p>You should now see two relationship lines, each labeled <strong>1</strong> on the parent side and <strong>∞</strong> on the <code>STUDENT_GRADE</code> side. Those symbols are Access's way of showing one-to-many relationships.</p>
+<h3>9.4 Watching Referential Integrity Work</h3>
+<p>With the <code>STUDENT</code> table containing students <code>S1001</code> (Alice) and <code>S1002</code> (Brian), try to add this row directly to <code>STUDENT_GRADE</code>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">GradeID</th>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">(auto)</td>
+<td>S9999</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90</td>
+</tr>
+</tbody>
+</table>
+<p>Access refuses the insert because no student has <code>StudentID = S9999</code>. The relational logic from Section 6 is now visible and enforced by the DBMS.</p>
+<h3>9.5 Inspecting the SQL Behind the Visual Query</h3>
+<ol>
+<li>Open <strong>Create → Query Design</strong>.</li>
+<li>Add <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code>. Access draws the join lines automatically from the relationships you defined.</li>
+<li>Drag <code>FirstName</code>, <code>LastName</code>, <code>AssignmentType</code>, <code>DeliverableNumber</code>, and <code>Score</code> into the grid.</li>
+<li>Switch to <strong>SQL View</strong> (View → SQL View). You will see Access-generated SQL roughly equivalent to:</li>
+</ol>
+<pre><code class="language-sql">SELECT s.FirstName, s.LastName, d.AssignmentType, d.DeliverableNumber, sg.Score
+FROM (STUDENT AS s
+INNER JOIN STUDENT_GRADE AS sg ON s.StudentID = sg.StudentID)
+INNER JOIN DELIVERABLE AS d ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<p>The visual query, the relationship lines in the Relationships window, and the SQL statement are three views of the same relational design.</p>
+<p>:::callout{type="takeaway" title="💡 Key takeaway: Access makes the model visible"}
+Access does not replace the relational model. It shows it. Tables, keys, relationship lines, and the integrity checkbox are the relational concepts from Sections 2–6 made clickable.
+:::</p>
+<blockquote>
+<p>The companion <strong>Let's Build</strong> continues this build by adding <code>ASSIGNMENT_TYPE</code>, <code>SCHEDULE</code>, <code>ATTENDANCE</code>, and <code>GRADE_SCALE</code>, setting up their relationships, and writing the weighted-grade and attendance queries from Section 8 inside Access.</p>
+</blockquote>
+<!-- 🎨 Figure Suggestions
+Figure 1: A screenshot-style mock of the Access Relationships window showing `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` joined by 1-to-∞ lines with the Enforce Referential Integrity checkbox highlighted.
+-->
+
+<hr />
+<h2>10. Functional Dependencies and the Bridge to Normalization</h2>
+<p>Chapter 7 introduces normalization. The bridge from this chapter is the idea of a <strong>functional dependency</strong>: when one attribute, or set of attributes, determines another. In plain language, <em>if I know A, I can determine B.</em></p>
+<p>In the Grading Database:</p>
+<pre><code class="language-text">StudentID                       -&gt; FirstName, LastName, Email, Birthday
+AssignmentType                  -&gt; Quantity, PointsPerType, Weight, WeightPerItem
+DeliverableID                   -&gt; AssignmentType, DeliverableNumber, DueDate, Topic
+(StudentID, DeliverableID)      -&gt; Score
+</code></pre>
+<p>The flat <code>GRADE_FLAT</code> table is troubled because <em>different attributes depend on different determinants</em>. Student attributes depend on <code>StudentID</code>, category attributes depend on <code>AssignmentType</code>, deliverable attributes depend on <code>DeliverableID</code>, and the score depends on the student-deliverable pair. Forcing all four into one table is what causes the anomalies in Section 1. Chapter 7 uses functional dependencies as the formal tool for checking each table and fixing the ones that mix determinants.</p>
+<hr />
+<h2>Key Concepts</h2>
+<!-- markdownlint-enable MD036 -->
+
+<p><strong>Foundational ideas</strong></p>
+<ul>
+<li>The relational model stores different kinds of data in separate tables connected by keys.</li>
+<li>A relation is more than a spreadsheet-like grid; it follows formal structural rules.</li>
+<li>Flat tables fail when they mix multiple subjects and repeat the same facts.</li>
+<li>Modification anomalies (update, insertion, deletion) are symptoms of poor structure.</li>
+</ul>
+<p><strong>Keys and integrity</strong></p>
+<ul>
+<li>A primary key uniquely identifies each row; a candidate key could.</li>
+<li>A composite key uses multiple columns; a natural key has business meaning; a surrogate key has none.</li>
+<li>Entity integrity: primary keys must be unique and never <code>NULL</code>.</li>
+<li>A foreign key connects one table to another; referential integrity prevents orphan records.</li>
+</ul>
+<p><strong>Relationship design</strong></p>
+<ul>
+<li>1:1 connects one row to at most one related row.</li>
+<li>1:N places the foreign key on the many side.</li>
+<li>M:N requires a junction table. <code>STUDENT_GRADE</code> is a junction between <code>STUDENT</code> and <code>DELIVERABLE</code>; <code>ATTENDANCE</code> is a junction between <code>STUDENT</code> and <code>SCHEDULE</code>.</li>
+</ul>
+<p><strong>Application in practice</strong></p>
+<ul>
+<li>The Grading Database moves from one flat table to seven connected tables.</li>
+<li>SQL joins reconstruct report-ready views from those tables.</li>
+<li>Access shows keys, relationships, and integrity in a visual interface.</li>
+<li>Functional dependencies set up normalization in Chapter 7.</li>
+</ul>
+<hr />
+<h2>Chapter Summary</h2>
+<p>This chapter explained the relational model as the foundation of modern database design. A flat table looks simple, but it becomes unreliable when it stores multiple kinds of facts in one structure. Student identities, assignment rules, deliverable details, attendance records, and scores have different meanings and different update patterns. When they are forced into one table, redundancy and anomalies appear.</p>
+<p>The relational model solves this problem by giving each table one well-defined subject. Rows are instances; columns are attributes. Primary keys identify rows. Foreign keys connect related rows across tables. Entity integrity protects row identity, and referential integrity protects valid relationships.</p>
+<p>The Grading Database made these ideas concrete. A flat <code>GRADE_FLAT</code> table was decomposed into <code>STUDENT</code>, <code>ASSIGNMENT_TYPE</code>, <code>DELIVERABLE</code>, <code>STUDENT_GRADE</code>, <code>SCHEDULE</code>, <code>ATTENDANCE</code>, and <code>GRADE_SCALE</code>. Each table has a clear purpose. Together they support cleaner updates, safer data entry, and more reliable SQL queries. The chapter also showed that relational design does not make reporting harder; it makes reporting more trustworthy. Joins reconstruct the exact view needed for a question without requiring duplicated storage.</p>
+<p>The Access walkthrough connected the theory to a hands-on environment, and the companion Let's Build extends that work to the full seven-table schema. Finally, functional dependencies served as the bridge to normalization: they reveal which attributes belong together and which should be separated, which is exactly the work Chapter 7 formalizes.</p>
+<hr />
+<h2>References</h2>
+<p>Codd, E. F. (1970). A relational model of data for large shared data banks. <em>Communications of the ACM, 13</em>(6), 377–387.</p>
+<p>Connolly, T., &amp; Begg, C. (2015). <em>Database systems: A practical approach to design, implementation, and management</em> (6th ed.). Pearson.</p>
+<p>Date, C. J. (2004). <em>An introduction to database systems</em> (8th ed.). Pearson.</p>
+<p>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of database systems</em> (7th ed.). Pearson.</p>
+<p>Hoffer, J. A., Venkataraman, R., &amp; Topi, H. (2019). <em>Modern database management</em> (13th ed.). Pearson.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+<p>Silberschatz, A., Korth, H. F., &amp; Sudarshan, S. (2020). <em>Database system concepts</em> (7th ed.). McGraw-Hill Education.</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Chapter 6 — Let's Build: The Relational Grading Database in Access</h2>
+                  <!-- markdownlint-disable MD036 -->
+
+<h2>Let's Build</h2>
+<p>The main chapter built the first three tables of the Grading Database in Access — <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code> — and showed how referential integrity stops orphan rows. This Let's Build extends that work to the full seven-table schema, adds the four new relationships, and then writes the three queries from §8 inside Access: a weighted-contribution join, an attendance summary with <code>LEFT JOIN</code>, and a missing-grades anti-join that uses <code>CROSS JOIN</code> and <code>LEFT JOIN ... WHERE IS NULL</code>. By the end you will have a complete relational Grading Database that mirrors the §7 ERD and three saved queries that prove the design works. There is no submission for this Let's Build — the graded transfer happens in <strong>Lab 06 — Building the PetVax Relational Database</strong>, where you rebuild this logic for a veterinary clinic.</p>
+<h3>Purpose</h3>
+<p>Make the §7 seven-table Grading Database real in Access, enforce referential integrity on every parent-child link, and run the §8 queries against the live tables so the relational design pays off in front of you.</p>
+<h3>What You Will Practice</h3>
+<ul>
+<li>Extending an existing Access database without breaking the relationships already drawn.</li>
+<li>Matching foreign-key data types to parent primary-key types (the most common Access error).</li>
+<li>Drawing one-to-many relationships and enforcing referential integrity in the Relationships window.</li>
+<li>Writing multi-table joins in Query Design View and inspecting the generated SQL.</li>
+<li>Using <code>LEFT JOIN</code> two different ways: to keep the left side, and as the core of an anti-join.</li>
+<li>Reading <code>CROSS JOIN</code> as the way to enumerate the universe of expected combinations.</li>
+</ul>
+<h3>Before You Begin</h3>
+<p>You should have the <code>.accdb</code> from the main chapter §9 walkthrough open, with three tables already created and populated:</p>
+<ul>
+<li><code>STUDENT</code> with the four students <code>S1001</code> Alice, <code>S1002</code> Brian, <code>S1003</code> Carla, <code>S1004</code> Daniel.</li>
+<li><code>DELIVERABLE</code> (empty or partly populated).</li>
+<li><code>STUDENT_GRADE</code> (empty or partly populated).</li>
+<li>Two relationship lines already drawn: <code>STUDENT</code> → <code>STUDENT_GRADE</code> and <code>DELIVERABLE</code> → <code>STUDENT_GRADE</code>, both with <strong>Enforce Referential Integrity</strong> checked.</li>
+</ul>
+<p>If your instructor provides <code>gradingdb-ch06-starter.accdb</code>, use that file — it already contains the three tables and two relationships above. Otherwise, complete the §9 walkthrough first. Save your working copy as <code>gradingdb-ch06.accdb</code>. Plan about 75–90 minutes; the four new tables and three queries can be split across two sittings if needed.</p>
+<p>:::callout{type="takeaway" title="💡 What changed from Chapter 4?"}
+In Chapter 4, you used Access to create a working database. In Chapter 6, you use Access to create a <em>relational design</em>. The difference is not the software — it is that related facts now live in separate tables and are connected through enforced relationships.
+:::</p>
+<h3>Starting State Checklist</h3>
+<p>Before continuing, confirm your database matches every row below. Most later errors come from starting with mismatched field types.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table exists</td>
+<td><code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Table exists</td>
+<td><code>DELIVERABLE</code></td>
+</tr>
+<tr>
+<td>Table exists</td>
+<td><code>STUDENT_GRADE</code></td>
+</tr>
+<tr>
+<td><code>STUDENT.StudentID</code> data type</td>
+<td>Short Text</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE.DeliverableID</code> data type</td>
+<td>AutoNumber</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE.StudentID</code> data type</td>
+<td>Short Text</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE.DeliverableID</code> data type</td>
+<td>Number / Long Integer</td>
+</tr>
+<tr>
+<td>Relationship exists</td>
+<td><code>STUDENT</code> → <code>STUDENT_GRADE</code></td>
+</tr>
+<tr>
+<td>Relationship exists</td>
+<td><code>DELIVERABLE</code> → <code>STUDENT_GRADE</code></td>
+</tr>
+<tr>
+<td>Referential integrity</td>
+<td>Enforced on both relationships</td>
+</tr>
+</tbody>
+</table>
+<p>If any row does not match, fix it before continuing.</p>
+<h3>Seed the Deliverables and Grades</h3>
+<p>Before adding new tables, populate <code>DELIVERABLE</code> and <code>STUDENT_GRADE</code> so the later queries have data to work with. Open <code>DELIVERABLE</code> and enter five rows. <code>DeliverableID</code> is AutoNumber, so Access assigns 1–5 in order:</p>
+<table>
+<thead>
+<tr>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-10</td>
+<td>Database Basics</td>
+</tr>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-17</td>
+<td>SQL Basics</td>
+</tr>
+<tr>
+<td>Homework</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-24</td>
+<td>Entity Design</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-10-05</td>
+<td>Midterm</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">1</td>
+<td>2026-11-05</td>
+<td>Final Project</td>
+</tr>
+</tbody>
+</table>
+<p>Then open <code>STUDENT_GRADE</code> and enter eight rows. Leave <code>GradeID</code> blank (AutoNumber):</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th style="text-align: right;">DeliverableID</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">79</td>
+</tr>
+<tr>
+<td>S1003</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>S1003</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">91</td>
+</tr>
+<tr>
+<td>S1004</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">89</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected state:</strong> 5 rows in <code>DELIVERABLE</code>, 8 rows in <code>STUDENT_GRADE</code>. Notice that not every student has a score on every deliverable — that gap is what the anti-join in the last query will surface.</p>
+<h3>Add the ASSIGNMENT_TYPE Table</h3>
+<p>Create a new table in <strong>Create → Table Design</strong>. This table stores category-level grading rules once, so they no longer repeat in every deliverable row.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AssignmentType</code></td>
+<td>Short Text</td>
+<td>Primary key (natural key — the category name itself)</td>
+</tr>
+<tr>
+<td><code>Quantity</code></td>
+<td>Number</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>PointsPerType</code></td>
+<td>Number</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>Weight</code></td>
+<td>Number</td>
+<td>Required (percent of final grade)</td>
+</tr>
+<tr>
+<td><code>WeightPerItem</code></td>
+<td>Number</td>
+<td>Required (<code>Weight</code> ÷ <code>Quantity</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Select <code>AssignmentType</code> and click the key icon to set it as the primary key. Save as <code>ASSIGNMENT_TYPE</code>. Enter the four category rows from the chapter:</p>
+<table>
+<thead>
+<tr>
+<th>AssignmentType</th>
+<th style="text-align: right;">Quantity</th>
+<th style="text-align: right;">PointsPerType</th>
+<th style="text-align: right;">Weight</th>
+<th style="text-align: right;">WeightPerItem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>Homework</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> four rows. The category rules now live in exactly one place.</p>
+<h3>Add the SCHEDULE Table</h3>
+<p>Class meetings deserve their own table because attendance attaches to them. Create another table in Design View:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ClassNum</code></td>
+<td>Number</td>
+<td>Primary key (manually entered, not AutoNumber, so the values match what you reference in <code>ATTENDANCE</code>)</td>
+</tr>
+<tr>
+<td><code>Week</code></td>
+<td>Number</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>ClassDate</code></td>
+<td>Date/Time</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>Topic</code></td>
+<td>Short Text</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>Format</code></td>
+<td>Short Text</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<p>Save as <code>SCHEDULE</code> and enter four meetings:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">ClassNum</th>
+<th style="text-align: right;">Week</th>
+<th>ClassDate</th>
+<th>Topic</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td>2026-09-01</td>
+<td>Course Introduction</td>
+<td>In person</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td>2026-09-08</td>
+<td>Data and Information</td>
+<td>In person</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td>2026-09-15</td>
+<td>SQL Basics</td>
+<td>Online</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td>2026-09-22</td>
+<td>Relational Design</td>
+<td>In person</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> four scheduled class meetings.</p>
+<h3>Add the ATTENDANCE Table</h3>
+<p><code>ATTENDANCE</code> is a junction table. It resolves the many-to-many relationship between students and class meetings: one student attends many meetings, and one meeting is attended by many students. Create the table in Design View — and read the data-type warning carefully before saving.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AttendanceID</code></td>
+<td>AutoNumber</td>
+<td>Primary key (surrogate)</td>
+</tr>
+<tr>
+<td><code>ClassNum</code></td>
+<td>Number, Long Integer</td>
+<td>Foreign key → <code>SCHEDULE.ClassNum</code></td>
+</tr>
+<tr>
+<td><code>StudentID</code></td>
+<td><strong>Short Text</strong></td>
+<td>Foreign key → <code>STUDENT.StudentID</code> — must match parent type</td>
+</tr>
+<tr>
+<td><code>Attended</code></td>
+<td>Yes/No</td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+<p>:::callout{type="warning" title="⚠️ Foreign-key types must match the parent"}
+<code>STUDENT.StudentID</code> is <strong>Short Text</strong> (values like <code>S1001</code>), so the <code>StudentID</code> foreign key in <code>ATTENDANCE</code> must also be Short Text. <code>SCHEDULE.ClassNum</code> is a Number, so the <code>ClassNum</code> foreign key in <code>ATTENDANCE</code> must be Number (Long Integer). If the types do not match, Access will refuse to draw the relationship in the next step.
+:::</p>
+<p>Save as <code>ATTENDANCE</code>. Enter sixteen rows — every student against every meeting, with some marked absent so the data looks realistic. Leave <code>AttendanceID</code> blank:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">ClassNum</th>
+<th>StudentID</th>
+<th>Attended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1001</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1002</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1003</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>S1004</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1001</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1002</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1003</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>S1004</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1001</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1002</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1003</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>S1004</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1001</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1002</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1003</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>S1004</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> sixteen attendance rows.</p>
+<h3>Add the GRADE_SCALE Lookup Table</h3>
+<p>The grade scale converts a final numeric grade into a letter. It is a small reference table that does not connect to anything yet — Chapter 12 will use it in range queries.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LetterGrade</code></td>
+<td>Short Text</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>MinScore</code></td>
+<td>Number</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>MaxScore</code></td>
+<td>Number</td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+<p>Save as <code>GRADE_SCALE</code> and enter five rows:</p>
+<table>
+<thead>
+<tr>
+<th>LetterGrade</th>
+<th style="text-align: right;">MinScore</th>
+<th style="text-align: right;">MaxScore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">89</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">79</td>
+</tr>
+<tr>
+<td>D</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">69</td>
+</tr>
+<tr>
+<td>F</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">59</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> five letter-grade bands. Policy now lives in one place. This simplified scale uses five broad bands; a later chapter may refine it into plus/minus grades.</p>
+<h3>Wire the New Relationships</h3>
+<p>Close every open table — Access will not let you edit relationships while a child table is open. Then open <strong>Database Tools → Relationships</strong> and add <code>ASSIGNMENT_TYPE</code>, <code>SCHEDULE</code>, and <code>ATTENDANCE</code> to the layout next to your existing three tables.</p>
+<p>Draw three new relationships. For each one, check <strong>Enforce Referential Integrity</strong>.</p>
+<p>:::callout{type="warning" title="⚠️ Do not check Cascade Delete"}
+Leave <strong>Cascade Update</strong> and <strong>Cascade Delete</strong> unchecked in this build. Deleting a student should not automatically delete their grade and attendance history — that data is needed for audits, appeals, and reporting (chapter §6.4).
+:::</p>
+<ol>
+<li>Drag <code>ASSIGNMENT_TYPE.AssignmentType</code> onto <code>DELIVERABLE.AssignmentType</code>. Access can enforce this relationship only because every <code>AssignmentType</code> already used in <code>DELIVERABLE</code> (Quiz, Homework, Exam, Project) exists in <code>ASSIGNMENT_TYPE</code>. If you typed <code>Homework</code> as <code>Home Work</code> or <code>Project</code> as <code>Projects</code>, the relationship will fail — fix the typo in <code>DELIVERABLE</code> first.</li>
+<li>Drag <code>SCHEDULE.ClassNum</code> onto <code>ATTENDANCE.ClassNum</code>.</li>
+<li>Drag <code>STUDENT.StudentID</code> onto <code>ATTENDANCE.StudentID</code>.</li>
+</ol>
+<p><strong>Expected output:</strong> five total relationship lines, each labeled <strong>1</strong> on the parent side and <strong>∞</strong> on the child side. <code>GRADE_SCALE</code> sits unconnected for now — that is fine.</p>
+<table>
+<thead>
+<tr>
+<th>Parent table</th>
+<th>Child table</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>STUDENT_GRADE</code></td>
+<td>1 → many</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td><code>STUDENT_GRADE</code></td>
+<td>1 → many</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td><code>DELIVERABLE</code></td>
+<td>1 → many (new)</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td><code>ATTENDANCE</code></td>
+<td>1 → many (new)</td>
+</tr>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>ATTENDANCE</code></td>
+<td>1 → many (new)</td>
+</tr>
+</tbody>
+</table>
+<h3>Test Referential Integrity</h3>
+<p>The Relationships window is now doing work. Prove it with three insert attempts that should all fail. Open the target table, try to add the bad row, and watch Access reject it. Cancel each row after the error message.</p>
+<table>
+<thead>
+<tr>
+<th>Try inserting into</th>
+<th>Bad value</th>
+<th>Why it should fail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td><code>ClassNum = 99</code>, <code>StudentID = S1001</code></td>
+<td><code>ClassNum 99</code> does not exist in <code>SCHEDULE</code>.</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td><code>ClassNum = 1</code>, <code>StudentID = 'S9999'</code></td>
+<td><code>S9999</code> does not exist in <code>STUDENT</code>.</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td><code>AssignmentType = 'Lab'</code></td>
+<td><code>Lab</code> does not exist in <code>ASSIGNMENT_TYPE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong> three "You cannot add or change a record because a related record is required..." error dialogs. The model from §6 is now enforced by the DBMS.</p>
+<h3>Query 1 — Weighted Contribution per Score</h3>
+<p>This is the four-table join from §8.3. It joins each grade to its student, to its deliverable, and to the deliverable's category rules — then multiplies score by per-item weight to show how much each score contributes to the final grade.</p>
+<p>Open <strong>Create → Query Design</strong> and add <code>STUDENT</code>, <code>STUDENT_GRADE</code>, <code>DELIVERABLE</code>, and <code>ASSIGNMENT_TYPE</code>. Access draws the join lines automatically from the relationships you defined. Drag these fields into the grid:</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>FirstName</code></td>
+</tr>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>LastName</code></td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td><code>AssignmentType</code></td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td><code>DeliverableNumber</code></td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td><code>Score</code></td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td><code>WeightPerItem</code></td>
+</tr>
+</tbody>
+</table>
+<p>Add one calculated column in an empty Field cell:</p>
+<pre><code class="language-text">WeightedContribution: Round([Score]*[WeightPerItem]/100,2)
+</code></pre>
+<p>Sort by <code>LastName</code> then <code>DueDate</code>. Save as <code>qryWeightedContribution</code>. Switch to <strong>SQL View</strong> and Access will show roughly:</p>
+<pre><code class="language-sql">SELECT STUDENT.FirstName, STUDENT.LastName,
+       DELIVERABLE.AssignmentType, DELIVERABLE.DeliverableNumber,
+       STUDENT_GRADE.Score, ASSIGNMENT_TYPE.WeightPerItem,
+       Round([Score]*[WeightPerItem]/100,2) AS WeightedContribution
+FROM ASSIGNMENT_TYPE
+INNER JOIN (DELIVERABLE
+INNER JOIN (STUDENT
+INNER JOIN STUDENT_GRADE ON STUDENT.StudentID = STUDENT_GRADE.StudentID)
+ON DELIVERABLE.DeliverableID = STUDENT_GRADE.DeliverableID)
+ON ASSIGNMENT_TYPE.AssignmentType = DELIVERABLE.AssignmentType;
+</code></pre>
+<p><strong>Expected output:</strong> eight rows, one per recorded score. A few examples:</p>
+<table>
+<thead>
+<tr>
+<th>FirstName</th>
+<th>LastName</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">Score</th>
+<th style="text-align: right;">WeightPerItem</th>
+<th style="text-align: right;">WeightedContribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alice</td>
+<td>Johnson</td>
+<td>Quiz</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4.5</td>
+</tr>
+<tr>
+<td>Alice</td>
+<td>Johnson</td>
+<td>Quiz</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4.75</td>
+</tr>
+<tr>
+<td>Alice</td>
+<td>Johnson</td>
+<td>Exam</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">17.4</td>
+</tr>
+<tr>
+<td>Brian</td>
+<td>Lee</td>
+<td>Quiz</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.75</td>
+</tr>
+<tr>
+<td>Daniel</td>
+<td>Kim</td>
+<td>Project</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8.9</td>
+</tr>
+</tbody>
+</table>
+<p>The category rule lives once in <code>ASSIGNMENT_TYPE</code> and is applied wherever it is needed. That is the payoff of separated storage.</p>
+<h3>Query 2 — Attendance Summary with LEFT JOIN</h3>
+<p>This is §8.4. It counts how many class meetings each student attended. The <code>LEFT JOIN</code> matters: it keeps students in the result even if they have no attendance rows yet — useful when looking for students whose attendance was never recorded.</p>
+<p>Open <strong>Create → Query Design</strong> and add <code>STUDENT</code> and <code>ATTENDANCE</code>. Right-click the join line between them, choose <strong>Join Properties</strong>, and pick option 2: <em>Include ALL records from <code>STUDENT</code> and only those records from <code>ATTENDANCE</code> where the joined fields are equal.</em> That is a <code>LEFT JOIN</code>.</p>
+<p>Add fields:</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>StudentID</code></td>
+</tr>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>FirstName</code></td>
+</tr>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>LastName</code></td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td><code>Attended</code></td>
+</tr>
+</tbody>
+</table>
+<p>Click the <strong>Totals</strong> (Σ) button on the ribbon. Set the first three fields to <strong>Group By</strong>. For <code>Attended</code>, switch the cell to <strong>Expression</strong> and replace the field with:</p>
+<pre><code class="language-text">ClassesAttended: Nz(Sum(IIf([Attended]=Yes,1,0)),0)
+</code></pre>
+<p>:::callout{type="note" title="📝 Why the IIf and Nz wrappers"}
+Access stores <code>Yes</code> internally as <code>-1</code> and <code>No</code> as <code>0</code>. A naked <code>Sum([Attended])</code> returns a negative number, so <code>IIf([Attended]=Yes,1,0)</code> converts each Yes to <code>+1</code>. The outer <code>Nz(...,0)</code> turns a missing sum into <code>0</code>, which is what you want for a student who has no attendance rows at all.
+:::</p>
+<p>Save as <code>qryAttendanceSummary</code>. <strong>Expected output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th style="text-align: right;">ClassesAttended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Brian</td>
+<td>Lee</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>S1003</td>
+<td>Carla</td>
+<td>Mendez</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>S1004</td>
+<td>Daniel</td>
+<td>Kim</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table>
+<p>One row per student, even though some students were marked absent for some meetings. If a student had zero attendance rows at all, the <code>LEFT JOIN</code> would still return their name with <code>ClassesAttended = 0</code>.</p>
+<h3>Query 3 — Find Missing Grades (CROSS JOIN + Anti-Join, Stretch)</h3>
+<blockquote>
+<p><strong>Stretch query — read slowly.</strong> This is the most advanced query in Chapter 6. The chapter (§8.5) explicitly hands it off to this Let's Build because it is the analytical payoff of separated storage. Take your time; the three-move breakdown below makes it readable.</p>
+</blockquote>
+<p>This query answers: <em>which student-deliverable combinations do not yet have a score?</em> You cannot answer that by looking only at <code>STUDENT_GRADE</code>, because <code>STUDENT_GRADE</code> does not contain the missing rows; that is the whole point. You have to <em>generate</em> the expected universe first, then subtract what exists.</p>
+<p>Build it in three moves.</p>
+<p><strong>Move 1 — Enumerate the universe with <code>CROSS JOIN</code>.</strong> A <code>CROSS JOIN</code> pairs every row of one table with every row of another. No <code>ON</code> clause, no matching condition — just every combination. <code>STUDENT</code> (4 rows) × <code>DELIVERABLE</code> (5 rows) = 20 expected pairs. That is the full set of scores that <em>could</em> exist.</p>
+<p><strong>Move 2 — Attach what's actually there with <code>LEFT JOIN</code>.</strong> A <code>LEFT JOIN</code> keeps every row on the left and fills in <code>NULL</code> on the right where there is no match. Joining the 20 expected pairs to <code>STUDENT_GRADE</code> on both <code>StudentID</code> and <code>DeliverableID</code> attaches a <code>GradeID</code> where a score was recorded and leaves <code>GradeID = NULL</code> where it was not.</p>
+<p><strong>Move 3 — Keep only the empty ones with <code>WHERE ... IS NULL</code>.</strong> This flips the <code>LEFT JOIN</code> from "show everything" into "show only the gaps." That pattern — <code>LEFT JOIN ... WHERE right_side IS NULL</code> — is called an <strong>anti-join</strong>. It returns "everything on the left that has no match on the right."</p>
+<p>Open <strong>Create → Query Design</strong>. Add <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code>. Delete the join lines Access draws automatically — you will write the joins yourself in SQL. Switch to <strong>SQL View</strong> and replace the query with:</p>
+<pre><code class="language-sql">SELECT STUDENT.StudentID,
+       STUDENT.FirstName,
+       STUDENT.LastName,
+       DELIVERABLE.DeliverableID,
+       DELIVERABLE.AssignmentType,
+       DELIVERABLE.DeliverableNumber
+FROM (STUDENT, DELIVERABLE)
+LEFT JOIN STUDENT_GRADE
+       ON STUDENT.StudentID = STUDENT_GRADE.StudentID
+      AND DELIVERABLE.DeliverableID = STUDENT_GRADE.DeliverableID
+WHERE STUDENT_GRADE.GradeID IS NULL
+ORDER BY STUDENT.LastName, DELIVERABLE.DueDate;
+</code></pre>
+<p>The <code>FROM (STUDENT, DELIVERABLE)</code> comma is Access's way of writing a cross join. Standard SQL and SQLite prefer the explicit keyword <code>CROSS JOIN</code> — same result. Save as <code>qryMissingGrades</code>.</p>
+<p><strong>Expected output:</strong> 20 − 8 = <strong>12 rows</strong>, one per missing pair. A few examples:</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>LastName</th>
+<th>AssignmentType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1001</td>
+<td>Johnson</td>
+<td>Homework</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>S1001</td>
+<td>Johnson</td>
+<td>Project</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>S1004</td>
+<td>Kim</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>S1004</td>
+<td>Kim</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Lee</td>
+<td>Homework</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>S1002</td>
+<td>Lee</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>A flat single-table gradebook cannot answer this cleanly because the missing rows simply are not there. The relational design plus a cross join makes the gaps visible.</p>
+<h3>Check Your Work</h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tables in the database</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Rows in <code>STUDENT</code> / <code>ASSIGNMENT_TYPE</code> / <code>DELIVERABLE</code> / <code>STUDENT_GRADE</code></td>
+<td>4 / 4 / 5 / 8</td>
+</tr>
+<tr>
+<td>Rows in <code>SCHEDULE</code> / <code>ATTENDANCE</code> / <code>GRADE_SCALE</code></td>
+<td>4 / 16 / 5</td>
+</tr>
+<tr>
+<td>Relationship lines with RI enforced</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>S9999</code> insert into <code>ATTENDANCE</code></td>
+<td>Rejected</td>
+</tr>
+<tr>
+<td><code>ClassNum = 99</code> insert into <code>ATTENDANCE</code></td>
+<td>Rejected</td>
+</tr>
+<tr>
+<td><code>AssignmentType = 'Lab'</code> insert into <code>DELIVERABLE</code></td>
+<td>Rejected</td>
+</tr>
+<tr>
+<td><code>qryWeightedContribution</code> rows</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>qryAttendanceSummary</code> rows</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>qryMissingGrades</code> rows</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<h3>One Table, One Subject</h3>
+<p>Before the takeaway, look at what each table now stores. Every row in this map represents a different <em>kind</em> of fact, which is why each row earned its own table.</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>One subject stored</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Student identity</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td>Grading category rules</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Specific assignments</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>Student scores on deliverables</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Class meetings</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Student-class attendance records</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Letter-grade policy</td>
+</tr>
+</tbody>
+</table>
+<h3>What This Shows</h3>
+<p>You did more than add tables. You separated subjects. Student identity lives in <code>STUDENT</code>, category rules in <code>ASSIGNMENT_TYPE</code>, deliverables in <code>DELIVERABLE</code>, scores in <code>STUDENT_GRADE</code>, meetings in <code>SCHEDULE</code>, attendance in <code>ATTENDANCE</code>, and grading policy in <code>GRADE_SCALE</code>. Two of those tables — <code>STUDENT_GRADE</code> and <code>ATTENDANCE</code> — are junction tables that resolve many-to-many relationships into pairs of one-to-many. The three saved queries prove the design works: <code>INNER JOIN</code> reconstructs a report from separated tables, <code>LEFT JOIN</code> keeps the left side when the right side is absent, and <code>CROSS JOIN</code> paired with an anti-join surfaces records that <em>should</em> exist but do not. None of those queries are easy to write against a flat table.</p>
+<h3>Common Mistakes</h3>
+<ul>
+<li><strong>Foreign-key type mismatch.</strong> <code>STUDENT.StudentID</code> is Short Text, so every <code>StudentID</code> foreign key must also be Short Text. <code>DeliverableID</code> and <code>ClassNum</code> follow the same rule. Access refuses to draw the relationship line if the types disagree.</li>
+<li><strong>Trying to open Relationships with a table open.</strong> Close every datasheet first or some relationship changes will silently fail to save.</li>
+<li><strong>Checking Cascade Delete by reflex.</strong> This is rarely what you want. Deleting a student should not erase their attendance and grade history.</li>
+<li><strong>Naked <code>Sum([Attended])</code> returning negatives.</strong> Access stores Yes as <code>-1</code>. Use <code>Sum(IIf([Attended]=Yes,1,0))</code> instead.</li>
+<li><strong>Missing a column from <code>GROUP BY</code>.</strong> When using the Totals row, every non-aggregated column must be set to <code>Group By</code> or Access will refuse to run the query.</li>
+<li><strong>Expecting <code>qryMissingGrades</code> to return rows once every student has a score.</strong> It will return zero rows — that means the grading is complete, not that the query is broken.</li>
+</ul>
+<h3>Submit or Save</h3>
+<p>There is no graded submission for this Let's Build. To preserve your work for Lab 06:</p>
+<ol>
+<li>Save the database as <code>gradingdb-ch06.accdb</code>.</li>
+<li>Export the Relationships window as a PDF: open <strong>Database Tools → Relationships → Relationship Report</strong>, then <strong>File → Save As → PDF</strong> as <code>gradingdb-ch06-erd.pdf</code>.</li>
+<li>Confirm the three saved queries are present: <code>qryWeightedContribution</code>, <code>qryAttendanceSummary</code>, <code>qryMissingGrades</code>.</li>
+</ol>
+<p>The graded transfer of this design lives in <strong>Lab 06 — Building the PetVax Relational Database</strong>, where you rebuild the same logic — separated subjects, junction tables, enforced relationships, and the three-query pattern — against the PetVax veterinary clinic.</p>
+<h3>Peek Ahead — Chapter 7</h3>
+<p>The seven tables are well-separated, but separation alone is not the same as good design. Each table still needs a stricter check: does every non-key column depend on the <em>whole</em> primary key and nothing else? That check is <strong>normalization</strong>, and Chapter 7 walks the Grading Database through 1NF, 2NF, and 3NF using the functional dependencies introduced in §10 of this chapter. The relational model gives you tables and keys. Normalization tells you whether the tables and keys you chose are the right ones.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 6 - Term Treasury</h2>
+                  <p><em>Essential Vocabulary - understand the key terms used throughout this chapter.</em></p>
+<p><img alt="Term Treasury section image" src="../../../../../.images/Ch0%20General/sections/resize/terms-sized.min.gif" /></p>
+<p><strong>Candidate Key</strong>
+A field or combination of fields that could uniquely identify each row in a table.</p>
+<p><strong>Composite Key</strong>
+A key made from two or more fields that work together to identify a row uniquely.</p>
+<p><strong>Data Redundancy</strong>
+The repeated storage of the same fact in multiple rows or places.</p>
+<p><strong>Functional Dependency</strong>
+A relationship in which one attribute, or one set of attributes, determines another attribute.</p>
+<p><strong>Junction Table</strong>
+A table that resolves a many-to-many relationship by storing one row for each valid pairing between related records.</p>
+<p><strong>Natural Key</strong>
+A key built from real-world data that is already meaningful and unique enough to identify a row.</p>
+<p><strong>Referential Integrity</strong>
+The rule that every non-null foreign key value must match an existing referenced key.</p>
+<p><strong>Relational Model</strong>
+A framework for organizing data into related tables so facts are stored once and connected through keys.</p>
+<p><strong>Schema</strong>
+The overall structure of a database, including its tables, fields, keys, and relationships.</p>
+<p><strong>Surrogate Key</strong>
+An artificial identifier, often auto-generated, that is used as a table's primary key.</p>
+<h2>Acronyms</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ERD</td>
+<td>Entity-Relationship Diagram</td>
+</tr>
+</tbody>
+</table>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>Chapter 6: Review and Reflection</h2>
+                  <!-- markdownlint-disable MD025 MD041 MD003 MD022 MD007 MD032 -->
+<hr />
+<p>title: "Chapter 6: Review and Reflection"
+chapter: 6
+section: "Review and Reflection"
+description: "Provides review, reflection, and personal reflection questions that help students consolidate Chapter 6 concepts and connect the relational model to design practice, database integrity, and their own developing judgment."
+keywords:
+  - review questions
+  - reflection questions
+  - relational model
+  - referential integrity
+  - functional dependency
+  - ASSIGNMENT_TYPE
+  - Chapter 6
+date: 2026-03-22
+author: "Nimrod Dvir, PhD"</p>
+<hr />
+<p><img alt="Reflection GIF" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" /></p>
+<p><em>Pause, review, and think more deeply about how relational structure turns scattered grading facts into a coherent system.</em></p>
+<h2>Review Questions</h2>
+<p><em>These questions help you review the chapter's main ideas, terms, frameworks, and examples.</em></p>
+<ol>
+<li>Why does the chapter argue that a flat grading table becomes unreliable as requirements grow?</li>
+<li>What is the difference between an entity, a relation, and a relationship table in this chapter's schema?</li>
+<li>Why does the chapter separate <code>ASSIGNMENT_TYPE</code> from <code>DELIVERABLE</code>?</li>
+<li>How do primary keys and foreign keys work together in the seven-table grading design?</li>
+<li>Why is <code>STUDENT_GRADE</code> described as a junction table?</li>
+<li>What does referential integrity protect in the grading database?</li>
+<li>Why can surrogate primary keys and business-rule uniqueness constraints exist at the same time?</li>
+<li>How does the chapter use functional dependency to preview normalization in Chapter 7?</li>
+</ol>
+<h2>Reflection Questions</h2>
+<p><em>These questions encourage you to interpret the chapter, connect ideas, and think critically about how they apply in practice.</em></p>
+<ol>
+<li>Why is <code>ASSIGNMENT_TYPE</code> a stronger teaching choice than naming the category-rules table <code>WEIGHT</code>?</li>
+<li>What does the chapter suggest about the risks of treating every table as if it were only an entity table?</li>
+<li>Why is it useful to describe <code>GRADE_SCALE</code> as a lookup or interpretation table instead of a normal transactional parent?</li>
+<li>How does the move from one flat row to several related tables improve the credibility of reports?</li>
+<li>When might a natural key be a good design choice, and when is a surrogate key safer?</li>
+<li>Why do JOINs become necessary in a relational design rather than feeling like an optional advanced technique?</li>
+</ol>
+<h2>Personal Reflection Questions</h2>
+<p><em>These questions help you connect the chapter to your own habits, goals, strengths, and developing professional skills.</em></p>
+<ol>
+<li>Where have you seen duplicated data create confusion or inconsistency in your own work, school, or daily life?</li>
+<li>Which anomaly from the chapter, update, insertion, or deletion, feels most dangerous to you, and why?</li>
+<li>Which Chapter 6 concept still feels least intuitive to you: keys, referential integrity, junction tables, or functional dependency?</li>
+<li>If you had to explain the relational model to a spreadsheet-heavy coworker or classmate, what example from this chapter would you use first?</li>
+<li>How might this chapter change the way you design a spreadsheet, form, or tracking system in the future?</li>
+<li>What habit do you want to build so you notice structural problems in data earlier instead of after errors appear?</li>
+</ol>
+<h2>Answer Key</h2>
+<h3>Review</h3>
+<p><strong>Question 1: Why does the chapter argue that a flat grading table becomes unreliable as requirements grow?</strong>
+Suggested Answer: The chapter argues that a flat table becomes unreliable because it mixes several subjects at once, including student identity, assignment-type rules, deliverable details, and score outcomes. As those facts repeat across rows, the design creates data redundancy and leads to update, insertion, and deletion anomalies.</p>
+<p><strong>Question 2: What is the difference between an entity, a relation, and a relationship table in this chapter's schema?</strong>
+Suggested Answer: An entity is the real-world thing being modeled, such as a student or a class session. A relation is the table structure used to represent one well-defined subject. A relationship table, such as <code>STUDENT_GRADE</code>, represents connections between subjects rather than storing one standalone entity by itself.</p>
+<p><strong>Question 3: Why does the chapter separate <code>ASSIGNMENT_TYPE</code> from <code>DELIVERABLE</code>?</strong>
+Suggested Answer: The chapter separates them because they store different kinds of facts. <code>ASSIGNMENT_TYPE</code> holds category-level grading rules such as quantity, points per type, and weight, while <code>DELIVERABLE</code> stores specific graded items such as Quiz 1 or Exam 2. Keeping them separate prevents repeating category rules inside every deliverable or score row.</p>
+<p><strong>Question 4: How do primary keys and foreign keys work together in the seven-table grading design?</strong>
+Suggested Answer: Primary keys uniquely identify rows inside their own tables, while foreign keys connect those rows across tables. For example, <code>StudentID</code> identifies a student in <code>STUDENT</code>, and that same key appears as a foreign key in <code>STUDENT_GRADE</code> and <code>ATTENDANCE</code> to link related facts without copying student names into every row.</p>
+<p><strong>Question 5: Why is <code>STUDENT_GRADE</code> described as a junction table?</strong>
+Suggested Answer: <code>STUDENT_GRADE</code> is a junction table because it resolves the many-to-many relationship between students and deliverables. Each row records one student's result on one deliverable, which turns one many-to-many relationship into two one-to-many relationships.</p>
+<p><strong>Question 6: What does referential integrity protect in the grading database?</strong>
+Suggested Answer: Referential integrity protects the validity of relationships between tables. It ensures that non-null foreign key values, such as <code>StudentID</code> or <code>DeliverableID</code>, must point to existing rows in the related tables, preventing orphaned or logically impossible records.</p>
+<p><strong>Question 7: Why can surrogate primary keys and business-rule uniqueness constraints exist at the same time?</strong>
+Suggested Answer: A surrogate primary key gives a table a stable system-generated identifier, but business rules may still require certain combinations to remain unique. In this chapter, <code>GradeID</code> can be the primary key of <code>STUDENT_GRADE</code> while <code>(StudentID, DeliverableID)</code> still needs to stay unique if each student should have only one score per deliverable.</p>
+<p><strong>Question 8: How does the chapter use functional dependency to preview normalization in Chapter 7?</strong>
+Suggested Answer: The chapter uses functional dependency to show that some attributes belong together because they share the same determinant. In this schema, <code>AssignmentType</code> determines <code>Quantity</code>, <code>PointsPerType</code>, and <code>Weight</code>, so those values belong in <code>ASSIGNMENT_TYPE</code>. Chapter 7 formalizes that logic as normalization.</p>
+<h3>Reflection</h3>
+<p><strong>Question 1: Why is <code>ASSIGNMENT_TYPE</code> a stronger teaching choice than naming the category-rules table <code>WEIGHT</code>?</strong>
+Suggested Answer: <code>ASSIGNMENT_TYPE</code> is a stronger teaching choice because the table stores more than weight alone. It also stores quantity and points per type, so the name reflects the full business role of the table rather than one attribute inside it. That makes the schema easier to explain and less misleading.</p>
+<p><strong>Question 2: What does the chapter suggest about the risks of treating every table as if it were only an entity table?</strong>
+Suggested Answer: The chapter suggests that this oversimplification causes confusion when students meet relationship and event tables. Tables such as <code>STUDENT_GRADE</code> and <code>ATTENDANCE</code> are not just noun-like entity tables. Treating every table as an entity hides important relational design patterns and makes later topics harder to understand.</p>
+<p><strong>Question 3: Why is it useful to describe <code>GRADE_SCALE</code> as a lookup or interpretation table instead of a normal transactional parent?</strong>
+Suggested Answer: That wording is useful because <code>GRADE_SCALE</code> does not directly govern each raw score row. Instead, it is used after numeric results have been aggregated and interpreted. Calling it a lookup or interpretation table makes the chapter's logic more precise and avoids implying a direct foreign-key-style parent-child relationship that the schema does not actually use.</p>
+<p><strong>Question 4: How does the move from one flat row to several related tables improve the credibility of reports?</strong>
+Suggested Answer: Reports become more credible because each fact is stored once in the right place and then reconstructed through joins. That reduces contradictions, prevents stale copies of the same fact, and allows integrity rules to block invalid references before they reach reports or dashboards.</p>
+<p><strong>Question 5: When might a natural key be a good design choice, and when is a surrogate key safer?</strong>
+Suggested Answer: A natural key is a good choice when the value is stable, meaningful, and truly unique in the business context, such as <code>LetterGrade</code> in a bounded grading scale. A surrogate key is safer when real-world values may change, be reused, or fail to stay unique over time.</p>
+<p><strong>Question 6: Why do JOINs become necessary in a relational design rather than feeling like an optional advanced technique?</strong>
+Suggested Answer: JOINs become necessary because relational design deliberately stores subjects separately instead of duplicating a report-ready view in one table. Once students, deliverables, category rules, and score rows are stored separately, joins are the normal way to reconstruct the exact view needed for a question.</p>
+<h3>Personal Reflection</h3>
+<p><strong>Question 1: Where have you seen duplicated data create confusion or inconsistency in your own work, school, or daily life?</strong>
+Suggested Answer: A strong personal reflection might describe repeated contact lists, duplicated schedule spreadsheets, or copied grade trackers that drift out of sync over time. The key idea is to connect the chapter's data redundancy problem to a real situation where the same fact had to be updated in more than one place.</p>
+<p><strong>Question 2: Which anomaly from the chapter, update, insertion, or deletion, feels most dangerous to you, and why?</strong>
+Suggested Answer: A thoughtful response might choose deletion anomaly because it can silently erase important information, or update anomaly because it creates conflicting versions of the truth. The strongest answers explain why that risk matters in a real business or academic setting.</p>
+<p><strong>Question 3: Which Chapter 6 concept still feels least intuitive to you: keys, referential integrity, junction tables, or functional dependency?</strong>
+Suggested Answer: A good personal response would identify one concept honestly and explain where the confusion remains. For example, a student might say functional dependency feels abstract until tied to <code>ASSIGNMENT_TYPE</code>, or that junction tables became clearer only after seeing <code>STUDENT_GRADE</code> resolve a many-to-many relationship.</p>
+<p><strong>Question 4: If you had to explain the relational model to a spreadsheet-heavy coworker or classmate, what example from this chapter would you use first?</strong>
+Suggested Answer: A strong answer would likely use Alice's repeated email updates or Bob's deletion anomaly because those examples are concrete and easy to understand. They show that relational design is not theory for its own sake; it prevents real mistakes.</p>
+<p><strong>Question 5: How might this chapter change the way you design a spreadsheet, form, or tracking system in the future?</strong>
+Suggested Answer: A thoughtful response might explain that the student would stop mixing unrelated facts in one sheet, separate categories from transactions, or think more carefully about what each row actually represents. The most persuasive answers show a shift from convenience-first design to structure-first thinking.</p>
+<p><strong>Question 6: What habit do you want to build so you notice structural problems in data earlier instead of after errors appear?</strong>
+Suggested Answer: Good answers might mention asking what one row represents, checking whether a fact is stored more than once, or identifying which field really determines other attributes before building a table. The chapter encourages students to look for structural warning signs before they become reporting problems.</p>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>Readiness Assessment Test (RAT): Chapter 6 - The Relational Model</h2>
+                  <p><img alt="RAT" src="https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/RAT_big?_a=BAMAAAhK0" /></p>
+<blockquote>
+<p><strong>Part of:</strong> Chapter 6 -- <em>How Connected Tables Create Structure, Integrity, and Analytical Power</em><br />
+<strong>Main chapter file:</strong> <a href="../main/ch06-main-edited-2026-05-18.md">ch06-main-edited-2026-05-18.md</a><br />
+<strong>Let's Build file:</strong> <a href="../lets-build/ch06-lets-build-2026-03-22.md">ch06-lets-build-2026-03-22.md</a><br />
+<strong>Key terms:</strong> <a href="../terms/ch06-terms-2026-03-22.md">ch06-terms-2026-03-22.md</a></p>
+</blockquote>
+<hr />
+<h2>Remember</h2>
+<p><strong>1. In the Chapter 6 grading schema, which table stores category-level grading rules such as quantity, points per type, and weight?</strong></p>
+<p>A. <code>STUDENT</code></p>
+<p>B. <code>ASSIGNMENT_TYPE</code></p>
+<p>C. <code>DELIVERABLE</code></p>
+<p>D. <code>GRADE_SCALE</code></p>
+<p><strong>2. Select ALL that apply: Which attributes belong in <code>ASSIGNMENT_TYPE</code> in the chapter's revised schema?</strong></p>
+<p>A. <code>AssignmentType</code></p>
+<p>B. <code>Quantity</code></p>
+<p>C. <code>PointsPerType</code></p>
+<p>D. <code>Score</code></p>
+<p>E. <code>Weight</code></p>
+<p><strong>3. Which table resolves the many-to-many relationship between students and deliverables in Chapter 6?</strong></p>
+<p>A. <code>SCHEDULE</code></p>
+<p>B. <code>ATTENDANCE</code></p>
+<p>C. <code>STUDENT_GRADE</code></p>
+<p>D. <code>GRADE_SCALE</code></p>
+<p><strong>4. Select ALL that apply: Which of the following are foreign keys in the chapter's grading design?</strong></p>
+<p>A. <code>STUDENT_GRADE.StudentID</code></p>
+<p>B. <code>STUDENT_GRADE.DeliverableID</code></p>
+<p>C. <code>ATTENDANCE.ClassNum</code></p>
+<p>D. <code>STUDENT.Email</code></p>
+<p>E. <code>DELIVERABLE.AssignmentType</code></p>
+<p><strong>5. Which relational term is the formal equivalent of a row?</strong></p>
+<p>A. Attribute</p>
+<p>B. Relation</p>
+<p>C. Tuple</p>
+<p>D. Domain</p>
+<p><strong>6. Select ALL that apply: Which signs in the flat grading example show data redundancy?</strong></p>
+<p>A. The same student email appears in multiple rows.</p>
+<p>B. The same category weight appears in multiple rows.</p>
+<p>C. Each row stores one score value.</p>
+<p>D. The same deliverable details can repeat across student rows.</p>
+<p>E. The final letter thresholds live in a separate lookup table.</p>
+<p><strong>7. What role does <code>GRADE_SCALE</code> play in the revised Chapter 6 schema?</strong></p>
+<p>A. It stores each raw score row before the score reaches <code>STUDENT_GRADE</code>.</p>
+<p>B. It acts as a lookup or interpretation table after weighted averages are calculated.</p>
+<p>C. It replaces <code>ASSIGNMENT_TYPE</code> for exams and projects.</p>
+<p>D. It stores attendance codes for each class meeting.</p>
+<p><strong>8. Select ALL that apply: Which chapter examples can function as natural keys in this bounded schema?</strong></p>
+<p>A. <code>LetterGrade</code> in <code>GRADE_SCALE</code></p>
+<p>B. <code>AssignmentType</code> in <code>ASSIGNMENT_TYPE</code></p>
+<p>C. <code>GradeID</code> in <code>STUDENT_GRADE</code></p>
+<p>D. <code>StudentID</code> in <code>STUDENT</code></p>
+<p>E. <code>AttendanceID</code> in <code>ATTENDANCE</code></p>
+<h2>Understand</h2>
+<p><strong>9. Why does the chapter separate <code>ASSIGNMENT_TYPE</code> from <code>DELIVERABLE</code>?</strong></p>
+<p>A. Because Access requires every table to have exactly three fields.</p>
+<p>B. Because category rules and specific graded items are different kinds of facts.</p>
+<p>C. Because <code>DELIVERABLE</code> is only used for attendance.</p>
+<p>D. Because <code>ASSIGNMENT_TYPE</code> stores final letter grades.</p>
+<p><strong>10. Select ALL that apply: How does referential integrity improve the grading database?</strong></p>
+<p>A. It blocks a score row that points to a nonexistent student.</p>
+<p>B. It blocks a deliverable row that references an assignment type that does not exist.</p>
+<p>C. It guarantees that every score is academically fair.</p>
+<p>D. It reduces orphaned records.</p>
+<p>E. It automatically computes weighted averages.</p>
+<p><strong>11. Why does the chapter say a surrogate primary key does not eliminate business-rule uniqueness?</strong></p>
+<p>A. Because surrogate keys work only in SQL Server, not Access.</p>
+<p>B. Because a table can still need unique combinations like <code>(StudentID, DeliverableID)</code> even when it has <code>GradeID</code>.</p>
+<p>C. Because surrogate keys must always be paired with natural keys as composite primary keys.</p>
+<p>D. Because surrogate keys are used only for temporary import tables.</p>
+<p><strong>12. Select ALL that apply: Why does the chapter avoid showing a direct transactional relationship from <code>GRADE_SCALE</code> to <code>STUDENT_GRADE</code> in the ERD?</strong></p>
+<p>A. <code>GRADE_SCALE</code> is used after aggregation and interpretation, not as the parent of each raw score row.</p>
+<p>B. A raw score row can exist before any final letter-grade interpretation is applied.</p>
+<p>C. Every score in <code>STUDENT_GRADE</code> must directly store a foreign key to <code>GRADE_SCALE</code>.</p>
+<p>D. Drawing that line would overstate a dependency the schema does not actually use.</p>
+<p>E. <code>GRADE_SCALE</code> stores assignment-type policy rather than final-grade policy.</p>
+<p><strong>13. Why do JOINs become necessary in the chapter's relational design?</strong></p>
+<p>A. Because normalized designs store related facts in separate tables that must be reconnected for reports.</p>
+<p>B. Because a JOIN is the only way to enforce primary keys.</p>
+<p>C. Because Access cannot display more than one table at a time.</p>
+<p>D. Because foreign keys remove the need for relationships.</p>
+<p><strong>14. Select ALL that apply: Which statements reflect the chapter's principle that tables should represent well-defined subjects?</strong></p>
+<p>A. <code>STUDENT</code> should store one kind of fact: student identity.</p>
+<p>B. <code>STUDENT_GRADE</code> should also store attendance notes for convenience.</p>
+<p>C. <code>ATTENDANCE</code> should store attendance facts.</p>
+<p>D. A table should avoid mixing multiple grains of data in one row.</p>
+<p>E. Every table must describe only a physical person or object, never a relationship.</p>
+<p><strong>15. Why is <code>SCHEDULE</code> kept separate from <code>ATTENDANCE</code> in the chapter's design?</strong></p>
+<p>A. Because class meetings and attendance events are different subjects with different rows.</p>
+<p>B. Because schedule data cannot be stored in Access.</p>
+<p>C. Because <code>ATTENDANCE</code> should contain all course policy rules.</p>
+<p>D. Because <code>SCHEDULE</code> is only a temporary import table.</p>
+<p><strong>16. Select ALL that apply: What follows from the chapter's functional dependency example <code>AssignmentType -&gt; Quantity, PointsPerType, Weight</code>?</strong></p>
+<p>A. Those attributes belong together in <code>ASSIGNMENT_TYPE</code>.</p>
+<p>B. Repeating those values inside every score row would create unnecessary redundancy.</p>
+<p>C. The example previews the logic of normalization in the next chapter.</p>
+<p>D. <code>AssignmentType</code> should be stored only in <code>STUDENT</code>.</p>
+<p>E. Every deliverable of the same type must have the same due date.</p>
+<h2>Apply</h2>
+<p><strong>17. An instructor changes the Homework weight from 25 to 20. Which table should be updated in the revised schema?</strong></p>
+<p>A. <code>STUDENT</code></p>
+<p>B. <code>ASSIGNMENT_TYPE</code></p>
+<p>C. <code>STUDENT_GRADE</code></p>
+<p>D. <code>ATTENDANCE</code></p>
+<p><strong>18. Select ALL that apply: Which values normally belong in a new <code>STUDENT_GRADE</code> row?</strong></p>
+<p>A. <code>StudentID</code></p>
+<p>B. <code>DeliverableID</code></p>
+<p>C. The student's score value</p>
+<p>D. <code>Quantity</code></p>
+<p>E. <code>Weight</code></p>
+<p><strong>19. A report needs student name, deliverable title, assignment type, weight, and score. Which join path best fits the chapter's design?</strong></p>
+<p>A. Join <code>STUDENT_GRADE</code> to <code>STUDENT</code> and <code>DELIVERABLE</code>, then join <code>DELIVERABLE</code> to <code>ASSIGNMENT_TYPE</code>.</p>
+<p>B. Join <code>GRADE_SCALE</code> directly to <code>STUDENT</code> and ignore <code>DELIVERABLE</code>.</p>
+<p>C. Join only <code>STUDENT</code> and <code>ATTENDANCE</code> because scores should already contain all other details.</p>
+<p>D. Join <code>SCHEDULE</code> to <code>GRADE_SCALE</code> because both are lookup tables.</p>
+<p><strong>20. Select ALL that apply: Which operations would likely be blocked by referential integrity?</strong></p>
+<p>A. Inserting a <code>STUDENT_GRADE</code> row with a nonexistent <code>DeliverableID</code></p>
+<p>B. Deleting a <code>STUDENT</code> row that is still referenced by score rows</p>
+<p>C. Updating <code>DELIVERABLE.AssignmentType</code> to a value not found in <code>ASSIGNMENT_TYPE</code></p>
+<p>D. Inserting a new <code>ASSIGNMENT_TYPE</code> row with a valid new category</p>
+<p>E. Adding a student to <code>STUDENT</code> before any scores exist</p>
+<p><strong>21. A registrar wants a student identifier that will remain stable even if names or emails change. Which key choice best matches the chapter's guidance?</strong></p>
+<p>A. Use <code>StudentID</code> as a surrogate key.</p>
+<p>B. Use student name as the primary key.</p>
+<p>C. Use email as the primary key because it is easier to remember.</p>
+<p>D. Use letter grade as the primary key.</p>
+<p><strong>22. Select ALL that apply: Which fields from the flat grading example should be moved into <code>ASSIGNMENT_TYPE</code> rather than repeated in score rows?</strong></p>
+<p>A. <code>AssignmentType</code></p>
+<p>B. <code>Quantity</code></p>
+<p>C. <code>PointsPerType</code></p>
+<p>D. <code>Weight</code></p>
+<p>E. <code>StudentEmail</code></p>
+<p><strong>23. Before any student submits Quiz 3, where should the new graded item be recorded?</strong></p>
+<p>A. <code>STUDENT_GRADE</code></p>
+<p>B. <code>GRADE_SCALE</code></p>
+<p>C. <code>DELIVERABLE</code></p>
+<p>D. <code>ATTENDANCE</code></p>
+<p><strong>24. Select ALL that apply: Which design choices help enforce the rule that each student should have only one score per deliverable?</strong></p>
+<p>A. Add a unique constraint on <code>(StudentID, DeliverableID)</code>.</p>
+<p>B. Add form or application validation that blocks duplicate score entries.</p>
+<p>C. Repeat student names in <code>STUDENT_GRADE</code> so duplicates are easier to spot visually.</p>
+<p>D. Keep <code>StudentID</code> and <code>DeliverableID</code> as foreign keys in <code>STUDENT_GRADE</code>.</p>
+<p>E. Use <code>DeliverableName</code> alone as the only key for the table.</p>
+<h2>Analyze</h2>
+<p><strong>25. A department changes the Project weight, but only some rows in the flat table are updated. Which problem does this reveal most directly?</strong></p>
+<p>A. Insertion anomaly</p>
+<p>B. Update anomaly</p>
+<p>C. Domain constraint</p>
+<p>D. Outer join behavior</p>
+<p><strong>26. Select ALL that apply: Which observations show that a single mega-table violates single responsibility in Chapter 6?</strong></p>
+<p>A. One row stores student identity, deliverable details, and score results together.</p>
+<p>B. The same assignment-type policy repeats across many rows.</p>
+<p>C. One row may imply both a class meeting fact and a grading fact.</p>
+<p>D. <code>GRADE_SCALE</code> exists as a separate table.</p>
+<p>E. Different facts in the row change on different schedules.</p>
+<p><strong>27. Which key strategy best balances simple row identity with business-rule protection in <code>STUDENT_GRADE</code>?</strong></p>
+<p>A. Use only <code>StudentName</code> as the primary key.</p>
+<p>B. Use only <code>DeliverableName</code> as the primary key.</p>
+<p>C. Use surrogate <code>GradeID</code> as the primary key and also enforce uniqueness on <code>(StudentID, DeliverableID)</code>.</p>
+<p>D. Remove keys and rely on sorting to detect duplicates.</p>
+<p><strong>28. Select ALL that apply: Which tables are needed to reconstruct a report with student name, deliverable title, assignment-type weight, and score?</strong></p>
+<p>A. <code>STUDENT</code></p>
+<p>B. <code>DELIVERABLE</code></p>
+<p>C. <code>ASSIGNMENT_TYPE</code></p>
+<p>D. <code>STUDENT_GRADE</code></p>
+<p>E. <code>SCHEDULE</code></p>
+<p><strong>29. If grade thresholds were copied into every score row instead of stored once in <code>GRADE_SCALE</code>, which structural problem would intensify?</strong></p>
+<p>A. Update anomaly caused by duplicated policy values</p>
+<p>B. Stronger normalization</p>
+<p>C. Fewer joins with no trade-off</p>
+<p>D. Better referential integrity enforcement</p>
+<p><strong>30. Select ALL that apply: Which statements correctly compare transactional or event tables with lookup or reference tables in Chapter 6?</strong></p>
+<p>A. <code>STUDENT_GRADE</code> records score results.</p>
+<p>B. <code>GRADE_SCALE</code> interprets final numeric ranges.</p>
+<p>C. <code>ASSIGNMENT_TYPE</code> stores category policy values.</p>
+<p>D. <code>ATTENDANCE</code> is only a lookup table.</p>
+<p>E. <code>GRADE_SCALE</code> is the direct parent of each raw score row.</p>
+<p><strong>31. A team wants to delete a student's last score row but keep the student enrolled in the system. Which design handles that goal better?</strong></p>
+<p>A. A flat table where student identity exists only inside score rows</p>
+<p>B. A relational design where <code>STUDENT</code> is separate from <code>STUDENT_GRADE</code></p>
+<p>C. A design that stores all data in <code>GRADE_SCALE</code></p>
+<p>D. A design with no primary keys</p>
+<p><strong>32. Select ALL that apply: Which comparisons between the flat model and the relational model are accurate in Chapter 6?</strong></p>
+<p>A. The flat model can hide several different subjects inside one row.</p>
+<p>B. The relational model uses keys and joins to reconnect separated facts.</p>
+<p>C. The flat model automatically prevents orphaned references.</p>
+<p>D. The relational model may use more tables but gives clearer responsibilities.</p>
+<p>E. The relational model removes the need for queries.</p>
+<h2>Evaluate</h2>
+<p><strong>33. An instructor adds a new category called Lab with its own quantity, points per type, and weight. What is the best schema-level response?</strong></p>
+<p>A. Add a new row to <code>ASSIGNMENT_TYPE</code>, then create deliverables as needed.</p>
+<p>B. Put the Lab weight directly into each student's score row.</p>
+<p>C. Replace <code>DELIVERABLE</code> with <code>GRADE_SCALE</code>.</p>
+<p>D. Store Lab only in <code>SCHEDULE</code>.</p>
+<p><strong>34. Select ALL that apply: Which design choices best improve auditability and transparency in the chapter's grading database?</strong></p>
+<p>A. Store assignment-type rules once in <code>ASSIGNMENT_TYPE</code>.</p>
+<p>B. Keep final letter-grade thresholds in <code>GRADE_SCALE</code>.</p>
+<p>C. Allow conflicting copies of weight values inside score rows.</p>
+<p>D. Enforce relationships with primary keys and foreign keys.</p>
+<p>E. Separate deliverables from score rows.</p>
+<p><strong>35. Which judgment about <code>LetterGrade</code> as the primary key of <code>GRADE_SCALE</code> best matches the chapter's reasoning?</strong></p>
+<p>A. It is unacceptable because every primary key must be numeric.</p>
+<p>B. It is acceptable in this bounded design because the value is meaningful and unique in that table.</p>
+<p>C. It is acceptable only if copied into every score row.</p>
+<p>D. It is weaker than having no key at all.</p>
+<p><strong>36. Select ALL that apply: Which proposed shortcuts should be rejected based on the chapter's design logic?</strong></p>
+<p>A. Copy student email into every score row for convenience.</p>
+<p>B. Store assignment-type weight on every <code>STUDENT_GRADE</code> row.</p>
+<p>C. Merge <code>SCHEDULE</code> and <code>ATTENDANCE</code> just to reduce the number of tables.</p>
+<p>D. Omit foreign keys because joins can reconnect rows later anyway.</p>
+<p>E. Keep <code>ASSIGNMENT_TYPE</code> separate from <code>DELIVERABLE</code>.</p>
+<p><strong>37. A coworker says, "Let's keep one mega-table because reporting will be easier." Which response best fits Chapter 6?</strong></p>
+<p>A. Reporting becomes easier when all facts are duplicated in the same row.</p>
+<p>B. Keep well-defined tables and use joins to reconstruct reports from cleaner underlying data.</p>
+<p>C. Avoid queries by storing every possible report column in <code>STUDENT</code>.</p>
+<p>D. Replace primary keys with descriptive text fields so reports look nicer.</p>
+<p><strong>38. Select ALL that apply: Which checks should be made before enabling cascade delete in a relational grading database?</strong></p>
+<p>A. Confirm that dependent rows should truly disappear with the parent row.</p>
+<p>B. Understand the business meaning of the delete action.</p>
+<p>C. Test the delete behavior on sample data first.</p>
+<p>D. Assume cascade delete is always the safest default.</p>
+<p>E. Verify whether audit or record-retention needs argue against cascade delete.</p>
+<p><strong>39. Which evaluation of using student email as the primary key in <code>STUDENT</code> best matches the chapter's reasoning?</strong></p>
+<p>A. It is ideal because emails never change.</p>
+<p>B. It is risky because descriptive business values can change and are not always ideal stable identifiers.</p>
+<p>C. It is required whenever a table contains personal data.</p>
+<p>D. It is stronger than a surrogate key in every case.</p>
+<p><strong>40. Select ALL that apply: Which teaching moves would best help spreadsheet-heavy learners understand the value of the relational model?</strong></p>
+<p>A. Start with flat-table anomalies such as repeated emails and deletion risk.</p>
+<p>B. Show the principle that one table should represent one well-defined subject.</p>
+<p>C. Use the Access Relationships window to visualize keys and one-to-many links.</p>
+<p>D. Promise that joins are unnecessary once a schema is normalized.</p>
+<p>E. Connect cleaner structure to more trustworthy reporting.</p>
+<h2>Assessment Design Notes</h2>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Target Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Bloom Sections Used</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>Apply, Analyze, Evaluate</td>
+<td>17, 18, 19, 21, 22, 23, 24, 28, 31, 33, 34, 35, 38, 40</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>Remember, Understand, Apply, Analyze, Evaluate</td>
+<td>6, 14, 20, 25, 26, 27, 29, 30, 32, 36, 37, 39</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>Remember, Understand</td>
+<td>1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15, 16</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<p>AI-resistance strategies used in this RAT:</p>
+<ol>
+<li>Questions are grounded in the chapter's exact seven-table grading schema rather than generic database trivia.</li>
+<li>Distractors reuse nearby Chapter 6 ideas, such as lookup tables, surrogate keys, and convenience-driven duplication.</li>
+<li>Several items require reasoning about the chapter's flat-to-relational progression and its specific anomaly examples.</li>
+<li>Multi-answer items force fine-grained discrimination among plausible options.</li>
+<li>Join questions require reconstructing reports from the chapter's actual schema.</li>
+<li>Access workflow details are included so students must connect abstract design to implementation.</li>
+</ol>
+<h2>Answer Key</h2>
+<h3>Answer Key: Remember</h3>
+<p><strong>1. In the Chapter 6 grading schema, which table stores category-level grading rules such as quantity, points per type, and weight?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: schema design and ERD discussion. The chapter explains that <code>ASSIGNMENT_TYPE</code> stores category-level policy values, including quantity, points per type, and weight, while <code>DELIVERABLE</code> stores specific assignments.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td><code>STUDENT</code> stores student identity, not grading policy.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>ASSIGNMENT_TYPE</code> is the table for category-level rules.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>DELIVERABLE</code> stores specific graded items such as Quiz 1.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> interprets final numeric results into letter grades.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Select ALL that apply: Which attributes belong in <code>ASSIGNMENT_TYPE</code> in the chapter's revised schema?</strong></p>
+<p>Correct Answers: A, B, C, E</p>
+<p>Explanation: Section reference: flat-to-relational decomposition and functional dependency bridge. The chapter groups <code>AssignmentType</code>, <code>Quantity</code>, <code>PointsPerType</code>, and <code>Weight</code> together because those attributes are determined by assignment type.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>AssignmentType</code> identifies the category row.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>Quantity</code> is a category-level rule.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>PointsPerType</code> is also category-level policy.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A score belongs to a student's result, not the type definition.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td><code>Weight</code> belongs to the assignment-type policy.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. Which table resolves the many-to-many relationship between students and deliverables in Chapter 6?</strong></p>
+<p>Correct Answer: C</p>
+<p>Explanation: Section reference: relationship types and junction tables. The chapter states that <code>STUDENT_GRADE</code> acts as the junction table between <code>STUDENT</code> and <code>DELIVERABLE</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td><code>SCHEDULE</code> tracks class meetings.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td><code>ATTENDANCE</code> records attendance events.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>STUDENT_GRADE</code> resolves the many-to-many relationship.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> is a lookup table for final-grade interpretation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. Select ALL that apply: Which of the following are foreign keys in the chapter's grading design?</strong></p>
+<p>Correct Answers: A, B, C, E</p>
+<p>Explanation: Section reference: primary keys, foreign keys, and relationships. The chapter uses foreign keys to connect related tables without copying descriptive data into every row.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>STUDENT_GRADE.StudentID</code> points to <code>STUDENT</code>.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>STUDENT_GRADE.DeliverableID</code> points to <code>DELIVERABLE</code>.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>ATTENDANCE.ClassNum</code> points to <code>SCHEDULE</code>.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>STUDENT.Email</code> is an attribute, not a foreign key in this design.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td><code>DELIVERABLE.AssignmentType</code> points to <code>ASSIGNMENT_TYPE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5. Which relational term is the formal equivalent of a row?</strong></p>
+<p>Correct Answer: C</p>
+<p>Explanation: Section reference: characteristics of a formal relation. The chapter pairs relation/table, tuple/row, and attribute/column as equivalent terms.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>An attribute is a column.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>A relation is a table.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>A tuple is the formal term for a row.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A domain refers to the allowable set of values.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>6. Select ALL that apply: Which signs in the flat grading example show data redundancy?</strong></p>
+<p>Correct Answers: A, B, D</p>
+<p>Explanation: Section reference: flat-table example and anomaly discussion. The chapter shows redundancy when repeated student details, repeated policy values, and repeated deliverable details appear across multiple rows.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Repeated emails are a direct redundancy example.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Repeated weights show policy duplication.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>One score per row is not the redundancy problem by itself.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Repeated deliverable details across multiple students are redundant.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>A separate lookup table reduces duplication rather than showing it.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7. What role does <code>GRADE_SCALE</code> play in the revised Chapter 6 schema?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: seven-table schema and ERD clarification. The chapter reframes <code>GRADE_SCALE</code> as a lookup or interpretation table used after weighted averages are aggregated.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Raw scores live in <code>STUDENT_GRADE</code>, not <code>GRADE_SCALE</code>.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's explicit framing for <code>GRADE_SCALE</code>.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> does not replace assignment-type policy.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Attendance codes belong to attendance logic, not grade-scale thresholds.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>8. Select ALL that apply: Which chapter examples can function as natural keys in this bounded schema?</strong></p>
+<p>Correct Answers: A, B</p>
+<p>Explanation: Section reference: natural keys versus surrogate keys. The chapter treats <code>LetterGrade</code> and <code>AssignmentType</code> as reasonable natural keys in bounded, stable contexts, while <code>GradeID</code>, <code>StudentID</code>, and <code>AttendanceID</code> are surrogate identifiers.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>LetterGrade</code> is meaningful and unique within <code>GRADE_SCALE</code>.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>AssignmentType</code> is meaningful and unique within <code>ASSIGNMENT_TYPE</code>.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>GradeID</code> is a surrogate key.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>StudentID</code> is treated as a surrogate key in the chapter.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td><code>AttendanceID</code> is also a surrogate key.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key: Understand</h3>
+<p><strong>9. Why does the chapter separate <code>ASSIGNMENT_TYPE</code> from <code>DELIVERABLE</code>?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: decomposition from flat file to relational structure. The chapter separates the tables because category rules and specific graded items are different subjects and should not be stored at the same grain.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The separation is conceptual, not an Access limitation.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The two tables store different kinds of facts.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>DELIVERABLE</code> is part of grading, not attendance.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Final letter grades belong to <code>GRADE_SCALE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>10. Select ALL that apply: How does referential integrity improve the grading database?</strong></p>
+<p>Correct Answers: A, B, D</p>
+<p>Explanation: Section reference: referential integrity. The chapter states that every non-null foreign key must match an existing referenced key, which blocks invalid references and reduces orphaned records.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Invalid student references should be blocked.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Invalid assignment-type references should also be blocked.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Referential integrity does not judge academic fairness.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Preventing broken links reduces orphaned records.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Weighted averages are computed by logic or queries, not RI rules.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>11. Why does the chapter say a surrogate primary key does not eliminate business-rule uniqueness?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: keys and business-rule uniqueness. The chapter explicitly distinguishes a surrogate key such as <code>GradeID</code> from a separate rule that <code>(StudentID, DeliverableID)</code> should remain unique.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>The issue is design logic, not DBMS compatibility.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's specific example.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Surrogate keys do not require composite primary keys.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Surrogate keys are not limited to temporary tables.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>12. Select ALL that apply: Why does the chapter avoid showing a direct transactional relationship from <code>GRADE_SCALE</code> to <code>STUDENT_GRADE</code> in the ERD?</strong></p>
+<p>Correct Answers: A, B, D</p>
+<p>Explanation: Section reference: ERD precision revision. The chapter clarifies that <code>GRADE_SCALE</code> is applied after aggregation and that showing a direct parent-child line to raw score rows would imply a dependency the design does not use.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>GRADE_SCALE</code> is an interpretation layer, not a raw-score parent.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Score rows can exist before final grade interpretation.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>The chapter explicitly avoids implying this direct foreign key.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>That line would misrepresent the design.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Assignment-type policy belongs to <code>ASSIGNMENT_TYPE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>13. Why do JOINs become necessary in the chapter's relational design?</strong></p>
+<p>Correct Answer: A</p>
+<p>Explanation: Section reference: JOIN explanation and reporting logic. The chapter explains that once facts are stored once in separate tables, joins reconstruct the exact report view needed for analysis.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This is the central reason joins are needed.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Primary keys are enforced without using joins.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Access can work with multiple related tables.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Foreign keys create relationships; they do not remove the need for joins.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>14. Select ALL that apply: Which statements reflect the chapter's principle that tables should represent well-defined subjects?</strong></p>
+<p>Correct Answers: A, C, D</p>
+<p>Explanation: Section reference: relational principles and single responsibility. The chapter argues that each table should represent one well-defined subject and avoid mixing multiple grains or topics in a single row.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>STUDENT</code> should contain student identity facts.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Attendance notes do not belong inside <code>STUDENT_GRADE</code>.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>ATTENDANCE</code> should store attendance facts.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Avoiding mixed grain is part of the chapter's argument.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Relationship and event tables are valid parts of relational design.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>15. Why is <code>SCHEDULE</code> kept separate from <code>ATTENDANCE</code> in the chapter's design?</strong></p>
+<p>Correct Answer: A</p>
+<p>Explanation: Section reference: schedule and attendance decomposition. The chapter treats class meetings and each student's attendance at those meetings as different subjects that should be stored separately.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>The tables represent related but different kinds of facts.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Access can store both kinds of data.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Attendance is not course policy.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>SCHEDULE</code> is not presented as temporary.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>16. Select ALL that apply: What follows from the chapter's functional dependency example <code>AssignmentType -&gt; Quantity, PointsPerType, Weight</code>?</strong></p>
+<p>Correct Answers: A, B, C</p>
+<p>Explanation: Section reference: functional dependency bridge to Chapter 7. The chapter uses this dependency to show why those attributes belong in <code>ASSIGNMENT_TYPE</code> and how this logic previews normalization.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>The determinant and dependent values belong together.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Repeating them elsewhere would create redundancy.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>The example is the chapter's preview of normalization logic.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>AssignmentType</code> does not belong only in <code>STUDENT</code>.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Due dates belong to specific deliverables, not the assignment type itself.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key: Apply</h3>
+<p><strong>17. An instructor changes the Homework weight from 25 to 20. Which table should be updated in the revised schema?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: <code>ASSIGNMENT_TYPE</code> and policy storage. The chapter stores category-level weights once in <code>ASSIGNMENT_TYPE</code>, so that is the correct table to update.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td><code>STUDENT</code> stores student facts.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Homework weight is a category-level rule.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>STUDENT_GRADE</code> stores individual results, not category policy.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>ATTENDANCE</code> is unrelated to assignment weight.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>18. Select ALL that apply: Which values normally belong in a new <code>STUDENT_GRADE</code> row?</strong></p>
+<p>Correct Answers: A, B, C</p>
+<p>Explanation: Section reference: scoring table and junction-table logic. The chapter describes <code>STUDENT_GRADE</code> as one student's result on one deliverable, so the row needs student, deliverable, and score information rather than repeated category-policy values.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>The score must identify the student.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The row must identify the deliverable.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>The row stores the student's result.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>Quantity</code> belongs in <code>ASSIGNMENT_TYPE</code>.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td><code>Weight</code> also belongs in <code>ASSIGNMENT_TYPE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>19. A report needs student name, deliverable title, assignment type, weight, and score. Which join path best fits the chapter's design?</strong></p>
+<p>Correct Answer: A</p>
+<p>Explanation: Section reference: JOIN example. The chapter shows that score rows connect to students and deliverables, and deliverables connect to assignment types for category-level policy values.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This path reconstructs the report from the relevant tables.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> is not the source of raw score detail.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Attendance does not replace deliverable and assignment-type data.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>SCHEDULE</code> is unrelated to the requested report.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>20. Select ALL that apply: Which operations would likely be blocked by referential integrity?</strong></p>
+<p>Correct Answers: A, B, C</p>
+<p>Explanation: Section reference: referential integrity and Access relationships. The chapter explains that invalid foreign-key references and unsafe deletes can be blocked when integrity is enforced.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>A score row cannot point to a missing deliverable.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Deleting a referenced student would strand dependent rows.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>A deliverable cannot reference a missing assignment type.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Adding a valid new parent row is allowed.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>A student can exist before scores are entered.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>21. A registrar wants a student identifier that will remain stable even if names or emails change. Which key choice best matches the chapter's guidance?</strong></p>
+<p>Correct Answer: A</p>
+<p>Explanation: Section reference: surrogate keys. The chapter prefers surrogate identifiers such as <code>StudentID</code> when descriptive business values may change.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>StudentID</code> is stable even if descriptive values change.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Names are not reliable unique identifiers.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Emails may change and are not always ideal keys.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Letter grade does not identify a student.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>22. Select ALL that apply: Which fields from the flat grading example should be moved into <code>ASSIGNMENT_TYPE</code> rather than repeated in score rows?</strong></p>
+<p>Correct Answers: A, B, C, D</p>
+<p>Explanation: Section reference: decomposition table and schema revision. The chapter moves assignment-type policy values out of flat rows and into <code>ASSIGNMENT_TYPE</code> so they are stored once.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>AssignmentType</code> identifies the policy category.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>Quantity</code> belongs with assignment type.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>PointsPerType</code> also belongs there.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td><code>Weight</code> belongs there too.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td><code>StudentEmail</code> belongs in <code>STUDENT</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>23. Before any student submits Quiz 3, where should the new graded item be recorded?</strong></p>
+<p>Correct Answer: C</p>
+<p>Explanation: Section reference: deliverables versus score rows. The chapter treats a specific graded item such as Quiz 3 as a deliverable that can exist before any student scores are entered.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td><code>STUDENT_GRADE</code> is for actual student results.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> is unrelated to creating a new quiz.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>DELIVERABLE</code> stores specific graded items.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>ATTENDANCE</code> stores attendance records.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>24. Select ALL that apply: Which design choices help enforce the rule that each student should have only one score per deliverable?</strong></p>
+<p>Correct Answers: A, B, D</p>
+<p>Explanation: Section reference: surrogate keys and business-rule uniqueness. The chapter's logic supports a separate uniqueness rule on <code>(StudentID, DeliverableID)</code>, along with the foreign keys and practical validation that keep score entries consistent.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>A composite uniqueness rule directly enforces the business rule.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Validation can help prevent duplicate entry attempts.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Repeating names increases redundancy rather than enforcing the rule.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>The foreign keys are part of the structural design that ties the row to the correct entities.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td><code>DeliverableName</code> alone cannot identify one student's unique score row.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key: Analyze</h3>
+<p><strong>25. A department changes the Project weight, but only some rows in the flat table are updated. Which problem does this reveal most directly?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: anomalies. The chapter uses repeated policy values to illustrate update anomalies, where one fact must be changed in many places and inconsistencies appear when some rows are missed.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Insertion anomaly is about being unable to add a fact cleanly.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's update-anomaly pattern.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>A domain constraint is a different concept.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Outer join behavior is unrelated.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>26. Select ALL that apply: Which observations show that a single mega-table violates single responsibility in Chapter 6?</strong></p>
+<p>Correct Answers: A, B, C, E</p>
+<p>Explanation: Section reference: single responsibility and decomposition. The chapter argues that overloaded rows mix facts that belong to different subjects and change on different schedules, which is why decomposition is needed.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>One row mixes identity, deliverable, and score facts.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Repeated policy values show the table is carrying too much.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>The row can blend different event types.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The existence of another table does not itself prove a violation.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Different update rhythms are a sign the row contains multiple subjects.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>27. Which key strategy best balances simple row identity with business-rule protection in <code>STUDENT_GRADE</code>?</strong></p>
+<p>Correct Answer: C</p>
+<p>Explanation: Section reference: key strategy around <code>STUDENT_GRADE</code>. The chapter keeps surrogate <code>GradeID</code> for row identity while also preserving the business-rule uniqueness of <code>(StudentID, DeliverableID)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Student names are unstable and not unique enough.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Deliverable name alone cannot identify one student's result.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>This matches the chapter's revised key logic.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Keys cannot be replaced by sorting.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>28. Select ALL that apply: Which tables are needed to reconstruct a report with student name, deliverable title, assignment-type weight, and score?</strong></p>
+<p>Correct Answers: A, B, C, D</p>
+<p>Explanation: Section reference: JOIN example and report reconstruction. The report requires the student table, the score table, the deliverable table, and the assignment-type table.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Needed for student name.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Needed for deliverable title.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Needed for assignment-type weight.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Needed for the score result.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td><code>SCHEDULE</code> is not needed for this report.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>29. If grade thresholds were copied into every score row instead of stored once in <code>GRADE_SCALE</code>, which structural problem would intensify?</strong></p>
+<p>Correct Answer: A</p>
+<p>Explanation: Section reference: lookup-table logic and policy separation. Duplicating grade thresholds across many rows would create policy redundancy and make threshold changes vulnerable to update anomalies.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Duplicated policy values create update-risk.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Copying values around weakens normalization.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Fewer joins would come at the cost of poorer structure.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Referential integrity does not improve from that duplication.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>30. Select ALL that apply: Which statements correctly compare transactional or event tables with lookup or reference tables in Chapter 6?</strong></p>
+<p>Correct Answers: A, B, C</p>
+<p>Explanation: Section reference: schema responsibilities. The chapter treats <code>STUDENT_GRADE</code> as a results table, <code>GRADE_SCALE</code> as a lookup or interpretation table, and <code>ASSIGNMENT_TYPE</code> as the place for policy values.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td><code>STUDENT_GRADE</code> stores scoring events or outcomes.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td><code>GRADE_SCALE</code> interprets final numeric ranges.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td><code>ASSIGNMENT_TYPE</code> stores category rules.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>ATTENDANCE</code> records events, not a simple lookup.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>The chapter explicitly avoids this direct-parent framing.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>31. A team wants to delete a student's last score row but keep the student enrolled in the system. Which design handles that goal better?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: deletion anomaly and decomposition. The relational design keeps student identity in <code>STUDENT</code>, so deleting a score row does not erase the student's existence.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>That design risks a deletion anomaly.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Separate tables preserve the student record.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> is unrelated to enrollment storage.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Removing keys weakens structure further.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>32. Select ALL that apply: Which comparisons between the flat model and the relational model are accurate in Chapter 6?</strong></p>
+<p>Correct Answers: A, B, D</p>
+<p>Explanation: Section reference: flat versus relational comparison. The chapter presents the relational model as using more clearly defined tables, keys, and joins to replace duplication with structured relationships.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>One flat row can hide several subjects at once.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Keys and joins reconnect facts for reporting.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Flat models do not automatically enforce foreign-key logic.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>More tables can mean clearer responsibilities.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Queries remain essential in a relational design.</td>
+</tr>
+</tbody>
+</table>
+<h3>Answer Key: Evaluate</h3>
+<p><strong>33. An instructor adds a new category called Lab with its own quantity, points per type, and weight. What is the best schema-level response?</strong></p>
+<p>Correct Answer: A</p>
+<p>Explanation: Section reference: schema extensibility and assignment-type logic. The chapter's design supports growth by adding a new row to <code>ASSIGNMENT_TYPE</code> and then creating any needed deliverables.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>This extends the schema without duplicating policy values.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>No</td>
+<td>Putting policy values into score rows recreates redundancy.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td><code>GRADE_SCALE</code> is not a substitute for deliverables.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td><code>SCHEDULE</code> does not define assignment categories.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>34. Select ALL that apply: Which design choices best improve auditability and transparency in the chapter's grading database?</strong></p>
+<p>Correct Answers: A, B, D, E</p>
+<p>Explanation: Section reference: policy visibility and trustworthy reporting. The chapter values storing rules once, keeping thresholds visible, separating deliverables from results, and enforcing keys so reports remain credible and explainable.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>One stored copy of policy is easier to audit.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Thresholds become visible and maintainable.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Conflicting copies reduce transparency.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Enforced keys make relationships reliable.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Separating deliverables from scores clarifies what each row means.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>35. Which judgment about <code>LetterGrade</code> as the primary key of <code>GRADE_SCALE</code> best matches the chapter's reasoning?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: natural keys. The chapter allows natural keys when the value is meaningful, stable, and unique enough within a bounded table like <code>GRADE_SCALE</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Primary keys do not have to be numeric.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This matches the chapter's bounded natural-key reasoning.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Copying it into every score row is not required.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>A meaningful bounded key is stronger than no key.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>36. Select ALL that apply: Which proposed shortcuts should be rejected based on the chapter's design logic?</strong></p>
+<p>Correct Answers: A, B, C, D</p>
+<p>Explanation: Section reference: redundancy, decomposition, and foreign keys. The chapter repeatedly rejects convenience-driven duplication and missing relationships because they weaken integrity and clarity.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Repeating email values recreates update-anomaly risk.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Repeating weight values in score rows recreates policy redundancy.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Merging unrelated subjects just to reduce table count weakens structure.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Yes</td>
+<td>Foreign keys are essential to trustworthy relationships.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>No</td>
+<td>Keeping those tables separate follows the chapter's logic.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>37. A coworker says, "Let's keep one mega-table because reporting will be easier." Which response best fits Chapter 6?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: joins and trustworthy reporting. The chapter argues that cleaner underlying storage matters more than report convenience in the base table, because joins can reconstruct reports from well-structured data.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Duplication may look convenient but creates contradictions.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is the chapter's core trade-off.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Overloading <code>STUDENT</code> would not solve the structural problem.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Descriptive text fields are not better identifiers for this purpose.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>38. Select ALL that apply: Which checks should be made before enabling cascade delete in a relational grading database?</strong></p>
+<p>Correct Answers: A, B, C, E</p>
+<p>Explanation: Section reference: referential actions and delete caution. The chapter presents cascade behavior as something that must match the business meaning of the relationship rather than a default to enable automatically.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Cascade should be used only when dependent rows should truly disappear.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The meaning of the delete must be understood first.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Testing prevents accidental data loss.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Cascade delete is not always safest.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Audit needs may argue for preserving history instead.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>39. Which evaluation of using student email as the primary key in <code>STUDENT</code> best matches the chapter's reasoning?</strong></p>
+<p>Correct Answer: B</p>
+<p>Explanation: Section reference: surrogate keys and stable identifiers. The chapter warns that descriptive values such as emails can change and are not always the best stable identifier for relational design.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No</td>
+<td>Emails can change.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>This is exactly why the chapter favors a surrogate <code>StudentID</code>.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>No</td>
+<td>Personal data does not have to be the primary key.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>The chapter does not say descriptive keys are always stronger.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>40. Select ALL that apply: Which teaching moves would best help spreadsheet-heavy learners understand the value of the relational model?</strong></p>
+<p>Correct Answers: A, B, C, E</p>
+<p>Explanation: Section reference: chapter examples and Access implementation. The chapter's strongest teaching path starts with concrete anomalies, then shows one-subject-per-table design, visual relationships, and the reporting benefits of cleaner structure.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Concrete anomaly examples make the problem visible.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>The one-subject principle captures the structural shift clearly.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Yes</td>
+<td>Visual relationship tools help students see keys and links.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>No</td>
+<td>Normalization does not remove the need for joins.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Yes</td>
+<td>Trustworthy reporting is one of the chapter's core outcomes.</td>
+</tr>
+</tbody>
+</table>
+<h2>Question Distribution Summary</h2>
+<h3>Bloom Level</h3>
+<table>
+<thead>
+<tr>
+<th>Bloom Level</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remember</td>
+<td>1, 2, 3, 4, 5, 6, 7, 8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td>9, 10, 11, 12, 13, 14, 15, 16</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>17, 18, 19, 20, 21, 22, 23, 24</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Analyze</td>
+<td>25, 26, 27, 28, 29, 30, 31, 32</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Evaluate</td>
+<td>33, 34, 35, 36, 37, 38, 39, 40</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h3>Question Type</h3>
+<table>
+<thead>
+<tr>
+<th>Question Type</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-answer MC</td>
+<td>1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Select ALL</td>
+<td>2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<h3>Design Criterion</h3>
+<table>
+<thead>
+<tr>
+<th>Design Criterion</th>
+<th>Questions</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application-based</td>
+<td>17, 18, 19, 21, 22, 23, 24, 28, 31, 33, 34, 35, 38, 40</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Scenario-based</td>
+<td>6, 14, 20, 25, 26, 27, 29, 30, 32, 36, 37, 39</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Definition-only</td>
+<td>1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15, 16</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch05-sql.html"><small>Previous</small><strong>Chapter 5: Chapter 5: SQL — The Language of Databases</strong></a>
+          <a class="pager-card pager-card--next" href="ch07-normalization.html"><small>Next</small><strong>Chapter 7: Chapter 7: Data Normalization</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

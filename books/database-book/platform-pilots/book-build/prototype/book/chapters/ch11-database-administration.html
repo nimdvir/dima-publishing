@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 11: Database Administration | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 11: Database Administration</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>65%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:65%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="is-current" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 11</p>
+          <h1>Database Administration</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>44 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 11: Database Administration</h2>
+                  <p><em>Keeping Databases Secure, Reliable, Recoverable, and Ready for Use</em></p>
+<p>Database design answers the question: <strong>How should data be structured?</strong></p>
+<p>SQL answers the question: <strong>How can we retrieve, transform, and analyze that data?</strong></p>
+<p>Database administration answers a different question: <strong>How do we keep the database working correctly once people depend on it?</strong></p>
+<p>That question matters because real databases do not live in quiet classrooms. They live inside organizations. They support students checking grades, instructors updating records, customers placing orders, analysts running dashboards, and managers making decisions. They are accessed by multiple users, changed over time, exposed to security risks, affected by hardware and software failures, and expected to remain available when people need them.</p>
+<p>A well-designed database can still fail if it is poorly administered. It can become slow. It can lose data. It can expose private information. It can allow the wrong person to delete the wrong table. It can become impossible to recover after a crash. Database administration is the discipline that prevents those failures.</p>
+<p>In this chapter, you will learn how database administrators think about reliability, security, concurrency, transactions, backups, recovery, performance, maintenance, and cloud responsibility. The examples continue to use the Grading Database, but the principles apply to any business system that stores important data.</p>
+<hr />
+<h2>Learning Objectives</h2>
+<p>After completing this chapter, you will be able to:</p>
+<ol>
+<li>Explain the role of a Database Administrator and why the role matters for business continuity.</li>
+<li>Distinguish between Data Administration and Database Administration.</li>
+<li>Explain how concurrency control protects shared databases from conflicting updates.</li>
+<li>Describe locks, lock granularity, two-phase locking, optimistic locking, pessimistic locking, and deadlocks.</li>
+<li>Explain transactions and the ACID properties.</li>
+<li>Apply transaction-control logic using <code>BEGIN</code>, <code>COMMIT</code>, and <code>ROLLBACK</code>.</li>
+<li>Explain database security concepts including authentication, authorization, role-based access control, and least privilege.</li>
+<li>Compare full, incremental, and differential backups.</li>
+<li>Explain rollback, rollforward, recovery logs, before-images, and after-images.</li>
+<li>Describe how indexes, query plans, and maintenance tasks support performance.</li>
+<li>Compare DBA responsibilities in Microsoft Access, SQLite, PostgreSQL, Supabase, and cloud-hosted systems.</li>
+<li>Apply basic DBA thinking to the Grading Database.</li>
+</ol>
+<hr />
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Main Question</th>
+<th>Core Ideas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11.1</td>
+<td>What is database administration?</td>
+<td>DBA role, data administration, operational reliability</td>
+</tr>
+<tr>
+<td>11.2</td>
+<td>What does a DBA do?</td>
+<td>Security, concurrency, backup, performance, maintenance</td>
+</tr>
+<tr>
+<td>11.3</td>
+<td>What happens when multiple users access data?</td>
+<td>Locks, lost updates, deadlocks, optimistic and pessimistic control</td>
+</tr>
+<tr>
+<td>11.4</td>
+<td>How do transactions protect reliability?</td>
+<td>ACID, <code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code></td>
+</tr>
+<tr>
+<td>11.5</td>
+<td>How is database access controlled?</td>
+<td>Authentication, authorization, roles, privileges, least privilege</td>
+</tr>
+<tr>
+<td>11.6</td>
+<td>How do databases recover from failure?</td>
+<td>Backups, logs, rollback, rollforward, disaster recovery</td>
+</tr>
+<tr>
+<td>11.7</td>
+<td>How do DBAs keep databases fast?</td>
+<td>Indexes, query plans, tuning, monitoring</td>
+</tr>
+<tr>
+<td>11.8</td>
+<td>How do databases evolve safely?</td>
+<td>Maintenance, integrity checks, schema change</td>
+</tr>
+<tr>
+<td>11.9</td>
+<td>How does administration differ by platform?</td>
+<td>Access, SQLite, PostgreSQL, Supabase, cloud responsibility</td>
+</tr>
+<tr>
+<td>11.10</td>
+<td>How can students practice DBA thinking?</td>
+<td>Hands-on administrative tasks using the Grading Database</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11.1 What Is Database Administration?</h2>
+<p><strong>Database administration</strong> is the discipline of managing databases so that they remain secure, reliable, available, recoverable, and efficient over time.</p>
+<p>Earlier chapters focused on the structure and use of databases:</p>
+<ul>
+<li>Chapter 6 introduced the relational model.</li>
+<li>Chapter 7 explained normalization.</li>
+<li>Chapter 9 used advanced SQL to analyze and report from the Grading Database.</li>
+<li>Chapter 10 explained how business requirements become database designs.</li>
+</ul>
+<p>Those chapters focused on what a database <strong>is</strong> and what it can <strong>do</strong>. Chapter 11 focuses on how a database <strong>survives real use</strong>.</p>
+<p>A database may begin as a clean design. Then reality arrives:</p>
+<ul>
+<li>Users enter data.</li>
+<li>Users make mistakes.</li>
+<li>Tables grow.</li>
+<li>Queries get slower.</li>
+<li>Permissions need to change.</li>
+<li>Hardware fails.</li>
+<li>Backups need to be restored.</li>
+<li>Regulations require audit trails.</li>
+<li>Cloud bills increase.</li>
+<li>Reports become mission-critical.</li>
+</ul>
+<p>A database administrator, or <strong>DBA</strong>, is responsible for keeping the database trustworthy under those conditions.</p>
+<h3>11.1.1 Design vs. Administration</h3>
+<p>Database design and database administration are related, but they are not the same.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Design Perspective</th>
+<th>Administration Perspective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What should the database look like?</td>
+<td>Entities, tables, keys, relationships</td>
+<td>Does the implemented structure remain healthy?</td>
+</tr>
+<tr>
+<td>How should facts be stored?</td>
+<td>Normalization and schema design</td>
+<td>Integrity checks and change management</td>
+</tr>
+<tr>
+<td>How should users get answers?</td>
+<td>SQL queries and reporting views</td>
+<td>Performance tuning and access control</td>
+</tr>
+<tr>
+<td>What happens when something fails?</td>
+<td>Usually not the design focus</td>
+<td>Backup, recovery, logs, and disaster planning</td>
+</tr>
+<tr>
+<td>Who can access data?</td>
+<td>May be specified as a requirement</td>
+<td>Implemented through users, roles, and privileges</td>
+</tr>
+</tbody>
+</table>
+<p>A simple way to remember the difference:</p>
+<blockquote>
+<p><strong>Design creates the structure. Administration keeps the structure dependable.</strong></p>
+</blockquote>
+<h3>11.1.2 Data Administration vs. Database Administration</h3>
+<p>In larger organizations, there is often a distinction between <strong>Data Administration</strong> and <strong>Database Administration</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Scope</th>
+<th>Main Focus</th>
+<th>Typical Questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data Administration (DA)</strong></td>
+<td>Organization-wide</td>
+<td>Governance, policy, standards, meaning, compliance</td>
+<td>What does this data mean? Who owns it? How may it be used?</td>
+</tr>
+<tr>
+<td><strong>Database Administration (DBA)</strong></td>
+<td>Specific database systems</td>
+<td>Technical reliability, security, recovery, performance</td>
+<td>Is the database secure, backed up, available, and efficient?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data Administration</strong> is concerned with the organizational meaning and governance of data. It defines naming standards, data definitions, privacy rules, retention policies, and compliance expectations.</p>
+<p><strong>Database Administration</strong> is concerned with implementation and operations. It manages accounts, permissions, backups, recovery procedures, performance, monitoring, and system maintenance.</p>
+<p>In a small organization, one person may perform both roles. In a large organization, they may be separate departments. The distinction matters because data problems are not only technical. They are also policy, governance, and accountability problems.</p>
+<h3>11.1.3 The DBA as Guardian of Data Trust</h3>
+<p>The DBA protects the conditions under which data can be trusted.</p>
+<p>Those conditions include:</p>
+<ul>
+<li><strong>Accuracy:</strong> data is not corrupted or accidentally overwritten.</li>
+<li><strong>Security:</strong> sensitive data is not exposed to unauthorized users.</li>
+<li><strong>Availability:</strong> authorized users can access the database when needed.</li>
+<li><strong>Recoverability:</strong> data can be restored after failure.</li>
+<li><strong>Performance:</strong> queries and reports run within acceptable time.</li>
+<li><strong>Continuity:</strong> the system can survive failures, growth, and change.</li>
+</ul>
+<p>For the Grading Database, these responsibilities are concrete. Students should not see other students' grades. Instructors should be able to update grades safely. A missing backup should not cause the loss of a semester's records. A report should not take ten minutes to calculate class averages. DBA work makes those expectations possible.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> Database administration is not a background technical chore. It is the work that keeps organizational data usable, protected, and credible.</p>
+</blockquote>
+<hr />
+<h2>11.2 Core DBA Responsibilities</h2>
+<p>Although DBA work varies by organization and platform, most responsibilities fall into several major categories.</p>
+<table>
+<thead>
+<tr>
+<th>Responsibility</th>
+<th>What It Protects</th>
+<th>Example in the Grading Database</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security and access control</td>
+<td>Confidentiality and integrity</td>
+<td>Students can view only their own grades</td>
+</tr>
+<tr>
+<td>Concurrency control</td>
+<td>Correctness under multi-user access</td>
+<td>Two users cannot overwrite the same grade silently</td>
+</tr>
+<tr>
+<td>Transaction management</td>
+<td>Reliability of multi-step operations</td>
+<td>Grade update and audit entry succeed or fail together</td>
+</tr>
+<tr>
+<td>Backup and recovery</td>
+<td>Data survival after failure</td>
+<td>Restore grade records after accidental deletion</td>
+</tr>
+<tr>
+<td>Performance tuning</td>
+<td>Responsiveness and usability</td>
+<td>Index <code>StudentID</code> to speed up student-grade reports</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>Long-term health</td>
+<td>Compact, repair, reindex, and check integrity</td>
+</tr>
+<tr>
+<td>Documentation and change management</td>
+<td>Continuity and accountability</td>
+<td>Record schema changes and backup schedules</td>
+</tr>
+<tr>
+<td>Capacity planning</td>
+<td>Future growth</td>
+<td>Plan for more sections, students, logs, and reports</td>
+</tr>
+</tbody>
+</table>
+<h3>11.2.1 Security and Access Management</h3>
+<p>Security ensures that users can do what they need to do, but no more.</p>
+<p>In a grading system:</p>
+<ul>
+<li>Students may read their own grades.</li>
+<li>Teaching assistants may enter attendance.</li>
+<li>Instructors may update grades.</li>
+<li>Administrators may manage users and system settings.</li>
+<li>No ordinary user should be able to delete the entire grade table.</li>
+</ul>
+<p>A DBA implements those boundaries through authentication, authorization, roles, and privileges.</p>
+<h3>11.2.2 Concurrency Control</h3>
+<p>Concurrency control manages simultaneous access. Databases are shared systems. Multiple users may read and write at the same time. Without coordination, one user's update may overwrite another's work or produce inconsistent results.</p>
+<p>Concurrency control protects the database when many operations overlap.</p>
+<h3>11.2.3 Transaction Management</h3>
+<p>A transaction groups several database operations into one logical unit. Either all of the operations succeed, or none of them do. Transactions are essential when a business action requires multiple related updates.</p>
+<p>For example, updating a grade may also require recording who made the change and when. The update and the audit record should succeed together.</p>
+<h3>11.2.4 Backup and Recovery</h3>
+<p>Backups protect against data loss. Recovery procedures define how the database will be restored after a failure.</p>
+<p>A backup strategy is not complete until it has been tested. An untested backup is a hope, not a plan.</p>
+<h3>11.2.5 Performance Monitoring and Tuning</h3>
+<p>Performance is the difference between a useful system and an ignored system. A report that takes too long to run may not be used. A gradebook that freezes during updates undermines trust.</p>
+<p>DBAs monitor query speed, indexing, locks, storage, memory, and system load.</p>
+<h3>11.2.6 Maintenance and Evolution</h3>
+<p>Databases change. New reports are requested. New columns are added. Old data is archived. Indexes are rebuilt. Files are compacted. Permissions are reviewed. Maintenance keeps the database healthy as it ages.</p>
+<blockquote>
+<p><strong>Real-World Example:</strong><br />
+An online retailer stores orders, inventory, customers, and payments in PostgreSQL. The DBA team manages nightly backups, monitors slow queries, restricts payment-data access, and creates indexes for high-volume order searches. When a software bug deletes several hundred order rows, the DBA restores the affected data from backup and transaction logs. The business experiences a manageable incident instead of a permanent loss.</p>
+</blockquote>
+<hr />
+<h2>11.3 Multi-User Databases and Concurrency Control</h2>
+<p>A database becomes more complicated the moment more than one person or process uses it at the same time.</p>
+<p>Imagine this grading scenario:</p>
+<ol>
+<li>Instructor A opens Alice's Quiz 2 grade and changes it from 84 to 90.</li>
+<li>Instructor B opens the same grade before A saves the change.</li>
+<li>Instructor B changes the grade from 84 to 88.</li>
+<li>Both save their work.</li>
+</ol>
+<p>Which grade should remain: 90 or 88?</p>
+<p>Without concurrency control, one update may overwrite the other. This is called a <strong>lost update</strong>.</p>
+<h3>11.3.1 Common Concurrency Problems</h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>What Happens</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lost update</td>
+<td>One user's change overwrites another user's change</td>
+<td>Two instructors edit the same grade</td>
+</tr>
+<tr>
+<td>Dirty read</td>
+<td>A user reads uncommitted data that may later be rolled back</td>
+<td>A report includes a grade before the update is finalized</td>
+</tr>
+<tr>
+<td>Nonrepeatable read</td>
+<td>A user reads the same row twice and gets different results</td>
+<td>A score changes during a report</td>
+</tr>
+<tr>
+<td>Phantom read</td>
+<td>A query rerun returns new rows inserted by another transaction</td>
+<td>A new grade appears during an average calculation</td>
+</tr>
+</tbody>
+</table>
+<p>These problems occur because database operations overlap in time.</p>
+<h3>11.3.2 Locks</h3>
+<p>A <strong>lock</strong> is a temporary control that prevents conflicting access to data.</p>
+<table>
+<thead>
+<tr>
+<th>Lock Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared lock</td>
+<td>Allows reading while preventing conflicting writes</td>
+<td>Several users view the same grade report</td>
+</tr>
+<tr>
+<td>Exclusive lock</td>
+<td>Allows one transaction to modify data while blocking conflicting access</td>
+<td>One instructor updates a grade</td>
+</tr>
+</tbody>
+</table>
+<h3>11.3.3 Lock Granularity</h3>
+<p>Locks may apply at different levels.</p>
+<table>
+<thead>
+<tr>
+<th>Granularity</th>
+<th>Meaning</th>
+<th>Advantage</th>
+<th>Disadvantage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Row-level lock</td>
+<td>Locks only selected rows</td>
+<td>High concurrency</td>
+<td>More overhead</td>
+</tr>
+<tr>
+<td>Page-level lock</td>
+<td>Locks a storage page containing multiple rows</td>
+<td>Balanced overhead</td>
+<td>May block unrelated rows</td>
+</tr>
+<tr>
+<td>Table-level lock</td>
+<td>Locks an entire table</td>
+<td>Simpler</td>
+<td>Reduces concurrency</td>
+</tr>
+<tr>
+<td>Database-level lock</td>
+<td>Locks the whole database</td>
+<td>Safe for major maintenance</td>
+<td>Blocks most activity</td>
+</tr>
+</tbody>
+</table>
+<p>A file-based database may use broader locks. A server-based DBMS usually supports finer-grained locking.</p>
+<h3>11.3.4 Pessimistic and Optimistic Locking</h3>
+<p>DBMSs and applications generally manage conflicts using one of two strategies.</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Assumption</th>
+<th>How It Works</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pessimistic locking</strong></td>
+<td>Conflicts are likely</td>
+<td>Lock data before editing</td>
+<td>Banking, inventory, high-risk updates</td>
+</tr>
+<tr>
+<td><strong>Optimistic locking</strong></td>
+<td>Conflicts are rare</td>
+<td>Allow edits, then check for conflicts before saving</td>
+<td>Read-heavy systems, low-conflict environments</td>
+</tr>
+</tbody>
+</table>
+<p>In a grading database, pessimistic locking might be appropriate if several instructors often edit the same records. Optimistic locking might be acceptable if grade edits are rare and usually performed by one instructor.</p>
+<h3>11.3.5 Two-Phase Locking</h3>
+<p><strong>Two-Phase Locking (2PL)</strong> is a protocol that helps ensure transactions behave correctly under concurrency.</p>
+<p>It has two phases:</p>
+<ol>
+<li><strong>Growing phase:</strong> the transaction acquires locks.</li>
+<li><strong>Shrinking phase:</strong> the transaction releases locks.</li>
+</ol>
+<p>Once a transaction starts releasing locks, it cannot acquire new ones. This rule helps guarantee <strong>serializability</strong>, meaning that even if transactions run at the same time, the final result is equivalent to some safe sequential order.</p>
+<h3>11.3.6 Deadlocks</h3>
+<p>A <strong>deadlock</strong> occurs when two or more transactions wait for each other indefinitely.</p>
+<p>Example:</p>
+<ul>
+<li>Transaction A locks <code>STUDENT</code> and waits for <code>STUDENT_GRADE</code>.</li>
+<li>Transaction B locks <code>STUDENT_GRADE</code> and waits for <code>STUDENT</code>.</li>
+</ul>
+<p>Neither can continue.</p>
+<p>Modern DBMSs detect deadlocks and resolve them by choosing one transaction as the victim, rolling it back, and allowing the other transaction to continue.</p>
+<p>DBAs reduce deadlocks by:</p>
+<ul>
+<li>keeping transactions short,</li>
+<li>accessing tables in a consistent order,</li>
+<li>indexing foreign keys,</li>
+<li>avoiding unnecessary locks,</li>
+<li>monitoring deadlock logs.</li>
+</ul>
+<blockquote>
+<p><strong>Key Takeaway:</strong> Concurrency control allows many users to work with the same database without turning shared data into shared chaos.</p>
+</blockquote>
+<hr />
+<h2>11.4 Transactions and ACID Reliability</h2>
+<p>Concurrency control manages simultaneous users. Transactions manage reliability when operations succeed, fail, or partially complete.</p>
+<p>A <strong>transaction</strong> is a logical unit of work made of one or more database operations. The database treats the group as one all-or-nothing action.</p>
+<h3>11.4.1 Why Transactions Matter</h3>
+<p>Suppose an instructor updates a grade and records an audit entry.</p>
+<pre><code class="language-text">Step 1: Update STUDENT_GRADE.
+Step 2: Insert a row into GRADE_AUDIT.
+</code></pre>
+<p>If Step 1 succeeds and Step 2 fails, the grade changes but there is no record of who changed it. If Step 2 succeeds and Step 1 fails, the audit log claims a change occurred when it did not. Both outcomes are bad.</p>
+<p>A transaction ensures that the two operations succeed or fail together.</p>
+<h3>11.4.2 Transaction Control Commands</h3>
+<p>Most relational DBMSs support three core transaction commands:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BEGIN</code> or <code>BEGIN TRANSACTION</code></td>
+<td>Starts a transaction</td>
+</tr>
+<tr>
+<td><code>COMMIT</code></td>
+<td>Saves all changes permanently</td>
+</tr>
+<tr>
+<td><code>ROLLBACK</code></td>
+<td>Undoes all changes since the transaction began</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+UPDATE STUDENT_GRADE
+SET Score = 92
+WHERE GradeID = 5;
+
+INSERT INTO GRADE_AUDIT (GradeID, ActionTaken, ActionTime)
+VALUES (5, 'Score updated to 92', CURRENT_TIMESTAMP);
+
+COMMIT;
+</code></pre>
+<p>If a problem occurs before <code>COMMIT</code>, the transaction can be undone:</p>
+<pre><code class="language-sql">ROLLBACK;
+</code></pre>
+<h3>11.4.3 The ACID Properties</h3>
+<p>Reliable transactions are governed by the <strong>ACID</strong> properties.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Meaning</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Atomicity</strong></td>
+<td>All operations succeed or none do</td>
+<td>Grade update and audit insert happen together</td>
+</tr>
+<tr>
+<td><strong>Consistency</strong></td>
+<td>Rules remain valid before and after</td>
+<td>Score must remain between 0 and 100</td>
+</tr>
+<tr>
+<td><strong>Isolation</strong></td>
+<td>Concurrent transactions do not interfere</td>
+<td>Two instructors cannot corrupt the same grade</td>
+</tr>
+<tr>
+<td><strong>Durability</strong></td>
+<td>Committed changes survive failure</td>
+<td>Saved grade remains after a crash</td>
+</tr>
+</tbody>
+</table>
+<h3>11.4.4 Atomicity</h3>
+<p>Atomicity means <strong>all or nothing</strong>. If a transaction has five steps, the database does not keep only the first three if Step 4 fails. It rolls the entire transaction back.</p>
+<h3>11.4.5 Consistency</h3>
+<p>Consistency means that a transaction moves the database from one valid state to another. It cannot violate constraints such as:</p>
+<ul>
+<li>primary key uniqueness,</li>
+<li>valid foreign keys,</li>
+<li><code>NOT NULL</code> rules,</li>
+<li>score-range rules,</li>
+<li>business constraints.</li>
+</ul>
+<p>For example, a transaction should not insert a grade for a nonexistent student.</p>
+<h3>11.4.6 Isolation</h3>
+<p>Isolation means that each transaction behaves as if it were running alone, even when many transactions are active. Different DBMSs offer different isolation levels, but the purpose is always the same: prevent one transaction from seeing or disrupting unsafe intermediate states.</p>
+<h3>11.4.7 Durability</h3>
+<p>Durability means that once a transaction is committed, the change survives system failure. If the database confirms that a grade update was saved, the grade should still be there after a restart.</p>
+<blockquote>
+<p><strong>Real-World Example:</strong><br />
+In banking, transferring money requires decreasing one account balance and increasing another. If the debit succeeds but the credit fails, money disappears. If the credit succeeds but the debit fails, money appears. Transactions prevent both failures by treating the transfer as one unit of work.</p>
+</blockquote>
+<hr />
+<h2>11.5 Database Security</h2>
+<p>Database security ensures that data is protected from unauthorized access, unauthorized modification, accidental damage, and unnecessary exposure.</p>
+<p>Security is not only about hackers. Many security problems come from ordinary users having more privileges than they need.</p>
+<h3>11.5.1 The CIA Triad</h3>
+<p>Database security is often described through the <strong>CIA triad</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Meaning</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Confidentiality</strong></td>
+<td>Only authorized users can access sensitive data</td>
+<td>Students cannot see other students' grades</td>
+</tr>
+<tr>
+<td><strong>Integrity</strong></td>
+<td>Data remains accurate and protected from unauthorized change</td>
+<td>Only instructors can update grades</td>
+</tr>
+<tr>
+<td><strong>Availability</strong></td>
+<td>Authorized users can access the database when needed</td>
+<td>Grade reports are available before advising</td>
+</tr>
+</tbody>
+</table>
+<p>Security must balance all three. A database that is perfectly confidential but unavailable is not useful. A database that is highly available but exposes private data is dangerous.</p>
+<h3>11.5.2 Authentication and Authorization</h3>
+<p>Security begins with two questions.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Question</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>Who are you?</td>
+<td>User logs in with credentials</td>
+</tr>
+<tr>
+<td><strong>Authorization</strong></td>
+<td>What are you allowed to do?</td>
+<td>Instructor can update grades; student cannot</td>
+</tr>
+</tbody>
+</table>
+<p>A user may be authenticated but still not authorized to perform a specific action.</p>
+<h3>11.5.3 Roles and Privileges</h3>
+<p>Professional databases usually use <strong>role-based access control (RBAC)</strong>.</p>
+<ul>
+<li>A <strong>user</strong> is an individual account.</li>
+<li>A <strong>role</strong> represents a job function.</li>
+<li>A <strong>privilege</strong> is permission to perform an action such as <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>.</li>
+</ul>
+<p>Instead of granting permissions to each person one by one, the DBA grants permissions to roles and assigns users to roles.</p>
+<p>Example roles for the Grading Database:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Appropriate Access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student</td>
+<td>Read own grades only</td>
+</tr>
+<tr>
+<td>Teaching Assistant</td>
+<td>Insert attendance, read grade reports</td>
+</tr>
+<tr>
+<td>Instructor</td>
+<td>Insert and update grades, read all course data</td>
+</tr>
+<tr>
+<td>Department Admin</td>
+<td>Read reports, audit submissions</td>
+</tr>
+<tr>
+<td>DBA</td>
+<td>Manage schema, backups, permissions, and maintenance</td>
+</tr>
+</tbody>
+</table>
+<h3>11.5.4 Least Privilege</h3>
+<p>The <strong>principle of least privilege</strong> says that users should receive only the permissions required to do their work.</p>
+<p>This principle protects against both malicious misuse and honest mistakes. A teaching assistant who does not need to delete grades should not have <code>DELETE</code> privileges on <code>STUDENT_GRADE</code>.</p>
+<h3>11.5.5 Example: Role-Based Permissions</h3>
+<p>In PostgreSQL-style SQL, permissions may look like this:</p>
+<pre><code class="language-sql">CREATE ROLE instructor;
+CREATE ROLE teaching_assistant;
+CREATE ROLE student_viewer;
+
+GRANT SELECT ON STUDENT TO instructor;
+GRANT SELECT, INSERT, UPDATE ON STUDENT_GRADE TO instructor;
+
+GRANT SELECT ON STUDENT TO teaching_assistant;
+GRANT SELECT, INSERT ON ATTENDANCE TO teaching_assistant;
+
+GRANT SELECT ON GradebookSummary TO student_viewer;
+</code></pre>
+<p>The exact syntax varies across platforms, but the principle is stable: assign privileges to roles, then assign users to roles.</p>
+<h3>11.5.6 Views as Security Layers</h3>
+<p>Views can reduce exposure by showing only the fields a role needs.</p>
+<p>Example:</p>
+<pre><code class="language-sql">CREATE VIEW StudentGradeSummary AS
+SELECT StudentID,
+       DeliverableID,
+       Score
+FROM STUDENT_GRADE;
+</code></pre>
+<p>A student-facing view might omit email addresses, audit fields, instructor notes, or internal identifiers. The view becomes a controlled access layer.</p>
+<h3>11.5.7 SQL Injection</h3>
+<p><strong>SQL injection</strong> occurs when an attacker submits input that changes the meaning of a SQL command.</p>
+<p>Unsafe pattern:</p>
+<pre><code class="language-text">&quot;SELECT * FROM STUDENT WHERE Email = '&quot; + user_input + &quot;';&quot;
+</code></pre>
+<p>If user input is inserted directly into SQL text, malicious input can alter the query.</p>
+<p>The safer approach is to use <strong>parameterized queries</strong>, where user input is treated as data rather than executable SQL.</p>
+<blockquote>
+<p><strong>Important:</strong> SQL injection is one of the most preventable database attacks. Never build SQL commands by directly concatenating untrusted user input.</p>
+</blockquote>
+<h3>11.5.8 Security as a Continuous Process</h3>
+<p>Security is not finished after accounts are created. DBAs must regularly:</p>
+<ul>
+<li>remove inactive users,</li>
+<li>rotate or manage credentials,</li>
+<li>review permissions,</li>
+<li>audit access logs,</li>
+<li>patch DBMS software,</li>
+<li>enforce encryption where appropriate,</li>
+<li>monitor suspicious activity.</li>
+</ul>
+<blockquote>
+<p><strong>Key Takeaway:</strong> Database security is the disciplined management of identity, permissions, exposure, and accountability.</p>
+</blockquote>
+<hr />
+<h2>11.6 Backup and Recovery</h2>
+<p>Backup and recovery planning answers one of the most important operational questions:</p>
+<blockquote>
+<p><strong>What will we do when something goes wrong?</strong></p>
+</blockquote>
+<p>Not if. When.</p>
+<p>Failures can come from hardware, software, human error, cyberattacks, cloud outages, accidental deletes, corrupted files, or natural disasters.</p>
+<h3>11.6.1 Backup Types</h3>
+<table>
+<thead>
+<tr>
+<th>Backup Type</th>
+<th>What It Stores</th>
+<th>Advantage</th>
+<th>Disadvantage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Full backup</strong></td>
+<td>Complete database copy</td>
+<td>Easiest to restore</td>
+<td>Takes the most time and storage</td>
+</tr>
+<tr>
+<td><strong>Incremental backup</strong></td>
+<td>Changes since the last backup of any type</td>
+<td>Efficient storage</td>
+<td>Slower restore; multiple files needed</td>
+</tr>
+<tr>
+<td><strong>Differential backup</strong></td>
+<td>Changes since the last full backup</td>
+<td>Faster restore than incremental</td>
+<td>Grows larger until next full backup</td>
+</tr>
+</tbody>
+</table>
+<p>A common strategy combines periodic full backups with more frequent incremental or differential backups.</p>
+<h3>11.6.2 Recovery Objectives: RPO and RTO</h3>
+<p>Two practical concepts guide recovery planning.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Recovery Point Objective (RPO)</strong></td>
+<td>Maximum acceptable data loss</td>
+<td>How much data can we afford to lose?</td>
+</tr>
+<tr>
+<td><strong>Recovery Time Objective (RTO)</strong></td>
+<td>Maximum acceptable downtime</td>
+<td>How quickly must we recover?</td>
+</tr>
+</tbody>
+</table>
+<p>For a personal practice database, losing one day of work may be acceptable. For a payroll database, losing one day may be unacceptable. For a hospital system, even a few minutes of downtime may be dangerous.</p>
+<h3>11.6.3 Recovery Logs</h3>
+<p>A <strong>recovery log</strong> records changes made to the database. Logs allow the system to undo or redo operations during recovery.</p>
+<table>
+<thead>
+<tr>
+<th>Log Record</th>
+<th>Meaning</th>
+<th>Used For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before-image</td>
+<td>Value before the change</td>
+<td>Rollback</td>
+</tr>
+<tr>
+<td>After-image</td>
+<td>Value after the change</td>
+<td>Rollforward</td>
+</tr>
+</tbody>
+</table>
+<h3>11.6.4 Rollback and Rollforward</h3>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>What It Does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rollback</strong></td>
+<td>Undoes incomplete or incorrect transactions</td>
+<td>Undo a failed grade update</td>
+</tr>
+<tr>
+<td><strong>Rollforward</strong></td>
+<td>Restores a backup, then reapplies logged changes</td>
+<td>Restore Monday backup and replay Tuesday transactions</td>
+</tr>
+</tbody>
+</table>
+<p>Rollback is like pressing undo. Rollforward is like restoring an older version and replaying everything valid that happened after it.</p>
+<h3>11.6.5 Disaster Recovery Planning</h3>
+<p>A backup file alone is not a disaster recovery plan. A recovery plan should define:</p>
+<ul>
+<li>where backups are stored,</li>
+<li>how often backups run,</li>
+<li>who can restore them,</li>
+<li>how restoration is tested,</li>
+<li>how long recovery should take,</li>
+<li>how much data loss is acceptable,</li>
+<li>how users will be notified during downtime.</li>
+</ul>
+<p>A DBA should periodically perform test restores. The worst time to discover that backups are broken is after data is lost.</p>
+<h3>11.6.6 File-Based Backup Example</h3>
+<p>For Microsoft Access or SQLite, backup may be as simple as copying the database file. But the file should be closed or safely backed up through a proper backup mechanism.</p>
+<p>Example naming convention:</p>
+<pre><code class="language-text">GradingDB_backup_2026-05-18_1400.accdb
+grading_backup_2026-05-18_1400.sqlite
+</code></pre>
+<p>A timestamped naming convention makes it easier to identify recovery points.</p>
+<h3>11.6.7 SQLite Backup and Journal Modes</h3>
+<p>SQLite supports explicit backup and journal mechanisms.</p>
+<p>Example command-line backup:</p>
+<pre><code class="language-bash">sqlite3 grading.db &quot;.backup 'grading_backup_2026-05-18.db'&quot;
+</code></pre>
+<p>SQLite also supports journal modes.</p>
+<pre><code class="language-sql">PRAGMA journal_mode;
+PRAGMA journal_mode = WAL;
+</code></pre>
+<p><strong>Write-Ahead Logging (WAL)</strong> can improve concurrency because readers and writers interfere less with each other. It also supports crash recovery by writing changes to a log before they are checkpointed into the main database file.</p>
+<h3>11.6.8 Cloud Backup Considerations</h3>
+<p>Cloud platforms often provide automated backups, snapshots, and point-in-time recovery. However, cloud backups do not remove DBA responsibility.</p>
+<p>A DBA still needs to know:</p>
+<ul>
+<li>how often backups occur,</li>
+<li>how far back recovery can go,</li>
+<li>whether backups include all schemas and data,</li>
+<li>who has permission to restore,</li>
+<li>what recovery will cost,</li>
+<li>whether human error is covered.</li>
+</ul>
+<blockquote>
+<p><strong>Key Takeaway:</strong> A database without a tested recovery plan is not reliable. It is merely lucky.</p>
+</blockquote>
+<hr />
+<h2>11.7 Performance Monitoring and Tuning</h2>
+<p>Performance tuning is the work of keeping the database responsive as usage grows.</p>
+<p>A query that runs instantly on 50 rows may become slow on 5 million rows. A report that works for one instructor may fail when used by 400 users. Performance issues often appear gradually, which means DBAs must monitor proactively.</p>
+<h3>11.7.1 Common Performance Problems</h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Cause</th>
+<th>Possible DBA Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slow filters</td>
+<td>Missing index</td>
+<td>Create index on filtered column</td>
+</tr>
+<tr>
+<td>Slow joins</td>
+<td>Missing index on foreign key</td>
+<td>Index join columns</td>
+</tr>
+<tr>
+<td>Long-running reports</td>
+<td>Inefficient query or too much aggregation</td>
+<td>Create view, summary table, or optimized query</td>
+</tr>
+<tr>
+<td>Lock waits</td>
+<td>Transactions hold locks too long</td>
+<td>Shorten transactions, tune queries</td>
+</tr>
+<tr>
+<td>Storage growth</td>
+<td>Tables/logs/indexes expanding</td>
+<td>Archive data, compact, plan capacity</td>
+</tr>
+<tr>
+<td>High cloud cost</td>
+<td>Inefficient queries or over-provisioning</td>
+<td>Optimize queries, right-size resources</td>
+</tr>
+</tbody>
+</table>
+<h3>11.7.2 Indexes</h3>
+<p>An <strong>index</strong> is a data structure that helps the DBMS find rows faster.</p>
+<p>Without an index, the DBMS may scan every row in a table. With an index, it can jump more directly to matching rows.</p>
+<p>Example:</p>
+<pre><code class="language-sql">CREATE INDEX idx_student_grade_student
+ON STUDENT_GRADE(StudentID);
+</code></pre>
+<p>This index can speed up queries that filter or join on <code>StudentID</code>.</p>
+<h3>11.7.3 Index Trade-Offs</h3>
+<p>Indexes are not free.</p>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faster reads</td>
+<td>Slower inserts, updates, and deletes</td>
+</tr>
+<tr>
+<td>Faster joins</td>
+<td>More storage</td>
+</tr>
+<tr>
+<td>Faster filters and sorting</td>
+<td>More maintenance overhead</td>
+</tr>
+</tbody>
+</table>
+<p>A DBA should index columns that are frequently used in:</p>
+<ul>
+<li>joins,</li>
+<li>filters,</li>
+<li>sorting,</li>
+<li>grouping,</li>
+<li>foreign key relationships.</li>
+</ul>
+<p>A DBA should avoid indexing every column just because indexes sound useful. Indexes are design decisions.</p>
+<h3>11.7.4 Reading Query Plans</h3>
+<p>A query plan shows how the DBMS intends to execute a query.</p>
+<p>In SQLite:</p>
+<pre><code class="language-sql">EXPLAIN QUERY PLAN
+SELECT *
+FROM STUDENT_GRADE
+WHERE StudentID = 5;
+</code></pre>
+<p>The result helps determine whether SQLite is using an index or scanning the whole table.</p>
+<h3>11.7.5 Performance and Query Design</h3>
+<p>Some performance problems are not caused by the DBMS. They are caused by poor query logic.</p>
+<p>Common issues include:</p>
+<ul>
+<li>joining more tables than necessary,</li>
+<li>filtering after aggregation when filtering could happen earlier,</li>
+<li>using functions on indexed columns in ways that prevent index use,</li>
+<li>returning <code>SELECT *</code> when only a few columns are needed,</li>
+<li>running large reports during peak transactional use.</li>
+</ul>
+<h3>11.7.6 Performance and Business Impact</h3>
+<p>Performance is not only technical. It affects behavior.</p>
+<p>If grade reports take too long, instructors may export data into spreadsheets and create unofficial copies. If dashboards are slow, managers may stop using them. If registration systems slow down under load, students lose trust.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong> Performance tuning supports both technical efficiency and organizational confidence.</p>
+</blockquote>
+<hr />
+<h2>11.8 Maintenance and Database Evolution</h2>
+<p>Databases are living systems. Once deployed, they continue to grow, change, and age.</p>
+<h3>11.8.1 Routine Maintenance Tasks</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integrity checks</td>
+<td>Detect corruption or invalid structure</td>
+<td><code>PRAGMA integrity_check;</code> in SQLite</td>
+</tr>
+<tr>
+<td>Reindexing</td>
+<td>Rebuild index structures</td>
+<td><code>REINDEX;</code></td>
+</tr>
+<tr>
+<td>Compaction</td>
+<td>Reclaim unused file space</td>
+<td>Access Compact and Repair; SQLite <code>VACUUM;</code></td>
+</tr>
+<tr>
+<td>Log monitoring</td>
+<td>Manage log growth and detect issues</td>
+<td>Review transaction logs</td>
+</tr>
+<tr>
+<td>Permission review</td>
+<td>Remove unnecessary access</td>
+<td>Disable old accounts</td>
+</tr>
+<tr>
+<td>Backup testing</td>
+<td>Verify recoverability</td>
+<td>Restore backup to test environment</td>
+</tr>
+<tr>
+<td>Schema documentation</td>
+<td>Preserve institutional knowledge</td>
+<td>Update ERDs and data dictionaries</td>
+</tr>
+</tbody>
+</table>
+<p>SQLite examples:</p>
+<pre><code class="language-sql">PRAGMA integrity_check;
+REINDEX;
+VACUUM;
+</code></pre>
+<h3>11.8.2 Schema Changes</h3>
+<p>No schema remains perfect forever. New requirements emerge:</p>
+<ul>
+<li>Add submission timestamps.</li>
+<li>Track multiple attempts.</li>
+<li>Add grade-change reasons.</li>
+<li>Support multiple course sections.</li>
+<li>Add student accommodations.</li>
+<li>Archive old semesters.</li>
+</ul>
+<p>Schema evolution should be managed carefully. A DBA should consider:</p>
+<ul>
+<li>migration scripts,</li>
+<li>backward compatibility,</li>
+<li>test environments,</li>
+<li>dependencies from reports and applications,</li>
+<li>rollback plans,</li>
+<li>documentation updates.</li>
+</ul>
+<h3>11.8.3 Change Management</h3>
+<p>Professional database environments usually require formal change management.</p>
+<p>A change request should answer:</p>
+<ol>
+<li>What is changing?</li>
+<li>Why is it needed?</li>
+<li>Which tables, views, queries, reports, or applications are affected?</li>
+<li>How will the change be tested?</li>
+<li>How will the change be reversed if it fails?</li>
+<li>Who approved the change?</li>
+</ol>
+<p>This may feel bureaucratic, but uncontrolled database changes are dangerous. A small schema change can break many reports.</p>
+<h3>11.8.4 Documentation</h3>
+<p>A database without documentation becomes harder to maintain every semester, every release, and every staff transition.</p>
+<p>Useful documentation includes:</p>
+<ul>
+<li>ER diagrams,</li>
+<li>table descriptions,</li>
+<li>key and relationship definitions,</li>
+<li>data dictionary,</li>
+<li>backup schedule,</li>
+<li>restore procedure,</li>
+<li>user roles,</li>
+<li>maintenance checklist,</li>
+<li>known limitations.</li>
+</ul>
+<blockquote>
+<p><strong>Real-World Example:</strong><br />
+A department builds a database in Access. The original designer leaves. Nobody knows why <code>StatusCode = 4</code> means "incomplete but excused." Reports become inconsistent because users interpret codes differently. A small data dictionary would have prevented the confusion.</p>
+</blockquote>
+<hr />
+<h2>11.9 DBA Work Across Platforms</h2>
+<p>The principles of database administration are stable, but the implementation differs across platforms.</p>
+<h3>11.9.1 Microsoft Access</h3>
+<p>Microsoft Access is file-based and visual. It is useful for learning and small-team systems.</p>
+<table>
+<thead>
+<tr>
+<th>DBA Area</th>
+<th>Access Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security</td>
+<td>Mostly file permissions and application/front-end design</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td>Copy <code>.accdb</code> file carefully</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>Compact and Repair</td>
+</tr>
+<tr>
+<td>Relationships</td>
+<td>Visual Relationships window</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>Limited compared with server DBMSs</td>
+</tr>
+<tr>
+<td>Best use</td>
+<td>Education, prototypes, small departmental tools</td>
+</tr>
+</tbody>
+</table>
+<p>Access makes many concepts visible. Students can see relationships, referential integrity, forms, queries, and reports in one environment.</p>
+<h3>11.9.2 SQLite</h3>
+<p>SQLite is lightweight, serverless, and file-based. The database is a single file, but the engine is powerful and widely used.</p>
+<table>
+<thead>
+<tr>
+<th>DBA Area</th>
+<th>SQLite Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security</td>
+<td>Mostly file-system and application-level</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td>File copy or <code>.backup</code> command</td>
+</tr>
+<tr>
+<td>Integrity</td>
+<td><code>PRAGMA integrity_check;</code></td>
+</tr>
+<tr>
+<td>Foreign keys</td>
+<td>Must be enabled with <code>PRAGMA foreign_keys = ON;</code></td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>Many readers; limited writers; WAL improves behavior</td>
+</tr>
+<tr>
+<td>Best use</td>
+<td>Learning, embedded systems, mobile apps, local analytics</td>
+</tr>
+</tbody>
+</table>
+<p>SQLite teaches an important lesson: simple deployment does not eliminate responsibility.</p>
+<h3>11.9.3 PostgreSQL</h3>
+<p>PostgreSQL is a server-based, enterprise-grade relational DBMS.</p>
+<table>
+<thead>
+<tr>
+<th>DBA Area</th>
+<th>PostgreSQL Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security</td>
+<td>Users, roles, privileges, schemas, row-level security</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td>Logical backups, physical backups, point-in-time recovery</td>
+</tr>
+<tr>
+<td>Transactions</td>
+<td>Full ACID support</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>MVCC and advanced isolation</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Indexes, query planner, vacuuming, monitoring</td>
+</tr>
+<tr>
+<td>Best use</td>
+<td>Production systems, analytics, multi-user applications</td>
+</tr>
+</tbody>
+</table>
+<p>PostgreSQL exposes many professional DBA concepts directly.</p>
+<h3>11.9.4 Supabase and Cloud Databases</h3>
+<p>Supabase is a managed platform built on PostgreSQL. It provides database hosting, authentication, APIs, and administrative tools.</p>
+<p>Cloud platforms introduce the <strong>shared responsibility model</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Responsibility</th>
+<th style="text-align: right;">Cloud Provider</th>
+<th style="text-align: right;">DBA / Organization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Physical hardware</td>
+<td style="text-align: right;">Yes</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Operating system patching</td>
+<td style="text-align: right;">Usually yes</td>
+<td style="text-align: right;">Usually no</td>
+</tr>
+<tr>
+<td>Database engine availability</td>
+<td style="text-align: right;">Often yes</td>
+<td style="text-align: right;">Shared</td>
+</tr>
+<tr>
+<td>Schema design</td>
+<td style="text-align: right;">No</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Data integrity</td>
+<td style="text-align: right;">No</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Roles and permissions</td>
+<td style="text-align: right;">Shared</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Query performance</td>
+<td style="text-align: right;">Shared</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Backup policy understanding</td>
+<td style="text-align: right;">Shared</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Compliance configuration</td>
+<td style="text-align: right;">Shared</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>The cloud reduces infrastructure burden. It does not remove accountability.</p>
+<h3>11.9.5 Platform Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Strength</th>
+<th>Limitation</th>
+<th>Main DBA Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Access</td>
+<td>Visual, approachable</td>
+<td>Limited concurrency and security</td>
+<td>Administration can be visible and local</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>Simple, portable, real SQL</td>
+<td>Limited built-in user security</td>
+<td>File-based systems still require discipline</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Powerful, scalable, secure</td>
+<td>More complex</td>
+<td>Professional DBMSs require active management</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Managed PostgreSQL in the cloud</td>
+<td>Shared responsibility can be misunderstood</td>
+<td>Cloud DBAs still govern data and access</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11.10 Hands-On DBA Practice with the Grading Database</h2>
+<p>This section turns the chapter's concepts into practice. The goal is not to become a professional DBA immediately. The goal is to recognize administrative responsibilities and apply them thoughtfully.</p>
+<h3>11.10.1 Practice Layer 1: Microsoft Access</h3>
+<p><strong>Task 1: Identify critical tables.</strong></p>
+<p>Rank tables by sensitivity.</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Risk Level</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>High</td>
+<td>Personal information</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>High</td>
+<td>Academic performance</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Medium to high</td>
+<td>Participation record</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Medium</td>
+<td>Course structure</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Medium</td>
+<td>Policy rules</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Lower</td>
+<td>Course calendar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Task 2: Enforce referential integrity.</strong></p>
+<p>In Access:</p>
+<ol>
+<li>Open <strong>Database Tools &gt; Relationships</strong>.</li>
+<li>Add <code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code>.</li>
+<li>Connect <code>STUDENT.StudentID</code> to <code>STUDENT_GRADE.StudentID</code>.</li>
+<li>Connect <code>DELIVERABLE.DeliverableID</code> to <code>STUDENT_GRADE.DeliverableID</code>.</li>
+<li>Check <strong>Enforce Referential Integrity</strong>.</li>
+<li>Allow cascade update only when appropriate.</li>
+<li>Avoid cascade delete unless you can justify it.</li>
+</ol>
+<p><strong>Task 3: Simulate backup.</strong></p>
+<ol>
+<li>Close the database.</li>
+<li>Copy the <code>.accdb</code> file.</li>
+<li>Rename the copy with a timestamp.</li>
+<li>Reopen the backup copy and verify the data.</li>
+</ol>
+<p><strong>Task 4: Compact and repair.</strong></p>
+<p>Use <strong>Database Tools &gt; Compact and Repair Database</strong>. This reinforces the idea that file-based databases need maintenance.</p>
+<h3>11.10.2 Practice Layer 2: SQLite</h3>
+<p><strong>Enable foreign keys.</strong></p>
+<pre><code class="language-sql">PRAGMA foreign_keys = ON;
+</code></pre>
+<p><strong>Check database integrity.</strong></p>
+<pre><code class="language-sql">PRAGMA integrity_check;
+</code></pre>
+<p><strong>Create an index.</strong></p>
+<pre><code class="language-sql">CREATE INDEX idx_student_grade_student
+ON STUDENT_GRADE(StudentID);
+</code></pre>
+<p><strong>Check whether the index is used.</strong></p>
+<pre><code class="language-sql">EXPLAIN QUERY PLAN
+SELECT *
+FROM STUDENT_GRADE
+WHERE StudentID = 5;
+</code></pre>
+<p><strong>Use a transaction.</strong></p>
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+UPDATE STUDENT_GRADE
+SET Score = 95
+WHERE GradeID = 10;
+
+-- If the result is correct:
+COMMIT;
+
+-- If the result is wrong:
+-- ROLLBACK;
+</code></pre>
+<p><strong>Switch to WAL mode.</strong></p>
+<pre><code class="language-sql">PRAGMA journal_mode = WAL;
+</code></pre>
+<h3>11.10.3 Practice Layer 3: Supabase / PostgreSQL</h3>
+<p><strong>Create roles.</strong></p>
+<pre><code class="language-sql">CREATE ROLE instructor;
+CREATE ROLE analyst;
+</code></pre>
+<p><strong>Grant privileges.</strong></p>
+<pre><code class="language-sql">GRANT SELECT ON STUDENT TO analyst;
+GRANT SELECT ON STUDENT_GRADE TO analyst;
+
+GRANT SELECT, INSERT, UPDATE ON STUDENT_GRADE TO instructor;
+</code></pre>
+<p><strong>Create an index.</strong></p>
+<pre><code class="language-sql">CREATE INDEX idx_student_grade_deliverable
+ON STUDENT_GRADE(DeliverableID);
+</code></pre>
+<p><strong>Use a transaction.</strong></p>
+<pre><code class="language-sql">BEGIN;
+
+UPDATE STUDENT_GRADE
+SET Score = 88
+WHERE GradeID = 12;
+
+COMMIT;
+</code></pre>
+<p><strong>Create a safer reporting view.</strong></p>
+<pre><code class="language-sql">CREATE VIEW GradeReport AS
+SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       d.DeliverableType,
+       d.DeliverableNumber,
+       sg.Score
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+  ON sg.DeliverableID = d.DeliverableID;
+</code></pre>
+<p>Then grant access to the view rather than the base tables:</p>
+<pre><code class="language-sql">GRANT SELECT ON GradeReport TO analyst;
+</code></pre>
+<h3>11.10.4 What the Hands-On Work Teaches</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>What You Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Access</td>
+<td>Visual relationships, local backup, compact/repair</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>Explicit pragmas, transactions, indexes, file responsibility</td>
+</tr>
+<tr>
+<td>Supabase/PostgreSQL</td>
+<td>Roles, privileges, transactions, views, cloud responsibility</td>
+</tr>
+</tbody>
+</table>
+<p>The core lesson is consistent:</p>
+<blockquote>
+<p>DBA thinking is not platform-specific. The tools change, but the responsibilities remain.</p>
+</blockquote>
+<hr />
+<h2>11.11 Common DBA Mistakes</h2>
+<h3>Mistake 1: Assuming Backups Work Without Testing</h3>
+<p>A backup is useful only if it can be restored. Test restores should be scheduled.</p>
+<h3>Mistake 2: Giving Users Too Much Access</h3>
+<p>Excessive permissions are convenient until someone deletes, exports, or modifies data they should never have touched.</p>
+<h3>Mistake 3: Treating Security as an Application-Only Problem</h3>
+<p>The database itself should enforce security where possible. Application controls are important, but they should not be the only defense.</p>
+<h3>Mistake 4: Ignoring Slow Queries Until Users Complain</h3>
+<p>Performance problems are easier to fix before they become emergencies. Monitoring is cheaper than crisis response.</p>
+<h3>Mistake 5: Indexing Everything</h3>
+<p>Indexes speed up reads but slow down writes and consume storage. They should be chosen intentionally.</p>
+<h3>Mistake 6: Using Cascade Delete Casually</h3>
+<p>Cascade delete can erase large amounts of related data automatically. It should be used only when the business rule clearly supports it.</p>
+<h3>Mistake 7: Making Unrecorded Schema Changes</h3>
+<p>Changes without documentation become future confusion. Every schema change should be recorded and justified.</p>
+<h3>Mistake 8: Assuming the Cloud Handles Everything</h3>
+<p>Cloud platforms handle infrastructure. They do not automatically fix bad permissions, bad schemas, bad queries, or bad governance.</p>
+<hr />
+<h2>11.12 Key Concepts</h2>
+<ul>
+<li>Database administration keeps databases reliable, secure, recoverable, and performant after deployment.</li>
+<li>Data Administration governs meaning, ownership, policy, and compliance; Database Administration implements technical controls.</li>
+<li>Concurrency control prevents simultaneous users from corrupting shared data.</li>
+<li>Locks coordinate reading and writing, but excessive locking can reduce performance.</li>
+<li>Transactions group operations into all-or-nothing units of work.</li>
+<li>ACID properties define the reliability guarantees of professional database systems.</li>
+<li>Authentication verifies identity; authorization controls permitted actions.</li>
+<li>Role-based access control assigns permissions to roles rather than individuals.</li>
+<li>The principle of least privilege reduces both security and accidental-damage risk.</li>
+<li>Backup planning must include recovery objectives, recovery procedures, and test restores.</li>
+<li>Recovery logs support rollback and rollforward.</li>
+<li>Indexes improve read performance but add write and storage overhead.</li>
+<li>Maintenance includes integrity checks, reindexing, compaction, backup testing, and documentation.</li>
+<li>Cloud database administration follows a shared responsibility model: infrastructure may be managed, but data governance remains the organization's responsibility.</li>
+</ul>
+<hr />
+<h2>11.13 Chapter Summary</h2>
+<p>This chapter explained how databases are kept reliable after they are designed and deployed. Earlier chapters showed how to structure data, write SQL, normalize tables, and design schemas. Chapter 11 added the operational layer: the practices that keep those databases secure, available, recoverable, and responsive over time.</p>
+<p>The chapter began by distinguishing database administration from database design and data administration. Design defines structure. Data administration governs meaning and policy. Database administration manages the technical reality of running database systems under real conditions.</p>
+<p>You then examined the core responsibilities of a DBA: security, concurrency control, transaction management, backup and recovery, performance tuning, maintenance, documentation, and capacity planning. These responsibilities apply whether the database is a small Access file, a SQLite database, a PostgreSQL server, or a managed cloud database.</p>
+<p>The chapter also explained concurrency control, including locks, lock granularity, optimistic and pessimistic approaches, two-phase locking, and deadlocks. These concepts show how a DBMS protects shared data when multiple users act at the same time.</p>
+<p>Transactions and ACID properties were presented as the foundation of database reliability. Atomicity, consistency, isolation, and durability explain why professional databases can support important systems such as banking, healthcare, inventory, payroll, and academic records.</p>
+<p>Security was framed through confidentiality, integrity, and availability. You learned the difference between authentication and authorization, the value of role-based access control, and the importance of least privilege. You also saw how views can serve as controlled reporting layers and why SQL injection remains a serious risk.</p>
+<p>Backup and recovery planning showed that reliable databases require tested recovery procedures, not just backup files. Full, incremental, and differential backups serve different purposes. Rollback, rollforward, before-images, after-images, and logs help restore data to a valid state after failure.</p>
+<p>Finally, the chapter examined performance, maintenance, platform differences, and hands-on DBA practice. Indexes, query plans, integrity checks, compaction, and schema-change discipline all contribute to long-term system health. The comparison among Access, SQLite, PostgreSQL, and Supabase reinforced the central lesson: platforms differ, but DBA responsibilities remain.</p>
+<blockquote>
+<p><strong>Final Takeaway:</strong> A database becomes valuable only when people can trust it. Database administration is the work that protects that trust.</p>
+</blockquote>
+<hr />
+<h2>Key Terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACID</td>
+<td>Atomicity, Consistency, Isolation, and Durability; the core transaction reliability properties</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Verifying a user's identity</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Determining what an authenticated user is allowed to do</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>A copy of database data used for recovery</td>
+</tr>
+<tr>
+<td>Before-image</td>
+<td>The value of data before a change, used for rollback</td>
+</tr>
+<tr>
+<td>After-image</td>
+<td>The value of data after a change, used for rollforward</td>
+</tr>
+<tr>
+<td>Concurrency control</td>
+<td>Mechanisms that coordinate simultaneous database access</td>
+</tr>
+<tr>
+<td>Deadlock</td>
+<td>A circular waiting situation where transactions block each other</td>
+</tr>
+<tr>
+<td>Differential backup</td>
+<td>A backup of all changes since the last full backup</td>
+</tr>
+<tr>
+<td>Durability</td>
+<td>The guarantee that committed data survives failure</td>
+</tr>
+<tr>
+<td>Exclusive lock</td>
+<td>A lock used for writing that prevents conflicting access</td>
+</tr>
+<tr>
+<td>Full backup</td>
+<td>A complete copy of the database</td>
+</tr>
+<tr>
+<td>Incremental backup</td>
+<td>A backup of changes since the last backup</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>A structure that speeds retrieval but adds write overhead</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>The guarantee that concurrent transactions do not interfere incorrectly</td>
+</tr>
+<tr>
+<td>Least privilege</td>
+<td>Granting only the minimum permissions required</td>
+</tr>
+<tr>
+<td>Lock granularity</td>
+<td>The level at which a lock is applied, such as row, table, or database</td>
+</tr>
+<tr>
+<td>Optimistic locking</td>
+<td>Conflict strategy that checks for conflicts at commit time</td>
+</tr>
+<tr>
+<td>Pessimistic locking</td>
+<td>Conflict strategy that locks data before editing</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>Role-Based Access Control; permissions assigned to roles rather than individuals</td>
+</tr>
+<tr>
+<td>Recovery log</td>
+<td>A record of database changes used for rollback and rollforward</td>
+</tr>
+<tr>
+<td>RPO</td>
+<td>Recovery Point Objective; maximum acceptable data loss</td>
+</tr>
+<tr>
+<td>RTO</td>
+<td>Recovery Time Objective; maximum acceptable downtime</td>
+</tr>
+<tr>
+<td>Shared lock</td>
+<td>A read lock that allows concurrent reads but prevents conflicting writes</td>
+</tr>
+<tr>
+<td>Transaction</td>
+<td>A logical unit of work that succeeds or fails as a whole</td>
+</tr>
+<tr>
+<td>Two-phase locking</td>
+<td>A locking protocol with growing and shrinking phases</td>
+</tr>
+<tr>
+<td>WAL</td>
+<td>Write-Ahead Logging; a logging mode where changes are written to a log before being applied</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Review Questions</h2>
+<ol>
+<li>What is the difference between database design and database administration?</li>
+<li>How does Data Administration differ from Database Administration?</li>
+<li>Why does a database need concurrency control?</li>
+<li>What is the lost update problem? Give an example from the Grading Database.</li>
+<li>Compare shared locks and exclusive locks.</li>
+<li>What is lock granularity, and why does it matter?</li>
+<li>Compare optimistic and pessimistic locking.</li>
+<li>What is a deadlock, and how do DBMSs usually resolve it?</li>
+<li>What is a transaction?</li>
+<li>Explain each ACID property using a grading or business example.</li>
+<li>Why is <code>ROLLBACK</code> important?</li>
+<li>What is the difference between authentication and authorization?</li>
+<li>How does role-based access control support the principle of least privilege?</li>
+<li>Why should students not be granted direct access to all rows in <code>STUDENT_GRADE</code>?</li>
+<li>Compare full, incremental, and differential backups.</li>
+<li>What are RPO and RTO?</li>
+<li>Explain the difference between rollback and rollforward recovery.</li>
+<li>Why are indexes both useful and costly?</li>
+<li>What does <code>EXPLAIN QUERY PLAN</code> help a DBA understand?</li>
+<li>How do DBA responsibilities differ across Access, SQLite, PostgreSQL, and Supabase?</li>
+<li>What does the shared responsibility model mean in cloud database administration?</li>
+<li>Why is a tested restore more important than a backup file alone?</li>
+</ol>
+<hr />
+<h2>References</h2>
+<p>Connolly, T. M., &amp; Begg, C. E. (2015). <em>Database systems: A practical approach to design, implementation, and management</em> (6th ed.). Pearson.</p>
+<p>Coronel, C., &amp; Morris, S. (2019). <em>Database systems: Design, implementation, &amp; management</em> (13th ed.). Cengage Learning.</p>
+<p>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of database systems</em> (7th ed.). Pearson.</p>
+<p>Hoffer, J. A., Venkataraman, R., &amp; Topi, H. (2019). <em>Modern database management</em> (13th ed.). Pearson.</p>
+<p>Kroenke, D. M., &amp; Auer, D. J. (2020). <em>Database concepts</em> (9th ed.). Pearson.</p>
+<p>Silberschatz, A., Korth, H. F., &amp; Sudarshan, S. (2020). <em>Database system concepts</em> (7th ed.). McGraw-Hill Education.</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build: Applying DBA Practices to the Grading Database</h2>
+                  <!-- Sources: BITM330-Book-draft/chapter-drafts/ch11-database-administration/main/ch11-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
+
+<p><img alt="Let's Build" src="/_content/BITM330-Book-draft/chapter-drafts/.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif&gt;" /></p>
+<h2>Overview</h2>
+<p>In this activity, you take the role of database administrator for the department's Grading Database. Your job is not to redesign the data model from scratch. Your job is to keep the system trustworthy, available, secure, and fast enough for real work.</p>
+<p>This lab focuses on four DBA responsibilities: access control, backup and recovery, integrity and maintenance, and basic performance tuning.</p>
+<h2>What You Will Need</h2>
+<ul>
+<li>Your current Grading Database in Access, SQLite, or PostgreSQL</li>
+<li>Permission to create a backup copy of the database file</li>
+<li>A short written document for policies and observations</li>
+</ul>
+<h2>Part A: Identify Sensitive Data and Define Roles</h2>
+<p>Start by deciding what needs the most protection.</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Risk level</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>High</td>
+<td>Stores personal information</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>High</td>
+<td>Stores academic performance</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Medium to high</td>
+<td>Stores participation history</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Medium</td>
+<td>Stores grading structure</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Medium</td>
+<td>Stores policy rules</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Lower</td>
+<td>Stores course calendar information</td>
+</tr>
+</tbody>
+</table>
+<p>Now define three roles for the system:</p>
+<ul>
+<li><code>Instructor</code>: may read course data and update grades for assigned sections</li>
+<li><code>Advisor</code>: may read student progress data but should not change grades</li>
+<li><code>Admin</code>: may manage structure, backup, recovery, and permissions</li>
+</ul>
+<p>Create a simple role matrix.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Read student data</th>
+<th>Update grades</th>
+<th>Change schema</th>
+<th>Run backup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instructor</td>
+<td>Yes, limited</td>
+<td>Yes, limited</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Advisor</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h3>Platform Notes</h3>
+<ul>
+<li>In Access, document these roles as a policy and implement the safest practical version through split databases, forms, saved queries, and controlled distribution.</li>
+<li>In PostgreSQL or Supabase, you can represent the policy with explicit role statements.</li>
+</ul>
+<p>Example SQL:</p>
+<pre><code class="language-sql">CREATE ROLE instructor;
+CREATE ROLE advisor;
+CREATE ROLE admin;
+
+GRANT SELECT ON STUDENT TO advisor;
+GRANT SELECT ON STUDENT_GRADE TO advisor;
+
+GRANT SELECT, INSERT, UPDATE ON STUDENT_GRADE TO instructor;
+</code></pre>
+<h2>Part B: Build a Backup and Recovery Plan</h2>
+<p>Write a one-page backup plan that answers these questions:</p>
+<ol>
+<li>How often will the database be backed up?</li>
+<li>Will the backup be full, incremental, or file-copy based?</li>
+<li>Where will the backup be stored?</li>
+<li>How long will backups be kept?</li>
+<li>What is the recovery time objective (RTO)?</li>
+<li>What is the recovery point objective (RPO)?</li>
+</ol>
+<p>Then perform a simple backup drill.</p>
+<h3>Access Version</h3>
+<ol>
+<li>Close the <code>.accdb</code> file.</li>
+<li>Copy it to a backup folder.</li>
+<li>Rename the copy with a timestamp.</li>
+<li>Reopen the copied file and confirm that the data appears intact.</li>
+</ol>
+<h3>SQLite Version</h3>
+<p>Run a file copy or export, then test the copy.</p>
+<p>Recommended checks:</p>
+<pre><code class="language-sql">PRAGMA foreign_keys = ON;
+PRAGMA integrity_check;
+</code></pre>
+<h2>Part C: Simulate a Recovery Scenario</h2>
+<p>Use this scenario:</p>
+<blockquote>
+<p>A faculty member accidentally deleted all grade records for one section.</p>
+</blockquote>
+<p>Document your response in order.</p>
+<ol>
+<li>Identify the affected tables.</li>
+<li>Confirm when the last good backup was created.</li>
+<li>Restore the backup copy to a safe location.</li>
+<li>Compare restored data with the damaged version.</li>
+<li>Explain what data could be recovered and what might still be lost.</li>
+</ol>
+<p>The point of this part is not dramatic storytelling. The point is to prove that your backup plan can actually support recovery.</p>
+<h2>Part D: Check Integrity and Routine Maintenance</h2>
+<p>Choose one platform path.</p>
+<h3>Access</h3>
+<ol>
+<li>Open <strong>Database Tools &gt; Relationships</strong>.</li>
+<li>Confirm that key relationships are present.</li>
+<li>Turn on <strong>Enforce Referential Integrity</strong> where appropriate.</li>
+<li>Review cascade update and cascade delete carefully before enabling them.</li>
+<li>Run <strong>Compact and Repair Database</strong>.</li>
+</ol>
+<h3>SQLite</h3>
+<p>Use these checks:</p>
+<pre><code class="language-sql">PRAGMA foreign_keys = ON;
+PRAGMA integrity_check;
+</code></pre>
+<p>Then review whether the schema clearly prevents orphaned grade rows.</p>
+<h2>Part E: Run a Basic Performance Check</h2>
+<p>Pick one frequently filtered or joined field, such as <code>StudentID</code> in <code>STUDENT_GRADE</code>.</p>
+<p>Create an index:</p>
+<pre><code class="language-sql">CREATE INDEX idx_student_grade_student
+ON STUDENT_GRADE(StudentID);
+</code></pre>
+<p>Then run a simple query and inspect the plan.</p>
+<pre><code class="language-sql">EXPLAIN QUERY PLAN
+SELECT *
+FROM STUDENT_GRADE
+WHERE StudentID = 5;
+</code></pre>
+<p>Write two or three sentences answering:</p>
+<ul>
+<li>What query did you test?</li>
+<li>Why was this column a reasonable indexing choice?</li>
+<li>Did the index improve the query enough to justify keeping it?</li>
+</ul>
+<h2>Deliverable</h2>
+<p>Submit the following:</p>
+<ul>
+<li>role and permission policy</li>
+<li>backup and recovery plan</li>
+<li>documented recovery walkthrough</li>
+<li>integrity and maintenance notes</li>
+<li>short performance comparison note</li>
+</ul>
+<h2>Reflection Questions</h2>
+<ul>
+<li>Which DBA responsibility feels most important for a grading system?</li>
+<li>Which control would be easiest to ignore in real life?</li>
+<li>What is the business cost of getting DBA work wrong?</li>
+</ul>
+<h2>Connection Forward</h2>
+<p>Chapter 12 uses the same database for a different purpose: turning stored data into reports, KPIs, and managerial insight.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 11: Database Administration — Term Treasury</h2>
+                  <hr />
+<h2>Essential Vocabulary</h2>
+<h3>A</h3>
+<ul>
+<li><strong>ACID Properties</strong> — Atomicity, Consistency, Isolation, and Durability; the four guarantees that define reliable transaction processing.</li>
+<li><strong>After-Image</strong> — A log record capturing the state of data after a change, used during rollforward recovery.</li>
+<li><strong>Atomicity</strong> — The ACID property meaning "all or nothing"; either every operation in a transaction completes, or none of them do.</li>
+<li><strong>Authentication</strong> — The process of verifying a user's identity before granting database access (e.g., username, password, biometric, token, single sign-on).</li>
+<li><strong>Authorization</strong> — Determining what actions an authenticated user is permitted to perform within a database.</li>
+<li><strong>Availability</strong> — The security goal ensuring authorized users can access the database when needed.</li>
+</ul>
+<h3>B</h3>
+<ul>
+<li><strong>Backup</strong> — A copy of the database (full, incremental, or differential) used for recovery after failure.</li>
+<li><strong>Backward Compatibility</strong> — The principle that schema changes and new features must not disrupt current operations or invalidate historical data.</li>
+<li><strong>Before-Image</strong> — A log record capturing the state of data before a change, used during rollback recovery.</li>
+</ul>
+<h3>C</h3>
+<ul>
+<li><strong>Capacity Planning</strong> — Anticipating future storage, memory, and processing needs to prevent resource exhaustion.</li>
+<li><strong>CIA Triad</strong> — Confidentiality, Integrity, and Availability; the three foundational goals of information security.</li>
+<li><strong>Compaction (Cleanup)</strong> — Removing unused data, temporary records, or obsolete objects to reduce storage usage and improve performance (e.g., <code>VACUUM</code> in SQLite).</li>
+<li><strong>Concurrency Control</strong> — Mechanisms that manage simultaneous access to a database, preventing conflicts and data corruption.</li>
+<li><strong>Confidentiality</strong> — The security goal ensuring sensitive data is accessible only to authorized users.</li>
+<li><strong>Consistency</strong> — The ACID property ensuring that transactions move the database from one valid state to another.</li>
+<li><strong>Corrupted Data</strong> — Data left in an invalid or unusable state by incomplete transactions without proper concurrency control.</li>
+<li><strong>Cursor</strong> — A database mechanism that provides a pointer into a result set, allowing row-by-row navigation and processing.</li>
+</ul>
+<h3>D</h3>
+<ul>
+<li><strong>Data Administration (DA)</strong> — The organizational function responsible for data governance, policies, standards, naming conventions, metadata management, and compliance across the organization.</li>
+<li><strong>Database Administration (DBA)</strong> — The technical function responsible for managing database security, performance, availability, recovery, user access, and enforcing constraints at the system level.</li>
+<li><strong>Database Administrator (DBA)</strong> — The person who manages the technical, operational, and strategic aspects of databases.</li>
+<li><strong>Database-Level Lock</strong> — A lock applied to the entire database; rare, usually used only during maintenance.</li>
+<li><strong>Deadlock</strong> — A situation in which two or more transactions wait for each other's locks in a circular dependency, preventing any from proceeding.</li>
+<li><strong>Differential Backup</strong> — A backup capturing all changes since the last full backup; faster recovery than incremental, smaller than full.</li>
+<li><strong>Dirty Read</strong> — Reading data that is in the middle of being changed by another transaction.</li>
+<li><strong>Durability</strong> — The ACID property guaranteeing that once a transaction is committed, it is permanent.</li>
+<li><strong>Dynamic Cursor</strong> — A cursor that reflects real-time changes to underlying data; more flexible but more resource-intensive.</li>
+</ul>
+<h3>E</h3>
+<ul>
+<li><strong>Exclusive Lock (Write Lock)</strong> — A lock that prevents any other transaction from reading or writing the locked data; required for INSERT, UPDATE, and DELETE.</li>
+</ul>
+<h3>F</h3>
+<ul>
+<li><strong>Full Backup</strong> — A complete copy of the entire database at a specific point in time; simplest to restore but most storage-intensive.</li>
+</ul>
+<h3>G</h3>
+<ul>
+<li><strong>Growing Phase</strong> — The first phase of Two-Phase Locking where a transaction acquires all needed locks; no lock may be released.</li>
+</ul>
+<h3>I</h3>
+<ul>
+<li><strong>Inconsistent Read</strong> — A user reads data that is in the middle of being changed, resulting in partial or contradictory information.</li>
+<li><strong>Incremental Backup</strong> — A backup capturing only changes since the last backup of any type; efficient storage but slower recovery.</li>
+<li><strong>Index</strong> — A data structure that speeds up data retrieval by allowing the DBMS to locate rows quickly without scanning the entire table.</li>
+<li><strong>Insider Threat</strong> — A security risk from authorized users who may misuse access, intentionally or unintentionally.</li>
+<li><strong>Integrity</strong> — The security goal ensuring data remains accurate, complete, and unaltered except through approved processes.</li>
+<li><strong>Integrity Check</strong> — Verifying that constraints, relationships, and references remain valid (e.g., <code>PRAGMA integrity_check</code> in SQLite).</li>
+<li><strong>Isolation</strong> — The ACID property ensuring that concurrent transactions do not interfere with each other.</li>
+</ul>
+<h3>K</h3>
+<ul>
+<li><strong>Keyset Cursor</strong> — A hybrid cursor: the set of rows is fixed when opened, but changes to column values are visible; new rows inserted by others are not visible.</li>
+</ul>
+<h3>L</h3>
+<ul>
+<li><strong>Lock</strong> — A temporary control that regulates access to data while it is being read or modified.</li>
+<li><strong>Lock Contention</strong> — A performance problem caused by too many users competing for the same data.</li>
+<li><strong>Lock Granularity</strong> — The level of detail at which locks are applied: row-level, table-level, or database-level.</li>
+<li><strong>Logical Unit of Work</strong> — Another name for a transaction; a sequence of operations that must fully complete or not occur at all.</li>
+<li><strong>Lost Update</strong> — A concurrency problem where two users update the same record and one update silently overwrites the other.</li>
+</ul>
+<h3>O</h3>
+<ul>
+<li><strong>Optimistic Locking</strong> — A concurrency strategy that assumes conflicts are rare; transactions proceed without locks and conflicts are checked before committing.</li>
+</ul>
+<h3>P</h3>
+<ul>
+<li><strong>Pessimistic Locking</strong> — A concurrency strategy that assumes conflicts are likely; data is locked before modification begins.</li>
+<li><strong>Principle of Least Privilege</strong> — The security practice of granting users only the minimum permissions necessary for their tasks.</li>
+<li><strong>Privilege</strong> — A specific allowed action on a database object (e.g., SELECT, INSERT, UPDATE, DELETE).</li>
+</ul>
+<h3>R</h3>
+<ul>
+<li><strong>Recovery Log (Transaction Log)</strong> — A file recording all database changes (before-images and after-images) to support rollback and rollforward recovery.</li>
+<li><strong>Referential Integrity</strong> — A constraint ensuring that foreign key values correspond to existing primary key values.</li>
+<li><strong>Reindexing</strong> — Rebuilding indexes that have become fragmented due to frequent modifications (e.g., <code>REINDEX</code> in SQLite).</li>
+<li><strong>Reprocessing</strong> — A recovery technique involving re-entering transactions from external sources when logs or backups are incomplete; typically a last resort.</li>
+<li><strong>Role</strong> — A named collection of privileges representing a job function (e.g., instructor, administrator, analyst).</li>
+<li><strong>Role-Based Access Control (RBAC)</strong> — A security model that assigns permissions to roles rather than individual users.</li>
+<li><strong>Rollback</strong> — Undoing uncommitted or erroneous transactions using before-images from the transaction log.</li>
+<li><strong>Rollback Journal (Delete Mode)</strong> — SQLite's default journal mode; writes original content to a separate journal file before modifying a page.</li>
+<li><strong>Rollforward</strong> — Reapplying committed transactions from a log after restoring from a backup, up to a specific point in time.</li>
+<li><strong>Row-Level Lock</strong> — A lock applied only to specific rows being modified; highest concurrency but higher overhead.</li>
+<li><strong>Row-Level Security (RLS)</strong> — A security mechanism (e.g., in PostgreSQL/Supabase) that restricts which rows a user can access based on policies.</li>
+</ul>
+<h3>S</h3>
+<ul>
+<li><strong>Serializability</strong> — The guarantee that concurrent transactions produce results equivalent to some sequential ordering.</li>
+<li><strong>Service Level Agreement (SLA)</strong> — A formal agreement defining expectations for uptime, performance, backup frequency, and recovery time.</li>
+<li><strong>Shared Lock (Read Lock)</strong> — A lock that allows multiple transactions to read data simultaneously but prevents modification.</li>
+<li><strong>Shared Responsibility Model</strong> — In cloud databases, the division where the provider manages infrastructure and the DBA manages schema, security, backup policies, and performance.</li>
+<li><strong>Shrinking Phase</strong> — The second phase of Two-Phase Locking where a transaction releases its locks; once any lock is released, no new lock may be acquired.</li>
+<li><strong>SQL Injection</strong> — A security attack where malicious input manipulates database queries; defended by parameterized queries and input validation.</li>
+<li><strong>Static Cursor</strong> — A cursor that takes a snapshot of the result set when opened; subsequent changes are not visible.</li>
+</ul>
+<h3>T</h3>
+<ul>
+<li><strong>Table-Level Lock</strong> — A lock applied to an entire table; simpler but restricts concurrent access.</li>
+<li><strong>Transaction</strong> — A logical unit of work consisting of one or more database operations that must succeed or fail as a whole.</li>
+<li><strong>Two-Phase Locking (2PL)</strong> — A concurrency control protocol with a growing phase (acquiring locks) and a shrinking phase (releasing locks) that ensures serializability.</li>
+</ul>
+<h3>W</h3>
+<ul>
+<li><strong>Write-Ahead Logging (WAL)</strong> — A journal mode where changes are written to a log file before modifying the database; offers better concurrency and improved crash recovery.</li>
+</ul>
+<hr />
+<h2>Acronyms</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Full Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2PL</strong></td>
+<td>Two-Phase Locking</td>
+</tr>
+<tr>
+<td><strong>ACID</strong></td>
+<td>Atomicity, Consistency, Isolation, Durability</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td>Application Programming Interface</td>
+</tr>
+<tr>
+<td><strong>BITM</strong></td>
+<td>Business IT Management</td>
+</tr>
+<tr>
+<td><strong>CIA</strong></td>
+<td>Confidentiality, Integrity, Availability</td>
+</tr>
+<tr>
+<td><strong>DA</strong></td>
+<td>Data Administration</td>
+</tr>
+<tr>
+<td><strong>DBA</strong></td>
+<td>Database Administration / Database Administrator</td>
+</tr>
+<tr>
+<td><strong>DBMS</strong></td>
+<td>Database Management System</td>
+</tr>
+<tr>
+<td><strong>ER</strong></td>
+<td>Entity-Relationship</td>
+</tr>
+<tr>
+<td><strong>GDPR</strong></td>
+<td>General Data Protection Regulation</td>
+</tr>
+<tr>
+<td><strong>GUI</strong></td>
+<td>Graphical User Interface</td>
+</tr>
+<tr>
+<td><strong>IS</strong></td>
+<td>Information Systems</td>
+</tr>
+<tr>
+<td><strong>PII</strong></td>
+<td>Personally Identifiable Information</td>
+</tr>
+<tr>
+<td><strong>RBAC</strong></td>
+<td>Role-Based Access Control</td>
+</tr>
+<tr>
+<td><strong>RLS</strong></td>
+<td>Row-Level Security</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>Service Level Agreement</td>
+</tr>
+<tr>
+<td><strong>SQL</strong></td>
+<td>Structured Query Language</td>
+</tr>
+<tr>
+<td><strong>WAL</strong></td>
+<td>Write-Ahead Logging</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Foundational Ideas</h3>
+<ol>
+<li>
+<p><strong>The DBA as Guardian of Organizational Data</strong> — The database administrator ensures reliability, security, performance, and recoverability across the full lifecycle of a database system.</p>
+</li>
+<li>
+<p><strong>Database Administration Is Ongoing</strong> — Even a perfectly designed database can fail without active administration. Performance degrades, storage fills up, security gaps emerge, and data integrity is compromised without ongoing oversight.</p>
+</li>
+<li>
+<p><strong>Data Administration vs. Database Administration</strong> — DA is organization-wide (governance, privacy, compliance, metadata, policies). DBA is system-specific (security, performance, backups, constraints). DA sets the rules; DBA enforces them through technology.</p>
+</li>
+<li>
+<p><strong>Three Pillars of Database Administration</strong> — (1) Concurrency Control, (2) Security and Access Management, (3) Backup and Recovery. These apply regardless of platform.</p>
+</li>
+<li>
+<p><strong>ACID as a Business Requirement</strong> — ACID properties ensure financial accuracy, auditability, and trust. Without them, databases behave like unreliable spreadsheets under stress.</p>
+</li>
+<li>
+<p><strong>The CIA Triad</strong> — Database security is built on Confidentiality (access restricted to authorized users), Integrity (data remains accurate), and Availability (database is accessible when needed).</p>
+</li>
+<li>
+<p><strong>DBA Principles Are Platform-Independent</strong> — Whether working with Access, SQLite, PostgreSQL, or cloud-hosted platforms, the fundamental responsibilities remain the same.</p>
+</li>
+</ol>
+<h3>Concept Overview</h3>
+<ol>
+<li>
+<p><strong>Concurrency Control</strong> — Mechanisms allowing multiple users to access and modify a database simultaneously without sacrificing correctness.</p>
+</li>
+<li>
+<p><strong>Locking</strong> — Shared (read) locks allow concurrent reads; exclusive (write) locks prevent any other access during modification. Granularity: row-level, table-level, database-level.</p>
+</li>
+<li>
+<p><strong>Two-Phase Locking (2PL)</strong> — Growing phase (acquire locks) then shrinking phase (release locks), ensuring serializability.</p>
+</li>
+<li>
+<p><strong>Optimistic vs. Pessimistic Locking</strong> — Pessimistic locks data early (frequent conflicts expected); optimistic proceeds without locks and checks before committing (rare conflicts expected).</p>
+</li>
+<li>
+<p><strong>Deadlocks</strong> — Circular waits among transactions; DBMSs detect and resolve by rolling back a victim transaction.</p>
+</li>
+<li>
+<p><strong>Transactions</strong> — Logical units of work grouping operations into indivisible actions: <code>BEGIN TRANSACTION</code>, <code>COMMIT</code>, <code>ROLLBACK</code>.</p>
+</li>
+<li>
+<p><strong>ACID Properties</strong> — Atomicity (all-or-nothing), Consistency (valid state to valid state), Isolation (invisible mid-flight), Durability (committed = permanent).</p>
+</li>
+<li>
+<p><strong>Authentication &amp; Authorization</strong> — Authentication verifies identity ("Who are you?"); Authorization determines permissions ("What can you do?").</p>
+</li>
+<li>
+<p><strong>Role-Based Access Control (RBAC)</strong> — Permissions assigned to roles (not individuals) based on job functions, supporting the principle of least privilege.</p>
+</li>
+<li>
+<p><strong>Backup Strategies</strong> — Full (complete copy), Incremental (changes since last backup), Differential (changes since last full). Typically combined.</p>
+</li>
+<li>
+<p><strong>Recovery Techniques</strong> — Rollback (undo with before-images), Rollforward (restore + reapply with after-images), Reprocessing (re-enter transactions; last resort).</p>
+</li>
+<li>
+<p><strong>Transaction Logs</strong> — Record every change via before-images and after-images, enabling precise recovery.</p>
+</li>
+<li>
+<p><strong>Journal Modes</strong> — SQLite supports Rollback Journal (delete mode) and WAL mode (better concurrency and crash recovery).</p>
+</li>
+<li>
+<p><strong>Indexes</strong> — Speed up reads but slow writes; a core DBA performance lever.</p>
+</li>
+<li>
+<p><strong>Cursors</strong> — Pointers for row-by-row navigation: Static (snapshot), Dynamic (real-time), Keyset (hybrid). Set-based operations are generally preferred.</p>
+</li>
+<li>
+<p><strong>Database Maintenance</strong> — Ongoing tasks: integrity checks, reindexing, compaction/vacuum, monitoring growth, schema evolution, change management.</p>
+</li>
+<li>
+<p><strong>Shared Responsibility Model (Cloud)</strong> — Cloud providers manage infrastructure; DBAs remain responsible for schema, security, backup policies, performance, and data integrity.</p>
+</li>
+</ol>
+<h3>Application in Practice</h3>
+<ol>
+<li>
+<p><strong>Enforcing Referential Integrity</strong> — Access: Database Tools &gt; Relationships &gt; Enforce Referential Integrity. SQLite: <code>PRAGMA foreign_keys = ON;</code>. PostgreSQL: enforced by default.</p>
+</li>
+<li>
+<p><strong>Transaction Control in SQL</strong> — <code>BEGIN TRANSACTION;</code>, <code>COMMIT;</code>, <code>ROLLBACK;</code> for explicit control over when changes become permanent.</p>
+</li>
+<li>
+<p><strong>Backup Procedures</strong> — Access: copy <code>.accdb</code> with timestamp. SQLite: <code>.backup</code> command or file copy. Cloud: automated backups with DBA-managed policies.</p>
+</li>
+<li>
+<p><strong>Integrity Checking</strong> — SQLite: <code>PRAGMA integrity_check;</code> returns "ok" or flags corruption.</p>
+</li>
+<li>
+<p><strong>Performance Tuning with Indexes</strong> — <code>CREATE INDEX idx_name ON TABLE(Column);</code>. Verify with <code>EXPLAIN QUERY PLAN</code> in SQLite.</p>
+</li>
+<li>
+<p><strong>Database Compaction</strong> — SQLite: <code>VACUUM;</code> (reclaim space), <code>REINDEX;</code> (rebuild indexes). Access: Compact and Repair.</p>
+</li>
+<li>
+<p><strong>Journal Mode Configuration</strong> — Check: <code>PRAGMA journal_mode;</code>. Switch to WAL: <code>PRAGMA journal_mode = WAL;</code>.</p>
+</li>
+<li>
+<p><strong>Security and Access Control</strong> — SQL Server/PostgreSQL: <code>GRANT SELECT ON table TO role;</code>. SQLite: file-system permissions. Access: front-end/back-end separation.</p>
+</li>
+<li>
+<p><strong>Identifying Critical Data Assets</strong> — Prioritize by impact: STUDENT (PII), STUDENT_GRADE (academic data), ATTENDANCE tables are high-risk.</p>
+</li>
+<li>
+<p><strong>Cloud DBA via Supabase</strong> — Set up PostgreSQL projects, manage RBAC roles (<code>postgres</code>, <code>anon</code>, <code>authenticated</code>), enforce constraints, configure Row-Level Security policies.</p>
+</li>
+</ol>
+<h3>Real-World Examples</h3>
+<ol>
+<li>
+<p><strong>Lost Update Problem</strong> — Two users update the same grade simultaneously; without concurrency control, one update silently overwrites the other.</p>
+</li>
+<li>
+<p><strong>Grading Database Transaction</strong> — Insert a grade, update the average, record an audit entry. If any step fails, all changes roll back.</p>
+</li>
+<li>
+<p><strong>Deadlock Scenario</strong> — Transaction A locks Table 1 and waits for Table 2; Transaction B locks Table 2 and waits for Table 1. DBMS detects the cycle and rolls back one.</p>
+</li>
+<li>
+<p><strong>Grading Database Access Rights</strong> — TAs: Read on STUDENT, STUDENT_GRADE, GRADE_SCALE. Instructors: Read/Insert/Update/Delete on grades. SysAdmins: full privileges. Assigned to roles, not individuals.</p>
+</li>
+<li>
+<p><strong>Bank Transfer (ACID)</strong> — Both debit and credit must occur; atomicity ensures neither happens alone. Durability means the transfer survives a crash after commit.</p>
+</li>
+<li>
+<p><strong>Accidental Deletion Recovery</strong> — <code>DELETE FROM STUDENT_GRADE;</code> removes all grades. Recovery requires restoring from backup — demonstrating why backup discipline is essential.</p>
+</li>
+<li>
+<p><strong>Heather Sweeney Designs Access Control</strong> — Different roles (assistants, management, administrators) receive different privilege levels on SEMINAR, CUSTOMER, and INVOICE tables.</p>
+</li>
+<li>
+<p><strong>SQLite WAL Mode</strong> — <code>PRAGMA journal_mode = WAL;</code> enables non-blocking reads alongside writes and provides automatic crash recovery.</p>
+</li>
+<li>
+<p><strong>Supabase Row-Level Security</strong> — <code>CREATE POLICY student_view_own_grades ON STUDENT_GRADE FOR SELECT USING (auth.uid() = StudentID);</code> ensures students see only their own grades.</p>
+</li>
+<li>
+<p><strong>Platform Comparison</strong> — Same DBA principles across MS Access (visual/local), SQLite (explicit/file-based), and Supabase/PostgreSQL (governance, security, scalability). Tools change; responsibilities remain constant.</p>
+</li>
+</ol>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>&lt;img src=&quot;../../_static/images/review.gif&quot; alt=&quot;Review&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Review: Database Administration</h2>
+                  <h2>Key Concepts Review</h2>
+<p>Review the main concepts covered in this chapter to prepare for assessment.</p>
+<h3>Main Topics</h3>
+<ul>
+<li>Topic 1</li>
+<li>Topic 2</li>
+<li>Topic 3</li>
+</ul>
+<h2>Quick Reference</h2>
+<h3>Core Ideas</h3>
+<ul>
+<li>Concept A</li>
+<li>Concept B</li>
+<li>Concept C</li>
+</ul>
+<h2>Review Questions</h2>
+<ol>
+<li>Question about the main concept?</li>
+<li>Question about application?</li>
+<li>Question about implications?</li>
+</ol>
+<h2>Preparation Tips</h2>
+<ul>
+<li>Review your notes from the concepts section</li>
+<li>Complete the Let's Build activities before assessment</li>
+<li>Consult the Terms section for definitions</li>
+</ul>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>&lt;img src=&quot;../../_static/images/RAT.gif&quot; alt=&quot;RAT&quot; style=&quot;width: 50px; height: auto; margin-right: 10px; vertical-align: middle;&quot;&gt; Readiness Assessment Test: Database Administration</h2>
+                  <h2>Individual RAT (iRAT)</h2>
+<p>Complete this assessment individually to test your understanding of the material.</p>
+<h3>Multiple Choice Questions</h3>
+<p><strong>Question 1:</strong> What is the primary focus of this chapter?
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<p><strong>Question 2:</strong> Which of the following best describes [concept]?
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<p><strong>Question 3:</strong> In the context of this chapter, [term] refers to:
+- A. Option A
+- B. Option B
+- C. Option C
+- D. Option D</p>
+<h3>Scoring</h3>
+<ul>
+<li>Score: _____ / 3</li>
+<li>Passing Score: 2 out of 3</li>
+</ul>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch10-advanced-sql-queries.html"><small>Previous</small><strong>Chapter 10: Chapter 9: Advanced SQL with the Grading Database</strong></a>
+          <a class="pager-card pager-card--next" href="ch12-business-intelligence.html"><small>Next</small><strong>Chapter 12: Chapter 12 – Business Intelligence and Analytics for Performance Improvement</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

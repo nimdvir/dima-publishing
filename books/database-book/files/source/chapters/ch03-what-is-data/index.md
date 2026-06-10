@@ -4,9 +4,9 @@ Serving as the bridge from general information systems to structured tables, thi
 
 ## Chapter Files
 
-- [Main Chapter](ch03-main-2026-06-03.md)
-- [Let's Build](ch03-lets-build-2026-06-02.md)
-- [Review & Reflection](ch03-reflection-2026-06-03.md)
-- [Terms Treasury](ch03-terms-2026-06-03.md)
-- [Readiness Assessment Test](ch03-rat-2026-06-03.md)
-- [Lab 03: Data Types and Tables](lab-03-questions-2026-06-03.md)
+- [Main Chapter](core-concepts.md)
+- [Let's Build](lets-build.md)
+- [Review & Reflection](review-questions.md)
+- [Terms Treasury](terms-treasury.md)
+- [Readiness Assessment Test](rat.md)
+<!-- Lab not yet in publishing repo: [Lab 03: Data Types and Tables](lab-03-questions-2026-06-03.md) -->

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BITM330 Prototype | Home</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="prototype-notice" data-prototype-notice aria-live="polite"></div>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="book/index.html">Book</a>
+        <a href="labs.html">Labs</a>
+        <a href="locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell page-shell--home">
+    <section class="hero hero--home">
+      <div class="hero__content">
+        <p class="eyebrow">Academic Platform Prototype</p>
+        <h1>Using Data to Drive Business Performance</h1>
+        <p class="hero__subtitle">Databases, information systems, analytics, and managerial judgment in one connected digital textbook experience.</p>
+        <div class="book-meta">
+          <span>Author: Nimrod Dvir, PhD</span>
+          <span>Format: Digital textbook + labs</span>
+          <span>Branding: DIMA Publishing placeholder</span>
+        </div>
+        <p class="hero__summary">Chapter 1 frames the course as a guided journey from data to decisions. Chapter 2 extends that arc by showing why information systems matter and how data becomes evidence for action.</p>
+        <div class="actions">
+          <a class="button button--primary" href="book/index.html">Open Full Book</a>
+          <a class="button" href="dashboard.html">Open Dashboard</a>
+          <a class="button" href="locked.html">Login / Access</a>
+        </div>
+      </div>
+      <a class="cover-panel cover-panel--link" href="book/index.html" aria-label="Open the generated full-book HTML prototype">
+        <img src="assets/book-cover.svg" alt="Prototype cover artwork for the BITM330 digital textbook">
+        <span class="cover-panel__note">Click the cover to enter the full-book HTML view</span>
+      </a>
+    </section>
+
+    <section class="overview-grid">
+      <article class="surface-card surface-card--tall">
+        <p class="eyebrow">Book Purpose</p>
+        <h2>Teach students how data becomes business performance</h2>
+        <p>The prototype follows the manuscript's central logic: data becomes tables, tables become relationships, relationships make queries possible, and queries support analytics and decisions.</p>
+        <img class="panel-figure" src="assets/learning-arc.svg" alt="A visual arc from data to decisions through tables, relationships, queries, and analytics">
+      </article>
+      <article class="surface-card">
+        <p class="eyebrow">Target Audience</p>
+        <ul class="plain-list">
+          <li>Undergraduate business students</li>
+          <li>Students new to databases and SQL</li>
+          <li>Managers and analysts who need system thinking</li>
+          <li>Instructors who want a reader plus lab workflow</li>
+        </ul>
+      </article>
+      <article class="surface-card">
+        <p class="eyebrow">Platform Principles</p>
+        <ul class="plain-list">
+          <li>Responsive on desktop, tablet, and mobile</li>
+          <li>Accessible colors and readable typography</li>
+          <li>No backend in the prototype</li>
+          <li>No real login or payment processing</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="feature-strip">
+      <article class="feature-chip">
+        <strong>17 chapters</strong>
+        <span>Two sample chapters plus placeholders for the rest of the book.</span>
+      </article>
+      <article class="feature-chip">
+        <strong>Reader-first design</strong>
+        <span>Collapsible navigation, progress, and structured chapter parts.</span>
+      </article>
+      <article class="feature-chip">
+        <strong>Labs included</strong>
+        <span>A dedicated lab surface that can grow into submissions later.</span>
+      </article>
+    </section>
+
+    <section class="catalog-preview">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Featured Chapters</p>
+          <h2>Example content drawn from the current Chapter 1 and 2 drafts</h2>
+        </div>
+        <a class="text-link" href="dashboard.html">See the full dashboard</a>
+      </div>
+      <div class="chapter-grid" data-chapter-grid="featured"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

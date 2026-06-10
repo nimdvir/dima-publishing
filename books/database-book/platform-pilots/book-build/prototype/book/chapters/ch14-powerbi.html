@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 14: Power BI, Microsoft Access, and Business Reporting | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 14: Power BI, Microsoft Access, and Business Reporting</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>82%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:82%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="is-current" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 14</p>
+          <h1>Power BI, Microsoft Access, and Business Reporting</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>34 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 14: Power BI, Microsoft Access, and Business Reporting</h2>
+                  <p><em>From Access Database to Interactive Dashboard</em></p>
+<p>Power BI is where the database work in this book becomes visible to decision-makers. Earlier chapters focused on designing reliable tables, writing SQL queries, administering databases, and building analytics-ready structures. This chapter moves from the database layer to the reporting layer: connecting Microsoft Access to Power BI, shaping data with Power Query, creating measures with DAX, and designing a dashboard that communicates insight clearly.</p>
+<p>The running case is the <strong>Grading Database</strong>. In Access, the database stores students, deliverables, grades, attendance, schedules, and grading rules. In Power BI, those same records become interactive reports: class averages, missing submissions, attendance trends, at-risk students, grade distributions, and performance by assignment type.</p>
+<p>The goal is not to make decorative charts. The goal is to build reports that help people understand performance and make better decisions.</p>
+<h2>Learning Objectives</h2>
+<p>After reading this chapter, you will be able to:</p>
+<ol>
+<li>Explain how Power BI fits into the data-to-decision pipeline.</li>
+<li>Prepare Microsoft Access tables and queries for use in Power BI.</li>
+<li>Connect Power BI Desktop to an Access <code>.accdb</code> database.</li>
+<li>Use Power Query to clean, rename, filter, and reshape imported data.</li>
+<li>Build a basic Power BI data model with relationships among tables.</li>
+<li>Distinguish calculated columns from DAX measures.</li>
+<li>Create common DAX measures for grading and attendance analytics.</li>
+<li>Design dashboard pages using cards, bar charts, line charts, tables, matrices, and slicers.</li>
+<li>Apply visual design principles for managerial reporting.</li>
+<li>Publish a Power BI report and explain refresh considerations for Access-based data.</li>
+</ol>
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Main Question</th>
+<th>Main Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>14.1 Power BI in the BI Pipeline</td>
+<td>What role does Power BI play?</td>
+<td>Conceptual reporting workflow</td>
+</tr>
+<tr>
+<td>14.2 Access as the Data Source</td>
+<td>How should Access data be prepared?</td>
+<td>Clean source tables and queries</td>
+</tr>
+<tr>
+<td>14.3 Connecting Power BI to Access</td>
+<td>How do we import Access data?</td>
+<td>Loaded tables in Power BI Desktop</td>
+</tr>
+<tr>
+<td>14.4 Power Query</td>
+<td>How do we clean and shape data?</td>
+<td>Analytics-ready tables</td>
+</tr>
+<tr>
+<td>14.5 Power BI Data Model</td>
+<td>How do tables relate in Power BI?</td>
+<td>Star-like analytical model</td>
+</tr>
+<tr>
+<td>14.6 DAX Measures</td>
+<td>How do we define metrics?</td>
+<td>Reusable calculations</td>
+</tr>
+<tr>
+<td>14.7 Core Visuals</td>
+<td>Which visuals answer which questions?</td>
+<td>Report components</td>
+</tr>
+<tr>
+<td>14.8 Grading Dashboard</td>
+<td>How do we build a full report?</td>
+<td>Multi-page dashboard</td>
+</tr>
+<tr>
+<td>14.9 Interactivity</td>
+<td>How do users explore results?</td>
+<td>Slicers, filters, drill-through</td>
+</tr>
+<tr>
+<td>14.10 Publishing and Refresh</td>
+<td>How do we share and update reports?</td>
+<td>Published and refreshable report</td>
+</tr>
+<tr>
+<td>14.11 Good Reporting Practice</td>
+<td>What makes a report trustworthy?</td>
+<td>Design checklist</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>14.1 Power BI in the Business Intelligence Pipeline</h2>
+<p>Power BI is a <strong>business intelligence and data visualization platform</strong>. It connects to data sources, transforms data, builds models, creates visual reports, and allows reports to be shared through the Power BI Service.</p>
+<p>A useful way to understand Power BI is to place it at the end of the pipeline introduced throughout this book:</p>
+<pre><code class="language-text">Operational Data -&gt; Database -&gt; SQL / Queries -&gt; BI Model -&gt; Dashboard -&gt; Decision
+</code></pre>
+<p>Power BI is not the place where database design begins. A messy database does not magically become trustworthy because it has colorful charts on top of it. Power BI works best when it receives clean, structured, well-related data from the database layer.</p>
+<p>In this course, the flow looks like this:</p>
+<pre><code class="language-text">Microsoft Access Grading Database
+        ↓
+Access tables and saved queries
+        ↓
+Power BI Desktop
+        ↓
+Power Query transformations
+        ↓
+Power BI relationships and DAX measures
+        ↓
+Interactive dashboard
+        ↓
+Managerial insight and action
+</code></pre>
+<h3>14.1.1 Power BI Desktop, Service, and Mobile</h3>
+<p>Power BI has several major components.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Main Use</th>
+<th>Course Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Power BI Desktop</strong></td>
+<td>Build data models and reports on Windows</td>
+<td>Main tool for this chapter</td>
+</tr>
+<tr>
+<td><strong>Power BI Service</strong></td>
+<td>Publish, share, collaborate, schedule refresh</td>
+<td>Optional sharing layer</td>
+</tr>
+<tr>
+<td><strong>Power BI Mobile</strong></td>
+<td>View reports on mobile devices</td>
+<td>Consumer layer</td>
+</tr>
+<tr>
+<td><strong>Power Query</strong></td>
+<td>Clean and transform data</td>
+<td>Preparation layer</td>
+</tr>
+<tr>
+<td><strong>DAX</strong></td>
+<td>Create calculations and measures</td>
+<td>Metric layer</td>
+</tr>
+</tbody>
+</table>
+<p>For this chapter, the most important tool is <strong>Power BI Desktop</strong>. This is where students connect to Access, clean the data, create relationships, write measures, and design report pages.</p>
+<h3>14.1.2 What Power BI Adds Beyond Access</h3>
+<p>Microsoft Access can store data, enforce relationships, run queries, create forms, and generate reports. That makes Access a compact database application environment. Power BI serves a different purpose: interactive reporting and business intelligence.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th style="text-align: right;">Better in Access</th>
+<th style="text-align: right;">Better in Power BI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data entry forms</td>
+<td style="text-align: right;">Yes</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Table design and relationships</td>
+<td style="text-align: right;">Yes</td>
+<td style="text-align: right;">Somewhat</td>
+</tr>
+<tr>
+<td>Transactional data storage</td>
+<td style="text-align: right;">Yes</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr>
+<td>Basic queries</td>
+<td style="text-align: right;">Yes</td>
+<td style="text-align: right;">Somewhat</td>
+</tr>
+<tr>
+<td>Interactive dashboards</td>
+<td style="text-align: right;">Limited</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Slicers and drill-down reports</td>
+<td style="text-align: right;">Limited</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Visual storytelling</td>
+<td style="text-align: right;">Limited</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Sharing dashboards online</td>
+<td style="text-align: right;">Limited</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+<tr>
+<td>Combining data from many sources</td>
+<td style="text-align: right;">Somewhat</td>
+<td style="text-align: right;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Access is the <strong>source system</strong>. Power BI is the <strong>analysis and communication layer</strong>.</p>
+<h3>14.1.3 The Main Principle</h3>
+<blockquote>
+<p><strong>Use Access to manage the data. Use Power BI to communicate the insight.</strong></p>
+</blockquote>
+<p>This distinction matters. Students often try to use Power BI as if it were a database. It is not. Power BI imports or connects to data, models it analytically, and creates visuals. It should not replace a properly designed operational database.</p>
+<hr />
+<h2>14.2 Preparing the Microsoft Access Database for Power BI</h2>
+<p>Before connecting Power BI to Access, the Access database should be clean, normalized, and documented. Power BI can import messy data, but messy imports create messy reports. Good BI begins before Power BI opens.</p>
+<h3>14.2.1 Recommended Grading Database Tables</h3>
+<p>The Grading Database should include tables similar to the following:</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+<th>Primary Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Student identity and basic details</td>
+<td><code>StudentID</code></td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Assignments, quizzes, exams, and projects</td>
+<td><code>DeliverableID</code></td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>Scores earned by students on deliverables</td>
+<td><code>GradeID</code></td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code> or <code>GRADE_WEIGHT</code></td>
+<td>Grading categories and weights</td>
+<td><code>Type</code></td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Class sessions and dates</td>
+<td><code>ClassNum</code></td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Student attendance by class session</td>
+<td><code>AttendanceID</code></td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Letter-grade thresholds</td>
+<td><code>LetterGrade</code></td>
+</tr>
+</tbody>
+</table>
+<p>The most important analytical table is <code>STUDENT_GRADE</code>. It is the fact-like table because each row records a measurable event: one student's score on one deliverable.</p>
+<h3>14.2.2 Relationship Logic in Access</h3>
+<p>In Access, go to <strong>Database Tools → Relationships</strong> and confirm these relationships:</p>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT.StudentID → STUDENT_GRADE.StudentID</code></td>
+<td>Each grade belongs to one student</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE.DeliverableID → STUDENT_GRADE.DeliverableID</code></td>
+<td>Each grade belongs to one deliverable</td>
+</tr>
+<tr>
+<td><code>STUDENT.StudentID → ATTENDANCE.StudentID</code></td>
+<td>Each attendance record belongs to one student</td>
+</tr>
+<tr>
+<td><code>SCHEDULE.ClassNum → ATTENDANCE.ClassNum</code></td>
+<td>Each attendance record belongs to one class meeting</td>
+</tr>
+<tr>
+<td><code>GRADE_WEIGHT.Type → DELIVERABLE.Type</code></td>
+<td>Each deliverable belongs to one grading category</td>
+</tr>
+</tbody>
+</table>
+<p>Enable <strong>Enforce Referential Integrity</strong> where appropriate. Referential integrity matters because Power BI reports rely on valid relationships. If Access contains orphaned grade records or invalid attendance rows, Power BI will faithfully visualize the problem. The chart will be attractive, but the answer will be wrong. The dashboard will lie politely.</p>
+<h3>14.2.3 Clean Field Names Before Importing</h3>
+<p>Power BI can handle many field names, but clean names reduce confusion.</p>
+<p>Good field names:</p>
+<pre><code class="language-text">StudentID
+FirstName
+LastName
+Email
+DeliverableID
+DeliverableType
+DeliverableNumber
+DueDate
+Score
+Attended
+ClassDate
+Weight
+</code></pre>
+<p>Avoid field names such as:</p>
+<pre><code class="language-text">Student ID
+Student's First Name
+% Grade
+Final/Current Score
+Type of Assignment!!!
+</code></pre>
+<p>Spaces and punctuation are not fatal, but they make DAX formulas harder to read. A good convention is <strong>PascalCase</strong> or <strong>snake_case</strong>, used consistently.</p>
+<h3>14.2.4 Saved Access Queries as BI Sources</h3>
+<p>Power BI can import both Access tables and saved Access queries. This gives you two possible workflows.</p>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Description</th>
+<th>Best Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Import raw tables</td>
+<td>Bring tables into Power BI and model relationships there</td>
+<td>Best for learning Power BI modeling</td>
+</tr>
+<tr>
+<td>Import saved queries</td>
+<td>Use Access queries as pre-shaped analytical views</td>
+<td>Best for simple reports or controlled logic</td>
+</tr>
+</tbody>
+</table>
+<p>For students, I recommend importing the core tables first. This teaches how Power BI relationships and measures work. Later, saved Access queries can be used as curated sources.</p>
+<h3>14.2.5 Example: Access Query for Grade Analytics</h3>
+<p>A saved Access query can prepare a clean grade-level dataset.</p>
+<pre><code class="language-sql">SELECT
+    STUDENT.StudentID,
+    STUDENT.FirstName,
+    STUDENT.LastName,
+    STUDENT.Email,
+    DELIVERABLE.DeliverableID,
+    DELIVERABLE.Type AS DeliverableType,
+    DELIVERABLE.DeliverableNumber,
+    DELIVERABLE.DueDate,
+    STUDENT_GRADE.Score
+FROM
+    (STUDENT
+    INNER JOIN STUDENT_GRADE
+        ON STUDENT.StudentID = STUDENT_GRADE.StudentID)
+    INNER JOIN DELIVERABLE
+        ON STUDENT_GRADE.DeliverableID = DELIVERABLE.DeliverableID;
+</code></pre>
+<p>Save this query in Access as:</p>
+<pre><code class="language-text">q_GradeAnalytics
+</code></pre>
+<p>Power BI can import this saved query as if it were a table. This is useful when the goal is a quick dashboard rather than a full Power BI model.</p>
+<h3>14.2.6 Example: Access Query for Attendance Analytics</h3>
+<pre><code class="language-sql">SELECT
+    STUDENT.StudentID,
+    STUDENT.FirstName,
+    STUDENT.LastName,
+    SCHEDULE.ClassNum,
+    SCHEDULE.ClassDate,
+    SCHEDULE.WeekNumber,
+    ATTENDANCE.Attended
+FROM
+    (STUDENT
+    INNER JOIN ATTENDANCE
+        ON STUDENT.StudentID = ATTENDANCE.StudentID)
+    INNER JOIN SCHEDULE
+        ON ATTENDANCE.ClassNum = SCHEDULE.ClassNum;
+</code></pre>
+<p>Save this query as:</p>
+<pre><code class="language-text">q_AttendanceAnalytics
+</code></pre>
+<p>This query becomes the basis for attendance trend visuals in Power BI.</p>
+<hr />
+<h2>14.3 Connecting Power BI Desktop to Microsoft Access</h2>
+<p>Power BI Desktop can connect directly to an Access <code>.accdb</code> file. The exact interface may vary slightly by version, but the workflow is stable.</p>
+<h3>14.3.1 Step-by-Step Connection Workflow</h3>
+<ol>
+<li>Open <strong>Power BI Desktop</strong>.</li>
+<li>Select <strong>Home → Get Data → More</strong>.</li>
+<li>In the data source list, choose <strong>Database → Access database</strong>.</li>
+<li>Click <strong>Connect</strong>.</li>
+<li>Browse to the <code>.accdb</code> file.</li>
+<li>Select the tables and/or saved queries to import.</li>
+<li>Choose either <strong>Load</strong> or <strong>Transform Data</strong>.</li>
+</ol>
+<p>Use <strong>Transform Data</strong> when you want to inspect and clean the data before loading. In professional work, this is usually the better choice.</p>
+<h3>14.3.2 Which Access Objects Should Be Imported?</h3>
+<p>For a full Power BI learning experience, import these tables:</p>
+<pre><code class="language-text">STUDENT
+DELIVERABLE
+STUDENT_GRADE
+SCHEDULE
+ATTENDANCE
+GRADE_WEIGHT
+GRADE_SCALE
+</code></pre>
+<p>For a simpler report, import these saved queries:</p>
+<pre><code class="language-text">q_GradeAnalytics
+q_AttendanceAnalytics
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Import Choice</th>
+<th>Advantage</th>
+<th>Disadvantage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tables</td>
+<td>Teaches relationships and DAX modeling</td>
+<td>Requires more setup</td>
+</tr>
+<tr>
+<td>Saved queries</td>
+<td>Faster dashboard creation</td>
+<td>Hides some modeling logic</td>
+</tr>
+<tr>
+<td>Both</td>
+<td>Flexible</td>
+<td>Can create duplicate/confusing fields</td>
+</tr>
+</tbody>
+</table>
+<p>A good classroom sequence is:</p>
+<ol>
+<li>First lab: import saved queries and build visuals quickly.</li>
+<li>Second lab: import normalized tables and build the model properly.</li>
+</ol>
+<h3>14.3.3 Common Access Connection Problems</h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Likely Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Power BI cannot open the <code>.accdb</code> file</td>
+<td>Access Database Engine driver issue</td>
+<td>Install the Microsoft Access Database Engine matching your Power BI architecture</td>
+</tr>
+<tr>
+<td>Tables appear but relationships do not behave as expected</td>
+<td>Relationships not imported or not active</td>
+<td>Recreate relationships in Power BI Model view</td>
+</tr>
+<tr>
+<td>Query results differ from Access</td>
+<td>Data type conversion or filtering difference</td>
+<td>Inspect Power Query steps and data types</td>
+</tr>
+<tr>
+<td>File cannot refresh after publishing</td>
+<td>Local Access file not reachable by Power BI Service</td>
+<td>Use OneDrive/SharePoint or an on-premises data gateway</td>
+</tr>
+</tbody>
+</table>
+<h3>14.3.4 Import Mode vs. Live Connection</h3>
+<p>When connecting to Access, Power BI usually works by <strong>importing</strong> the data into the Power BI model. That means the report uses a snapshot of the Access data until it is refreshed.</p>
+<p>This has two practical consequences:</p>
+<ol>
+<li>Updating Access does not automatically update the Power BI report until refresh occurs.</li>
+<li>Published reports need a refresh strategy if the Access data changes.</li>
+</ol>
+<p>For student projects, manual refresh is usually enough. For organizational reporting, refresh planning becomes part of the BI design.</p>
+<hr />
+<h2>14.4 Power Query: Cleaning and Shaping Access Data</h2>
+<p>Power Query is the transformation layer in Power BI. It allows you to clean, filter, rename, merge, append, and reshape data before loading it into the model.</p>
+<h3>14.4.1 Why Power Query Matters</h3>
+<p>Access stores the data. Power Query prepares it for analysis.</p>
+<p>Common Power Query tasks include:</p>
+<ul>
+<li>Renaming columns</li>
+<li>Removing unnecessary fields</li>
+<li>Changing data types</li>
+<li>Replacing null values</li>
+<li>Filtering rows</li>
+<li>Merging tables</li>
+<li>Creating derived columns</li>
+<li>Removing duplicates</li>
+<li>Splitting columns</li>
+</ul>
+<p>Power Query transformations are <strong>non-destructive</strong>. The original Access database remains unchanged. Power BI records the transformation steps and reapplies them when the data refreshes.</p>
+<h3>14.4.2 Recommended Transformations for the Grading Database</h3>
+<p>After importing Access tables, check each table in Power Query.</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Transformation Checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>Remove unused fields; ensure <code>StudentID</code> is Whole Number; trim names; set Email as Text</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>Ensure <code>DeliverableID</code> is Whole Number; <code>DueDate</code> is Date; <code>Type</code> is Text</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>Ensure <code>Score</code> is Decimal Number or Whole Number; remove invalid scores if needed</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>Ensure <code>Attended</code> is True/False or Whole Number 0/1</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>Ensure <code>ClassDate</code> is Date; <code>WeekNumber</code> is Whole Number</td>
+</tr>
+<tr>
+<td><code>GRADE_WEIGHT</code></td>
+<td>Ensure <code>Weight</code> is Decimal Number</td>
+</tr>
+</tbody>
+</table>
+<h3>14.4.3 Example Power Query Transformations</h3>
+<p>A typical Power Query cleanup sequence for <code>STUDENT</code> might include:</p>
+<ol>
+<li>Remove columns not needed for reporting.</li>
+<li>Rename fields for readability.</li>
+<li>Trim leading/trailing spaces from names.</li>
+<li>Set data types.</li>
+<li>Remove duplicate student rows.</li>
+</ol>
+<p>In the Power Query interface:</p>
+<pre><code class="language-text">Transform → Format → Trim
+Transform → Data Type → Text / Whole Number / Date
+Home → Remove Rows → Remove Duplicates
+</code></pre>
+<h3>14.4.4 Example: Adding a Full Name Column in Power Query</h3>
+<p>In Power Query, select <strong>Add Column → Custom Column</strong> and enter:</p>
+<pre><code class="language-m">[FirstName] &amp; &quot; &quot; &amp; [LastName]
+</code></pre>
+<p>Name the column:</p>
+<pre><code class="language-text">StudentName
+</code></pre>
+<p>This creates a readable name field for report visuals. You can also create this as a DAX calculated column later. The Power Query version is created during data load; the DAX version is created inside the model.</p>
+<h3>14.4.5 Example: Handling Missing Scores</h3>
+<p>Do not automatically convert missing scores to zero unless the grading policy says a missing submission earns zero. A blank score may mean "not graded yet," while a zero may mean "submitted but earned no points."</p>
+<p>A safer Power Query approach is to keep the original <code>Score</code> field and add a status column.</p>
+<p>Custom column:</p>
+<pre><code class="language-m">if [Score] = null then &quot;Missing&quot; else &quot;Recorded&quot;
+</code></pre>
+<p>Name the column:</p>
+<pre><code class="language-text">ScoreStatus
+</code></pre>
+<p>This allows the dashboard to distinguish missing data from actual zeros.</p>
+<h3>14.4.6 Load Only What You Need</h3>
+<p>A common beginner mistake is importing everything. Good reporting models are focused.</p>
+<p>Remove fields that are not needed for the dashboard, especially:</p>
+<ul>
+<li>internal notes,</li>
+<li>temporary fields,</li>
+<li>duplicate descriptive columns,</li>
+<li>personal fields not needed for the analysis,</li>
+<li>sensitive data that report users should not see.</li>
+</ul>
+<p>This improves performance and supports privacy.</p>
+<hr />
+<h2>14.5 Building the Power BI Data Model</h2>
+<p>Once data is loaded, Power BI stores it in a model. The model defines tables, relationships, data types, and calculations.</p>
+<h3>14.5.1 Model View</h3>
+<p>In Power BI Desktop, switch to <strong>Model view</strong> to inspect relationships. Power BI may detect relationships automatically, but you should verify them. Automatic relationship detection is convenient, not magical.</p>
+<p>Recommended relationships:</p>
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Cardinality</th>
+<th>Filter Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT.StudentID</code></td>
+<td><code>STUDENT_GRADE.StudentID</code></td>
+<td>One-to-many</td>
+<td>Single</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE.DeliverableID</code></td>
+<td><code>STUDENT_GRADE.DeliverableID</code></td>
+<td>One-to-many</td>
+<td>Single</td>
+</tr>
+<tr>
+<td><code>STUDENT.StudentID</code></td>
+<td><code>ATTENDANCE.StudentID</code></td>
+<td>One-to-many</td>
+<td>Single</td>
+</tr>
+<tr>
+<td><code>SCHEDULE.ClassNum</code></td>
+<td><code>ATTENDANCE.ClassNum</code></td>
+<td>One-to-many</td>
+<td>Single</td>
+</tr>
+<tr>
+<td><code>GRADE_WEIGHT.Type</code></td>
+<td><code>DELIVERABLE.Type</code></td>
+<td>One-to-many</td>
+<td>Single</td>
+</tr>
+</tbody>
+</table>
+<p>Most relationships should use <strong>single-direction filtering</strong> from dimension-like tables to fact-like tables. This keeps the model easier to reason about.</p>
+<h3>14.5.2 Fact Tables and Dimension Tables in Power BI</h3>
+<p>Power BI reports become easier when students understand fact and dimension logic.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Grading Database Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fact table</td>
+<td><code>STUDENT_GRADE</code></td>
+<td>Contains measurable events: scores</td>
+</tr>
+<tr>
+<td>Fact table</td>
+<td><code>ATTENDANCE</code></td>
+<td>Contains measurable events: attended/not attended</td>
+</tr>
+<tr>
+<td>Dimension table</td>
+<td><code>STUDENT</code></td>
+<td>Describes who</td>
+</tr>
+<tr>
+<td>Dimension table</td>
+<td><code>DELIVERABLE</code></td>
+<td>Describes what assignment</td>
+</tr>
+<tr>
+<td>Dimension table</td>
+<td><code>SCHEDULE</code></td>
+<td>Describes when class happened</td>
+</tr>
+<tr>
+<td>Dimension table</td>
+<td><code>GRADE_WEIGHT</code></td>
+<td>Describes grading category weights</td>
+</tr>
+</tbody>
+</table>
+<p>Power BI does not require a perfect star schema, but BI reports become cleaner when the model behaves like one.</p>
+<h3>14.5.3 Hide Technical Fields</h3>
+<p>In report view, students should not drag every technical key onto visuals. Hide fields that are needed for relationships but not useful to report consumers.</p>
+<p>Common fields to hide:</p>
+<pre><code class="language-text">GradeID
+AttendanceID
+DeliverableID
+ClassNum
+</code></pre>
+<p>Keep fields like:</p>
+<pre><code class="language-text">StudentName
+DeliverableType
+DueDate
+Score
+Attended
+WeekNumber
+Weight
+</code></pre>
+<p>Hiding a field does not remove it from the model. It simply makes the report-building interface cleaner.</p>
+<h3>14.5.4 Create a Date Table When Needed</h3>
+<p>For simple reports, <code>DELIVERABLE.DueDate</code> and <code>SCHEDULE.ClassDate</code> may be enough. For more advanced time analysis, create a dedicated date table.</p>
+<p>A simple DAX date table:</p>
+<pre><code class="language-dax">DateTable = CALENDAR(MIN(DELIVERABLE[DueDate]), MAX(DELIVERABLE[DueDate]))
+</code></pre>
+<p>Add useful columns:</p>
+<pre><code class="language-dax">Year = YEAR(DateTable[Date])
+Month = FORMAT(DateTable[Date], &quot;YYYY-MM&quot;)
+WeekNum = WEEKNUM(DateTable[Date])
+</code></pre>
+<p>Use a date table when you need consistent time filtering across multiple tables.</p>
+<hr />
+<h2>14.6 DAX: Measures, Calculated Columns, and Metrics</h2>
+<p>DAX stands for <strong>Data Analysis Expressions</strong>. It is the formula language used in Power BI for calculations.</p>
+<p>The most important distinction is between <strong>calculated columns</strong> and <strong>measures</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Computed When</th>
+<th>Stored?</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calculated column</td>
+<td>Row by row during model processing</td>
+<td>Yes</td>
+<td>Labels, categories, row-level classifications</td>
+</tr>
+<tr>
+<td>Measure</td>
+<td>At query/report interaction time</td>
+<td>No</td>
+<td>Aggregates, KPIs, dynamic calculations</td>
+</tr>
+</tbody>
+</table>
+<h3>14.6.1 Calculated Column Example: Student Name</h3>
+<p>In the <code>STUDENT</code> table:</p>
+<pre><code class="language-dax">StudentName = STUDENT[FirstName] &amp; &quot; &quot; &amp; STUDENT[LastName]
+</code></pre>
+<p>This is a good calculated column because it creates a row-level label.</p>
+<h3>14.6.2 Calculated Column Example: Score Band</h3>
+<p>In <code>STUDENT_GRADE</code>:</p>
+<pre><code class="language-dax">ScoreBand =
+SWITCH(
+    TRUE(),
+    STUDENT_GRADE[Score] &gt;= 90, &quot;90-100&quot;,
+    STUDENT_GRADE[Score] &gt;= 80, &quot;80-89&quot;,
+    STUDENT_GRADE[Score] &gt;= 70, &quot;70-79&quot;,
+    STUDENT_GRADE[Score] &gt;= 60, &quot;60-69&quot;,
+    STUDENT_GRADE[Score] &lt; 60, &quot;Below 60&quot;,
+    &quot;Missing&quot;
+)
+</code></pre>
+<p>This column supports a grade-distribution chart.</p>
+<h3>14.6.3 Measure Example: Average Score</h3>
+<p>Create a measure in <code>STUDENT_GRADE</code>:</p>
+<pre><code class="language-dax">Average Score = AVERAGE(STUDENT_GRADE[Score])
+</code></pre>
+<p>This measure changes depending on slicers and filters. If the report is filtered to quizzes only, it becomes the average quiz score. If the report is filtered to one student, it becomes that student's average.</p>
+<h3>14.6.4 Measure Example: Total Submissions</h3>
+<pre><code class="language-dax">Total Submissions = COUNTROWS(STUDENT_GRADE)
+</code></pre>
+<h3>14.6.5 Measure Example: Missing Submissions</h3>
+<p>If missing grades are represented by blank scores:</p>
+<pre><code class="language-dax">Missing Scores =
+COUNTROWS(
+    FILTER(
+        STUDENT_GRADE,
+        ISBLANK(STUDENT_GRADE[Score])
+    )
+)
+</code></pre>
+<p>If missing submissions are represented by absent rows, use a model that compares all possible student-deliverable combinations. This is a more advanced pattern and may require a helper table or a query created in Access.</p>
+<h3>14.6.6 Measure Example: Pass Rate</h3>
+<pre><code class="language-dax">Passing Grades =
+COUNTROWS(
+    FILTER(
+        STUDENT_GRADE,
+        STUDENT_GRADE[Score] &gt;= 60
+    )
+)
+</code></pre>
+<pre><code class="language-dax">Pass Rate =
+DIVIDE([Passing Grades], [Total Submissions])
+</code></pre>
+<p>Format <code>Pass Rate</code> as a percentage.</p>
+<h3>14.6.7 Measure Example: Attendance Rate</h3>
+<p>If <code>ATTENDANCE[Attended]</code> is stored as True/False:</p>
+<pre><code class="language-dax">Classes Attended =
+COUNTROWS(
+    FILTER(
+        ATTENDANCE,
+        ATTENDANCE[Attended] = TRUE()
+    )
+)
+</code></pre>
+<pre><code class="language-dax">Total Class Records = COUNTROWS(ATTENDANCE)
+</code></pre>
+<pre><code class="language-dax">Attendance Rate = DIVIDE([Classes Attended], [Total Class Records])
+</code></pre>
+<p>If <code>Attended</code> is stored as 1/0:</p>
+<pre><code class="language-dax">Attendance Rate = AVERAGE(ATTENDANCE[Attended])
+</code></pre>
+<p>Format as a percentage.</p>
+<h3>14.6.8 Measure Example: Weighted Grade</h3>
+<p>A weighted grade is more complex because each deliverable type has a weight. Suppose <code>GRADE_WEIGHT</code> includes:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th style="text-align: right;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiz</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr>
+<td>Exam</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr>
+<td>Project</td>
+<td style="text-align: right;">0.30</td>
+</tr>
+<tr>
+<td>Participation</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+</tbody>
+</table>
+<p>A simplified weighted measure can be created if the model connects <code>GRADE_WEIGHT[Type]</code> to <code>DELIVERABLE[Type]</code>:</p>
+<pre><code class="language-dax">Weighted Score =
+SUMX(
+    STUDENT_GRADE,
+    STUDENT_GRADE[Score] * RELATED(GRADE_WEIGHT[Weight])
+)
+</code></pre>
+<p>A more careful weighted average divides by the available weights:</p>
+<pre><code class="language-dax">Weighted Average =
+DIVIDE(
+    SUMX(
+        STUDENT_GRADE,
+        STUDENT_GRADE[Score] * RELATED(GRADE_WEIGHT[Weight])
+    ),
+    SUMX(
+        STUDENT_GRADE,
+        RELATED(GRADE_WEIGHT[Weight])
+    )
+)
+</code></pre>
+<p>This is a teaching example. In a real grading system, weight calculations must match the syllabus policy exactly. If quizzes are averaged first and then weighted as a category, the measure should calculate category averages before applying category weights.</p>
+<h3>14.6.9 Measure Example: At-Risk Students</h3>
+<p>A simple at-risk flag can be created as a calculated column or measure. As a measure:</p>
+<pre><code class="language-dax">Risk Status =
+SWITCH(
+    TRUE(),
+    [Average Score] &lt; 60, &quot;High Risk&quot;,
+    [Average Score] &lt; 70, &quot;At Risk&quot;,
+    [Average Score] &lt; 80, &quot;Monitor&quot;,
+    &quot;On Track&quot;
+)
+</code></pre>
+<p>This can be used in tables, cards, or conditional formatting.</p>
+<h3>14.6.10 DAX Good Practice</h3>
+<table>
+<thead>
+<tr>
+<th>Good Practice</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use measures for KPIs</td>
+<td>Measures respond to slicers and filters</td>
+</tr>
+<tr>
+<td>Use calculated columns for row-level labels</td>
+<td>Labels are stable per row</td>
+</tr>
+<tr>
+<td>Use <code>DIVIDE()</code> instead of <code>/</code></td>
+<td>Handles divide-by-zero safely</td>
+</tr>
+<tr>
+<td>Give measures readable names</td>
+<td>Report builders should understand them</td>
+</tr>
+<tr>
+<td>Keep business logic documented</td>
+<td>Metrics need definitions, not just formulas</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>14.7 Choosing the Right Visual</h2>
+<p>A Power BI report is a communication artifact. Visuals should be selected based on the question being answered.</p>
+<table>
+<thead>
+<tr>
+<th>Business Question</th>
+<th>Recommended Visual</th>
+<th>Grading Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is the current value?</td>
+<td>Card</td>
+<td>Average score, pass rate, missing submissions</td>
+</tr>
+<tr>
+<td>Which category is highest or lowest?</td>
+<td>Bar/column chart</td>
+<td>Average score by deliverable type</td>
+</tr>
+<tr>
+<td>How is performance changing over time?</td>
+<td>Line chart</td>
+<td>Average score by due date or week</td>
+</tr>
+<tr>
+<td>How are values distributed?</td>
+<td>Histogram or column chart</td>
+<td>Score bands</td>
+</tr>
+<tr>
+<td>Which students need attention?</td>
+<td>Table or matrix</td>
+<td>At-risk student list</td>
+</tr>
+<tr>
+<td>How do two measures relate?</td>
+<td>Scatter plot</td>
+<td>Attendance rate vs. average score</td>
+</tr>
+<tr>
+<td>How do groups compare across dimensions?</td>
+<td>Matrix</td>
+<td>Students by deliverable type</td>
+</tr>
+</tbody>
+</table>
+<h3>14.7.1 Core Visuals for the Grading Dashboard</h3>
+<p>A useful Power BI grading dashboard should include:</p>
+<ol>
+<li><strong>Cards</strong> for major KPIs.</li>
+<li><strong>Bar chart</strong> for average score by deliverable type.</li>
+<li><strong>Line chart</strong> for performance over time.</li>
+<li><strong>Table</strong> for at-risk students.</li>
+<li><strong>Matrix</strong> for student-by-deliverable performance.</li>
+<li><strong>Slicers</strong> for student, deliverable type, and date range.</li>
+</ol>
+<h3>14.7.2 Avoiding Misleading Visuals</h3>
+<p>A dashboard can mislead even when the data is technically correct.</p>
+<p>Common mistakes:</p>
+<ul>
+<li>using a pie chart with too many categories,</li>
+<li>sorting bars alphabetically instead of by value,</li>
+<li>omitting axis labels,</li>
+<li>using inconsistent colors,</li>
+<li>showing too many visuals on one page,</li>
+<li>creating KPIs without definitions,</li>
+<li>mixing percentages and raw counts without explanation.</li>
+</ul>
+<p>A good report should reduce cognitive load, not create a scavenger hunt.</p>
+<hr />
+<h2>14.8 Building a Grading Dashboard in Power BI</h2>
+<p>This section provides a complete dashboard plan using the Grading Database.</p>
+<h3>14.8.1 Dashboard Goal</h3>
+<p>The dashboard should help an instructor answer five questions:</p>
+<ol>
+<li>How is the class performing overall?</li>
+<li>Which deliverable types are strongest or weakest?</li>
+<li>Which students may need support?</li>
+<li>Are attendance and performance related?</li>
+<li>Are there missing or incomplete records?</li>
+</ol>
+<h3>14.8.2 Page 1: Executive Summary</h3>
+<p><strong>Purpose:</strong> Give a quick overview of course performance.</p>
+<p>Recommended visuals:</p>
+<table>
+<thead>
+<tr>
+<th>Visual</th>
+<th>Fields / Measures</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Card</td>
+<td><code>[Average Score]</code></td>
+<td>Overall performance</td>
+</tr>
+<tr>
+<td>Card</td>
+<td><code>[Pass Rate]</code></td>
+<td>Percentage passing</td>
+</tr>
+<tr>
+<td>Card</td>
+<td><code>[Attendance Rate]</code></td>
+<td>Engagement indicator</td>
+</tr>
+<tr>
+<td>Card</td>
+<td><code>[Missing Scores]</code></td>
+<td>Data completeness warning</td>
+</tr>
+<tr>
+<td>Bar chart</td>
+<td><code>DELIVERABLE[Type]</code> + <code>[Average Score]</code></td>
+<td>Compare assessment categories</td>
+</tr>
+<tr>
+<td>Line chart</td>
+<td><code>DELIVERABLE[DueDate]</code> + <code>[Average Score]</code></td>
+<td>Show performance over time</td>
+</tr>
+<tr>
+<td>Slicer</td>
+<td><code>DELIVERABLE[Type]</code></td>
+<td>Filter by assessment type</td>
+</tr>
+<tr>
+<td>Slicer</td>
+<td><code>STUDENT[StudentName]</code></td>
+<td>Filter by student</td>
+</tr>
+</tbody>
+</table>
+<p>Suggested layout:</p>
+<pre><code class="language-text">+---------------------------------------------------+
+| Course Performance Dashboard                       |
++-------------+-------------+-------------+---------+
+| Avg Score   | Pass Rate   | Attendance  | Missing |
++-------------+-------------+-------------+---------+
+| Avg Score by Deliverable Type | Score Trend       |
++--------------------------------+------------------+
+| At-Risk Students Table                            |
++---------------------------------------------------+
+</code></pre>
+<h3>14.8.3 Page 2: Student Detail</h3>
+<p><strong>Purpose:</strong> Review one student at a time.</p>
+<p>Recommended visuals:</p>
+<table>
+<thead>
+<tr>
+<th>Visual</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student slicer</td>
+<td>Select one student</td>
+</tr>
+<tr>
+<td>Card: Average Score</td>
+<td>Show selected student average</td>
+</tr>
+<tr>
+<td>Card: Attendance Rate</td>
+<td>Show selected student attendance</td>
+</tr>
+<tr>
+<td>Table: Deliverables and Scores</td>
+<td>Show detailed performance</td>
+</tr>
+<tr>
+<td>Line chart: Score over time</td>
+<td>Show trend</td>
+</tr>
+<tr>
+<td>Bar chart: Score by deliverable type</td>
+<td>Show strengths and weaknesses</td>
+</tr>
+</tbody>
+</table>
+<p>Fields for table:</p>
+<pre><code class="language-text">StudentName
+DeliverableType
+DeliverableNumber
+DueDate
+Score
+ScoreBand
+</code></pre>
+<h3>14.8.4 Page 3: Assignment Analysis</h3>
+<p><strong>Purpose:</strong> Evaluate deliverables and assessment types.</p>
+<p>Recommended visuals:</p>
+<table>
+<thead>
+<tr>
+<th>Visual</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bar chart: Average score by deliverable</td>
+<td>Identify difficult assignments</td>
+</tr>
+<tr>
+<td>Bar chart: Pass rate by deliverable type</td>
+<td>Compare categories</td>
+</tr>
+<tr>
+<td>Table: deliverable details</td>
+<td>Show score, count, missing values</td>
+</tr>
+<tr>
+<td>Slicer: Type</td>
+<td>Focus on quizzes, exams, projects, etc.</td>
+</tr>
+</tbody>
+</table>
+<p>Useful DAX measure:</p>
+<pre><code class="language-dax">Deliverable Count = DISTINCTCOUNT(DELIVERABLE[DeliverableID])
+</code></pre>
+<pre><code class="language-dax">Average Score by Deliverable = [Average Score]
+</code></pre>
+<p>Power BI automatically recalculates <code>[Average Score]</code> by deliverable when the visual uses <code>DELIVERABLE[DeliverableID]</code> or <code>DELIVERABLE[Type]</code>.</p>
+<h3>14.8.5 Page 4: Attendance and Engagement</h3>
+<p><strong>Purpose:</strong> Compare attendance patterns with academic outcomes.</p>
+<p>Recommended visuals:</p>
+<table>
+<thead>
+<tr>
+<th>Visual</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scatter plot</td>
+<td>Attendance rate vs. average score</td>
+</tr>
+<tr>
+<td>Bar chart</td>
+<td>Attendance by week</td>
+</tr>
+<tr>
+<td>Table</td>
+<td>Students sorted by low attendance</td>
+</tr>
+<tr>
+<td>Card</td>
+<td>Overall attendance rate</td>
+</tr>
+</tbody>
+</table>
+<p>Scatter plot fields:</p>
+<table>
+<thead>
+<tr>
+<th>Bucket</th>
+<th>Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X-axis</td>
+<td><code>[Attendance Rate]</code></td>
+</tr>
+<tr>
+<td>Y-axis</td>
+<td><code>[Average Score]</code></td>
+</tr>
+<tr>
+<td>Details</td>
+<td><code>STUDENT[StudentName]</code></td>
+</tr>
+</tbody>
+</table>
+<p>This visual can reveal whether students with lower attendance also tend to have lower grades. It does not prove causality, but it helps identify a pattern worth investigating.</p>
+<h3>14.8.6 Page 5: Data Quality Review</h3>
+<p><strong>Purpose:</strong> Identify records that may need cleaning before reports are trusted.</p>
+<p>Recommended checks:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Visual / Measure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing scores</td>
+<td>Card and table</td>
+</tr>
+<tr>
+<td>Scores outside valid range</td>
+<td>Table filtered to invalid values</td>
+</tr>
+<tr>
+<td>Students without grades</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>Deliverables without grades</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>Duplicate student names/emails</td>
+<td>Table or Access query</td>
+</tr>
+</tbody>
+</table>
+<p>Example DAX measure for invalid scores:</p>
+<pre><code class="language-dax">Invalid Scores =
+COUNTROWS(
+    FILTER(
+        STUDENT_GRADE,
+        STUDENT_GRADE[Score] &lt; 0 || STUDENT_GRADE[Score] &gt; 100
+    )
+)
+</code></pre>
+<p>Ideally this measure should always be zero. If it is not zero, the database integrity layer needs attention.</p>
+<hr />
+<h2>14.9 Slicers, Filters, Drill-Down, and Drill-Through</h2>
+<p>Power BI becomes powerful because users can interact with reports.</p>
+<h3>14.9.1 Slicers</h3>
+<p>A slicer is a visual filter placed on the report canvas.</p>
+<p>Useful slicers for the Grading Dashboard:</p>
+<pre><code class="language-text">StudentName
+DeliverableType
+DueDate
+WeekNumber
+ScoreBand
+RiskStatus
+</code></pre>
+<p>Place slicers consistently. If every report page uses a deliverable-type slicer, put it in the same location on each page.</p>
+<h3>14.9.2 Filters</h3>
+<p>Power BI has multiple filter levels.</p>
+<table>
+<thead>
+<tr>
+<th>Filter Level</th>
+<th>Applies To</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visual filter</td>
+<td>One visual</td>
+<td>Show only scores below 70 in a table</td>
+</tr>
+<tr>
+<td>Page filter</td>
+<td>One page</td>
+<td>Show only Exam-related visuals</td>
+</tr>
+<tr>
+<td>Report filter</td>
+<td>Entire report</td>
+<td>Limit dashboard to Spring 2026</td>
+</tr>
+<tr>
+<td>Slicer</td>
+<td>User-controlled page interaction</td>
+<td>Select a student</td>
+</tr>
+</tbody>
+</table>
+<h3>14.9.3 Drill-Down</h3>
+<p>Drill-down lets users move from summary to detail.</p>
+<p>Example hierarchy:</p>
+<pre><code class="language-text">DeliverableType → DeliverableNumber → StudentName
+</code></pre>
+<p>A bar chart might first show average score by deliverable type. Drill-down then reveals individual assignments within each type. A deeper drill can show student-level records.</p>
+<h3>14.9.4 Drill-Through</h3>
+<p>Drill-through sends the user from one report page to a detail page filtered by the selected item.</p>
+<p>Example:</p>
+<ol>
+<li>Right-click a student in the At-Risk Students table.</li>
+<li>Select <strong>Drill through → Student Detail</strong>.</li>
+<li>Power BI opens the Student Detail page filtered to that student.</li>
+</ol>
+<p>This supports managerial workflows: identify a problem, then inspect the details.</p>
+<h3>14.9.5 Tooltips</h3>
+<p>Report-page tooltips can show extra context without cluttering the main dashboard.</p>
+<p>Example tooltip fields:</p>
+<pre><code class="language-text">StudentName
+Average Score
+Attendance Rate
+Missing Scores
+Risk Status
+</code></pre>
+<p>Tooltips are useful when the dashboard needs to remain clean but users still need detail on demand.</p>
+<hr />
+<h2>14.10 Publishing, Sharing, and Refresh</h2>
+<p>After building a report in Power BI Desktop, you may publish it to the Power BI Service.</p>
+<h3>14.10.1 Publishing Workflow</h3>
+<ol>
+<li>Save the <code>.pbix</code> file.</li>
+<li>Select <strong>Home → Publish</strong> in Power BI Desktop.</li>
+<li>Sign in with your Microsoft account.</li>
+<li>Choose a workspace.</li>
+<li>Open the report in the Power BI Service.</li>
+</ol>
+<p>Publishing moves the report online so authorized users can view it in a browser.</p>
+<h3>14.10.2 Sharing Considerations</h3>
+<p>Before sharing a report, ask:</p>
+<ul>
+<li>Who is allowed to view the report?</li>
+<li>Does the report include student-level private information?</li>
+<li>Should viewers see all students or only summary statistics?</li>
+<li>Does the report need row-level security?</li>
+<li>Should the report be shared as a report, app, Teams tab, or PDF export?</li>
+</ul>
+<p>For course assignments, students may submit screenshots or a <code>.pbix</code> file. For real organizations, sharing must follow privacy and governance rules.</p>
+<h3>14.10.3 Refreshing Access Data</h3>
+<p>If a Power BI report imports data from an Access file, the report must refresh when the Access data changes.</p>
+<p>There are three common scenarios:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Refresh Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student project on one computer</td>
+<td>Manual refresh in Power BI Desktop</td>
+</tr>
+<tr>
+<td>Access file stored in OneDrive/SharePoint</td>
+<td>Cloud refresh may be easier if credentials and path are stable</td>
+</tr>
+<tr>
+<td>Access file stored on local/network computer and report published online</td>
+<td>On-premises data gateway may be required</td>
+</tr>
+</tbody>
+</table>
+<p>A refresh problem is not a visualization problem. It is a data pipeline problem. The dashboard is only as current as its last successful refresh.</p>
+<h3>14.10.4 Refresh Checklist</h3>
+<p>Before relying on a published dashboard, verify:</p>
+<ul>
+<li>The Access file path is stable.</li>
+<li>The dataset refreshes successfully.</li>
+<li>Credentials are configured correctly.</li>
+<li>The report shows the latest expected records.</li>
+<li>The refresh schedule matches the decision cycle.</li>
+<li>Sensitive data is protected.</li>
+</ul>
+<p>For example, a dashboard used after each class session may need daily refresh. A dashboard used only for final grading may need manual refresh before review.</p>
+<hr />
+<h2>14.11 Report Design Principles</h2>
+<p>Power BI skill is not only technical. A useful dashboard must be understandable, trustworthy, and aligned with decisions.</p>
+<h3>14.11.1 Start with the Decision</h3>
+<p>Before adding visuals, define the decision or action the report supports.</p>
+<p>Weak report goal:</p>
+<pre><code class="language-text">Show grades.
+</code></pre>
+<p>Stronger report goal:</p>
+<pre><code class="language-text">Help the instructor identify students who may need support before the next exam.
+</code></pre>
+<p>The second goal tells you what visuals matter: at-risk students, missing submissions, attendance, trend lines, and category performance.</p>
+<h3>14.11.2 Use a Clear Visual Hierarchy</h3>
+<p>Place the most important information at the top.</p>
+<p>A common dashboard layout:</p>
+<ol>
+<li>Title and filters.</li>
+<li>KPI cards.</li>
+<li>Main trend or comparison visual.</li>
+<li>Detail table.</li>
+<li>Notes or definitions.</li>
+</ol>
+<p>Do not make users hunt for the main message.</p>
+<h3>14.11.3 Label Metrics Clearly</h3>
+<p>A KPI without a definition is dangerous.</p>
+<p>Bad label:</p>
+<pre><code class="language-text">Performance
+</code></pre>
+<p>Better label:</p>
+<pre><code class="language-text">Average Score
+</code></pre>
+<p>Best label:</p>
+<pre><code class="language-text">Average Score Across Recorded Submissions
+</code></pre>
+<p>The best version clarifies whether missing submissions are excluded, counted as zero, or handled separately.</p>
+<h3>14.11.4 Avoid Dashboard Overload</h3>
+<p>A beginner dashboard often has too many charts. A professional dashboard is selective.</p>
+<p>A useful rule:</p>
+<blockquote>
+<p>If a visual does not support a decision, remove it.</p>
+</blockquote>
+<h3>14.11.5 Use Tables When Detail Matters</h3>
+<p>Charts are not always better. If the user needs exact student names, missing assignments, or grade values, a table or matrix may be best.</p>
+<p>Use charts for patterns. Use tables for records.</p>
+<h3>14.11.6 Use Color Carefully</h3>
+<p>Color should communicate meaning, not decoration.</p>
+<p>Examples:</p>
+<ul>
+<li>Use one accent color for highlighted risk.</li>
+<li>Use consistent colors across pages.</li>
+<li>Avoid using red/green as the only distinction.</li>
+<li>Do not assign random colors to every category.</li>
+</ul>
+<p>Color is a language. Do not let it babble.</p>
+<hr />
+<h2>14.12 Complete Power BI Lab: Access to Dashboard</h2>
+<p>This lab summarizes the full workflow.</p>
+<h3>Lab Goal</h3>
+<p>Build an interactive Power BI dashboard from the Access Grading Database that helps an instructor monitor course performance.</p>
+<h3>Required Files</h3>
+<ul>
+<li>Access database: <code>GradingDatabase.accdb</code></li>
+<li>Power BI report: <code>GradingDashboard.pbix</code></li>
+<li>Optional PDF export or screenshots</li>
+</ul>
+<h3>Step 1: Prepare Access</h3>
+<p>In Access:</p>
+<ol>
+<li>Confirm table relationships.</li>
+<li>Enforce referential integrity.</li>
+<li>Clean field names.</li>
+<li>Create optional saved queries:
+   - <code>q_GradeAnalytics</code>
+   - <code>q_AttendanceAnalytics</code></li>
+<li>Close the Access file before importing into Power BI if the file is locked.</li>
+</ol>
+<h3>Step 2: Connect Power BI to Access</h3>
+<p>In Power BI Desktop:</p>
+<ol>
+<li>Home → Get Data → More.</li>
+<li>Choose Access database.</li>
+<li>Select <code>GradingDatabase.accdb</code>.</li>
+<li>Import tables or saved queries.</li>
+<li>Click Transform Data.</li>
+</ol>
+<h3>Step 3: Clean Data in Power Query</h3>
+<p>Perform these transformations:</p>
+<ul>
+<li>Set correct data types.</li>
+<li>Rename unclear fields.</li>
+<li>Trim text fields.</li>
+<li>Remove unused fields.</li>
+<li>Add <code>StudentName</code> if desired.</li>
+<li>Add <code>ScoreStatus</code> if missing scores exist.</li>
+</ul>
+<p>Click <strong>Close &amp; Apply</strong>.</p>
+<h3>Step 4: Build Relationships</h3>
+<p>In Model view, confirm relationships:</p>
+<pre><code class="language-text">STUDENT 1 → * STUDENT_GRADE
+DELIVERABLE 1 → * STUDENT_GRADE
+STUDENT 1 → * ATTENDANCE
+SCHEDULE 1 → * ATTENDANCE
+GRADE_WEIGHT 1 → * DELIVERABLE
+</code></pre>
+<h3>Step 5: Create DAX Measures</h3>
+<p>Create these measures:</p>
+<pre><code class="language-dax">Average Score = AVERAGE(STUDENT_GRADE[Score])
+</code></pre>
+<pre><code class="language-dax">Total Submissions = COUNTROWS(STUDENT_GRADE)
+</code></pre>
+<pre><code class="language-dax">Passing Grades =
+COUNTROWS(
+    FILTER(STUDENT_GRADE, STUDENT_GRADE[Score] &gt;= 60)
+)
+</code></pre>
+<pre><code class="language-dax">Pass Rate = DIVIDE([Passing Grades], [Total Submissions])
+</code></pre>
+<pre><code class="language-dax">Classes Attended =
+COUNTROWS(
+    FILTER(ATTENDANCE, ATTENDANCE[Attended] = TRUE())
+)
+</code></pre>
+<pre><code class="language-dax">Total Attendance Records = COUNTROWS(ATTENDANCE)
+</code></pre>
+<pre><code class="language-dax">Attendance Rate = DIVIDE([Classes Attended], [Total Attendance Records])
+</code></pre>
+<h3>Step 6: Build the Report Pages</h3>
+<p>Create at least three pages:</p>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Required Visuals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executive Summary</td>
+<td>KPI cards, average by type, trend line, slicers</td>
+</tr>
+<tr>
+<td>Student Detail</td>
+<td>student slicer, grade table, score trend, attendance KPI</td>
+</tr>
+<tr>
+<td>Data Quality</td>
+<td>missing scores, invalid scores, records needing review</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 7: Format and Test</h3>
+<p>Check that:</p>
+<ul>
+<li>slicers affect the correct visuals,</li>
+<li>measures update when filters are applied,</li>
+<li>visual titles are clear,</li>
+<li>values are formatted correctly,</li>
+<li>percentages display as percentages,</li>
+<li>report pages are not overcrowded,</li>
+<li>no sensitive fields are unnecessarily visible.</li>
+</ul>
+<h3>Step 8: Publish or Submit</h3>
+<p>Depending on instructor requirements, submit:</p>
+<ul>
+<li>the <code>.pbix</code> file,</li>
+<li>screenshots of report pages,</li>
+<li>a short explanation of dashboard purpose,</li>
+<li>DAX measures used,</li>
+<li>data source description.</li>
+</ul>
+<hr />
+<h2>Key Concepts</h2>
+<ul>
+<li>Power BI is a reporting and visualization layer, not a replacement for database design.</li>
+<li>Microsoft Access can serve as the operational source for Power BI reports.</li>
+<li>Power Query prepares data before it enters the Power BI model.</li>
+<li>The Power BI data model should preserve meaningful relationships among tables.</li>
+<li>DAX measures define reusable KPIs that respond to filters and slicers.</li>
+<li>Calculated columns are best for row-level labels and classifications.</li>
+<li>Effective dashboards start with decisions, not visuals.</li>
+<li>Slicers, filters, drill-down, and drill-through help users explore data interactively.</li>
+<li>Published reports require refresh planning, especially when the source is an Access file.</li>
+<li>A dashboard is only trustworthy when the underlying data, model, and metric definitions are trustworthy.</li>
+</ul>
+<h2>Chapter Summary</h2>
+<p>Power BI turns database output into interactive reporting. In this chapter, Microsoft Access served as the operational database and Power BI served as the visualization and business intelligence layer. This division of labor is important: Access stores and manages structured data, while Power BI helps users analyze and communicate what the data means.</p>
+<p>The chapter showed how to prepare Access tables and saved queries, connect Power BI Desktop to an <code>.accdb</code> file, clean data with Power Query, build relationships in the Power BI model, and create DAX measures for grading and attendance analytics. It also explained how to choose visuals based on the question being answered rather than visual preference alone.</p>
+<p>The Grading Database provided a concrete reporting case. Scores became KPIs. Deliverable types became comparison categories. Due dates and class weeks became time dimensions. Attendance became an engagement signal. Together, these pieces formed a dashboard that could help an instructor monitor course performance, identify at-risk students, and evaluate missing or incomplete data.</p>
+<p>The most important lesson is that Power BI is not just a charting tool. It is a decision-support environment. Used well, it connects reliable databases to clear managerial insight. Used poorly, it can make weak data look persuasive. The responsibility of the analyst is to ensure that the report is not only attractive, but accurate, interpretable, and useful.</p>
+<h2>Key Terms</h2>
+<ul>
+<li><strong>Access Database Connector</strong>: The Power BI data connector used to import data from Microsoft Access <code>.accdb</code> or <code>.mdb</code> files.</li>
+<li><strong>Calculated Column</strong>: A DAX calculation evaluated row by row and stored in the model.</li>
+<li><strong>Card Visual</strong>: A Power BI visual that displays a single KPI or value.</li>
+<li><strong>DAX (Data Analysis Expressions)</strong>: The formula language used in Power BI for measures, calculated columns, and model calculations.</li>
+<li><strong>Dashboard</strong>: A visual decision-support interface that combines KPIs, charts, tables, and filters.</li>
+<li><strong>Data Model</strong>: The set of tables, relationships, data types, and calculations used by Power BI.</li>
+<li><strong>Drill-Down</strong>: A report interaction that moves from summary to detail within a hierarchy.</li>
+<li><strong>Drill-Through</strong>: A report interaction that opens a detail page filtered to a selected item.</li>
+<li><strong>Measure</strong>: A DAX calculation evaluated dynamically based on filters and report context.</li>
+<li><strong>Power BI Desktop</strong>: The Windows application used to build Power BI reports and models.</li>
+<li><strong>Power BI Service</strong>: The cloud platform used to publish, share, refresh, and collaborate on Power BI reports.</li>
+<li><strong>Power Query</strong>: The data preparation and transformation engine in Power BI.</li>
+<li><strong>Refresh</strong>: The process of updating the Power BI dataset from the source data.</li>
+<li><strong>Slicer</strong>: An interactive visual filter placed on a report page.</li>
+<li><strong>Visual-Level Filter</strong>: A filter that affects only one selected visual.</li>
+</ul>
+<h2>Review Questions</h2>
+<ol>
+<li>What role does Power BI play in the data-to-decision pipeline?</li>
+<li>Why should Microsoft Access be treated as a source database rather than as a dashboarding tool?</li>
+<li>What preparation should be done in Access before connecting to Power BI?</li>
+<li>What is the difference between importing Access tables and importing saved Access queries?</li>
+<li>Why is Power Query important when working with Access data?</li>
+<li>What is the difference between a calculated column and a measure in Power BI?</li>
+<li>Write a DAX measure for average score in the Grading Database.</li>
+<li>Write a DAX measure for pass rate.</li>
+<li>Which visuals would you use to show performance by assignment type, and why?</li>
+<li>How would you design a dashboard page for identifying at-risk students?</li>
+<li>What is the difference between a slicer, a page filter, and a visual filter?</li>
+<li>Why does an Access-based Power BI report need a refresh strategy?</li>
+<li>What privacy concerns arise when publishing a student-performance dashboard?</li>
+<li>Why can a dashboard be misleading even when all the charts are technically correct?</li>
+<li>How does Power BI extend, rather than replace, the database skills learned earlier in the book?</li>
+</ol>
+<h2>Practice Assignment: Build a Power BI Grading Dashboard</h2>
+<p>Create a Power BI report using the Access Grading Database.</p>
+<h3>Required Pages</h3>
+<ol>
+<li>
+<p><strong>Executive Summary</strong>
+   - KPI cards for average score, pass rate, attendance rate, and missing scores
+   - Bar chart of average score by deliverable type
+   - Line chart of average score over time</p>
+</li>
+<li>
+<p><strong>Student Detail</strong>
+   - Student slicer
+   - Table of deliverables and scores
+   - Student average score card
+   - Student attendance rate card</p>
+</li>
+<li>
+<p><strong>Data Quality Review</strong>
+   - Missing scores
+   - Invalid scores
+   - Students without recorded grades
+   - Deliverables without recorded grades</p>
+</li>
+</ol>
+<h3>Required DAX Measures</h3>
+<ul>
+<li><code>Average Score</code></li>
+<li><code>Total Submissions</code></li>
+<li><code>Pass Rate</code></li>
+<li><code>Attendance Rate</code></li>
+<li>at least one additional measure of your choice</li>
+</ul>
+<h3>Submission Requirements</h3>
+<p>Submit:</p>
+<ul>
+<li>the <code>.pbix</code> file,</li>
+<li>screenshots or PDF export of the report pages,</li>
+<li>a brief explanation of the dashboard purpose,</li>
+<li>a list of DAX measures used,</li>
+<li>a short reflection explaining one insight found in the dashboard.</li>
+</ul>
+<h2>References</h2>
+<p>Microsoft. (2026). <em>What is Power BI?</em> Microsoft Learn. https://learn.microsoft.com/en-us/power-bi/fundamentals/power-bi-overview</p>
+<p>Microsoft. (n.d.). <em>Power Query documentation</em>. Microsoft Learn. https://learn.microsoft.com/en-us/power-query/</p>
+<p>Microsoft. (n.d.). <em>DAX overview</em>. Microsoft Learn. https://learn.microsoft.com/en-us/dax/dax-overview</p>
+<p>Microsoft. (n.d.). <em>Connect to data in Power BI Desktop</em>. Microsoft Learn. https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-quickstart-connect-to-data</p>
+<p>Microsoft. (n.d.). <em>On-premises data gateway</em>. Microsoft Learn. https://learn.microsoft.com/en-us/data-integration/gateway/service-gateway-onprem</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Chapter 14: Let's Build — Power BI Dashboard with the Grading Database</h2>
+                  <p><img alt="Let's Build" src="/_content/BITM330-Book-draft/chapter-drafts/.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif&gt;" /></p>
+<!-- Companion: Hands-on build exercise — 2026-05-06 -->
+
+<h2>Overview</h2>
+<p>In this Let's Build exercise, you will connect Power BI Desktop to the GRADECENTER database and create a multi-page interactive grading dashboard from scratch.</p>
+<hr />
+<h2>Prerequisites</h2>
+<ul>
+<li>Power BI Desktop installed (free download from Microsoft)</li>
+<li>Access to the <code>GRADECENTER</code> database or the provided Excel export</li>
+<li>Completion of Chapters 5 and 9 (SQL fundamentals and advanced queries)</li>
+</ul>
+<hr />
+<h2>Step 1: Get the Data</h2>
+<ol>
+<li>Open <strong>Power BI Desktop</strong>.</li>
+<li>Click <strong>Home → Get Data → SQL Server</strong> (or <strong>Excel</strong> if using the provided export).</li>
+<li>Connect to the GRADECENTER data source.</li>
+<li>Load the following tables: <code>Students</code>, <code>Courses</code>, <code>Enrollments</code>, <code>Grades</code>, <code>Instructors</code>.</li>
+</ol>
+<hr />
+<h2>Step 2: Review the Data Model</h2>
+<ol>
+<li>Switch to the <strong>Model view</strong> (table icon on the left rail).</li>
+<li>Verify that relationships exist between:
+   - <code>Students</code> → <code>Enrollments</code> (StudentID)
+   - <code>Courses</code> → <code>Enrollments</code> (CourseID)
+   - <code>Enrollments</code> → <code>Grades</code> (EnrollmentID)</li>
+<li>If relationships are missing, drag fields to create them manually.</li>
+</ol>
+<hr />
+<h2>Step 3: Clean Data with Power Query</h2>
+<ol>
+<li>Click <strong>Transform Data</strong> to open Power Query.</li>
+<li>In the <code>Grades</code> table:
+   - Remove any rows where <code>Score</code> is blank.
+   - Change <code>Score</code> to a <strong>Decimal Number</strong> data type.</li>
+<li>Click <strong>Close &amp; Apply</strong>.</li>
+</ol>
+<hr />
+<h2>Step 4: Create Measures</h2>
+<p>Switch to <strong>Report view</strong> and create the following measures in the <code>Grades</code> table:</p>
+<pre><code class="language-dax">Average Score = AVERAGE(Grades[Score])
+
+Total Enrollments = COUNTROWS(Enrollments)
+
+Pass Rate = 
+DIVIDE(
+    COUNTROWS(FILTER(Grades, Grades[Score] &gt;= 60)),
+    COUNTROWS(Grades)
+)
+</code></pre>
+<hr />
+<h2>Step 5: Build Page 1 — Course Summary</h2>
+<ol>
+<li>Add a <strong>Card</strong> visual → drag <code>Average Score</code> measure to it.</li>
+<li>Add a <strong>Bar Chart</strong> → X-axis: <code>CourseName</code>, Y-axis: <code>Average Score</code>.</li>
+<li>Add a <strong>Slicer</strong> → Field: <code>Semester</code>.</li>
+<li>Format the page with a title: <em>"Course Performance Overview"</em>.</li>
+</ol>
+<hr />
+<h2>Step 6: Build Page 2 — Student Detail</h2>
+<ol>
+<li>Add a <strong>Table</strong> visual with columns: <code>StudentName</code>, <code>CourseName</code>, <code>Score</code>, <code>LetterGrade</code>.</li>
+<li>Add a <strong>Slicer</strong> for <code>InstructorName</code>.</li>
+<li>Add a <strong>Card</strong> for <code>Pass Rate</code>.</li>
+</ol>
+<hr />
+<h2>Step 7: Publish (Optional)</h2>
+<ol>
+<li>Save the <code>.pbix</code> file as <code>grading-dashboard.pbix</code>.</li>
+<li>Click <strong>Publish → My Workspace</strong> (requires a Microsoft account).</li>
+<li>Open the report in a browser at app.powerbi.com.</li>
+</ol>
+<hr />
+<h2>Deliverable</h2>
+<p>Submit your <code>.pbix</code> file and a screenshot of your completed dashboard showing at least two pages.</p>
+<hr />
+<h2>Discussion Prompt</h2>
+<p>How would you use this dashboard if you were the department chair? What additional measures or visuals would help you make staffing or curriculum decisions?</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Chapter 14 Term Treasury — Power BI</h2>
+                  <!-- Companion: Key terms and definitions — 2026-05-06 -->
+
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Power BI</strong></td>
+<td>A Microsoft business analytics service for connecting to data sources, building visualizations, and sharing reports.</td>
+</tr>
+<tr>
+<td><strong>Power BI Desktop</strong></td>
+<td>The free Windows application used to create Power BI reports and data models.</td>
+</tr>
+<tr>
+<td><strong>Power BI Service</strong></td>
+<td>The cloud platform (app.powerbi.com) used to publish, share, and collaborate on Power BI reports.</td>
+</tr>
+<tr>
+<td><strong>Power Query</strong></td>
+<td>The data transformation engine built into Power BI used to clean, reshape, and combine data before loading.</td>
+</tr>
+<tr>
+<td><strong>DAX (Data Analysis Expressions)</strong></td>
+<td>The formula language used in Power BI to create calculated columns and measures.</td>
+</tr>
+<tr>
+<td><strong>Measure</strong></td>
+<td>A DAX calculation evaluated on demand based on the current filter context; not stored row-by-row.</td>
+</tr>
+<tr>
+<td><strong>Calculated Column</strong></td>
+<td>A DAX expression evaluated row-by-row and stored as a new column in a table.</td>
+</tr>
+<tr>
+<td><strong>Visualization (Visual)</strong></td>
+<td>A graphical representation of data on a Power BI report canvas (e.g., bar chart, card, table).</td>
+</tr>
+<tr>
+<td><strong>Slicer</strong></td>
+<td>A visual filter control placed on the report canvas that lets users interactively filter other visuals.</td>
+</tr>
+<tr>
+<td><strong>Filter Context</strong></td>
+<td>The set of filters currently applied to a calculation in DAX, determined by slicers, report filters, and visual interactions.</td>
+</tr>
+<tr>
+<td><strong>Data Model</strong></td>
+<td>The set of tables and relationships defined in Power BI that determines how data can be combined in visuals.</td>
+</tr>
+<tr>
+<td><strong>Relationship</strong></td>
+<td>A defined link between two tables in the Power BI data model, typically based on a shared key column.</td>
+</tr>
+<tr>
+<td><strong>Workspace</strong></td>
+<td>A shared environment in the Power BI Service where reports, dashboards, and datasets are organized and shared.</td>
+</tr>
+<tr>
+<td><strong>Dashboard</strong></td>
+<td>A single-page summary in the Power BI Service that pins visuals from one or more reports.</td>
+</tr>
+<tr>
+<td><strong>KPI (Key Performance Indicator)</strong></td>
+<td>A measurable value used to evaluate success against a business objective; often displayed as a Card visual.</td>
+</tr>
+<tr>
+<td><strong>Report Page</strong></td>
+<td>A single canvas within a Power BI report; one report can contain multiple pages.</td>
+</tr>
+<tr>
+<td><strong>Drill-through</strong></td>
+<td>A Power BI feature that lets users right-click a data point and navigate to a detail report page filtered to that context.</td>
+</tr>
+<tr>
+<td><strong>Publish</strong></td>
+<td>The action of uploading a <code>.pbix</code> file from Power BI Desktop to the Power BI Service.</td>
+</tr>
+</tbody>
+</table>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>Chapter 14 Reflection Questions — Power BI</h2>
+                  <p><img alt="Reflection GIF" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" /></p>
+<!-- Companion: Discussion and review questions — 2026-05-06 -->
+
+<h2>Review Questions</h2>
+<ol>
+<li>What are the three main components of Power BI and what is the purpose of each?</li>
+<li>What is the difference between a <strong>calculated column</strong> and a <strong>measure</strong> in DAX? When would you use each?</li>
+<li>Describe three data transformations you might perform in Power Query before loading data into a report.</li>
+<li>What is <strong>filter context</strong> in DAX and why does it matter when writing measures?</li>
+<li>What is the difference between a <strong>report</strong> and a <strong>dashboard</strong> in the Power BI Service?</li>
+<li>List three chart types available in Power BI and describe the type of data each is best suited for.</li>
+<li>What steps are required to publish a Power BI Desktop report to the Power BI Service?</li>
+</ol>
+<hr />
+<h2>Discussion Questions</h2>
+<ol>
+<li>
+<p><strong>Data Storytelling:</strong> A manager asks you to build a dashboard to track student performance across all courses in the department. What questions would you ask before building the report? What visuals would you include?</p>
+</li>
+<li>
+<p><strong>Tool Selection:</strong> You have access to both Excel (with charts) and Power BI. When would you choose Power BI over an Excel chart? What are the tradeoffs?</p>
+</li>
+<li>
+<p><strong>Ethics of Dashboards:</strong> Could a Power BI dashboard be misleading even if the underlying data is accurate? Give an example and explain how a dashboard designer can mitigate this risk.</p>
+</li>
+<li>
+<p><strong>Integration with SQL:</strong> How does understanding SQL and the relational model (Chapters 5–6) help you build better Power BI reports? Give a specific example.</p>
+</li>
+<li>
+<p><strong>Organizational Impact:</strong> Imagine you are a new analyst at a company that currently sends PDF reports by email each week. You propose replacing this process with a live Power BI dashboard. What benefits and challenges would you anticipate?</p>
+</li>
+</ol>
+<hr />
+<h2>Scenario-Based Question</h2>
+<p>A regional sales manager receives a weekly Excel file showing sales by product and region. She spends two hours every Monday reformatting it into a PowerPoint for the executive meeting.</p>
+<ul>
+<li>How could Power BI solve this problem?</li>
+<li>What data source(s) would you connect?</li>
+<li>What visuals would you include on the executive dashboard?</li>
+<li>What questions would the executives most likely want to answer?</li>
+</ul>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>Chapter 14 RAT — Power BI</h2>
+                  <!-- Companion: Readiness Assurance Test (RAT) quiz — 2026-05-06 -->
+<!-- Format: Multiple choice with answer key at end -->
+
+<h2>Instructions</h2>
+<p>Answer each question individually before discussing with your team. These questions are based on the Chapter 14 reading assignment.</p>
+<hr />
+<p><strong>1.</strong> Which component of Power BI is used to <em>create</em> reports?</p>
+<ul>
+<li>A) Power BI Service</li>
+<li>B) Power BI Mobile</li>
+<li>C) Power BI Desktop</li>
+<li>D) Power Query Editor</li>
+</ul>
+<hr />
+<p><strong>2.</strong> What language is used to write calculated columns and measures in Power BI?</p>
+<ul>
+<li>A) SQL</li>
+<li>B) Python</li>
+<li>C) DAX</li>
+<li>D) MDX</li>
+</ul>
+<hr />
+<p><strong>3.</strong> You want to display the total number of students enrolled in a course as a single number on a report. Which visual type is most appropriate?</p>
+<ul>
+<li>A) Bar Chart</li>
+<li>B) Table</li>
+<li>C) Slicer</li>
+<li>D) Card</li>
+</ul>
+<hr />
+<p><strong>4.</strong> A <strong>measure</strong> in Power BI is different from a <strong>calculated column</strong> because:</p>
+<ul>
+<li>A) Measures are stored row-by-row in the table</li>
+<li>B) Measures are evaluated on demand based on filter context</li>
+<li>C) Measures can only use the SUM function</li>
+<li>D) Measures cannot reference other measures</li>
+</ul>
+<hr />
+<p><strong>5.</strong> Which Power BI feature allows a report user to interactively filter all visuals on a page by selecting a value?</p>
+<ul>
+<li>A) Drill-through</li>
+<li>B) Calculated column</li>
+<li>C) Slicer</li>
+<li>D) Tooltip</li>
+</ul>
+<hr />
+<p><strong>6.</strong> A student earns a score of 45 on an exam. A DAX measure <code>Pass Rate</code> counts rows where <code>Score &gt;= 60</code> divided by total rows. This student's row:</p>
+<ul>
+<li>A) Is excluded from both numerator and denominator</li>
+<li>B) Is included in the numerator only</li>
+<li>C) Is included in both numerator and denominator</li>
+<li>D) Is included in the denominator only</li>
+</ul>
+<hr />
+<p><strong>7.</strong> To make a Power BI Desktop report accessible to colleagues who don't have the Desktop app, you should:</p>
+<ul>
+<li>A) Email the <code>.pbix</code> file</li>
+<li>B) Export it as a PDF</li>
+<li>C) Publish it to the Power BI Service</li>
+<li>D) Save it to a shared drive</li>
+</ul>
+<hr />
+<p><strong>8.</strong> Power Query transformations are best described as:</p>
+<ul>
+<li>A) Changes that permanently modify the original data source</li>
+<li>B) SQL queries written inside Power BI</li>
+<li>C) Non-destructive steps that shape data before it loads into the model</li>
+<li>D) DAX expressions applied to tables</li>
+</ul>
+<hr />
+<h2>Answer Key</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Answer</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>C</td>
+<td>Power BI Desktop is the free authoring tool</td>
+</tr>
+<tr>
+<td>2</td>
+<td>C</td>
+<td>DAX (Data Analysis Expressions) is Power BI's formula language</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D</td>
+<td>A Card visual displays a single scalar value</td>
+</tr>
+<tr>
+<td>4</td>
+<td>B</td>
+<td>Measures respond to filter context; calculated columns are row-based</td>
+</tr>
+<tr>
+<td>5</td>
+<td>C</td>
+<td>A Slicer is a canvas-based interactive filter</td>
+</tr>
+<tr>
+<td>6</td>
+<td>D</td>
+<td>The row is counted in the denominator (total rows) but not the numerator (score &lt; 60)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>C</td>
+<td>Publishing to the Power BI Service makes reports shareable via browser</td>
+</tr>
+<tr>
+<td>8</td>
+<td>C</td>
+<td>Power Query steps are applied at load time and do not alter source data</td>
+</tr>
+</tbody>
+</table>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch13-advanced-database-techniques.html"><small>Previous</small><strong>Chapter 13: Chapter 13 – Advanced Database Techniques</strong></a>
+          <a class="pager-card pager-card--next" href="ch15-business-strategy-is.html"><small>Next</small><strong>Chapter 15: Chapter 15: Business Strategy and Information Systems</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

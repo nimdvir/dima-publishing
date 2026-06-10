@@ -4,9 +4,9 @@ This chapter is your map for the book. It explains where the book is going, what
 
 ## Chapter Files
 
-- [Main Chapter](ch01-main-2026-06-03.md)
-- [Let's Build](ch01-lets-build-2026-06-03.md)
-- [Review & Reflection](ch01-reflection-2026-06-03.md)
-- [Terms Treasury](ch01-terms-2026-06-03.md)
-- [Readiness Assessment Test](ch01-rat-2026-06-03.md)
-- [Lab 01: PetVax Introduction](lab-01-questions-2026-06-03.md)
+- [Main Chapter](core-concepts.md)
+- [Let's Build](lets-build.md)
+- [Review & Reflection](review-questions.md)
+- [Terms Treasury](terms-treasury.md)
+- [Readiness Assessment Test](rat.md)
+<!-- Lab not yet in publishing repo: [Lab 01: PetVax Introduction](lab-01-questions-2026-06-03.md) -->

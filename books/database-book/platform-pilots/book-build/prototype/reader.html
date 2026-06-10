@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BITM330 Prototype | Reader</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="reader">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="prototype-notice" data-prototype-notice aria-live="polite"></div>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="book/index.html">Book</a>
+        <a href="labs.html">Labs</a>
+        <a href="locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell page-shell--reader" data-reader>
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Reader Navigation</p>
+          <h2 data-reader-sidebar-title>Chapter</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Reading progress</span>
+              <strong data-reader-progress-label>0%</strong>
+            </div>
+            <div class="progress-bar"><span data-reader-progress-bar style="width:0%"></span></div>
+          </div>
+        </div>
+
+        <nav class="toc-list" aria-label="Chapter sections" data-reader-toc></nav>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="mini-catalog">
+          <p class="eyebrow">Chapter Map</p>
+          <div class="mini-catalog__list" data-reader-mini-catalog></div>
+        </div>
+      </aside>
+
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow" data-reader-label>Chapter</p>
+          <h1 data-reader-title>Loading...</h1>
+          <p class="reader-subtitle" data-reader-subtitle></p>
+          <div class="reader-meta">
+            <span data-reader-time></span>
+            <span>Accessible prototype</span>
+            <span>No backend</span>
+          </div>
+        </header>
+
+        <section class="reader-body" data-reader-body></section>
+
+        <footer class="reader-footer">
+          <a class="pager-card" data-prev-link href="dashboard.html">
+            <small>Previous</small>
+            <strong data-prev-label>Dashboard</strong>
+          </a>
+          <a class="pager-card pager-card--next" data-next-link href="labs.html">
+            <small>Next</small>
+            <strong data-next-label>Labs</strong>
+          </a>
+        </footer>
+      </article>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

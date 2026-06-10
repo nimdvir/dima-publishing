@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420" role="img" aria-labelledby="title desc">
+  <title id="title">Learning arc diagram</title>
+  <desc id="desc">A curved academic workflow from data to tables, relationships, queries, analytics, and decisions.</desc>
+  <rect width="1100" height="420" rx="28" fill="#f8f3ea"/>
+  <path d="M86 300 C230 120, 410 120, 558 222 S862 324, 1018 146" fill="none" stroke="#245d62" stroke-width="10" stroke-linecap="round"/>
+  <g font-family="Georgia, serif" font-size="28" fill="#19323c">
+    <circle cx="100" cy="300" r="22" fill="#ba8335"/>
+    <text x="64" y="356">Data</text>
+    <circle cx="260" cy="182" r="22" fill="#245d62"/>
+    <text x="210" y="138">Tables</text>
+    <circle cx="450" cy="178" r="22" fill="#245d62"/>
+    <text x="362" y="132">Relationships</text>
+    <circle cx="620" cy="240" r="22" fill="#245d62"/>
+    <text x="560" y="296">Queries</text>
+    <circle cx="824" cy="264" r="22" fill="#245d62"/>
+    <text x="742" y="322">Analytics</text>
+    <circle cx="1000" cy="146" r="22" fill="#ba8335"/>
+    <text x="930" y="100">Decisions</text>
+  </g>
+  <rect x="112" y="44" width="876" height="66" rx="16" fill="#ffffff" stroke="rgba(25,50,60,0.12)"/>
+  <text x="150" y="86" fill="#46606b" font-family="Arial, sans-serif" font-size="26">A digital reader can turn this arc into visible navigation, progress, labs, and context cues for students.</text>
+</svg>

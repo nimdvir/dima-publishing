@@ -1,0 +1,3161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 10: From Data to Design | BITM330 Prototype</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body data-page="generated-chapter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../../index.html">
+        <span class="brand__mark">DIMA</span>
+        <span>
+          <strong>DIMA Publishing</strong>
+          <small>Digital textbook platform prototype</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <a href="../../dashboard.html">Dashboard</a>
+        <a href="../index.html">Book</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../locked.html">Access</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-shell page-shell--reader">
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="reader-sidebar">Toggle chapter sidebar</button>
+    <div class="reader-layout">
+      <aside class="reader-sidebar" id="reader-sidebar" data-reader-sidebar>
+        <div class="reader-sidebar__top">
+          <p class="eyebrow">Chapter Navigation</p>
+          <h2>Chapter 10: From Data to Design</h2>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Progress through book</span>
+              <strong>53%</strong>
+            </div>
+            <div class="progress-bar"><span style="width:53%"></span></div>
+          </div>
+        </div>
+        <nav class="toc-list" aria-label="Chapter parts">
+          <a href="#part-main">1. Main Chapter</a>
+<a href="#part-lets-build">2. Let's Build</a>
+<a href="#part-terms">3. Term Treasury</a>
+<a href="#part-reflection">4. Reflection Questions</a>
+<a href="#part-rat">5. Reading Assessment</a>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="mini-catalog">
+          <p class="eyebrow">All Chapters</p>
+          <div class="mini-catalog__list">
+            <a class="" href="ch01-introduction-to-course.html">Chapter 1: </a>
+<a class="" href="ch02-mis-and-bitm.html">Chapter 2: Foundations of Information Systems</a>
+<a class="" href="ch03-what-is-data.html">Chapter 3: Understanding Data Fundamentals</a>
+<a class="" href="ch04-databases.html">Chapter 4: Introduction to Databases</a>
+<a class="" href="ch05-sql.html">Chapter 5: SQL — The Language of Databases</a>
+<a class="" href="ch06-relational-model.html">Chapter 6: The Relational Model</a>
+<a class="" href="ch07-normalization.html">Chapter 7: Data Normalization</a>
+<a class="" href="ch08-midterm-review.html">Chapter 8: Midterm Review - Concepts</a>
+<a class="is-current" href="ch09-database-design.html">Chapter 9: From Data to Design</a>
+<a class="" href="ch10-advanced-sql-queries.html">Chapter 10: Advanced SQL with the Grading Database</a>
+<a class="" href="ch11-database-administration.html">Chapter 11: Database Administration</a>
+<a class="" href="ch12-business-intelligence.html">Chapter 12: Business Intelligence and Analytics for Performance Improvement</a>
+<a class="" href="ch13-advanced-database-techniques.html">Chapter 13: Advanced Database Techniques</a>
+<a class="" href="ch14-powerbi.html">Chapter 14: Power BI, Microsoft Access, and Business Reporting</a>
+<a class="" href="ch15-business-strategy-is.html">Chapter 15: Business Strategy and Information Systems</a>
+<a class="" href="ch16-final-review.html">Chapter 16: Final Integration: Project, Test, and Course Synthesis</a>
+<a class="" href="ch17-conclusion.html">Chapter 17: Designing Systems That Matter</a>
+          </div>
+        </div>
+      </aside>
+      <article class="reader-main">
+        <header class="reader-header">
+          <p class="eyebrow">Chapter 9</p>
+          <h1>From Data to Design</h1>
+          <p class="reader-subtitle">Generated from the latest available chapter draft and companion parts.</p>
+          <div class="reader-meta">
+            <span>72 min estimated reading</span>
+            <span>5 content areas</span>
+            <span>Static HTML output</span>
+          </div>
+        </header>
+        <section class="reader-body">
+          <section class="reader-section" id="part-main">
+                  <span class="reader-kicker">Main Chapter</span>
+                  <h2>Chapter 10: From Data to Design</h2>
+                  <p><em>Building Reliable Information Systems from Business Requirements</em></p>
+<p>Good SQL depends on good design. Up to this point, you have learned how to work with databases: how to retrieve data, join tables, summarize records, calculate grades, and build reports. Those skills matter. But every query you write depends on decisions that were made earlier: what tables exist, what each table means, which keys identify records, and which relationships connect the data.</p>
+<p>This chapter shifts from <strong>using databases</strong> to <strong>designing databases</strong>. The central question changes from “How do I query this structure?” to “What structure should exist in the first place?”</p>
+<p>Database design is the bridge between business needs and technical implementation. It translates real-world requirements into entities, attributes, relationships, keys, constraints, and diagrams. When design is done well, SQL becomes clear and powerful. When design is done poorly, SQL becomes a workaround.</p>
+<hr />
+<h2>Learning Objectives</h2>
+<p>After completing this chapter, you will be able to:</p>
+<ol>
+<li>Explain why database design should precede implementation.</li>
+<li>Describe how poor design creates insertion, update, and deletion anomalies.</li>
+<li>Explain where database design fits within the System Development Life Cycle (SDLC).</li>
+<li>Translate business requirements into entities, attributes, relationships, and business rules.</li>
+<li>Distinguish among conceptual, logical, and physical database design.</li>
+<li>Interpret and create entity-relationship diagrams (ERDs).</li>
+<li>Use Crow's Foot notation to represent cardinality and optionality.</li>
+<li>Identify one-to-one, one-to-many, and many-to-many relationships.</li>
+<li>Explain weak entities, associative entities, recursive relationships, and specialization/generalization.</li>
+<li>Apply normalization as a design-quality check.</li>
+<li>Translate ER diagrams into relational table structures using a mapping algorithm.</li>
+<li>Compare Lucidchart and Mermaid as tools for documenting ERDs.</li>
+<li>Evaluate common database modeling mistakes before implementation.</li>
+</ol>
+<hr />
+<h2>Chapter Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Main Question</th>
+<th>Core Idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.1</td>
+<td>Why does design matter?</td>
+<td>Good queries require good structure.</td>
+</tr>
+<tr>
+<td>10.2</td>
+<td>What goes wrong with poor design?</td>
+<td>Anomalies are symptoms of bad structure.</td>
+</tr>
+<tr>
+<td>10.3</td>
+<td>Where does design fit in system development?</td>
+<td>Database design belongs inside the SDLC.</td>
+</tr>
+<tr>
+<td>10.4</td>
+<td>How do requirements become structure?</td>
+<td>Business rules become entities, attributes, and relationships.</td>
+</tr>
+<tr>
+<td>10.5</td>
+<td>What is ER modeling?</td>
+<td>ERDs visually model data before implementation.</td>
+</tr>
+<tr>
+<td>10.6</td>
+<td>How do we read relationship notation?</td>
+<td>Crow's Foot notation shows cardinality and optionality.</td>
+</tr>
+<tr>
+<td>10.7</td>
+<td>What relationship types matter most?</td>
+<td>1:1, 1:N, and M:N relationships shape table design.</td>
+</tr>
+<tr>
+<td>10.8</td>
+<td>How do we handle advanced patterns?</td>
+<td>Weak, associative, recursive, and subtype structures extend the ER model.</td>
+</tr>
+<tr>
+<td>10.9</td>
+<td>How does normalization support design?</td>
+<td>Normal forms help test whether structure is reliable.</td>
+</tr>
+<tr>
+<td>10.10</td>
+<td>How do diagrams become tables?</td>
+<td>The mapping algorithm converts ERDs into schemas.</td>
+</tr>
+<tr>
+<td>10.11</td>
+<td>What tools help document design?</td>
+<td>Lucidchart is visual; Mermaid is ERD-as-code.</td>
+</tr>
+<tr>
+<td>10.12</td>
+<td>What mistakes should designers avoid?</td>
+<td>Most database failures are predictable.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>10.1 From Querying Data to Designing Systems</h2>
+<h3>10.1.1 Good Queries Require Good Design</h3>
+<p>A database query can only work with the structure it is given. If tables mix unrelated facts, if keys are unstable, or if relationships are missing, even a technically correct query may produce misleading results.</p>
+<p>Consider a grading database. Suppose one flat table stores student names, student emails, deliverable details, attendance, assignment weights, and scores. You can still write SQL against that table. But the query will be fragile because the design itself is fragile. You may need to remove duplicate rows, guess which copy of an email address is correct, or manually reconstruct relationships that should have been built into the schema.</p>
+<p>A well-designed database reduces that burden. It stores each kind of fact in the right place and connects those facts through keys. Then SQL can focus on answering questions rather than repairing structure.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong><br />
+Many “query problems” are actually design problems in disguise.</p>
+</blockquote>
+<h3>10.1.2 The Shift from User to Designer</h3>
+<p>Earlier chapters emphasized working with existing databases. You wrote queries, joined tables, handled missing data, calculated averages, and built reports. Chapter 10 changes your role. You are no longer only a database user. You are now becoming a database designer.</p>
+<p>The designer asks different questions:</p>
+<ul>
+<li>What information must this system remember?</li>
+<li>Which real-world objects, events, or concepts deserve their own table?</li>
+<li>Which attributes belong with which entity?</li>
+<li>Which relationships should be required, optional, one-to-many, or many-to-many?</li>
+<li>Which rules should be enforced by the database rather than remembered by users?</li>
+<li>How will this structure change when the organization grows?</li>
+</ul>
+<p>This is a higher-level skill. It requires technical understanding, but it also requires business interpretation. Database design is not just about tables. It is about representing an organization’s logic accurately.</p>
+<h3>10.1.3 Design as Translation</h3>
+<p>Database design translates business language into data structure.</p>
+<table>
+<thead>
+<tr>
+<th>Business Language</th>
+<th>Database Design Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Students submit assignments.”</td>
+<td><code>STUDENT</code>, <code>DELIVERABLE</code>, and <code>STUDENT_GRADE</code> entities are needed.</td>
+</tr>
+<tr>
+<td>“Each deliverable has a due date.”</td>
+<td><code>DueDate</code> belongs in <code>DELIVERABLE</code>, not repeated in every grade row.</td>
+</tr>
+<tr>
+<td>“Each student can earn one score per deliverable.”</td>
+<td><code>STUDENT_GRADE</code> needs a uniqueness rule on <code>(StudentID, DeliverableID)</code>.</td>
+</tr>
+<tr>
+<td>“Attendance is recorded for each class meeting.”</td>
+<td><code>ATTENDANCE</code> connects <code>STUDENT</code> and <code>SCHEDULE</code>.</td>
+</tr>
+<tr>
+<td>“Grades are interpreted using a grading scale.”</td>
+<td><code>GRADE_SCALE</code> stores letter-grade thresholds.</td>
+</tr>
+</tbody>
+</table>
+<p>Design makes these rules visible before implementation. SQL enforces them later.</p>
+<hr />
+<h2>10.2 The Cost of Poor Design: Data Anomalies</h2>
+<p>Poor database design creates predictable failures. These failures are called <strong>data anomalies</strong>.</p>
+<blockquote>
+<p><strong>Definition:</strong><br />
+A <strong>data anomaly</strong> is a data integrity problem caused by storing data in a poorly structured or redundant way.</p>
+</blockquote>
+<p>Anomalies are not random mistakes. They are structural consequences. If a database stores the same fact in many places, sooner or later those copies will diverge.</p>
+<h3>10.2.1 Starting Example: A Flat Grading Table</h3>
+<p>Imagine a table called <code>GRADE_FLAT</code>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">StudentID</th>
+<th>FirstName</th>
+<th>LastName</th>
+<th>Email</th>
+<th>DeliverableType</th>
+<th style="text-align: right;">DeliverableNumber</th>
+<th>DueDate</th>
+<th style="text-align: right;">PointsPerOne</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@albany.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-02-05</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@albany.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-02-12</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td style="text-align: right;">101</td>
+<td>Alice</td>
+<td>Johnson</td>
+<td>alice@albany.edu</td>
+<td>Exam</td>
+<td style="text-align: right;">1</td>
+<td>2026-03-15</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr>
+<td style="text-align: right;">102</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@albany.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">1</td>
+<td>2026-02-05</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td style="text-align: right;">102</td>
+<td>Brian</td>
+<td>Lee</td>
+<td>brian@albany.edu</td>
+<td>Quiz</td>
+<td style="text-align: right;">2</td>
+<td>2026-02-12</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">9</td>
+</tr>
+</tbody>
+</table>
+<p>At first, the table looks convenient. Each row tells a story: one student, one deliverable, one score. But the table mixes several subjects:</p>
+<ul>
+<li>Student identity: <code>StudentID</code>, <code>FirstName</code>, <code>LastName</code>, <code>Email</code></li>
+<li>Deliverable definition: <code>DeliverableType</code>, <code>DeliverableNumber</code>, <code>DueDate</code>, <code>PointsPerOne</code></li>
+<li>Performance outcome: <code>Score</code></li>
+</ul>
+<p>That mixture creates anomalies.</p>
+<h3>10.2.2 Insertion Anomaly</h3>
+<p>An <strong>insertion anomaly</strong> occurs when you cannot add one fact without adding an unrelated fact.</p>
+<p>Example: The instructor wants to add a new deliverable, “Project 1,” before any student has submitted it. In <code>GRADE_FLAT</code>, there is no clean place to store the new deliverable because every row also requires student and score information.</p>
+<p>Bad options include:</p>
+<ul>
+<li>inserting a fake student,</li>
+<li>inserting a blank score,</li>
+<li>waiting until the first student submits,</li>
+<li>storing the deliverable somewhere else.</li>
+</ul>
+<p>A relational design solves this by storing deliverables in their own table:</p>
+<pre><code class="language-text">DELIVERABLE(DeliverableID, DeliverableType, DeliverableNumber, DueDate, PointsPerOne)
+</code></pre>
+<p>Now a deliverable can exist before any score exists.</p>
+<h3>10.2.3 Update Anomaly</h3>
+<p>An <strong>update anomaly</strong> occurs when the same fact is stored in many rows, and updating only some copies creates inconsistency.</p>
+<p>Example: Alice changes her email address. In the flat table, Alice’s email appears once for every deliverable. If Alice has 20 grade rows, the email must be updated 20 times. Missing one row creates conflicting versions of the same student.</p>
+<p>A relational design solves this by storing Alice’s email once:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email)
+</code></pre>
+<p>Every grade row then refers to Alice through <code>StudentID</code>.</p>
+<h3>10.2.4 Deletion Anomaly</h3>
+<p>A <strong>deletion anomaly</strong> occurs when deleting one fact accidentally deletes another fact.</p>
+<p>Example: Brian’s only recorded score is deleted because it was entered in error. If that row was also the only row containing Brian’s student information, deleting the score removes Brian from the database entirely.</p>
+<p>A relational design prevents this by separating student identity from grade outcomes:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email)
+STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p>Deleting a grade does not delete the student.</p>
+<h3>10.2.5 Why Anomalies Matter</h3>
+<p>Anomalies damage trust. They make reports unreliable, audits harder, and business decisions weaker. They also increase the hidden labor of database work because analysts must spend time cleaning and reconciling data before they can answer questions.</p>
+<blockquote>
+<p><strong>Important:</strong><br />
+Database design aims to make these failures structurally difficult or impossible. A good schema does not depend on users remembering to “be careful.” It makes correctness easier by design.</p>
+</blockquote>
+<hr />
+<h2>10.3 Database Design in the System Development Life Cycle</h2>
+<h3>10.3.1 What Is the SDLC?</h3>
+<p>The <strong>System Development Life Cycle (SDLC)</strong> is a structured framework for planning, building, deploying, and maintaining information systems. It helps teams move from a business problem to a working system through deliberate phases.</p>
+<p>A database is not separate from this process. It supports workflows, reports, interfaces, analytics, security, and long-term maintenance. When database design is rushed or disconnected from the SDLC, the system may work at first but fail when requirements grow.</p>
+<h3>10.3.2 SDLC Phases from a Database Perspective</h3>
+<table>
+<thead>
+<tr>
+<th>SDLC Phase</th>
+<th>Database Design Focus</th>
+<th>Grading Database Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planning and analysis</td>
+<td>Identify users, goals, reports, and business rules</td>
+<td>Who enters grades? Who views reports? What does “final grade” mean?</td>
+</tr>
+<tr>
+<td>Conceptual design</td>
+<td>Identify entities and relationships</td>
+<td>Students, deliverables, attendance records, grade records</td>
+</tr>
+<tr>
+<td>Logical design</td>
+<td>Define tables, attributes, keys, and constraints</td>
+<td><code>STUDENT</code>, <code>DELIVERABLE</code>, <code>STUDENT_GRADE</code>, foreign keys</td>
+</tr>
+<tr>
+<td>Physical design</td>
+<td>Choose platform-specific data types, indexes, and storage</td>
+<td>Access AutoNumber, SQLite <code>INTEGER PRIMARY KEY</code>, PostgreSQL identity columns</td>
+</tr>
+<tr>
+<td>Development</td>
+<td>Implement tables, forms, queries, and constraints</td>
+<td>Build tables and relationships in Access or SQL</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Validate rules and outputs</td>
+<td>Try entering a grade for a nonexistent student; confirm the database rejects it</td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td>Move the database into active use</td>
+<td>Load real roster data and begin grade entry</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>Adapt to new requirements</td>
+<td>Add late penalties, multiple sections, or revised grading weights</td>
+</tr>
+</tbody>
+</table>
+<h3>10.3.3 Conceptual, Logical, and Physical Design</h3>
+<p>Database design often happens at three levels.</p>
+<table>
+<thead>
+<tr>
+<th>Design Level</th>
+<th>Main Question</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conceptual</td>
+<td>What does the business domain contain?</td>
+<td>A student earns grades on deliverables.</td>
+</tr>
+<tr>
+<td>Logical</td>
+<td>What tables, keys, and relationships are needed?</td>
+<td><code>STUDENT_GRADE</code> contains <code>StudentID</code>, <code>DeliverableID</code>, and <code>Score</code>.</td>
+</tr>
+<tr>
+<td>Physical</td>
+<td>How will this be implemented in a specific DBMS?</td>
+<td>In Access, <code>GradeID</code> may be AutoNumber; in PostgreSQL, it may be <code>GENERATED AS IDENTITY</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The levels should not be collapsed too early. If you begin by choosing Access field types before understanding the business rules, the tool starts driving the design. That is backwards.</p>
+<blockquote>
+<p><strong>Key Takeaway:</strong><br />
+Design before implementation. The model should guide the tool, not the other way around.</p>
+</blockquote>
+<hr />
+<h2>10.4 From Requirements to Structure</h2>
+<p>Database design begins with requirements. Requirements describe what the system must do, what information it must store, what questions it must answer, and what rules it must enforce.</p>
+<h3>10.4.1 Requirements as Design Inputs</h3>
+<p>Suppose the instructor gives the following requirements for the Grading Database:</p>
+<ol>
+<li>The database must store students.</li>
+<li>The database must store deliverables such as quizzes, exercises, exams, and projects.</li>
+<li>Each deliverable has a type, number, due date, topic, and possible points.</li>
+<li>Each student may earn a score for each deliverable.</li>
+<li>Attendance must be recorded for each class meeting.</li>
+<li>Final grades must be calculated from weighted categories.</li>
+<li>The system should support reports for individual students, class averages, missing work, and attendance rates.</li>
+</ol>
+<p>These requirements imply structure.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Design Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Store students</td>
+<td>Create a <code>STUDENT</code> entity.</td>
+</tr>
+<tr>
+<td>Store deliverables</td>
+<td>Create a <code>DELIVERABLE</code> entity.</td>
+</tr>
+<tr>
+<td>Store deliverable categories and weights</td>
+<td>Create <code>ASSIGNMENT_TYPE</code> or <code>GRADE_WEIGHT</code>.</td>
+</tr>
+<tr>
+<td>Track each student’s score on each deliverable</td>
+<td>Create <code>STUDENT_GRADE</code> as an associative entity.</td>
+</tr>
+<tr>
+<td>Record attendance for each class meeting</td>
+<td>Create <code>SCHEDULE</code> and <code>ATTENDANCE</code>.</td>
+</tr>
+<tr>
+<td>Convert numeric grades to letters</td>
+<td>Create <code>GRADE_SCALE</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3>10.4.2 Entities</h3>
+<blockquote>
+<p><strong>Definition:</strong><br />
+An <strong>entity</strong> is a real-world object, concept, person, place, event, or transaction that the database needs to represent.</p>
+</blockquote>
+<p>In the Grading Database, likely entities include:</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>What It Represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td>A person enrolled in the course</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td>A specific graded item, such as Quiz 1</td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td>One student’s score on one deliverable</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td>One class meeting</td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td>One student’s attendance status for one class meeting</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code></td>
+<td>Category-level grading rules</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code></td>
+<td>Letter-grade thresholds</td>
+</tr>
+</tbody>
+</table>
+<p>A useful test: if the database must store many instances of something, and each instance has its own attributes or relationships, it may be an entity.</p>
+<h3>10.4.3 Attributes</h3>
+<blockquote>
+<p><strong>Definition:</strong><br />
+An <strong>attribute</strong> is a property or characteristic of an entity.</p>
+</blockquote>
+<p>Examples:</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Attributes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>StudentID</code>, <code>FirstName</code>, <code>LastName</code>, <code>Email</code></td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td><code>DeliverableID</code>, <code>DeliverableType</code>, <code>DeliverableNumber</code>, <code>DueDate</code>, <code>Topic</code></td>
+</tr>
+<tr>
+<td><code>STUDENT_GRADE</code></td>
+<td><code>GradeID</code>, <code>StudentID</code>, <code>DeliverableID</code>, <code>Score</code></td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td><code>ClassNum</code>, <code>Week</code>, <code>ClassDate</code>, <code>Topic</code>, <code>Format</code></td>
+</tr>
+<tr>
+<td><code>ATTENDANCE</code></td>
+<td><code>AttendanceID</code>, <code>StudentID</code>, <code>ClassNum</code>, <code>Attended</code></td>
+</tr>
+</tbody>
+</table>
+<p>Attributes can be classified in several ways.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute Type</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Design Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>Cannot be usefully broken down</td>
+<td><code>Score</code></td>
+<td>Store directly.</td>
+</tr>
+<tr>
+<td>Composite</td>
+<td>Can be decomposed</td>
+<td>Full address</td>
+<td>Store as <code>Street</code>, <code>City</code>, <code>State</code>, <code>ZipCode</code> if parts matter.</td>
+</tr>
+<tr>
+<td>Single-valued</td>
+<td>One value per entity instance</td>
+<td><code>Birthday</code></td>
+<td>Store in the entity table.</td>
+</tr>
+<tr>
+<td>Multi-valued</td>
+<td>Multiple values per entity instance</td>
+<td>Phone numbers</td>
+<td>Create a separate related table.</td>
+</tr>
+<tr>
+<td>Stored</td>
+<td>Physically recorded</td>
+<td><code>Birthday</code></td>
+<td>Store if needed.</td>
+</tr>
+<tr>
+<td>Derived</td>
+<td>Calculated from stored values</td>
+<td>Age</td>
+<td>Usually compute in queries.</td>
+</tr>
+</tbody>
+</table>
+<h3>10.4.4 Relationships</h3>
+<blockquote>
+<p><strong>Definition:</strong><br />
+A <strong>relationship</strong> describes how entities are connected.</p>
+</blockquote>
+<p>Examples:</p>
+<ul>
+<li>A <code>STUDENT</code> earns many <code>STUDENT_GRADE</code> records.</li>
+<li>A <code>DELIVERABLE</code> receives many <code>STUDENT_GRADE</code> records.</li>
+<li>A <code>SCHEDULE</code> class meeting has many <code>ATTENDANCE</code> records.</li>
+<li>A <code>STUDENT</code> has many <code>ATTENDANCE</code> records.</li>
+<li>An <code>ASSIGNMENT_TYPE</code> defines many <code>DELIVERABLE</code> records.</li>
+</ul>
+<p>Relationships are where database design becomes powerful. Instead of copying the same information repeatedly, the design connects separate entities through keys.</p>
+<h3>10.4.5 Business Rules</h3>
+<p>A <strong>business rule</strong> is a statement about how the organization operates. Good database design turns important business rules into structural rules.</p>
+<p>Examples:</p>
+<table>
+<thead>
+<tr>
+<th>Business Rule</th>
+<th>Structural Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Every grade must belong to one student.</td>
+<td><code>STUDENT_GRADE.StudentID</code> is a required foreign key.</td>
+</tr>
+<tr>
+<td>Every grade must belong to one deliverable.</td>
+<td><code>STUDENT_GRADE.DeliverableID</code> is a required foreign key.</td>
+</tr>
+<tr>
+<td>A student should not have two scores for the same deliverable.</td>
+<td>Unique constraint on <code>(StudentID, DeliverableID)</code>.</td>
+</tr>
+<tr>
+<td>A score must be between 0 and 100.</td>
+<td><code>CHECK (Score BETWEEN 0 AND 100)</code>.</td>
+</tr>
+<tr>
+<td>A student may exist before any grades are entered.</td>
+<td><code>STUDENT</code> is independent of <code>STUDENT_GRADE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The designer’s job is to discover these rules before implementation.</p>
+<hr />
+<h2>10.5 Entity-Relationship Modeling</h2>
+<h3>10.5.1 What ER Modeling Is</h3>
+<p><strong>Entity-Relationship (ER) modeling</strong> is a visual and conceptual method for designing databases before implementation. It represents entities, attributes, relationships, keys, cardinality, and optionality in a diagram.</p>
+<p>ER modeling is useful because it separates design thinking from software implementation. Before writing SQL, the designer can ask:</p>
+<ul>
+<li>Are the right entities present?</li>
+<li>Are relationships clear?</li>
+<li>Are many-to-many relationships resolved correctly?</li>
+<li>Are required relationships marked as required?</li>
+<li>Are optional relationships allowed only where the business rule permits them?</li>
+</ul>
+<p>ER modeling was introduced by Peter Chen in the 1970s and remains foundational because it gives business and technical stakeholders a shared language for discussing data structure.</p>
+<h3>10.5.2 ERD Elements</h3>
+<table>
+<thead>
+<tr>
+<th>ERD Element</th>
+<th>Meaning</th>
+<th>Relational Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entity</td>
+<td>Thing being represented</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>Attribute</td>
+<td>Property of an entity</td>
+<td>Column</td>
+</tr>
+<tr>
+<td>Identifier</td>
+<td>Attribute that uniquely identifies entity instances</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td>Relationship</td>
+<td>Association between entities</td>
+<td>Foreign key or junction table</td>
+</tr>
+<tr>
+<td>Cardinality</td>
+<td>How many instances can be related</td>
+<td>One-to-one, one-to-many, many-to-many</td>
+</tr>
+<tr>
+<td>Optionality</td>
+<td>Whether participation is required</td>
+<td>Nullable or <code>NOT NULL</code> foreign key</td>
+</tr>
+</tbody>
+</table>
+<h3>10.5.3 Key Hierarchy</h3>
+<p>Keys identify records and support relationships.</p>
+<table>
+<thead>
+<tr>
+<th>Key Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Superkey</td>
+<td>Any attribute set that uniquely identifies a row</td>
+<td><code>{StudentID, FirstName}</code></td>
+</tr>
+<tr>
+<td>Candidate key</td>
+<td>Minimal superkey</td>
+<td><code>{StudentID}</code> or <code>{Email}</code> if email is unique</td>
+</tr>
+<tr>
+<td>Primary key</td>
+<td>Candidate key selected as the official identifier</td>
+<td><code>StudentID</code></td>
+</tr>
+<tr>
+<td>Foreign key</td>
+<td>Attribute that references another table’s key</td>
+<td><code>STUDENT_GRADE.StudentID</code></td>
+</tr>
+<tr>
+<td>Natural key</td>
+<td>Real-world value used as identifier</td>
+<td>University ID or email</td>
+</tr>
+<tr>
+<td>Surrogate key</td>
+<td>Artificial system-generated identifier</td>
+<td><code>GradeID</code> AutoNumber</td>
+</tr>
+</tbody>
+</table>
+<p>The primary key should be stable, unique, and never <code>NULL</code>. Surrogate keys are often preferred because they are short and unlikely to change. But natural keys may still be useful as unique business constraints.</p>
+<h3>10.5.4 Example: STUDENT and STUDENT_GRADE</h3>
+<p>At the conceptual level, the rule is:</p>
+<blockquote>
+<p>A student can earn many grades; each grade belongs to one student.</p>
+</blockquote>
+<p>At the logical level, that becomes:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email)
+STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p>At the physical SQL level, part of the implementation might look like:</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT (
+    StudentID INTEGER PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    Email TEXT UNIQUE
+);
+
+CREATE TABLE STUDENT_GRADE (
+    GradeID INTEGER PRIMARY KEY,
+    StudentID INTEGER NOT NULL,
+    DeliverableID INTEGER NOT NULL,
+    Score REAL,
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
+);
+</code></pre>
+<p>The ERD explains the structure. SQL implements it.</p>
+<hr />
+<h2>10.6 Crow's Foot Notation</h2>
+<h3>10.6.1 What Crow's Foot Notation Shows</h3>
+<p><strong>Crow's Foot notation</strong> is a visual language for showing relationships in ER diagrams. It communicates two things:</p>
+<ol>
+<li><strong>Cardinality</strong>: how many records can participate?</li>
+<li><strong>Optionality</strong>: is participation required or optional?</li>
+</ol>
+<p>The notation appears at the ends of relationship lines.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>|</code></td>
+<td>One</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>Zero or optional</td>
+</tr>
+<tr>
+<td><code>&lt;</code> or <code>{</code></td>
+<td>Many</td>
+</tr>
+</tbody>
+</table>
+<p>These symbols combine into patterns.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol Pattern</th>
+<th>Meaning</th>
+<th>Numeric Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>||</code></td>
+<td>Exactly one</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>o|</code></td>
+<td>Zero or one</td>
+<td>0..1</td>
+</tr>
+<tr>
+<td><code>|&lt;</code> or <code>|{</code></td>
+<td>One or more</td>
+<td>1..*</td>
+</tr>
+<tr>
+<td><code>o&lt;</code> or <code>o{</code></td>
+<td>Zero or more</td>
+<td>0..*</td>
+</tr>
+</tbody>
+</table>
+<h3>10.6.2 Reading Crow's Foot Notation</h3>
+<p>Consider this relationship:</p>
+<pre><code class="language-text">STUDENT ||--o{ STUDENT_GRADE
+</code></pre>
+<p>Read it in both directions:</p>
+<ul>
+<li>One <code>STUDENT</code> can have zero or many <code>STUDENT_GRADE</code> records.</li>
+<li>Each <code>STUDENT_GRADE</code> must belong to exactly one <code>STUDENT</code>.</li>
+</ul>
+<p>That is a business rule. It says a student can exist before grades are entered, but a grade cannot exist without a student.</p>
+<h3>10.6.3 Crow's Foot to SQL</h3>
+<p>Crow's Foot notation guides implementation.</p>
+<table>
+<thead>
+<tr>
+<th>ER Rule</th>
+<th>SQL Design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Required relationship</td>
+<td>Foreign key is <code>NOT NULL</code>.</td>
+</tr>
+<tr>
+<td>Optional relationship</td>
+<td>Foreign key may allow <code>NULL</code>.</td>
+</tr>
+<tr>
+<td>One-to-many relationship</td>
+<td>Foreign key goes on the many side.</td>
+</tr>
+<tr>
+<td>Many-to-many relationship</td>
+<td>Create an associative table.</td>
+</tr>
+<tr>
+<td>Referential integrity</td>
+<td>Add a <code>FOREIGN KEY</code> constraint.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-text">STUDENT ||--o{ STUDENT_GRADE
+</code></pre>
+<p>SQL implication:</p>
+<pre><code class="language-sql">StudentID INTEGER NOT NULL,
+FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
+</code></pre>
+<p>The <code>NOT NULL</code> reflects the mandatory participation of <code>STUDENT_GRADE</code>: every grade must belong to one student.</p>
+<hr />
+<h2>10.7 Understanding Relationship Types</h2>
+<h3>10.7.1 One-to-One Relationships</h3>
+<p>A <strong>one-to-one (1:1)</strong> relationship exists when one record in Table A is associated with at most one record in Table B, and one record in Table B is associated with at most one record in Table A.</p>
+<p>1:1 relationships are relatively rare. Often, two tables that appear to be 1:1 could be combined. However, separation can make sense when data is sensitive, optional, or accessed by different users.</p>
+<h4>Example: STUDENT and STUDENT_CREDENTIALS</h4>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email)
+STUDENT_CREDENTIALS(StudentID, Username, PasswordHash, LastLogin)
+</code></pre>
+<p>Why separate them?</p>
+<ul>
+<li>Credentials are sensitive.</li>
+<li>Not every user should access password hashes.</li>
+<li>Authentication data may be maintained by a different system.</li>
+<li>Student profile data and credential data have different security requirements.</li>
+</ul>
+<p>Crow's Foot reading:</p>
+<pre><code class="language-text">STUDENT ||--o| STUDENT_CREDENTIALS
+</code></pre>
+<p>A student may have zero or one credential record. Each credential record must belong to one student.</p>
+<p>SQL sketch:</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT_CREDENTIALS (
+    StudentID INTEGER PRIMARY KEY,
+    Username TEXT NOT NULL UNIQUE,
+    PasswordHash TEXT NOT NULL,
+    LastLogin DATETIME,
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
+);
+</code></pre>
+<p>Here <code>StudentID</code> is both the primary key and a foreign key, enforcing one credential row per student.</p>
+<h3>10.7.2 One-to-Many Relationships</h3>
+<p>A <strong>one-to-many (1:N)</strong> relationship exists when one row in one table can be associated with many rows in another table, but each row on the many side belongs to one row on the one side.</p>
+<p>This is the most common database relationship pattern.</p>
+<p>Examples:</p>
+<table>
+<thead>
+<tr>
+<th>One Side</th>
+<th>Many Side</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code></td>
+<td><code>STUDENT_GRADE</code></td>
+<td>One student earns many grades.</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code></td>
+<td><code>STUDENT_GRADE</code></td>
+<td>One deliverable receives many grade records.</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code></td>
+<td><code>ATTENDANCE</code></td>
+<td>One class meeting has many attendance records.</td>
+</tr>
+<tr>
+<td><code>CUSTOMER</code></td>
+<td><code>ORDER</code></td>
+<td>One customer places many orders.</td>
+</tr>
+<tr>
+<td><code>COURSE</code></td>
+<td><code>SECTION</code></td>
+<td>One course has many sections.</td>
+</tr>
+</tbody>
+</table>
+<p>Rule:</p>
+<blockquote>
+<p>In a 1:N relationship, the foreign key belongs on the many side.</p>
+</blockquote>
+<p>Example:</p>
+<pre><code class="language-text">STUDENT ||--o{ STUDENT_GRADE
+</code></pre>
+<p><code>StudentID</code> belongs in <code>STUDENT_GRADE</code>, not because a student “contains” grades, but because each grade needs to identify which student it belongs to.</p>
+<h3>10.7.3 Many-to-Many Relationships</h3>
+<p>A <strong>many-to-many (M:N)</strong> relationship exists when many records in Table A can relate to many records in Table B.</p>
+<p>Examples:</p>
+<ul>
+<li>A student can complete many deliverables; each deliverable is completed by many students.</li>
+<li>A student can enroll in many courses; each course has many students.</li>
+<li>A product can appear in many orders; each order contains many products.</li>
+<li>An employee can work on many projects; each project has many employees.</li>
+</ul>
+<p>Relational databases do not implement M:N relationships directly. They resolve them through an <strong>associative entity</strong>, also called a <strong>junction table</strong>, <strong>intersection table</strong>, or <strong>bridge table</strong>.</p>
+<h4>Example: STUDENT_GRADE as a Junction Table</h4>
+<p>The conceptual M:N relationship is:</p>
+<pre><code class="language-text">STUDENT }o--o{ DELIVERABLE
+</code></pre>
+<p>The relational solution is:</p>
+<pre><code class="language-text">STUDENT ||--o{ STUDENT_GRADE }o--|| DELIVERABLE
+</code></pre>
+<p><code>STUDENT_GRADE</code> stores the intersection between one student and one deliverable.</p>
+<pre><code class="language-text">STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p>The <code>Score</code> belongs in the junction table because the score is not a fact about the student alone and not a fact about the deliverable alone. It is a fact about a specific student’s performance on a specific deliverable.</p>
+<h3>10.7.4 Relationships in the Grading Database</h3>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Type</th>
+<th>Implementation</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STUDENT</code> to <code>STUDENT_GRADE</code></td>
+<td>1:N</td>
+<td><code>StudentID</code> FK in <code>STUDENT_GRADE</code></td>
+<td>Connects students to scores</td>
+</tr>
+<tr>
+<td><code>DELIVERABLE</code> to <code>STUDENT_GRADE</code></td>
+<td>1:N</td>
+<td><code>DeliverableID</code> FK in <code>STUDENT_GRADE</code></td>
+<td>Connects deliverables to scores</td>
+</tr>
+<tr>
+<td><code>ASSIGNMENT_TYPE</code> to <code>DELIVERABLE</code></td>
+<td>1:N</td>
+<td><code>DeliverableType</code> FK in <code>DELIVERABLE</code></td>
+<td>Connects category rules to deliverables</td>
+</tr>
+<tr>
+<td><code>STUDENT</code> to <code>ATTENDANCE</code></td>
+<td>1:N</td>
+<td><code>StudentID</code> FK in <code>ATTENDANCE</code></td>
+<td>Tracks attendance per student</td>
+</tr>
+<tr>
+<td><code>SCHEDULE</code> to <code>ATTENDANCE</code></td>
+<td>1:N</td>
+<td><code>ClassNum</code> FK in <code>ATTENDANCE</code></td>
+<td>Tracks attendance per class meeting</td>
+</tr>
+<tr>
+<td><code>GRADE_SCALE</code> to final grade interpretation</td>
+<td>Lookup</td>
+<td>Score range comparison</td>
+<td>Converts numeric results to letters</td>
+</tr>
+</tbody>
+</table>
+<p>These relationships support analysis. For example, to report a student’s grade history, SQL joins <code>STUDENT</code>, <code>STUDENT_GRADE</code>, and <code>DELIVERABLE</code>. To analyze attendance, SQL joins <code>STUDENT</code>, <code>ATTENDANCE</code>, and <code>SCHEDULE</code>. The schema makes those questions possible.</p>
+<hr />
+<h2>10.8 Advanced ER Modeling Concepts</h2>
+<h3>10.8.1 Weak Entities</h3>
+<p>A <strong>weak entity</strong> cannot be uniquely identified by its own attributes alone. Its identity depends on an owner entity.</p>
+<p>Example: Suppose a <code>SECTION</code> is identified only within a course:</p>
+<pre><code class="language-text">COURSE(CourseID, CourseTitle)
+SECTION(CourseID, SectionNumber, MeetingTime)
+</code></pre>
+<p><code>SectionNumber = 1</code> is not globally unique. Many courses may have Section 1. The section is identified by the combination of <code>CourseID</code> and <code>SectionNumber</code>.</p>
+<p>A weak entity often has:</p>
+<ul>
+<li>existence dependence on the owner,</li>
+<li>a partial key,</li>
+<li>a composite primary key including the owner’s key.</li>
+</ul>
+<h3>10.8.2 Associative Entities</h3>
+<p>An <strong>associative entity</strong> resolves an M:N relationship and may store attributes about the relationship itself.</p>
+<p>Examples:</p>
+<table>
+<thead>
+<tr>
+<th>M:N Relationship</th>
+<th>Associative Entity</th>
+<th>Relationship Attribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Students complete deliverables</td>
+<td><code>STUDENT_GRADE</code></td>
+<td><code>Score</code></td>
+</tr>
+<tr>
+<td>Students enroll in sections</td>
+<td><code>ENROLLMENT</code></td>
+<td><code>EnrollmentDate</code>, <code>FinalGrade</code></td>
+</tr>
+<tr>
+<td>Products appear in orders</td>
+<td><code>ORDER_LINE</code></td>
+<td><code>Quantity</code>, <code>UnitPrice</code></td>
+</tr>
+<tr>
+<td>Employees work on projects</td>
+<td><code>PROJECT_ASSIGNMENT</code></td>
+<td><code>Role</code>, <code>HoursWorked</code></td>
+</tr>
+</tbody>
+</table>
+<p>The pattern is universal. Whenever the relationship itself has attributes, the relationship deserves its own table.</p>
+<h3>10.8.3 Recursive Relationships</h3>
+<p>A <strong>recursive relationship</strong> occurs when an entity relates to itself.</p>
+<p>Example:</p>
+<pre><code class="language-text">EMPLOYEE(EmployeeID, FirstName, LastName, ManagerID)
+</code></pre>
+<p><code>ManagerID</code> is a foreign key that references <code>EMPLOYEE.EmployeeID</code>.</p>
+<pre><code class="language-sql">CREATE TABLE EMPLOYEE (
+    EmployeeID INTEGER PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    ManagerID INTEGER,
+    FOREIGN KEY (ManagerID) REFERENCES EMPLOYEE(EmployeeID)
+);
+</code></pre>
+<p>This supports questions such as:</p>
+<pre><code class="language-sql">SELECT e.FirstName AS EmployeeFirstName,
+       e.LastName AS EmployeeLastName,
+       m.FirstName AS ManagerFirstName,
+       m.LastName AS ManagerLastName
+FROM EMPLOYEE AS e
+LEFT JOIN EMPLOYEE AS m
+    ON e.ManagerID = m.EmployeeID;
+</code></pre>
+<p>The table joins to itself. The aliases <code>e</code> and <code>m</code> allow SQL to treat the same table as two roles: employee and manager.</p>
+<h3>10.8.4 Specialization and Generalization</h3>
+<p>Specialization and generalization model “is-a” relationships.</p>
+<p>Example:</p>
+<pre><code class="language-text">PERSON(PersonID, FirstName, LastName, Email)
+STUDENT(PersonID, Major, ClassYear)
+EMPLOYEE(PersonID, Department, JobTitle)
+</code></pre>
+<p>A student is a person. An employee is also a person. Some people may be both.</p>
+<p>Two questions matter:</p>
+<ol>
+<li><strong>Disjoint or overlapping?</strong> Can a person belong to more than one subtype?</li>
+<li><strong>Total or partial?</strong> Must every person belong to at least one subtype?</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disjoint</td>
+<td>One superclass instance can belong to only one subtype</td>
+<td>A vehicle is either car or truck</td>
+</tr>
+<tr>
+<td>Overlapping</td>
+<td>One superclass instance can belong to multiple subtypes</td>
+<td>A person can be student and employee</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>Every superclass instance must belong to a subtype</td>
+<td>Every account is checking or savings</td>
+</tr>
+<tr>
+<td>Partial</td>
+<td>Some superclass instances may not belong to a subtype</td>
+<td>A person may be neither student nor employee</td>
+</tr>
+</tbody>
+</table>
+<h3>10.8.5 Mapping Specialization to Tables</h3>
+<p>There are three common strategies.</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Description</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Superclass + subclass tables</td>
+<td>Store shared fields in superclass and subtype fields in subtype tables</td>
+<td>Normalized, flexible</td>
+<td>Requires joins</td>
+</tr>
+<tr>
+<td>Subclass tables only</td>
+<td>Each subtype table stores all shared and subtype-specific fields</td>
+<td>Simple for total specialization</td>
+<td>Redundant shared fields</td>
+</tr>
+<tr>
+<td>Single table with type column</td>
+<td>One table stores all fields plus discriminator</td>
+<td>Simple queries</td>
+<td>Many NULLs and weaker constraints</td>
+</tr>
+</tbody>
+</table>
+<p>Most normalized relational designs prefer the superclass + subclass approach when subtypes have meaningful differences.</p>
+<hr />
+<h2>10.9 Normalization as a Design-Quality Check</h2>
+<p>ER modeling identifies the structure. Normalization tests whether that structure is reliable.</p>
+<blockquote>
+<p><strong>Definition:</strong><br />
+<strong>Normalization</strong> is the process of organizing tables so that each fact is stored in the right place, redundancy is reduced, and anomalies are prevented.</p>
+</blockquote>
+<h3>10.9.1 Normal Forms Review</h3>
+<table>
+<thead>
+<tr>
+<th>Normal Form</th>
+<th>Question</th>
+<th>Problem Fixed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1NF</td>
+<td>Does each cell contain one atomic value?</td>
+<td>Lists and repeating columns</td>
+</tr>
+<tr>
+<td>2NF</td>
+<td>Does every non-key attribute depend on the whole key?</td>
+<td>Partial dependencies</td>
+</tr>
+<tr>
+<td>3NF</td>
+<td>Does every non-key attribute depend only on the key?</td>
+<td>Transitive dependencies</td>
+</tr>
+<tr>
+<td>BCNF</td>
+<td>Is every determinant a candidate key?</td>
+<td>Special remaining dependency problems</td>
+</tr>
+</tbody>
+</table>
+<h3>10.9.2 Applying Normalization to Design</h3>
+<p>Suppose a proposed table is:</p>
+<pre><code class="language-text">STUDENT_GRADE(StudentID, DeliverableID, FirstName, Email, DeliverableType, DueDate, Score)
+</code></pre>
+<p>Primary key: <code>(StudentID, DeliverableID)</code></p>
+<p>Problems:</p>
+<ul>
+<li><code>FirstName</code> and <code>Email</code> depend only on <code>StudentID</code>.</li>
+<li><code>DeliverableType</code> and <code>DueDate</code> depend only on <code>DeliverableID</code>.</li>
+<li><code>Score</code> depends on the full key <code>(StudentID, DeliverableID)</code>.</li>
+</ul>
+<p>The normalized design is:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, Email)
+DELIVERABLE(DeliverableID, DeliverableType, DueDate)
+STUDENT_GRADE(StudentID, DeliverableID, Score)
+</code></pre>
+<p>Normalization confirms what ER modeling suggests: student facts, deliverable facts, and score facts belong in separate places.</p>
+<h3>10.9.3 When to Denormalize</h3>
+<p><strong>Denormalization</strong> deliberately reintroduces redundancy to improve read performance or simplify reporting.</p>
+<p>Examples:</p>
+<ul>
+<li>storing a monthly sales summary table,</li>
+<li>creating a dashboard-ready reporting table,</li>
+<li>maintaining a materialized view,</li>
+<li>caching a current GPA or account balance.</li>
+</ul>
+<p>Denormalization should come after a clean design exists. It is an optimization decision, not a shortcut around modeling.</p>
+<blockquote>
+<p><strong>Rule of Thumb:</strong><br />
+Normalize for correctness. Denormalize only with a documented reason, refresh process, and accountability rule.</p>
+</blockquote>
+<hr />
+<h2>10.10 From ER Diagrams to Relational Tables</h2>
+<p>The mapping algorithm translates an ERD into a relational schema. It turns a visual design into tables, columns, keys, and constraints.</p>
+<h3>10.10.1 Step 1: Map Strong Entities</h3>
+<p>For every strong entity, create a table.</p>
+<p>Entity:</p>
+<pre><code class="language-text">STUDENT
+- StudentID
+- FirstName
+- LastName
+- Email
+</code></pre>
+<p>Relational table:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email)
+</code></pre>
+<p>SQL example:</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT (
+    StudentID INTEGER PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    Email TEXT UNIQUE
+);
+</code></pre>
+<h3>10.10.2 Step 2: Map Weak Entities</h3>
+<p>For a weak entity, include the owner’s primary key and the weak entity’s partial key.</p>
+<p>Example:</p>
+<pre><code class="language-text">COURSE(CourseID, CourseName)
+SECTION(CourseID, SectionNumber, MeetingTime)
+</code></pre>
+<p>SQL example:</p>
+<pre><code class="language-sql">CREATE TABLE SECTION (
+    CourseID INTEGER NOT NULL,
+    SectionNumber INTEGER NOT NULL,
+    MeetingTime TEXT,
+    PRIMARY KEY (CourseID, SectionNumber),
+    FOREIGN KEY (CourseID) REFERENCES COURSE(CourseID)
+);
+</code></pre>
+<h3>10.10.3 Step 3: Map 1:N Relationships</h3>
+<p>In a one-to-many relationship, place the foreign key on the many side.</p>
+<p>ER rule:</p>
+<pre><code class="language-text">STUDENT ||--o{ STUDENT_GRADE
+</code></pre>
+<p>Table design:</p>
+<pre><code class="language-text">STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p><code>StudentID</code> is stored in <code>STUDENT_GRADE</code>.</p>
+<h3>10.10.4 Step 4: Map M:N Relationships</h3>
+<p>For many-to-many relationships, create a junction table.</p>
+<p>Conceptual relationship:</p>
+<pre><code class="language-text">STUDENT }o--o{ DELIVERABLE
+</code></pre>
+<p>Relational design:</p>
+<pre><code class="language-text">STUDENT(StudentID, ...)
+DELIVERABLE(DeliverableID, ...)
+STUDENT_GRADE(StudentID, DeliverableID, Score)
+</code></pre>
+<p>SQL example:</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT_GRADE (
+    StudentID INTEGER NOT NULL,
+    DeliverableID INTEGER NOT NULL,
+    Score REAL,
+    PRIMARY KEY (StudentID, DeliverableID),
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID),
+    FOREIGN KEY (DeliverableID) REFERENCES DELIVERABLE(DeliverableID)
+);
+</code></pre>
+<p>This version uses a composite primary key. Another valid version uses a surrogate <code>GradeID</code> plus a unique constraint:</p>
+<pre><code class="language-sql">CREATE TABLE STUDENT_GRADE (
+    GradeID INTEGER PRIMARY KEY,
+    StudentID INTEGER NOT NULL,
+    DeliverableID INTEGER NOT NULL,
+    Score REAL,
+    UNIQUE (StudentID, DeliverableID),
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID),
+    FOREIGN KEY (DeliverableID) REFERENCES DELIVERABLE(DeliverableID)
+);
+</code></pre>
+<p>Both enforce one score per student per deliverable.</p>
+<h3>10.10.5 Step 5: Map Special Attributes</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute Type</th>
+<th>Mapping Rule</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Composite</td>
+<td>Store components separately</td>
+<td><code>Address</code> becomes <code>Street</code>, <code>City</code>, <code>State</code>, <code>ZipCode</code></td>
+</tr>
+<tr>
+<td>Multi-valued</td>
+<td>Create a separate table</td>
+<td><code>STUDENT_PHONE(StudentID, PhoneNumber)</code></td>
+</tr>
+<tr>
+<td>Derived</td>
+<td>Do not store unless justified</td>
+<td>Age computed from birthday</td>
+</tr>
+<tr>
+<td>Optional</td>
+<td>Allow <code>NULL</code> only if business rule permits</td>
+<td><code>MiddleName</code> may be nullable</td>
+</tr>
+</tbody>
+</table>
+<h3>10.10.6 Complete Grading Database ERD in Mermaid</h3>
+<p>The following Mermaid diagram documents the core Grading Database design.</p>
+<pre><code class="language-mermaid">erDiagram
+    STUDENT ||--o{ STUDENT_GRADE : earns
+    DELIVERABLE ||--o{ STUDENT_GRADE : receives
+    ASSIGNMENT_TYPE ||--o{ DELIVERABLE : defines
+    STUDENT ||--o{ ATTENDANCE : has
+    SCHEDULE ||--o{ ATTENDANCE : records
+    GRADE_SCALE ||--o{ FINAL_GRADE : interprets
+    STUDENT ||--o| FINAL_GRADE : receives
+
+    STUDENT {
+        int StudentID PK
+        string FirstName
+        string LastName
+        string Email UK
+        date Birthday
+    }
+
+    ASSIGNMENT_TYPE {
+        string DeliverableType PK
+        int Quantity
+        real PointsPerOne
+        real CategoryWeight
+    }
+
+    DELIVERABLE {
+        int DeliverableID PK
+        string DeliverableType FK
+        int DeliverableNumber
+        date DueDate
+        string Topic
+    }
+
+    STUDENT_GRADE {
+        int GradeID PK
+        int StudentID FK
+        int DeliverableID FK
+        real Score
+    }
+
+    SCHEDULE {
+        int ClassNum PK
+        int Week
+        date ClassDate
+        string Topic
+        string Format
+    }
+
+    ATTENDANCE {
+        int AttendanceID PK
+        int StudentID FK
+        int ClassNum FK
+        int Attended
+    }
+
+    GRADE_SCALE {
+        string LetterGrade PK
+        real MinScore
+        real MaxScore
+    }
+
+    FINAL_GRADE {
+        int FinalGradeID PK
+        int StudentID FK
+        string LetterGrade FK
+        real FinalPercentage
+    }
+</code></pre>
+<p>This diagram is intentionally more than decoration. It is a design artifact. It communicates which entities exist, what their keys are, where foreign keys belong, and how the system supports grade, attendance, and final-grade reporting.</p>
+<hr />
+<h2>10.11 Visual Schema Design Tools</h2>
+<p>Visual schema design means using diagrams to reason about structure before building. Two useful tools are Lucidchart and Mermaid.</p>
+<h3>10.11.1 Lucidchart</h3>
+<p>Lucidchart is a visual diagramming tool. It is useful when students or teams need a drag-and-drop interface, polished diagrams, or real-time collaboration.</p>
+<p>Use Lucidchart when:</p>
+<ul>
+<li>the goal is stakeholder communication,</li>
+<li>students are learning ERD notation visually,</li>
+<li>diagrams need careful layout and formatting,</li>
+<li>teams need collaborative editing.</li>
+</ul>
+<p>A typical Lucidchart workflow:</p>
+<ol>
+<li>Start with an ERD or Crow's Foot template.</li>
+<li>Add entities as boxes.</li>
+<li>Add attributes inside each entity.</li>
+<li>Mark primary keys and foreign keys.</li>
+<li>Draw relationships.</li>
+<li>Set cardinality and optionality.</li>
+<li>Review the diagram for missing entities, unclear labels, or unresolved M:N relationships.</li>
+</ol>
+<h3>10.11.2 Mermaid</h3>
+<p>Mermaid is a text-based diagramming syntax that can render ERDs inside Markdown.</p>
+<p>Use Mermaid when:</p>
+<ul>
+<li>the diagram belongs in documentation,</li>
+<li>the book or project is stored in GitHub,</li>
+<li>the design should be version-controlled,</li>
+<li>the diagram should be easy to regenerate or revise,</li>
+<li>AI tools are helping draft or edit the schema.</li>
+</ul>
+<p>Basic Mermaid example:</p>
+<pre><code class="language-text">erDiagram
+    STUDENT ||--o{ STUDENT_GRADE : earns
+    DELIVERABLE ||--o{ STUDENT_GRADE : receives
+
+    STUDENT {
+        int StudentID PK
+        string FirstName
+        string LastName
+    }
+
+    DELIVERABLE {
+        int DeliverableID PK
+        string DeliverableType
+        date DueDate
+    }
+
+    STUDENT_GRADE {
+        int GradeID PK
+        int StudentID FK
+        int DeliverableID FK
+        real Score
+    }
+</code></pre>
+<h3>10.11.3 Lucidchart vs. Mermaid</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Lucidchart</th>
+<th>Mermaid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interface</td>
+<td>Visual drag-and-drop</td>
+<td>Text-based</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Classroom design, stakeholder presentation</td>
+<td>Markdown documentation, GitHub, version control</td>
+</tr>
+<tr>
+<td>Strength</td>
+<td>Easy visual editing</td>
+<td>Reproducible diagrams as code</td>
+</tr>
+<tr>
+<td>Limitation</td>
+<td>Harder to version precisely</td>
+<td>Less flexible visually</td>
+</tr>
+<tr>
+<td>Recommended use</td>
+<td>Early design and collaboration</td>
+<td>Technical documentation and textbook source files</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Key Takeaway:</strong><br />
+Use visual tools to think. Use text-based tools to document. A strong designer can move between both.</p>
+</blockquote>
+<hr />
+<h2>10.12 Common Database Modeling Mistakes</h2>
+<h3>10.12.1 Building Before Modeling</h3>
+<p>The most common mistake is starting with SQL before understanding the business rules.</p>
+<p>Bad sequence:</p>
+<pre><code class="language-text">Open Access → Create tables → Guess fields → Fix problems later
+</code></pre>
+<p>Better sequence:</p>
+<pre><code class="language-text">Gather requirements → Identify entities → Define relationships → Draw ERD → Normalize → Implement
+</code></pre>
+<h3>10.12.2 Treating Reports as Tables</h3>
+<p>A report combines facts for display. A table stores facts for long-term integrity. A common mistake is designing tables to look like the final report.</p>
+<p>Example: A flat grade report may show student name, quiz score, attendance percentage, weighted average, and final letter grade in one output. That does not mean all those values belong in one table.</p>
+<h3>10.12.3 Failing to Resolve Many-to-Many Relationships</h3>
+<p>Putting multiple values in one field violates 1NF.</p>
+<p>Bad design:</p>
+<pre><code class="language-text">STUDENT(StudentID, Name, DeliverableIDs)
+</code></pre>
+<p>Better design:</p>
+<pre><code class="language-text">STUDENT(StudentID, Name)
+DELIVERABLE(DeliverableID, ...)
+STUDENT_GRADE(StudentID, DeliverableID, Score)
+</code></pre>
+<h3>10.12.4 Putting Foreign Keys on the Wrong Side</h3>
+<p>In a one-to-many relationship, the foreign key belongs on the many side.</p>
+<p>Incorrect:</p>
+<pre><code class="language-text">STUDENT(StudentID, GradeID)
+</code></pre>
+<p>Correct:</p>
+<pre><code class="language-text">STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
+</code></pre>
+<p>A student can have many grades, so <code>StudentID</code> belongs in the grade table.</p>
+<h3>10.12.5 Omitting Optionality</h3>
+<p>A relationship line without optionality leaves an important question unanswered.</p>
+<p>Can a student exist without grades? Yes.</p>
+<pre><code class="language-text">STUDENT ||--o{ STUDENT_GRADE
+</code></pre>
+<p>Can a grade exist without a student? No.</p>
+<p>That distinction affects <code>NULL</code> rules and foreign-key constraints.</p>
+<h3>10.12.6 Confusing Attributes with Entities</h3>
+<p>If an attribute has its own attributes or relationships, it may need to become an entity.</p>
+<p>Example: If <code>Address</code> is only a mailing string, it can be an attribute. But if the system tracks address history, address type, move-in date, and verification status, <code>ADDRESS</code> should become an entity.</p>
+<h3>10.12.7 Storing Derived Values Too Early</h3>
+<p>Derived values should usually be calculated in queries.</p>
+<p>Example:</p>
+<ul>
+<li>Store <code>Birthday</code>.</li>
+<li>Calculate <code>Age</code>.</li>
+</ul>
+<p>Storing age creates an update problem because age changes over time.</p>
+<h3>10.12.8 Ignoring Naming Conventions</h3>
+<p>Inconsistent names create confusion.</p>
+<p>Avoid:</p>
+<pre><code class="language-text">Student_ID, studentId, SID, student_number
+</code></pre>
+<p>Use consistent naming:</p>
+<pre><code class="language-text">StudentID
+</code></pre>
+<p>Naming does not replace design, but it makes design easier to read.</p>
+<hr />
+<h2>10.13 Design vs. Implementation</h2>
+<h3>10.13.1 Logical Design Is Platform-Independent</h3>
+<p>Logical design defines what the database represents:</p>
+<pre><code class="language-text">STUDENT(StudentID, FirstName, LastName, Email)
+</code></pre>
+<p>This idea remains the same whether implemented in Access, SQLite, PostgreSQL, MySQL, or SQL Server.</p>
+<h3>10.13.2 Physical Design Is Platform-Specific</h3>
+<p>Physical design depends on the DBMS.</p>
+<table>
+<thead>
+<tr>
+<th>Design Choice</th>
+<th>Access</th>
+<th>SQLite</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-incrementing key</td>
+<td>AutoNumber</td>
+<td><code>INTEGER PRIMARY KEY</code></td>
+<td><code>GENERATED AS IDENTITY</code></td>
+</tr>
+<tr>
+<td>Text field</td>
+<td>Short Text / Long Text</td>
+<td><code>TEXT</code></td>
+<td><code>VARCHAR</code> or <code>TEXT</code></td>
+</tr>
+<tr>
+<td>Date field</td>
+<td>Date/Time</td>
+<td>Often stored as text/date functions</td>
+<td><code>DATE</code> or <code>TIMESTAMP</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Yes/No</td>
+<td>Integer 0/1</td>
+<td><code>BOOLEAN</code></td>
+</tr>
+<tr>
+<td>Relationship interface</td>
+<td>Relationships window</td>
+<td>Foreign-key SQL</td>
+<td>Foreign-key SQL</td>
+</tr>
+</tbody>
+</table>
+<h3>10.13.3 Why the Distinction Matters</h3>
+<p>A good logical design can move across platforms. A design that only works because of one tool’s quirks is fragile.</p>
+<p>Example: A grading database may begin in Access for teaching. Later, it may move to PostgreSQL for a web application. If the logical design is sound, the migration mainly involves syntax and tooling. If the design is weak, migration exposes every hidden problem.</p>
+<hr />
+<h2>10.14 Strengths and Limits of ER Modeling</h2>
+<h3>10.14.1 Strengths</h3>
+<p>ER modeling is useful because it:</p>
+<ul>
+<li>makes structure visible,</li>
+<li>supports communication between technical and non-technical stakeholders,</li>
+<li>reveals missing or ambiguous relationships,</li>
+<li>supports normalization,</li>
+<li>helps prevent costly redesign,</li>
+<li>creates a blueprint for SQL implementation.</li>
+</ul>
+<h3>10.14.2 Limits</h3>
+<p>ER modeling does not show everything.</p>
+<table>
+<thead>
+<tr>
+<th>Limitation</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Behavior</td>
+<td>ERDs do not show workflows, screens, or user actions.</td>
+</tr>
+<tr>
+<td>Timing</td>
+<td>ERDs do not fully show how processes unfold over time.</td>
+</tr>
+<tr>
+<td>Complex rules</td>
+<td>Some business rules require written documentation or constraints.</td>
+</tr>
+<tr>
+<td>Large systems</td>
+<td>Very large ERDs can become difficult to read.</td>
+</tr>
+<tr>
+<td>Non-relational systems</td>
+<td>NoSQL designs may use different modeling logic.</td>
+</tr>
+</tbody>
+</table>
+<h3>10.14.3 Alternatives and Complements</h3>
+<table>
+<thead>
+<tr>
+<th>Modeling Approach</th>
+<th>Best For</th>
+<th>Relationship to ER Modeling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UML class diagram</td>
+<td>Object-oriented software design</td>
+<td>Includes behavior and methods more directly</td>
+</tr>
+<tr>
+<td>Data flow diagram</td>
+<td>Movement of data through processes</td>
+<td>Complements ERD structure</td>
+</tr>
+<tr>
+<td>Process model / BPMN</td>
+<td>Workflows and business processes</td>
+<td>Shows actions rather than data structure</td>
+</tr>
+<tr>
+<td>NoSQL modeling</td>
+<td>Document, key-value, graph, or column-family systems</td>
+<td>Often starts from access patterns rather than normalization</td>
+</tr>
+</tbody>
+</table>
+<p>The ER model remains especially valuable for relational database design, but it is one tool in a broader design toolkit.</p>
+<hr />
+<h2>10.15 Key Concepts</h2>
+<ul>
+<li>Database design translates business requirements into data structure.</li>
+<li>Good SQL depends on good database design.</li>
+<li>Data anomalies are symptoms of poor structure.</li>
+<li>The SDLC places database design inside a broader system-building process.</li>
+<li>Conceptual design identifies entities and relationships at a high level.</li>
+<li>Logical design defines tables, attributes, keys, and constraints independently of any specific DBMS.</li>
+<li>Physical design implements the logical model in a specific platform.</li>
+<li>ER modeling provides a visual language for representing entities, attributes, and relationships.</li>
+<li>Crow's Foot notation expresses cardinality and optionality.</li>
+<li>One-to-many relationships place the foreign key on the many side.</li>
+<li>Many-to-many relationships require an associative entity.</li>
+<li>Weak entities depend on owner entities for identity.</li>
+<li>Recursive relationships connect an entity to itself.</li>
+<li>Normalization tests whether a design stores each fact in the right place.</li>
+<li>Mermaid allows ERDs to be documented as text inside Markdown.</li>
+<li>Lucidchart supports visual ERD creation and stakeholder collaboration.</li>
+</ul>
+<hr />
+<h2>10.16 Chapter Summary</h2>
+<p>This chapter moved from querying databases to designing them. The main lesson is that reliable information systems do not happen accidentally. They are designed through deliberate choices about entities, attributes, relationships, keys, constraints, and business rules.</p>
+<p>The chapter began by showing why good queries require good design. A poorly structured database creates anomalies: insertion anomalies, update anomalies, and deletion anomalies. These are not merely technical inconveniences. They undermine data quality, reporting accuracy, and organizational trust.</p>
+<p>The chapter then placed database design inside the System Development Life Cycle. Planning, analysis, conceptual design, logical design, physical design, development, testing, deployment, and maintenance all shape the quality of the final system. Database design belongs early in that process because structural mistakes become more expensive after data and users depend on the system.</p>
+<p>The chapter introduced ER modeling as a visual design method. Entities represent things the organization tracks, attributes describe those things, and relationships connect them. Crow's Foot notation expresses cardinality and optionality so that business rules become visible. One-to-one, one-to-many, and many-to-many relationships each produce different table structures.</p>
+<p>Advanced modeling concepts extend this foundation. Weak entities, associative entities, recursive relationships, and specialization/generalization help designers represent realistic business domains. Normalization then acts as a design-quality check, ensuring that tables avoid redundancy and anomalies.</p>
+<p>Finally, the chapter showed how diagrams become tables through the mapping algorithm and how tools such as Lucidchart and Mermaid support visual and text-based documentation. The goal is not to draw pretty diagrams. The goal is to design structures that make future SQL clearer, reporting more trustworthy, and information systems more reliable.</p>
+<hr />
+<h2>10.17 Review Questions</h2>
+<ol>
+<li>Why can technically correct SQL still produce misleading results when database design is poor?</li>
+<li>What are insertion, update, and deletion anomalies? Give an example of each.</li>
+<li>How does the SDLC help prevent database design problems?</li>
+<li>What is the difference between conceptual, logical, and physical database design?</li>
+<li>How do entities, attributes, and relationships differ?</li>
+<li>What is the difference between a candidate key and a primary key?</li>
+<li>Why are surrogate keys often useful?</li>
+<li>How does Crow's Foot notation show optionality and cardinality?</li>
+<li>Why does the foreign key belong on the many side of a one-to-many relationship?</li>
+<li>Why can relational databases not implement many-to-many relationships directly?</li>
+<li>What is an associative entity? Give an example outside the Grading Database.</li>
+<li>What is a weak entity, and how does it differ from a strong entity?</li>
+<li>What is a recursive relationship?</li>
+<li>How does normalization support database design?</li>
+<li>When might denormalization be justified?</li>
+<li>What is the difference between Lucidchart and Mermaid as ERD tools?</li>
+<li>Why should logical design remain independent of the DBMS?</li>
+<li>What common modeling mistake do you personally find easiest to make, and how would you check for it?</li>
+</ol>
+<hr />
+<h2>10.18 References</h2>
+<p>Chen, P. P.-S. (1976). The entity-relationship model: Toward a unified view of data. <em>ACM Transactions on Database Systems</em>, <em>1</em>(1), 9--36. https://doi.org/10.1145/320434.320440</p>
+<p>Connolly, T. M., &amp; Begg, C. E. (2015). <em>Database systems: A practical approach to design, implementation, and management</em> (6th ed.). Pearson.</p>
+<p>Date, C. J. (2004). <em>An introduction to database systems</em> (8th ed.). Pearson/Addison Wesley.</p>
+<p>Elmasri, R., &amp; Navathe, S. B. (2016). <em>Fundamentals of database systems</em> (7th ed.). Pearson.</p>
+<p>Hoffer, J. A., Venkataraman, R., &amp; Topi, H. (2019). <em>Modern database management</em> (13th ed.). Pearson.</p>
+<p>Kroenke, D. M., &amp; Auer, D. J. (2020). <em>Database concepts</em> (9th ed.). Pearson.</p>
+<p>Laudon, K. C., &amp; Laudon, J. P. (2024). <em>Management information systems: Managing the digital firm</em> (18th ed.). Pearson.</p>
+<p>Mermaid. (n.d.). <em>Entity relationship diagrams</em>. Mermaid documentation. https://mermaid.js.org/syntax/entityRelationshipDiagram.html</p>
+                </section>
+<section class="reader-section" id="part-lets-build">
+                  <span class="reader-kicker">Let's Build</span>
+                  <h2>Let's Build: Chapter 10 -- ER Modeling in Practice</h2>
+                  <p><img alt="Let's Build" src="/_content/BITM330-Book-draft/chapter-drafts/.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif&gt;" /></p>
+<h2>Overview</h2>
+<p>This companion provides hands-on practice with the design concepts from Chapter 10. You will create Entity-Relationship Diagrams using two industry tools -- Lucidchart (visual, drag-and-drop) and Mermaid (text-based, code-friendly) -- and translate designs into SQL.</p>
+<hr />
+<h2>Part I: Creating an ER Diagram with Lucidchart (Grading Database Case)</h2>
+<p>This section moves from theory into hands-on design. The goal is not just to draw a diagram, but to <strong>think like a database designer</strong>. We will use the <strong>Grading Database</strong> as our running example and create a complete Entity-Relationship Diagram using <strong>Lucidchart</strong>, a free, browser-based diagramming tool widely used in industry and academia.</p>
+<p>At this stage, you are not writing SQL. You are designing structure.</p>
+<h3>Why Start with Lucidchart?</h3>
+<p>Lucidchart is particularly well suited for learning ER modeling because it:</p>
+<ul>
+<li>Uses <strong>visual, drag-and-drop elements</strong></li>
+<li>Supports <strong>Crow's Foot notation</strong></li>
+<li>Makes <strong>relationships and cardinalities explicit</strong></li>
+<li>Encourages <em>design-first thinking</em> before implementation</li>
+</ul>
+<p>Most importantly, Lucidchart forces you to slow down and ask the right questions: What are the entities? How are they connected? Which relationships are required, optional, one-to-one, or one-to-many?</p>
+<h3>Step 1: Set Up a New ER Diagram</h3>
+<ol>
+<li>Go to <strong>lucidchart.com</strong> and sign in using a Google or Microsoft account.</li>
+<li>From the dashboard, click <strong>New Document</strong>.</li>
+<li>Choose <strong>Blank Diagram</strong>.</li>
+<li>In the left-hand shape library panel:
+   - Enable <strong>Entity Relationship</strong> shapes (ERD or Crow's Foot).
+   - You should now see shapes for <strong>Entity</strong>, <strong>Relationship</strong>, and <strong>Attributes</strong>.</li>
+</ol>
+<h3>Step 2: Identify the Core Entities</h3>
+<p>Before drawing anything, recall what we already know from the previous chapters. The grading system is no longer one flat table. It consists of <strong>multiple real-world entities</strong>, each deserving its own table.</p>
+<p>For the first ERD, we will focus on:</p>
+<ul>
+<li><strong>STUDENT</strong></li>
+<li><strong>DELIVERABLE</strong></li>
+<li><strong>STUDENT_GRADE</strong> (junction/associative entity)</li>
+<li><strong>ASSIGNMENT</strong></li>
+<li><strong>ATTENDANCE</strong></li>
+<li><strong>SCHEDULE</strong></li>
+<li><strong>GRADE_SCALE</strong></li>
+</ul>
+<p>Start with <strong>entities first</strong>, attributes second, and relationships third.</p>
+<h3>Step 3: Create Entity Boxes</h3>
+<p>Drag an <strong>Entity</strong> shape onto the canvas for each table.</p>
+<p><strong>Example -- STUDENT Entity:</strong></p>
+<pre><code>STUDENT
+-------------------------
+PK  StudentID
+    FirstName
+    LastName
+    Email
+    Birthday
+    Grade
+</code></pre>
+<p>Conventions to follow:</p>
+<ul>
+<li>Prefix primary keys with <strong>PK</strong></li>
+<li>Use clear, descriptive attribute names</li>
+<li>Do not include foreign keys yet (those emerge from relationships)</li>
+</ul>
+<p>Repeat this process for the other entities:</p>
+<pre><code>DELIVERABLE
+-------------------------
+PK  DeliverableID
+    Type
+    DeliverableNumber
+    DueDate
+    Topic
+</code></pre>
+<pre><code>STUDENT_GRADE
+-------------------------
+PK  GradeID
+FK  StudentID
+FK  DeliverableID
+    Score
+</code></pre>
+<p>Notice that <strong>STUDENT_GRADE</strong> is an <strong>associative (intersection) entity</strong>, created to resolve the many-to-many relationship between STUDENT and DELIVERABLE.</p>
+<h3>Step 4: Add Relationships</h3>
+<p>Draw <strong>relationship connectors</strong> between entities, starting with the most obvious connections:</p>
+<ul>
+<li>STUDENT -&gt; STUDENT_GRADE</li>
+<li>DELIVERABLE -&gt; STUDENT_GRADE</li>
+<li>STUDENT -&gt; ATTENDANCE</li>
+<li>SCHEDULE -&gt; ATTENDANCE</li>
+<li>ASSIGNMENT -&gt; DELIVERABLE</li>
+</ul>
+<p>At this stage, focus on <em>which entities are connected</em> before refining cardinality.</p>
+<h3>Step 5: Apply Cardinality Using Crow's Foot Notation</h3>
+<p>Refine the diagram by adding <strong>cardinality and optionality</strong>.</p>
+<p>Lucidchart allows you to specify one vs. many and required vs. optional on each end of a relationship line.</p>
+<p><strong>Example -- STUDENT to STUDENT_GRADE:</strong></p>
+<p>Ask the business questions:</p>
+<ul>
+<li>Can a student exist without grades? -&gt; Yes (optional)</li>
+<li>Can a student have many grades? -&gt; Yes (many)</li>
+</ul>
+<p>So the relationship is:</p>
+<ul>
+<li>STUDENT: <strong>optional many</strong> (zero or more STUDENT_GRADE records)</li>
+<li>STUDENT_GRADE: <strong>required one</strong> (each record belongs to exactly one STUDENT)</li>
+</ul>
+<p>Repeat this reasoning for each relationship.</p>
+<h3>Step 6: Introduce Foreign Keys</h3>
+<p>Once relationships are clear, annotate <strong>foreign keys</strong> inside the child entities.</p>
+<p>For example, in STUDENT_GRADE:</p>
+<ul>
+<li><code>StudentID</code> is a foreign key referencing STUDENT</li>
+<li><code>DeliverableID</code> is a foreign key referencing DELIVERABLE</li>
+</ul>
+<p>At the ERD stage, you are not writing SQL -- you are asserting <em>dependency and ownership</em>. This is where design and normalization converge visually.</p>
+<h3>Step 7: Validate the Diagram Against Business Rules</h3>
+<p>Before calling the ERD complete, validate it:</p>
+<ul>
+<li>Can the diagram answer:</li>
+<li>"What grades does a student have?"</li>
+<li>"Which deliverables are upcoming?"</li>
+<li>"Who attended which class session?"</li>
+<li>Is every fact stored <strong>once and only once</strong>?</li>
+<li>Do relationships prevent impossible states (for example, a grade without a student)?</li>
+</ul>
+<p>If the diagram feels cluttered, that is often a sign of missing entities, incorrect relationships, or attributes placed in the wrong table.</p>
+<h3>What You Have Accomplished</h3>
+<p>By completing this Lucidchart ERD, you have:</p>
+<ul>
+<li>Translated business requirements into structure</li>
+<li>Designed a normalized schema visually</li>
+<li>Created a blueprint that can be implemented in Microsoft Access, SQLite, or PostgreSQL</li>
+</ul>
+<p>Most importantly, you have <strong>designed first and coded second</strong> -- the hallmark of professional database development.</p>
+<hr />
+<h2>Part II: Recreating the Grading Database ERD Using Mermaid</h2>
+<p>Lucidchart is excellent for visual design, but modern system development also benefits from <strong>diagram-as-code</strong>. Mermaid is a JavaScript-based tool that lets you write an ER diagram in plain text and render it automatically inside:</p>
+<ul>
+<li>GitHub README files</li>
+<li>Markdown-based textbooks and documentation</li>
+<li>VS Code (with a Mermaid preview extension)</li>
+<li>Static site generators and wikis</li>
+</ul>
+<p>This is especially useful because your ERD becomes <strong>versionable, editable, and portable</strong>.</p>
+<h3>Why Mermaid for ER Modeling?</h3>
+<p>Mermaid is valuable because it:</p>
+<ul>
+<li>Keeps your ERD <strong>in the same place as your writing and SQL</strong></li>
+<li>Makes design changes <strong>trackable through Git commits</strong></li>
+<li>Encourages consistent naming and clean schema thinking</li>
+<li>Integrates with AI tools for rapid generation and modification</li>
+</ul>
+<p>The trade-off: Mermaid is less "drag-and-drop friendly," but much easier to maintain once you learn the syntax.</p>
+<h3>Mermaid ER Diagram: The Grading Database Schema</h3>
+<p>Below is a Mermaid ER diagram that mirrors the same entities and relationships modeled in Lucidchart:</p>
+<pre><code class="language-mermaid">erDiagram
+
+    STUDENT {
+        int StudentID PK
+        string FirstName
+        string LastName
+        string Email
+        date Birthday
+        string Grade
+    }
+
+    DELIVERABLE {
+        int DeliverableID PK
+        string Type
+        int DeliverableNumber
+        date DueDate
+        string Topic
+    }
+
+    STUDENT_GRADE {
+        int GradeID PK
+        int StudentID FK
+        int DeliverableID FK
+        int Score
+    }
+
+    ASSIGNMENT {
+        string Type PK
+        int Quantity
+        int Points
+        float Points_per_one
+    }
+
+    SCHEDULE {
+        int ClassNum PK
+        int Week
+        date Date
+        string Day
+        string Topic
+        string Format
+    }
+
+    ATTENDANCE {
+        int AttendanceID PK
+        int ClassNum FK
+        int StudentID FK
+        int Attended
+    }
+
+    GRADE_SCALE {
+        string LetterGrade PK
+        int MinScore
+        int MaxScore
+    }
+
+    %% Relationships (Crow's Foot style cardinalities)
+
+    STUDENT ||--o{ STUDENT_GRADE : earns
+    DELIVERABLE ||--o{ STUDENT_GRADE : includes
+
+    STUDENT ||--o{ ATTENDANCE : has
+    SCHEDULE ||--o{ ATTENDANCE : records
+
+    ASSIGNMENT ||--o{ DELIVERABLE : defines_type
+
+    GRADE_SCALE ||--o{ STUDENT : interprets
+</code></pre>
+<details><summary>🎨 Image Generation Prompt (Static Version of Mermaid ERD)</summary>
+
+**Filename**: `figure-10.14-grading-database-erd.png`
+**Caption**: "Figure 10.14 -- Grading Database Entity-Relationship Diagram"
+**Gemini Prompt**: "Create a professional, clean educational diagram for a college textbook showing an entity-relationship diagram for a Grading Database. Include seven entity rectangles: STUDENT (with StudentID PK, FirstName, LastName, Email, Birthday, Grade), DELIVERABLE (with DeliverableID PK, Type, DeliverableNumber, DueDate, Topic), STUDENT_GRADE (with GradeID PK, StudentID FK, DeliverableID FK, Score), ASSIGNMENT (with Type PK, Quantity, Points, Points_per_one), SCHEDULE (with ClassNum PK, Week, Date, Day, Topic, Format), ATTENDANCE (with AttendanceID PK, ClassNum FK, StudentID FK, Attended), and GRADE_SCALE (with LetterGrade PK, MinScore, MaxScore). Connect them with Crow's Foot notation showing: STUDENT one-to-optional-many STUDENT_GRADE, DELIVERABLE one-to-optional-many STUDENT_GRADE, STUDENT one-to-optional-many ATTENDANCE, SCHEDULE one-to-optional-many ATTENDANCE, ASSIGNMENT one-to-optional-many DELIVERABLE, GRADE_SCALE one-to-optional-many STUDENT. Use a blue and warm-gold color palette. Modern flat design, white background. Minimal text labels -- only entity names and attribute names."
+
+</details>
+
+<h3>How to Read Cardinalities in Mermaid</h3>
+<p>Mermaid uses a Crow's Foot-inspired syntax:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Example Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\|\|</code></td>
+<td>Exactly one (required)</td>
+<td>Each grade belongs to one student</td>
+</tr>
+<tr>
+<td><code>o{</code></td>
+<td>Zero or many (optional many)</td>
+<td>A student may have zero or many grades</td>
+</tr>
+<tr>
+<td><code>\|{</code></td>
+<td>One or many (required many)</td>
+<td>A class must have at least one attendance record</td>
+</tr>
+<tr>
+<td><code>o\|</code></td>
+<td>Zero or one (optional one)</td>
+<td>A record may or may not exist</td>
+</tr>
+<tr>
+<td><code>\|\|--o{</code></td>
+<td>One-to-many (optional on many)</td>
+<td>One student can have many grades</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<pre><code class="language-mermaid">STUDENT ||--o{ STUDENT_GRADE : earns
+</code></pre>
+<p>Interpretation:</p>
+<ul>
+<li>Each STUDENT_GRADE row must reference exactly one STUDENT.</li>
+<li>A STUDENT can exist with zero, one, or many grade records.</li>
+</ul>
+<p>This matches real grading logic: students can exist before grades are entered.</p>
+<h3>Where to Render Mermaid Diagrams</h3>
+<ul>
+<li><strong>GitHub / GitLab</strong>: Mermaid renders automatically in Markdown files.</li>
+<li><strong>VS Code</strong>: Install a Mermaid preview extension to see diagrams while writing.</li>
+<li><strong>Mermaid Live Editor</strong> (mermaid.live): Useful for quick testing and debugging syntax.</li>
+</ul>
+<h3>Practical Tip: Keep Mermaid and SQL Aligned</h3>
+<p>A productive workflow:</p>
+<ol>
+<li>Write or update the Mermaid ERD</li>
+<li>Implement the schema in SQL</li>
+<li>Keep both under version control</li>
+</ol>
+<p>Placing them side by side -- Mermaid ERD for visual structure, SQL DDL for implementation -- trains you to think like a designer, not just a coder.</p>
+<h3>Checkpoint: Does This ERD Match Our Business Questions?</h3>
+<p>Use these validation checks:</p>
+<ul>
+<li>Can we list all grades for a student? -&gt; Yes: STUDENT -&gt; STUDENT_GRADE -&gt; DELIVERABLE</li>
+<li>Can we identify upcoming deliverables and who has scores missing? -&gt; Yes: DELIVERABLE + STUDENT_GRADE with LEFT JOIN</li>
+<li>Can we track attendance by class session? -&gt; Yes: SCHEDULE -&gt; ATTENDANCE -&gt; STUDENT</li>
+<li>Can we translate numeric score ranges into letter grades? -&gt; Yes: via GRADE_SCALE rules table</li>
+</ul>
+<p>If the answer is "yes" across the board, the ERD is doing its job.</p>
+<hr />
+<h2>Part III: Mermaid vs. Lucidchart -- Choosing the Right Tool</h2>
+<p>Both tools support ER modeling but serve different purposes and workflows. Understanding when to use each is part of becoming a competent system designer.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Lucidchart</th>
+<th>Mermaid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Primary Use</strong></td>
+<td>Visual design and collaboration</td>
+<td>Text-based, version-controlled diagrams</td>
+</tr>
+<tr>
+<td><strong>Interface</strong></td>
+<td>Drag-and-drop, graphical UI</td>
+<td>Written syntax inside Markdown or code</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Very low (intuitive for beginners)</td>
+<td>Moderate (requires learning syntax)</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Early-stage design, brainstorming, group work</td>
+<td>Documentation, reproducibility, technical workflows</td>
+</tr>
+<tr>
+<td><strong>Collaboration</strong></td>
+<td>Real-time visual collaboration</td>
+<td>Asynchronous via Git and Markdown files</td>
+</tr>
+<tr>
+<td><strong>Precision</strong></td>
+<td>Easy to draw; rules depend on user discipline</td>
+<td>Enforces structure through syntax</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>Standalone diagramming tool</td>
+<td>Integrates directly with documentation and code</td>
+</tr>
+<tr>
+<td><strong>Change Tracking</strong></td>
+<td>Manual versioning</td>
+<td>Automatic via text diffs (Git-friendly)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to use Lucidchart</strong>: Exploring ideas visually, collaborating with non-technical stakeholders, iterating quickly on relationships and layout.</p>
+<p><strong>When to use Mermaid</strong>: Documenting a finalized design, embedding diagrams in technical documentation, maintaining schemas alongside SQL and code.</p>
+<blockquote>
+<p>Lucidchart helps you <em>discover</em> the design. Mermaid helps you <em>preserve</em> the design.</p>
+</blockquote>
+<p>In practice, professional workflows often use <strong>both</strong> -- Lucidchart for exploration and communication, Mermaid for documentation and long-term maintenance.</p>
+<hr />
+<h2>Part IV: From ER Diagrams to CREATE TABLE Statements</h2>
+<p>Design does not end with a diagram. An ER diagram is the <strong>blueprint</strong>, not the final product. The next step is translating that blueprint into executable SQL.</p>
+<h3>What an ER Diagram Already Gives You</h3>
+<p>A well-constructed ER diagram already contains everything needed to write <code>CREATE TABLE</code> statements:</p>
+<ul>
+<li><strong>Entities</strong> -&gt; Tables</li>
+<li><strong>Attributes</strong> -&gt; Columns</li>
+<li><strong>Primary Keys</strong> -&gt; <code>PRIMARY KEY</code> constraints</li>
+<li><strong>Relationships</strong> -&gt; <code>FOREIGN KEY</code> constraints</li>
+<li><strong>Cardinality and optionality</strong> -&gt; <code>NOT NULL</code>, foreign key placement, and junction tables</li>
+</ul>
+<p>If your ER diagram is correct, the SQL almost writes itself.</p>
+<h3>Example: Translating the Grading Database ER Model</h3>
+<p>From the ER model, we identify three core entities: STUDENT, DELIVERABLE, and STUDENT_GRADE (the junction table). Each becomes a table definition in SQL.</p>
+<h4>STUDENT</h4>
+<pre><code class="language-sql">CREATE TABLE STUDENT (
+    StudentID INTEGER PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    Email TEXT UNIQUE
+);
+</code></pre>
+<p>What came directly from the ER diagram:</p>
+<ul>
+<li><code>StudentID</code> identified as the primary key</li>
+<li>Name and email as attributes</li>
+<li>Email marked as unique</li>
+</ul>
+<h4>DELIVERABLE</h4>
+<pre><code class="language-sql">CREATE TABLE DELIVERABLE (
+    DeliverableID INTEGER PRIMARY KEY,
+    Type TEXT NOT NULL,
+    DeliverableNumber INTEGER NOT NULL,
+    DueDate DATE
+);
+</code></pre>
+<p>The ER diagram already told us:</p>
+<ul>
+<li>Deliverables are independent entities</li>
+<li>Each deliverable has a unique identifier</li>
+<li>Attributes describe the deliverable, not the student</li>
+</ul>
+<h4>STUDENT_GRADE (Junction Table)</h4>
+<pre><code class="language-sql">CREATE TABLE STUDENT_GRADE (
+    GradeID INTEGER PRIMARY KEY,
+    StudentID INTEGER NOT NULL,
+    DeliverableID INTEGER NOT NULL,
+    Score REAL NOT NULL,
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID),
+    FOREIGN KEY (DeliverableID) REFERENCES DELIVERABLE(DeliverableID)
+);
+</code></pre>
+<p>This table exists <strong>because of the ER diagram</strong>:</p>
+<ul>
+<li>Many-to-many relationship between students and deliverables</li>
+<li>The relationship carries additional data (<code>Score</code>)</li>
+<li>Foreign keys enforce the relationship</li>
+<li><code>NOT NULL</code> on foreign keys reflects the required participation shown in the diagram</li>
+</ul>
+<h3>Referential Integrity in Practice</h3>
+<p>When implementing foreign keys, you must also decide what happens when a referenced record is modified or deleted. Common options include:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Behavior</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ON DELETE CASCADE</code></td>
+<td>Automatically deletes child records when parent is deleted</td>
+<td>Audit logs, temporary records</td>
+</tr>
+<tr>
+<td><code>ON DELETE RESTRICT</code></td>
+<td>Prevents deletion of parent if child records exist</td>
+<td>Grading systems, financial records</td>
+</tr>
+<tr>
+<td><code>ON DELETE SET NULL</code></td>
+<td>Sets foreign key to NULL in child records when parent is deleted</td>
+<td>Optional relationships</td>
+</tr>
+</tbody>
+</table>
+<p>For a grading system, <code>ON DELETE RESTRICT</code> is typically appropriate -- you should not be able to delete a student who has grade records.</p>
+<h3>ER Modeling Prevents Common SQL Mistakes</h3>
+<p>Without ER modeling, developers often duplicate columns across tables, guess where foreign keys belong, forget to enforce constraints, and add "temporary" columns that become permanent problems. ER diagrams eliminate guesswork. They force you to <strong>decide structure before writing code</strong>.</p>
+<h3>Automatic SQL Generation</h3>
+<p>One practical advantage of Lucidchart is that it can <strong>generate SQL directly from an ER diagram</strong>:</p>
+<ol>
+<li>Select the ER diagram</li>
+<li>Click <strong>Export</strong></li>
+<li>Choose <strong>SQL / Database Schema</strong></li>
+<li>Select the target database (PostgreSQL, MySQL, etc.)</li>
+</ol>
+<p>Lucidchart will produce <code>CREATE TABLE</code> statements, primary key definitions, and foreign key constraints. This is useful for verifying design decisions, learning how diagrams map to SQL, and accelerating early implementation.</p>
+<blockquote>
+<p><strong>Important</strong>: Generated SQL should always be <strong>reviewed</strong>, not blindly executed. Design decisions still require human judgment.</p>
+</blockquote>
+<h3>Design First, SQL Second</h3>
+<p>Strong database systems follow a consistent pattern:</p>
+<ol>
+<li>Understand the business problem</li>
+<li>Model the structure visually (ER diagram)</li>
+<li>Validate relationships and dependencies</li>
+<li>Translate the model into SQL</li>
+</ol>
+<p>Skipping the design phase leads to brittle systems that rely on ad-hoc fixes. Following it produces databases that are easier to query, safer to modify, and more resilient over time.</p>
+<p>ER diagrams are not documentation artifacts. They are <strong>decision-making tools</strong>. <code>CREATE TABLE</code> statements are simply the implementation of those decisions.</p>
+                </section>
+<section class="reader-section" id="part-terms">
+                  <span class="reader-kicker">Term Treasury</span>
+                  <h2>Term Treasury: Chapter 10 -- Database Design</h2>
+                  <h2>Key Terms</h2>
+<h3>A</h3>
+<ul>
+<li><strong>Aggregation</strong>: An EER concept that treats a relationship set as a higher-level entity, allowing it to participate in other relationships. Used when a relationship itself needs to be part of another relationship.</li>
+<li><strong>Associative (Intersection) Entity</strong>: An entity created to resolve a many-to-many relationship, containing foreign keys to both parent entities and often carrying its own attributes (e.g., STUDENT_GRADE).</li>
+<li><strong>Attribute</strong>: A property or characteristic of an entity that describes a single fact about it (e.g., FirstName, Email, DueDate).</li>
+</ul>
+<h3>B</h3>
+<ul>
+<li><strong>BCNF (Boyce-Codd Normal Form)</strong>: A stricter version of Third Normal Form in which every determinant must be a candidate key.</li>
+</ul>
+<h3>C</h3>
+<ul>
+<li><strong>Candidate Key</strong>: A minimal superkey -- a set of attributes that uniquely identifies an entity, from which no attribute can be removed without losing uniqueness.</li>
+<li><strong>Cardinality Ratio</strong>: A constraint specifying the maximum number of relationship instances an entity can participate in (1:1, 1:N, M:N).</li>
+<li><strong>Composite Attribute</strong>: An attribute that can be decomposed into smaller component attributes (e.g., Address into Street, City, ZipCode).</li>
+<li><strong>Conceptual Data Model</strong>: A high-level, abstract model of the business domain, independent of any technology or DBMS. Focuses on entities, relationships, and business rules.</li>
+<li><strong>Crow's Foot Notation</strong>: A visual notation system for ER diagrams that uses specific symbols (lines, circles, and "crow's feet") to represent cardinality and participation constraints.</li>
+</ul>
+<h3>D</h3>
+<ul>
+<li><strong>Data Anomaly</strong>: A data integrity problem (insertion, update, or deletion) caused by poor table structure and redundant data storage.</li>
+<li><strong>Deletion Anomaly</strong>: A data anomaly where removing one piece of data inadvertently destroys other, unrelated data.</li>
+<li><strong>Denormalization</strong>: The deliberate process of combining normalized tables to improve query performance, accepting some redundancy as a trade-off.</li>
+<li><strong>Derived Attribute</strong>: An attribute whose value can be calculated from other stored attributes (e.g., Age derived from BirthDate).</li>
+<li><strong>Discriminator</strong>: An attribute in a supertype entity that indicates which subtype applies (e.g., StudentType with values 'Undergraduate' or 'Graduate').</li>
+<li><strong>Disjoint (Exclusive) Subtyping</strong>: A specialization constraint where each superclass instance belongs to at most one subclass.</li>
+</ul>
+<h3>E</h3>
+<ul>
+<li><strong>Enhanced Entity-Relationship (EER) Model</strong>: An extension of the basic ER model that adds constructs for weak entities, specialization/generalization, and aggregation.</li>
+<li><strong>Entity</strong>: A distinguishable real-world object or concept about which data is stored (e.g., STUDENT, DELIVERABLE).</li>
+<li><strong>Entity Class</strong>: The collection of all entities of a given type (e.g., all students).</li>
+<li><strong>Entity Instance</strong>: A single occurrence of an entity (e.g., Student #2001).</li>
+<li><strong>Entity-Relationship (ER) Model</strong>: A conceptual data model introduced by Peter Chen (1976) that uses entities, attributes, and relationships to represent the structure of a database.</li>
+</ul>
+<h3>F</h3>
+<ul>
+<li><strong>Foreign Key</strong>: An attribute in one table that references the primary key of another table, establishing a link between them and enforcing referential integrity.</li>
+<li><strong>First Normal Form (1NF)</strong>: A normal form requiring that every column contains only atomic values, with no repeating groups, and each row is unique.</li>
+</ul>
+<h3>G</h3>
+<ul>
+<li><strong>Generalization</strong>: The process of defining a shared superclass from common characteristics found in multiple entity sets (bottom-up approach).</li>
+</ul>
+<h3>I</h3>
+<ul>
+<li><strong>ID-Dependent Weak Entity</strong>: A weak entity whose primary key includes the parent entity's primary key as a component.</li>
+<li><strong>Identifying Relationship</strong>: A relationship connecting a weak entity to its owner, providing part of the weak entity's identity. Represented by a double diamond in Chen notation and a solid line in Crow's Foot notation.</li>
+<li><strong>Insertion Anomaly</strong>: A data anomaly where new data cannot be added because other, unrelated data is missing.</li>
+</ul>
+<h3>L</h3>
+<ul>
+<li><strong>Logical Data Model</strong>: A detailed, platform-independent data model specifying tables, columns, keys, and constraints without committing to a specific DBMS.</li>
+</ul>
+<h3>M</h3>
+<ul>
+<li><strong>Multi-valued Attribute</strong>: An attribute that can hold multiple values for a single entity (e.g., PhoneNumbers).</li>
+</ul>
+<h3>N</h3>
+<ul>
+<li><strong>Nonidentifying Relationship</strong>: A relationship where the child entity has its own independent primary key. The foreign key references the parent but is not part of the child's primary key. Represented by a dashed line in Crow's Foot notation.</li>
+<li><strong>Normalization</strong>: The process of organizing tables to minimize redundancy and eliminate data anomalies, following a progression of normal forms (1NF, 2NF, 3NF, BCNF).</li>
+</ul>
+<h3>O</h3>
+<ul>
+<li><strong>Overlapping (Inclusive) Subtyping</strong>: A specialization constraint where an instance can belong to multiple subclasses simultaneously.</li>
+</ul>
+<h3>P</h3>
+<ul>
+<li><strong>Partial Key (Discriminator of a Weak Entity)</strong>: An attribute of a weak entity that distinguishes among instances related to the same owner entity.</li>
+<li><strong>Partial Participation</strong>: A participation constraint where an entity is not required to participate in a relationship (represented by a single line).</li>
+<li><strong>Participation Constraint</strong>: A constraint specifying whether an entity's existence depends on its participation in a relationship (total/mandatory or partial/optional).</li>
+<li><strong>Physical Data Model</strong>: A technology-specific model specifying data types, indexes, storage parameters, and security settings for a particular DBMS.</li>
+<li><strong>Primary Key</strong>: The candidate key selected as the unique identifier for an entity set; must not contain null values.</li>
+</ul>
+<h3>R</h3>
+<ul>
+<li><strong>Recursive Relationship</strong>: A relationship in which an entity is related to itself (e.g., EMPLOYEE manages EMPLOYEE).</li>
+<li><strong>Referential Integrity</strong>: A constraint ensuring that foreign key values correspond to existing primary key values in the referenced table.</li>
+<li><strong>Relationship</strong>: An association between two or more entities that reflects a business rule.</li>
+<li><strong>Relationship Degree</strong>: The number of entity sets participating in a relationship (binary = 2, unary/recursive = 1, ternary = 3).</li>
+</ul>
+<h3>S</h3>
+<ul>
+<li><strong>SDLC (System Development Life Cycle)</strong>: A structured framework for planning, building, deploying, and maintaining information systems through deliberate phases.</li>
+<li><strong>Second Normal Form (2NF)</strong>: A normal form requiring that the table is in 1NF and every non-key attribute depends on the entire primary key (no partial dependencies).</li>
+<li><strong>Specialization</strong>: The process of defining subclasses of a superclass, where each subclass has attributes or relationships not shared by the entire superclass (top-down approach).</li>
+<li><strong>Superkey</strong>: A set of one or more attributes that, taken collectively, can uniquely identify an entity within an entity set.</li>
+<li><strong>Surrogate Key</strong>: A system-generated artificial identifier used as the primary key when no natural key is suitable (e.g., auto-incrementing integer).</li>
+</ul>
+<h3>T</h3>
+<ul>
+<li><strong>Third Normal Form (3NF)</strong>: A normal form requiring that the table is in 2NF and no non-key attribute depends on another non-key attribute (no transitive dependencies).</li>
+<li><strong>Total Participation</strong>: A participation constraint where every entity in the set must participate in at least one relationship instance (represented by a double line).</li>
+</ul>
+<h3>U</h3>
+<ul>
+<li><strong>Update Anomaly</strong>: A data anomaly where updating a fact in one place but not others creates data inconsistencies.</li>
+</ul>
+<h3>W</h3>
+<ul>
+<li><strong>Weak Entity Set</strong>: An entity that cannot be uniquely identified by its own attributes alone and depends on a strong entity for its existence and identity.</li>
+</ul>
+<hr />
+<h2>Acronyms</h2>
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BCNF</td>
+<td>Boyce-Codd Normal Form</td>
+</tr>
+<tr>
+<td>DBMS</td>
+<td>Database Management System</td>
+</tr>
+<tr>
+<td>DDL</td>
+<td>Data Definition Language</td>
+</tr>
+<tr>
+<td>EER</td>
+<td>Enhanced Entity-Relationship</td>
+</tr>
+<tr>
+<td>ER</td>
+<td>Entity-Relationship</td>
+</tr>
+<tr>
+<td>ERD</td>
+<td>Entity-Relationship Diagram</td>
+</tr>
+<tr>
+<td>FK</td>
+<td>Foreign Key</td>
+</tr>
+<tr>
+<td>PK</td>
+<td>Primary Key</td>
+</tr>
+<tr>
+<td>SDLC</td>
+<td>System Development Life Cycle</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>Structured Query Language</td>
+</tr>
+<tr>
+<td>UML</td>
+<td>Unified Modeling Language</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Key Concepts</h2>
+<h3>Design Before Implementation</h3>
+<p>Database design is a thinking exercise, not a coding exercise. The most important design work happens before any SQL is written.</p>
+<h3>The Three Levels of Design</h3>
+<p>Conceptual (what the business needs), Logical (platform-independent tables and relationships), and Physical (DBMS-specific implementation).</p>
+<h3>ER Modeling as a Bridge</h3>
+<p>ER diagrams translate business understanding into technical structure, serving as a shared language between stakeholders and developers.</p>
+<h3>Normalization as Structural Insurance</h3>
+<p>Normal forms (1NF through BCNF) systematically eliminate redundancy and anomalies, ensuring each fact is stored exactly once.</p>
+<h3>The Mapping Algorithm</h3>
+<p>A systematic five-step process converts ER diagrams into relational table definitions: map strong entities, map weak entities, map relationships, map special attributes, and map hierarchies.</p>
+                </section>
+<section class="reader-section" id="part-reflection">
+                  <span class="reader-kicker">Reflection Questions</span>
+                  <h2>Reflection: Chapter 10 -- Database Design</h2>
+                  <p><img alt="Reflection GIF" src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" /></p>
+<h2>Review Questions</h2>
+<ol>
+<li>
+<p>What are the three types of data anomalies, and how does good database design prevent them?</p>
+</li>
+<li>
+<p>Explain the difference between a superkey, a candidate key, and a primary key. Give an example of each using the STUDENT entity from the Grading Database.</p>
+</li>
+<li>
+<p>Why is the SDLC important for database design? What risks arise when databases are designed outside of a structured development process?</p>
+</li>
+<li>
+<p>Compare and contrast conceptual, logical, and physical data models. Who is the primary audience for each?</p>
+</li>
+<li>
+<p>What is the difference between cardinality and participation in an ER model? How are each represented in Crow's Foot notation?</p>
+</li>
+<li>
+<p>Define weak entity and explain when a weak entity should be used instead of a strong entity. How does the primary key differ between weak and strong entities?</p>
+</li>
+<li>
+<p>How is a many-to-many (M:N) relationship resolved when translating an ER diagram into relational tables? What role does the associative entity play?</p>
+</li>
+<li>
+<p>Describe the difference between specialization and generalization. When would you use each approach?</p>
+</li>
+<li>
+<p>What are the three strategies for mapping a specialization/generalization hierarchy to relational tables? What are the trade-offs of each?</p>
+</li>
+<li>
+<p>When is denormalization appropriate, and what risks does it introduce?</p>
+</li>
+<li>
+<p>Explain the difference between identifying and nonidentifying relationships. How are they visually distinguished in Crow's Foot notation, and why does this distinction matter for database design?</p>
+</li>
+<li>
+<p>List three common mistakes students make when creating ER diagrams. For each mistake, explain why it is problematic and how to avoid it.</p>
+</li>
+<li>
+<p>In what ways does the ER model differ from a UML class diagram? Under what circumstances might each be more appropriate?</p>
+</li>
+</ol>
+<hr />
+<h2>Discussion Questions</h2>
+<ol>
+<li>
+<p><strong>Design vs. discovery.</strong> Some students argue that you can "discover" the right database structure by starting with SQL and adjusting as you go. Others insist that formal design must come first. Which position do you find more persuasive, and why? Under what conditions might the other approach be acceptable?</p>
+</li>
+<li>
+<p><strong>Business rules and enforcement.</strong> Consider the Grading Database. What business rules should the database enforce automatically through structure and constraints, and which ones are better handled by application logic or human processes? Where do you draw the line?</p>
+</li>
+<li>
+<p><strong>Tool choice matters.</strong> This chapter discusses Microsoft Access, SQLite, and PostgreSQL as implementation platforms. If you were designing a database for a small business (fewer than 50 employees), which platform would you recommend and why? How would your answer change for a company with 5,000 employees?</p>
+</li>
+<li>
+<p><strong>Normalization trade-offs.</strong> A colleague argues that normalizing to 3NF makes queries too complex and slow. They propose keeping everything in a few large, flat tables for simplicity. How would you respond? What evidence from this chapter supports your position?</p>
+</li>
+<li>
+<p><strong>The future of ER modeling.</strong> With the rise of NoSQL databases, document stores, and graph databases, some practitioners argue that ER modeling is becoming obsolete. Do you agree? What aspects of ER modeling remain valuable regardless of the underlying technology?</p>
+</li>
+</ol>
+<hr />
+<h2>Reflection Prompts</h2>
+<ol>
+<li>
+<p>Think about a real system you interact with regularly (registration system, online store, social media platform). What entities, attributes, and relationships would you expect in its underlying database? Sketch a rough ERD.</p>
+</li>
+<li>
+<p>Before this chapter, how did you think about the structure behind a database? Has your understanding of "why tables are organized the way they are" changed? What was the most surprising concept?</p>
+</li>
+<li>
+<p>Consider the Grading Database schema. If you were redesigning it from scratch for a different course (say, a lab science course with experiments, lab partners, and equipment), what entities would change? What relationships would be different?</p>
+</li>
+<li>
+<p>Reflect on the "common mistakes" section. Have you made any of these mistakes in your own work so far? Which mistake do you think is the most tempting to make, and why?</p>
+</li>
+</ol>
+<hr />
+<h2>Exercises</h2>
+<ol>
+<li>
+<p><strong>Identify the anomalies.</strong> Consider a single flat table that stores student names, deliverable descriptions, and grades in one row per grade. Describe one example each of an insertion anomaly, an update anomaly, and a deletion anomaly that could occur with this design.</p>
+</li>
+<li>
+<p><strong>Draw an ER diagram.</strong> Using Crow's Foot notation, draw an ER diagram for a simple library system that tracks Members, Books, and Loans. Specify the cardinality and participation for each relationship. Include at least one weak entity.</p>
+</li>
+<li>
+<p><strong>Apply the mapping algorithm.</strong> Given the following conceptual entities and relationships, produce a relational schema (table definitions with primary and foreign keys):
+   - DEPARTMENT (1) -- employs -- (N) EMPLOYEE
+   - EMPLOYEE (M) -- works_on -- (N) PROJECT
+   - EMPLOYEE (1) -- manages -- (N) EMPLOYEE (recursive)</p>
+</li>
+<li>
+<p><strong>Normalize a flat table.</strong> The following table is unnormalized. Normalize it to 3NF, showing each step:
+   <code>ORDER(OrderID, CustomerName, CustomerPhone, Product1, Product1Price, Product2, Product2Price, TotalAmount)</code></p>
+</li>
+<li>
+<p><strong>Evaluate a design.</strong> Explain the advantages and disadvantages of using a single-table strategy versus a multiple-table strategy for a VEHICLE supertype with CAR and TRUCK subtypes. Under what conditions would you choose each approach?</p>
+</li>
+</ol>
+                </section>
+<section class="reader-section" id="part-rat">
+                  <span class="reader-kicker">Reading Assessment</span>
+                  <h2>Readiness Assessment Test (RAT): Chapter 10 -- From Data to Design: Building Reliable Information Systems</h2>
+                  <p><img alt="RAT Header" src="/_content/BITM330-Book-draft/chapter-drafts/ch09-database-design/rat/.images/Ch0 General/sections/RAT.png&gt;" /></p>
+<blockquote>
+<p><strong>Part of:</strong> Chapter 10 -- <em>From Data to Design: Building Reliable Information Systems</em>
+<strong>Main chapter file:</strong> <a href="ch10-edited-2026-03-08.md">ch10-edited-2026-03-08.md</a>
+<strong>Key terms:</strong> <a href="ch10-TermTreasury-2026-03-08.md">ch10-TermTreasury-2026-03-08.md</a></p>
+</blockquote>
+<hr />
+<h2>Assessment Design Notes</h2>
+<h3>Bloom's Taxonomy Distribution</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bloom's Level</th>
+<th style="text-align: left;">Target Count</th>
+<th style="text-align: left;">Actual Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Remember</strong></td>
+<td style="text-align: left;">2--3</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Understand</strong></td>
+<td style="text-align: left;">5--6</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Apply</strong></td>
+<td style="text-align: left;">5--6</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Analyze</strong></td>
+<td style="text-align: left;">3--4</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Evaluate</strong></td>
+<td style="text-align: left;">2--3</td>
+<td style="text-align: left;">3</td>
+</tr>
+</tbody>
+</table>
+<h3>AI-Resistance Strategies Applied</h3>
+<ol>
+<li><strong>Chapter-specific reasoning over generic knowledge.</strong> Distractors use technically plausible database design statements that contradict <em>this chapter's</em> specific framing -- for example, confusing the chapter's key hierarchy (superkey &gt; candidate key &gt; primary key) with generic definitions, or misattributing SDLC phases.</li>
+<li><strong>Schema-specific context.</strong> Questions reference the Grading Database's exact entities (STUDENT, DELIVERABLE, STUDENT_GRADE, CLASS SESSION), its attribute names, and the chapter's sample data. Generic ER modeling knowledge is insufficient.</li>
+<li><strong>Scenario-based stems with embedded traps.</strong> Application questions describe realistic design situations where the correct answer depends on applying a chapter-specific principle (e.g., why an associative entity is needed, how participation constraints affect NULL values).</li>
+<li><strong>Multi-answer questions with fine-grained distinctions.</strong> Each "Select ALL" option is individually plausible; pattern-matching should fail. Students must discriminate between closely related options about normalization, ER modeling constructs, and mapping rules.</li>
+<li><strong>Distractors drawn from adjacent concepts.</strong> Wrong answers borrow language from related but distinct ideas -- confusing logical design with physical design, confusing weak entities with associative entities, confusing cardinality with participation.</li>
+<li><strong>Non-obvious correct answers.</strong> Correct options are deliberately rephrased from the chapter's exact wording, requiring genuine understanding rather than keyword matching.</li>
+<li><strong>Output prediction from concrete data.</strong> Questions ask students to predict the structural consequences of specific design decisions using the Grading Database's entities and relationships.</li>
+</ol>
+<hr />
+<h2>Individual RAT (iRAT)</h2>
+<p>Complete this assessment individually to test your understanding of Chapter 10: <em>From Data to Design: Building Reliable Information Systems</em>.</p>
+<hr />
+<h3>Single-Answer Multiple Choice (Questions 1--15)</h3>
+<hr />
+<p><strong>1. According to the chapter, what is the primary purpose of database design?</strong> -- <em>Bloom's Level: Remember</em></p>
+<ul>
+<li>A) To write efficient SQL queries that return results quickly</li>
+<li>B) To make data anomalies structurally impossible by organizing data into well-defined entities, relationships, and constraints</li>
+<li>C) To choose the correct DBMS platform for deployment</li>
+<li>D) To create indexes that speed up query performance</li>
+</ul>
+<hr />
+<p><strong>2. The chapter describes a hierarchy of keys used in database design. Which of the following correctly orders the hierarchy from broadest to most specific?</strong> -- <em>Bloom's Level: Remember</em></p>
+<ul>
+<li>A) Primary key &gt; Candidate key &gt; Superkey &gt; Foreign key</li>
+<li>B) Foreign key &gt; Primary key &gt; Candidate key &gt; Superkey</li>
+<li>C) Superkey &gt; Candidate key &gt; Primary key &gt; Foreign key</li>
+<li>D) Candidate key &gt; Superkey &gt; Primary key &gt; Foreign key</li>
+</ul>
+<hr />
+<p><strong>3. In the chapter's discussion of ER diagrams, which shape is used to represent a relationship set?</strong> -- <em>Bloom's Level: Remember</em></p>
+<ul>
+<li>A) Rectangle</li>
+<li>B) Oval</li>
+<li>C) Diamond</li>
+<li>D) Double-bordered rectangle</li>
+</ul>
+<hr />
+<p><strong>4. The chapter states that "good queries assume good design." Which of the following best explains <em>why</em> advanced SQL features like joins, subqueries, and aggregations depend on well-modeled databases?</strong> -- <em>Bloom's Level: Understand</em></p>
+<ul>
+<li>A) Because advanced SQL features require more computing power, and well-designed databases have better hardware</li>
+<li>B) Because advanced SQL assumes clear entity separation, stable keys, and structurally enforced rules -- without these, queries either fail or produce misleading results</li>
+<li>C) Because well-designed databases automatically optimize SQL queries, regardless of how they are written</li>
+<li>D) Because advanced SQL was developed specifically for normalized databases and cannot run on any other structure</li>
+</ul>
+<hr />
+<p><strong>5. The chapter distinguishes between three levels of database design: conceptual, logical, and physical. Why does the chapter insist that logical design should be completed before physical design decisions are made?</strong> -- <em>Bloom's Level: Understand</em></p>
+<ul>
+<li>A) Because conceptual and logical designs are cheaper to create, so teams should use them to save development costs</li>
+<li>B) Because logical design defines entities, relationships, keys, and constraints independently of any DBMS, ensuring the design remains valid across platforms rather than being locked into one tool's conventions</li>
+<li>C) Because physical design is only relevant for enterprise databases, not for smaller systems like the Grading Database</li>
+<li>D) Because logical design automatically generates the physical schema, so no additional physical decisions are needed</li>
+</ul>
+<hr />
+<p><strong>6. The chapter describes participation constraints as either total (mandatory) or partial (optional). Why does the chapter argue that failing to specify participation constraints leaves an ER model incomplete?</strong> -- <em>Bloom's Level: Understand</em></p>
+<ul>
+<li>A) Because participation constraints only apply to many-to-many relationships, and leaving them out makes the diagram inaccurate</li>
+<li>B) Because without participation constraints, the model does not answer critical business questions -- such as whether a deliverable can exist before any scores are entered or whether a student must have attendance records</li>
+<li>C) Because participation constraints determine which DBMS to use for implementation</li>
+<li>D) Because total participation is always required for all relationships in a well-designed database</li>
+</ul>
+<hr />
+<p><strong>7. The chapter explains that normalization progresses through a series of normal forms (1NF through BCNF). According to the chapter, what does Third Normal Form (3NF) specifically eliminate?</strong> -- <em>Bloom's Level: Understand</em></p>
+<ul>
+<li>A) Repeating groups and multi-valued attributes</li>
+<li>B) Partial dependencies where a non-key attribute depends on only part of a composite key</li>
+<li>C) Transitive dependencies where a non-key attribute depends on another non-key attribute</li>
+<li>D) All remaining anomalies caused by non-candidate-key determinants</li>
+</ul>
+<hr />
+<p><strong>8. The chapter warns that denormalization should only be done "with justification." Which of the following best captures the chapter's position on when denormalization is appropriate?</strong> -- <em>Bloom's Level: Understand</em></p>
+<ul>
+<li>A) Whenever the database has more than five tables, because excessive normalization always hurts performance</li>
+<li>B) When queries require excessive joins, in read-heavy applications, or for reporting/data warehousing scenarios where speed outweighs the risk of redundancy</li>
+<li>C) Whenever surrogate keys are used, because surrogate keys make normalization unnecessary</li>
+<li>D) Only during the planning phase of the SDLC, before any tables have been created</li>
+</ul>
+<hr />
+<p><strong>9. A university registrar stores student records, course information, advisor assignments, and transcript data all in a single flat spreadsheet. A student withdraws from one course, and the registrar deletes that row. The row also contained the only record of the student's advisor assignment. Based on the chapter, which type of data anomaly has occurred?</strong> -- <em>Bloom's Level: Apply</em></p>
+<ul>
+<li>A) Insertion anomaly</li>
+<li>B) Update anomaly</li>
+<li>C) Deletion anomaly</li>
+<li>D) Referential integrity violation</li>
+</ul>
+<hr />
+<p><strong>10. During a design review of the Grading Database, a team member proposes storing a student's Age as a column in the STUDENT table. Another team member argues that only BirthDate should be stored. Based on the chapter's discussion of attribute classification, which argument aligns with the chapter?</strong> -- <em>Bloom's Level: Apply</em></p>
+<ul>
+<li>A) Age should be stored because it is used more frequently than BirthDate in reports</li>
+<li>B) Both Age and BirthDate should be stored to ensure consistency and avoid calculation errors</li>
+<li>C) Age is a derived attribute -- it should be computed from BirthDate at query time rather than stored, because storing it creates maintenance overhead and risks inconsistency</li>
+<li>D) BirthDate is a composite attribute and should be decomposed into BirthDay, BirthMonth, and BirthYear</li>
+</ul>
+<hr />
+<p><strong>11. Consider the following Crow's Foot notation from the chapter:</strong></p>
+<pre><code>DELIVERABLE ||----o{ STUDENT_GRADE
+</code></pre>
+<p><strong>Which of the following correctly reads this relationship?</strong> -- <em>Bloom's Level: Apply</em></p>
+<ul>
+<li>A) Each DELIVERABLE must be associated with at least one STUDENT_GRADE; each STUDENT_GRADE may be associated with zero or one DELIVERABLE</li>
+<li>B) Each DELIVERABLE can be associated with zero or many STUDENT_GRADE records; each STUDENT_GRADE must be associated with exactly one DELIVERABLE</li>
+<li>C) Each DELIVERABLE can be associated with exactly one STUDENT_GRADE; each STUDENT_GRADE can be associated with many DELIVERABLES</li>
+<li>D) Each DELIVERABLE is optionally associated with one STUDENT_GRADE; each STUDENT_GRADE is optionally associated with one DELIVERABLE</li>
+</ul>
+<hr />
+<p><strong>12. A designer is modeling a university library system and identifies a BOOK_COPY entity that cannot be uniquely identified without knowing which BOOK it belongs to. The primary key of BOOK_COPY is {BookID, CopyNumber}. Based on the chapter, what type of entity is BOOK_COPY?</strong> -- <em>Bloom's Level: Apply</em></p>
+<ul>
+<li>A) A strong entity with a composite primary key</li>
+<li>B) A weak entity with CopyNumber as a partial key, dependent on BOOK through an identifying relationship</li>
+<li>C) An associative entity resolving a many-to-many relationship between BOOK and LIBRARY</li>
+<li>D) A recursive entity that references itself</li>
+</ul>
+<hr />
+<p><strong>13. According to the chapter's mapping algorithm, how should a many-to-many (M:N) relationship between STUDENT and COURSE be implemented in a relational schema?</strong> -- <em>Bloom's Level: Apply</em></p>
+<ul>
+<li>A) Place StudentID as a foreign key in the COURSE table</li>
+<li>B) Place CourseID as a foreign key in the STUDENT table</li>
+<li>C) Create a new intersection (junction) table containing foreign keys from both STUDENT and COURSE</li>
+<li>D) Combine both entities into a single STUDENT_COURSE table with all attributes from both</li>
+</ul>
+<hr />
+<p><strong>14. A team is designing the Grading Database and must decide how to handle a student's phone numbers, knowing that students may have a mobile number, a home number, and a work number. Based on the chapter's guidance on attribute types and normal form rules, which approach aligns with 1NF?</strong> -- <em>Bloom's Level: Apply</em></p>
+<ul>
+<li>A) Store all phone numbers in a single comma-separated text field in the STUDENT table</li>
+<li>B) Add three columns to the STUDENT table: MobilePhone, HomePhone, WorkPhone</li>
+<li>C) Create a separate STUDENT_PHONE table with StudentID as a foreign key and individual rows for each phone number</li>
+<li>D) Store only the primary phone number and discard the others</li>
+</ul>
+<hr />
+<p><strong>15. A designer creates a Crow's Foot ERD and uses a dashed line between STUDENT_GRADE and STUDENT, but uses a solid line between ORDER_ITEM and ORDER in a separate retail database. Based on the chapter, what is the significance of this visual distinction?</strong> -- <em>Bloom's Level: Apply</em></p>
+<ul>
+<li>A) Dashed lines indicate optional relationships; solid lines indicate mandatory relationships</li>
+<li>B) Dashed lines represent nonidentifying relationships where the child has its own independent primary key; solid lines represent identifying relationships where the child's primary key includes the parent's primary key</li>
+<li>C) Dashed lines indicate one-to-one relationships; solid lines indicate one-to-many relationships</li>
+<li>D) The distinction is purely aesthetic and has no structural meaning</li>
+</ul>
+<hr />
+<h3>Multiple-Answer Questions (Questions 16--20)</h3>
+<p><em>Select ALL that apply for each question. Each question has at least two correct answers.</em></p>
+<hr />
+<p><strong>16. The chapter identifies six SDLC phases viewed through a database design lens. Which of the following statements accurately reflect the chapter's description of how these phases apply to database work? <em>(Select ALL that apply.)</em></strong> -- <em>Bloom's Level: Analyze</em></p>
+<ul>
+<li>A) During Planning and Analysis, the focus is on understanding what information must be captured and what questions the system must answer -- no tables are created and no SQL is written</li>
+<li>B) During the Design phase, the designer selects the specific DBMS vendor and purchases licensing before any modeling begins</li>
+<li>C) During Testing, the team verifies that data integrity rules are enforced by structure and that required queries return correct results under realistic conditions</li>
+<li>D) The Maintenance phase is typically the shortest phase, since well-designed databases rarely need updates</li>
+<li>E) The chapter states that mistakes made early in the SDLC are the most expensive to fix later, because once data accumulates and users depend on the system, redesign becomes costly and disruptive</li>
+</ul>
+<hr />
+<p><strong>17. The chapter discusses several advanced ER modeling concepts. Which of the following correctly describe these concepts as presented in the chapter? <em>(Select ALL that apply.)</em></strong> -- <em>Bloom's Level: Analyze</em></p>
+<ul>
+<li>A) A weak entity cannot be uniquely identified by its own attributes alone and requires an identifying relationship with a strong entity; its primary key is a composite of the owner's primary key and a partial key</li>
+<li>B) An associative (intersection) entity resolves a many-to-many relationship by transforming it into two one-to-many relationships, and often carries its own attributes that describe the relationship itself</li>
+<li>C) In a disjoint specialization, an entity instance can belong to multiple subclasses simultaneously</li>
+<li>D) Aggregation allows a relationship set to be treated as a higher-level abstract entity so it can participate in another relationship</li>
+<li>E) Recursive relationships occur when an entity has a relationship with itself, such as EMPLOYEE manages EMPLOYEE, and can take any cardinality (1:1, 1:N, or M:N)</li>
+</ul>
+<hr />
+<p><strong>18. The chapter presents three strategies (A, B, C) for mapping specialization/generalization hierarchies to relational tables. Which of the following accurately describe these strategies and their trade-offs as discussed in the chapter? <em>(Select ALL that apply.)</em></strong> -- <em>Bloom's Level: Analyze</em></p>
+<ul>
+<li>A) Strategy A (multiple tables) creates one table for the superclass plus one per subclass, where subclass tables include the superclass PK as both PK and FK -- this approach is normalized and avoids NULLs but requires JOINs</li>
+<li>B) Strategy B (subclass tables only) can only be used when every superclass instance must belong to a subclass (total specialization), and each subclass table contains all inherited superclass attributes</li>
+<li>C) Strategy C (single table) is always the best choice because it eliminates JOINs and produces the simplest queries regardless of the number of subclass-specific attributes</li>
+<li>D) Strategy A is best when integrity and storage efficiency are priorities, while Strategy C is best when there are few subclass-specific attributes and the hierarchy is disjoint</li>
+<li>E) Strategy B eliminates redundancy because superclass attributes are stored only once in a shared parent table</li>
+</ul>
+<hr />
+<p><strong>19. The chapter lists several common mistakes in database modeling. Based on the chapter's specific warnings, which of the following are explicitly identified as modeling errors? <em>(Select ALL that apply.)</em></strong> -- <em>Bloom's Level: Evaluate</em></p>
+<ul>
+<li>A) Implementing a many-to-many relationship by adding repeating columns (Student1, Student2, Student3) rather than creating an associative entity</li>
+<li>B) Using singular nouns for entity names instead of plural nouns</li>
+<li>C) Skipping the ER modeling step entirely and jumping straight into CREATE TABLE statements based on an informal understanding of requirements</li>
+<li>D) Failing to label relationship lines with verbs that describe the business rule (e.g., writing just a line instead of "earns" or "attends")</li>
+<li>E) Choosing SQLite over PostgreSQL for a prototype, since the chapter states all prototypes must use enterprise-grade databases</li>
+</ul>
+<hr />
+<p><strong>20. The chapter compares the ER model to alternative modeling approaches (UML class diagrams and NoSQL data modeling). Which of the following statements about the ER model's strengths and limitations are consistent with the chapter's discussion? <em>(Select ALL that apply.)</em></strong> -- <em>Bloom's Level: Evaluate</em></p>
+<ul>
+<li>A) The ER model excels at visualizing data relationships and communicating structure to both technical and non-technical stakeholders</li>
+<li>B) The ER model captures system behavior, methods, and operations in addition to data structure</li>
+<li>C) For very large enterprise systems with hundreds of entities, ERDs can become difficult to read and maintain</li>
+<li>D) The intellectual discipline of identifying entities, attributes, and relationships remains valuable even when the target implementation is not a relational database</li>
+<li>E) The ER model is the only valid approach for modern database design, and UML and NoSQL modeling are considered obsolete alternatives</li>
+</ul>
+<hr />
+<hr />
+<h2>Answer Key</h2>
+<hr />
+<h4>Question 1</h4>
+<p><strong>Correct Answer: B) To make data anomalies structurally impossible by organizing data into well-defined entities, relationships, and constraints</strong></p>
+<p><em>Explanation:</em> The chapter states in Section 10.2.4: "At its core, database design aims to make data anomalies structurally impossible." Every design principle introduced in the chapter -- entities, relationships, keys, normalization -- exists to prevent insertion, update, and deletion anomalies. Option A describes query writing, not design. Option C describes platform selection, which is a physical design decision. Option D describes indexing, which is a physical implementation concern.</p>
+<hr />
+<h4>Question 2</h4>
+<p><strong>Correct Answer: C) Superkey &gt; Candidate key &gt; Primary key &gt; Foreign key</strong></p>
+<p><em>Explanation:</em> Section 10.5.4 defines the hierarchy: a superkey is any set of attributes that uniquely identifies an entity; a candidate key is a <em>minimal</em> superkey; a primary key is the candidate key <em>chosen</em> by the designer; and a foreign key references another entity's primary key. The hierarchy narrows from broadest (superkey, which includes redundant attributes) to most specific (primary key, a single selected candidate key). Foreign keys serve a different purpose (implementing relationships) but are placed at the end of the hierarchy as derived from primary keys.</p>
+<hr />
+<h4>Question 3</h4>
+<p><strong>Correct Answer: C) Diamond</strong></p>
+<p><em>Explanation:</em> Section 10.5.5 states: "In ER diagrams, relationships are represented by <strong>diamond</strong> symbols connecting the participating entity rectangles." Rectangles represent entities. Ovals represent attributes. Double-bordered rectangles represent weak entities.</p>
+<hr />
+<h4>Question 4</h4>
+<p><strong>Correct Answer: B) Because advanced SQL assumes clear entity separation, stable keys, and structurally enforced rules -- without these, queries either fail or produce misleading results</strong></p>
+<p><em>Explanation:</em> Section 10.1.1 states that advanced SQL "increasingly assumes that the underlying database is well modeled" and specifically expects "clear separation of entities (students, deliverables, grades), stable primary and foreign keys, [and] consistent rules enforced by structure rather than by memory or convention." Without these foundations, "advanced SQL features either fail outright or produce misleading results." Option A confuses design quality with hardware. Option C falsely claims automatic optimization. Option D incorrectly limits SQL's scope.</p>
+<hr />
+<h4>Question 5</h4>
+<p><strong>Correct Answer: B) Because logical design defines entities, relationships, keys, and constraints independently of any DBMS, ensuring the design remains valid across platforms rather than being locked into one tool's conventions</strong></p>
+<p><em>Explanation:</em> Section 10.11.1 states: "A good design does not depend on the tool. If your design only works in one DBMS, it is not a design -- it is a workaround." The three design levels (conceptual, logical, physical) are introduced in Section 10.3.3, Phase 2, where logical design is described as "tables, columns, primary keys, foreign keys, normalization rules" created for "database designers, developers" -- independent of technology choices. Option A trivializes the purpose to cost savings. Option C incorrectly limits physical design to enterprise systems. Option D falsely claims automatic generation.</p>
+<hr />
+<h4>Question 6</h4>
+<p><strong>Correct Answer: B) Because without participation constraints, the model does not answer critical business questions -- such as whether a deliverable can exist before any scores are entered or whether a student must have attendance records</strong></p>
+<p><em>Explanation:</em> Section 10.12.4 explicitly warns: "Failing to specify whether a relationship is optional or mandatory leaves critical business rules undocumented. Can a deliverable exist before any scores are entered? Can a student exist without any attendance records? If your ERD does not answer these questions, it is incomplete." Option A incorrectly limits participation constraints to M:N relationships. Option C conflates constraints with platform selection. Option D wrongly claims total participation is always required.</p>
+<hr />
+<h4>Question 7</h4>
+<p><strong>Correct Answer: C) Transitive dependencies where a non-key attribute depends on another non-key attribute</strong></p>
+<p><em>Explanation:</em> Section 10.8.2 defines 3NF as: "In 2NF, and no non-key attribute depends on another non-key attribute." The example given is that if ZipCode determines City, then City should be in a separate ZIP table. Option A describes what 1NF eliminates. Option B describes 2NF. Option D describes BCNF.</p>
+<hr />
+<h4>Question 8</h4>
+<p><strong>Correct Answer: B) When queries require excessive joins, in read-heavy applications, or for reporting/data warehousing scenarios where speed outweighs the risk of redundancy</strong></p>
+<p><em>Explanation:</em> Section 10.8.3 lists three conditions for considering denormalization: "Queries require excessive joins across many tables," "Read-heavy applications need faster retrieval," and "Reporting and data warehousing scenarios prioritize speed over purity." The key takeaway is: "Normalize by default; denormalize with justification." Option A applies a false threshold. Option C fabricates a connection between surrogate keys and normalization. Option D incorrectly places denormalization in the planning phase.</p>
+<hr />
+<h4>Question 9</h4>
+<p><strong>Correct Answer: C) Deletion anomaly</strong></p>
+<p><em>Explanation:</em> Section 10.2.3 defines a deletion anomaly as occurring "when removing one piece of data inadvertently destroys another, unrelated piece of data." The example mirrors the chapter's illustration: "If a student's only grade record is deleted from a flat table, and that row also contained the student's contact information, then the student's information disappears entirely -- even though the intent was only to remove the grade." In this scenario, deleting the course enrollment destroys the advisor assignment.</p>
+<hr />
+<h4>Question 10</h4>
+<p><strong>Correct Answer: C) Age is a derived attribute -- it should be computed from BirthDate at query time rather than stored, because storing it creates maintenance overhead and risks inconsistency</strong></p>
+<p><em>Explanation:</em> Section 10.4.2 classifies Age as a <strong>derived attribute</strong> -- "Calculated from other stored attributes" -- and the accompanying tip states: "It is generally best practice to compute derived values at query time rather than storing them." Storing Age would require constant updates and risk being out of date. Option A prioritizes usage frequency over design correctness. Option B creates redundancy. Option D misclassifies BirthDate.</p>
+<hr />
+<h4>Question 11</h4>
+<p><strong>Correct Answer: B) Each DELIVERABLE can be associated with zero or many STUDENT_GRADE records; each STUDENT_GRADE must be associated with exactly one DELIVERABLE</strong></p>
+<p><em>Explanation:</em> Section 10.6.3 teaches reading Crow's Foot: "Read the symbols from the perspective of the opposite entity." The <code>||</code> on the DELIVERABLE side means each STUDENT_GRADE relates to exactly one DELIVERABLE (mandatory one). The <code>o{</code> on the STUDENT_GRADE side means each DELIVERABLE relates to zero or many STUDENT_GRADE records (optional many). This matches the Grading Database's logic: a deliverable can exist before any grades are entered, but each grade must reference exactly one deliverable.</p>
+<hr />
+<h4>Question 12</h4>
+<p><strong>Correct Answer: B) A weak entity with CopyNumber as a partial key, dependent on BOOK through an identifying relationship</strong></p>
+<p><em>Explanation:</em> Section 10.7.1 defines a weak entity as one that "cannot be uniquely identified by its own attributes alone" and whose "primary key is formed by combining the owner's primary key with the partial key." BOOK_COPY's primary key {BookID, CopyNumber} includes the owner (BOOK) entity's key, and CopyNumber alone is the partial key (discriminator). This matches the chapter's SECTION/COURSE example. Option A misidentifies it as a strong entity. Option C describes an associative entity. Option D describes a recursive relationship.</p>
+<hr />
+<h4>Question 13</h4>
+<p><strong>Correct Answer: C) Create a new intersection (junction) table containing foreign keys from both STUDENT and COURSE</strong></p>
+<p><em>Explanation:</em> Section 10.10.3 states the mapping rule for M:N relationships: "Create a new intersection (junction) table containing FKs from both participating tables." Section 10.7.2 further explains that an associative entity "transforms one M:N relationship into two 1:N relationships." Options A and B would only handle a 1:N relationship. Option D combines entities instead of relating them, destroying their independent identity.</p>
+<hr />
+<h4>Question 14</h4>
+<p><strong>Correct Answer: C) Create a separate STUDENT_PHONE table with StudentID as a foreign key and individual rows for each phone number</strong></p>
+<p><em>Explanation:</em> Section 10.10.4 states: "Multi-valued attributes: Create a separate table with the multi-valued attribute and the primary key of the original entity as a foreign key." Phone numbers are classified as multi-valued (Section 10.5.3 lists "PhoneNumbers" as the example of a multi-valued attribute in the double-oval notation). Option A violates 1NF (which requires atomic values). Option B uses repeating groups (a fixed number of phone columns), which is inflexible. Option D discards valid data.</p>
+<hr />
+<h4>Question 15</h4>
+<p><strong>Correct Answer: B) Dashed lines represent nonidentifying relationships where the child has its own independent primary key; solid lines represent identifying relationships where the child's primary key includes the parent's primary key</strong></p>
+<p><em>Explanation:</em> Section 10.6.4 explicitly defines this distinction: "Identifying relationship (solid line): The child entity's primary key includes the parent's primary key." "Nonidentifying relationship (dashed line): The child entity has its own independent primary key. The foreign key references the parent but is not part of the child's primary key." STUDENT_GRADE has GradeID as its own PK (nonidentifying, dashed), while ORDER_ITEM's PK includes OrderID (identifying, solid). Option A confuses this with participation constraints. Option C confuses it with cardinality. Option D denies a meaningful distinction.</p>
+<hr />
+<h3>Multiple-Answer Questions (Questions 16--20)</h3>
+<hr />
+<h4>Question 16</h4>
+<p><strong>Correct Answers: A, C, E</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>Yes</td>
+<td>Section 10.3.3, Phase 1 states: "At this stage, no tables are created, and no SQL is written. The focus is on understanding the information landscape, not implementation details."</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>No</td>
+<td>Section 10.3.3, Phase 2 describes the Design phase as focused on conceptual, logical, and physical modeling -- not vendor selection and licensing. The chapter separates design (structure) from implementation (technology).</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Yes</td>
+<td>Section 10.3.3, Phase 4 states testing includes "confirming that required queries can be written cleanly and correctly, validating data integrity rules, and ensuring that business rules are enforced by structure, not by user memory."</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>No</td>
+<td>Section 10.3.3, Phase 6 states the opposite: "Maintenance is the longest phase of the SDLC and where design quality truly reveals itself." The chapter's tip states: "In practice, most database work happens during maintenance, not initial development."</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>Yes</td>
+<td>Section 10.3.1 warns: "Mistakes made early in the SDLC are the most expensive to fix later. A poorly designed table or missing relationship may seem harmless during development, but once data accumulates and users depend on it, redesign becomes costly, risky, and disruptive."</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Question 17</h4>
+<p><strong>Correct Answers: A, B, D, E</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>Yes</td>
+<td>Section 10.7.1 states: "A weak entity set is an entity that cannot be uniquely identified by its own attributes alone" and "The primary key of a weak entity is formed by combining the owner's primary key with the partial key." The identifying relationship to the owner is always total participation.</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Yes</td>
+<td>Section 10.7.2 states an associative entity "transforms one M:N relationship into two 1:N relationships" and "often has its own attributes that describe the relationship itself." STUDENT_GRADE carries Score as a relationship attribute.</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>No</td>
+<td>Section 10.7.3 defines <em>disjoint (d)</em> as: "Each instance belongs to at most one subclass." It is <em>overlapping (o)</em> specialization that allows membership in multiple subclasses. This is a common confusion between disjoint and overlapping constraints.</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>Yes</td>
+<td>Section 10.7.5 defines aggregation as "treating a relationship set and its participating entities as a single, higher-level abstract entity, which can then participate in other relationships." The Manager-supervises-Works_On example illustrates this.</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>Yes</td>
+<td>Section 10.7.4 states: "A recursive relationship occurs when an entity has a relationship with itself. These can take any cardinality: 1:1 Recursive... 1:N Recursive: EMPLOYEE manages other EMPLOYEES... M:N Recursive."</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Question 18</h4>
+<p><strong>Correct Answers: A, B, D</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>Yes</td>
+<td>Section 10.10.5 describes Strategy A as: "One table for superclass + one per subclass; subclass tables include superclass PK as both PK and FK." Pros: "Normalized, no NULLs, extensible." Cons: "Requires JOINs."</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Yes</td>
+<td>Section 10.10.5 describes Strategy B as: "One table per subclass, each containing all inherited superclass attributes." Its "Best When" column states: "Every instance must belong to a subclass," confirming it requires total specialization.</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>No</td>
+<td>Section 10.10.5 lists Strategy C's cons as: "Many NULLs, hard to enforce constraints." It is best only when there are "Few subclass-specific attributes; disjoint hierarchy." The chapter does not endorse it as universally best.</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>Yes</td>
+<td>Section 10.10.5's "Best When" column states Strategy A is best when "Integrity and storage efficiency are priorities" and Strategy C is best when there are "Few subclass-specific attributes; disjoint hierarchy."</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>No</td>
+<td>Strategy B <em>duplicates</em> superclass attributes into each subclass table ("each containing all inherited superclass attributes"), which introduces redundancy -- the opposite of what this option claims. It is Strategy A that avoids this duplication.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Question 19</h4>
+<p><strong>Correct Answers: A, C, D</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>Yes</td>
+<td>Section 10.12.1 explicitly warns: "Attempting to do so (for example, putting multiple StudentIDs in a single Deliverable row, or creating repeating columns like Student1, Student2, Student3) violates 1NF and creates maintenance nightmares."</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>No</td>
+<td>The chapter actively recommends singular nouns: Section 10.9.5, Step 3 states: "name them with clear singular nouns such as STUDENT, COURSE, INSTRUCTOR... Singular nouns improve readability because each box represents one type of thing." Using singular nouns is a good practice, not a mistake.</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Yes</td>
+<td>Section 10.12.6 identifies this as "the single most common mistake": "jumping straight into CREATE TABLE statements based on an informal understanding of the requirements. This nearly always produces flat, denormalized structures." The chapter warns: "Never let SQL be your first design tool."</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>Yes</td>
+<td>Section 10.12.2 warns: "An ERD line connecting two entities without a clear verb label... leaves the relationship ambiguous." The good practice is to "Label every relationship line with a verb that describes the business rule: STUDENT <em>earns</em> GRADE, not STUDENT <em>has</em> GRADE."</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>No</td>
+<td>Section 10.11.3 describes SQLite as valid for "Learning, embedded systems, mobile apps" and Access as effective for "Education, rapid prototyping, small-team solutions." The chapter explicitly endorses non-enterprise platforms for appropriate use cases, including its own use of SQLite throughout the course.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>Question 20</h4>
+<p><strong>Correct Answers: A, C, D</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Correct?</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>Yes</td>
+<td>Section 10.13.1 lists as a strength: "The graphical nature of ERDs makes them intuitive for visualizing complex data relationships, accessible to non-technical stakeholders" and "ERDs serve as a common language between business users and technical teams."</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>No</td>
+<td>Section 10.13.2 explicitly states as a limitation: "The ER model describes the static structure of data but does not represent system behavior, data flow, or process logic." UML class diagrams, by contrast, include "Methods and operations" (Section 10.13.3).</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Yes</td>
+<td>Section 10.13.2 states: "For very large enterprise systems with hundreds of entities, ERDs can become difficult to read and maintain." This is an explicitly acknowledged limitation.</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>Yes</td>
+<td>Section 10.13.3 states: "Regardless of the target technology, the intellectual discipline of analyzing a domain to identify its entities, attributes, and relationships remains necessary. The thought process that the ER model instills serves every data professional, even when the implementation is not a relational database."</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>No</td>
+<td>The chapter explicitly presents UML and NoSQL modeling as valid alternative approaches with their own strengths (Section 10.13.3 comparison table). It states the ER model has limitations and compares rather than dismisses alternatives.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Question Distribution Summary</h2>
+<h3>Table 1: Bloom's Level</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bloom's Level</th>
+<th style="text-align: left;">Questions</th>
+<th style="text-align: left;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Remember</strong></td>
+<td style="text-align: left;">1, 2, 3</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Understand</strong></td>
+<td style="text-align: left;">4, 5, 6, 7, 8</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Apply</strong></td>
+<td style="text-align: left;">9, 10, 11, 12, 13, 14, 15</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Analyze</strong></td>
+<td style="text-align: left;">16, 17, 18</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Evaluate</strong></td>
+<td style="text-align: left;">19, 20</td>
+<td style="text-align: left;">3</td>
+</tr>
+</tbody>
+</table>
+<h3>Table 2: Question Type</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Question Type</th>
+<th style="text-align: left;">Questions</th>
+<th style="text-align: left;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Single-answer MC</td>
+<td style="text-align: left;">1--15</td>
+<td style="text-align: left;">15</td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple-answer (Select ALL)</td>
+<td style="text-align: left;">16--20</td>
+<td style="text-align: left;">5</td>
+</tr>
+</tbody>
+</table>
+<h3>Table 3: Design Criterion</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Design Criterion</th>
+<th style="text-align: left;">Questions</th>
+<th style="text-align: left;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Application-based</strong></td>
+<td style="text-align: left;">9, 11, 12, 13, 14, 15</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Scenario-based</strong></td>
+<td style="text-align: left;">4, 6, 9, 10</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Definition-only</strong></td>
+<td style="text-align: left;">1, 2, 3, 7, 8</td>
+<td style="text-align: left;">5</td>
+</tr>
+</tbody>
+</table>
+                </section>
+        </section>
+        <footer class="reader-footer">
+          <a class="pager-card" href="ch08-midterm-review.html"><small>Previous</small><strong>Chapter 8: Chapter 8: Midterm Review - Concepts</strong></a>
+          <a class="pager-card pager-card--next" href="ch10-advanced-sql-queries.html"><small>Next</small><strong>Chapter 10: Chapter 9: Advanced SQL with the Grading Database</strong></a>
+        </footer>
+      </article>
+    </div>
+  </main>
+  <script src="../../script.js"></script>
+</body>
+</html>

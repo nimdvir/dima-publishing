@@ -1,15 +1,18 @@
 ---
 name: chapter-tracker
 description: >
-  View and update the BITM330 chapter tracker. Use when: checking what work is pending for a chapter
-  or any book-level task; adding a new todo; marking a task complete; moving a finished row to the
-  archive; reviewing overall book progress. Do NOT read the Archive section unless explicitly asked.
+  View and update the BITM330 chapter tracker at
+  `books/database-book/.edits/chapter-tracker.md`. Use when: checking what
+  work is pending for a chapter or any book-level task; adding a new todo;
+  marking a task complete; moving a finished row to the archive; reviewing
+  overall book progress. Do NOT read the Archive section unless explicitly
+  asked.
 argument-hint: Optional chapter number or task (e.g., "Ch05", "mark Ch04 images complete", "add skill todo")
 ---
 
 # BITM330 Chapter Tracker
 
-**Tracker file:** `.docs/.edits/chapter-tracker.md`
+**Tracker file:** `books/database-book/.edits/chapter-tracker.md`
 
 ---
 
@@ -18,7 +21,7 @@ argument-hint: Optional chapter number or task (e.g., "Ch05", "mark Ch04 images 
 Open and read the tracker. Stop at the `## Archive` heading — do not read below it.
 
 ```text
-G:\My Drive\0-Projects\!-important\BITM330-book-drive\.docs\.edits\chapter-tracker.md
+books/database-book/.edits/chapter-tracker.md
 ```
 
 The Active table is a single flat table with a **Category** column. Categories are:
@@ -78,6 +81,7 @@ When a chapter's Next cell is empty:
 ## Step 5 — Confirm
 
 Report back briefly:
+
 - What row was updated or added.
 - Current state of the Next cell for that chapter.
 - No need to print the full table unless the user asks.
