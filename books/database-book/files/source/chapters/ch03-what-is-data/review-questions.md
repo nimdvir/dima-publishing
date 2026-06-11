@@ -1,23 +1,4 @@
----
-title: "Chapter 3: Review and Reflection"
-chapter: 3
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 3 concepts on data fundamentals — meaning, classification, representation, structure, and stewardship — and connect them to real-world data work."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - data fundamentals
-  - metadata
-  - data quality
-  - spreadsheets
-  - databases
-  - measurement levels
-  - data lifecycle
-  - chapter 3
-date: 2026-06-03
-author: "Nimrod Dvir"
----
+
 <!-- markdownlint-disable MD025 -->
 # Chapter 3: Review and Reflection
 

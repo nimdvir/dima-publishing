@@ -1,11 +1,4 @@
 ﻿<!-- Chapter edit: restored supplementary video, folded in comprehensive briefing content (coffee-shop POS example, Productivity Paradox context), placed new images (concepts map + summary visual), normalized page breaks to canonical format. Technical meaning preserved. -->
----
-title: "Chapter 2: Foundations of Information Systems"
-author: "Nimrod Dvir, PhD"
-date: 2026-06-06
-lang: en-US
-toc: true
----
 
 # Chapter 2: Foundations of Information Systems
 

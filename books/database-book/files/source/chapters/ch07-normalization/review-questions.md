@@ -1,24 +1,4 @@
----
-title: "Chapter 7: Review and Reflection"
-chapter: 7
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 7 normalization concepts and connect schema design choices to data integrity, referential integrity, junction tables, reporting through joins and views, and managerial decision-making."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - normalization
-  - determinants
-  - anomalies
-  - junction tables
-  - referential integrity
-  - views
-  - denormalization
-  - chapter 7
-date: 2026-05-26
-author: "Nimrod Dvir, PhD"
 
-<!-- markdownlint-disable MD025 -->
 # Chapter 7: Review and Reflection
 
 ![Reflection GIF](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0)

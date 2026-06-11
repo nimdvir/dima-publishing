@@ -1,13 +1,12 @@
----
-name: "Daily Work Log Full Documentation"
-description: "Generate the full markdown record of today's BITM330 work session, including file moves, inventory rebuilds, Cloudinary links, duplicate handling, and any other verified session work."
+name: "Log Today (Full Documentation)"
+description: "Alias for generating the full BITM330 daily work log from today's verified session work."
 argument-hint: "Optional session notes, target chapter, or a short list of completed tasks"
 agent: "agent"
 ---
 
 Create the **full markdown daily work log** for the BITM330 project from the current session or the notes provided by the user.
 
-This is the detailed documentation version. Capture the work in enough detail that someone can understand the day's changes without reading the chat.
+This alias uses the same full documentation standard as `daily-work-log.prompt.md`.
 
 ## Requirements
 
@@ -18,13 +17,13 @@ This is the detailed documentation version. Capture the work in enough detail th
 - If Cloudinary URLs were already present in the source markdown, include them in the report.
 - Do not repeat duplicate assets individually; group them or summarize them by count.
 - Distinguish between:
-  - planning or inspection
-  - file and folder moves
-  - archived files
-  - deduped or skipped files
-  - inventory and gallery refreshes
-  - verification and rebuild passes
-  - remaining follow-ups
+	- planning or inspection
+	- file and folder moves
+	- archived files
+	- deduped or skipped files
+	- inventory and gallery refreshes
+	- verification and rebuild passes
+	- remaining follow-ups
 - If the session included repo tooling or customization changes, document those too when relevant.
 
 ## Suggested Output Structure

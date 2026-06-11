@@ -1,23 +1,4 @@
----
-title: "Chapter 2: Review and Reflection"
-chapter: 2
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 2 concepts — DIKW, R.E.A.D., information systems, MIS, BITM, KPIs, strategic alignment, and information behavior — and connect them to business performance, the Let's Build course-as-a-system analysis, and their own professional development."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - information systems
-  - DIKW
-  - R.E.A.D.
-  - KPIs
-  - business performance
-  - MIS
-  - BITM
-  - chapter 2
-date: 2026-06-03
-author: "Nimrod Dvir"
----
+
 
 # Chapter 2: Review and Reflection
 

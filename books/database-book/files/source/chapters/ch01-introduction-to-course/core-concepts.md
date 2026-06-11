@@ -29,8 +29,7 @@ You will not learn databases as a pile of disconnected terms. You will learn dat
 
 You will also put theory into practice. You will work with two main projects, the **Grading Database** and PetVax, so you can move from **Guided Practice** to **Transfer Practice**. The goal is not to memorize disconnected technical steps. The goal is to understand how data becomes structure, how structure supports analysis, and how analysis supports better business decisions.
 
-![Learning objectives graphic linking Chapter 1 goals to the course's business, technical, and systems-thinking outcomes](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-figure12-objectives)
-*The opening visual shows the learning goals that connect business meaning, technical structure, and the data-to-decisions journey.*
+
 
 
 
@@ -63,9 +62,6 @@ You will also put theory into practice. You will work with two main projects, th
 - recognize how the book's chapter structure supports guided learning and independent application;
 - describe the habits that help students succeed in technical business learning; and
 - explain why this course takes a systems-thinking rather than a tool-first approach.
-
-<div class="page-break"></div>
-
 
 
 ![Chapter 1 overview infographic linking structure, insight, strategy, and project-based learning](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch01-infographic)

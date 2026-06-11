@@ -1,23 +1,4 @@
----
-title: "Chapter 4: Review and Reflection"
-chapter: 4
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 4 concepts about databases, DBMS architecture, relational tables, keys, constraints, and the move from file environments to governed database systems."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - databases
-  - DBMS
-  - relational tables
-  - primary keys
-  - foreign keys
-  - constraints
-  - SQL
-  - chapter 4
-date: 2026-06-04
-author: "Nimrod Dvir"
----
+
 <!-- markdownlint-disable MD025 -->
 # Chapter 4: Review and Reflection
 

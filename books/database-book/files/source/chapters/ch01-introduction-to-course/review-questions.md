@@ -167,3 +167,11 @@ Suggested Answer: A strong response names one tool from the Tool Ecosystem with 
 **Question 7: The chapter frames this book as preparation for the moment when an employer asks you to "pull data, write a query, read a report, or question a number." What would help you feel ready for that moment by the end of the semester?**
 
 Suggested Answer: A strong response describes a personal definition of readiness, such as being able to read an unfamiliar schema, write a basic SELECT with a join, explain what a metric measures, and flag at least one risk in a report. The best answers also name one habit from the chapter, such as steady work, business-question framing, or the error-as-clue mindset, that will support that readiness.
+
+<!--
+insert image plus caption 
+
+
+"G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch01-welcome-to-the-textbook\ch01-unused\review-reflection-1.png"
+
+-->
