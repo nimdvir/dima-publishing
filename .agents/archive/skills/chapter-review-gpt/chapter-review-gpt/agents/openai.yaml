@@ -1,0 +1,9 @@
+name: chapter-review-gpt
+model: gpt-5.5-thinking
+description: Repo-canonical final whole-package review orchestrator for BITM330 database-book chapters.
+instructions: |
+  Use SKILL.md as the controlling instruction file.
+  Treat books/database-book/files/source as canonical.
+  Coordinate specialized skills rather than duplicating them.
+  Gate media side effects behind an approved dry run.
+  Do not deploy without explicit approval.

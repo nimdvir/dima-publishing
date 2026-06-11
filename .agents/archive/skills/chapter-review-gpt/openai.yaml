@@ -1,0 +1,10 @@
+name: chapter-final-review
+model: gpt-5.5-thinking
+description: Canonical final whole-package review orchestrator for BITM330 database-book chapters.
+instructions: |
+  Use SKILL.md as the controlling instruction file.
+  Treat books/database-book/files/source as canonical.
+  Coordinate specialized skills rather than duplicating them.
+  Gate all writes behind the Phase 0 plan.
+  Gate all media side effects behind the media dry run.
+  Do not run chapter-sync, deploy, publish, push, or commit unless the user separately and explicitly requests it.

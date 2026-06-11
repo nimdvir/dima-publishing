@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chapter Review Codex"
+  short_description: "Review a complete BITM330 chapter package."
+  default_prompt: "Use $chapter-review-codex to run a final whole-package review for a BITM330 chapter, including source files, lab, media, terms, reports, and DOCX readiness."
