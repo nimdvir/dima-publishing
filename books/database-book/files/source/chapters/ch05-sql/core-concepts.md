@@ -1245,6 +1245,38 @@ Notice three Access differences: `RecordID` is omitted so Access can generate it
 
 All three return a rough integer age based on year only. None checks whether the birthday has occurred yet this year, so the value can be one year high for several months.
 
+---
+
+### A3. SQL Quick Reference
+
+The commands, clauses, and operators covered in this chapter, in one place. Keep this handy while working through the Let's Build and Lab 5.
+
+| Category | Command / Operator | What it does | Quick example |
+|---|---|---|---|
+| DDL | `CREATE TABLE` | Define a new table and its columns | `CREATE TABLE PET (PetID INTEGER PRIMARY KEY, PetName TEXT NOT NULL);` |
+| DDL | `ALTER TABLE` | Add, change, or drop a column after creation | `ALTER TABLE PET ADD COLUMN WeightLb REAL;` |
+| DDL | `DROP TABLE` | Permanently delete a table | `DROP TABLE PET;` |
+| DML | `INSERT INTO` | Add one or more rows | `INSERT INTO PET VALUES (1, 'Luna', 8.2);` |
+| DML | `UPDATE` | Change existing rows | `UPDATE PET SET WeightLb = 9.0 WHERE PetID = 1;` |
+| DML | `DELETE` | Remove rows | `DELETE FROM PET WHERE PetID = 1;` |
+| DQL | `SELECT` | Choose which columns to return | `SELECT PetName, WeightLb FROM PET;` |
+| DQL | `WHERE` | Filter rows by a condition | `SELECT * FROM PET WHERE AnimalType = 'Cat';` |
+| DQL | `ORDER BY` | Sort results (ASC default, DESC optional) | `SELECT * FROM PET ORDER BY WeightLb DESC;` |
+| DQL | `DISTINCT` | Remove duplicate values from output | `SELECT DISTINCT AnimalType FROM PET;` |
+| DQL | `IS NULL` / `IS NOT NULL` | Test for missing values | `SELECT * FROM PET WHERE WeightLb IS NULL;` |
+| DQL | `LIKE` | Match a text pattern (`%` = any string, `_` = one char) | `WHERE PetName LIKE 'L%';` |
+| DQL | `BETWEEN` | Filter a range (inclusive) | `WHERE WeightLb BETWEEN 5 AND 20;` |
+| DQL | `IN` | Match any value in a list | `WHERE AnimalType IN ('Cat', 'Dog');` |
+| DQL | `AS` | Rename a column in output (alias) | `SELECT WeightLb AS Weight_Pounds FROM PET;` |
+| Aggregate | `COUNT()` | Count rows | `SELECT COUNT(*) FROM PET;` |
+| Aggregate | `SUM()` | Total of a numeric column | `SELECT SUM(WeightLb) FROM PET;` |
+| Aggregate | `AVG()` | Average of a numeric column | `SELECT AVG(WeightLb) FROM PET;` |
+| Aggregate | `MIN()` / `MAX()` | Lowest or highest value | `SELECT MIN(WeightLb), MAX(WeightLb) FROM PET;` |
+| Clause | `GROUP BY` | Group rows for per-group aggregation | `SELECT AnimalType, COUNT(*) FROM PET GROUP BY AnimalType;` |
+| Clause | `HAVING` | Filter groups after aggregation | `... GROUP BY AnimalType HAVING COUNT(*) > 10;` |
+| Expression | `CASE` | Conditional label or value | `CASE WHEN WeightLb > 30 THEN 'Large' ELSE 'Small' END` |
+| TCL | `BEGIN` / `COMMIT` / `ROLLBACK` | Wrap changes in a transaction for safety | `BEGIN; UPDATE ...; COMMIT;` |
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
