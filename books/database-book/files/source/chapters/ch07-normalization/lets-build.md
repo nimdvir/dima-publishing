@@ -1,4 +1,5 @@
 <!-- Let's Build 07 created 2026-05-26: moved hands-on SQL + Access content from Ch07 main appendix into a guided LB using the Grading Database. Companion lab placeholder: Lab 07 — Normalizing a Veterinary Clinic Database. -->
+<!-- metadata: date="2026-05-26" -->
 
 ## Let's Build
 

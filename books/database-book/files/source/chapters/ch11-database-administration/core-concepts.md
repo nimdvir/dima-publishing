@@ -1,21 +1,4 @@
----
-title: "Chapter 11 – Database Administration"
-chapter: 11
-section: "Core Concepts"
-description: "Covers the responsibilities of a Database Administrator, including concurrency control, transaction management, security, backup and recovery, and performance tuning across local and cloud environments."
-keywords:
-  - database administration
-  - DBA
-  - ACID properties
-  - concurrency control
-  - transactions
-  - backup and recovery
-  - role-based access control
-  - performance tuning
-  - cloud databases
-date: 2026-05-05
----
-
+<!-- metadata: date="2026-05-05"; chapter="11"; section="main"; title="Chapter 11 – Database Administration"; description="Covers the responsibilities of a Database Administrator, including concurrency control, transaction management, security, backup and recovery, and performance tuning across local and cloud environments." -->
 # Chapter 11: Database Administration
 
 *Administration, Security, and Operational Reliability*

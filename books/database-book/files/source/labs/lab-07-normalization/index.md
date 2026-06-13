@@ -1,19 +1,3 @@
----
-title: "Lab 07: Normalizing a Veterinary Clinic Database"
-chapter: 7
-section: "Lab Questions"
-description: "SAM-style guided lab: transfer the Let's Build 07 normalization workflow from the Grading Database to the PetVax veterinary clinic."
-keywords:
-  - lab 07
-  - PetVax
-  - normalization
-  - referential integrity
-  - Access
-  - SQL
-date: 2026-05-26
-author: "Nimrod Dvir"
----
-
 # Lab 07: Normalizing a Veterinary Clinic Database
 
 ![Lab banner](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/lab_jpifze?_a=BAMAAAiu0)

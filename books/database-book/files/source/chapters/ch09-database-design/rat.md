@@ -1,8 +1,10 @@
-# Readiness Assessment Test (RAT): Chapter 10 -- From Data to Design: Building Reliable Information Systems
+<!-- metadata: date="2026-03-10"; chapter="09"; section="rat"; title="Chapter 9 Readiness Assessment Test"; description="RAT for database design" -->
+
+# Readiness Assessment Test (RAT): Chapter 9 -- From Data to Design: Building Reliable Information Systems
 
 ![RAT Header](<../../.images/Ch0 General/sections/RAT.png>)
 
-> **Part of:** Chapter 10 -- *From Data to Design: Building Reliable Information Systems*
+> **Part of:** Chapter 9 -- *From Data to Design: Building Reliable Information Systems*
 > **Main chapter file:** [ch10-edited-2026-03-08.md](ch10-edited-2026-03-08.md)
 > **Key terms:** [ch10-TermTreasury-2026-03-08.md](ch10-TermTreasury-2026-03-08.md)
 
@@ -34,7 +36,7 @@
 
 ## Individual RAT (iRAT)
 
-Complete this assessment individually to test your understanding of Chapter 10: *From Data to Design: Building Reliable Information Systems*.
+Complete this assessment individually to test your understanding of Chapter 9: *From Data to Design: Building Reliable Information Systems*.
 
 ---
 

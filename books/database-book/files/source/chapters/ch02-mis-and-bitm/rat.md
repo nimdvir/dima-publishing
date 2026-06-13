@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-03" -->
+
 # Readiness Assessment Test (RAT): Foundations of Information Systems
 
 <p align="center">

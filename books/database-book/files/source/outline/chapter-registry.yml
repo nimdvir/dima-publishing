@@ -80,21 +80,19 @@ chapters:
 
   - id: database-design
     order: 9
-    title: "From Data to Design: Building Reliable Information Systems"
+    title: "Database Design and ER Modeling"
     source_folder: ch09-database-design
     draft_folder: ch09-database-design
-    image_folder: ch10-database-design
+    image_folder: ch09-database-design
     cloudinary_folder: ch09-database-design
-    notes: "Image folder uses ch10 numbering (legacy outline order)"
 
   - id: advanced-sql-queries
     order: 10
-    title: "Advanced SQL with the Grading Database"
+    title: "Advanced SQL for Business Analysis"
     source_folder: ch10-advanced-sql-queries
     draft_folder: ch10-advanced-sql-queries
-    image_folder: ch08-advanced-sql-queries
+    image_folder: ch10-advanced-sql-queries
     cloudinary_folder: ch10-advanced-sql-queries
-    notes: "Image folder uses ch08 numbering (legacy outline order)"
 
   - id: database-administration
     order: 11

@@ -1,0 +1,85 @@
+What type of data anomaly occurs when deleting a row inadvertently destroys unrelated facts stored in that same row?,Deletion Anomaly
+Changing a student's email in some rows of a flat table but missing others leads to a(n) _____ anomaly.,Update Anomaly
+What is an 'Insertion Anomaly' in the context of a flat grading table?,The inability to record a new student until they have been assigned a grade.
+"In a flat table, what does a query using `GROUP BY StudentID HAVING COUNT(DISTINCT Email) > 1` help diagnose?","Conflicting data values for the same entity (e.g., one student with multiple recorded emails)."
+Which SQL function is used in PostgreSQL to combine distinct names into a single string during diagnostic grouping?,STRING_AGG
+The process of separating each entity into its own table and connecting them through keys is called _____.,Normalization
+Which SQL keyword is primarily used to extract unique records for a new entity table from a redundant flat table?,DISTINCT
+Why is an aggregate function like `MIN(DueDate)` used when extracting deliverables via `GROUP BY` from a messy flat table?,To pick one consistent value in case the source data contains conflicting dates for the same deliverable.
+"In PostgreSQL and SQLite, what is the syntax for creating a new table and populating it with query results in one step?",CREATE TABLE AS SELECT
+What is the primary disadvantage of using `CREATE TABLE AS SELECT` for final database architecture?,"It does not automatically create primary keys, foreign keys, or constraints."
+Which SQL command is the standard for migrating sets of rows from one existing table to another?,INSERT INTO ... SELECT
+What is a 'surrogate key' in database design?,"An auto-generated unique identifier, such as an integer, that has no inherent business meaning."
+What is a 'natural key'?,"A unique identifier that carries real-world business meaning, such as a university Student ID."
+Why should constraints be added to tables *after* data migration in a refactoring project?,"To prevent messy legacy data from blocking the initial migration, allowing cleanup to happen first."
+"In SQLite, how must a `PRIMARY KEY` be added if it was not defined during the initial `CREATE TABLE`?","The table must be recreated with the primary key defined, as SQLite does not support adding it via `ALTER TABLE`."
+What is the purpose of a `FOREIGN KEY` constraint?,"To guarantee that values in a column reference valid, existing primary keys in another table."
+"In the grading database schema, which table acts as the junction table connecting students to deliverables?",STUDENT_GRADE
+Which table in the grading database stores the mapping of numeric scores to letter grades?,GRADE_SCALE
+"When filtering by date in PostgreSQL, what keyword is used instead of the SQLite `DATE('now')` function?",CURRENT_DATE
+Which SQL function removes both leading and trailing whitespace from a text string?,TRIM
+What does the `COALESCE` function return?,The first non-NULL value in its list of arguments.
+"How can you ensure numeric division in SQL does not result in integer truncation (e.g., $88 / 3 = 29$)?",Cast one of the operands to a decimal or multiply by $1.0$.
+Which type of `JOIN` returns only the rows where there is a match in both connected tables?,INNER JOIN
+What is the main use case for a `LEFT JOIN` in a grading system?,"Identifying missing data, such as students who have not yet submitted a specific assignment."
+Which join type produces every possible combination of rows from two tables?,CROSS JOIN
+What is an 'intersection table' (also known as a junction table)?,A table used to resolve a many-to-many relationship between two other entities.
+"To prevent a student from having two scores for the same assignment, which constraint should be applied to the junction table?","A composite UNIQUE constraint on (StudentID, DeliverableID)."
+What is the purpose of the `HAVING` clause in an aggregate query?,To filter groups based on a condition applied to an aggregate calculation (like an average).
+"In the grading database, what does the 'Spread' of a deliverable usually refer to?",The difference between the maximum and minimum scores on that assignment.
+Which SQL expression is used to implement conditional 'if-then-else' logic within a query?,CASE
+How can grading policy be kept 'data-driven' rather than hard-coded in SQL queries?,By joining the scores to a `GRADE_SCALE` table instead of using hard-coded thresholds in a `CASE` statement.
+"In SQLite, which function is used to extract the year from a date column?","strftime('%Y', column)"
+"In PostgreSQL, which command extracts the year from a date column?",EXTRACT(YEAR FROM column)
+What is a 'weighted average'?,An average where different items contribute to the final result based on their relative importance or weight.
+What is a 'View' in SQL?,"A named, saved query that behaves like a virtual table, running the underlying SQL fresh each time it is queried."
+What is the main security/governance benefit of using Views?,They can restrict user access by only exposing specific columns or rows of the underlying tables.
+What does 'CTE' stand for in SQL?,Common Table Expression
+Which keyword is used to initiate a CTE at the beginning of a query?,WITH
+When is a CTE generally preferred over a nested subquery?,When a query involves more than two logical steps or needs to reference the same intermediate result multiple times.
+A subquery that runs once for every row in the outer query is called a _____ subquery.,Correlated
+Which operator is used to check if a value exists within the result set of a subquery?,IN
+What is the performance advantage of `EXISTS` over `IN` for large datasets?,The database can stop searching as soon as it finds a single match (early exit).
+What is a 'scalar subquery'?,"A subquery that returns exactly one value, allowing it to be used in a `SELECT` or `WHERE` clause like a constant."
+What is the difference between `UNION` and `UNION ALL`?,"`UNION` removes duplicate rows between result sets, while `UNION ALL` preserves them."
+Why is an `UPDATE` statement without a `WHERE` clause dangerous?,It will apply the change to every single row in the table.
+What is a 'full table scan'?,An inefficient query execution method where the database must read every row because no suitable index exists.
+What is the primary performance trade-off of adding an index to a table?,"Indexes speed up read operations but slow down write operations (INSERT, UPDATE, DELETE)."
+A(n) _____ index is an index that includes two or more columns from the same table.,Composite
+Which SQL command allows you to view the database engine's execution strategy for a query?,EXPLAIN
+"In the context of transactions, what does 'Atomicity' mean?","The 'all-or-nothing' principle where every operation in a transaction must succeed, or the entire transaction is rolled back."
+Which transaction property ensures that concurrent transactions do not interfere with each other?,Isolation
+Which transaction property guarantees that committed changes survive a system crash or power failure?,Durability
+What is a database 'Trigger'?,"A stored procedure that executes automatically in response to a specific data change, such as an `INSERT` or `UPDATE`."
+"In PostgreSQL, what must be created before a trigger can be defined?",A trigger function.
+What is an 'Audit Log' in a database system?,"A separate table that records the history of changes (who, what, when) made to sensitive data."
+What is 'Referential Integrity'?,A state where every foreign key value in a database correctly points to an existing primary key.
+Which analytical SQL feature allows calculations across a set of rows (like rankings or running totals) without collapsing them into groups?,Window Functions
+"In a window function, what does the `OVER ()` clause define?",The 'window' or set of rows the function considers for its calculation.
+What is the difference between `RANK()` and `DENSE_RANK()` in SQL?,"`RANK()` leaves a gap in the numbering after a tie, while `DENSE_RANK()` provides continuous numbering."
+"Which window function assigns a unique, sequential integer to each row in a partition regardless of ties?",ROW_NUMBER()
+How do you calculate a 'running total' using a window function?,Use `SUM(column) OVER (ORDER BY sequence_column)`.
+What does the `PARTITION BY` clause do within a window function?,"It divides the result set into independent groups, resetting the function's calculation for each group."
+The ability to regenerate any report from the same data and produce the same result is called _____.,Reproducibility
+"In a relational model, how is a many-to-many relationship between Students and Deliverables typically resolved?","By creating a junction table (e.g., `STUDENT_GRADE`) containing foreign keys for both entities."
+"Which SQL expression is used to convert data from one type to another (e.g., from integer to decimal)?",CAST
+What logic is being tested by the query `SELECT * FROM STUDENT WHERE Email NOT LIKE '%@%.%'`?,Basic format validation for email addresses.
+What does 'Relational Thinking' involve?,"Seeing data as a collection of connected entities rather than isolated, flat rows."
+Why is `UNION ALL` generally faster than `UNION`?,It does not require the database to perform a sort and de-duplication step to remove matching rows.
+What does the 'Isolation' property in ACID protect against?,Inconsistent states caused by multiple users or processes updating the same data simultaneously.
+"In the grading database, what is the 'relational spine'?","The central pathway connecting `STUDENT`, `STUDENT_GRADE`, and `DELIVERABLE` tables."
+What SQL command is used to permanently delete an entire table and its data?,DROP TABLE
+How can you detect 'orphaned' grade records that don't belong to any student?,Use a `LEFT JOIN` from `STUDENT_GRADE` to `STUDENT` and filter for `WHERE STUDENT.StudentID IS NULL`.
+"In a `CASE` statement, what happens if no conditions are met and there is no `ELSE` clause?",The expression returns `NULL`.
+What is the purpose of the `ROWS BETWEEN` clause in a window function?,"It defines a specific frame of rows relative to the current row, often used for moving averages."
+Which SQL mechanic is used to ensure that a set of updates either all happen or none happen?,Transactions
+What does 'Engineering Discipline' in SQL imply?,"Making queries that are reusable, performant, and safe for production environments."
+Which command is used to save all changes made during a transaction?,COMMIT
+Which command is used to undo all changes made during an uncommitted transaction?,ROLLBACK
+How can an instructor identify 'at-risk' students using aggregation?,Use `GROUP BY StudentID` with `HAVING AVG(Score) < threshold_value`.
+What characterizes a 'Composite Key'?,A primary or unique key that consists of two or more columns used together to ensure uniqueness.
+What is the benefit of defining weights in a policy table rather than in query code?,"Policy changes only require updating data in one table, not rewriting multiple queries."
+Which SQL pattern is used to show a student's score compared to the class average in the same row?,A scalar subquery in the `SELECT` clause calculating the overall average.
+What is a 'Derived Table'?,A subquery used in the `FROM` clause that acts as a temporary table for the outer query.
+How does `COALESCE` assist in making gradebook reports more readable?,It can replace `NULL` values (missing grades) with a label like 'Not Graded' or '0'.
+Which mechanic enforces that a score must be between $0$ and $100$?,A `CHECK` constraint.

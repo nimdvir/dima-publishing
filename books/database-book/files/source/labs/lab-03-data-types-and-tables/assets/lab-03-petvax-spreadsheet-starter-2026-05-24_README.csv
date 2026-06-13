@@ -1,0 +1,10 @@
+Lab 03 — PetVax Spreadsheet Starter
+Use this workbook for Lab 03. Start in APPOINTMENTS_FLAT.
+"You will add lookup formulas, create filters, build a pivot summary, and intentionally create flat-file problems."
+Do not turn this into a database yet. The point is to experience why the spreadsheet starts to break.
+Required sheets:
+APPOINTMENTS_FLAT — main flat-file appointment log
+BREED_REFERENCE — breed lookup table for animal type and average weights
+DATA_DICTIONARY — field definitions and intended meaning
+QUERY_AREA — place your FILTER formula here
+PIVOT_SUMMARY — create your pivot table here

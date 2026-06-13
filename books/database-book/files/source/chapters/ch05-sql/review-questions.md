@@ -1,24 +1,5 @@
----
-title: "Chapter 5: Review and Reflection"
-chapter: 5
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions that help students consolidate Chapter 5 SQL concepts and connect query logic, the Grading Database, and business decisions. Includes a complete answer key grounded in the current main chapter, Let's Build companion, and Term Treasury."
-keywords:
-  - review questions
-  - reflection questions
-  - personal reflection
-  - BITM330
-  - SQL
-  - query logic
-  - Grading Database
-  - aggregation
-  - joins
-  - chapter 5
-date: 2026-05-27
-author: "Nimrod Dvir"
----
-
 <!-- markdownlint-disable MD025 -->
+<!-- metadata: date="2026-05-27" -->
 
 # Chapter 5: Review and Reflection
 

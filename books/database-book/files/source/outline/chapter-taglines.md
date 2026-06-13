@@ -18,8 +18,8 @@
 |    6 | The Relational Model                                            | How Connected Tables Create Structure, Integrity, and Analytical Power | ch06-relational-model             |
 |    7 | Data Normalization                                              | Cleaning Up Data Design Before It Causes Trouble                       | ch07-normalization                |
 |    8 | Midterm Review — Concepts                                       | Putting the First Half of the Course Together                          | ch08-midterm-review               |
-|    9 | From Data to Design: Building Reliable Information Systems      | Designing Databases Before Writing Advanced Queries                    | ch09-database-design              |
-|   10 | Advanced SQL with the Grading Database                          | From Basic Queries to Business Analysis                                | ch10-advanced-sql-queries         |
+|    9 | Database Design and ER Modeling                                  | From Business Requirements to Reliable Information Systems             | ch09-database-design              |
+|   10 | Advanced SQL for Business Analysis                              | From Queries to Managerial Insight                                     | ch10-advanced-sql-queries         |
 |   11 | Database Administration                                         | Keeping Data Secure, Available, and Reliable                           | ch11-database-administration      |
 |   12 | Business Intelligence and Analytics for Performance Improvement | Turning Operational Data into Managerial Insight                       | ch12-business-intelligence        |
 |   13 | Advanced Database Techniques                                    | Making Databases Faster, Smarter, and More Flexible                    | ch13-advanced-database-techniques |
@@ -64,11 +64,11 @@ Students will learn how to improve database design by identifying redundancy, de
 
 Students will learn how the first half of the course fits together as one connected framework. They will review data fundamentals, databases, SQL, the relational model, and normalization in preparation for the midterm.
 
-## Chapter 9: From Data to Design: Building Reliable Information Systems
+## Chapter 9: Database Design and ER Modeling
 
 Students will learn how to translate business requirements into database designs before implementation begins. They will also learn how ERDs, logical design, and normalization help create systems that support accurate querying and reporting. Designing before writing advanced queries gives students the structural foundation they need for the deeper SQL work in Chapter 10.
 
-## Chapter 10: Advanced SQL with the Grading Database
+## Chapter 10: Advanced SQL for Business Analysis
 
 Students will learn how to write more powerful SQL queries for deeper analysis, including subqueries, CTEs, CASE expressions, and window functions. Building on the design skills from Chapter 9, they will also learn how advanced SQL patterns can support performance measurement and business intelligence.
 

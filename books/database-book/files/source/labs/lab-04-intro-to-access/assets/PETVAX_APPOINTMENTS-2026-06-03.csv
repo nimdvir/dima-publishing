@@ -1,0 +1,25 @@
+AppointmentID,AppointmentDate,AppointmentTime,PetName,OwnerName,OwnerEmail,AnimalType,BreedName,WeightKg,ServiceType,VaccineDue,AppointmentStatus,ReminderSent,PaymentAmount,Notes
+1001,4/1/2026,9:00 AM,Buddy,Sarah Perry,sarah.perry@example.com,Dog,Beagle,15,Vaccination,Yes,Completed,Yes,64.91,Rabies booster due
+1002,4/1/2026,9:30 AM,Misty,Stephanie Foley,stephanie.foley@example.com,Cat,Siamese,4.1,General Checkup,No,Completed,Yes,90.29,Sneezing and ear wax
+1003,4/1/2026,10:15 AM,Charlie,Barry Jones,barry.jones@example.com,Dog,Labrador Retriever,34,Vaccination,Yes,Completed,No,64.91,Same pet name as another record
+1004,4/1/2026,11:00 AM,Charlie,Angela Garcia,angela.garcia@example.com,Dog,Beagle,11.5,Dental Cleaning,No,Completed,Yes,123.32,Different Charlie
+1005,4/1/2026,11:30 AM,Bandit,Sarah Perry,sarah.perry@example.com,Dog,Yorkshire Terrier,4.9,Dental Cleaning,No,Completed,Yes,123.32,Sarah owns more than one pet
+1006,4/1/2026,12:00 PM,Mango,Thomas Hernandez,thomas.hernandez@example.com,Cat,Maine Coon,8.8,Vaccination,Yes,No-show,No,0,Missed appointment
+1007,4/1/2026,1:00 PM,Coco,Alex Rivera,alex.rivera@example.com,Dog,Poodle,11,Vaccination,Yes,Completed,Yes,64.91,Co-owner 1
+1008,4/1/2026,1:30 PM,Coco,Jordan Rivera,jordan.rivera@example.com,Dog,Poodle,11,Vaccination,Yes,Completed,Yes,64.91,Co-owner 2
+1009,4/1/2026,2:00 PM,Luna,Wendy Henry,wendy.henry@example.com,Cat,Ragdoll,7.8,General Checkup,No,Completed,Yes,90.29,Wendy owns more than one pet
+1010,4/1/2026,2:30 PM,Max,Jenna Powell,jenna.powell@example.com,Dog,Dachshund,12,Vaccination,Yes,No-show,No,0,Missed appointment
+1011,4/1/2026,3:00 PM,Bella,Joyce Arnold,joyce.arnold@example.com,Dog,Golden Retriever,31.5,Vaccination,Yes,Completed,Yes,64.91,
+1012,4/1/2026,3:30 PM,Milo,Wendy Henry,wendy.henry@example.com,Dog,French Bulldog,14.2,General Checkup,No,Completed,Yes,90.29,Same owner as Luna
+1013,4/1/2026,4:00 PM,Daisy,William Reid,william.reid@example.com,Dog,Boxer,29,Emergency Visit,No,Completed,Yes,439,Vomiting and lethargy
+1014,4/1/2026,4:30 PM,Rocky,Tammie Garcia,tammie.garcia@example.com,Dog,Bulldog,27,General Checkup,No,Completed,Yes,90.29,
+1015,4/1/2026,5:00 PM,Nala,Vanessa Reed,vanessa.reed@example.com,Cat,Persian,5.6,Grooming - Basic,No,Completed,Yes,80.36,
+1016,4/1/2026,5:30 PM,Oreo,Kelly Garcia,kelly.garcia@example.com,Dog,Shih Tzu,5.8,Vaccination,Yes,Completed,Yes,64.91,
+1017,4/2/2026,9:00 AM,Buddy,Sarah Perry,sarah.perry@example.com,Dog,Beagle,15.1,Follow-up,No,Scheduled,Yes,0,Six-week recheck
+1018,4/2/2026,9:30 AM,Zeus,Andrew Lee,andrew.lee@example.com,Dog,German Shepherd,39.2,Vaccination,Yes,Completed,Yes,64.91,
+1019,4/2/2026,10:00 AM,Pumpkin,Patrick Singh,patrick.singh@example.com,Cat,Maine Coon,9.2,General Checkup,No,Completed,Yes,90.29,
+1020,4/2/2026,10:30 AM,Shadow,Gregory Lang,gregory.lang@example.com,Dog,Border Collie,19.1,Vaccination,Yes,Completed,No,64.91,Reminder not sent
+1021,4/2/2026,11:00 AM,Peanut,Lisa White,lisa.white@example.com,Dog,Pug,8.9,General Checkup,No,Completed,Yes,90.29,
+1022,4/2/2026,11:30 AM,Angel,Mariah Davis,mariah.davis@example.com,Cat,Sphynx,3.9,Vaccination,Yes,Completed,Yes,64.91,Only appointment for Angel
+1023,4/2/2026,12:00 PM,Apollo,Richard Bowman,richard.bowman@example.com,Dog,Labrador Retriever,28,Dental Cleaning,No,Completed,Yes,123.32,
+1024,4/2/2026,12:30 PM,Coco,Alex Rivera,alex.rivera@example.com,Dog,Poodle,11.4,Follow-up,No,Scheduled,Yes,0,Repeat visit for Coco

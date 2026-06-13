@@ -1,0 +1,9 @@
+AppointmentID,PetID,AppointmentDate,AppointmentStatus,ReminderSent
+101,1,2026-04-01,Completed,Yes
+102,2,2026-04-02,Completed,Yes
+103,3,2026-04-03,Completed,Yes
+104,4,2026-04-04,No-Show,No
+105,5,2026-04-05,Completed,Yes
+106,6,2026-04-06,Scheduled,Yes
+107,7,2026-04-07,Scheduled,Yes
+108,1,2026-04-08,Completed,Yes

@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-03" -->
+
 # Readiness Assessment Test (RAT): Introduction to the Textbook
 
 <p align="center">

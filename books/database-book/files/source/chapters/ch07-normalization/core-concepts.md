@@ -1,11 +1,5 @@
 <!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. -->
----
-title: "Chapter 7: Data Normalization"
-author: "Nimrod Dvir, PhD"
-date: 2026-05-30
-lang: en-US
-toc: true
----
+<!-- metadata: date="2026-05-30" -->
 
 # Chapter 7: Data Normalization
 

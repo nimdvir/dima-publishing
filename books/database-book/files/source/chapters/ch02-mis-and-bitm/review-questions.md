@@ -1,4 +1,4 @@
-
+<!-- metadata: date="2026-06-03" -->
 
 # Chapter 2: Review and Reflection
 

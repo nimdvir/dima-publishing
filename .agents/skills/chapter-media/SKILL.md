@@ -53,9 +53,9 @@ What would you like to do?
 Wait for the user to respond with a number. Then proceed:
 
 - **1 (Full pipeline):** run smart-start detection, then execute stages in sequence.
-- **2 (Dry run):** run Phase 0 inventory only, print the full plan, stop.
+- **2 (Dry run):** run Phase 0 inventory only, print the full plan, stop. For a detailed CSV inventory or HTML gallery, use `chapter-media-inventory`.
 - **3–5:** run only that mode. Still present a Phase 0 plan for approval.
-- **6 (Scan for new images):** run New Image Discovery, then return to the menu.
+- **6 (Scan for new images):** run New Image Discovery (delegates to `chapter-media-inventory` for the folder scan), then return to the menu.
 - **7 (Section scope):** ask which section heading, set scope, return to menu.
 
 If the request is ambiguous, default to dry run.
@@ -69,14 +69,14 @@ skip the interactive menu and proceed directly to Phase 0 for that mode.
 
 Scan the target and auto-detect the starting stage:
 
-| What exists in the target? | Start at |
-|---|---|
-| No `🎨 Figure Suggestion` blocks, no local `![…](…)` images, no Cloudinary URLs | Suggest |
-| `🎨 Figure Suggestion` blocks exist, but no local images placed yet | Place |
-| Local `![…](relative/path)` images exist (not yet on Cloudinary) | Optimize |
-| All images already use Cloudinary `res.cloudinary.com/dkndq6lyz` URLs | Done — report, return to menu |
+| What exists in the target?                                                      | Start at                      |
+| ------------------------------------------------------------------------------- | ----------------------------- |
+| No `🎨 Figure Suggestion` blocks, no local `![…](…)` images, no Cloudinary URLs | Suggest                       |
+| `🎨 Figure Suggestion` blocks exist, but no local images placed yet             | Place                         |
+| Local `![…](relative/path)` images exist (not yet on Cloudinary)                | Optimize                      |
+| All images already use Cloudinary `res.cloudinary.com/dkndq6lyz` URLs           | Done — report, return to menu |
 
-Report the detected stage and ask: *"Start at this stage? (yes / no, pick a different one)"*
+Report the detected stage and ask: _"Start at this stage? (yes / no, pick a different one)"_
 
 ---
 
@@ -119,7 +119,8 @@ chapter. **Never auto-place — always ask first.**
 7. After acting, return to the main menu.
 
 This step only adds `🎨 Figure Suggestion` blocks. It does not place, generate,
-optimize, or upload images.
+optimize, or upload images. For a read-only inventory with CSV export or an HTML
+thumbnail gallery, use `chapter-media-inventory` instead.
 
 ---
 
@@ -129,6 +130,7 @@ optimize, or upload images.
 Pipeline runs on the main file only unless a companion is explicitly named.
 
 **Section-scoped (Menu Option 7):** all stages are constrained to the named section:
+
 - Suggest: add blocks only within that heading scope.
 - Place: resolve only suggestions in that section. Number figures sequentially within
   the chapter (do not restart numbering for the section).
@@ -185,7 +187,7 @@ truth for cross-stage consistency.
 ```markdown
 ![Alt text](relative/path/to/figure-NN.X-slug.ext)
 
-*Figure NN.X — Caption text.*
+_Figure NN.X — Caption text._
 ```
 
 - Workspace-relative or target-file-relative paths, forward slashes.
@@ -207,15 +209,15 @@ Avoid prompt language, file names, style descriptions, or color palette referenc
 
 ### Supported Media Types
 
-| Type | Placement | Optimize/Upload | Notes |
-|---|---|---|---|
-| PNG | Yes | Yes | Best for diagrams and screenshots |
-| JPG/JPEG | Yes | Yes | Best for photos and gradients |
-| WebP | Yes | Yes | Web-friendly |
-| GIF | Yes | Carefully | Preserve animation when possible |
-| SVG | Yes | Usually skip | Preserve if pipeline supports it |
-| YouTube video | Embed only | No | Use `pandoc-video` skill for embeds |
-| Audio overview | Embed only | No upload unless requested | Usually Cloudinary-hosted |
+| Type           | Placement  | Optimize/Upload            | Notes                               |
+| -------------- | ---------- | -------------------------- | ----------------------------------- |
+| PNG            | Yes        | Yes                        | Best for diagrams and screenshots   |
+| JPG/JPEG       | Yes        | Yes                        | Best for photos and gradients       |
+| WebP           | Yes        | Yes                        | Web-friendly                        |
+| GIF            | Yes        | Carefully                  | Preserve animation when possible    |
+| SVG            | Yes        | Usually skip               | Preserve if pipeline supports it    |
+| YouTube video  | Embed only | No                         | Use `pandoc-video` skill for embeds |
+| Audio overview | Embed only | No upload unless requested | Usually Cloudinary-hosted           |
 
 ---
 
@@ -281,8 +283,8 @@ For dry run (Menu Option 2), stop here. For other modes, wait for approval.
 
 Add `#### 🎨 Figure Suggestion` blocks where sections need visuals.
 
-*Reference: `figure-suggestion/SKILL.md` for canonical block format, chapter-wide
-image-ideas file, and legacy-form recognition.*
+_Reference: `figure-suggestion/SKILL.md` for canonical block format, chapter-wide
+image-ideas file, and legacy-form recognition._
 
 ### Canonical Block
 
@@ -310,8 +312,8 @@ would be redundant, decorative, or distracting — this should be the rare excep
 
 Turn figure suggestions into real local figures with captions and sequential numbering.
 
-*Reference: `image-placement/SKILL.md` for scan order, Gemini prompt format, slide-deck
-handling, and the figures index format.*
+_Reference: `image-placement/SKILL.md` for scan order, Gemini prompt format, slide-deck
+handling, and the figures index format._
 
 ### Scan Order for Image Candidates
 
@@ -323,12 +325,12 @@ For each suggestion, scan and stop at the first good fit (judge both fit and qua
 
 ### Actions Per Suggestion
 
-| Action | When |
-|---|---|
-| Insert | Good-fit image found |
-| Generate + insert | No match; approved for generation |
-| Pending | No match; generation not approved |
-| Skip (duplicate) | Near-duplicate of another suggestion |
+| Action            | When                                        |
+| ----------------- | ------------------------------------------- |
+| Insert            | Good-fit image found                        |
+| Generate + insert | No match; approved for generation           |
+| Pending           | No match; generation not approved           |
+| Skip (duplicate)  | Near-duplicate of another suggestion        |
 | Skip (decorative) | Suggestion is decorative, not instructional |
 
 ### Figure Block
@@ -338,7 +340,7 @@ Replace the `#### 🎨 Figure Suggestion` block (or legacy `*Figure suggestion: 
 ```markdown
 ![Alt text](relative/path/to/figure-NN.X-slug.ext)
 
-*Figure NN.X — Caption text.*
+_Figure NN.X — Caption text._
 ```
 
 Number sequentially within the chapter (NN.1, NN.2, …). Never duplicate numbers.
@@ -348,9 +350,9 @@ Number sequentially within the chapter (NN.1, NN.2, …). Never duplicate number
 Create or update `.images/<chapter-folder>/figures-index.md` (in the chapter's image folder, not in the chapter file itself):
 
 ```markdown
-| Figure | Section | Caption | Source file |
-|---|---|---|---|
-| 2.1 | What Is an IS? | Information systems connect people, processes, data, and technology. | `mis-components.png` |
+| Figure | Section        | Caption                                                              | Source file          |
+| ------ | -------------- | -------------------------------------------------------------------- | -------------------- |
+| 2.1    | What Is an IS? | Information systems connect people, processes, data, and technology. | `mis-components.png` |
 ```
 
 If a figures index file already exists, update it — do not create a duplicate.
@@ -370,8 +372,8 @@ image link.
 Optimize selected images, upload to Cloudinary, rewrite chapter links, and update
 the media ledger.
 
-*Reference: `image-link-optimizer/SKILL.md` for full scanner algorithm, cache/classify
-decision table, ImageMagick table, MCP parameters, ledger schema, and atomic write.*
+_Reference: `image-link-optimizer/SKILL.md` for full scanner algorithm, cache/classify
+decision table, ImageMagick table, MCP parameters, ledger schema, and atomic write._
 
 ### Pre-Flight
 
@@ -379,7 +381,7 @@ decision table, ImageMagick table, MCP parameters, ledger schema, and atomic wri
 2. Probe Cloudinary MCP servers:
    - `plugin-cloudinary-cloudinary-asset-mgmt`
    - `plugin-cloudinary-cloudinary-analysis`
-   Stop and instruct MCP auth if either fails.
+     Stop and instruct MCP auth if either fails.
 3. Ensure `.images/book-media.md` exists with correct schema (see `book-media-format.md`).
 4. Verify Cloudinary folder `Database-book-BITM330/<chapter-folder-name>/` exists.
    If missing, run `create-cloudinary-folders.js` or ask before creating via MCP.
@@ -399,13 +401,13 @@ Dedupe by normalized path before any optimize/upload.
 Never modify or overwrite source images. Never upscale. Max width 1600 px.
 Strip metadata. Save optimized copies into `.images/<folder>/chNN-used/`.
 
-| Source | Action |
-|---|---|
-| PNG diagram/screenshot | `-resize "1600x>" -strip -colors 256`, keep PNG |
-| Photo / gradient-heavy | `-resize "1600x>" -strip -interlace Plane -quality 85`, convert JPG |
-| WebP | `-resize "1600x>" -strip -quality 85`, keep WebP |
-| Animated GIF | `-coalesce -resize "1600x>" -layers Optimize`, keep GIF |
-| SVG / zero-byte / missing / non-image | Skip; log the skip reason |
+| Source                                | Action                                                              |
+| ------------------------------------- | ------------------------------------------------------------------- |
+| PNG diagram/screenshot                | `-resize "1600x>" -strip -colors 256`, keep PNG                     |
+| Photo / gradient-heavy                | `-resize "1600x>" -strip -interlace Plane -quality 85`, convert JPG |
+| WebP                                  | `-resize "1600x>" -strip -quality 85`, keep WebP                    |
+| Animated GIF                          | `-coalesce -resize "1600x>" -layers Optimize`, keep GIF             |
+| SVG / zero-byte / missing / non-image | Skip; log the skip reason                                           |
 
 If optimized output is larger than source, copy source unmodified and log
 `optimization-skipped-larger`.
@@ -443,21 +445,21 @@ https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_<tier>
 
 **Transform rationale:**
 
-| Transform | What it does | Why |
-|---|---|---|
-| `f_auto` | Auto-detect best format (WebP, AVIF, or fallback) | Serves next-gen formats to modern browsers; smaller files, same quality |
-| `q_auto` | Auto-detect best compression level | Balances quality and file size; no manual tuning |
-| `c_limit` | Fit within dimensions, maintain aspect ratio, never upscale | Prevents oversized delivery |
-| `w_<tier>` | Set maximum width | Delivers appropriately sized assets per context |
+| Transform  | What it does                                                | Why                                                                     |
+| ---------- | ----------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `f_auto`   | Auto-detect best format (WebP, AVIF, or fallback)           | Serves next-gen formats to modern browsers; smaller files, same quality |
+| `q_auto`   | Auto-detect best compression level                          | Balances quality and file size; no manual tuning                        |
+| `c_limit`  | Fit within dimensions, maintain aspect ratio, never upscale | Prevents oversized delivery                                             |
+| `w_<tier>` | Set maximum width                                           | Delivers appropriately sized assets per context                         |
 
 **Width tier (first match wins):**
 
-| Trigger | Width | Full Transform |
-|---|---|---|
-| HTML `<img width ≤ 300>` OR alt/caption/filename has `icon`/`logo`/`badge` | 600px | `f_auto,q_auto,c_limit,w_600` |
-| Animated GIF | 900px | `f_auto,q_auto,c_limit,w_900` |
+| Trigger                                                                                           | Width  | Full Transform                 |
+| ------------------------------------------------------------------------------------------------- | ------ | ------------------------------ |
+| HTML `<img width ≤ 300>` OR alt/caption/filename has `icon`/`logo`/`badge`                        | 600px  | `f_auto,q_auto,c_limit,w_600`  |
+| Animated GIF                                                                                      | 900px  | `f_auto,q_auto,c_limit,w_900`  |
 | Alt/caption/filename has `dashboard`/`diagram`/`erd`/`screenshot`/`infographic`, OR source ≥ 2 MB | 1600px | `f_auto,q_auto,c_limit,w_1600` |
-| Default (photos, general figures) | 1200px | `f_auto,q_auto,c_limit,w_1200` |
+| Default (photos, general figures)                                                                 | 1200px | `f_auto,q_auto,c_limit,w_1200` |
 
 Do NOT add new `?_a=…` suffixes. Existing URLs that have one keep it; only the
 transform block is rewritten.
@@ -484,16 +486,16 @@ to an HTML-first pipeline.
 Buffer all new/updated rows and write `.images/book-media.md` in one atomic pass.
 Never leave the ledger half-written.
 
-| Column | Rule |
-|---|---|
-| `#` | Append-only sequential; never renumber |
-| `Chapter` | `chNN` for chapter, `shared` for general |
-| `Original Path` | Cache key — workspace-root-relative, `/`-separated, lowercase |
-| `Optimized File` | Path under `chNN-used/` |
-| `Saved` | Size reduction (e.g., `1.4 MB → 240 KB (-83%)`) |
-| `Cloudinary URL` | Full delivery URL with comma-style transforms |
-| `Caption` | Single line; replace `\|` with `/` |
-| `Placement` | `workspace-relative-path:line` entries joined by `;` |
+| Column           | Rule                                                          |
+| ---------------- | ------------------------------------------------------------- |
+| `#`              | Append-only sequential; never renumber                        |
+| `Chapter`        | `chNN` for chapter, `shared` for general                      |
+| `Original Path`  | Cache key — workspace-root-relative, `/`-separated, lowercase |
+| `Optimized File` | Path under `chNN-used/`                                       |
+| `Saved`          | Size reduction (e.g., `1.4 MB → 240 KB (-83%)`)               |
+| `Cloudinary URL` | Full delivery URL with comma-style transforms                 |
+| `Caption`        | Single line; replace `\|` with `/`                            |
+| `Placement`      | `workspace-relative-path:line` entries joined by `;`          |
 
 One row per image. Multiple uses append to the existing row. Do not update the
 ledger during dry-run, suggest-only, or place-only modes.
@@ -575,14 +577,14 @@ The key rule:
 
 ## File Writing by Mode
 
-| Mode | May edit chapter? | May write report? | May upload? | May update ledger? |
-|---|---:|---:|---:|---:|
-| dry-run | No | Optional | No | No |
-| scan-new | No | No | No | No |
-| suggest | Yes (after approval) | Optional | No | No |
-| place | Yes (after approval) | Optional | No | No |
-| optimize | Yes (after approval) | Yes | Yes | Yes |
-| full | Yes (after approval) | Yes | Yes | Yes |
+| Mode     |    May edit chapter? | May write report? | May upload? | May update ledger? |
+| -------- | -------------------: | ----------------: | ----------: | -----------------: |
+| dry-run  |                   No |          Optional |          No |                 No |
+| scan-new |                   No |                No |          No |                 No |
+| suggest  | Yes (after approval) |          Optional |          No |                 No |
+| place    | Yes (after approval) |          Optional |          No |                 No |
+| optimize | Yes (after approval) |               Yes |         Yes |                Yes |
+| full     | Yes (after approval) |               Yes |         Yes |                Yes |
 
 In `scan-new` mode, do not add figure suggestions directly unless the user
 approves after seeing the candidate list.

@@ -1,0 +1,5 @@
+ServiceType,StandardFee,RequiresVaccineTracking
+Vaccination,65,Yes
+Checkup,80,No
+Dental,220,No
+Emergency,150,No

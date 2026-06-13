@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-06"; chapter="14"; section="lets-build"; title="Chapter 14 Lets Build"; description="Hands-on practice for Power BI" -->
+
 # Chapter 14: Let's Build — Power BI Dashboard with the Grading Database
 
 ![Let's Build](<../../../../.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif>)

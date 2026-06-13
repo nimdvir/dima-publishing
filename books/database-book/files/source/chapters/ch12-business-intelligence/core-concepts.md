@@ -1,21 +1,4 @@
----
-title: "Chapter 12 – Business Intelligence and Analytics for Performance Improvement"
-chapter: 12
-section: "Core Concepts"
-description: "Introduces Business Intelligence as the organizational capability that transforms operational data into insight, evaluation, and informed decision support."
-keywords:
-  - business intelligence
-  - data warehouse
-  - ETL
-  - OLAP
-  - dimensional modeling
-  - star schema
-  - data visualization
-  - KPI
-  - analytics
-date: 2026-05-06
----
-
+<!-- metadata: date="2026-05-06"; chapter="12"; section="main"; title="Chapter 12 – Business Intelligence and Analytics for Performance Improvement"; description="Introduces Business Intelligence as the organizational capability that transforms operational data into insight, evaluation, and informed decision support." -->
 # Chapter 12: Business Intelligence and Analytics for Performance Improvement
 
 *Turning Operational Data into Strategic Insight*

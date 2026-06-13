@@ -1,0 +1,10 @@
+AppointmentServiceID,AppointmentID,ServiceType,PaymentAmount
+1,101,Vaccination,65
+2,102,Dental,220
+3,103,Checkup,80
+4,104,Checkup,0
+5,105,Emergency,150
+6,106,Checkup,80
+7,107,Vaccination,65
+8,108,Checkup,80
+9,108,Vaccination,50

@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-08"; chapter="17"; section="lets-build"; title="Chapter 17 Lets Build"; description="Hands-on practice for conclusion" -->
+
 # Chapter 17 Lets Build: Course Synthesis with the Grading Database
 
 ![Let's Build](<../../../../.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif>)

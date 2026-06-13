@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-02" -->
+
 ## Let's Build
 
 <p align="center">

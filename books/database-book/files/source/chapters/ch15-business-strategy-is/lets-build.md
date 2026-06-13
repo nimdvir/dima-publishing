@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-08"; chapter="15"; section="lets-build"; title="Chapter 15 Lets Build"; description="Hands-on practice for business strategy" -->
+
 <!-- Companion Activity File for Chapter 15 -->
 # Chapter 15 Lets Build: Strategic SQL for the Grading Database
 

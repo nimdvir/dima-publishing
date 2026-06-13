@@ -1,13 +1,8 @@
 <!-- This text explains the **relational model**, a fundamental framework for organizing database data into distinct, connected tables rather than single, flat files. By separating different subjects into their own tables, designers can avoid **redundancy** and prevent **modification anomalies** that occur when data is updated, inserted, or deleted. The author details how **primary keys** provide unique identities for records, while **foreign keys** establish relationships between entities like students and grades. **Entity and referential integrity** serve as essential rules that protect the accuracy of these connections over time. Through a practical redesign of a **grading database**, the source demonstrates how **SQL joins** efficiently reconstruct information for analysis. Ultimately, the material serves as a guide for transitioning from fragile spreadsheets to **scalable, structured database systems**. -->
+<!-- metadata: date="2026-05-29" -->
+
 <!-- Chapter edit (2026-05-29): received the full joins treatment from Chapter 5 (Ch5 now keeps only a brief INNER JOIN teaser). Added a "Reading a Join" four-question lead-in before §8.1 and a "Join Types at a Glance" recognition table (INNER/LEFT/RIGHT/FULL/CROSS) at the end of §8, both adapted from Ch5's former Part 5 to the relational schema. The verbatim Ch5 Part 5 source is preserved in .edits/ch06-from-ch05-2026-05-29.md. Terms/glossary kept as-is for a later reconciliation pass. Technical meaning preserved. -->
 <!-- Chapter edit: aligned dataset and cast with Ch04/05 (Alice/Brian/Carla/Daniel, S1001-style StudentID, 0–100 Score, locked weights 20/30/40/10, Score REAL); flat table shows both CategoryWeight and WeightPerItem; made Access tutorial fail-proof (text PK + integer FK); trimmed §10 to a sharper bridge; reframed §8.5 as Advanced Preview; routed appendices to terms/reflection companions via .edits. Technical meaning preserved. -->
----
-title: "Chapter 6: The Relational Model"
-author: "Nimrod Dvir, PhD"
-date: 2026-05-29
-lang: en-US
-toc: true
----
 
 <!-- markdownlint-disable MD036 -->
 
@@ -139,7 +134,6 @@ Suppose Alice changes her email from `alice@university.edu` to `alice.johnson@al
 | 1 | S1001 | Alice | Johnson | alice.johnson@albany.edu |
 | 2 | S1001 | Alice | Johnson | alice@university.edu |
 | 3 | S1001 | Alice | Johnson | alice.johnson@albany.edu |
-
 
 The database now gives conflicting answers to a basic question. In a relational design, Alice's email lives once in `STUDENT`. One update covers every future query.
 

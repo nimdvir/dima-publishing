@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-03" -->
+
 # Readiness Assessment Test (RAT): Chapter 3 — Understanding Data Fundamentals
 
 <p align="center">

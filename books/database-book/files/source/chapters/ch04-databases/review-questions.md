@@ -1,5 +1,6 @@
-
 <!-- markdownlint-disable MD025 -->
+<!-- metadata: date="2026-06-04" -->
+
 # Chapter 4: Review and Reflection
 
 <p align="center">

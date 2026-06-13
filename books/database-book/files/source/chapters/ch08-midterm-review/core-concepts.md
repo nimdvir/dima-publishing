@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-18"; chapter="08"; section="main"; title="Chapter 8: Midterm Review"; description="Core concepts for midterm review" -->
+
 # Chapter 8: Midterm Review - Concepts
 
 Putting the First Half of the Course Together
@@ -12,7 +14,7 @@ This chapter has two purposes. First, it gives you a clear review of the core id
 - identify the main concepts from the first half of the course that need review before the midterm
 - describe the structure and expectations of the Chapter 8 midterm test
 - describe the deliverables and grading criteria for the Chapter 8 midterm project
-- prepare for the second half of the course, which begins with more advanced SQL work in Chapter 9
+- prepare for the second half of the course, which begins with database design and ER modeling in Chapter 9
 
 ## In This Chapter
 
@@ -400,7 +402,7 @@ Before you submit, make sure your PDF is readable and that every screenshot clea
 
 The test and the project measure different parts of the same skill set. The midterm test checks whether you can read a schema, interpret database structure, and write or explain queries against an existing database. The midterm project checks whether you can design a database, populate it, create a form, and produce useful query outputs of your own.
 
-Together, these tasks reflect the first half of the course. You are not only learning what a database is. You are learning how relational structure supports calculation, reporting, and decision making. That same logic continues in Chapter 9, where you will build more advanced SQL queries on top of the same foundation.
+Together, these tasks reflect the first half of the course. You are not only learning what a database is. You are learning how relational structure supports calculation, reporting, and decision making. That same logic leads into Chapter 9 on database design and ER modeling, then into Chapter 10 where you will build more advanced SQL queries on top of the same foundation.
 
 ## Chapter Summary
 

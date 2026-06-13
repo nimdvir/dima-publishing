@@ -1,4 +1,6 @@
+<!-- metadata: date="2026-05-26" -->
 
+<!-- markdownlint-disable MD025 -->
 # Chapter 7: Review and Reflection
 
 ![Reflection GIF](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0)

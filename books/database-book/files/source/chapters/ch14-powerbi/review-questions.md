@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-06"; chapter="14"; section="reflection"; title="Chapter 14 Review & Reflection"; description="Review questions for Power BI" -->
+
 # Chapter 14 Reflection Questions — Power BI
 
 ![Reflection GIF](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0)

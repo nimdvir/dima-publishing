@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-19"; chapter="13"; section="lets-build"; title="Chapter 13 Lets Build"; description="Hands-on practice for advanced techniques" -->
+
 <!-- Sources: BITM330-Book-draft/chapter-drafts/ch13-advanced-database-techniques/main/ch13-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
 
 # Let's Build: Hardening the Grading Database

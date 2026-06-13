@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-19"; chapter="08"; section="lets-build"; title="Chapter 8 Lets Build"; description="Hands-on practice for midterm review" -->
+
 <!-- Sources: .docs/lets-build/lets-build-outline-2026-05-06.md; .docs/outline/outline-taglines-2026-05-06.md -->
 
 # Let's Build: Midterm Review Lab

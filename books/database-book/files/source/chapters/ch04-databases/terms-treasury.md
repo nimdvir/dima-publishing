@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-04" -->
+
 # Chapter 04 Term Treasury — Introduction to Databases
 
 <p align="center">

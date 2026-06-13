@@ -1,0 +1,16 @@
+Figure ID,Section,Placement Context,Caption,Filename,Gemini Prompt Summary,Type,Status
+8.0,Cover,Chapter cover page,Chapter Overview: Advanced SQL Queries,figure-08.0-chapter-overview.png,Progression from messy spreadsheet through SQL to organized relational database with dashboards,Image,pending
+8.1,Overview,After chapter progression list,Chapter Roadmap: Six-Part Arc,figure-08.1-chapter-roadmap.png,Six connected stages A-F with distinct icons flowing left to right,Image,pending
+8.2,8.1,After three anomalies table,Flat Table Redundancy and the Three Anomalies,figure-08.2-flat-table-anomalies.png,Flat table with highlighted redundant cells and three anomaly arrows,Image,pending
+8.3,8.2,After deliverable extraction example,Entity Extraction: Splitting GRADES_FLAT Into Normalized Tables,figure-08.3-entity-extraction.png,Single wide table splitting into three smaller tables with colored arrows,Image,pending
+8.4,8.7,After schema extension discussion,Grading Database Entity-Relationship Diagram,figure-08.4-grading-er-diagram.png,Seven entity boxes with crow-foot notation showing relational spine,Diagram,pending
+8.5,8.12,After score distribution query,Score Distribution by Grade Band,figure-08.5-score-distribution.png,Bar chart with five vertical bars for grade bands A through F,Image,pending
+8.6,8.15,After attendance trend query,Weekly Attendance Trend Analysis,figure-08.6-attendance-trend.png,Line chart tracking weekly attendance rates over 15-week semester,Image,pending
+8.7,8.17,After moving average example,GROUP BY vs. Window Functions,figure-08.7-groupby-vs-window.png,Side-by-side comparison of collapsed vs preserved row results,Image,pending
+8.8,8.18,After UpcomingDeliverables view,Views as Reusable Reporting Layers,figure-08.8-views-reporting-layers.png,Base tables at bottom with translucent view layer and consumers at top,Image,pending
+8.9,8.19,After three-stage CTE example,CTE Pipeline: Three-Stage Student Report,figure-08.9-cte-pipeline.png,Three-stage pipeline flowing left to right with final report output,Image,pending
+8.10,8.22,After choosing abstraction table,Choosing the Right Query Abstraction,figure-08.10-choosing-abstraction.png,Decision flowchart branching to subquery CTE and view paths,Image,pending
+8.11,8.23,After query plan discussion,Index Lookup vs. Full Table Scan,figure-08.11-index-vs-scan.png,Contrasting magnifying glass scan vs tree index lookup,Image,pending
+8.12,8.24,After ACID table,Transaction Safety: The ACID Guarantee,figure-08.12-acid-transactions.png,Central vault with four quadrants for atomicity consistency isolation durability,Image,pending
+8.13,8.25,After audit log trigger,Trigger-Based Audit Trail Flow,figure-08.13-trigger-audit-flow.png,UPDATE action firing trigger to write audit record with directional arrows,Image,pending
+8.14,8.26,After governance discussion,Data Governance: Constraints as Business Rules,figure-08.14-data-governance.png,Concentric protective rings around data representing constraint types,Image,pending

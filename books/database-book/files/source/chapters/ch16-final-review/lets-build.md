@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-19"; chapter="16"; section="lets-build"; title="Chapter 16 Lets Build"; description="Hands-on practice for final review" -->
+
 <!-- Sources: BITM330-Book-draft/chapter-drafts/ch16-final-review/main/ch16-main-draft-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
 
 # Let's Build: Final Project Submission and Course Integration

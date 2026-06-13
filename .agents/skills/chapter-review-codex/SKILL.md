@@ -207,7 +207,7 @@ Use sources in this order:
 6. `.github/copilot-instructions.md`, if present.
 7. Existing specialized skills listed above.
 8. Canonical book edit workflow documentation, especially `books/database-book/plans/book-edit/canonical-book-edit-source-workflow-2026-06-10.md`, if present.
-9. Active outline file, preferably `books/database-book/plans/outline/outline-2026-06-05.md`, or a newer repo-canonical outline.
+9. Active outline file, preferably `books/database-book/plans/outline/outline-2026-06-12.md`, or a newer repo-canonical outline.
 10. Source import manifest, `books/database-book/files/manifests/source-import-manifest.csv`, if present.
 11. Media manifest, `books/database-book/files/manifests/image-manifest.csv`, if present.
 12. Chapter edit notes, `books/database-book/.edits/chNN-edits.md`, if present.
@@ -1263,7 +1263,7 @@ Check that:
 Compare the current chapter package against:
 
 ```text
-books/database-book/plans/outline/outline-2026-06-05.md
+books/database-book/plans/outline/outline-2026-06-12.md
 ```
 
 If a newer repo-canonical outline exists, use the newest clear outline source and report which file was used.
@@ -1305,7 +1305,7 @@ Structure:
 
 ## Compared Against
 
-`books/database-book/plans/outline/outline-2026-06-05.md`
+`books/database-book/plans/outline/outline-2026-06-12.md`
 
 ## Current Heading Tree
 

@@ -1,11 +1,5 @@
----
-title: "Chapter 6 — Let's Build: The Relational Grading Database in Access"
-author: "Nimrod Dvir, PhD"
-date: 2026-05-24
-lang: en-US
----
-
 <!-- markdownlint-disable MD036 -->
+<!-- metadata: date="2026-05-24" -->
 
 ## Let's Build
 

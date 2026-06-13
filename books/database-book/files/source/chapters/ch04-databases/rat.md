@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-04" -->
+
 # Readiness Assessment Test (RAT): Chapter 4 — Introduction to Databases
 
 <p align="center">

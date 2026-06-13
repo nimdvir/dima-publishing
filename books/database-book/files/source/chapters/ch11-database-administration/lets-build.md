@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-19"; chapter="11"; section="lets-build"; title="Chapter 11 Let's Build"; description="Hands-on practice for DBA" -->
+
 <!-- Sources: BITM330-Book-draft/chapter-drafts/ch11-database-administration/main/ch11-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
 
 # Let's Build: Applying DBA Practices to the Grading Database

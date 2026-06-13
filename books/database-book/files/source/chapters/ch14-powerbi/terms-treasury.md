@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-06"; chapter="14"; section="terms"; title="Chapter 14 Terms Treasury"; description="Key terms for Power BI" -->
+
 # Chapter 14 Term Treasury — Power BI
 
 <!-- Companion: Key terms and definitions — 2026-05-06 -->

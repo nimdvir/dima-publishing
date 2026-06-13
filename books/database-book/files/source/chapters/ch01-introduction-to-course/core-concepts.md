@@ -1,4 +1,6 @@
 <!-- Chapter edit 2026-06-05: structural restructure — orientation template, heading hierarchy, Learning Objectives section, single intro video, About-the-Author relocated. Technical meaning preserved. -->
+<!-- metadata: date="2026-06-05" -->
+
 <!-- Chapter edit 2026-06-05 (pass 2): section reorder — How the Book Is Organized now precedes How Each Chapter Works; Bloom's Taxonomy moved up to follow the chapter rhythm; The Tools You Will Use moved down to follow The Two Running Projects. Resolved two author comments (Let's Build lab-foundation note; RAT design note) by keeping the existing in-section explanations and removing the commented draft blocks (content preserved in the lets-build and rat companion files). -->
 
 # Chapter 1: Introduction to the Textbook
@@ -29,7 +31,8 @@ You will not learn databases as a pile of disconnected terms. You will learn dat
 
 You will also put theory into practice. You will work with two main projects, the **Grading Database** and PetVax, so you can move from **Guided Practice** to **Transfer Practice**. The goal is not to memorize disconnected technical steps. The goal is to understand how data becomes structure, how structure supports analysis, and how analysis supports better business decisions.
 
-
+![Learning objectives graphic linking Chapter 1 goals to the course's business, technical, and systems-thinking outcomes](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-figure12-objectives)
+*The opening visual shows the learning goals that connect business meaning, technical structure, and the data-to-decisions journey.*
 
 
 
@@ -62,6 +65,9 @@ You will also put theory into practice. You will work with two main projects, th
 - recognize how the book's chapter structure supports guided learning and independent application;
 - describe the habits that help students succeed in technical business learning; and
 - explain why this course takes a systems-thinking rather than a tool-first approach.
+
+<div class="page-break"></div>
+
 
 
 ![Chapter 1 overview infographic linking structure, insight, strategy, and project-based learning](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-ch01-infographic)
@@ -304,6 +310,100 @@ These competencies move from foundational to integrative. The first helps you ta
   <p><strong>🔑 Key Takeaway: Anchor every chapter to a competency</strong></p>
   <p>When a chapter feels abstract, ask which competency it is building. That single question keeps the work grounded.</p>
 </div>
+
+---
+
+<div class="page-break"></div>
+
+## Why the Book Is Sequenced This Way
+
+This book is organized around a deliberate learning sequence. The goal is not only to introduce topics in a reasonable order, but to help you build the kind of mental model that professionals use when working with real information systems.
+
+![Conceptual architecture of the book showing the progression from business foundations through database design, queries, analytics, and strategy](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch01-introduction-to-course/ch01-book-conceptual-architecture)
+
+*The book's learning progression moves from business foundations through structured data, querying, analytics, and strategic decision-making.*
+
+The sequence follows a simple progression:
+
+```
+Business value
+↓
+Decisions
+↓
+Measurement
+↓
+Information systems
+↓
+Data foundations
+↓
+Database design
+↓
+Queries
+↓
+Analytics
+↓
+Strategy
+```
+
+This order matters.
+
+Before writing complex queries, you first need to understand what a business is trying to accomplish, what decisions managers need to make, and what performance measures matter. Before designing dashboards, you need to understand the structure of the data underneath them. Before using analytics strategically, you need to understand how tables, relationships, keys, and queries shape what can be measured and trusted.
+
+In other words, the book moves from **why systems matter** to **how systems are built**, and then to **how systems support decisions**.
+
+The chapters are arranged to support that cognitive progression:
+
+| Chapters | Topic Focus | Cognitive Goal |
+|---|---|---|
+| **1–3** | Business foundations, information systems, and data fundamentals | Build conceptual understanding |
+| **4** | Databases and DBMS concepts | Understand structured data storage |
+| **5** | SQL basics | Develop procedural querying skills |
+| **6** | The relational model | Understand structural reasoning through keys and relationships |
+| **7** | Normalization | Learn design logic and data integrity principles |
+| **8** | Midterm review | Integrate and check first-half understanding |
+| **9** | Database design and ER modeling | Think like a system designer |
+| **10** | Advanced SQL for business analysis | Ask deeper analytical questions of designed databases |
+| **11** | Database administration | Understand operational reliability, security, and maintenance |
+| **12** | Business intelligence and analytics | Turn operational data into insight |
+| **13** | Advanced database techniques | Improve performance, flexibility, and technical robustness |
+| **14** | Power BI and business reporting | Communicate insight to decision-makers |
+| **15** | Business strategy and information systems | Connect systems to competitive advantage |
+| **16–17** | Final integration and conclusion | Synthesize the full data-to-decisions journey |
+
+The first half of the book builds the foundation. You begin with business performance, information systems, data fundamentals, databases, SQL basics, the relational model, and normalization. These chapters give you the vocabulary and structure needed to understand how reliable data systems work.
+
+The midterm functions as an integration checkpoint. By that point, you should understand the basic logic of data, tables, relationships, SQL, and normalization.
+
+After the midterm, the book shifts from understanding existing database structures to designing and extending them. That is why the next major step is **database design and ER modeling**. At this stage, you are ready to ask a deeper question:
+
+> How would I design a reliable database from scratch?
+
+This is where requirements, entities, attributes, relationships, cardinality, optionality, and ER diagrams come together. These concepts help you think like a database designer, not just a database user.
+
+Only after that design foundation is in place do we move into **advanced SQL**. This sequence is intentional. Advanced SQL depends on understanding schema logic. To write complex joins, subqueries, CTEs, window functions, and analytical queries, you need to understand how the database is structured and why it was designed that way.
+
+A useful way to think about the second half of the book is:
+
+```
+Design
+→ Advanced SQL
+→ Database administration
+→ Business intelligence
+→ Advanced database techniques
+→ Reporting
+→ Strategy
+→ Integration
+```
+
+This sequence mirrors how database work develops in organizations. First, a system must be designed. Then it can be queried. Then it must be administered, secured, optimized, analyzed, visualized, and aligned with strategy.
+
+The Grading Database supports this progression throughout the book. Early on, it helps illustrate tables, keys, relationships, and normalization. Later, it becomes a system for design, advanced querying, reporting, business intelligence, and strategic analysis.
+
+This is one of the central lessons of the course:
+
+> A database is not just a place to store data. It is a structured model of how an organization understands its work.
+
+By the end of the book, you will not only know individual tools and concepts. You will understand how they fit together into a complete system for turning data into decisions.
 
 ---
 

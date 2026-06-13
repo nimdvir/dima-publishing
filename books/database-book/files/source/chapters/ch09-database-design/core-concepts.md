@@ -1,24 +1,7 @@
----
-title: "Chapter 10 – From Data to Design: Building Reliable Information Systems"
-chapter: 10
-section: "Core Concepts"
-description: "Introduces database design principles, the SDLC, ER modeling, Crow's Foot notation, and normalization as tools for translating business requirements into reliable relational systems."
-keywords:
-  - database design
-  - ER modeling
-  - Crow's Foot notation
-  - normalization
-  - SDLC
-  - entities
-  - relationships
-  - primary key
-  - foreign key
-date: 2026-05-06
----
+<!-- metadata: date="2026-06-12"; chapter="09"; section="main"; title="Chapter 9 – Database Design and ER Modeling"; description="Teaches students to design databases from business requirements using the SDLC, ER modeling, Crow's Foot notation, relationship types, and normalization as design-quality checks." -->
+# Chapter 9: Database Design and ER Modeling
 
-# Chapter 10: From Data to Design: Building Reliable Information Systems
-
-*From Requirements to Robust Logical Database Design*
+*From Business Requirements to Reliable Information Systems*
 
 This chapter transitions students from querying existing databases to designing new ones from scratch. The chapter covers requirements analysis, conceptual modeling with ERDs, logical database design, and normalization review as a design discipline. The chapter emphasizes that good design determines what SQL is possible -- poor design limits every query and report built on top of it.
 

@@ -1,17 +1,5 @@
----
-title: "Lab 01: PetVax Project Introduction"
-chapter: 1
-section: "Lab Questions"
-description: "Orientation quiz for the PetVax veterinary clinic lab project. Quiz-only, no file submission."
-keywords:
-  - lab 01
-  - PetVax
-  - orientation
-  - project overview
-  - PetVax introduction
-date: 2026-06-03
-author: "Nimrod Dvir"
----
+<!-- metadata: date="2026-06-03" -->
+
 
 # Lab 01: PetVax Project Introduction
 
@@ -22,6 +10,10 @@ author: "Nimrod Dvir"
 <p align="center">
 
 <p align="center"><em>Get oriented to the PetVax project before you start building.</em></p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_800/bitm330book/00-general/labs/petvax-vet-at-desk" alt="A veterinarian in a white lab coat sits at a desk in a clean, well-lit clinic office." width="600">
+</p>
 
 ## Overview
 
@@ -47,6 +39,13 @@ Your final lab grade combines the quiz score and the AI-graded file.
 Read this background, then answer the quiz that follows.
 
 ### What the Vet Clinic Database Models
+
+<p align="center">
+  <video controls width="720" style="max-width:100%">
+    <source src="https://res.cloudinary.com/dkndq6lyz/video/upload/f_auto,q_auto/bitm330book/00-general/labs/petvax-software-timeline.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
 
 The **PetVax Veterinary Clinic Database** represents a small but realistic operational information system. Across the lab sequence, it will model data such as:
 

@@ -52,6 +52,24 @@ Flat files only. The lab questions file is present only for chapters that have a
 
 ---
 
+## Out of Scope: Front Matter
+
+This skill syncs **numbered chapter folders only** (`chNN-slug/`). Front-matter and
+cover folders are **repo-native**: they are authored and edited directly in the platform
+repo, have no upstream source in the editing repository, and are **never synced**.
+
+Examples (do not sync, do not list as candidates, do not create manifests for):
+
+- `0-cover-image/`
+- `01-acknowlgements/` (for example `00-preface.md`, `00-acknowlgements.md`)
+
+These folders have no `chNN`-prefixed dated section files, so `--all` already skips them
+because no matching source folder exists. Editing them directly in the repo is the correct
+workflow. If one of these files ever needs an upstream source, that is a separate decision --
+do not fold it into chapter sync.
+
+---
+
 ## How the "Latest File" Is Determined
 
 To find the **latest canonical file** for a section in the legacy source:

@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-02" -->
+
 # Chapter 2 Term Treasury - Foundations of Information Systems
 
 <p align="center">

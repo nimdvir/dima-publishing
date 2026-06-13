@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-06-03" -->
+
 # Let's Build: Introduction to the Course
 
 <p align="center">
@@ -78,8 +80,6 @@ The project therefore evolves the same way many real systems do: first by gettin
 
 *Figure 1.4 — Two-phase progression of the Grading Database, from foundation to integration and analysis.*
 
-<div class="page-break"></div>
-
 ### Why a Grading Database?
 
 The Grading Database is deliberately chosen because it is a system students already understand as users. You know what grades are, how attendance works, and what a final grade means. That familiarity removes much of the guesswork about business rules and lets you focus on the real learning objectives: how to structure data, how to query it, how to protect it, and how to present it clearly.
@@ -92,21 +92,19 @@ That is what makes the project effective. You do not waste early energy learning
 
 As the project develops, you will begin practicing the kinds of thinking associated with several professional roles.
 
-| Role                 | What You Begin to Practice                                        |
-| -------------------- | ----------------------------------------------------------------- |
-| **Data architect**   | Designing structure, entities, and relationships                  |
-| **SQL analyst**      | Turning business questions into queries and interpretable outputs |
-| **Database manager** | Thinking about integrity, consistency, and reliability            |
-| **Analyst**          | Transforming structured data into useful insight                  |
-| **Communicator**     | Presenting technical results clearly for non-technical audiences  |
+| Role | What You Begin to Practice |
+| --- | --- |
+| **Data architect** | Designing structure, entities, and relationships |
+| **SQL analyst** | Turning business questions into queries and interpretable outputs |
+| **Database manager** | Thinking about integrity, consistency, and reliability |
+| **Analyst** | Transforming structured data into useful insight |
+| **Communicator** | Presenting technical results clearly for non-technical audiences |
 
 You are not expected to perform all of these roles at an advanced level in Chapter 1. The goal is to begin recognizing them. As the project grows, you will revisit them repeatedly in more direct and demanding ways.
 
 ![Professional roles practiced through the Grading Database](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/bitm330book/ch01-introduction-to-course/ch01-roles?_a=BAMAAAiu0)
 
 *Figure 1.5 — Professional roles you begin to practice through the Grading Database project.*
-
-<div class="page-break"></div>
 
 ### What You Will Do in Chapter 1
 
@@ -152,9 +150,3 @@ Complete the following tasks as your first Let's Build activity:
    Locate the repository and confirm where the course files, scripts, or supporting materials live.
 
 These tasks may seem simple, but they matter. They establish the logic of the project before you begin building, and they prepare you to work more deliberately in the chapters that follow.
-
-<!--
-insert image here - "G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch01-welcome-to-the-textbook\ch01-unused\grading-database.png" 
-
-plus caption 
--->

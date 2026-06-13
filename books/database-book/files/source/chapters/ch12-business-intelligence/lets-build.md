@@ -1,3 +1,5 @@
+<!-- metadata: date="2026-05-19"; chapter="12"; section="lets-build"; title="Chapter 12 Let's Build"; description="Hands-on practice for BI" -->
+
 <!-- Sources: BITM330-Book-draft/chapter-drafts/ch12-business-intelligence/main/ch12-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
 
 # Let's Build: Business Intelligence for the Grading Department

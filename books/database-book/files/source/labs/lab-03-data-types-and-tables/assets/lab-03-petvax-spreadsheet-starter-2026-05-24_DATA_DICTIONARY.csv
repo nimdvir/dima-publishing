@@ -1,0 +1,18 @@
+FieldName,Meaning,Intended Kind of Data,Why It Matters
+AppointmentID,Identifies one appointment record,Identifier / whole number,Should not be averaged; distinguishes one row from another
+AppointmentDate,Date of the appointment,Date,Supports date filters and chronological sorting
+AppointmentTime,Time of appointment,Time / text,Supports schedule order and daily workflow
+PetName,Pet's name,Text / categorical label,Can repeat across different pets; not a stable identifier
+OwnerName,Owner's full name,Text / categorical label,Can repeat and may change; not a perfect identifier
+OwnerEmail,Owner contact email,Text,"Repeated in a flat file, creating update risk"
+BreedName,Pet breed,Categorical text,Used for grouping and lookup to breed reference
+WeightKg,Pet weight in kilograms,Ratio numeric,"Can be averaged, compared, and used in calculations"
+ServiceType,Type of service scheduled,Categorical text,Used for grouping and operational summaries
+AppointmentStatus,Status of visit,Categorical text,"Completed, Scheduled, No-show"
+ReminderSent,Whether reminder was sent,Boolean,Supports no-show and communication analysis
+PaymentAmount,Amount charged for visit,Ratio numeric / currency,Can be summed and averaged
+AnimalType,Dog or Cat,Categorical text from lookup,Should be brought from BREED_REFERENCE
+AvgHealthyWeightKg,Typical healthy weight for breed,Numeric from lookup,Needed for weight comparison
+OverweightThresholdKg,Threshold used for flagging,Numeric from lookup,Example rule: 120% of average breed weight
+WeightStatus,Weight flag from formula,Categorical output,Shows formula-driven classification
+PetOwnerKey,Temporary helper key,Text identifier,Helps identify the same pet-owner pair in a flat file

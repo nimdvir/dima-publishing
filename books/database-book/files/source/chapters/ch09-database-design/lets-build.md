@@ -1,10 +1,12 @@
-# Let's Build: Chapter 10 -- ER Modeling in Practice
+<!-- metadata: date="2026-03-08"; chapter="09"; section="lets-build"; title="Chapter 9 Let's Build"; description="Hands-on practice for database design" -->
+
+# Let's Build: Chapter 9 -- ER Modeling in Practice
 
 ![Let's Build](<../../../../.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif>)
 
 ## Overview
 
-This companion provides hands-on practice with the design concepts from Chapter 10. You will create Entity-Relationship Diagrams using two industry tools -- Lucidchart (visual, drag-and-drop) and Mermaid (text-based, code-friendly) -- and translate designs into SQL.
+This companion provides hands-on practice with the design concepts from Chapter 9. You will create Entity-Relationship Diagrams using two industry tools -- Lucidchart (visual, drag-and-drop) and Mermaid (text-based, code-friendly) -- and translate designs into SQL.
 
 ---
 

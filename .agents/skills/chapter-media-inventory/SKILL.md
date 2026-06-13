@@ -25,14 +25,17 @@ chapter-media            →  where should images go? optimize + deliver them
 
 ## When to Use
 
-| Request | Use |
-|---|---|
-| What images exist for ch05? | `chapter-media-inventory` |
-| Which images are unused? | `chapter-media-inventory` |
-| Generate an image inventory CSV | `chapter-media-inventory` |
-| Build an HTML thumbnail gallery | `chapter-media-inventory` |
-| Place images into the chapter | `chapter-media` |
-| Optimize and upload to Cloudinary | `chapter-media` |
+This skill is the **read-only audit companion**. For active pipeline work (placing
+images, generating figures, optimizing, uploading to Cloudinary), use `chapter-media`.
+
+| Request                           | Use                       |
+| --------------------------------- | ------------------------- |
+| What images exist for ch05?       | `chapter-media-inventory` |
+| Which images are unused?          | `chapter-media-inventory` |
+| Generate an image inventory CSV   | `chapter-media-inventory` |
+| Build an HTML thumbnail gallery   | `chapter-media-inventory` |
+| Place images into the chapter     | `chapter-media`           |
+| Optimize and upload to Cloudinary | `chapter-media`           |
 
 ---
 
@@ -64,12 +67,12 @@ filename, path, size_bytes, width, height, format, last_modified
 
 For each image, determine placement status:
 
-| Status | Meaning |
-|---|---|
-| `placed` | Referenced in chapter Markdown (`![…](…)` or `<img src="…">`) |
-| `unplaced` | Exists in folder but not referenced in chapter |
-| `cloudinary` | Already delivered via Cloudinary URL |
-| `unknown` | Cannot determine (file outside known folders) |
+| Status       | Meaning                                                       |
+| ------------ | ------------------------------------------------------------- |
+| `placed`     | Referenced in chapter Markdown (`![…](…)` or `<img src="…">`) |
+| `unplaced`   | Exists in folder but not referenced in chapter                |
+| `cloudinary` | Already delivered via Cloudinary URL                          |
+| `unknown`    | Cannot determine (file outside known folders)                 |
 
 ### 4. Output the inventory
 
@@ -143,25 +146,25 @@ Generate a standalone HTML preview gallery for the chapter's image folder.
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Gallery — chNN</title>
-<style>
-  /* Inline gallery styles — grid, thumbnails, filter bar, modal */
-</style>
-</head>
-<body>
-  <header>
-    <h1>chNN — Image Gallery</h1>
-    <div class="filter-bar"><!-- filter buttons --></div>
-    <div class="stats"><!-- count of placed/unplaced/cloudinary --></div>
-  </header>
-  <main class="gallery-grid">
-    <!-- thumbnail cards -->
-  </main>
-  <div class="modal" hidden><!-- full-size overlay --></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery — chNN</title>
+    <style>
+      /* Inline gallery styles — grid, thumbnails, filter bar, modal */
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>chNN — Image Gallery</h1>
+      <div class="filter-bar"><!-- filter buttons --></div>
+      <div class="stats"><!-- count of placed/unplaced/cloudinary --></div>
+    </header>
+    <main class="gallery-grid">
+      <!-- thumbnail cards -->
+    </main>
+    <div class="modal" hidden><!-- full-size overlay --></div>
+  </body>
 </html>
 ```
 

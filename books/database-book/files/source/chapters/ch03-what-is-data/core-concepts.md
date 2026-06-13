@@ -1,4 +1,5 @@
 <!-- Chapter edit: restructured opening, tightened prose, fixed page breaks, converted blockquotes to prose, added canonical Core Concepts GIF. Technical meaning preserved. -->
+<!-- metadata: date="2026-06-03" -->
 
 # Chapter 3: Understanding Data Fundamentals
 

@@ -1,4 +1,5 @@
 <!-- Let's Build for Chapter 3: built with the Grading Database (GD) in Google Sheets. Companion to Lab 03 (PetVax). Revised 2026-06-02. -->
+<!-- metadata: date="2026-06-02" -->
 
 ## Let's Build
 

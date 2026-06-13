@@ -1,0 +1,21 @@
+AppointmentDate,AppointmentTime,PetName,OwnerName,OwnerEmail,AnimalType,BreedName,WeightKg,ServiceType,VaccineDue,AppointmentStatus,ReminderSent,PaymentAmount,Notes
+3/2/2026,9:00 AM,Bandit,Marcus Chen,marcus.chen@example.com,Dog,Rottweiler,42,Dental,No,Completed,Yes,220,Dental cleaning under sedation
+3/3/2026,10:15 AM,Luna,Sarah Wilson,sarah.wilson@example.com,Cat,Siamese,4,Vaccination,Yes,Completed,Yes,65,Annual booster
+3/4/2026,11:30 AM,Max,James Patel,james.patel@example.com,Dog,Labrador,32,Checkup,No,Completed,Yes,80,Routine wellness
+3/5/2026,2:00 PM,Whiskers,Emma Garcia,emma.garcia@example.com,Cat,Persian,5,Vaccination,Yes,Completed,No,65,Rabies due
+3/6/2026,9:30 AM,Rocky,David Kim,david.kim@example.com,Dog,Boxer,28,Emergency,No,Completed,Yes,150,Cut paw
+3/9/2026,1:00 PM,Bella,Olivia Brown,olivia.brown@example.com,Dog,Poodle,8,Checkup,No,No-show,No,80,Did not arrive
+3/10/2026,3:30 PM,Milo,Liam Davis,liam.davis@example.com,Cat,Maine Coon,7,Vaccination,Yes,Completed,Yes,65,Annual
+3/11/2026,10:00 AM,Daisy,Sophia Martinez,sophia.martinez@example.com,Dog,Beagle,12,Checkup,No,Completed,Yes,80,Routine
+3/12/2026,11:00 AM,Charlie,Noah Lopez,noah.lopez@example.com,Dog,Golden Retriever,35,Vaccination,No,Completed,Yes,65,Puppy boosters complete
+3/13/2026,2:30 PM,Simba,Ava Wright,ava.wright@example.com,Cat,Bengal,6,Vaccination,Yes,Completed,No,65,Booster
+3/16/2026,9:00 AM,Buddy,Mia Hall,mia.hall@example.com,Dog,Husky,25,Emergency,No,Completed,Yes,150,Limping
+3/17/2026,10:30 AM,Coco,Ethan Allen,ethan.allen@example.com,Dog,Chihuahua,3,Checkup,No,Completed,Yes,80,Senior check
+3/18/2026,1:15 PM,Oliver,Isabella Young,isabella.young@example.com,Cat,Ragdoll,6,Checkup,No,Completed,Yes,80,Wellness
+3/19/2026,3:00 PM,Lucy,Aiden Hernandez,aiden.hernandez@example.com,Dog,Dachshund,7,Vaccination,No,No-show,No,65,Did not arrive
+3/23/2026,9:45 AM,Tiger,Charlotte King,charlotte.king@example.com,Cat,Tabby,5,Emergency,No,Completed,Yes,150,Eye infection
+3/24/2026,11:00 AM,Bear,Mason Scott,mason.scott@example.com,Dog,German Shepherd,38,Checkup,No,Completed,Yes,80,Annual
+3/25/2026,1:30 PM,Shadow,Amelia Green,amelia.green@example.com,Cat,Black Shorthair,4,Vaccination,Yes,Completed,Yes,65,Rabies
+3/26/2026,3:45 PM,Zoe,Lucas Adams,lucas.adams@example.com,Dog,Corgi,11,Checkup,No,Completed,Yes,80,Routine
+3/30/2026,10:00 AM,Jack,Harper Nelson,harper.nelson@example.com,Dog,Bulldog,23,Emergency,No,Completed,Yes,150,Vomiting
+3/31/2026,2:00 PM,Pepper,Evelyn Carter,evelyn.carter@example.com,Cat,Calico,4,Vaccination,No,Completed,Yes,65,Skipping booster this year

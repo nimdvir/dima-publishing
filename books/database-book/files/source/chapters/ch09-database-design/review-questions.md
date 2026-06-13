@@ -1,4 +1,6 @@
-# Reflection: Chapter 10 -- Database Design
+<!-- metadata: date="2026-03-08"; chapter="09"; section="reflection"; title="Chapter 9 Review & Reflection"; description="Review questions for database design" -->
+
+# Reflection: Chapter 9 -- Database Design
 
 ![Reflection GIF](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0)
 

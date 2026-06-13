@@ -33,6 +33,8 @@ single-stage work.
 | `chapter-editor-light`    | Light grammar/clarity pass, preserve voice                                      |
 | `chapter-editor-cursor`   | Superseded reference editor; prefer `chapter-editor`                            |
 | `chapter-review-codex`    | Repo-canonical final whole-package review orchestrator (no auto-sync or deploy) |
+| `chapter-command-center`  | Interactive launcher/router; recommends next step and routes to the right skill |
+| `chapter-production-flow` | Full chapter lifecycle orchestrator; delegates review to chapter-review-codex   |
 | `chapter-gap-analysis`    | Audit a chapter draft against source materials                                  |
 | `chapter-tracker`         | View or update the chapter progress tracker                                     |
 | `chapter-docx-build`      | Build a chapter into DOCX with Pandoc                                           |
@@ -60,6 +62,10 @@ single-stage work.
 
 ## Common Workflows
 
+- Orchestration entry points (pick by how much help you want):
+  - Start with guidance: `/chapter-command-center chNN`
+  - Run a guided production lifecycle: `/chapter-production-flow chNN`
+  - Run the final package review: `/chapter-review-codex chNN`
 - Typical chapter flow: `/chapter-editor` → `/chapter-media` → `/chapter-docx-build`
 - Final pre-publish flow: `/chapter-review-codex chNN` (orchestrates the above
   plus terms, outline coverage, and DOCX readiness; no auto-sync or deploy)

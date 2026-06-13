@@ -1,18 +1,3 @@
----
-title: "Lab 01: PetVax Project Introduction"
-chapter: 1
-section: "Lab Questions"
-description: "Orientation quiz for the PetVax veterinary clinic lab project. Quiz-only, no file submission."
-keywords:
-  - lab 01
-  - PetVax
-  - orientation
-  - project overview
-  - PetVax introduction
-date: 2026-06-03
-author: "Nimrod Dvir"
----
-
 # Lab 01: PetVax Project Introduction
 
 <p align="center">

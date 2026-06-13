@@ -1,23 +1,5 @@
----
-title: "Chapter 1: Review and Reflection"
-chapter: 1
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions that help students consolidate Chapter 1's orientation to the book, the data-to-decisions arc, the two running projects, and the habits that support success in technical business learning."
-keywords:
-  - review questions
-  - reflection questions
-  - personal reflection
-  - BITM330
-  - data to decisions
-  - Grading Database
-  - PetVax
-  - information systems
-  - chapter 1
-date: 2026-06-03
-author: "Nimrod Dvir"
----
-
 <!-- markdownlint-disable MD025 -->
+<!-- metadata: date="2026-06-03" -->
 
 # Chapter 1: Review and Reflection
 
@@ -98,7 +80,7 @@ Suggested Answer: The Tool Ecosystem supports several workflow stages. Collectio
 
 **Question 7: Summarize how the book's six parts move from foundations to strategy, and give one example chapter from each part.**
 
-Suggested Answer: Part 1 (Foundations, Ch 1-3) orients students to information systems and data fundamentals, such as Chapter 2 on foundations of information systems. Part 2 (Databases and SQL, Ch 4-5) covers database basics and SQL, such as Chapter 5 on SQL. Part 3 (Relational Design, Ch 6-8) teaches the relational model and normalization, such as Chapter 7 on normalization. Part 4 (Advanced SQL and Design, Ch 9-10) deepens querying and moves toward design, such as Chapter 9 on advanced SQL. Part 5 (Administration, BI, and Visualization, Ch 11-14) covers administration, analytics, and dashboards, such as Chapter 14 on Power BI. Part 6 (Strategy and Integration, Ch 15-17) connects systems to strategy and responsibility, such as Chapter 15 on business strategy and information systems.
+Suggested Answer: Part 1 (Foundations, Ch 1-3) orients students to information systems and data fundamentals, such as Chapter 2 on foundations of information systems. Part 2 (Databases and SQL, Ch 4-5) covers database basics and SQL, such as Chapter 5 on SQL. Part 3 (Relational Design, Ch 6-8) teaches the relational model and normalization, such as Chapter 7 on normalization. Part 4 (Advanced SQL and Design, Ch 9-10) deepens querying and moves toward design, such as Chapter 10 on advanced SQL. Part 5 (Administration, BI, and Visualization, Ch 11-14) covers administration, analytics, and dashboards, such as Chapter 14 on Power BI. Part 6 (Strategy and Integration, Ch 15-17) connects systems to strategy and responsibility, such as Chapter 15 on business strategy and information systems.
 
 **Question 8: Explain how Bloom's Taxonomy is used in this book, and give one example of an activity at the "Apply" level and one at the "Evaluate" or "Create" level.**
 
@@ -167,11 +149,3 @@ Suggested Answer: A strong response names one tool from the Tool Ecosystem with 
 **Question 7: The chapter frames this book as preparation for the moment when an employer asks you to "pull data, write a query, read a report, or question a number." What would help you feel ready for that moment by the end of the semester?**
 
 Suggested Answer: A strong response describes a personal definition of readiness, such as being able to read an unfamiliar schema, write a basic SELECT with a join, explain what a metric measures, and flag at least one risk in a report. The best answers also name one habit from the chapter, such as steady work, business-question framing, or the error-as-clue mindset, that will support that readiness.
-
-<!--
-insert image plus caption 
-
-
-"G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch01-welcome-to-the-textbook\ch01-unused\review-reflection-1.png"
-
--->

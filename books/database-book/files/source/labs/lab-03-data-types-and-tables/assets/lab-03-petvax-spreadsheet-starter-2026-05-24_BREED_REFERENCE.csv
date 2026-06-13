@@ -1,0 +1,20 @@
+BreedName,AnimalType,SizeCategory,AvgHealthyWeightKg,OverweightThresholdKg
+Beagle,Dog,Medium,12,14.4
+Siamese,Cat,Medium,4.5,5.4
+Labrador Retriever,Dog,Large,30,36
+Yorkshire Terrier,Dog,Small,3.2,3.84
+Maine Coon,Cat,Large,7.5,9
+Poodle,Dog,Medium,10,12
+Ragdoll,Cat,Medium,6,7.2
+Dachshund,Dog,Small,8,9.6
+Golden Retriever,Dog,Large,30,36
+French Bulldog,Dog,Small,11,13.2
+Boxer,Dog,Large,28,33.6
+Bulldog,Dog,Medium,22,26.4
+Persian,Cat,Small,4.5,5.4
+Shih Tzu,Dog,Small,6,7.2
+German Shepherd,Dog,Large,32,38.4
+Border Collie,Dog,Medium,18,21.6
+Pug,Dog,Small,7,8.4
+Sphynx,Cat,Small,4,4.8
+Mixed Breed,Dog,Medium,20,24
