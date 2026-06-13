@@ -64,3 +64,12 @@ groups task-list items for that day.
 - [x] Metadata normalization: YAML->HTML comments on all copied Markdown
 - [x] Verified: stable files present, no answer leaks, no unwanted artifacts
 
+
+## 2026-06-13 Edits
+
+- [x] Created .agents/skills/chapter-source-import/SKILL.md — new compare-first reconciliation skill for Drive-to-repo chapter imports
+- [x] Ch01–Ch04 reconciliation (20 sections): all 19 sections classified Current (dates match Drive source; imported 2026-06-11)
+- [x] Ch04 Let's Build classified as Conflict: Drive ch04-lets-build-2026-06-13.md is a copy of 06-02; lets-build-v2.md has uncommitted repo-only manual edits; not imported
+- [x] Deleted root-level answer file lab-01-petvax-intro/lab-01-answers-2026-06-03.md (instructor/ copy preserved; exposure risk removed)
+- [x] Created books/database-book/.edits/ch04-edits.md — flags lets-build-v2.md conflict and stale index.md lab link
+- [x] Created books/database-book/.edits/chapter-section-status.md — full Ch01–Ch17 section readiness dashboard

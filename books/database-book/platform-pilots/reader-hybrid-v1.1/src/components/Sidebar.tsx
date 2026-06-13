@@ -8,6 +8,8 @@ import {
 
 /** Icons for each reader area (keyed by section title). */
 const SECTION_ICONS: Record<string, React.ReactNode> = {
+  'Preface': <BookOpen size={14} />,
+  'Copyright & Acknowledgements': <BookMarked size={14} />,
   'Introduction': <BookMarked size={14} />,
   'Core Concepts': <Layers size={14} />,
   "Let's Build": <Terminal size={14} />,
@@ -18,6 +20,8 @@ const SECTION_ICONS: Record<string, React.ReactNode> = {
 
 /** Subtitles for reader areas. */
 const SECTION_SUBTITLES: Record<string, string> = {
+  'Preface': 'About this book',
+  'Copyright & Acknowledgements': 'Rights & attribution',
   'Introduction': 'Hook & Core Alignment',
   'Core Concepts': 'Theory & Core Frameworks',
   "Let's Build": 'Hands-on Code Laboratory',
@@ -110,7 +114,9 @@ export default function Sidebar({
                 onClick={() => toggleChapter(ch.id)}
               >
                 <span className="chapter-caret">{expandedChapters.has(ch.id) ? <ChevronDown size={14} /> : <ChevronRight size={14} />}</span>
-                <span className="chapter-label">{ch.id.toUpperCase()}: {ch.title}</span>
+                <span className="chapter-label">
+                  {ch.id === 'ch00' ? ch.title : `${ch.id.toUpperCase()}: ${ch.title}`}
+                </span>
               </button>
               {expandedChapters.has(ch.id) && (
                 <div className="chapter-sections">

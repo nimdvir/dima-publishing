@@ -214,6 +214,24 @@ const LABS: {
   },
 ];
 
+// ── Front-matter folder (preface + acknowledgements) ──
+const FRONT_MATTER_FOLDER = "01-acknowlgements";
+
+interface FrontMatterSectionDef {
+  slug: string;
+  title: string;
+  fileName: string;
+}
+
+const FRONT_MATTER_SECTIONS: FrontMatterSectionDef[] = [
+  { slug: "preface", title: "Preface", fileName: "00-preface.md" },
+  {
+    slug: "acknowledgements",
+    title: "Copyright & Acknowledgements",
+    fileName: "00-acknowlgements.md",
+  },
+];
+
 // ── Warnings accumulator ──
 const WARNINGS: string[] = [];
 function warn(msg: string) {
@@ -621,6 +639,23 @@ function main() {
         }
       }
 
+      // Check front-matter files
+      const fmCheckDir = path.join(SOURCE_CHAPTERS, FRONT_MATTER_FOLDER);
+      for (const fmSec of FRONT_MATTER_SECTIONS) {
+        const fmFilePath = path.join(fmCheckDir, fmSec.fileName);
+        const fmFileExists = fs.existsSync(fmFilePath);
+        const currentHash = fmFileExists ? hashFile(fmFilePath) : "placeholder";
+        const prev = prevManifest.chapters?.["ch00"]?.[fmSec.slug];
+        if (
+          !prev ||
+          prev.hash !== currentHash ||
+          prev.file !== (fmFileExists ? fmSec.fileName : "")
+        ) {
+          allMatch = false;
+          changed.push(`ch00/${fmSec.slug}`);
+        }
+      }
+
       if (allMatch) {
         console.log("  No source changes detected — skipping regeneration.");
         console.log("  (Use --force to rebuild anyway.)\n");
@@ -645,6 +680,80 @@ function main() {
     "dated-fallback": 0,
     placeholder: 0,
   };
+
+  // ── Front matter (ch00: preface + acknowledgements) ──
+  const fmDir = path.join(SOURCE_CHAPTERS, FRONT_MATTER_FOLDER);
+  if (fs.existsSync(fmDir)) {
+    const fmSections: BookSection[] = [];
+    const fmPages: BookPage[] = [];
+
+    for (const fmSec of FRONT_MATTER_SECTIONS) {
+      const fmFilePath = path.join(fmDir, fmSec.fileName);
+      let content = readFileSafe(fmFilePath);
+      let sourceFile: string | null = fmSec.fileName;
+      let sourceType: SourceType = "stable";
+
+      if (!content || content.trim().length === 0) {
+        content = PLACEHOLDER_MD;
+        sourceFile = null;
+        sourceType = "placeholder";
+        warn(`ch00/${fmSec.slug}: placeholder (${fmSec.fileName} not found)`);
+      }
+
+      const sectionId = `ch00-${fmSec.slug}`;
+      const exists = sourceType !== "placeholder";
+      const pageSegments = splitPages(content);
+      let prevNavTitle: string | null = null;
+      const pages: BookPage[] = pageSegments.map((seg, i) => {
+        const navTitle = deriveNavTitle(seg, i + 1, prevNavTitle);
+        prevNavTitle = navTitle;
+        return {
+          id: `${sectionId}-page-${i + 1}`,
+          slug: `${fmSec.slug}-page-${i + 1}`,
+          title: extractTitle(seg, `${fmSec.title} \u2014 Page ${i + 1}`),
+          navTitle,
+          content: seg,
+          pageNumber: i + 1,
+          totalPages: pageSegments.length,
+          chapterId: "ch00",
+          chapterSlug: "ch00-front-matter",
+          sectionId,
+          sectionSlug: fmSec.slug,
+          sectionTitle: fmSec.title,
+          sourceFile,
+          sourceType,
+          exists,
+        };
+      });
+
+      fmSections.push({
+        id: sectionId,
+        slug: fmSec.slug,
+        title: fmSec.title,
+        fileName: fmSec.fileName,
+        exists,
+        sourceFile,
+        sourceType,
+        pages,
+      });
+      fmPages.push(...pages);
+
+      totalSectionsResolved++;
+      sourceTypeCounts[sourceType] = (sourceTypeCounts[sourceType] || 0) + 1;
+    }
+
+    chapters.push({
+      id: "ch00",
+      slug: "ch00-front-matter",
+      title: "Front Matter",
+      folderName: FRONT_MATTER_FOLDER,
+      sections: fmSections,
+    });
+    allPages.push(...fmPages);
+    console.log(`  Front matter: loaded (preface + acknowledgements)`);
+  } else {
+    console.log(`  Front matter: folder not found (${FRONT_MATTER_FOLDER}) — skipped`);
+  }
 
   for (const ch of CHAPTERS) {
     const chapterDir = path.join(SOURCE_CHAPTERS, ch.folderName);
