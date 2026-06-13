@@ -32,8 +32,9 @@ export default function HomePage({
   onOpenLabs,
   onOpenLogin,
 }: HomePageProps) {
-  const coverUrl = 'https://res.cloudinary.com/dkndq6lyz/image/upload/q_auto,f_auto/cover-5-20_ajw15x.jpg';
+  const coverUrl = 'https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto/bitm330book/0-cover-image/ch00-cover-art2-cropped.gif';
   const videoUrl = 'https://res.cloudinary.com/dkndq6lyz/video/upload/q_auto,f_auto,vc_auto/v1779827458/all_of_them_dcs22p.mp4';
+  const videoPosterUrl = 'https://res.cloudinary.com/dkndq6lyz/image/upload/q_auto,f_auto/cover-5-20_ajw15x.jpg';
   const reducedMotion = useReducedMotion();
 
   const fadeUp = (delay = 0) => ({
@@ -121,7 +122,7 @@ export default function HomePage({
           <video
             controls
             preload="metadata"
-            poster={coverUrl}
+            poster={videoPosterUrl}
             className="home-video"
           >
             <source src={videoUrl} type="video/mp4" />

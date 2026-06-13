@@ -5,6 +5,7 @@ import { extractHeadingToc } from '../utils/headings';
 import MarkdownRenderer from './MarkdownRenderer';
 import OnThisPage, { OnThisPageMobile } from './OnThisPage';
 import BottomNavigation from './BottomNavigation';
+import ReaderEntryCoverRotator from './ReaderEntryCoverRotator';
 
 interface ChapterReaderProps {
   page: BookPage;
@@ -16,6 +17,7 @@ interface ChapterReaderProps {
   nextPage: BookPage | null;
   onPrev: () => void;
   onNext: () => void;
+  showEntryCover: boolean;
 }
 
 export default function ChapterReader({
@@ -28,6 +30,7 @@ export default function ChapterReader({
   nextPage,
   onPrev,
   onNext,
+  showEntryCover,
 }: ChapterReaderProps) {
   // Extract H2/H3 headings from the current page content for "On this page"
   const headings = useMemo(() => extractHeadingToc(page.content), [page.content]);
@@ -83,7 +86,13 @@ export default function ChapterReader({
         {/* Reader body: main article + right-side "On this page" rail */}
         <div className="reader-body">
           <div className="reader-content">
-            <MarkdownRenderer content={page.content} />
+            {showEntryCover && (
+              <ReaderEntryCoverRotator
+                classicUrl="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto/bitm330book/0-cover-image/ch00-cover-art2-cropped.gif"
+                goldUrl="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto/bitm330book/0-cover-image/ch00-cover-gold.gif"
+              />
+            )}
+            <MarkdownRenderer content={page.content} suppressFirstImage={showEntryCover} />
           </div>
           <OnThisPage headings={headings} />
         </div>

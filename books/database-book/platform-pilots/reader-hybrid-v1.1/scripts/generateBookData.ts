@@ -89,6 +89,7 @@ interface BookPage {
   id: string;
   slug: string;
   title: string;
+  navTitle: string;
   content: string;
   pageNumber: number;
   totalPages: number;
@@ -239,6 +240,110 @@ function splitPages(raw: string): string[] {
 function extractTitle(content: string, fallback: string): string {
   const match = content.match(/^#\s+(.+?)(?:\s+#\s+)?$/m);
   return match ? match[1].trim() : fallback;
+}
+
+// ── navTitle derivation (sidebar page labels) ──
+
+/** Strip Markdown inline formatting and HTML tags from a heading/line. */
+function cleanInlineMd(text: string): string {
+  return text
+    .replace(/<[^>]+>/g, "")
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[*_`~]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const NAV_TITLE_MAX = 60;
+
+function truncateNavTitle(text: string): string {
+  if (text.length <= NAV_TITLE_MAX) return text;
+  const cut = text.slice(0, NAV_TITLE_MAX);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 30 ? cut.slice(0, lastSpace) : cut).trimEnd() + "\u2026";
+}
+
+/**
+ * Derive a content-aware sidebar label for a page.
+ * Order: first H2/H3 → first bold standalone line → first meaningful
+ * sentence → inherit previous page's heading ("continued") → "Page N".
+ */
+function deriveNavTitle(
+  content: string,
+  pageNumber: number,
+  prevNavTitle: string | null,
+): string {
+  const lines = content.split("\n");
+  let inCodeFence = false;
+
+  // 1. First H2/H3 heading
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+    const headingMatch = line.match(/^#{2,3}\s+(.+?)\s*#*\s*$/);
+    if (headingMatch) {
+      const text = cleanInlineMd(headingMatch[1]);
+      if (text.length > 0) return truncateNavTitle(text);
+    }
+  }
+
+  // 2. First bold standalone line
+  inCodeFence = false;
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+    const boldMatch = line.match(/^(?:\*\*|__)(.+?)(?:\*\*|__)[.:]?$/);
+    if (boldMatch) {
+      const text = cleanInlineMd(boldMatch[1]);
+      if (text.length > 0) return truncateNavTitle(text);
+    }
+  }
+
+  // 3. First meaningful sentence from prose
+  inCodeFence = false;
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+    if (
+      line.length === 0 ||
+      /^#/.test(line) ||
+      /^<!--/.test(line) ||
+      /^[-*+]\s/.test(line) ||
+      /^\d+\.\s/.test(line) ||
+      /^[|>]/.test(line) ||
+      /^!\[/.test(line) ||
+      /^</.test(line)
+    ) {
+      continue;
+    }
+    const text = cleanInlineMd(line);
+    if (text.length >= 12) {
+      const sentence = text.match(/^(.+?[.!?])(\s|$)/);
+      return truncateNavTitle(sentence ? sentence[1] : text);
+    }
+  }
+
+  // 4. Inherit previous page's heading (page continues a subsection)
+  if (prevNavTitle) {
+    const base = prevNavTitle.replace(/\s*\(continued\)$/, "");
+    return `${base} (continued)`;
+  }
+
+  // 5. Final fallback
+  return `Page ${pageNumber}`;
 }
 
 // ── Placeholder content ──
@@ -442,6 +547,15 @@ function main() {
 
   // Validate source root
   if (!fs.existsSync(SOURCE_CHAPTERS)) {
+    if (fs.existsSync(OUTPUT)) {
+      console.log(
+        `  Source root not available in this environment: ${SOURCE_CHAPTERS}`,
+      );
+      console.log(
+        `  Reusing committed generated data at ${OUTPUT} and skipping regeneration.\n`,
+      );
+      process.exit(0);
+    }
     console.error(`ERROR: Chapter source root not found: ${SOURCE_CHAPTERS}`);
     process.exit(1);
   }
@@ -451,6 +565,15 @@ function main() {
     fs.existsSync(path.join(SOURCE_CHAPTERS, ch.folderName)),
   );
   if (availableChapterFolders.length === 0) {
+    if (fs.existsSync(OUTPUT)) {
+      console.log(
+        "  Required chapter folders are not available in this environment.",
+      );
+      console.log(
+        `  Reusing committed generated data at ${OUTPUT} and skipping regeneration.\n`,
+      );
+      process.exit(0);
+    }
     console.error(
       "ERROR: Zero of the four required chapter folders found in source. Exiting.",
     );
@@ -563,22 +686,28 @@ function main() {
 
       // Split into pages
       const pageSegments = splitPages(content);
-      const pages: BookPage[] = pageSegments.map((seg, i) => ({
-        id: `${sectionId}-page-${i + 1}`,
-        slug: `${sectionDef.slug}-page-${i + 1}`,
-        title: extractTitle(seg, `${sectionDef.title} \u2014 Page ${i + 1}`),
-        content: seg,
-        pageNumber: i + 1,
-        totalPages: pageSegments.length,
-        chapterId: ch.id,
-        chapterSlug: ch.slug,
-        sectionId,
-        sectionSlug: sectionDef.slug,
-        sectionTitle: sectionDef.title,
-        sourceFile,
-        sourceType,
-        exists,
-      }));
+      let prevNavTitle: string | null = null;
+      const pages: BookPage[] = pageSegments.map((seg, i) => {
+        const navTitle = deriveNavTitle(seg, i + 1, prevNavTitle);
+        prevNavTitle = navTitle;
+        return {
+          id: `${sectionId}-page-${i + 1}`,
+          slug: `${sectionDef.slug}-page-${i + 1}`,
+          title: extractTitle(seg, `${sectionDef.title} \u2014 Page ${i + 1}`),
+          navTitle,
+          content: seg,
+          pageNumber: i + 1,
+          totalPages: pageSegments.length,
+          chapterId: ch.id,
+          chapterSlug: ch.slug,
+          sectionId,
+          sectionSlug: sectionDef.slug,
+          sectionTitle: sectionDef.title,
+          sourceFile,
+          sourceType,
+          exists,
+        };
+      });
 
       sections.push({
         id: sectionId,

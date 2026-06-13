@@ -141,7 +141,8 @@ export default function Sidebar({
                                 className={`page-link ${p.id === activePageId ? 'active' : ''}`}
                                 onClick={() => onSelectPage(p)}
                               >
-                                {p.title}
+                                <span className="page-link-num">{p.pageNumber}</span>
+                                <span className="page-link-title">{p.navTitle || p.title}</span>
                               </button>
                             ))}
                           </div>

@@ -43,11 +43,17 @@ interface MarkdownRendererProps {
   content: string;
   /** Callback fired with all H2/H3 headings found during render (for "On this page"). */
   onHeadingsExtracted?: (headings: HeadingTocItem[]) => void;
+  suppressFirstImage?: boolean;
 }
 
-export default function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRendererProps) {
+export default function MarkdownRenderer({
+  content,
+  onHeadingsExtracted,
+  suppressFirstImage = false,
+}: MarkdownRendererProps) {
   // Per-render heading counter keeps DOM IDs aligned with extracted H2/H3 IDs.
   const headingCounts = new Map<string, number>();
+  let imageCount = 0;
 
   return (
     <div className="markdown-body">
@@ -95,14 +101,22 @@ export default function MarkdownRenderer({ content, onHeadingsExtracted }: Markd
             );
           },
           // Ensure images are responsive
-          img: ({ src, alt, ...props }: any) => (
-            <img
-              src={src}
-              alt={alt || ''}
-              loading="lazy"
-              {...props}
-            />
-          ),
+          img: ({ src, alt, ...props }: any) => {
+            imageCount += 1;
+
+            if (suppressFirstImage && imageCount === 1) {
+              return null;
+            }
+
+            return (
+              <img
+                src={src}
+                alt={alt || ''}
+                loading="lazy"
+                {...props}
+              />
+            );
+          },
           // Style tables
           table: ({ children, ...props }: any) => (
             <div className="table-wrapper">

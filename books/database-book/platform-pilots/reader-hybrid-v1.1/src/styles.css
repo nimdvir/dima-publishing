@@ -218,13 +218,19 @@ h1 { font-size: 1.75rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.15rem; }
 .section-link.active .section-subtitle { opacity: 0.9; }
 .section-pages { padding-left: 1rem; }
 .page-link {
-  display: block; padding: 0.25rem 0.5rem; border: none; background: none;
+  display: flex; align-items: baseline; gap: 0.45rem;
+  padding: 0.25rem 0.5rem; border: none; background: none;
   cursor: pointer; color: var(--color-text-muted); font-size: 0.76rem;
   width: 100%; text-align: left; border-radius: var(--radius-xs);
   white-space: normal; word-break: break-word; line-height: 1.3;
 }
 .page-link:hover { background: var(--color-surface-muted); color: var(--color-text); }
 .page-link.active { color: var(--color-primary); font-weight: 600; }
+.page-link-num {
+  flex: 0 0 auto; min-width: 1.1em; font-variant-numeric: tabular-nums;
+  opacity: 0.65; font-size: 0.72rem;
+}
+.page-link-title { flex: 1 1 auto; min-width: 0; }
 .sidebar-labs { display: flex; flex-direction: column; gap: 2px; }
 .lab-link {
   display: flex; align-items: center; gap: 0.4rem;
@@ -391,7 +397,7 @@ h1 { font-size: 1.75rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.15rem; }
 .animated-cover-book {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 709 / 984;
   transform-style: preserve-3d;
   border-radius: 10px 22px 22px 10px;
   background: #fff;
@@ -421,7 +427,7 @@ h1 { font-size: 1.75rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.15rem; }
 .animated-cover-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 10px 22px 22px 10px;
   border: 1px solid rgba(203, 213, 225, 0.7);
 }
@@ -572,10 +578,30 @@ h1 { font-size: 1.75rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.15rem; }
 .reader-page-title { margin: 0 0 0.5rem; font-size: 1.5rem; }
 .reader-meta { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 .page-indicator { font-size: 0.85rem; color: var(--color-text-muted); background: var(--color-surface-muted); padding: 0.2rem 0.6rem; border-radius: 999px; }
-.page-tabs { display: flex; gap: 0.3rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.page-tabs { display: flex; gap: 0.3rem; margin-bottom: 1.25rem; flex-wrap: wrap; position: sticky; top: calc(var(--header-height) + var(--progress-height)); z-index: 40; background: var(--color-background); padding: 0.5rem 0; }
 .page-tab { width: 2rem; height: 2rem; border: 1px solid var(--color-border); border-radius: var(--radius-xs); background: var(--color-surface); cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted); transition: background 120ms; }
 .page-tab:hover { background: var(--color-surface-muted); }
 .page-tab.active { background: var(--color-primary); color: var(--color-background); border-color: var(--color-primary); }
+.reader-entry-cover-stage {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 300px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(226, 232, 240, 0.55), rgba(248, 250, 252, 0.32));
+  margin: 0 0 1.75rem;
+}
+.reader-entry-cover-img {
+  grid-area: 1 / 1;
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  justify-self: center;
+}
 /* ═══════════════════════════ MARKDOWN BODY ═══════════════════════════ */
 .markdown-body { line-height: 1.7; font-size: 1rem; color: var(--color-text); }
 .markdown-body h1 { font-size: 1.6rem; margin: 1.5em 0 0.5em; color: var(--color-heading); }
@@ -876,8 +902,13 @@ button:focus-visible {
     padding: 2.25rem;
   }
   .home-book-title { font-size: 2.45rem; }
-  .home-cover-column { order: 2; }
+  .home-cover-column { order: -1; }
   .animated-cover-shell { width: min(100%, 320px); }
+  .reader-entry-cover-stage { min-height: 260px; }
+  .desktop-sidebar { display: none; }
+  .hamburger { display: flex; }
+  .mobile-overlay { display: block; }
+  .mobile-drawer { display: block; }
 }
 
 /* ── Medium screens: hide right rail, show mobile collapsible On this page ── */
@@ -915,6 +946,13 @@ button:focus-visible {
   .cta-btn { justify-content: center; flex: 1 1 100%; }
   .home-features { grid-template-columns: 1fr; }
   .animated-cover-shell { width: min(100%, 280px); }
+  .reader-entry-cover-stage {
+    min-height: 220px;
+  }
+  .reader-entry-cover-img {
+    max-width: 320px;
+  }
+  .page-tab { width: 1.65rem; height: 1.65rem; font-size: 0.72rem; }
   .lab-content { padding: 1rem 1.25rem; }
   .terms-cards { grid-template-columns: 1fr; }
 }

@@ -206,6 +206,7 @@ export default function App() {
 
   // Navigation helpers (all using PAGE_INDEX_MAP)
   const currentIdx = currentPage ? (PAGE_INDEX_MAP.get(currentPage.id) ?? -1) : -1;
+  const showReaderEntryCover = scope === 'book' && currentIdx === 0;
 
   const goNext = useCallback(() => {
     if (scope === 'book' && currentIdx >= 0 && currentIdx < FLAT_READER_PAGES.length - 1) {
@@ -288,6 +289,7 @@ export default function App() {
           nextPage={nextPage}
           onPrev={goPrev}
           onNext={goNext}
+          showEntryCover={showReaderEntryCover}
         />
       )}
       {scope === 'labs' && activeLab && (

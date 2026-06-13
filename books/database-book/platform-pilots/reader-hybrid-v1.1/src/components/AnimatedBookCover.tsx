@@ -31,10 +31,10 @@ export default function AnimatedBookCover({ coverUrl }: AnimatedBookCoverProps) 
       >
         <img
           src={coverUrl}
-          alt="Cover of Using Data to Drive Business Performance"
+          alt="Classic animated cover of Using Data to Drive Business Performance"
           className="animated-cover-img"
-          width={900}
-          height={1200}
+          width={709}
+          height={984}
           loading="eager"
           decoding="async"
           fetchPriority="high"

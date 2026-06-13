@@ -44,6 +44,7 @@ export interface BookPage {
   id: string;
   slug: string;
   title: string;
+  navTitle?: string;  // content-aware sidebar label
   content: string;    // raw Markdown
   pageNumber: number;
   totalPages: number;
