@@ -89,9 +89,9 @@ The goal is to help you develop **systems thinking**.
 
 The entire book follows a connected conceptual architecture:
 
-<!-- upload to cloudinary and replace -->
+![Concept Map of the Book](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/01-acknowledgements/ch00-book-concept-map)
 
-![Concept Map of the Book](G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch00-general\General\book-flow.png)
+*Concept map showing the six-stage arc: Data → Tables → Relationships → Queries → Analytics → Decisions.*
 
 The final arrow returns to **business value creation**, reinforcing an important idea:
 
