@@ -271,7 +271,6 @@ export default function App() {
       {scope === 'welcome' && (
         <HomePage
           onEnterReader={() => navigateScope('book')}
-          onOpenLabs={() => navigateScope('labs')}
           onOpenLogin={() => navigateScope('login')}
         />
       )}

@@ -30,7 +30,7 @@ const SCOPE_LABELS: Record<ReaderScope, string> = {
   welcome: 'Home',
   book: 'Reader',
   labs: 'Labs',
-  login: 'Login / Access',
+  login: 'Sign in',
 };
 
 export default function Layout({
@@ -87,7 +87,7 @@ export default function Layout({
               </div>
             ) : (
               <button className="header-login-btn" onClick={() => onNavigateScope('login')}>
-                Login / Access
+                Sign in
               </button>
             )}
           </div>
@@ -148,7 +148,7 @@ export default function Layout({
       </div>
 
       {/* Prototype notice — dismissible */}
-      {!noticeDismissed && (
+      {!noticeDismissed && scope !== 'welcome' && scope !== 'login' && (
         <div className="prototype-notice is-visible">
           <span>Frontend prototype only &mdash; no real auth, payments, or production infrastructure.</span>
           <button className="notice-dismiss" onClick={onDismissNotice} aria-label="Dismiss notice">

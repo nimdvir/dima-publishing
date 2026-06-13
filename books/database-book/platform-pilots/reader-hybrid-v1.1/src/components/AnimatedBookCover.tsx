@@ -37,7 +37,6 @@ export default function AnimatedBookCover({ coverUrl }: AnimatedBookCoverProps) 
           height={984}
           loading="eager"
           decoding="async"
-          fetchPriority="high"
         />
       </motion.div>
     </div>

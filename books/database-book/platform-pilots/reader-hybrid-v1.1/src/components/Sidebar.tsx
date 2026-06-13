@@ -98,7 +98,7 @@ export default function Sidebar({
           className={`scope-link ${scope === 'login' ? 'active' : ''}`}
           onClick={() => onNavigateScope('login')}
         >
-          <LogIn size={16} className="scope-icon" /> Login / Access
+          <LogIn size={16} className="scope-icon" /> Sign in
         </button>
       </div>
 
