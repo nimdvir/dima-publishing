@@ -1,7 +1,7 @@
 /**
  * generateBookData.ts — Reader Hybrid v1.1
  *
- * Scans chapters 1-4 and first 4 labs, resolves files via
+ * Scans chapters 1-10 and first 10 labs, resolves files via
  * stable → dated-fallback → placeholder, splits on page-break
  * markers, and writes src/generated/bookData.ts.
  *
@@ -122,7 +122,7 @@ interface BookLab {
   sourceType: SourceType;
 }
 
-// ── Chapter definitions (chapters 1-4) ──
+// ── Chapter definitions (chapters 1-10) ──
 const CHAPTERS: { id: string; slug: string; folderName: string }[] = [
   {
     id: "ch01",
@@ -132,6 +132,12 @@ const CHAPTERS: { id: string; slug: string; folderName: string }[] = [
   { id: "ch02", slug: "ch02-mis-and-bitm", folderName: "ch02-mis-and-bitm" },
   { id: "ch03", slug: "ch03-what-is-data", folderName: "ch03-what-is-data" },
   { id: "ch04", slug: "ch04-databases", folderName: "ch04-databases" },
+  { id: "ch05", slug: "ch05-sql", folderName: "ch05-sql" },
+  { id: "ch06", slug: "ch06-relational-model", folderName: "ch06-relational-model" },
+  { id: "ch07", slug: "ch07-normalization", folderName: "ch07-normalization" },
+  { id: "ch08", slug: "ch08-midterm-review", folderName: "ch08-midterm-review" },
+  { id: "ch09", slug: "ch09-database-design", folderName: "ch09-database-design" },
+  { id: "ch10", slug: "ch10-advanced-sql-queries", folderName: "ch10-advanced-sql-queries" },
 ];
 
 // ── Section definitions (in order) ──
@@ -181,7 +187,7 @@ const SECTIONS: SectionDef[] = [
   },
 ];
 
-// ── Lab definitions (first 4) ──
+// ── Lab definitions (first 10) ──
 const LABS: {
   id: string;
   slug: string;
@@ -211,6 +217,42 @@ const LABS: {
     slug: "lab-04-intro-to-access",
     folderName: "lab-04-intro-to-access",
     chapterId: "ch04",
+  },
+  {
+    id: "lab-05",
+    slug: "lab-05-sql",
+    folderName: "lab-05-sql",
+    chapterId: "ch05",
+  },
+  {
+    id: "lab-06",
+    slug: "lab-06-relational-model",
+    folderName: "lab-06-relational-model",
+    chapterId: "ch06",
+  },
+  {
+    id: "lab-07",
+    slug: "lab-07-normalization",
+    folderName: "lab-07-normalization",
+    chapterId: "ch07",
+  },
+  {
+    id: "lab-08",
+    slug: "lab-08-midterm-review",
+    folderName: "lab-08-midterm-review",
+    chapterId: "ch08",
+  },
+  {
+    id: "lab-09",
+    slug: "lab-09-advanced-sql",
+    folderName: "lab-09-advanced-sql",
+    chapterId: "ch09",
+  },
+  {
+    id: "lab-10",
+    slug: "lab-10-database-design",
+    folderName: "lab-10-database-design",
+    chapterId: "ch10",
   },
 ];
 
