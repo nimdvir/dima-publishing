@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main": {
+      "hash": "sha256:DBD6BEC7D6256CDF6DFFEC1273027F1FC9A9E60A20EFFD60611AD9728965F535",
+      "source": "ch09-database-design\\main\\ch09-main-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T18:34:24Z"
+    },
+    "lab": {
+      "hash": "sha256:3667DDA68B3BADB700CFDE7F84A9C467CA5C67984F2A7C13F11BDD70AB6AB709",
+      "source": "Labs-draft\\lab-09-advanced-sql\\lab-09-questions-2026-05-22.md",
+      "source_date": "2026-05-22",
+      "synced_at": "2026-06-16T18:34:24Z"
+    },
+    "reflection": {
+      "hash": "sha256:40F6CC86A6BC48649A50C241F03F645F425EE583BDE0C7E1B7B2AFD2147E3127",
+      "source": "ch09-database-design\\reflection\\ch09-reflection-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T18:34:24Z"
+    },
+    "lets-build": {
+      "hash": "sha256:A52D58D7BBBDA321A804B65EA5689A30C504E6C229E070F30F43FD1A16A8F8DD",
+      "source": "ch09-database-design\\lets-build\\ch09-lets-build-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T18:34:24Z"
+    },
+    "terms": {
+      "hash": "sha256:193A757F761864428321CB5ECD5DD67D395F7FD8B14EE805B84BD02545800878",
+      "source": "ch09-database-design\\terms\\ch09-terms-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T18:34:24Z"
+    },
+    "rat": {
+      "hash": "sha256:D438629FF1287893A8AAED5CF680F8CE9E677F7EFF7D1709A6A0DC1D74FFF5A6",
+      "source": "ch09-database-design\\rat\\ch09-rat-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T18:34:24Z"
+    }
+  },
+  "last_sync": "2026-06-16T18:34:24Z",
+  "chapter": "ch09-database-design"
+}
