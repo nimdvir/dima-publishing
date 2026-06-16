@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-06-02" -->
-
 # Chapter 5 Term Treasury - SQL: The Language of Databases
 
 <p align="center">

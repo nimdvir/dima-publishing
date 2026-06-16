@@ -1,5 +1,20 @@
 <!-- markdownlint-disable MD025 MD041 MD003 MD022 MD007 MD032 -->
-<!-- metadata: date="2026-03-22" -->
+---
+title: "Chapter 6: Review and Reflection"
+chapter: 6
+section: "Review and Reflection"
+description: "Provides review, reflection, and personal reflection questions that help students consolidate Chapter 6 concepts and connect the relational model to design practice, database integrity, and their own developing judgment."
+keywords:
+  - review questions
+  - reflection questions
+  - relational model
+  - referential integrity
+  - functional dependency
+  - ASSIGNMENT_TYPE
+  - Chapter 6
+date: 2026-03-22
+author: "Nimrod Dvir, PhD"
+---
 
 # Chapter 6: Review and Reflection
 

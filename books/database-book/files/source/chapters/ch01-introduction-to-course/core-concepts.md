@@ -1,6 +1,4 @@
 <!-- Chapter edit 2026-06-05: structural restructure — orientation template, heading hierarchy, Learning Objectives section, single intro video, About-the-Author relocated. Technical meaning preserved. -->
-<!-- metadata: date="2026-06-05" -->
-
 <!-- Chapter edit 2026-06-05 (pass 2): section reorder — How the Book Is Organized now precedes How Each Chapter Works; Bloom's Taxonomy moved up to follow the chapter rhythm; The Tools You Will Use moved down to follow The Two Running Projects. Resolved two author comments (Let's Build lab-foundation note; RAT design note) by keeping the existing in-section explanations and removing the commented draft blocks (content preserved in the lets-build and rat companion files). -->
 
 # Chapter 1: Introduction to the Textbook

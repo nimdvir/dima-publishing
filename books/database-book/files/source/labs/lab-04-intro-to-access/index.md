@@ -14,6 +14,8 @@
 
 This lab is a guided Microsoft Access workflow.
 
+<!-- insert image "G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch00-general\General\ms access.jpg" -->
+
 In Chapter 4 you learned what a database is and how a DBMS protects data with tables, primary keys, validation rules, forms, queries, and reports. In the **Let's Build** you practiced those moves on the Grading Database. In this lab you apply the same moves to **PetVax**, the veterinary clinic you first met in Lab 03.
 
 In Lab 03 you saw a flat PetVax appointment spreadsheet start to break: owner details repeated, two different pets were both named Charlie, Coco had two owners, and a single edit could leave the file inconsistent. This lab moves that same clinic data into Access so you can see what a real DBMS does better, and what a flat table still cannot fix.
@@ -39,9 +41,10 @@ You have been given two data files exported from the old spreadsheet:
 - `PETVAX_APPOINTMENTS` — one row per appointment.
 - `SERVICE_RATES` — the clinic's standard fee for each service type.
 
+> ⚠️ **Heads-up:** `PETVAX_APPOINTMENTS` is still a **flat table**. Pet, owner, appointment, service, and payment data all live on one row. That is intentional for Lab 04. Chapter 6 will refactor it into proper relational tables.
+
 You will import both into a new Access database, add rules, build a form, write queries, join the two tables in one query, and produce a report.
 
-> ⚠️ **Heads-up:** `PETVAX_APPOINTMENTS` is still a **flat table**. Pet, owner, appointment, service, and payment data all live on one row. That is intentional for Lab 04. Chapter 6 will refactor it into proper relational tables.
 
 <!-- separator between callouts -->
 
@@ -49,12 +52,12 @@ You will import both into a new Access database, add rules, build a form, write 
 
 ## Required Files and Tools
 
-| Item | Detail |
-| --- | --- |
-| Tool | Microsoft Access (Desktop, 2019 or later) |
-| Starter data | `assets/PETVAX_APPOINTMENTS-2026-06-03.csv` and `assets/SERVICE_RATES-2026-06-03.csv` |
-| Submission file | `Lab04-PetVax-Access-LastName.accdb` |
-| Where to submit | Upload to the Lab 04 file-submission assignment in your course site |
+| Item            | Detail                                                                                |
+| --------------- | ------------------------------------------------------------------------------------- |
+| Tool            | Microsoft Access (Desktop, 2019 or later)                                             |
+| Starter data    | `assets/PETVAX_APPOINTMENTS-2026-06-03.csv` and `assets/SERVICE_RATES-2026-06-03.csv` |
+| Submission file | `Lab04-PetVax-Access-LastName.accdb`                                                  |
+| Where to submit | Upload to the Lab 04 file-submission assignment in your course site                   |
 
 ---
 
@@ -72,17 +75,17 @@ You will import both into a new Access database, add rules, build a form, write 
 
 Use these data types during import:
 
-| Field | Data Type |
-| --- | --- |
-| `AppointmentID` | Number (Long Integer) |
-| `AppointmentDate` | Date/Time |
-| `AppointmentTime` | Short Text |
-| `PetName`, `OwnerName`, `OwnerEmail`, `AnimalType`, `BreedName` | Short Text |
-| `WeightKg` | Number (Double) |
-| `ServiceType` | Short Text |
-| `VaccineDue`, `AppointmentStatus`, `ReminderSent` | Short Text |
-| `PaymentAmount` | Number (Double) |
-| `Notes` | Short Text |
+| Field                                                           | Data Type             |
+| --------------------------------------------------------------- | --------------------- |
+| `AppointmentID`                                                 | Number (Long Integer) |
+| `AppointmentDate`                                               | Date/Time             |
+| `AppointmentTime`                                               | Short Text            |
+| `PetName`, `OwnerName`, `OwnerEmail`, `AnimalType`, `BreedName` | Short Text            |
+| `WeightKg`                                                      | Number (Double)       |
+| `ServiceType`                                                   | Short Text            |
+| `VaccineDue`, `AppointmentStatus`, `ReminderSent`               | Short Text            |
+| `PaymentAmount`                                                 | Number (Double)       |
+| `Notes`                                                         | Short Text            |
 
 **Check (Question 1).**
 
@@ -132,17 +135,17 @@ What does `AppointmentID` actually identify?
 
 **Do.** Stay in Design View for `PETVAX_APPOINTMENTS` and set these field properties.
 
-| Field | Property | Value |
-| --- | --- | --- |
-| `WeightKg` | Validation Rule | `Between 0 And 100` |
-| `WeightKg` | Validation Text | `Weight must be between 0 and 100 kg.` |
-| `PaymentAmount` | Validation Rule | `>=0` |
-| `PaymentAmount` | Validation Text | `Payment amount cannot be negative.` |
-| `AppointmentDate` | Required | Yes |
-| `PetName` | Required | Yes |
-| `OwnerName` | Required | Yes |
-| `ServiceType` | Required | Yes |
-| `AppointmentStatus` | Required | Yes |
+| Field               | Property        | Value                                  |
+| ------------------- | --------------- | -------------------------------------- |
+| `WeightKg`          | Validation Rule | `Between 0 And 100`                    |
+| `WeightKg`          | Validation Text | `Weight must be between 0 and 100 kg.` |
+| `PaymentAmount`     | Validation Rule | `>=0`                                  |
+| `PaymentAmount`     | Validation Text | `Payment amount cannot be negative.`   |
+| `AppointmentDate`   | Required        | Yes                                    |
+| `PetName`           | Required        | Yes                                    |
+| `OwnerName`         | Required        | Yes                                    |
+| `ServiceType`       | Required        | Yes                                    |
+| `AppointmentStatus` | Required        | Yes                                    |
 
 Save the table. If Access offers to test existing data against the new rules, click **Yes** — the starter data already satisfies them.
 
@@ -186,23 +189,23 @@ Which Chapter 4 concept did that test demonstrate?
 
 Switch the form to **Form View**, click **New (blank) record** at the bottom, and enter this appointment exactly:
 
-| Field | Value |
-| --- | --- |
-| AppointmentID | 1025 |
-| AppointmentDate | 4/3/2026 |
-| AppointmentTime | 10:30 AM |
-| PetName | Maple |
-| OwnerName | Priya Shah |
-| OwnerEmail | priya.shah@example.com |
-| AnimalType | Dog |
-| BreedName | Beagle |
-| WeightKg | 16 |
-| ServiceType | Vaccination |
-| VaccineDue | Yes |
-| AppointmentStatus | Scheduled |
-| ReminderSent | Yes |
-| PaymentAmount | 0 |
-| Notes | Added through form |
+| Field             | Value                  |
+| ----------------- | ---------------------- |
+| AppointmentID     | 1025                   |
+| AppointmentDate   | 4/3/2026               |
+| AppointmentTime   | 10:30 AM               |
+| PetName           | Maple                  |
+| OwnerName         | Priya Shah             |
+| OwnerEmail        | priya.shah@example.com |
+| AnimalType        | Dog                    |
+| BreedName         | Beagle                 |
+| WeightKg          | 16                     |
+| ServiceType       | Vaccination            |
+| VaccineDue        | Yes                    |
+| AppointmentStatus | Scheduled              |
+| ReminderSent      | Yes                    |
+| PaymentAmount     | 0                      |
+| Notes             | Added through form     |
 
 Save and close the form.
 

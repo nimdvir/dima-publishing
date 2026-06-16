@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-05-06"; chapter="14"; section="rat"; title="Chapter 14 RAT"; description="Readiness assessment for Power BI" -->
-
 # Chapter 14 RAT — Power BI
 
 <!-- Companion: Readiness Assurance Test (RAT) quiz — 2026-05-06 -->

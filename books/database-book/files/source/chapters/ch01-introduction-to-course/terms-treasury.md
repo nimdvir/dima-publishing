@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-06-03" -->
-
 # Chapter 1 Term Treasury - Introduction to the Textbook
 
 <p align="center">

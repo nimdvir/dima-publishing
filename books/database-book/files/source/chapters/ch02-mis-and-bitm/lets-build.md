@@ -1,5 +1,4 @@
 <!-- markdownlint-disable MD060 -->
-<!-- metadata: date="2026-06-03" -->
 
 ## Let's Build
 

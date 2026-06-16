@@ -6,14 +6,7 @@
 
 ---
 
-## Nim Edit
 
-Add this to homepage:
-*Using Data to Drive Business Performance* is an applied introduction to databases, information systems, analytics, and managerial decision-making. The book teaches students how data moves from raw records into structured tables, relationships, queries, dashboards, and business decisions.
-
-Through examples, labs, and running projects such as the Grading Database, students learn not only how database systems work, but why they matter for organizational performance, evidence-based management, and strategic decision-making.
-
-The book connects technical skills with business judgment, preparing students to use data as a reliable foundation for better decisions.
 
 
 ## Purpose

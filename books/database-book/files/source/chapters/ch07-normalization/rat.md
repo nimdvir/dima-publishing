@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-05-19" -->
-
 # Readiness Assessment Test (RAT): Data Normalization
 
 ![RAT](https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/RAT_big?_a=BAMAAAhK0)

@@ -45,6 +45,8 @@ You upload your completed **PetVax Performance Logic Map** to the separate file-
 
 ## PetVax Scenario
 
+*See Exhibit A below for Dr. Dima's Tuesday notebook.*
+
 PetVax is a small veterinary clinic that provides routine pet vaccination and basic care services. The clinic currently records many activities in handwritten notes. These notes are useful because they capture real work as it happens. But they are also incomplete, inconsistent, and difficult to summarize.
 
 PetVax wants to improve performance in areas such as:
@@ -71,7 +73,7 @@ Your task is to use the notebook excerpt below as evidence and build one logic m
 
 ## Exhibit A — Dr. Dima’s Tuesday Notebook
 
-![Photo of Dr. Dima's handwritten Tuesday notebook with pet visits, payments, reminders, and unresolved follow-up notes](assets/dr-dima-tuesday-notebook.png)
+![Photo of Dr. Dima's handwritten Tuesday notebook with pet visits, payments, reminders, and unresolved follow-up notes](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_900/bitm330book/00-general/labs/dr-dima-tuesday-notebook)
 
 ### Working Transcription
 
@@ -549,4 +551,12 @@ These are not required.
 2. Propose one improvement to the notebook process that would reduce ambiguity.
 3. Explain how your KPI could create unintended behavior.
 4. Explain what evidence would show that PetVax’s decision improved performance.
+---
 
+## Hint — What Good Notes Look Like
+
+The example below shows how completed performance notes can connect one problem to a KPI, DIKW chain, and business process. Your layout does not need to match this exactly — any clear, consistent structure works.
+
+![Example of organized PetVax performance logic map notes showing problem-KPI-DIKW chain connections](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_900/bitm330book/00-general/labs/dr-diamond-notes)
+
+*An example of clearly structured performance notes. Focus on covering all 13 rows consistently, not on matching this format exactly.*

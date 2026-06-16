@@ -1,6 +1,4 @@
 <!-- markdownlint-disable-file MD033 -->
-<!-- metadata: date="2026-05-05" -->
-
 # Chapter 7 - Term Treasury
 
 *Essential Vocabulary - understand the key terms used throughout this chapter.*

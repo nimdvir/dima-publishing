@@ -41,7 +41,7 @@ Follow these sources in this order:
 1. The user's explicit request.
 2. The selected file or supplied file path.
 3. `.github/copilot-instructions.md` for repository-wide editorial rules.
-4. The latest `outline-*.md` in `.docs/outline/` for chapter scope.
+4. The latest `outline-*.md` in `books/database-book/plans/outline/` for chapter scope.
 5. The current chapter's `.edits/` notes.
 6. Specialized skills for delegated tasks:
    - `call-out` for callout syntax, class names, emoji labels, density rules, and conversion.
@@ -647,15 +647,48 @@ Cuts that require asking first: full sections, major examples, required outline 
 
 ## Outline & Cross-References
 
-Compare the chapter against the latest `outline-*.md` in `.docs/outline/`. Answer:
+Compare the chapter against the latest `outline-*.md` in `books/database-book/plans/outline/`.
 
-1. What is this chapter supposed to teach?
-2. What belongs here vs. another chapter?
-3. Where does it sit in `Data → Tables → Relationships → Queries → Analytics → Decisions`?
+### Step 1 — Locate the outline
 
-If a major outline topic appears missing, flag it in the report — do not invent it silently.
+Read the most recently dated `outline-YYYY-MM-DD.md` in `books/database-book/plans/outline/`. Find the section for the chapter being edited.
 
-Add 1–2 forward/backward signposts where useful (e.g., *"As introduced in Chapter 6…"* or *"We apply this in Chapter 10…"*). When a concept was taught in an earlier chapter or is extended in a later one, point to that chapter instead of re-teaching it. Decide what belongs where using the latest `outline-*.md` and your memory of the sibling chapters. Cross-reference, do not duplicate, other chapters' content.
+### Step 2 — Extract the expected topic list
+
+Pull every top-level bullet (maps to a `##` heading) and second-level bullet (maps to a `###` heading) listed under the chapter. This is the expected coverage list.
+
+### Step 3 — Compare against the chapter
+
+Classify each item:
+
+| Status | Meaning |
+|---|---|
+| ✅ Covered | Present and reasonably addressed |
+| ⚠️ Partial | Mentioned but underdeveloped relative to its outline description |
+| ❌ Missing | Not in the chapter at all |
+| ➕ Extra | In the chapter but has no corresponding outline entry |
+
+### Step 4 — Surface gaps and extras before editing
+
+**Do not silently add or remove content.** For every ❌ or ➕, present the user with an explicit choice:
+
+For a missing outline topic:
+> *Coverage gap: "[Topic]" is in the outline for Ch[NN] but not in the chapter.*
+> → A: Add content to the chapter | B: Amend the outline to remove it | C: Defer
+
+For extra chapter content not in the outline:
+> *Extra content: "[Section]" is in the chapter but not in the outline.*
+> → A: Add an outline entry for it | B: Remove from chapter | C: Defer
+
+For ⚠️ Partial: flag in the report with a note on whether the gap is intentional (content lives in another chapter or companion file) or needs expansion. No user prompt required — but note it clearly.
+
+### Step 5 — Report coverage
+
+Include a coverage table in the Final Revision Report (see report item 7).
+
+### Cross-references
+
+Add 1–2 forward/backward signposts where useful (e.g., *"As introduced in Chapter 6…"* or *"We apply this in Chapter 10…"*). When a concept was taught in an earlier chapter or is extended in a later one, point to that chapter instead of re-teaching it. Cross-reference, do not duplicate, other chapters' content. Verify chapter numbers match the current outline before adding any cross-reference.
 
 ---
 
@@ -818,7 +851,18 @@ Return the Final Revision Report below.
 4. **Redundancies removed** — repeated ideas consolidated.
 5. **Examples strengthened** — new or improved student-facing examples.
 6. **Callouts** — added, removed, or converted to canonical HTML callout format; confirm whether all callouts follow the `call-out` skill.
-7. **Outline coverage** — confirm required outline topics are present; flag gaps.
+7. **Outline coverage**
+
+   ```
+   | Outline topic | Status | Notes |
+   |---|---|---|
+   | [Topic from outline] | ✅ Covered / ⚠️ Partial / ❌ Missing | … |
+   | [Content in chapter, not in outline] | ➕ Extra | Not in outline; decision needed |
+   ```
+
+   Gaps requiring author decision: N   Extras requiring author decision: N
+
+   If all topics are covered: *"All outline topics for Ch[NN] are present in the chapter."*
 8. **Author Comments tally**
    - Total found: N
    - Resolved: X (one-line summary each)

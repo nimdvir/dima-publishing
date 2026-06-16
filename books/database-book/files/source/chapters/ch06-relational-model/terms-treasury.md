@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-03-22" -->
-
 # Chapter 6 - Term Treasury
 
 *Essential Vocabulary - understand the key terms used throughout this chapter.*

@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-06-02" -->
-
 ## Let's Build
 
 <p align="center">
@@ -62,14 +60,18 @@ Access opens an empty database with a blank `Table1`. You will rename it in the 
 
 **Step 4 — Set the primary key.** Click the row selector for `RecordID`, then click the **Primary Key** button in the ribbon. A small key icon should appear next to `RecordID`. A primary key uniquely identifies each row. `RecordID` identifies the grade record. `StudentID` identifies the student. They are not the same: Alice can appear in many grade records, but each row still needs its own `RecordID`.
 
-**Step 5 — Add a validation rule on Score.** Click the `Score` field. In **Field Properties** at the bottom of the screen, set:
+**Step 5 — Add validation rules.** Click a field, then set its validation properties in **Field Properties** at the bottom of the screen.
 
-| Property | Value |
-| --- | --- |
-| Validation Rule | `Between 0 And 100` |
-| Validation Text | `Score must be between 0 and 100.` |
+| Field | Property | Value |
+| --- | --- | --- |
+| `Score` | Validation Rule | `Between 0 And 100` |
+| `Score` | Validation Text | `Score must be between 0 and 100.` |
+| `Email` | Validation Rule | `Like "*@*.*"` |
+| `Email` | Validation Text | `Enter an email address that includes @ and a domain.` |
+| `DeliverableType` | Validation Rule | `In ("Quiz","Homework","Exam","Project")` |
+| `DeliverableType` | Validation Text | `Enter Quiz, Homework, Exam, or Project.` |
 
-This is one of the chapter's `CHECK`-style constraints in the form Access exposes through table design.
+These are the chapter's `CHECK`-style constraints in the form Access exposes through table design. The email rule won't catch every possible mistake, but it will block an address missing the `@` sign. The deliverable type rule keeps the category list consistent — no stray values like "quiz" or "test" will sneak in.
 
 **Step 6 — Make important fields required.** In Field Properties, set **Required** to `Yes` for `StudentID`, `FirstName`, `LastName`, `DeliverableType`, `DeliverableNumber`, `DueDate`, and `Score`. Leave `Email` and `Topic` optional for now.
 
@@ -283,6 +285,28 @@ Three questions worth sitting with before you move on:
 - **What did the `Score` validation rule prevent that a spreadsheet would have allowed?**
 - **Why is `qryGradebookWithWeights` not the same as a real relational design?**
 
+### What This Database Does Well
+
+This first version already improves on a spreadsheet in several ways.
+
+| Feature | Spreadsheet or Flat File | Access Database |
+| --- | --- | --- |
+| Data structure | Flexible but easy to break | Fields and data types define structure |
+| Unique records | Often informal | Primary key identifies each row |
+| Error prevention | Mostly manual checking | Validation rules reject some invalid values |
+| Data entry | Directly into rows and cells | Forms provide a cleaner interface |
+| Analysis | Manual filtering or formulas | Queries provide reusable questions |
+| Output | Raw sheets or copied tables | Reports create formatted presentation |
+
+This does not mean spreadsheets are bad. Spreadsheets are excellent tools for many tasks. But databases are better when the goal is to manage structured records over time.
+
+The key distinction is control.
+
+A spreadsheet gives users freedom.
+A database gives data structure.
+
+In business settings, structure is not a limitation. Structure is what makes reliable analysis possible.
+
 ### What This Build Does Not Fix Yet
 
 This is the bridge to Chapter 6. The database works, but five problems remain visible in the design:
@@ -295,6 +319,55 @@ This is the bridge to Chapter 6. The database works, but five problems remain vi
 
 Chapter 6 will refactor this into a relational design with separate `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` tables connected by foreign keys.
 
+### Bridge to the Animal Hospital Lab
+
+The Grading Database is our first controlled build. The companion **Lab 04** applies the same pattern to the PetVax veterinary clinic, but with different content.
+
+| Grading Database | Animal Hospital Database |
+| --- | --- |
+| Student | Animal or pet owner |
+| Deliverable | Visit, treatment, vaccine, or service |
+| Score | Charge, result, dosage, or outcome |
+| Grade entry form | Visit entry form |
+| Low-score query | Follow-up care query |
+| Grade summary report | Patient or visit summary report |
+
+The topic changes, but the database logic stays the same.
+
+In both cases, you need to ask:
+
+1. What facts do we need to store?
+2. What fields describe those facts?
+3. What data types should those fields use?
+4. What values should be allowed or rejected?
+5. What form would make data entry easier?
+6. What questions should the database answer?
+7. What reports would help someone make decisions?
+
+That is the larger purpose of this first build. You are not just learning Access buttons. You are learning how business systems turn raw records into usable information.
+
+### Bridge to the Semester Project
+
+Your semester project will also follow this pattern.
+
+At minimum, your project database will need:
+
+| Component | Project Question |
+| --- | --- |
+| Tables | What data must be stored? |
+| Primary keys | How will each record be uniquely identified? |
+| Data types | What kind of value belongs in each field? |
+| Validation rules | What mistakes should the database prevent? |
+| Forms | How will users enter or edit data safely? |
+| Queries | What questions should the database answer? |
+| Reports | What information should be presented professionally? |
+
+The Grading Database is the training version. The Animal Hospital database is the guided practice version. Your semester project is the independent application.
+
+Same logic. More complexity.
+
+That is how database learning works: first the pattern, then the variation, then the independent build.
+
 ### Common Mistakes
 
 - **Typed `RecordID` values.** `RecordID` is AutoNumber — Access fills it in. If you try to type a value, Access ignores it or warns you.
@@ -306,6 +379,33 @@ Chapter 6 will refactor this into a relational design with separate `STUDENT`, `
 - **Saved the table instead of the query, or vice versa.** When Access prompts to save, check whether you're saving `GRADEBOOK`, `qryQuizRecords`, or something else. The active object's name appears in the prompt.
 - **Tried to make a report from a table instead of a query.** You can, but reports built from queries inherit your filters and sorts. That's usually what you want.
 
+### Check Your Understanding
+
+Before moving on, answer the following questions.
+
+1. Why is `RecordID` a better primary key than `StudentID` in this first single-table version?
+2. Why should `Score` use the Number data type instead of Short Text?
+3. What happens when a user tries to enter a score of `105`?
+4. What is the difference between a table and a form?
+5. What is the difference between a query and a report?
+6. Which fields are repeated in `GRADEBOOK`?
+7. Why will repeated student information become a problem later?
+8. How might the Grading Database change when we redesign it as a relational database?
+
+### Key Takeaways
+
+* A database begins with structure.
+* Tables store records.
+* Fields describe the facts stored in each record.
+* Data types define what kind of data each field accepts.
+* A primary key uniquely identifies each record.
+* Validation rules help prevent invalid data.
+* Forms make data entry cleaner and safer.
+* Queries ask reusable questions.
+* Reports present information professionally.
+* This first Grading Database is intentionally simple and not yet fully relational.
+* Repeated data in this version prepares us to understand why relational design matters later.
+
 ### Submit or Save
 
 Save and close the database. Confirm the file is named `LB04-GradingDatabase-YourName.accdb`. Keep it somewhere you can find it again — Chapter 5 will reuse these same two tables to introduce SQL, and Chapter 6 will use them as the starting point for normalization.
@@ -313,3 +413,8 @@ Save and close the database. Confirm the file is named `LB04-GradingDatabase-You
 ### Peek Ahead — Chapter 5
 
 In Chapter 5 you will stop clicking and start writing. The same questions you just answered with the Query Design grid — show the quizzes, show the low scores, sort by score, average by category, combine `GRADEBOOK` with `GRADE_WEIGHT` — become short SQL statements you can read, edit, and share. Chapter 5 will use the same table logic in SQL, including Access SQL View and/or SQLite, so you will start to see why SQL is the lingua franca that every relational database in the chapter's platform table speaks.
+
+[1]: https://support.microsoft.com/en-us/access/learn-the-structure-of-an-access-database "Learn the structure of an Access database"
+[2]: https://support.microsoft.com/en-us/access/introduction-to-data-types-and-field-properties "Introduction to data types and field properties"
+[3]: https://support.microsoft.com/en-gb/office/add-or-change-a-table-s-primary-key-in-access-07b4a84b-0063-4d56-8b00-65f2975e4379 "Add or change a table's primary key in Access"
+[4]: https://support.microsoft.com/en-us/access/restrict-data-input-by-using-validation-rules "Restrict data input by using validation rules"

@@ -1,3 +1,4 @@
+
 # Lab 01: PetVax Project Introduction
 
 <p align="center">
@@ -7,6 +8,10 @@
 <p align="center">
 
 <p align="center"><em>Get oriented to the PetVax project before you start building.</em></p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_800/bitm330book/00-general/labs/petvax-vet-at-desk" alt="A veterinarian in a white lab coat sits at a desk in a clean, well-lit clinic office." width="600">
+</p>
 
 ## Overview
 
@@ -33,6 +38,13 @@ Read this background, then answer the quiz that follows.
 
 ### What the Vet Clinic Database Models
 
+<p align="center">
+  <video controls width="720" style="max-width:100%">
+    <source src="https://res.cloudinary.com/dkndq6lyz/video/upload/f_auto,q_auto/bitm330book/00-general/labs/petvax-software-timeline.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
+
 The **PetVax Veterinary Clinic Database** represents a small but realistic operational information system. Across the lab sequence, it will model data such as:
 
 - pet owners;
@@ -55,6 +67,10 @@ The Vet Clinic Database captures many of the same structural problems that appea
 
 Students often begin with a messy spreadsheet-style view of clinic activity and then redesign it into a cleaner relational structure. That makes this project useful for comparing **spreadsheet thinking** with **database thinking**.
 
+<!--
+insert this image plus caption "G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch01-welcome-to-the-textbook\ch01-unused\lab-1.png"
+-->
+
 ### How the Project Evolves
 
 The lab sequence grows in sophistication over time. Early labs focus on understanding the clinic as an information system and recognizing what counts as data. Later labs move into tables, keys, SQL, normalization, integrity, performance, business intelligence, and strategic interpretation.
@@ -66,13 +82,18 @@ The lab sequence grows in sophistication over time. Early labs focus on understa
 
 ### Professional Roles You Begin to Practice
 
-| Role | What You Begin to Practice |
-| --- | --- |
-| **Systems thinker** | Seeing the clinic as a connected operational system rather than a pile of records |
-| **Data modeler** | Identifying entities, attributes, and relationships |
-| **Analyst** | Asking what questions the data should eventually answer |
-| **Database designer** | Thinking about how messy data becomes structured data |
-| **Communicator** | Explaining technical ideas in clear business language |
+| Role                  | What You Begin to Practice                                                        |
+| --------------------- | --------------------------------------------------------------------------------- |
+| **Systems thinker**   | Seeing the clinic as a connected operational system rather than a pile of records |
+| **Data modeler**      | Identifying entities, attributes, and relationships                               |
+| **Analyst**           | Asking what questions the data should eventually answer                           |
+| **Database designer** | Thinking about how messy data becomes structured data                             |
+| **Communicator**      | Explaining technical ideas in clear business language                             |
+
+<!--
+insert this image plus caption
+"G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch01-welcome-to-the-textbook\ch01-unused\lab-1-roles.png"
+-->
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -114,13 +135,13 @@ Which question is the kind of **operational or managerial** question the finishe
 
 Match each PetVax entity to the kind of data it stores. Record your answers as pairs (for example, 1-C).
 
-| # | Entity | Letter | Stores |
-| - | ------ | ------ | ------ |
-| 1 | Owner | A | A scheduled or completed clinic encounter for a pet |
-| 2 | Pet | B | A billable charge or record of money owed and paid |
-| 3 | Visit | C | The person responsible for one or more animals |
-| 4 | Treatment | D | An animal that receives care at the clinic |
-| 5 | Invoice | E | A specific service or procedure performed during a visit |
+| #   | Entity    | Letter | Stores                                                   |
+| --- | --------- | ------ | -------------------------------------------------------- |
+| 1   | Owner     | A      | A scheduled or completed clinic encounter for a pet      |
+| 2   | Pet       | B      | A billable charge or record of money owed and paid       |
+| 3   | Visit     | C      | The person responsible for one or more animals           |
+| 4   | Treatment | D      | An animal that receives care at the clinic               |
+| 5   | Invoice   | E      | A specific service or procedure performed during a visit |
 
 ### Question 5 — Spreadsheet vs. Database (Multiple Choice)
 

@@ -97,18 +97,52 @@ Do not overwrite the stable filename when a `*-v2.md` exists.
 
 ## Index / Reader Navigation Rule
 
-Each chapter folder must have an `index.md`. During a reconciliation run:
+`index.md` is the chapter landing and navigation file. It is not one of the five
+standard Drive-imported content sections.
 
-1. Verify `index.md` exists in the chapter folder.
-2. Check that every section file present (`core-concepts.md`, `lets-build.md`, etc.)
-   has a corresponding active link in `index.md`.
-3. Check for stale comments such as:
-   ```text
-   <!-- Lab not yet in publishing repo: ... -->
-   ```
-   If the lab IS present in `files/source/labs/`, flag this in the chapter's edit notes
-   (`books/database-book/.edits/chNN-edits.md`). Do not edit `index.md` automatically —
-   report the stale note for the user to review link paths.
+**Do not import or overwrite `index.md` from Google Drive.**
+
+The two categories of chapter files are distinct:
+
+| Category | Files |
+|---|---|
+| Drive import sections | `core-concepts.md`, `lets-build.md`, `terms-treasury.md`, `review-questions.md`, `rat.md` |
+| Reader/navigation files | `index.md`, lab link, section links, coming-soon / hidden status |
+
+### Validation Checklist
+
+For each chapter in scope, validate `index.md` by checking all of the following:
+
+- Chapter title is present and accurate.
+- Chapter description is present and not obviously outdated.
+- Links point to stable repo filenames — not dated Drive-source filenames:
+  - `core-concepts.md`
+  - `lets-build.md`
+  - `review-questions.md`
+  - `terms-treasury.md`
+  - `rat.md`
+- Lab links are visible only when the student-facing lab file is confirmed ready.
+- Commented-out lab links (`<!-- ... -->`) are flagged if they appear stale.
+- Repo-only variants (e.g. `lets-build-v2.md`) are noted if `index.md` still links
+  to the base filename (`lets-build.md`).
+
+### Status Classification
+
+Classify `index.md` as one of:
+
+| Status | Meaning |
+|---|---|
+| Current | Links and description are accurate |
+| Needs review | Links work, but description, lab status, or variant files need review |
+| Missing | `index.md` does not exist |
+| Broken links | One or more linked files do not exist in the repo |
+| Stale lab note | Lab comment or link does not match current lab readiness state |
+
+Report the classification for each chapter in the reconciliation summary.
+
+Do not regenerate `index.md` unless Nim explicitly approves.
+
+Flag any issues in the chapter's edit notes (`books/database-book/.edits/chNN-edits.md`).
 
 ---
 

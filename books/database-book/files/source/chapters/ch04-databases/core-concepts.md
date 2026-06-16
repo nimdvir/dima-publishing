@@ -1,5 +1,4 @@
 <!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. -->
-<!-- metadata: date="2026-06-04" -->
 
 # Chapter 4: Introduction to Databases
 

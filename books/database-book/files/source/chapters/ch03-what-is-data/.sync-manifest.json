@@ -1,0 +1,37 @@
+{
+  "chapter": "ch03-what-is-data",
+  "last_sync": "2026-06-16T12:00:00Z",
+  "files": {
+    "main": {
+      "source": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\BITM330-Book-draft\\chapter-drafts\\ch03-what-is-data\\main\\ch03-main-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T12:00:00Z",
+      "hash": "83B1EDBAC21826BDDECC706A39C29B7BCBF6C428D5451AB58CB40255775463B4"
+    },
+    "lets-build": {
+      "source": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\BITM330-Book-draft\\chapter-drafts\\ch03-what-is-data\\lets-build\\ch03-lets-build-2026-06-02.md",
+      "source_date": "2026-06-02",
+      "synced_at": "2026-06-16T12:00:00Z",
+      "hash": "14C082178FB70D9DA8FBBBA7FB5B69BCD51172FC8F675921810C258A3D6D6215"
+    },
+    "reflection": {
+      "source": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\BITM330-Book-draft\\chapter-drafts\\ch03-what-is-data\\reflection\\ch03-reflection-2026-06-03.md",
+      "source_date": "2026-06-03",
+      "synced_at": "2026-06-16T12:00:00Z",
+      "hash": "17C6F2883775D3828F6EF317D3DAC40AB372395CE2CF7F0C1CC8F4BDD8B928CB"
+    },
+    "terms": {
+      "source": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\BITM330-Book-draft\\chapter-drafts\\ch03-what-is-data\\terms\\ch03-terms-2026-06-03.md",
+      "source_date": "2026-06-03",
+      "synced_at": "2026-06-16T12:00:00Z",
+      "hash": "165EAE96763A75EBBB6CA8E6D5E62559363FF99917DE7F33E55CFFC84CA35B16"
+    },
+    "rat": {
+      "source": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\BITM330-Book-draft\\chapter-drafts\\ch03-what-is-data\\rat\\ch03-rat-2026-06-03.md",
+      "source_date": "2026-06-03",
+      "synced_at": "2026-06-16T12:00:00Z",
+      "hash": "3CE850F7F81FEFD213E14131597A2FBE5C0B29C17B02E6FC4517DF66B24F47F8"
+    },
+    "lab": null
+  }
+}

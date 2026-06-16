@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-03-08"; chapter="09"; section="lets-build"; title="Chapter 9 Let's Build"; description="Hands-on practice for database design" -->
-
 # Let's Build: Chapter 9 -- ER Modeling in Practice
 
 ![Let's Build](<../../../../.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif>)

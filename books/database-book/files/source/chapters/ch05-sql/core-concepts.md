@@ -2,7 +2,7 @@
 ---
 title: 'Chapter 5: SQL — The Language of Databases'
 author: 'Nimrod Dvir, PhD'
-date: 2026-06-03
+date: 2026-06-16
 lang: en-US
 toc: true
 ---
@@ -57,14 +57,14 @@ Those are **decision-support questions**. SQL turns them into repeatable, inspec
 
 This chapter is organized in six short parts that build gradually.
 
-| Part | Focus | Main Question |
-|---|---|---|
-| **Part 1** | SQL foundations and tools | What is SQL, where does it run, and why does it come next? |
-| **Part 2** | Teaching dataset | What tables will we use for practice? |
-| **Part 3** | Creating and inserting data | How do we define tables and add records? |
+| Part       | Focus                             | Main Question                                                 |
+| ---------- | --------------------------------- | ------------------------------------------------------------- |
+| **Part 1** | SQL foundations and tools         | What is SQL, where does it run, and why does it come next?    |
+| **Part 2** | Teaching dataset                  | What tables will we use for practice?                         |
+| **Part 3** | Creating and inserting data       | How do we define tables and add records?                      |
 | **Part 4** | Basic queries, aliases, and dates | How do we retrieve, filter, sort, label, and work with dates? |
-| **Part 5** | A first look at joins | How do we begin to combine related tables? |
-| **Part 6** | Aggregation and calculations | How do we summarize and transform data? |
+| **Part 5** | A first look at joins             | How do we begin to combine related tables?                    |
+| **Part 6** | Aggregation and calculations      | How do we summarize and transform data?                       |
 
 SQL becomes easier when it is learned as a sequence:
 
@@ -97,7 +97,7 @@ The chapter uses **SQLite-friendly syntax** unless otherwise noted. SQLite is li
 
 Databases store data, but storage alone does not answer questions. A table can contain hundreds, thousands, or millions of rows. The value comes from being able to retrieve exactly the rows and columns needed for a specific purpose.
 
-![Figure 5.3 — Before-and-After Query View](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-conceptual-diagram)
+![Figure 5.3 — Before-and-After Query View](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-conceptual-diagram.png)
 *Figure 5.3 — Before-and-After Query View. A large, complex grade table containing all student records is filtered by a declarative SQL query to return a focused list of students scoring below 80.*
 
 SQL is the language that makes that possible.
@@ -123,7 +123,7 @@ This query says: show me the students whose scores are below 80. The database ma
 
 **SQL** stands for **Structured Query Language**. It is the standard language used to work with relational databases.
 
-![Figure 5.4 — SQL in the Application Stack](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-modular-educational-diagram)
+![Figure 5.4 — SQL in the Application Stack](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-modular-educational-diagram.jpg)
 *Figure 5.4 — SQL in the Application Stack. Shows the hidden query layer where SQL runs beneath dashboards, registration portals, checkout screens, and reports to fetch structured data.*
 
 The word **structured** matters. SQL assumes that data is organized into tables with rows, columns, data types, and rules. A SQL query works because the database already has structure.
@@ -143,7 +143,7 @@ In a business setting, SQL often sits underneath dashboards and applications eve
 
 SQL is a **declarative language**. The user states what result they want, and the DBMS determines how to retrieve it.
 
-![Figure 5.5 — Declarative vs. Imperative Query Execution](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-a-twopanel-instructional-showing)
+![Figure 5.5 — Declarative vs. Imperative Query Execution](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-a-twopanel-instructional-showing.jpg)
 *Figure 5.5 — Declarative vs. Imperative Query Execution. The user specifies the needed data in standard SQL, and the database engine handles the physical scanning and retrieval plan behind the scenes.*
 
 Consider this query:
@@ -158,18 +158,18 @@ The query does not tell the DBMS how to scan the table, which storage path to fo
 
 A user can focus on the business question while the database engine handles the technical retrieval process.
 
-| Plain-English Question | SQL Logic |
-|---|---|
-| Which students scored below 80? | Filter rows where `Score < 80` |
-| What is the average score? | Use `AVG(Score)` |
-| Which deliverable types exist? | Use `SELECT DISTINCT DeliverableType` |
-| Which quiz scores should be reviewed first? | Filter by quiz and sort by score |
+| Plain-English Question                      | SQL Logic                             |
+| ------------------------------------------- | ------------------------------------- |
+| Which students scored below 80?             | Filter rows where `Score < 80`        |
+| What is the average score?                  | Use `AVG(Score)`                      |
+| Which deliverable types exist?              | Use `SELECT DISTINCT DeliverableType` |
+| Which quiz scores should be reviewed first? | Filter by quiz and sort by score      |
 
 ### SQL in the Information System
 
 SQL sits between the user's question and the database response.
 
-![Figure 5.6 — The SQL Query Pipeline](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-detailed-instructional-showing)
+![Figure 5.6 — The SQL Query Pipeline](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-detailed-instructional-showing.jpg)
 *Figure 5.6 — The SQL Query Pipeline. A step-by-step pipeline tracing a business question as it is translated into a SQL statement, parsed by the DBMS, executed against database tables, and returned as a query result to support a decision.*
 
 ```mermaid
@@ -189,16 +189,16 @@ In the broader book arc, SQL is where **queries** become the bridge from structu
 
 SQL remains widely used because it has several practical advantages.
 
-![Figure 5.7 — Transparency and Portability of SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-sql-pros)
+![Figure 5.7 — Transparency and Portability of SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-sql-pros.jpg)
 *Figure 5.7 — Transparency and Portability of SQL. Contrasts a hidden spreadsheet formula and a black-box dashboard metric with a clear, readable, and portable SQL statement.*
 
-| Advantage | Why It Matters |
-|---|---|
-| **Text-based** | Queries can be written, saved, inspected, copied, and revised. |
-| **Portable** | The core logic transfers across major relational DBMS platforms. |
-| **Transparent** | A query shows the logic behind a result. |
-| **Flexible** | SQL can retrieve, filter, summarize, join, insert, update, and delete data. |
-| **Reproducible** | The same query rerun against the same data produces the same result. |
+| Advantage        | Why It Matters                                                              |
+| ---------------- | --------------------------------------------------------------------------- |
+| **Text-based**   | Queries can be written, saved, inspected, copied, and revised.              |
+| **Portable**     | The core logic transfers across major relational DBMS platforms.            |
+| **Transparent**  | A query shows the logic behind a result.                                    |
+| **Flexible**     | SQL can retrieve, filter, summarize, join, insert, update, and delete data. |
+| **Reproducible** | The same query rerun against the same data produces the same result.        |
 
 A spreadsheet calculation may be hidden in one cell. A dashboard may hide its internal logic. A SQL statement makes the logic explicit. That transparency matters for auditing, collaboration, debugging, and teaching.
 
@@ -206,15 +206,15 @@ A spreadsheet calculation may be hidden in one cell. A dashboard may hide its in
 
 SQL includes several kinds of statements. Students often begin with the distinction between **Data Definition Language (DDL)** and **Data Manipulation Language (DML)**, but it helps to see the broader categories.
 
-![Figure 5.8 — The Four Families of SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-splitpanel-textbook-diagram)
+![Figure 5.8 — The Four Families of SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-splitpanel-textbook-diagram.jpg)
 *Figure 5.8 — The Four Families of SQL. A toolbox overview illustrating DDL (structure), DML (records), DQL (retrieval), and TCL (transactions) with their respective commands.*
 
-| Category | Full Name | Main Purpose | Example Commands |
-|---|---|---|---|
-| **DDL** | Data Definition Language | Defines or changes database structure | `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE` |
-| **DML** | Data Manipulation Language | Inserts, updates, or deletes stored records | `INSERT`, `UPDATE`, `DELETE` |
-| **DQL** | Data Query Language | Retrieves data | `SELECT` |
-| **TCL** | Transaction Control Language | Manages grouped operations | `COMMIT`, `ROLLBACK` |
+| Category | Full Name                    | Main Purpose                                | Example Commands                            |
+| -------- | ---------------------------- | ------------------------------------------- | ------------------------------------------- |
+| **DDL**  | Data Definition Language     | Defines or changes database structure       | `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE` |
+| **DML**  | Data Manipulation Language   | Inserts, updates, or deletes stored records | `INSERT`, `UPDATE`, `DELETE`                |
+| **DQL**  | Data Query Language          | Retrieves data                              | `SELECT`                                    |
+| **TCL**  | Transaction Control Language | Manages grouped operations                  | `COMMIT`, `ROLLBACK`                        |
 
 In many textbooks, `SELECT` is grouped under DML. In this book, we separate **Data Query Language (DQL)** because retrieving data is the core activity students practice first. The simple memory hook is: **DDL** defines structure, **DML** changes records, **DQL** retrieves results, and **Transaction Control Language (TCL)** manages transactions.
 
@@ -222,13 +222,13 @@ In many textbooks, `SELECT` is grouped under DML. In this book, we separate **Da
 
 The same SQL logic runs in many environments. In this course you will see three:
 
-![Figure 5.9 — Database Platform Comparison](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-a-threepanel-comparison-for-the)
+![Figure 5.9 — Database Platform Comparison](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-a-threepanel-comparison-for-the.jpg)
 *Figure 5.9 — Database Platform Comparison. Displays the same SQL query executing in Microsoft Access SQL View, SQLite Online, and a Supabase SQL editor to show syntax portability.*
 
-| Tool | Where It Runs | Strength | Limitation |
-|---|---|---|---|
-| **Microsoft Access** | Windows desktop | Visual design, forms, and reports for small databases | Some SQL features (multi-row insert, CTEs) are limited |
-| **SQLite** | Local file or browser (SQLite Online, DB Browser) | Fast, free, friendly for learning standard SQL | Lighter type system; missing a few advanced features |
+| Tool                      | Where It Runs                                     | Strength                                                             | Limitation                                                      |
+| ------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------- |
+| **Microsoft Access**      | Windows desktop                                   | Visual design, forms, and reports for small databases                | Some SQL features (multi-row insert, CTEs) are limited          |
+| **SQLite**                | Local file or browser (SQLite Online, DB Browser) | Fast, free, friendly for learning standard SQL                       | Lighter type system; missing a few advanced features            |
 | **PostgreSQL / Supabase** | Hosted cloud database through a browser dashboard | Industry-style SQL environment; useful later for cloud database work | Requires account setup and more platform management than SQLite |
 
 A quick orientation:
@@ -263,15 +263,15 @@ The key idea is simple: every Access query is a SQL statement underneath. Query 
 
 The core SQL logic is the same across platforms, but small dialect differences trip up beginners. This chapter writes its examples in **SQLite** syntax. The table below collects the differences you are most likely to meet when you run the same idea in Microsoft Access. Inline platform notes throughout the chapter point back to this table.
 
-| Task | SQLite (this chapter) | Microsoft Access |
-|---|---|---|
-| Join text values | `FirstName \|\| ' ' \|\| LastName` | `FirstName & ' ' & LastName` |
-| Write a date literal | `'2026-09-08'` (text in `YYYY-MM-DD`) | `#2026-09-08#` (wrapped in `#`) |
-| Insert several rows | One `INSERT` with multiple `VALUES` rows | One `INSERT` per row (or Datasheet entry) |
-| Wildcard: any characters | `LIKE '%edu'` | `LIKE '*edu'` |
-| Wildcard: one character | `LIKE 'Q_iz'` | `LIKE 'Q?iz'` |
-| Approximate age from a date | `strftime('%Y','now') - strftime('%Y', Birthday)` | `DateDiff('yyyy', Birthday, Date())` |
-| Limit the number of rows | `LIMIT 10` | `SELECT TOP 10 ...` |
+| Task                        | SQLite (this chapter)                             | Microsoft Access                          |
+| --------------------------- | ------------------------------------------------- | ----------------------------------------- |
+| Join text values            | `FirstName \|\| ' ' \|\| LastName`                | `FirstName & ' ' & LastName`              |
+| Write a date literal        | `'2026-09-08'` (text in `YYYY-MM-DD`)             | `#2026-09-08#` (wrapped in `#`)           |
+| Insert several rows         | One `INSERT` with multiple `VALUES` rows          | One `INSERT` per row (or Datasheet entry) |
+| Wildcard: any characters    | `LIKE '%edu'`                                     | `LIKE '*edu'`                             |
+| Wildcard: one character     | `LIKE 'Q_iz'`                                     | `LIKE 'Q?iz'`                             |
+| Approximate age from a date | `strftime('%Y','now') - strftime('%Y', Birthday)` | `DateDiff('yyyy', Birthday, Date())`      |
+| Limit the number of rows    | `LIMIT 10`                                        | `SELECT TOP 10 ...`                       |
 
 None of these change what the query means. They change only how you spell it on a given platform. If you learn the SQLite form here, the Access form is a short translation away.
 
@@ -279,15 +279,15 @@ None of these change what the query means. They change only how you spell it on 
 
 For the required hands-on work in this chapter, we will use **SQLite** as the main SQL environment. SQLite lets us practice SQL without setting up a database server, cloud account, or complicated installation.
 
-![Figure 5.10 — SQLite Tooling Environments](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-a-sidebyside-instructional)
+![Figure 5.10 — SQLite Tooling Environments](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-a-sidebyside-instructional.jpg)
 *Figure 5.10 — SQLite Tooling Environments. Compares browser-based SQLiteOnline (best for quick practice) with desktop DB Browser for SQLite (best for local file inspection and saved scripts).*
 
 You may use either of these tools:
 
-| Tool | Link | Type | Best Use |
-|---|---|---|---|
-| **SQLiteOnline** | [https://sqliteonline.com/](https://sqliteonline.com/) | Browser-based SQL editor | Quick practice, in-class demos, and short SQL examples |
-| **DB Browser for SQLite** | [https://sqlitebrowser.org/](https://sqlitebrowser.org/) | Desktop application | Saved `.db` files, longer assignments, and visual database inspection |
+| Tool                      | Link                                                     | Type                     | Best Use                                                              |
+| ------------------------- | -------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------- |
+| **SQLiteOnline**          | [https://sqliteonline.com/](https://sqliteonline.com/)   | Browser-based SQL editor | Quick practice, in-class demos, and short SQL examples                |
+| **DB Browser for SQLite** | [https://sqlitebrowser.org/](https://sqlitebrowser.org/) | Desktop application      | Saved `.db` files, longer assignments, and visual database inspection |
 
 Both tools let you create tables, insert records, run SQL queries, and inspect results. The SQL logic is the same. The difference is the working environment.
 
@@ -299,7 +299,7 @@ Keep a copy of your SQL script in a `.sql` file or document. Browser sessions ca
 
 For the required work in this chapter, use SQLite through SQLite Online or DB Browser for SQLite. Supabase is included here as a preview of a cloud-based PostgreSQL environment you may use later in the course. You do not need Supabase to complete this chapter's Let's Build unless your instructor specifically tells you to use it.
 
-![Figure 5.11 — Supabase developer dashboard map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-supabase-dashboard-map)
+![Figure 5.11 — Supabase developer dashboard map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-supabase-dashboard-map.png)
 *Figure 5.11 — Supabase developer dashboard mapping the Table Editor, SQL Editor with an active query, and Database Schema Visualizer in a unified cloud interface.*
 
 **Supabase** is a cloud service that hosts a real **PostgreSQL** database and wraps it in a friendly web interface. You can create a project in a browser, run SQL, inspect tables, and connect the database to other tools. Its free tier is enough for coursework.
@@ -327,7 +327,7 @@ For interactive practice with every pattern in this chapter, the [W3Schools SQL 
   <p>A retail analyst might prototype a query in SQLite, run a similar query against PostgreSQL, and then embed the result in a Power BI dashboard. The surrounding tools change. The SQL logic stays familiar.</p>
 </div>
 
-![Figure 5.12 — The Journey of a SQL Query](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-stepbystep-instructional)
+![Figure 5.12 — The Journey of a SQL Query](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-stepbystep-instructional.jpg)
 *Figure 5.12 — The Journey of a SQL Query. Traces a query from initial practice in a local SQLite file, to production deployment in a PostgreSQL database, to visualization in a Power BI dashboard.*
 
 <!-- PAGE BREAK -->
@@ -339,7 +339,7 @@ For interactive practice with every pattern in this chapter, the [W3Schools SQL 
 
 This chapter uses a compact two-table teaching dataset. A fully normalized database is more realistic, but it can overload beginners too early. The goal here is to learn SQL syntax and query logic before adding more complex relational design. Chapter 6 returns to keys and relationships, Chapter 7 formalizes normalization, and Chapter 10 revisits database design in a larger system context.
 
-![Figure 5.13 — Chapter 5 Teaching Schema](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-schema-overview-for-the)
+![Figure 5.13 — Chapter 5 Teaching Schema](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-schema-overview-for-the.jpg)
 *Figure 5.13 — Chapter 5 Teaching Schema. Represents `GRADEBOOK` connected to `GRADE_WEIGHT` through the `DeliverableType` column, simplified for query practice.*
 
 The two tables are:
@@ -353,36 +353,36 @@ Together they support every operation in this chapter: creation, insertion, filt
 
 `GRADEBOOK` is the main teaching table. It stores one row for each student-deliverable result.
 
-![Figure 5.14 — GRADEBOOK Table Structure](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-teachingdataset-diagram)
+![Figure 5.14 — GRADEBOOK Table Structure](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-teachingdataset-diagram.png)
 *Figure 5.14 — GRADEBOOK Table Structure. Highlights column fields such as RecordID, StudentID, and Score, showing their data types and roles.*
 
-![Figure 5.15 — Flat-Table Redundancy Warning](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-flat-table-warning-diagram)
+![Figure 5.15 — Flat-Table Redundancy Warning](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-flat-table-warning-diagram.png)
 *Figure 5.15 — Flat-Table Redundancy Warning. Illustrates duplicate Student names and Emails repeated across gradebook records, highlighting update risks and pointing forward to related tables in Chapter 6.*
 
-| Column | Data Type | Purpose |
-|---|---|---|
-| `RecordID` | `INTEGER` | Unique identifier for each row |
-| `StudentID` | `TEXT` | Student identifier, such as `S1001` |
-| `FirstName` | `TEXT` | Student first name |
-| `LastName` | `TEXT` | Student last name |
-| `Email` | `TEXT` | Student email address |
-| `Birthday` | `TEXT` | Student birth date in `YYYY-MM-DD` form |
-| `DeliverableType` | `TEXT` | Category such as Quiz, Homework, Exam, or Project |
-| `DeliverableNumber` | `INTEGER` | Sequence number within the category |
-| `DueDate` | `TEXT` | Due date for the deliverable in `YYYY-MM-DD` form |
-| `Topic` | `TEXT` | Topic or content label |
-| `Score` | `REAL` | Percentage-style score on a 0-100 scale |
+| Column              | Data Type | Purpose                                           |
+| ------------------- | --------- | ------------------------------------------------- |
+| `RecordID`          | `INTEGER` | Unique identifier for each row                    |
+| `StudentID`         | `TEXT`    | Student identifier, such as `S1001`               |
+| `FirstName`         | `TEXT`    | Student first name                                |
+| `LastName`          | `TEXT`    | Student last name                                 |
+| `Email`             | `TEXT`    | Student email address                             |
+| `Birthday`          | `TEXT`    | Student birth date in `YYYY-MM-DD` form           |
+| `DeliverableType`   | `TEXT`    | Category such as Quiz, Homework, Exam, or Project |
+| `DeliverableNumber` | `INTEGER` | Sequence number within the category               |
+| `DueDate`           | `TEXT`    | Due date for the deliverable in `YYYY-MM-DD` form |
+| `Topic`             | `TEXT`    | Topic or content label                            |
+| `Score`             | `REAL`    | Percentage-style score on a 0-100 scale           |
 
 A small sample:
 
-| RecordID | StudentID | FirstName | LastName | DeliverableType | DeliverableNumber | Topic | Score |
-|---:|---|---|---|---|---:|---|---:|
-| 1 | S1001 | Alice | Johnson | Quiz | 1 | Database Basics | 92 |
-| 2 | S1002 | Brian | Lee | Quiz | 1 | Database Basics | 84 |
-| 3 | S1003 | Carla | Mendez | Homework | 1 | Entity Design | 95 |
-| 4 | S1001 | Alice | Johnson | Quiz | 2 | SQL Basics | 88 |
-| 5 | S1002 | Brian | Lee | Quiz | 2 | SQL Basics | 77 |
-| 6 | S1003 | Carla | Mendez | Exam | 1 | Midterm | 91 |
+| RecordID | StudentID | FirstName | LastName | DeliverableType | DeliverableNumber | Topic           | Score |
+| -------: | --------- | --------- | -------- | --------------- | ----------------: | --------------- | ----: |
+|        1 | S1001     | Alice     | Johnson  | Quiz            |                 1 | Database Basics |    92 |
+|        2 | S1002     | Brian     | Lee      | Quiz            |                 1 | Database Basics |    84 |
+|        3 | S1003     | Carla     | Mendez   | Homework        |                 1 | Entity Design   |    95 |
+|        4 | S1001     | Alice     | Johnson  | Quiz            |                 2 | SQL Basics      |    88 |
+|        5 | S1002     | Brian     | Lee      | Quiz            |                 2 | SQL Basics      |    77 |
+|        6 | S1003     | Carla     | Mendez   | Exam            |                 1 | Midterm         |    91 |
 
 `StudentID` is stored as text, not as a number. The value `S1001` looks numeric in places, but it is an identifier rather than a quantity, so it should never be averaged or summed. This matches the Chapter 4 build, where `StudentID` was created as Short Text in Access for the same reason.
 
@@ -392,24 +392,24 @@ This table is intentionally flat and somewhat redundant. It repeats student name
 
 `GRADE_WEIGHT` stores category-level metadata about the grading scheme.
 
-![Figure 5.16 — Grading Weight Scheme](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-grading-weight-cards)
+![Figure 5.16 — Grading Weight Scheme](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-grading-weight-cards.png)
 *Figure 5.16 — Grading Weight Scheme. Labeled category cards showing item count, category weight, and weight per item for Quiz, Homework, Exam, and Project.*
 
-| Column | Data Type | Purpose |
-|---|---|---|
-| `DeliverableType` | `TEXT` | Category such as Quiz or Exam |
-| `ItemCount` | `INTEGER` | Number of items in that category |
-| `CategoryWeight` | `REAL` | Percentage weight assigned to the category |
-| `WeightPerItem` | `REAL` | Percentage weight assigned to each item in that category |
+| Column            | Data Type | Purpose                                                  |
+| ----------------- | --------- | -------------------------------------------------------- |
+| `DeliverableType` | `TEXT`    | Category such as Quiz or Exam                            |
+| `ItemCount`       | `INTEGER` | Number of items in that category                         |
+| `CategoryWeight`  | `REAL`    | Percentage weight assigned to the category               |
+| `WeightPerItem`   | `REAL`    | Percentage weight assigned to each item in that category |
 
 A small sample:
 
 | DeliverableType | ItemCount | CategoryWeight | WeightPerItem |
-|---|---:|---:|---:|
-| Quiz | 4 | 20 | 5 |
-| Homework | 3 | 30 | 10 |
-| Exam | 2 | 40 | 20 |
-| Project | 1 | 10 | 10 |
+| --------------- | --------: | -------------: | ------------: |
+| Quiz            |         4 |             20 |             5 |
+| Homework        |         3 |             30 |            10 |
+| Exam            |         2 |             40 |            20 |
+| Project         |         1 |             10 |            10 |
 
 Together, `GRADEBOOK` and `GRADE_WEIGHT` allow students to practice single-table queries and to see one introductory example of joining two tables.
 
@@ -417,7 +417,7 @@ Together, `GRADEBOOK` and `GRADE_WEIGHT` allow students to practice single-table
 
 With only two tables, students can already answer useful questions:
 
-![Figure 5.17 — Business Question Board](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-ch05-sql-bridge-questions-to-answers)
+![Figure 5.17 — Business Question Board](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-ch05-sql-bridge-questions-to-answers.png)
 *Figure 5.17 — Business Question Board. Maps common classroom questions, such as identifying struggling students or calculating averages, to the specific database fields needed to resolve them.*
 
 - Which students scored below 80?
@@ -434,7 +434,7 @@ This is the core SQL learning pattern: start with a question, identify the table
 
 ## Part 3: Creating Tables and Inserting Data
 
-![Figure 5.18 — Structure-First Database Workflow](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-tables)
+![Figure 5.18 — Structure-First Database Workflow](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-tables.png)
 *Figure 5.18 — Structure-First Database Workflow. Illustrates the sequential workflow: defining structure with `CREATE TABLE` first, inserting records with `INSERT INTO` second, and verifying with `SELECT *` third.*
 
 <div class="callout good-practice">
@@ -446,7 +446,7 @@ This is the core SQL learning pattern: start with a question, identify the table
 
 `CREATE TABLE` defines a new table. It specifies the table name, column names, data types, and constraints.
 
-![Figure 5.19 — Blueprint of CREATE TABLE](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-instructional-diagram)
+![Figure 5.19 — Blueprint of CREATE TABLE](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-instructional-diagram.png)
 *Figure 5.19 — Blueprint of CREATE TABLE. Annotates the components of a database table creation statement: the command, table name, column names, data types, and primary key constraints.*
 
 The general pattern is:
@@ -460,17 +460,17 @@ CREATE TABLE TableName (
 
 Each part matters.
 
-| Part | Meaning |
-|---|---|
-| `CREATE TABLE` | Tells the DBMS to define a new table |
-| `TableName` | Names the table |
-| `ColumnName` | Names one field or attribute |
-| `DataType` | States what kind of value belongs in the column |
-| `Constraint` | Adds a rule, such as `PRIMARY KEY` or `NOT NULL` |
+| Part           | Meaning                                          |
+| -------------- | ------------------------------------------------ |
+| `CREATE TABLE` | Tells the DBMS to define a new table             |
+| `TableName`    | Names the table                                  |
+| `ColumnName`   | Names one field or attribute                     |
+| `DataType`     | States what kind of value belongs in the column  |
+| `Constraint`   | Adds a rule, such as `PRIMARY KEY` or `NOT NULL` |
 
 ### Creating the `GRADEBOOK` Table
 
-![Figure 5.20 — GRADEBOOK Table Definition](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-gradebook-table-blueprint)
+![Figure 5.20 — GRADEBOOK Table Definition](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-gradebook-table-blueprint.png)
 *Figure 5.20 — GRADEBOOK Table Definition. Visualizes the column types and constraint shields (`NOT NULL`, `PRIMARY KEY`, and `Score CHECK` between 0 and 100) defined during table creation.*
 
 ```sql
@@ -502,9 +502,24 @@ This statement defines the structure before any records are inserted.
   <p>SQLite does not enforce a native <code>DATE</code> type the same way server-based DBMSs do. This chapter stores dates as <code>TEXT</code> in <code>YYYY-MM-DD</code> format so values stay readable and sortable.</p>
 </div>
 
+<div class="callout example">
+  <p><strong>💡 Example: A Preview of a Normalized Table</strong></p>
+  <p>The <code>GRADEBOOK</code> table is useful for learning, but it repeats student information. In a real-world system, we would store student data in its own table to avoid redundancy. Here’s a preview of the <code>STUDENT</code> table we'll build in later chapters. Notice how it holds only student-specific information.</p>
+  <pre><code class="language-sql">
+  CREATE TABLE STUDENT (
+      StudentID TEXT PRIMARY KEY,
+      FirstName TEXT NOT NULL,
+      LastName TEXT NOT NULL,
+      Email TEXT,
+      Birthday TEXT
+  );
+  </code></pre>
+  <p>This design principle, called normalization, is a core topic in Chapter 7.</p>
+</div>
+
 ### Creating the `GRADE_WEIGHT` Table
 
-![Figure 5.21 — GRADE_WEIGHT Schema](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-schema-overview-for-the)
+![Figure 5.21 — GRADE_WEIGHT Schema](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-schema-overview-for-the.jpg)
 *Figure 5.21 — GRADE_WEIGHT Schema. Connects category weight and item count metadata to calculations.*
 
 ```sql
@@ -522,7 +537,7 @@ Here, `DeliverableType` is the primary key because each deliverable category app
 
 Database structures sometimes change. `ALTER TABLE` modifies an existing table.
 
-![Figure 5.22 — Modifying Structure with ALTER TABLE](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-alter-table-before-after)
+![Figure 5.22 — Modifying Structure with ALTER TABLE](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-alter-table-before-after.png)
 *Figure 5.22 — Modifying Structure with ALTER TABLE. Splits the GRADEBOOK table layout before and after adding the `SectionCode` column to show how structures expand.*
 
 ```sql
@@ -536,7 +551,7 @@ This statement adds a new column named `SectionCode` to `GRADEBOOK`. In Microsof
 
 `INSERT INTO` adds rows to a table.
 
-![Figure 5.23 — Column-to-Value Alignment](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-instructional-diagram)
+![Figure 5.23 — Column-to-Value Alignment](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-instructional-diagram.png)
 *Figure 5.23 — Column-to-Value Alignment. Illustrates why order and alignment matter when mapping the column list in `INSERT INTO` to the corresponding `VALUES` list.*
 
 The general pattern is:
@@ -555,7 +570,7 @@ Good insertion habits matter.
 
 ### Inserting Rows into `GRADEBOOK`
 
-![Figure 5.24 — Step-by-Step Multi-Row INSERT](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-multi-row-insert-flow)
+![Figure 5.24 — Step-by-Step Multi-Row INSERT](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-multi-row-insert-flow.png)
 *Figure 5.24 — Step-by-Step Multi-Row INSERT. Displays how multiple values are inserted into the database in one query operation to form separate rows.*
 
 ```sql
@@ -569,12 +584,20 @@ VALUES
      'Quiz', 1, '2026-09-08', 'Database Basics', 84),
     (3, 'S1003', 'Carla', 'Mendez', 'carla@university.edu', '2004-02-09',
      'Homework', 1, '2026-09-10', 'Entity Design', 95),
-    (4, 'S1001', 'Alice', 'Johnson', 'alice@university.edu', '2004-05-14',
+    (4, 'S1004', 'Daniel', 'Kim', 'daniel@university.edu', '2003-08-25',
+     'Homework', 1, '2026-09-10', 'Entity Design', 100),
+    (5, 'S1005', 'Emma', 'Scott', 'emma@university.edu', '2004-01-30',
+     'Project', 1, '2026-11-20', 'Database Proposal', 91),
+    (6, 'S1001', 'Alice', 'Johnson', 'alice@university.edu', '2004-05-14',
      'Quiz', 2, '2026-09-15', 'SQL Basics', 88),
-    (5, 'S1002', 'Brian', 'Lee', 'brian@university.edu', '2003-11-22',
+    (7, 'S1002', 'Brian', 'Lee', 'brian@university.edu', '2003-11-22',
      'Quiz', 2, '2026-09-15', 'SQL Basics', 77),
-    (6, 'S1003', 'Carla', 'Mendez', 'carla@university.edu', '2004-02-09',
-     'Exam', 1, '2026-10-01', 'Midterm', 91);
+    (8, 'S1003', 'Carla', 'Mendez', 'carla@university.edu', '2004-02-09',
+     'Exam', 1, '2026-10-01', 'Midterm', 91),
+    (9, 'S1004', 'Daniel', 'Kim', 'daniel@university.edu', '2003-08-25',
+     'Exam', 1, '2026-10-01', 'Midterm', 93),
+    (10, 'S1005', 'Emma', 'Scott', 'emma@university.edu', '2004-01-30',
+     'Lab', 1, '2026-09-22', 'Access Forms', NULL);
 ```
 
 This statement inserts six rows at once in SQLite and PostgreSQL-style syntax.
@@ -586,7 +609,7 @@ This statement inserts six rows at once in SQLite and PostgreSQL-style syntax.
 
 ### Inserting Rows into `GRADE_WEIGHT`
 
-![Figure 5.25 — Loading Category Metadata](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-calc-sql)
+![Figure 5.25 — Loading Category Metadata](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-calc-sql.png)
 *Figure 5.25 — Loading Category Metadata. Visualizes the four grading categories flowing into the `GRADE_WEIGHT` table to store metadata for future joins and calculations.*
 
 ```sql
@@ -605,7 +628,7 @@ This table now stores the grading structure needed for later joins and weighted 
 
 After inserting data, always verify that records were entered correctly.
 
-![Figure 5.26 — Post-Load Verification](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-review)
+![Figure 5.26 — Post-Load Verification](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-review.jpg)
 *Figure 5.26 — Post-Load Verification. A verification checklist showing how `INSERT INTO` is immediately followed by a `SELECT *` query to inspect records and catch errors early.*
 
 ```sql
@@ -625,14 +648,14 @@ This habit is simple but important. Before writing complicated queries, confirm 
 
 ## Part 4: Querying Data with `SELECT`
 
-![Figure 5.27 — Query Clause Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-what-is-sql)
+![Figure 5.27 — Query Clause Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-what-is-sql.png)
 *Figure 5.27 — Query Clause Roadmap. Illustrates how SELECT, FROM, WHERE, and ORDER BY clauses stack together to build a complete database query.*
 
 ### The Basic `SELECT` Pattern
 
 `SELECT` retrieves data from a table. The simplest version retrieves all columns and all rows:
 
-![Figure 5.28 — Projection in SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-sql-select-concept)
+![Figure 5.28 — Projection in SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-sql-select-concept.png)
 *Figure 5.28 — Projection in SQL. Shows how a SELECT query performs column projection, retrieving only specified fields (e.g. FirstName, LastName) from a larger table.*
 
 ```sql
@@ -655,7 +678,7 @@ FROM GRADEBOOK;
 
 The **DISTINCT** keyword removes duplicate values from query results.
 
-![Figure 5.29 — DISTINCT Value Collapse](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-distinct-duplicate-collapse)
+![Figure 5.29 — DISTINCT Value Collapse](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-distinct-duplicate-collapse.png)
 *Figure 5.29 — DISTINCT Value Collapse. Shows how redundant categories in a column are collapsed into a list of unique values.*
 
 ```sql
@@ -669,7 +692,7 @@ This query returns each deliverable type once. It is useful when you want to see
 
 The **WHERE** clause limits query results to rows that meet a specific condition.
 
-![Figure 5.30 — Row Selection via WHERE](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-where-filtering-diagram)
+![Figure 5.30 — Row Selection via WHERE](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-where-filtering-diagram.png)
 *Figure 5.30 — Row Selection via WHERE. A filter funnel showing rows from the `GRADEBOOK` table passing through the condition `Score < 80`, retaining only matching records in the output.*
 
 ```sql
@@ -680,14 +703,14 @@ WHERE Score < 80;
 
 Common comparison operators include:
 
-| Operator | Meaning | Example |
-|---|---|---|
-| `=` | Equal to | `DeliverableType = 'Quiz'` |
-| `<>` | Not equal to | `DeliverableType <> 'Exam'` |
-| `<` | Less than | `Score < 80` |
-| `>` | Greater than | `Score > 90` |
-| `<=` | Less than or equal to | `Score <= 80` |
-| `>=` | Greater than or equal to | `Score >= 90` |
+| Operator | Meaning                  | Example                     |
+| -------- | ------------------------ | --------------------------- |
+| `=`      | Equal to                 | `DeliverableType = 'Quiz'`  |
+| `<>`     | Not equal to             | `DeliverableType <> 'Exam'` |
+| `<`      | Less than                | `Score < 80`                |
+| `>`      | Greater than             | `Score > 90`                |
+| `<=`     | Less than or equal to    | `Score <= 80`               |
+| `>=`     | Greater than or equal to | `Score >= 90`               |
 
 A small operator change can change the answer. `Score <= 80` includes a score of exactly 80, while `Score < 80` does not.
 
@@ -695,7 +718,7 @@ A small operator change can change the answer. `Score <= 80` includes a score of
 
 `NULL` represents a missing or unknown value. It is not zero. It is not an empty string. It is the absence of a stored value, which is why it cannot be compared with ordinary equality operators.
 
-![Figure 5.31 — NULL handling in SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-nullhandling-diagram)
+![Figure 5.31 — NULL handling in SQL](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-nullhandling-diagram.png)
 *Figure 5.31 — NULL handling in SQL. Contrasts zero, blank text, and NULL, illustrating why traditional equality (`=`) fails and `IS NULL` or `IS NOT NULL` must be used.*
 
 This does **not** work as expected:
@@ -739,7 +762,7 @@ Always ask whether a missing value means not applicable, not entered yet, or unk
 
 Logical operators allow more precise filters.
 
-![Figure 5.32 — Logical Operators](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-logicoperator-and)
+![Figure 5.32 — Logical Operators](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-logicoperator-and.png)
 *Figure 5.32 — Logical Operators. A logic-gate diagram showing how `AND` narrows results, `OR` widens results, and `NOT` excludes categories.*
 
 Use `AND` when both conditions must be true:
@@ -777,7 +800,7 @@ WHERE NOT DeliverableType = 'Homework';
 
 `LIKE` searches for text patterns. The percent sign `%` matches zero or more characters; the underscore `_` matches exactly one.
 
-![Figure 5.33 — Pattern Matching and Range Operators](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-pattern-matching-operators)
+![Figure 5.33 — Pattern Matching and Range Operators](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-pattern-matching-operators.png)
 *Figure 5.33 — Pattern Matching and Range Operators. Illustrates LIKE wildcard searches, BETWEEN range limits, and IN list testing.*
 
 ```sql
@@ -814,7 +837,7 @@ All three operators make conditions shorter and easier to read than long chains 
 
 The **ORDER BY** clause controls the order in which query results appear. `DESC` sorts from high to low; `ASC` sorts from low to high and is the default.
 
-![Figure 5.34 — Sorting and Aliases](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-order-by-and-alias)
+![Figure 5.34 — Sorting and Aliases](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-order-by-and-alias.png)
 *Figure 5.34 — Sorting and Aliases. Shows a query result sorted by `Score DESC` and then by `LastName ASC` as a tiebreaker, with column headers customized via aliases.*
 
 ```sql
@@ -911,7 +934,7 @@ If a date is stored as `09/08/2026`, text sorting can break because the month ap
 
 A readable SQL query usually grows in stages. Start with retrieval, then add filtering, sorting, and labels one clause at a time:
 
-![Figure 5.35 — Step-by-Step Query Construction](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-stepbystep-querybuilding)
+![Figure 5.35 — Step-by-Step Query Construction](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-stepbystep-querybuilding.png)
 *Figure 5.35 — Step-by-Step Query Construction. Visualizes building a complex query in layers, starting with columns, then filtering, and finally sorting.*
 
 ```sql
@@ -929,6 +952,27 @@ Run the query after each addition. If the result becomes wrong, you know which c
   <p>A basic query becomes more powerful by adding clauses one at a time, not by writing everything at once.</p>
 </div>
 
+### Answering a Business Question
+
+Let's combine these clauses to answer a common instructional question: "Which students submitted the 'Database Basics' quiz, and how did they score?"
+
+To answer this, we need to filter by `Topic` and `DeliverableType`, then sort the results to make them easy to read.
+
+```sql
+SELECT
+    FirstName,
+    LastName,
+    Score
+FROM
+    GRADEBOOK
+WHERE
+    Topic = 'Database Basics' AND DeliverableType = 'Quiz'
+ORDER BY
+    Score DESC;
+```
+
+This query precisely targets the required information, filtering out all other records and presenting a clean, sorted list of the relevant student scores. This is the core power of SQL: turning a broad dataset into a specific, actionable answer.
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
@@ -936,7 +980,7 @@ Run the query after each addition. If the result becomes wrong, you know which c
 
 So far every query has read from one table. But the teaching dataset has two tables, and some questions need both. This part gives you a single introductory example. Chapter 6 then develops joins in full once you understand why data is split across related tables.
 
-![Figure 5.36 — Reconstructing Context with Joins](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-join-logic)
+![Figure 5.36 — Reconstructing Context with Joins](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-join-logic.png)
 *Figure 5.36 — Reconstructing Context with Joins. Shows grade rows dynamically receiving metadata, such as item weights, from the related weight table at query time.*
 
 ### Why You Would Join Two Tables
@@ -975,30 +1019,30 @@ Joins fit naturally with the relational design ideas in Chapter 6, so the full t
 
 ## Part 6: Aggregation, Grouping, and Calculated Results
 
-![Figure 5.37 — Rows-to-Summary Aggregation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-aggregation-diagram)
+![Figure 5.37 — Rows-to-Summary Aggregation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-aggregation-diagram.png)
 *Figure 5.37 — Rows-to-Summary Aggregation. Detailed records from the `GRADEBOOK` table are compressed into summary metrics such as counts, averages, and totals.*
 
 ### Why Aggregation Matters
 
 Listing rows is useful, but business analysis often requires summaries. An instructor may need the class average, the average by deliverable type, the number of recorded scores, the highest and lowest scores, or the average score for each student.
 
-![Figure 5.38 — The SQL Aggregation Pipeline](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-processflow-diagram-showing)
+![Figure 5.38 — The SQL Aggregation Pipeline](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-processflow-diagram-showing.jpg)
 *Figure 5.38 — The SQL Aggregation Pipeline. Displays raw grade records at the base, grouping and filtering in the middle, and summary outputs such as class averages at the top.*
 
 Aggregation is where SQL starts to become analytical.
 
 ### Aggregate Functions
 
-![Figure 5.39 — Core Aggregate Functions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-calc-sql)
+![Figure 5.39 — Core Aggregate Functions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-calc-sql.png)
 *Figure 5.39 — Core Aggregate Functions. Labeled cards for COUNT(), AVG(), SUM(), MIN(), and MAX() explaining what business questions they answer.*
 
-| Function | Purpose | Example Question |
-|---|---|---|
-| `COUNT()` | Counts rows or non-missing values | How many scores are recorded? |
-| `AVG()` | Calculates an average | What is the average score? |
-| `SUM()` | Calculates a total | What is the total weighted contribution? |
-| `MIN()` | Finds the smallest value | What is the lowest score? |
-| `MAX()` | Finds the largest value | What is the highest score? |
+| Function  | Purpose                           | Example Question                         |
+| --------- | --------------------------------- | ---------------------------------------- |
+| `COUNT()` | Counts rows or non-missing values | How many scores are recorded?            |
+| `AVG()`   | Calculates an average             | What is the average score?               |
+| `SUM()`   | Calculates a total                | What is the total weighted contribution? |
+| `MIN()`   | Finds the smallest value          | What is the lowest score?                |
+| `MAX()`   | Finds the largest value           | What is the highest score?               |
 
 Example:
 
@@ -1013,7 +1057,7 @@ This returns one overall average.
 
 `GROUP BY` forms groups before aggregation. Without `GROUP BY`, a query returns one overall summary. With `GROUP BY`, it returns one summary per group.
 
-![Figure 5.40 — Grouping Buckets](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-group-by-and-having)
+![Figure 5.40 — Grouping Buckets](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-group-by-and-having.png)
 *Figure 5.40 — Grouping Buckets. Illustrates how records are grouped into buckets, such as Quiz and Homework, before aggregate functions run on each bucket.*
 
 ```sql
@@ -1040,7 +1084,7 @@ This returns one average per student.
 
 `WHERE` filters rows before grouping. `HAVING` filters groups after grouping.
 
-![Figure 5.41 — WHERE vs. HAVING execution](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-group-by-and-having)
+![Figure 5.41 — WHERE vs. HAVING execution](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-group-by-and-having.png)
 *Figure 5.41 — WHERE vs. HAVING execution. Shows that WHERE filters raw records before grouping, while HAVING filters aggregated summaries after grouping.*
 
 ```sql
@@ -1053,14 +1097,14 @@ HAVING AVG(Score) < 85;
 
 This query calculates the average score for each deliverable type, then keeps only the groups whose average is below 85.
 
-| Clause | Filters | Used Before or After Grouping? |
-|---|---|---|
-| `WHERE` | Individual rows | Before grouping |
-| `HAVING` | Groups or aggregate results | After grouping |
+| Clause   | Filters                     | Used Before or After Grouping? |
+| -------- | --------------------------- | ------------------------------ |
+| `WHERE`  | Individual rows             | Before grouping                |
+| `HAVING` | Groups or aggregate results | After grouping                 |
 
 ### Practical Summary Queries
 
-![Figure 5.42 — Summary Outputs Mockup](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-calculatedresults)
+![Figure 5.42 — Summary Outputs Mockup](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-calculatedresults.png)
 *Figure 5.42 — Summary Outputs Mockup. Visualizes calculated results such as record counts, maximum scores, and category averages as analytical dashboard cards.*
 
 ```sql
@@ -1084,7 +1128,7 @@ WHERE DeliverableType = 'Quiz';
 
 SQL can calculate new output values without changing stored data.
 
-![Figure 5.43 — Calculated Columns Output](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-calculatedresults)
+![Figure 5.43 — Calculated Columns Output](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-calculatedresults.png)
 *Figure 5.43 — Calculated Columns Output. Shows how stored scores feed into a temporary calculated column in memory without changing the source table.*
 
 ```sql
@@ -1101,7 +1145,7 @@ FROM GRADEBOOK;
 
 Calculated columns become more powerful when the calculation draws on a second table. If `Score` is a percentage and `WeightPerItem` is the percentage weight of one deliverable, then a deliverable's weighted contribution is:
 
-![Figure 5.44 — Weighted score calculation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-calc-sql)
+![Figure 5.44 — Weighted score calculation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-calc-sql.png)
 *Figure 5.44 — Weighted score calculations. Shows how scores and individual item weights are multiplied and divided to calculate a deliverable's weighted contribution to the final grade.*
 
 ```text
@@ -1114,7 +1158,7 @@ Score * WeightPerItem / 100
 
 SQL can also combine and transform text and date values.
 
-![Figure 5.45 — Platform SQL Date Operations](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-date-platform-comparison)
+![Figure 5.45 — Platform SQL Date Operations](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-date-platform-comparison.png)
 *Figure 5.45 — Platform SQL Date Operations. Contrasts how SQLite, PostgreSQL, and Access calculate ages and perform text concatenation side by side.*
 
 ```sql
@@ -1142,14 +1186,16 @@ SELECT FirstName,
        LastName,
        Score,
        CASE
-           WHEN Score >= 90 THEN 'High Performance'
-           WHEN Score >= 80 THEN 'On Track'
-           ELSE 'Needs Attention'
-       END AS PerformanceBand
+           WHEN Score >= 90 THEN 'A'
+           WHEN Score >= 80 THEN 'B'
+           WHEN Score >= 70 THEN 'C'
+           WHEN Score >= 60 THEN 'D'
+           ELSE 'F'
+       END AS LetterGrade
 FROM GRADEBOOK;
 ```
 
-`CASE` turns numeric values into interpretable labels.
+`CASE` turns numeric values into interpretable labels. It is one of the most useful tools for making raw data more meaningful.
 
 ### Complete Student Summary Example
 
@@ -1181,7 +1227,7 @@ The result is one row per student with an average score and a performance label.
 
 ## Looking Ahead
 
-![Figure 5.46 — The SQL Learning Pathway](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-lefttoright-instructional)
+![Figure 5.46 — The SQL Learning Pathway](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-lefttoright-instructional.jpg)
 *Figure 5.46 — The SQL learning pathway. Shows how basic SQL queries branch into database normalization, advanced analytics, data governance, and dashboard integration.*
 
 This chapter introduced the core grammar of SQL. You learned how to create tables, insert records, retrieve rows, filter results, work with dates, sort output, alias columns and tables, preview a join, summarize patterns, and calculate new fields.
@@ -1209,14 +1255,14 @@ For extra practice between now and the next SQL-heavy chapter, use the [W3School
 
 This appendix shows the chapter's ideas at work in the Let's Build grading database. Each section reuses the `GRADEBOOK` and `GRADE_WEIGHT` tables defined in Part 2 and Part 3.
 
-![Figure 5.47 — Appendix Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-review)
+![Figure 5.47 — Appendix Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-review.jpg)
 *Figure 5.47 — Appendix Roadmap. Maps the appendix examples back to the core chapter concepts: Access-style inserts and side-by-side age expressions.*
 
 ### A1. Inserting Rows One at a Time (Access-Friendly)
 
 Multi-row `INSERT` works in SQLite and PostgreSQL. Microsoft Access expects one row per statement. In the Chapter 4 build, `RecordID` is an Access AutoNumber field, so it is generated automatically and you do not type a value for it. The first two rows from Part 3 would look like this in Access form:
 
-![Figure 5.48 — SQLite vs. Access Insertions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-tables)
+![Figure 5.48 — SQLite vs. Access Insertions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-tables.png)
 *Figure 5.48 — SQLite vs. Access insertions. Compares multi-row SQL insert statements in SQLite with single-row, AutoNumber-compliant insert statements in Access.*
 
 ```sql
@@ -1237,11 +1283,11 @@ Notice three Access differences: `RecordID` is omitted so Access can generate it
 
 *Platform SQL Date Operations (Figure 5.45 above) maps the SQLite, PostgreSQL, and Access age expressions side by side.*
 
-| Platform | Approximate age expression |
-|---|---|
-| SQLite | `strftime('%Y','now') - strftime('%Y', Birthday)` |
-| PostgreSQL | `EXTRACT(YEAR FROM AGE(Birthday))` |
-| Access | `DateDiff('yyyy', Birthday, Date())` |
+| Platform   | Approximate age expression                        |
+| ---------- | ------------------------------------------------- |
+| SQLite     | `strftime('%Y','now') - strftime('%Y', Birthday)` |
+| PostgreSQL | `EXTRACT(YEAR FROM AGE(Birthday))`                |
+| Access     | `DateDiff('yyyy', Birthday, Date())`              |
 
 All three return a rough integer age based on year only. None checks whether the birthday has occurred yet this year, so the value can be one year high for several months.
 
@@ -1251,69 +1297,69 @@ All three return a rough integer age based on year only. None checks whether the
 
 The commands, clauses, and operators covered in this chapter, in one place. Keep this handy while working through the Let's Build and Lab 5.
 
-| Category | Command / Operator | What it does | Quick example |
-|---|---|---|---|
-| DDL | `CREATE TABLE` | Define a new table and its columns | `CREATE TABLE PET (PetID INTEGER PRIMARY KEY, PetName TEXT NOT NULL);` |
-| DDL | `ALTER TABLE` | Add, change, or drop a column after creation | `ALTER TABLE PET ADD COLUMN WeightLb REAL;` |
-| DDL | `DROP TABLE` | Permanently delete a table | `DROP TABLE PET;` |
-| DML | `INSERT INTO` | Add one or more rows | `INSERT INTO PET VALUES (1, 'Luna', 8.2);` |
-| DML | `UPDATE` | Change existing rows | `UPDATE PET SET WeightLb = 9.0 WHERE PetID = 1;` |
-| DML | `DELETE` | Remove rows | `DELETE FROM PET WHERE PetID = 1;` |
-| DQL | `SELECT` | Choose which columns to return | `SELECT PetName, WeightLb FROM PET;` |
-| DQL | `WHERE` | Filter rows by a condition | `SELECT * FROM PET WHERE AnimalType = 'Cat';` |
-| DQL | `ORDER BY` | Sort results (ASC default, DESC optional) | `SELECT * FROM PET ORDER BY WeightLb DESC;` |
-| DQL | `DISTINCT` | Remove duplicate values from output | `SELECT DISTINCT AnimalType FROM PET;` |
-| DQL | `IS NULL` / `IS NOT NULL` | Test for missing values | `SELECT * FROM PET WHERE WeightLb IS NULL;` |
-| DQL | `LIKE` | Match a text pattern (`%` = any string, `_` = one char) | `WHERE PetName LIKE 'L%';` |
-| DQL | `BETWEEN` | Filter a range (inclusive) | `WHERE WeightLb BETWEEN 5 AND 20;` |
-| DQL | `IN` | Match any value in a list | `WHERE AnimalType IN ('Cat', 'Dog');` |
-| DQL | `AS` | Rename a column in output (alias) | `SELECT WeightLb AS Weight_Pounds FROM PET;` |
-| Aggregate | `COUNT()` | Count rows | `SELECT COUNT(*) FROM PET;` |
-| Aggregate | `SUM()` | Total of a numeric column | `SELECT SUM(WeightLb) FROM PET;` |
-| Aggregate | `AVG()` | Average of a numeric column | `SELECT AVG(WeightLb) FROM PET;` |
-| Aggregate | `MIN()` / `MAX()` | Lowest or highest value | `SELECT MIN(WeightLb), MAX(WeightLb) FROM PET;` |
-| Clause | `GROUP BY` | Group rows for per-group aggregation | `SELECT AnimalType, COUNT(*) FROM PET GROUP BY AnimalType;` |
-| Clause | `HAVING` | Filter groups after aggregation | `... GROUP BY AnimalType HAVING COUNT(*) > 10;` |
-| Expression | `CASE` | Conditional label or value | `CASE WHEN WeightLb > 30 THEN 'Large' ELSE 'Small' END` |
-| TCL | `BEGIN` / `COMMIT` / `ROLLBACK` | Wrap changes in a transaction for safety | `BEGIN; UPDATE ...; COMMIT;` |
+| Category   | Command / Operator              | What it does                                            | Quick example                                                          |
+| ---------- | ------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
+| DDL        | `CREATE TABLE`                  | Define a new table and its columns                      | `CREATE TABLE PET (PetID INTEGER PRIMARY KEY, PetName TEXT NOT NULL);` |
+| DDL        | `ALTER TABLE`                   | Add, change, or drop a column after creation            | `ALTER TABLE PET ADD COLUMN WeightLb REAL;`                            |
+| DDL        | `DROP TABLE`                    | Permanently delete a table                              | `DROP TABLE PET;`                                                      |
+| DML        | `INSERT INTO`                   | Add one or more rows                                    | `INSERT INTO PET VALUES (1, 'Luna', 8.2);`                             |
+| DML        | `UPDATE`                        | Change existing rows                                    | `UPDATE PET SET WeightLb = 9.0 WHERE PetID = 1;`                       |
+| DML        | `DELETE`                        | Remove rows                                             | `DELETE FROM PET WHERE PetID = 1;`                                     |
+| DQL        | `SELECT`                        | Choose which columns to return                          | `SELECT PetName, WeightLb FROM PET;`                                   |
+| DQL        | `WHERE`                         | Filter rows by a condition                              | `SELECT * FROM PET WHERE AnimalType = 'Cat';`                          |
+| DQL        | `ORDER BY`                      | Sort results (ASC default, DESC optional)               | `SELECT * FROM PET ORDER BY WeightLb DESC;`                            |
+| DQL        | `DISTINCT`                      | Remove duplicate values from output                     | `SELECT DISTINCT AnimalType FROM PET;`                                 |
+| DQL        | `IS NULL` / `IS NOT NULL`       | Test for missing values                                 | `SELECT * FROM PET WHERE WeightLb IS NULL;`                            |
+| DQL        | `LIKE`                          | Match a text pattern (`%` = any string, `_` = one char) | `WHERE PetName LIKE 'L%';`                                             |
+| DQL        | `BETWEEN`                       | Filter a range (inclusive)                              | `WHERE WeightLb BETWEEN 5 AND 20;`                                     |
+| DQL        | `IN`                            | Match any value in a list                               | `WHERE AnimalType IN ('Cat', 'Dog');`                                  |
+| DQL        | `AS`                            | Rename a column in output (alias)                       | `SELECT WeightLb AS Weight_Pounds FROM PET;`                           |
+| Aggregate  | `COUNT()`                       | Count rows                                              | `SELECT COUNT(*) FROM PET;`                                            |
+| Aggregate  | `SUM()`                         | Total of a numeric column                               | `SELECT SUM(WeightLb) FROM PET;`                                       |
+| Aggregate  | `AVG()`                         | Average of a numeric column                             | `SELECT AVG(WeightLb) FROM PET;`                                       |
+| Aggregate  | `MIN()` / `MAX()`               | Lowest or highest value                                 | `SELECT MIN(WeightLb), MAX(WeightLb) FROM PET;`                        |
+| Clause     | `GROUP BY`                      | Group rows for per-group aggregation                    | `SELECT AnimalType, COUNT(*) FROM PET GROUP BY AnimalType;`            |
+| Clause     | `HAVING`                        | Filter groups after aggregation                         | `... GROUP BY AnimalType HAVING COUNT(*) > 10;`                        |
+| Expression | `CASE`                          | Conditional label or value                              | `CASE WHEN WeightLb > 30 THEN 'Large' ELSE 'Small' END`                |
+| TCL        | `BEGIN` / `COMMIT` / `ROLLBACK` | Wrap changes in a transaction for safety                | `BEGIN; UPDATE ...; COMMIT;`                                           |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
 ## Key Concepts
 
-![Figure 5.49 — Structured Query Language Concept Map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-notebooklmmindmap)
+![Figure 5.49 — Structured Query Language Concept Map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-notebooklmmindmap.png)
 *Figure 5.49 — Structured Query Language concept map. Visualizes relationships between SQL families (DDL/DML/DQL), basic querying clauses, joins, and aggregations.*
 
-| Term | Meaning |
-|---|---|
-| **SQL** | The standard language for working with relational databases |
+| Term                     | Meaning                                                                                   |
+| ------------------------ | ----------------------------------------------------------------------------------------- |
+| **SQL**                  | The standard language for working with relational databases                               |
 | **Declarative language** | A language in which users state the desired result rather than the step-by-step procedure |
-| **DDL** | SQL statements that define or change database structure |
-| **DML** | SQL statements that insert, update, or delete stored records |
-| **DQL** | SQL statements that retrieve data, especially `SELECT` |
-| **TCL** | SQL statements that manage transactions, such as `COMMIT` and `ROLLBACK` |
-| **Table** | A structured set of rows and columns |
-| **Row** | One record in a table |
-| **Column** | One field or attribute in a table |
-| **Query** | A request for data or a data-related operation |
-| **Filter** | A condition that limits which rows are returned |
-| **Sort** | The order in which result rows appear |
-| **Alias** | A temporary name used for a column or table in a query |
-| **NULL** | A marker for a missing or unknown value |
-| **Join** | A query operation that combines related tables |
-| **Aggregate function** | A function such as `COUNT()`, `AVG()`, or `SUM()` that summarizes rows |
-| **GROUP BY** | A clause that forms groups before aggregation |
-| **HAVING** | A clause that filters grouped results |
-| **Expression** | A calculation or transformation performed in a query |
-| **CASE** | Conditional logic used to return different values based on conditions |
+| **DDL**                  | SQL statements that define or change database structure                                   |
+| **DML**                  | SQL statements that insert, update, or delete stored records                              |
+| **DQL**                  | SQL statements that retrieve data, especially `SELECT`                                    |
+| **TCL**                  | SQL statements that manage transactions, such as `COMMIT` and `ROLLBACK`                  |
+| **Table**                | A structured set of rows and columns                                                      |
+| **Row**                  | One record in a table                                                                     |
+| **Column**               | One field or attribute in a table                                                         |
+| **Query**                | A request for data or a data-related operation                                            |
+| **Filter**               | A condition that limits which rows are returned                                           |
+| **Sort**                 | The order in which result rows appear                                                     |
+| **Alias**                | A temporary name used for a column or table in a query                                    |
+| **NULL**                 | A marker for a missing or unknown value                                                   |
+| **Join**                 | A query operation that combines related tables                                            |
+| **Aggregate function**   | A function such as `COUNT()`, `AVG()`, or `SUM()` that summarizes rows                    |
+| **GROUP BY**             | A clause that forms groups before aggregation                                             |
+| **HAVING**               | A clause that filters groups after aggregation                                             |
+| **Expression**           | A calculation or transformation performed in a query                                      |
+| **CASE**                 | Conditional logic used to return different values based on conditions                     |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
 ## Chapter Summary
 
-![Figure 5.50 — Chapter 5 Visual Summary](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-ch05-summary)
+![Figure 5.50 — Chapter 5 Visual Summary](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-ch05-summary.jpg)
 *Figure 5.50 — Chapter 5 Visual Summary. Recaps the path from raw tables to query logic, joins, grouping, calculations, and analytical insights.*
 
 Chapter 5 introduced SQL as the language used to communicate with relational databases. Building on Chapter 4, the chapter moved from the question of where data lives to the question of how people retrieve, interpret, and summarize stored data.
@@ -1348,55 +1394,55 @@ Silberschatz, A., Korth, H. F., & Sudarshan, S. (2020). *Database system concept
 
 ## Figures Index
 
-| Figure | Section | Caption | Source file |
-|---|---|---|---|
-| Figure 5.1 | Chapter Roadmap | SQL as the Data Bridge. Database tables store raw records on the left, which pass through the declarative SQL query layer in the center to produce business answers, reports, and dashboards on the right. | `ch05-create-a-clean-textbook-that-shows-sql.jpg` |
-| Figure 5.2 | Chapter Roadmap | Chapter Roadmap. A step-by-step pathway showing how Chapter 5 concepts progress from defining structure to loading records, retrieving rows, filtering results, previewing a join, and summarizing patterns. | `ch05-create-a-lefttoright-instructional.jpg` |
-| Figure 5.3 | Why SQL Comes Next | Before-and-After Query View. A large, complex grade table containing all student records is filtered by a declarative SQL query to return a focused list of students scoring below 80. | `ch05-create-a-clean-conceptual-diagram.png` |
-| Figure 5.4 | What SQL Is | SQL in the Application Stack. Shows the hidden query layer where SQL runs beneath dashboards, registration portals, checkout screens, and reports to fetch structured data. | `ch05-create-a-modular-educational-diagram.jpg` |
-| Figure 5.5 | SQL Is Declarative | Declarative vs. Imperative Query Execution. The user specifies the needed data in standard SQL, and the database engine handles the physical scanning and retrieval plan behind the scenes. | `ch05-create-a-twopanel-instructional-showing.jpg` |
-| Figure 5.6 | SQL in the Information System | The SQL Query Pipeline. A step-by-step pipeline tracing a business question as it is translated into a SQL statement, parsed by the DBMS, executed against database tables, and returned as a query result to support a decision. | `ch05-create-a-detailed-instructional-showing.jpg` |
-| Figure 5.7 | Why SQL Is Useful | Transparency and Portability of SQL. Contrasts a hidden spreadsheet formula and a black-box dashboard metric with a clear, readable, and portable SQL statement. | `ch05-sql-pros.jpg` |
-| Figure 5.8 | SQL Categories at a Glance | The Four Families of SQL. A toolbox overview illustrating DDL (structure), DML (records), DQL (retrieval), and TCL (transactions) with their respective commands. | `ch05-create-a-splitpanel-textbook-diagram.jpg` |
-| Figure 5.9 | Tools You Will Use | Database Platform Comparison. Displays the same SQL query executing in Microsoft Access SQL View, SQLite Online, and a Supabase SQL editor to show syntax portability. | `ch05-create-a-threepanel-comparison-for-the.jpg` |
-| Figure 5.10 | Tools You Will Use | SQLite Tooling Environments. Compares browser-based SQLiteOnline (best for quick practice) with desktop DB Browser for SQLite (best for local file inspection and saved scripts). | `ch05-create-a-sidebyside-instructional.jpg` |
-| Figure 5.11 | Tools You Will Use | Supabase developer dashboard mapping the Table Editor, SQL Editor with an active query, and Database Schema Visualizer in a unified cloud interface. | `ch05-supabase-dashboard-map.png` |
-| Figure 5.12 | Tools You Will Use | The Journey of a SQL Query. Traces a query from initial practice in a local SQLite file, to production deployment in a PostgreSQL database, to visualization in a Power BI dashboard. | `ch05-create-a-stepbystep-instructional.jpg` |
-| Figure 5.13 | Why a Simplified Two-Table Dataset | Chapter 5 Teaching Schema. Represents `GRADEBOOK` connected to `GRADE_WEIGHT` through the `DeliverableType` column, simplified for query practice. | `ch05-create-a-clean-schema-overview-for-the.jpg` |
-| Figure 5.14 | `GRADEBOOK` | GRADEBOOK Table Structure. Highlights column fields such as RecordID, StudentID, and Score, showing their data types and roles. | `ch05-create-a-clean-teachingdataset-diagram.png` |
-| Figure 5.15 | `GRADEBOOK` | Flat-Table Redundancy Warning. Illustrates duplicate Student names and Emails repeated across gradebook records, highlighting update risks and pointing forward to related tables in Chapter 6. | `ch05-flat-table-warning-diagram.png` |
-| Figure 5.16 | `GRADE_WEIGHT` | Grading Weight Scheme. Labeled category cards showing item count, category weight, and weight per item for Quiz, Homework, Exam, and Project. | `ch05-grading-weight-cards.png` |
-| Figure 5.17 | Questions These Tables Can Answer | Business Question Board. Maps common classroom questions, such as identifying struggling students or calculating averages, to the specific database fields needed to resolve them. | `ch05-ch05-sql-bridge-questions-to-answers.png` |
-| Figure 5.18 | Part 3: Creating Tables and Inserting Data | Structure-First Database Workflow. Illustrates the sequential workflow: defining structure with `CREATE TABLE` first, inserting records with `INSERT INTO` second, and verifying with `SELECT *` third. | `ch05-create-tables.png` |
-| Figure 5.19 | Creating Tables with `CREATE TABLE` | Blueprint of CREATE TABLE. Annotates the components of a database table creation statement: the command, table name, column names, data types, and primary key constraints. | `ch05-create-a-clean-instructional-diagram.png` |
-| Figure 5.20 | Creating the `GRADEBOOK` Table | GRADEBOOK Table Definition. Visualizes the column types and constraint shields (`NOT NULL`, `PRIMARY KEY`, and `Score CHECK` between 0 and 100) defined during table creation. | `ch05-gradebook-table-blueprint.png` |
-| Figure 5.21 | Creating the `GRADE_WEIGHT` Table | GRADE_WEIGHT Schema. Connects category weight and item count metadata to calculations. | `ch05-create-a-clean-schema-overview-for-the.jpg` |
-| Figure 5.22 | Modifying a Table with `ALTER TABLE` | Modifying Structure with ALTER TABLE. Splits the GRADEBOOK table layout before and after adding the `SectionCode` column to show how structures expand. | `ch05-alter-table-before-after.png` |
-| Figure 5.23 | Inserting Records with `INSERT INTO` | Column-to-Value Alignment. Illustrates why order and alignment matter when mapping the column list in `INSERT INTO` to the corresponding `VALUES` list. | `ch05-create-a-clean-instructional-diagram.png` |
-| Figure 5.24 | Inserting Rows into `GRADEBOOK` | Step-by-Step Multi-Row INSERT. Displays how multiple values are inserted into the database in one query operation to form separate rows. | `ch05-multi-row-insert-flow.png` |
-| Figure 5.25 | Inserting Rows into `GRADE_WEIGHT` | Loading Category Metadata. Visualizes the four grading categories flowing into the `GRADE_WEIGHT` table to store metadata for future joins and calculations. | `ch05-calc-sql.png` |
-| Figure 5.26 | Checking the Inserted Data | Post-Load Verification. A verification checklist showing how `INSERT INTO` is immediately followed by a `SELECT *` query to inspect records and catch errors early. | `ch05-sql-review.jpg` |
-| Figure 5.27 | Part 4: Querying Data with `SELECT` | Query Clause Roadmap. Illustrates how SELECT, FROM, WHERE, and ORDER BY clauses stack together to build a complete database query. | `ch05-what-is-sql.png` |
-| Figure 5.28 | The Basic `SELECT` Pattern | Projection in SQL. Shows how a SELECT query performs column projection, retrieving only specified fields (e.g. FirstName, LastName) from a larger table. | `ch05-create-a-clean-sql-select-concept.png` |
-| Figure 5.29 | Removing Duplicates with `DISTINCT` | DISTINCT Value Collapse. Shows how redundant categories in a column are collapsed into a list of unique values. | `ch05-distinct-duplicate-collapse.png` |
-| Figure 5.30 | Filtering Rows with `WHERE` | Row Selection via WHERE. A filter funnel showing rows from the `GRADEBOOK` table passing through the condition `Score < 80`, retaining only matching records in the output. | `ch05-create-a-clean-where-filtering-diagram.png` |
-| Figure 5.31 | Handling Missing Values with `NULL` | NULL handling in SQL. Contrasts zero, blank text, and NULL, illustrating why traditional equality (`=`) fails and `IS NULL` or `IS NOT NULL` must be used. | `ch05-create-a-clean-nullhandling-diagram.png` |
-| Figure 5.32 | Combining Conditions with `AND`, `OR`, and `NOT` | Logical Operators. A logic-gate diagram showing how `AND` narrows results, `OR` widens results, and `NOT` excludes categories. | `ch05-create-a-clean-logicoperator-and.png` |
-| Figure 5.33 | Pattern Matching with `LIKE`, `BETWEEN`, and `IN` | Pattern Matching and Range Operators. Illustrates LIKE wildcard searches, BETWEEN range limits, and IN list testing. | `ch05-pattern-matching-operators.png` |
-| Figure 5.34 | Sorting Results with `ORDER BY` | Sorting and Aliases. Shows a query result sorted by `Score DESC` and then by `LastName ASC` as a tiebreaker, with column headers customized via aliases. | `ch05-create-a-clean-order-by-and-alias.png` |
-| Figure 5.35 | Building a Query Step by Step | Step-by-Step Query Construction. Visualizes building a complex query in layers, starting with columns, then filtering, and finally sorting. | `ch05-create-a-clean-stepbystep-querybuilding.png` |
-| Figure 5.36 | Part 5: A First Look at Joins | Reconstructing Context with Joins. Shows grade rows dynamically receiving metadata, such as item weights, from the related weight table at query time. | `ch05-join-logic.png` |
-| Figure 5.37 | Part 6: Aggregation, Grouping, and Calculated Results | Rows-to-Summary Aggregation. Detailed records from the `GRADEBOOK` table are compressed into summary metrics such as counts, averages, and totals. | `ch05-create-a-clean-aggregation-diagram.png` |
-| Figure 5.38 | Why Aggregation Matters | The SQL Aggregation Pipeline. Displays raw grade records at the base, grouping and filtering in the middle, and summary outputs such as class averages at the top. | `ch05-create-a-processflow-diagram-showing.jpg` |
-| Figure 5.39 | Aggregate Functions | Core Aggregate Functions. Labeled cards for COUNT(), AVG(), SUM(), MIN(), and MAX() explaining what business questions they answer. | `ch05-calc-sql.png` |
-| Figure 5.40 | Grouping with `GROUP BY` | Grouping Buckets. Illustrates how records are grouped into buckets, such as Quiz and Homework, before aggregate functions run on each bucket. | `ch05-create-a-clean-group-by-and-having.png` |
-| Figure 5.41 | Filtering Groups with `HAVING` | WHERE vs. HAVING execution. Shows that WHERE filters raw records before grouping, while HAVING filters aggregated summaries after grouping. | `ch05-create-a-clean-group-by-and-having.png` |
-| Figure 5.42 | Practical Summary Queries | Summary Outputs Mockup. Visualizes calculated results such as record counts, maximum scores, and category averages as analytical dashboard cards. | `ch05-create-a-clean-calculatedresults.png` |
-| Figure 5.43 | Calculated Columns | Calculated Columns Output. Shows how stored scores feed into a temporary calculated column in memory without changing the source table. | `ch05-create-a-clean-calculatedresults.png` |
-| Figure 5.44 | A Weighted Contribution Example | Weighted score calculations. Shows how scores and individual item weights are multiplied and divided to calculate a deliverable's weighted contribution to the final grade. | `ch05-calc-sql.png` |
-| Figure 5.45 | Text and Date Expressions | Platform SQL Date Operations. Contrasts how SQLite, PostgreSQL, and Access calculate ages and perform text concatenation side by side. | `ch05-sql-date-platform-comparison.png` |
-| Figure 5.46 | Looking Ahead | The SQL learning pathway. Shows how basic SQL queries branch into database normalization, advanced analytics, data governance, and dashboard integration. | `ch05-create-a-lefttoright-instructional.jpg` |
-| Figure 5.47 | Appendix: Applying These Concepts to the Grading Database | Appendix Roadmap. Maps the appendix examples back to the core chapter concepts: Access-style inserts and side-by-side age expressions. | `ch05-sql-review.jpg` |
-| Figure 5.48 | A1. Inserting Rows One at a Time (Access-Friendly) | SQLite vs. Access insertions. Compares multi-row SQL insert statements in SQLite with single-row, AutoNumber-compliant insert statements in Access. | `ch05-create-tables.png` |
-| Figure 5.49 | Key Concepts | Structured Query Language concept map. Visualizes relationships between SQL families (DDL/DML/DQL), basic querying clauses, joins, and aggregations. | `ch05-notebooklmmindmap.png` |
-| Figure 5.50 | Chapter Summary | Chapter 5 Visual Summary. Recaps the path from raw tables to query logic, joins, grouping, calculations, and analytical insights. | `ch05-ch05-summary.jpg` |
+| Figure      | Section                                                   | Caption                                                                                                                                                                                                                           | Source file                                        |
+| ----------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Figure 5.1  | Chapter Roadmap                                           | SQL as the Data Bridge. Database tables store raw records on the left, which pass through the declarative SQL query layer in the center to produce business answers, reports, and dashboards on the right.                        | `ch05-create-a-clean-textbook-that-shows-sql.jpg`  |
+| Figure 5.2  | Chapter Roadmap                                           | Chapter Roadmap. A step-by-step pathway showing how Chapter 5 concepts progress from defining structure to loading records, retrieving rows, filtering results, previewing a join, and summarizing patterns.                      | `ch05-create-a-lefttoright-instructional.jpg`      |
+| Figure 5.3  | Why SQL Comes Next                                        | Before-and-After Query View. A large, complex grade table containing all student records is filtered by a declarative SQL query to return a focused list of students scoring below 80.                                            | `ch05-create-a-clean-conceptual-diagram.png`       |
+| Figure 5.4  | What SQL Is                                               | SQL in the Application Stack. Shows the hidden query layer where SQL runs beneath dashboards, registration portals, checkout screens, and reports to fetch structured data.                                                       | `ch05-create-a-modular-educational-diagram.jpg`    |
+| Figure 5.5  | SQL Is Declarative                                        | Declarative vs. Imperative Query Execution. The user specifies the needed data in standard SQL, and the database engine handles the physical scanning and retrieval plan behind the scenes.                                       | `ch05-create-a-twopanel-instructional-showing.jpg` |
+| Figure 5.6  | SQL in the Information System                             | The SQL Query Pipeline. A step-by-step pipeline tracing a business question as it is translated into a SQL statement, parsed by the DBMS, executed against database tables, and returned as a query result to support a decision. | `ch05-create-a-detailed-instructional-showing.jpg` |
+| Figure 5.7  | Why SQL Is Useful                                         | Transparency and Portability of SQL. Contrasts a hidden spreadsheet formula and a black-box dashboard metric with a clear, readable, and portable SQL statement.                                                                  | `ch05-sql-pros.jpg`                                |
+| Figure 5.8  | SQL Categories at a Glance                                | The Four Families of SQL. A toolbox overview illustrating DDL (structure), DML (records), DQL (retrieval), and TCL (transactions) with their respective commands.                                                                 | `ch05-create-a-splitpanel-textbook-diagram.jpg`    |
+| Figure 5.9  | Tools You Will Use                                        | Database Platform Comparison. Displays the same SQL query executing in Microsoft Access SQL View, SQLite Online, and a Supabase SQL editor to show syntax portability.                                                            | `ch05-create-a-threepanel-comparison-for-the.jpg`  |
+| Figure 5.10 | Tools You Will Use                                        | SQLite Tooling Environments. Compares browser-based SQLiteOnline (best for quick practice) with desktop DB Browser for SQLite (best for local file inspection and saved scripts).                                                 | `ch05-create-a-sidebyside-instructional.jpg`       |
+| Figure 5.11 | Tools You Will Use                                        | Supabase developer dashboard mapping the Table Editor, SQL Editor with an active query, and Database Schema Visualizer in a unified cloud interface.                                                                              | `ch05-supabase-dashboard-map.png`                  |
+| Figure 5.12 | Tools You Will Use                                        | The Journey of a SQL Query. Traces a query from initial practice in a local SQLite file, to production deployment in a PostgreSQL database, to visualization in a Power BI dashboard.                                             | `ch05-create-a-stepbystep-instructional.jpg`       |
+| Figure 5.13 | Why a Simplified Two-Table Dataset                        | Chapter 5 Teaching Schema. Represents `GRADEBOOK` connected to `GRADE_WEIGHT` through the `DeliverableType` column, simplified for query practice.                                                                                | `ch05-create-a-clean-schema-overview-for-the.jpg`  |
+| Figure 5.14 | `GRADEBOOK`                                               | GRADEBOOK Table Structure. Highlights column fields such as RecordID, StudentID, and Score, showing their data types and roles.                                                                                                   | `ch05-create-a-clean-teachingdataset-diagram.png`  |
+| Figure 5.15 | `GRADEBOOK`                                               | Flat-Table Redundancy Warning. Illustrates duplicate Student names and Emails repeated across gradebook records, highlighting update risks and pointing forward to related tables in Chapter 6.                                   | `ch05-flat-table-warning-diagram.png`              |
+| Figure 5.16 | `GRADE_WEIGHT`                                            | Grading Weight Scheme. Labeled category cards showing item count, category weight, and weight per item for Quiz, Homework, Exam, and Project.                                                                                     | `ch05-grading-weight-cards.png`                    |
+| Figure 5.17 | Questions These Tables Can Answer                         | Business Question Board. Maps common classroom questions, such as identifying struggling students or calculating averages, to the specific database fields needed to resolve them.                                                | `ch05-ch05-sql-bridge-questions-to-answers.png`    |
+| Figure 5.18 | Part 3: Creating Tables and Inserting Data                | Structure-First Database Workflow. Illustrates the sequential workflow: defining structure with `CREATE TABLE` first, inserting records with `INSERT INTO` second, and verifying with `SELECT *` third.                           | `ch05-create-tables.png`                           |
+| Figure 5.19 | Creating Tables with `CREATE TABLE`                       | Blueprint of CREATE TABLE. Annotates the components of a database table creation statement: the command, table name, column names, data types, and primary key constraints.                                                       | `ch05-create-a-clean-instructional-diagram.png`    |
+| Figure 5.20 | Creating the `GRADEBOOK` Table                            | GRADEBOOK Table Definition. Visualizes the column types and constraint shields (`NOT NULL`, `PRIMARY KEY`, and `Score CHECK` between 0 and 100) defined during table creation.                                                    | `ch05-gradebook-table-blueprint.png`               |
+| Figure 5.21 | Creating the `GRADE_WEIGHT` Table                         | GRADE_WEIGHT Schema. Connects category weight and item count metadata to calculations.                                                                                                                                            | `ch05-create-a-clean-schema-overview-for-the.jpg`  |
+| Figure 5.22 | Modifying a Table with `ALTER TABLE`                      | Modifying Structure with ALTER TABLE. Splits the GRADEBOOK table layout before and after adding the `SectionCode` column to show how structures expand.                                                                           | `ch05-alter-table-before-after.png`                |
+| Figure 5.23 | Inserting Records with `INSERT INTO`                      | Column-to-Value Alignment. Illustrates why order and alignment matter when mapping the column list in `INSERT INTO` to the corresponding `VALUES` list.                                                                           | `ch05-create-a-clean-instructional-diagram.png`    |
+| Figure 5.24 | Inserting Rows into `GRADEBOOK`                           | Step-by-Step Multi-Row INSERT. Displays how multiple values are inserted into the database in one query operation to form separate rows.                                                                                          | `ch05-multi-row-insert-flow.png`                   |
+| Figure 5.25 | Inserting Rows into `GRADE_WEIGHT`                        | Loading Category Metadata. Visualizes the four grading categories flowing into the `GRADE_WEIGHT` table to store metadata for future joins and calculations.                                                                      | `ch05-calc-sql.png`                                |
+| Figure 5.26 | Checking the Inserted Data                                | Post-Load Verification. A verification checklist showing how `INSERT INTO` is immediately followed by a `SELECT *` query to inspect records and catch errors early.                                                               | `ch05-sql-review.jpg`                              |
+| Figure 5.27 | Part 4: Querying Data with `SELECT`                       | Query Clause Roadmap. Illustrates how SELECT, FROM, WHERE, and ORDER BY clauses stack together to build a complete database query.                                                                                                | `ch05-what-is-sql.png`                             |
+| Figure 5.28 | The Basic `SELECT` Pattern                                | Projection in SQL. Shows how a SELECT query performs column projection, retrieving only specified fields (e.g. FirstName, LastName) from a larger table.                                                                          | `ch05-create-a-clean-sql-select-concept.png`       |
+| Figure 5.29 | Removing Duplicates with `DISTINCT`                       | DISTINCT Value Collapse. Shows how redundant categories in a column are collapsed into a list of unique values.                                                                                                                   | `ch05-distinct-duplicate-collapse.png`             |
+| Figure 5.30 | Filtering Rows with `WHERE`                               | Row Selection via WHERE. A filter funnel showing rows from the `GRADEBOOK` table passing through the condition `Score < 80`, retaining only matching records in the output.                                                       | `ch05-create-a-clean-where-filtering-diagram.png`  |
+| Figure 5.31 | Handling Missing Values with `NULL`                       | NULL handling in SQL. Contrasts zero, blank text, and NULL, illustrating why traditional equality (`=`) fails and `IS NULL` or `IS NOT NULL` must be used.                                                                        | `ch05-create-a-clean-nullhandling-diagram.png`     |
+| Figure 5.32 | Combining Conditions with `AND`, `OR`, and `NOT`          | Logical Operators. A logic-gate diagram showing how `AND` narrows results, `OR` widens results, and `NOT` excludes categories.                                                                                                    | `ch05-create-a-clean-logicoperator-and.png`        |
+| Figure 5.33 | Pattern Matching with `LIKE`, `BETWEEN`, and `IN`         | Pattern Matching and Range Operators. Illustrates LIKE wildcard searches, BETWEEN range limits, and IN list testing.                                                                                                              | `ch05-pattern-matching-operators.png`              |
+| Figure 5.34 | Sorting Results with `ORDER BY`                           | Sorting and Aliases. Shows a query result sorted by `Score DESC` and then by `LastName ASC` as a tiebreaker, with column headers customized via aliases.                                                                          | `ch05-create-a-clean-order-by-and-alias.png`       |
+| Figure 5.35 | Building a Query Step by Step                             | Step-by-Step Query Construction. Visualizes building a complex query in layers, starting with columns, then filtering, and finally sorting.                                                                                       | `ch05-create-a-clean-stepbystep-querybuilding.png` |
+| Figure 5.36 | Part 5: A First Look at Joins                             | Reconstructing Context with Joins. Shows grade rows dynamically receiving metadata, such as item weights, from the related weight table at query time.                                                                            | `ch05-join-logic.png`                              |
+| Figure 5.37 | Part 6: Aggregation, Grouping, and Calculated Results     | Rows-to-Summary Aggregation. Detailed records from the `GRADEBOOK` table are compressed into summary metrics such as counts, averages, and totals.                                                                                | `ch05-create-a-clean-aggregation-diagram.png`      |
+| Figure 5.38 | Why Aggregation Matters                                   | The SQL Aggregation Pipeline. Displays raw grade records at the base, grouping and filtering in the middle, and summary outputs such as class averages at the top.                                                                | `ch05-create-a-processflow-diagram-showing.jpg`    |
+| Figure 5.39 | Aggregate Functions                                       | Core Aggregate Functions. Labeled cards for COUNT(), AVG(), SUM(), MIN(), and MAX() explaining what business questions they answer.                                                                                               | `ch05-calc-sql.png`                                |
+| Figure 5.40 | Grouping with `GROUP BY`                                  | Grouping Buckets. Illustrates how records are grouped into buckets, such as Quiz and Homework, before aggregate functions run on each bucket.                                                                                     | `ch05-create-a-clean-group-by-and-having.png`      |
+| Figure 5.41 | Filtering Groups with `HAVING`                            | WHERE vs. HAVING execution. Shows that WHERE filters raw records before grouping, while HAVING filters aggregated summaries after grouping.                                                                                       | `ch05-create-a-clean-group-by-and-having.png`      |
+| Figure 5.42 | Practical Summary Queries                                 | Summary Outputs Mockup. Visualizes calculated results such as record counts, maximum scores, and category averages as analytical dashboard cards.                                                                                 | `ch05-create-a-clean-calculatedresults.png`        |
+| Figure 5.43 | Calculated Columns                                        | Calculated Columns Output. Shows how stored scores feed into a temporary calculated column in memory without changing the source table.                                                                                           | `ch05-create-a-clean-calculatedresults.png`        |
+| Figure 5.44 | A Weighted Contribution Example                           | Weighted score calculations. Shows how scores and individual item weights are multiplied and divided to calculate a deliverable's weighted contribution to the final grade.                                                       | `ch05-calc-sql.png`                                |
+| Figure 5.45 | Text and Date Expressions                                 | Platform SQL Date Operations. Contrasts how SQLite, PostgreSQL, and Access calculate ages and perform text concatenation side by side.                                                                                            | `ch05-sql-date-platform-comparison.png`            |
+| Figure 5.46 | Looking Ahead                                             | The SQL learning pathway. Shows how basic SQL queries branch into database normalization, advanced analytics, data governance, and dashboard integration.                                                                         | `ch05-create-a-lefttoright-instructional.jpg`      |
+| Figure 5.47 | Appendix: Applying These Concepts to the Grading Database | Appendix Roadmap. Maps the appendix examples back to the core chapter concepts: Access-style inserts and side-by-side age expressions.                                                                                            | `ch05-sql-review.jpg`                              |
+| Figure 5.48 | A1. Inserting Rows One at a Time (Access-Friendly)        | SQLite vs. Access insertions. Compares multi-row SQL insert statements in SQLite with single-row, AutoNumber-compliant insert statements in Access.                                                                               | `ch05-create-tables.png`                           |
+| Figure 5.49 | Key Concepts                                              | Structured Query Language concept map. Visualizes relationships between SQL families (DDL/DML/DQL), basic querying clauses, joins, and aggregations.                                                                              | `ch05-notebooklmmindmap.png`                       |
+| Figure 5.50 | Chapter Summary                                           | Chapter 5 Visual Summary. Recaps the path from raw tables to query logic, joins, grouping, calculations, and analytical insights.                                                                                                 | `ch05-ch05-summary.jpg`                            |
