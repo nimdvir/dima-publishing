@@ -1,4 +1,4 @@
-import { BookOpen, LogIn, Database, Layers, BarChart3, Video, ListTree, ArrowDown } from 'lucide-react';
+import { BookOpen, LogIn, Database, Layers, BarChart3, Video, ListTree, ArrowDown, ClipboardCheck } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import AnimatedBookCover from './AnimatedBookCover';
 import { COURSE_OUTLINE } from '../content/courseOutline';
@@ -20,6 +20,11 @@ const FEATURE_CARDS = [
     description: 'Move from records to tables, relationships, SQL, and reliable database structures.',
   },
   {
+    icon: ClipboardCheck,
+    title: 'Practice With Labs',
+    description: 'Apply each chapter through guided practice and the PetVax Veterinary Clinic labs.',
+  },
+  {
     icon: BarChart3,
     title: 'Analyze for Decisions',
     description: 'Turn data into dashboards, insights, and managerial action.',
@@ -36,19 +41,19 @@ const CHAPTER_STRUCTURE = [
     description: 'The main text with examples, figures, and callouts.',
   },
   {
-    title: "Let's Build",
-    description: 'Step-by-step hands-on practice with the Grading Database.',
+    title: "Let's Build and Hands-On Lab",
+    description: 'Use guided Grading Database practice, then transfer the ideas through the PetVax Veterinary Clinic lab.',
   },
   {
-    title: 'Review Questions',
-    description: 'Check your understanding of the key ideas.',
+    title: 'Review and Reflection Questions',
+    description: 'Check understanding and connect the key ideas to business situations.',
   },
   {
     title: 'Terms Treasury',
     description: 'Essential vocabulary, definitions, and business context.',
   },
   {
-    title: 'RAT: Reading Test',
+    title: 'RAT: Reading Assessment Test',
     description: "A readiness assessment to confirm you're prepared.",
   },
 ];
@@ -147,42 +152,6 @@ export default function HomePage({
         })}
       </section>
 
-      <section className="home-chapter-structure" aria-labelledby="chapter-structure-title">
-        <div className="chapter-structure-heading">
-          <h2 id="chapter-structure-title" className="home-section-title">
-            <BookOpen size={16} className="cta-icon" />
-            What's Inside Each Chapter
-          </h2>
-          <p>
-            Chapters are designed around a recurring learning structure so students can
-            move from explanation to practice, review, vocabulary, and readiness checks.
-          </p>
-        </div>
-        <div className="chapter-structure-grid">
-          {CHAPTER_STRUCTURE.map((item, index) => (
-            <motion.article
-              key={item.title}
-              className="chapter-structure-card"
-              initial={reducedMotion ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={
-                reducedMotion
-                  ? { duration: 0 }
-                  : { duration: 0.28, ease: 'easeOut', delay: 0.04 * index }
-              }
-            >
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </motion.article>
-          ))}
-        </div>
-        <p className="chapter-structure-note">
-          Labs extend the chapter material through the PetVax Veterinary Clinic project,
-          a second running case that helps students transfer what they learned to a fresh
-          business scenario.
-        </p>
-      </section>
-
       <section className="home-video-card" aria-labelledby="overview-video-title">
         <h2 id="overview-video-title" className="home-section-title">
           <Video size={16} className="cta-icon" />
@@ -229,6 +198,43 @@ export default function HomePage({
             </motion.article>
           ))}
         </div>
+      </section>
+
+      <section className="home-chapter-structure" aria-labelledby="chapter-structure-title">
+        <div className="chapter-structure-heading">
+          <h2 id="chapter-structure-title" className="home-section-title">
+            <BookOpen size={16} className="cta-icon" />
+            What's Inside Each Chapter
+          </h2>
+          <p>
+            Chapters are designed around a recurring learning structure so students can
+            move from explanation to guided building, hands-on lab transfer, review,
+            vocabulary, and readiness checks.
+          </p>
+        </div>
+        <div className="chapter-structure-grid">
+          {CHAPTER_STRUCTURE.map((item, index) => (
+            <motion.article
+              key={item.title}
+              className="chapter-structure-card"
+              initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={
+                reducedMotion
+                  ? { duration: 0 }
+                  : { duration: 0.28, ease: 'easeOut', delay: 0.04 * index }
+              }
+            >
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </motion.article>
+          ))}
+        </div>
+        <p className="chapter-structure-note">
+          The hands-on lab is part of the chapter's learning path, not an add-on. It uses
+          the PetVax Veterinary Clinic project so students transfer the same database
+          logic into a second business setting.
+        </p>
       </section>
 
       <section className="home-final-cta" aria-labelledby="home-final-title">

@@ -18,36 +18,111 @@ const PAGE_INDEX_MAP = new Map<string, number>(
   FLAT_READER_PAGES.map((p, i) => [p.id, i])
 );
 
-function parseQueryParams(): {
+type RouteState = {
   scope: ReaderScope;
   chapter?: string;
   section?: string;
   page?: number;
   lab?: string;
-} {
+};
+
+function parsePositiveInt(value: string | undefined): number | undefined {
+  if (!value) return undefined;
+  const parsed = parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
+}
+
+function parseQueryParams(): RouteState {
   const params = new URLSearchParams(window.location.search);
   const rawScope = params.get('scope') || '';
   const scope: ReaderScope = (VALID_SCOPES.has(rawScope) ? rawScope : 'welcome') as ReaderScope;
   const chapter = params.get('chapter') || undefined;
   const section = params.get('section') || undefined;
-  const pageStr = params.get('page');
-  const page = pageStr ? parseInt(pageStr, 10) : undefined;
+  const page = parsePositiveInt(params.get('page') || undefined);
   const lab = params.get('lab') || undefined;
   return { scope, chapter, section, page, lab };
 }
 
-function writeQueryParams(
+function parsePathParams(): RouteState {
+  const parts = window.location.pathname
+    .split('/')
+    .filter(Boolean)
+    .map(part => decodeURIComponent(part));
+  const [route, chapter, section, page] = parts;
+
+  if (!route || route === 'welcome') return { scope: 'welcome' };
+  if (route === 'login') return { scope: 'login' };
+  if (route === 'book') {
+    return {
+      scope: 'book',
+      chapter,
+      section,
+      page: parsePositiveInt(page),
+    };
+  }
+  if (route === 'labs' || route === 'lab') {
+    return {
+      scope: 'labs',
+      lab: chapter,
+    };
+  }
+
+  return { scope: 'welcome' };
+}
+
+function parseLocationParams(): RouteState {
+  const params = new URLSearchParams(window.location.search);
+  return params.has('scope') ? parseQueryParams() : parsePathParams();
+}
+
+function resolveRoutePage(route: RouteState): BookPage | null {
+  if (!route.chapter || !route.section || !KNOWN_CHAPTER_IDS.has(route.chapter)) {
+    return null;
+  }
+
+  const pageNumber = route.page || 1;
+  return (
+    FLAT_READER_PAGES.find(
+      p =>
+        p.chapterId === route.chapter &&
+        p.sectionSlug === route.section &&
+        p.pageNumber === pageNumber
+    ) ||
+    FLAT_READER_PAGES.find(
+      p =>
+        p.chapterId === route.chapter &&
+        p.sectionSlug === route.section &&
+        p.pageNumber === 1
+    ) ||
+    null
+  );
+}
+
+function resolveLabId(routeLab: string | undefined): string | undefined {
+  if (!routeLab) return undefined;
+  return BOOK_LABS.find(lab => lab.id === routeLab || lab.slug === routeLab)?.id;
+}
+
+function buildRoutePath(
   scope: ReaderScope,
   opts?: { chapter?: string; section?: string; page?: number; lab?: string }
 ) {
-  const params = new URLSearchParams();
-  params.set('scope', scope);
-  if (opts?.chapter) params.set('chapter', opts.chapter);
-  if (opts?.section) params.set('section', opts.section);
-  if (opts?.page !== undefined) params.set('page', String(opts.page));
-  if (opts?.lab) params.set('lab', opts.lab);
-  const qs = params.toString();
-  const url = `${window.location.pathname}${qs ? '?' + qs : ''}`;
+  if (scope === 'book' && opts?.chapter && opts?.section) {
+    const page = opts.page && opts.page > 0 ? opts.page : 1;
+    return `/book/${encodeURIComponent(opts.chapter)}/${encodeURIComponent(opts.section)}/${page}`;
+  }
+  if (scope === 'book') return '/book';
+  if (scope === 'labs' && opts?.lab) return `/labs/${encodeURIComponent(opts.lab)}`;
+  if (scope === 'labs') return '/labs';
+  if (scope === 'login') return '/login';
+  return '/';
+}
+
+function writeRoute(
+  scope: ReaderScope,
+  opts?: { chapter?: string; section?: string; page?: number; lab?: string }
+) {
+  const url = buildRoutePath(scope, opts);
   window.history.pushState(null, '', url);
 }
 
@@ -85,39 +160,33 @@ export default function App() {
     } catch { /* ignore */ }
   }, []);
 
-  // Parse query params on load
-  useEffect(() => {
-    const qp = parseQueryParams();
-    if (qp.scope && qp.scope !== 'welcome') {
-      setScope(qp.scope);
+  const applyRouteState = useCallback((route: RouteState) => {
+    setScope(route.scope);
+
+    const routePage = resolveRoutePage(route);
+    if (routePage) {
+      setActiveChapterId(routePage.chapterId);
+      setActiveSectionId(routePage.sectionId);
+      setActivePageIndex(routePage.pageNumber - 1);
     }
-    if (qp.chapter && KNOWN_CHAPTER_IDS.has(qp.chapter)) {
-      setActiveChapterId(qp.chapter);
-    }
-    if (qp.chapter && qp.section && KNOWN_CHAPTER_IDS.has(qp.chapter)) {
-      setActiveSectionId(`${qp.chapter}-${qp.section}`);
-    }
-    if (qp.lab) setActiveLabId(qp.lab);
-    if (qp.page !== undefined) setActivePageIndex(qp.page - 1);
+
+    const routeLabId = resolveLabId(route.lab);
+    if (routeLabId) setActiveLabId(routeLabId);
   }, []);
+
+  // Parse route on load. Query-string URLs remain supported for older links.
+  useEffect(() => {
+    applyRouteState(parseLocationParams());
+  }, [applyRouteState]);
 
   // popstate listener
   useEffect(() => {
     const handler = () => {
-      const qp = parseQueryParams();
-      setScope(qp.scope);
-      if (qp.chapter && KNOWN_CHAPTER_IDS.has(qp.chapter)) {
-        setActiveChapterId(qp.chapter);
-      }
-      if (qp.chapter && qp.section && KNOWN_CHAPTER_IDS.has(qp.chapter)) {
-        setActiveSectionId(`${qp.chapter}-${qp.section}`);
-      }
-      if (qp.lab) setActiveLabId(qp.lab);
-      if (qp.page !== undefined) setActivePageIndex(qp.page - 1);
+      applyRouteState(parseLocationParams());
     };
     window.addEventListener('popstate', handler);
     return () => window.removeEventListener('popstate', handler);
-  }, []);
+  }, [applyRouteState]);
 
   // Navigate to a scope
   const navigateScope = useCallback((newScope: ReaderScope) => {
@@ -129,7 +198,7 @@ export default function App() {
         setActiveChapterId(firstPage.chapterId);
         setActiveSectionId(firstPage.sectionId);
         setActivePageIndex(0);
-        writeQueryParams('book', { chapter: firstPage.chapterId, section: firstPage.sectionSlug, page: 1 });
+        writeRoute('book', { chapter: firstPage.chapterId, section: firstPage.sectionSlug, page: 1 });
         return;
       }
     }
@@ -137,11 +206,11 @@ export default function App() {
       const firstLab = BOOK_LABS[0];
       if (firstLab) {
         setActiveLabId(firstLab.id);
-        writeQueryParams('labs', { lab: firstLab.slug });
+        writeRoute('labs', { lab: firstLab.id });
         return;
       }
     }
-    writeQueryParams(newScope);
+    writeRoute(newScope);
   }, []);
 
   // Navigate to a specific page
@@ -150,7 +219,7 @@ export default function App() {
     setActiveChapterId(page.chapterId);
     setActiveSectionId(page.sectionId);
     setActivePageIndex(page.pageNumber - 1);
-    writeQueryParams('book', {
+    writeRoute('book', {
       chapter: page.chapterId,
       section: page.sectionSlug,
       page: page.pageNumber,
@@ -161,7 +230,7 @@ export default function App() {
   const navigateToLab = useCallback((lab: BookLab) => {
     setScope('labs');
     setActiveLabId(lab.id);
-    writeQueryParams('labs', { lab: lab.slug });
+    writeRoute('labs', { lab: lab.id });
   }, []);
 
   // Demo login
@@ -251,7 +320,7 @@ export default function App() {
           const chapterId = section.pages[0]?.chapterId || chapter?.id;
           if (chapterId) {
             setActiveChapterId(chapterId);
-            writeQueryParams('book', { chapter: chapterId, section: section.slug, page: 1 });
+            writeRoute('book', { chapter: chapterId, section: section.slug, page: 1 });
           }
         }
         setScope('book');
