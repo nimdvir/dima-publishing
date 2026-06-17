@@ -1,0 +1,18 @@
+{
+  "chapter": "ch08-midterm-review",
+  "last_sync": "2026-06-16T23:00:00Z",
+  "files": {
+    "main": {
+      "source": "BITM330-Book-draft\\chapter-drafts\\ch08-midterm-review\\main\\ch08-main-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T23:00:00Z",
+      "hash": "sha256:5AAD557C5425EB8978AF197C933BA63B0C8D3EBA66764D83AEACE2D31773575F"
+    },
+    "terms": {
+      "source": "BITM330-Book-draft\\chapter-drafts\\ch08-midterm-review\\terms\\ch08-terms-2026-06-16.md",
+      "source_date": "2026-06-16",
+      "synced_at": "2026-06-16T23:00:00Z",
+      "hash": "sha256:EB28EB0758269C5325CADAD66004A64DC42A864B36F7FCCE46AB55F7E8AC2AA3"
+    }
+  }
+}

@@ -1,0 +1,119 @@
+Perfect! You have access to create the LTI link yourself. This screenshot confirms you can set up the integration **right now** without waiting for ITS. Let's walk through exactly how to fill this out based on your custom tool.
+
+---
+
+## 📝 How to Fill Out the Form
+
+Based on your screenshot, here's what goes where:
+
+| Field | What to Enter | Notes |
+|-------|---------------|-------|
+| **Title** | `Dvir Interactive Textbook` (or whatever name you want) | Students will see this in Brightspace |
+| **URL** | `https://your-tool.com/lti/launch` | Replace with your actual tool URL (use ngrok for testing) |
+| **Description** | `Interactive textbook for BITM 330` | Optional - helps students understand what it is |
+| **Visibility** | ✅ Check "Allow users to view this link" | This makes it visible to students |
+
+---
+
+## 🔑 Key/Secret Section
+
+This is where you set up the shared secret between Brightspace and your tool.
+
+| Field | What to Enter |
+|-------|---------------|
+| **Sign messages with key/secret with** | Select **"Tool connector key/secret"** (this is the standard option) |
+| **Key** | Enter a key you generate (e.g., `bitm330_textbook_v1`) |
+| **Secret** | Enter a secret you generate (e.g., `a-long-random-string-like-xyz789`) |
+
+**Important**: The Key and Secret must match exactly what your tool expects. In the Python code I provided earlier, these are set as:
+
+```python
+LTI_KEY = "bitm330_textbook_v1"          # Must match what you enter in Brightspace
+LTI_SECRET = "a-long-random-string-like-xyz789"  # Must match exactly
+```
+
+---
+
+## 🔒 Security Settings
+
+Check the boxes for the information your tool needs. Based on typical textbook needs, I recommend:
+
+| Setting | Check? | Why |
+|---------|--------|-----|
+| **Send tool consumer information to tool provider** | ✅ | Helps identify which institution is launching |
+| **Send context information to tool provider** | ✅ | Tells you which course the student is in |
+| **Send course information to tool provider** | ✅ | More course details |
+| **Send LTI user ID and LTI role list to tool provider** | ✅ | **Critical** - This is how you identify the student (user_id) and know if they're a student vs. instructor |
+| **Send user name to tool provider** | ✅ | So you can greet the student by name |
+| **Send user email to tool provider** | ✅ | Useful for contact or if email is used as a lookup key |
+| **Send system username to tool provider** | Optional | Usually not needed |
+| **Send system Org Defined ID to tool provider** | Optional | Not typically used |
+| **Send system role to tool provider** | ✅ | Another way to get role info |
+| **Send link title to tool provider** | Optional | Nice-to-have but not essential |
+| **Send link description to tool provider** | Optional | Nice-to-have but not essential |
+
+---
+
+## 🎯 What Your Tool Will Receive
+
+When a student clicks this link, your tool will receive a POST request with all the checked parameters. Here's what some of the key parameters look like:
+
+```python
+{
+    'user_id': '1234567890abcdef',           # Unique student ID
+    'lis_person_name_full': 'Jane Smith',    # Student's full name
+    'lis_person_contact_email_primary': 'jsmith@albany.edu',  # Email
+    'roles': 'Learner',                       # Role (Learner = student)
+    'context_title': 'BITM 330: Business Performance with IT', # Course name
+    'context_label': 'BITM330',                # Course code
+    'oauth_consumer_key': 'bitm330_textbook_v1', # The Key you entered
+    'lti_version': 'LTI-1p0',                  # LTI version
+    # ... and many more
+}
+```
+
+---
+
+## 🧪 Testing Checklist
+
+Before you click "Save" in Brightspace, make sure:
+
+- [ ] Your tool is running and accessible at the URL you provided
+- [ ] If testing locally, you're using **ngrok** to expose your local server via HTTPS
+- [ ] Your tool has the exact same Key and Secret configured
+- [ ] Your tool's LTI endpoint properly validates the OAuth signature
+
+---
+
+## 🚀 Next Steps After Creating the Link
+
+1. **Click the link yourself** (as an instructor) to test
+2. **Check your tool's logs** to see what parameters Brightspace sent
+3. **Verify the OAuth validation works** (if it fails, Brightspace will show an error)
+4. **Test with a test student account** to see the student experience
+5. **Refine your tool's UI** based on the data received
+
+---
+
+## 📋 Example: What to Put in Your Tool's Configuration
+
+Based on the form you just filled out, your tool should be configured with:
+
+```python
+# In your Flask app
+LTI_KEY = "bitm330_textbook_v1"  # Must match what you entered
+LTI_SECRET = "a-long-random-string-like-xyz789"  # Must match exactly
+
+# Your LTI endpoint URL should be exactly what you entered in Brightspace
+# For example: https://your-app.com/lti/launch
+```
+
+---
+
+## 💡 Pro Tip
+
+Save the Key and Secret somewhere secure. If you lose them, you'll need to create a new link in Brightspace and update your course.
+
+---
+
+You're all set! Once you fill out this form and click Save, your LTI link will appear in Brightspace. Would you like help interpreting any of the parameters Brightspace sends, or designing the logic for granting access based on those parameters?
