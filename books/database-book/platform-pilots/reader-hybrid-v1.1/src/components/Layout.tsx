@@ -165,10 +165,8 @@ export default function Layout({
         <div className="footer-brand">
           <img
             className="footer-logo"
-            src="/dima-publishing-logo.png"
+            src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/v1/Dima-publishing/dima-publishing-logo/icon-192x192.png?_a=BAMAAAX00"
             alt="DIMA Publishing"
-            width={176}
-            height={97}
           />
           <span className="footer-copyright">
             &copy; {new Date().getFullYear()} DIMA Publishing. All rights
