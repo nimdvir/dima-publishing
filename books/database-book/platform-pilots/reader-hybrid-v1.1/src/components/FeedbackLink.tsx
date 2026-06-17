@@ -3,7 +3,19 @@ import { buildFeedbackUrl } from "../lib/feedback";
 export function FeedbackLink() {
   const handleClick = () => {
     const feedbackUrl = buildFeedbackUrl();
-    window.open(feedbackUrl, "_blank", "noopener,noreferrer");
+    const width = 640;
+    const height = 800;
+    const left = window.screenX + window.outerWidth - width - 24;
+    const top = window.screenY + 80;
+    const features = [
+      `width=${width}`,
+      `height=${height}`,
+      `left=${left}`,
+      `top=${top}`,
+      "noopener",
+      "noreferrer",
+    ].join(",");
+    window.open(feedbackUrl, "reader-feedback", features);
   };
 
   return (

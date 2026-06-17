@@ -22,8 +22,6 @@ interface LayoutProps {
   activeLabId: string;
   onSelectLab: (lab: BookLab) => void;
   progress: number;
-  noticeDismissed: boolean;
-  onDismissNotice: () => void;
   children: ReactNode;
 }
 
@@ -51,8 +49,6 @@ export default function Layout({
   activeLabId,
   onSelectLab,
   progress,
-  noticeDismissed,
-  onDismissNotice,
   children,
 }: LayoutProps) {
   return (
@@ -181,20 +177,6 @@ export default function Layout({
         </div>
         <span className="footer-updated">Last updated June 17, 2026</span>
       </footer>
-
-      {/* Preview notice — dismissible */}
-      {!noticeDismissed && scope !== "welcome" && scope !== "login" && (
-        <div className="prototype-notice is-visible">
-          <span>Course preview &mdash; not for classroom use.</span>
-          <button
-            className="notice-dismiss"
-            onClick={onDismissNotice}
-            aria-label="Dismiss notice"
-          >
-            <X size={14} />
-          </button>
-        </div>
-      )}
 
       {/* Feedback — floating report button */}
       {scope !== "welcome" && scope !== "login" && (

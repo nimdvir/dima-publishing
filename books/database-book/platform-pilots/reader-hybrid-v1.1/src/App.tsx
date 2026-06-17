@@ -13,7 +13,7 @@ import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
 
 const LS_DEMO_USER = "reader-hybrid-v1.1:demoUser";
-const LS_NOTICE_DISMISSED = "reader-hybrid-v1.1:prototypeNoticeDismissed";
+
 
 const VALID_SCOPES = new Set(["welcome", "book", "labs", "login"]);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map((c) => c.id));
@@ -173,23 +173,6 @@ export default function App() {
 
   // Heading id to scroll to once the destination page has rendered (roadmap links).
   const pendingScrollIdRef = useRef<string | null>(null);
-
-  // Dismissible prototype notice
-  const [noticeDismissed, setNoticeDismissed] = useState(() => {
-    try {
-      return localStorage.getItem(LS_NOTICE_DISMISSED) === "1";
-    } catch {
-      return false;
-    }
-  });
-  const dismissNotice = useCallback(() => {
-    setNoticeDismissed(true);
-    try {
-      localStorage.setItem(LS_NOTICE_DISMISSED, "1");
-    } catch {
-      /* ignore */
-    }
-  }, []);
 
   // Hydrate demo user from localStorage
   useEffect(() => {
@@ -416,8 +399,7 @@ export default function App() {
       onNavigateScope={navigateScope}
       chapters={BOOK_CHAPTERS}
       progress={progress}
-      noticeDismissed={noticeDismissed}
-      onDismissNotice={dismissNotice}
+
       activeChapterId={activeChapterId}
       activeSectionId={activeSectionId}
       activePageId={currentPage?.id || ""}
