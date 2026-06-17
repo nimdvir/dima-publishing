@@ -1,4 +1,4 @@
----
+﻿---
 title: "Lab 15: Business Strategy and IS"
 chapter: 15
 section: "Lab Questions"
@@ -34,7 +34,6 @@ This file preserves the current section-based lab handout inside the new numbere
 - Status: content moved into the numbered lab sequence; a later pass can rebuild this into the full SAM-style format if needed.
 
 ## Migrated Section Draft
-
 
 
 

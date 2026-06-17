@@ -1,4 +1,4 @@
-<!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. Integrated source materials for weak entities, subtypes, Lucidchart/Mermaid workflows, and modeling mistakes. Added Crow's Foot notation image and explanation. -->
+<!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. Integrated source materials for weak entities, subtypes, Lucidchart/Mermaid workflows, and modeling mistakes. Added Crow's Foot notation image and explanation. Added Requirements-to-Structure translation figure. -->
 ---
 title: "Chapter 9: Database Design and ER Modeling"
 chapter: 9
@@ -27,13 +27,25 @@ author: "Nimrod Dvir, PhD"
 
 *Figure 9.1 — The database design lifecycle translates business requirements into physical tables.*
 
-Good SQL depends on good design. Up to this point, you have learned how to work with databases: how to retrieve data, join tables, summarize records, calculate grades, and build reports. Those skills matter. But every query you write depends on decisions that were made earlier: what tables exist, what each table means, which keys identify records, and which relationships connect the data.
+Up to this point, we have built database objects, worked with tables, created relationships, normalized data, and written SQL queries to retrieve and analyze information. That sequence matters because it gave us practical experience with what databases can do. But there is an important shift we need to make now.
 
-This chapter shifts from **using databases** to **designing databases**. The central question changes from "How do I query this structure?" to "What structure should exist in the first place?"
+An ERD should not be treated only as something we draw after the database already exists. That would make design feel retrospective: we built the database, queried it, and then documented what happened. Documentation is useful, but database design is more powerful than that.
 
-Database design is the bridge between business needs and technical implementation. It translates real-world requirements into entities, attributes, relationships, keys, constraints, and diagrams. When design is done well, SQL becomes clear and powerful. When design is done poorly, SQL becomes a workaround.
+In this chapter, we treat the Entity Relationship Diagram as a design artifact. Before building tables or writing advanced queries, we step back and ask: What problem is this system supposed to solve? What entities does the organization need to track? How are those entities related? What rules should the database enforce? What structure will make reliable analysis possible later?
 
-<!-- FIGURE PLACEHOLDER: Video overview embed for Chapter 9. Recommend chapter-media. -->
+This is the stronger design sequence:
+
+```
+We understand the design problem.
+We model the system.
+Then we query it professionally.
+```
+
+That sequence reflects the larger identity of this book. Databases are not just tools for storing records or running queries. They are information systems designed to support business performance, organizational accountability, and better decision-making. Chapter 9 therefore moves us from using databases to thinking like database designers.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Q0LRaJ1wl_I?si=SblKwSOmrUHpXiu5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+*Video 9.1 — Brief chapter overview: what database design is and why it matters.*
 
 ---
 
@@ -64,22 +76,26 @@ After completing this chapter, you will be able to:
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BTm-v0fpS50?si=-sws6HbLce83sa77" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+*Video 9.2 — Detailed walkthrough of database design concepts, ER modeling, and the design lifecycle.*
+
 ## Chapter Roadmap
 
-| Section | Main Question | Core Idea |
-|---|---|---|
-| 9.1 | Why does design matter? | Good queries require good structure. |
-| 9.2 | What goes wrong with poor design? | Anomalies are symptoms of bad structure. |
-| 9.3 | Where does design fit in system development? | Database design belongs inside the SDLC. |
-| 9.4 | How do requirements become structure? | Business rules become entities, attributes, and relationships. |
-| 9.5 | What is ER modeling? | ERDs visually model data before implementation. |
-| 9.6 | How do we read relationship notation? | Crow's Foot notation shows cardinality and optionality. |
-| 9.7 | What relationship types matter most? | 1:1, 1:N, and M:N relationships shape table design. |
-| 9.8 | How do we handle advanced patterns? | Weak, associative, recursive, and subtype structures extend the ER model. |
-| 9.9 | How does normalization support design? | Normal forms help test whether structure is reliable. |
-| 9.10 | How do diagrams become tables? | The mapping algorithm converts ERDs into schemas. |
-| 9.11 | What tools help document design? | Lucidchart is visual; Mermaid is ERD-as-code. |
-| 9.12 | What mistakes should designers avoid? | Most database failures are predictable. |
+| Section | Main Question                                | Core Idea                                                                 |
+| ------- | -------------------------------------------- | ------------------------------------------------------------------------- |
+| 9.1     | Why does design matter?                      | Good queries require good structure.                                      |
+| 9.2     | What goes wrong with poor design?            | Anomalies are symptoms of bad structure.                                  |
+| 9.3     | Where does design fit in system development? | Database design belongs inside the SDLC.                                  |
+| 9.4     | How do requirements become structure?        | Business rules become entities, attributes, and relationships.            |
+| 9.5     | What is ER modeling?                         | ERDs visually model data before implementation.                           |
+| 9.6     | How do we read relationship notation?        | Crow's Foot notation shows cardinality and optionality.                   |
+| 9.7     | What relationship types matter most?         | 1:1, 1:N, and M:N relationships shape table design.                       |
+| 9.8     | How do we handle advanced patterns?          | Weak, associative, recursive, and subtype structures extend the ER model. |
+| 9.9     | How does normalization support design?       | Normal forms help test whether structure is reliable.                     |
+| 9.10    | How do diagrams become tables?               | The mapping algorithm converts ERDs into schemas.                         |
+| 9.11    | What tools help document design?             | Lucidchart is visual; Mermaid is ERD-as-code.                             |
+| 9.12    | What mistakes should designers avoid?        | Most database failures are predictable.                                   |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -112,19 +128,28 @@ The designer asks different questions:
 - Which rules should be enforced by the database rather than remembered by users?
 - How will this structure change when the organization grows?
 
+The shift changes the questions you ask:
+
+| Database User's Perspective                 | Database Designer's Perspective                                                 |
+| ------------------------------------------- | ------------------------------------------------------------------------------- |
+| How do I query this existing structure?     | What structure should exist in the first place?                                 |
+| How do I join these tables to get a report? | Which real-world objects, events, or concepts deserve their own table?          |
+| How do I handle this missing data?          | Which rules should be enforced by the database rather than remembered by users? |
+| How do I filter these results?              | How will this structure scale and adapt as the organization grows?              |
+
 This is a higher-level skill. It requires technical understanding, but it also requires business interpretation. Database design is not just about tables. It is about representing an organization's logic accurately.
 
 ### 9.1.3 Design as Translation
 
 Database design translates business language into data structure.
 
-| Business Language | Database Design Translation |
-|---|---|
-| "Students submit assignments." | `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` entities are needed. |
-| "Each deliverable has a due date." | `DueDate` belongs in `DELIVERABLE`, not repeated in every grade row. |
+| Business Language                                  | Database Design Translation                                              |
+| -------------------------------------------------- | ------------------------------------------------------------------------ |
+| "Students submit assignments."                     | `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` entities are needed.       |
+| "Each deliverable has a due date."                 | `DueDate` belongs in `DELIVERABLE`, not repeated in every grade row.     |
 | "Each student can earn one score per deliverable." | `STUDENT_GRADE` needs a uniqueness rule on `(StudentID, DeliverableID)`. |
-| "Attendance is recorded for each class meeting." | `ATTENDANCE` connects `STUDENT` and `SCHEDULE`. |
-| "Grades are interpreted using a grading scale." | `GRADE_SCALE` stores letter-grade thresholds. |
+| "Attendance is recorded for each class meeting."   | `ATTENDANCE` connects `STUDENT` and `SCHEDULE`.                          |
+| "Grades are interpreted using a grading scale."    | `GRADE_SCALE` stores letter-grade thresholds.                            |
 
 Design makes these rules visible before implementation. SQL enforces them later.
 
@@ -146,13 +171,13 @@ Anomalies are not random mistakes. They are structural consequences. If a databa
 
 Imagine a table called `GRADE_FLAT`:
 
-| StudentID | FirstName | LastName | Email | DeliverableType | DeliverableNumber | DueDate | PointsPerOne | Score |
-|---:|---|---|---|---|---:|---|---:|---:|
-| 101 | Alice | Johnson | alice@albany.edu | Quiz | 1 | 2026-02-05 | 10 | 9 |
-| 101 | Alice | Johnson | alice@albany.edu | Quiz | 2 | 2026-02-12 | 10 | 8 |
-| 101 | Alice | Johnson | alice@albany.edu | Exam | 1 | 2026-03-15 | 100 | 87 |
-| 102 | Brian | Lee | brian@albany.edu | Quiz | 1 | 2026-02-05 | 10 | 7 |
-| 102 | Brian | Lee | brian@albany.edu | Quiz | 2 | 2026-02-12 | 10 | 9 |
+| StudentID | FirstName | LastName | Email            | DeliverableType | DeliverableNumber | DueDate    | PointsPerOne | Score |
+| --------: | --------- | -------- | ---------------- | --------------- | ----------------: | ---------- | -----------: | ----: |
+|       101 | Alice     | Johnson  | alice@albany.edu | Quiz            |                 1 | 2026-02-05 |           10 |     9 |
+|       101 | Alice     | Johnson  | alice@albany.edu | Quiz            |                 2 | 2026-02-12 |           10 |     8 |
+|       101 | Alice     | Johnson  | alice@albany.edu | Exam            |                 1 | 2026-03-15 |          100 |    87 |
+|       102 | Brian     | Lee      | brian@albany.edu | Quiz            |                 1 | 2026-02-05 |           10 |     7 |
+|       102 | Brian     | Lee      | brian@albany.edu | Quiz            |                 2 | 2026-02-12 |           10 |     9 |
 
 At first, the table looks convenient. Each row tells a story: one student, one deliverable, one score. But the table mixes several subjects:
 
@@ -242,26 +267,26 @@ A database is not separate from this process. It supports workflows, reports, in
 
 ### 9.3.2 SDLC Phases from a Database Perspective
 
-| SDLC Phase | Database Design Focus | Grading Database Example |
-|---|---|---|
-| Planning and analysis | Identify users, goals, reports, and business rules | Who enters grades? Who views reports? What does "final grade" mean? |
-| Conceptual design | Identify entities and relationships | Students, deliverables, attendance records, grade records |
-| Logical design | Define tables, attributes, keys, and constraints | `STUDENT`, `DELIVERABLE`, `STUDENT_GRADE`, foreign keys |
-| Physical design | Choose platform-specific data types, indexes, and storage | Access AutoNumber, SQLite `INTEGER PRIMARY KEY`, PostgreSQL identity columns |
-| Development | Implement tables, forms, queries, and constraints | Build tables and relationships in Access or SQL |
-| Testing | Validate rules and outputs | Try entering a grade for a nonexistent student; confirm the database rejects it |
-| Deployment | Move the database into active use | Load real roster data and begin grade entry |
-| Maintenance | Adapt to new requirements | Add late penalties, multiple sections, or revised grading weights |
+| SDLC Phase            | Database Design Focus                                     | Grading Database Example                                                        |
+| --------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Planning and analysis | Identify users, goals, reports, and business rules        | Who enters grades? Who views reports? What does "final grade" mean?             |
+| Conceptual design     | Identify entities and relationships                       | Students, deliverables, attendance records, grade records                       |
+| Logical design        | Define tables, attributes, keys, and constraints          | `STUDENT`, `DELIVERABLE`, `STUDENT_GRADE`, foreign keys                         |
+| Physical design       | Choose platform-specific data types, indexes, and storage | Access AutoNumber, SQLite `INTEGER PRIMARY KEY`, PostgreSQL identity columns    |
+| Development           | Implement tables, forms, queries, and constraints         | Build tables and relationships in Access or SQL                                 |
+| Testing               | Validate rules and outputs                                | Try entering a grade for a nonexistent student; confirm the database rejects it |
+| Deployment            | Move the database into active use                         | Load real roster data and begin grade entry                                     |
+| Maintenance           | Adapt to new requirements                                 | Add late penalties, multiple sections, or revised grading weights               |
 
 ### 9.3.3 Conceptual, Logical, and Physical Design
 
 Database design often happens at three levels.
 
-| Design Level | Main Question | Example |
-|---|---|---|
-| Conceptual | What does the business domain contain? | A student earns grades on deliverables. |
-| Logical | What tables, keys, and relationships are needed? | `STUDENT_GRADE` contains `StudentID`, `DeliverableID`, and `Score`. |
-| Physical | How will this be implemented in a specific DBMS? | In Access, `GradeID` may be AutoNumber; in PostgreSQL, it may be `GENERATED AS IDENTITY`. |
+| Design Level | Main Question                                    | Example                                                                                   |
+| ------------ | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Conceptual   | What does the business domain contain?           | A student earns grades on deliverables.                                                   |
+| Logical      | What tables, keys, and relationships are needed? | `STUDENT_GRADE` contains `StudentID`, `DeliverableID`, and `Score`.                       |
+| Physical     | How will this be implemented in a specific DBMS? | In Access, `GradeID` may be AutoNumber; in PostgreSQL, it may be `GENERATED AS IDENTITY`. |
 
 The levels should not be collapsed too early. If you begin by choosing Access field types before understanding the business rules, the tool starts driving the design. That is backwards.
 
@@ -291,14 +316,18 @@ Suppose the instructor gives the following requirements for the Grading Database
 
 These requirements imply structure.
 
-| Requirement | Design Implication |
-|---|---|
-| Store students | Create a `STUDENT` entity. |
-| Store deliverables | Create a `DELIVERABLE` entity. |
-| Store deliverable categories and weights | Create `ASSIGNMENT_TYPE` or `GRADE_WEIGHT`. |
+| Requirement                                    | Design Implication                               |
+| ---------------------------------------------- | ------------------------------------------------ |
+| Store students                                 | Create a `STUDENT` entity.                       |
+| Store deliverables                             | Create a `DELIVERABLE` entity.                   |
+| Store deliverable categories and weights       | Create `ASSIGNMENT_TYPE` or `GRADE_WEIGHT`.      |
 | Track each student's score on each deliverable | Create `STUDENT_GRADE` as an associative entity. |
-| Record attendance for each class meeting | Create `SCHEDULE` and `ATTENDANCE`. |
-| Convert numeric grades to letters | Create `GRADE_SCALE`. |
+| Record attendance for each class meeting       | Create `SCHEDULE` and `ATTENDANCE`.              |
+| Convert numeric grades to letters              | Create `GRADE_SCALE`.                            |
+
+![Translation diagram showing business requirements mapped to database design elements](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch09-database-design/ch09-ch09-requirements-to-structure)
+
+*Figure 9.4 — How business requirements translate into database design elements.*
 
 ### 9.4.2 Entities
 
@@ -309,15 +338,15 @@ These requirements imply structure.
 
 In the Grading Database, likely entities include:
 
-| Entity | What It Represents |
-|---|---|
-| `STUDENT` | A person enrolled in the course |
-| `DELIVERABLE` | A specific graded item, such as Quiz 1 |
-| `STUDENT_GRADE` | One student's score on one deliverable |
-| `SCHEDULE` | One class meeting |
-| `ATTENDANCE` | One student's attendance status for one class meeting |
-| `ASSIGNMENT_TYPE` | Category-level grading rules |
-| `GRADE_SCALE` | Letter-grade thresholds |
+| Entity            | What It Represents                                    |
+| ----------------- | ----------------------------------------------------- |
+| `STUDENT`         | A person enrolled in the course                       |
+| `DELIVERABLE`     | A specific graded item, such as Quiz 1                |
+| `STUDENT_GRADE`   | One student's score on one deliverable                |
+| `SCHEDULE`        | One class meeting                                     |
+| `ATTENDANCE`      | One student's attendance status for one class meeting |
+| `ASSIGNMENT_TYPE` | Category-level grading rules                          |
+| `GRADE_SCALE`     | Letter-grade thresholds                               |
 
 A useful test: if the database must store many instances of something, and each instance has its own attributes or relationships, it may be an entity.
 
@@ -330,24 +359,24 @@ A useful test: if the database must store many instances of something, and each 
 
 Examples:
 
-| Entity | Attributes |
-|---|---|
-| `STUDENT` | `StudentID`, `FirstName`, `LastName`, `Email` |
-| `DELIVERABLE` | `DeliverableID`, `DeliverableType`, `DeliverableNumber`, `DueDate`, `Topic` |
-| `STUDENT_GRADE` | `GradeID`, `StudentID`, `DeliverableID`, `Score` |
-| `SCHEDULE` | `ClassNum`, `Week`, `ClassDate`, `Topic`, `Format` |
-| `ATTENDANCE` | `AttendanceID`, `StudentID`, `ClassNum`, `Attended` |
+| Entity          | Attributes                                                                  |
+| --------------- | --------------------------------------------------------------------------- |
+| `STUDENT`       | `StudentID`, `FirstName`, `LastName`, `Email`                               |
+| `DELIVERABLE`   | `DeliverableID`, `DeliverableType`, `DeliverableNumber`, `DueDate`, `Topic` |
+| `STUDENT_GRADE` | `GradeID`, `StudentID`, `DeliverableID`, `Score`                            |
+| `SCHEDULE`      | `ClassNum`, `Week`, `ClassDate`, `Topic`, `Format`                          |
+| `ATTENDANCE`    | `AttendanceID`, `StudentID`, `ClassNum`, `Attended`                         |
 
 Attributes can be classified in several ways.
 
-| Attribute Type | Meaning | Example | Design Guidance |
-|---|---|---|---|
-| Simple | Cannot be usefully broken down | `Score` | Store directly. |
-| Composite | Can be decomposed | Full address | Store as `Street`, `City`, `State`, `ZipCode` if parts matter. |
-| Single-valued | One value per entity instance | `Birthday` | Store in the entity table. |
-| Multi-valued | Multiple values per entity instance | Phone numbers | Create a separate related table. |
-| Stored | Physically recorded | `Birthday` | Store if needed. |
-| Derived | Calculated from stored values | Age | Usually compute in queries. |
+| Attribute Type | Meaning                             | Example       | Design Guidance                                                |
+| -------------- | ----------------------------------- | ------------- | -------------------------------------------------------------- |
+| Simple         | Cannot be usefully broken down      | `Score`       | Store directly.                                                |
+| Composite      | Can be decomposed                   | Full address  | Store as `Street`, `City`, `State`, `ZipCode` if parts matter. |
+| Single-valued  | One value per entity instance       | `Birthday`    | Store in the entity table.                                     |
+| Multi-valued   | Multiple values per entity instance | Phone numbers | Create a separate related table.                               |
+| Stored         | Physically recorded                 | `Birthday`    | Store if needed.                                               |
+| Derived        | Calculated from stored values       | Age           | Usually compute in queries.                                    |
 
 ### 9.4.4 Relationships
 
@@ -372,13 +401,13 @@ A **business rule** is a statement about how the organization operates. Good dat
 
 Examples:
 
-| Business Rule | Structural Expression |
-|---|---|
-| Every grade must belong to one student. | `STUDENT_GRADE.StudentID` is a required foreign key. |
-| Every grade must belong to one deliverable. | `STUDENT_GRADE.DeliverableID` is a required foreign key. |
-| A student should not have two scores for the same deliverable. | Unique constraint on `(StudentID, DeliverableID)`. |
-| A score must be between 0 and 100. | `CHECK (Score BETWEEN 0 AND 100)`. |
-| A student may exist before any grades are entered. | `STUDENT` is independent of `STUDENT_GRADE`. |
+| Business Rule                                                  | Structural Expression                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------- |
+| Every grade must belong to one student.                        | `STUDENT_GRADE.StudentID` is a required foreign key.     |
+| Every grade must belong to one deliverable.                    | `STUDENT_GRADE.DeliverableID` is a required foreign key. |
+| A student should not have two scores for the same deliverable. | Unique constraint on `(StudentID, DeliverableID)`.       |
+| A score must be between 0 and 100.                             | `CHECK (Score BETWEEN 0 AND 100)`.                       |
+| A student may exist before any grades are entered.             | `STUDENT` is independent of `STUDENT_GRADE`.             |
 
 The designer's job is to discover these rules before implementation.
 
@@ -407,14 +436,14 @@ ER modeling was introduced by Peter Chen in the 1970s and remains foundational b
 
 ### 9.5.2 ERD Elements
 
-| ERD Element | Meaning | Relational Equivalent |
-|---|---|---|
-| Entity | Thing being represented | Table |
-| Attribute | Property of an entity | Column |
-| Identifier | Attribute that uniquely identifies entity instances | Primary key |
-| Relationship | Association between entities | Foreign key or junction table |
-| Cardinality | How many instances can be related | One-to-one, one-to-many, many-to-many |
-| Optionality | Whether participation is required | Nullable or `NOT NULL` foreign key |
+| ERD Element  | Meaning                                             | Relational Equivalent                 |
+| ------------ | --------------------------------------------------- | ------------------------------------- |
+| Entity       | Thing being represented                             | Table                                 |
+| Attribute    | Property of an entity                               | Column                                |
+| Identifier   | Attribute that uniquely identifies entity instances | Primary key                           |
+| Relationship | Association between entities                        | Foreign key or junction table         |
+| Cardinality  | How many instances can be related                   | One-to-one, one-to-many, many-to-many |
+| Optionality  | Whether participation is required                   | Nullable or `NOT NULL` foreign key    |
 
 ### 9.5.3 Entity Notation in ERDs
 
@@ -429,25 +458,25 @@ This three-column layout ensures that developers, database administrators, and b
 **Example: STUDENT Entity Notation**
 
 | Identifiers | Field Name | Data Type |
-|---|---|---|
-| PK | StudentID | int |
-| | FirstName | string |
-| | LastName | string |
-| UK | Email | string |
-| | Birthday | date |
+| ----------- | ---------- | --------- |
+| PK          | StudentID  | int       |
+|             | FirstName  | string    |
+|             | LastName   | string    |
+| UK          | Email      | string    |
+|             | Birthday   | date      |
 
 ### 9.5.4 Key Hierarchy
 
 Keys identify records and support relationships.
 
-| Key Type | Meaning | Example |
-|---|---|---|
-| Superkey | Any attribute set that uniquely identifies a row | `{StudentID, FirstName}` |
-| Candidate key | Minimal superkey | `{StudentID}` or `{Email}` if email is unique |
-| Primary key | Candidate key selected as the official identifier | `StudentID` |
-| Foreign key | Attribute that references another table's key | `STUDENT_GRADE.StudentID` |
-| Natural key | Real-world value used as identifier | University ID or email |
-| Surrogate key | Artificial system-generated identifier | `GradeID` AutoNumber |
+| Key Type      | Meaning                                           | Example                                       |
+| ------------- | ------------------------------------------------- | --------------------------------------------- |
+| Superkey      | Any attribute set that uniquely identifies a row  | `{StudentID, FirstName}`                      |
+| Candidate key | Minimal superkey                                  | `{StudentID}` or `{Email}` if email is unique |
+| Primary key   | Candidate key selected as the official identifier | `StudentID`                                   |
+| Foreign key   | Attribute that references another table's key     | `STUDENT_GRADE.StudentID`                     |
+| Natural key   | Real-world value used as identifier               | University ID or email                        |
+| Surrogate key | Artificial system-generated identifier            | `GradeID` AutoNumber                          |
 
 The primary key should be stable, unique, and never `NULL`. Surrogate keys are often preferred because they are short and unlikely to change. But natural keys may still be useful as unique business constraints.
 
@@ -499,29 +528,29 @@ The ERD explains the structure. SQL implements it.
 
 ![Crow's Foot Notation Symbols](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch09-database-design/ch09-crows-foot-notation)
 
-_Figure 9.4 — Crow's Foot notation symbols for relationship cardinality and optionality._
+*Figure 9.6 — Crow's Foot notation symbols for relationship cardinality and optionality.*
 
-Figure 9.4 shows the four standard Crow's Foot symbols that represent how entities connect. To read these symbols, look at where a relationship line meets an entity box. Each end of the line has two distinct markers:
+Figure 9.6 shows the four standard Crow's Foot symbols that represent how entities connect. To read these symbols, look at where a relationship line meets an entity box. Each end of the line has two distinct markers:
 
 * **The Inner Marker (Optionality/Minimum Cardinality)**: This symbol is placed further from the entity box (closer to the center of the line). It represents the **minimum cardinality** — the fewest number of records that *must* participate in the relationship. A circle (`o`) indicates **Optional** participation (a minimum of 0), meaning a parent record can exist without any related child records. A vertical hash mark (`|`) indicates **Mandatory** participation (a minimum of 1), meaning the relationship is required.
 * **The Outer Marker (Cardinality/Maximum Cardinality)**: This symbol is closest to the entity box. It represents the **maximum cardinality** — the greatest number of records that *can* participate. A single vertical line (`|`) represents **One** (a maximum of 1), while a three-pronged "crow's foot" (`<`) represents **Many** (a maximum of many, with no upper limit).
 
 The notation appears at the ends of relationship lines.
 
-| Symbol | Meaning |
-|---|---|
-| `\|` | One |
-| `o` | Zero or optional |
-| `<` or `{` | Many |
+| Symbol     | Meaning          |
+| ---------- | ---------------- |
+| `\|`       | One              |
+| `o`        | Zero or optional |
+| `<` or `{` | Many             |
 
 These symbols combine into patterns.
 
-| Symbol Pattern | Meaning | Numeric Meaning |
-|---|---|---|
-| `\|\|` | Exactly one | 1 |
-| `o\|` | Zero or one | 0..1 |
-| `\|<` or `\|{` | One or more | 1..* |
-| `o<` or `o{` | Zero or more | 0..* |
+| Symbol Pattern | Meaning      | Numeric Meaning |
+| -------------- | ------------ | --------------- |
+| `\|\|`         | Exactly one  | 1               |
+| `o\|`          | Zero or one  | 0..1            |
+| `\|<` or `\|{` | One or more  | 1..*            |
+| `o<` or `o{`   | Zero or more | 0..*            |
 
 ### 9.6.2 Reading Crow's Foot Notation
 
@@ -542,13 +571,13 @@ That is a business rule. It says a student can exist before grades are entered, 
 
 Crow's Foot notation guides implementation.
 
-| ER Rule | SQL Design |
-|---|---|
-| Required relationship | Foreign key is `NOT NULL`. |
-| Optional relationship | Foreign key may allow `NULL`. |
-| One-to-many relationship | Foreign key goes on the many side. |
-| Many-to-many relationship | Create an associative table. |
-| Referential integrity | Add a `FOREIGN KEY` constraint. |
+| ER Rule                   | SQL Design                         |
+| ------------------------- | ---------------------------------- |
+| Required relationship     | Foreign key is `NOT NULL`.         |
+| Optional relationship     | Foreign key may allow `NULL`.      |
+| One-to-many relationship  | Foreign key goes on the many side. |
+| Many-to-many relationship | Create an associative table.       |
+| Referential integrity     | Add a `FOREIGN KEY` constraint.    |
 
 Example:
 
@@ -579,7 +608,7 @@ Entity-Relationship modeling has evolved since its introduction by Peter Chen in
 
 ![Diagram comparing one-to-one, one-to-many, and many-to-many relationship cardinality patterns](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch09-database-design/ch09-ch09-relationship-types)
 
-*Figure 9.6 — Relational schemas implement 1:1, 1:N, and M:N relationships differently using keys.*
+*Figure 9.7 — Relational schemas implement 1:1, 1:N, and M:N relationships differently using keys.*
 
 ### 9.7.1 One-to-One Relationships
 
@@ -631,13 +660,13 @@ This is the most common database relationship pattern.
 
 Examples:
 
-| One Side | Many Side | Meaning |
-|---|---|---|
-| `STUDENT` | `STUDENT_GRADE` | One student earns many grades. |
-| `DELIVERABLE` | `STUDENT_GRADE` | One deliverable receives many grade records. |
-| `SCHEDULE` | `ATTENDANCE` | One class meeting has many attendance records. |
-| `CUSTOMER` | `ORDER` | One customer places many orders. |
-| `COURSE` | `SECTION` | One course has many sections. |
+| One Side      | Many Side       | Meaning                                        |
+| ------------- | --------------- | ---------------------------------------------- |
+| `STUDENT`     | `STUDENT_GRADE` | One student earns many grades.                 |
+| `DELIVERABLE` | `STUDENT_GRADE` | One deliverable receives many grade records.   |
+| `SCHEDULE`    | `ATTENDANCE`    | One class meeting has many attendance records. |
+| `CUSTOMER`    | `ORDER`         | One customer places many orders.               |
+| `COURSE`      | `SECTION`       | One course has many sections.                  |
 
 <div class="callout tip">
   <p><strong>💡 Tip: Foreign key placement</strong></p>
@@ -692,14 +721,14 @@ The `Score` belongs in the junction table because the score is not a fact about 
 
 ### 9.7.4 Relationships in the Grading Database
 
-| Relationship | Type | Implementation | Why It Matters |
-|---|---|---|---|
-| `STUDENT` to `STUDENT_GRADE` | 1:N | `StudentID` FK in `STUDENT_GRADE` | Connects students to scores |
-| `DELIVERABLE` to `STUDENT_GRADE` | 1:N | `DeliverableID` FK in `STUDENT_GRADE` | Connects deliverables to scores |
-| `ASSIGNMENT_TYPE` to `DELIVERABLE` | 1:N | `DeliverableType` FK in `DELIVERABLE` | Connects category rules to deliverables |
-| `STUDENT` to `ATTENDANCE` | 1:N | `StudentID` FK in `ATTENDANCE` | Tracks attendance per student |
-| `SCHEDULE` to `ATTENDANCE` | 1:N | `ClassNum` FK in `ATTENDANCE` | Tracks attendance per class meeting |
-| `GRADE_SCALE` to final grade interpretation | Lookup | Score range comparison | Converts numeric results to letters |
+| Relationship                                | Type   | Implementation                        | Why It Matters                          |
+| ------------------------------------------- | ------ | ------------------------------------- | --------------------------------------- |
+| `STUDENT` to `STUDENT_GRADE`                | 1:N    | `StudentID` FK in `STUDENT_GRADE`     | Connects students to scores             |
+| `DELIVERABLE` to `STUDENT_GRADE`            | 1:N    | `DeliverableID` FK in `STUDENT_GRADE` | Connects deliverables to scores         |
+| `ASSIGNMENT_TYPE` to `DELIVERABLE`          | 1:N    | `DeliverableType` FK in `DELIVERABLE` | Connects category rules to deliverables |
+| `STUDENT` to `ATTENDANCE`                   | 1:N    | `StudentID` FK in `ATTENDANCE`        | Tracks attendance per student           |
+| `SCHEDULE` to `ATTENDANCE`                  | 1:N    | `ClassNum` FK in `ATTENDANCE`         | Tracks attendance per class meeting     |
+| `GRADE_SCALE` to final grade interpretation | Lookup | Score range comparison                | Converts numeric results to letters     |
 
 These relationships support analysis. For example, to report a student's grade history, SQL joins `STUDENT`, `STUDENT_GRADE`, and `DELIVERABLE`. To analyze attendance, SQL joins `STUDENT`, `ATTENDANCE`, and `SCHEDULE`. The schema makes those questions possible.
 
@@ -710,7 +739,7 @@ These relationships support analysis. For example, to report a student's grade h
 
 ![Generalization hierarchy showing a Person supertype branching into Student and Employee subtypes](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch09-database-design/ch09-ch09-specialization)
 
-*Figure 9.7 — Specialization hierarchies use supertypes, subtypes, and discriminator attributes.*
+*Figure 9.8 — Specialization hierarchies use supertypes, subtypes, and discriminator attributes.*
 
 ### 9.8.1 Weak Entities
 
@@ -752,12 +781,12 @@ An **associative entity** (also called a junction table, intersection table, or 
 
 Examples:
 
-| M:N Relationship | Associative Entity | Relationship Attribute |
-|---|---|---|
-| Students complete deliverables | `STUDENT_GRADE` | `Score` |
-| Students enroll in sections | `ENROLLMENT` | `EnrollmentDate`, `FinalGrade` |
-| Products appear in orders | `ORDER_LINE` | `Quantity`, `UnitPrice` |
-| Employees work on projects | `PROJECT_ASSIGNMENT` | `Role`, `HoursWorked` |
+| M:N Relationship               | Associative Entity   | Relationship Attribute         |
+| ------------------------------ | -------------------- | ------------------------------ |
+| Students complete deliverables | `STUDENT_GRADE`      | `Score`                        |
+| Students enroll in sections    | `ENROLLMENT`         | `EnrollmentDate`, `FinalGrade` |
+| Products appear in orders      | `ORDER_LINE`         | `Quantity`, `UnitPrice`        |
+| Employees work on projects     | `PROJECT_ASSIGNMENT` | `Role`, `HoursWorked`          |
 
 The pattern is universal. Whenever the relationship itself has attributes, the relationship deserves its own table.
 
@@ -822,22 +851,22 @@ Two questions matter when defining subtype relationships:
 1. **Disjointness Constraint (Disjoint vs. Overlapping):** Can a superclass instance belong to more than one subtype simultaneously?
 2. **Completeness Constraint (Total vs. Partial):** Must every superclass instance belong to at least one subtype?
 
-| Constraint | Meaning | Example |
-|---|---|---|
-| Disjoint | One superclass instance can belong to only one subtype | A vehicle is either a car or a truck. |
-| Overlapping | One superclass instance can belong to multiple subtypes | A person can be a student and an employee. |
-| Total | Every superclass instance must belong to a subtype | Every account is either a checking or a savings account. |
-| Partial | Some superclass instances may not belong to any subtype | A person may be neither a student nor an employee (just a generic person). |
+| Constraint  | Meaning                                                 | Example                                                                    |
+| ----------- | ------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Disjoint    | One superclass instance can belong to only one subtype  | A vehicle is either a car or a truck.                                      |
+| Overlapping | One superclass instance can belong to multiple subtypes | A person can be a student and an employee.                                 |
+| Total       | Every superclass instance must belong to a subtype      | Every account is either a checking or a savings account.                   |
+| Partial     | Some superclass instances may not belong to any subtype | A person may be neither a student nor an employee (just a generic person). |
 
 ### 9.8.5 Mapping Specialization to Tables
 
 There are three common strategies to translate these hierarchies into physical tables:
 
-| Strategy | Description | Pros | Cons |
-|---|---|---|---|
-| Superclass + subclass tables | Store shared fields in the superclass table and subtype-specific fields in separate subtype tables. | Highly normalized, supports strict FK constraints, no wasted space. | Requires joins to retrieve full subtype details. |
-| Subclass tables only | Eliminate the superclass table; each subtype table stores all shared and subtype-specific fields. | Simple queries for a specific subtype, useful for total specialization. | Redundant schema design; hard to query all records as a single group. |
-| Single table with type column | One table stores all fields (shared and subtype-specific) plus a discriminator column. | Simple queries, high read performance. | Waste of space (many NULLs); weaker check constraints. |
+| Strategy                      | Description                                                                                         | Pros                                                                    | Cons                                                                  |
+| ----------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Superclass + subclass tables  | Store shared fields in the superclass table and subtype-specific fields in separate subtype tables. | Highly normalized, supports strict FK constraints, no wasted space.     | Requires joins to retrieve full subtype details.                      |
+| Subclass tables only          | Eliminate the superclass table; each subtype table stores all shared and subtype-specific fields.   | Simple queries for a specific subtype, useful for total specialization. | Redundant schema design; hard to query all records as a single group. |
+| Single table with type column | One table stores all fields (shared and subtype-specific) plus a discriminator column.              | Simple queries, high read performance.                                  | Waste of space (many NULLs); weaker check constraints.                |
 
 Most normalized relational designs prefer the **superclass + subclass** approach when subtypes have meaningful differences. In this approach, the subclass table's primary key is also a foreign key referencing the superclass table.
 
@@ -857,12 +886,12 @@ As introduced in Chapter 7, normalization uses a series of tests called normal f
 
 ### 9.9.1 Normal Forms Review
 
-| Normal Form | Question | Problem Fixed |
-|---|---|---|
-| 1NF | Does each cell contain one atomic value? | Lists and repeating columns |
-| 2NF | Does every non-key attribute depend on the whole key? | Partial dependencies |
-| 3NF | Does every non-key attribute depend only on the key? | Transitive dependencies |
-| BCNF | Is every determinant a candidate key? | Special remaining dependency problems |
+| Normal Form | Question                                              | Problem Fixed                         |
+| ----------- | ----------------------------------------------------- | ------------------------------------- |
+| 1NF         | Does each cell contain one atomic value?              | Lists and repeating columns           |
+| 2NF         | Does every non-key attribute depend on the whole key? | Partial dependencies                  |
+| 3NF         | Does every non-key attribute depend only on the key?  | Transitive dependencies               |
+| BCNF        | Is every determinant a candidate key?                 | Special remaining dependency problems |
 
 ### 9.9.2 Applying Normalization to Design
 
@@ -917,7 +946,7 @@ The mapping algorithm translates an ERD into a relational schema. It turns a vis
 
 ![Flowchart of the five-step algorithm mapping strong and weak entities, and relationships to tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch09-database-design/ch09-ch09-mapping-algorithm)
 
-*Figure 9.8 — The mapping algorithm translates logical ERD structures systematically into tables and keys.*
+*Figure 9.9 — The mapping algorithm translates logical ERD structures systematically into tables and keys.*
 
 ### 9.10.1 Step 1: Map Strong Entities
 
@@ -1040,12 +1069,12 @@ Both enforce one score per student per deliverable.
 
 ### 9.10.5 Step 5: Map Special Attributes
 
-| Attribute Type | Mapping Rule | Example |
-|---|---|---|
-| Composite | Store components separately | `Address` becomes `Street`, `City`, `State`, `ZipCode` |
-| Multi-valued | Create a separate table | `STUDENT_PHONE(StudentID, PhoneNumber)` |
-| Derived | Do not store unless justified | Age computed from birthday |
-| Optional | Allow `NULL` only if business rule permits | `MiddleName` may be nullable |
+| Attribute Type | Mapping Rule                               | Example                                                |
+| -------------- | ------------------------------------------ | ------------------------------------------------------ |
+| Composite      | Store components separately                | `Address` becomes `Street`, `City`, `State`, `ZipCode` |
+| Multi-valued   | Create a separate table                    | `STUDENT_PHONE(StudentID, PhoneNumber)`                |
+| Derived        | Do not store unless justified              | Age computed from birthday                             |
+| Optional       | Allow `NULL` only if business rule permits | `MiddleName` may be nullable                           |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -1232,12 +1261,12 @@ Visual schema design means using diagrams to reason about database structure and
 *   **Lucidchart** is a web-based, visual drag-and-drop diagramming tool. It is excellent for brainstorming, classroom collaboration, and presenting designs to business stakeholders who prefer a visual interface.
 *   **Mermaid** is a text-based "diagram as code" syntax that renders diagrams dynamically inside Markdown files. It is ideal for developer documentation, version-controlled repositories (such as Git), and rapid prototyping when working alongside AI coding assistants.
 
-| Dimension | Lucidchart | Mermaid |
-|---|---|---|
-| **Interface** | Visual drag-and-drop | Text-based code editor |
-| **Best For** | Collaborative design sessions, stakeholder presentations | Markdown documentation, version control (Git), schema scripting |
-| **Primary Strength** | Easy visual arrangement, rich template library | Highly portable, reproducible, easy to edit textually |
-| **Limitation** | Harder to track changes (version control) of the file | Layout is auto-calculated; less fine-grained visual control |
+| Dimension            | Lucidchart                                               | Mermaid                                                         |
+| -------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
+| **Interface**        | Visual drag-and-drop                                     | Text-based code editor                                          |
+| **Best For**         | Collaborative design sessions, stakeholder presentations | Markdown documentation, version control (Git), schema scripting |
+| **Primary Strength** | Easy visual arrangement, rich template library           | Highly portable, reproducible, easy to edit textually           |
+| **Limitation**       | Harder to track changes (version control) of the file    | Layout is auto-calculated; less fine-grained visual control     |
 
 ### 9.11.1 Step-by-Step Lucidchart Workflow
 To build a clear, relational ERD in Lucidchart, follow this structured process:
@@ -1291,7 +1320,7 @@ This hybrid workflow allows you to quickly draft a schema using text, import it 
 
 ![Split comparison showing disorganized coding-first workflow vs structured design-first workflow](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch09-database-design/ch09-ch09-bad-vs-good-design)
 
-*Figure 9.9 — A design-first workflow produces cleaner, more reliable schemas than coding-first workflows.*
+*Figure 9.10 — A design-first workflow produces cleaner, more reliable schemas than coding-first workflows.*
 
 ### 9.12.1 Building Before Modeling
 
@@ -1426,17 +1455,17 @@ Physical design is heavily dependent on the chosen database engine (DBMS). While
 
 The table below compares how standard logical design choices translate into physical structures across five common DBMS platforms:
 
-| Design Choice / Data Type | Microsoft Access | SQLite | PostgreSQL | MySQL | Microsoft SQL Server |
-|---|---|---|---|---|---|
-| **Auto-Incrementing PK** | AutoNumber | `INTEGER PRIMARY KEY` | `GENERATED BY DEFAULT AS IDENTITY` | `AUTO_INCREMENT` | `IDENTITY(1,1)` |
-| **Short Text** (e.g., Names) | Short Text (up to 255 chars) | `TEXT` | `VARCHAR(N)` | `VARCHAR(N)` | `VARCHAR(N)` |
-| **Long Text** (e.g., Notes) | Long Text (Memo) | `TEXT` | `TEXT` | `TEXT` or `LONGTEXT` | `VARCHAR(MAX)` |
-| **Whole Numbers** | Number (Integer / Long) | `INTEGER` | `INT` or `BIGINT` | `INT` or `BIGINT` | `INT` or `BIGINT` |
-| **Exact Decimals** (Currency) | Currency / Decimal | `REAL` / `NUMERIC` | `NUMERIC(p,s)` or `MONEY` | `DECIMAL(p,s)` | `DECIMAL(p,s)` or `MONEY` |
-| **Date & Time** | Date/Time | `TEXT` (ISO 8601 strings) | `DATE` or `TIMESTAMP` | `DATE` or `DATETIME` | `DATE` or `DATETIME2` |
-| **Boolean** (True/False) | Yes/No | `INTEGER` (0 or 1) | `BOOLEAN` | `TINYINT(1)` | `BIT` |
-| **Binary Large Objects** | OLE Object | `BLOB` | `BYTEA` | `BLOB` or `LONGBLOB` | `VARBINARY(MAX)` |
-| **Relationship Enforcement** | Relationships Window | Foreign-key SQL | Foreign-key SQL | Foreign-key SQL | Foreign-key SQL |
+| Design Choice / Data Type     | Microsoft Access             | SQLite                    | PostgreSQL                         | MySQL                | Microsoft SQL Server      |
+| ----------------------------- | ---------------------------- | ------------------------- | ---------------------------------- | -------------------- | ------------------------- |
+| **Auto-Incrementing PK**      | AutoNumber                   | `INTEGER PRIMARY KEY`     | `GENERATED BY DEFAULT AS IDENTITY` | `AUTO_INCREMENT`     | `IDENTITY(1,1)`           |
+| **Short Text** (e.g., Names)  | Short Text (up to 255 chars) | `TEXT`                    | `VARCHAR(N)`                       | `VARCHAR(N)`         | `VARCHAR(N)`              |
+| **Long Text** (e.g., Notes)   | Long Text (Memo)             | `TEXT`                    | `TEXT`                             | `TEXT` or `LONGTEXT` | `VARCHAR(MAX)`            |
+| **Whole Numbers**             | Number (Integer / Long)      | `INTEGER`                 | `INT` or `BIGINT`                  | `INT` or `BIGINT`    | `INT` or `BIGINT`         |
+| **Exact Decimals** (Currency) | Currency / Decimal           | `REAL` / `NUMERIC`        | `NUMERIC(p,s)` or `MONEY`          | `DECIMAL(p,s)`       | `DECIMAL(p,s)` or `MONEY` |
+| **Date & Time**               | Date/Time                    | `TEXT` (ISO 8601 strings) | `DATE` or `TIMESTAMP`              | `DATE` or `DATETIME` | `DATE` or `DATETIME2`     |
+| **Boolean** (True/False)      | Yes/No                       | `INTEGER` (0 or 1)        | `BOOLEAN`                          | `TINYINT(1)`         | `BIT`                     |
+| **Binary Large Objects**      | OLE Object                   | `BLOB`                    | `BYTEA`                            | `BLOB` or `LONGBLOB` | `VARBINARY(MAX)`          |
+| **Relationship Enforcement**  | Relationships Window         | Foreign-key SQL           | Foreign-key SQL                    | Foreign-key SQL      | Foreign-key SQL           |
 
 ### 9.13.3 Why the Distinction Matters
 
@@ -1453,22 +1482,22 @@ ER modeling is useful because it makes structure visible, supports communication
 
 But ER modeling has limits:
 
-| Limitation | Explanation |
-|---|---|
-| Behavior | ERDs do not show workflows, screens, or user actions. |
-| Timing | ERDs do not fully show how processes unfold over time. |
-| Complex rules | Some business rules require written documentation or constraints. |
-| Large systems | Very large ERDs can become difficult to read. |
-| Non-relational systems | NoSQL designs may use different modeling logic. |
+| Limitation             | Explanation                                                       |
+| ---------------------- | ----------------------------------------------------------------- |
+| Behavior               | ERDs do not show workflows, screens, or user actions.             |
+| Timing                 | ERDs do not fully show how processes unfold over time.            |
+| Complex rules          | Some business rules require written documentation or constraints. |
+| Large systems          | Very large ERDs can become difficult to read.                     |
+| Non-relational systems | NoSQL designs may use different modeling logic.                   |
 
 Other modeling approaches complement ER diagrams:
 
-| Modeling Approach | Best For |
-|---|---|
-| UML class diagram | Object-oriented software design |
-| Data flow diagram | Movement of data through processes |
-| Process model / BPMN | Workflows and business processes |
-| NoSQL modeling | Document, key-value, graph, or column-family systems |
+| Modeling Approach    | Best For                                             |
+| -------------------- | ---------------------------------------------------- |
+| UML class diagram    | Object-oriented software design                      |
+| Data flow diagram    | Movement of data through processes                   |
+| Process model / BPMN | Workflows and business processes                     |
+| NoSQL modeling       | Document, key-value, graph, or column-family systems |
 
 The ER model remains especially valuable for relational database design, but it is one tool in a broader design toolkit.
 

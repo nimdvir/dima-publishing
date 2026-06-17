@@ -21,7 +21,7 @@ Teaches students to design databases from business requirements. Covers requirem
 
 ## Chapter Files
 
-- [Main Chapter](ch09-main-2026-06-16.md)
+- [Main Chapter](ch09-main-2026-06-17.md)
 - [Let's Build](ch09-lets-build-2026-06-16.md)
 - [Review & Reflection](ch09-reflection-2026-06-16.md)
 - [Terms Treasury](ch09-terms-2026-06-16.md)

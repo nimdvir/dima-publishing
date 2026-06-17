@@ -39,20 +39,20 @@ Business Intelligence is not simply a reporting tool. It is an organizational ca
 
 ## Chapter Roadmap
 
-| Section | Main Question | Core Ideas |
-|---|---|---|
-| 12.1 | What is Business Intelligence? | BI, decision support, DIKW, R.E.A.D. |
-| 12.2 | Why separate operations from analytics? | OLTP, OLAP, operational systems, analytical systems |
-| 12.3 | How does data move into BI systems? | ETL, ELT, data integration, data quality |
-| 12.4 | What is a data warehouse? | EDW, data marts, metadata, data lakes |
-| 12.5 | How is analytical data modeled? | Facts, dimensions, measures, star schema |
-| 12.6 | How do analysts explore analytical data? | Slice, dice, drill-down, roll-up, pivot, RFM |
-| 12.7 | How does SQL support BI? | Views, aggregation, KPIs, analytical queries |
-| 12.8 | How do dashboards communicate insight? | Reports, dashboards, visualizations, KPI cards |
-| 12.9 | How is performance managed? | KPIs, targets, Balanced Scorecard |
-| 12.10 | Why does BI need governance? | Metric definitions, stewardship, access, trust |
-| 12.11 | How does BI differ across platforms? | Access, SQLite, Supabase/PostgreSQL |
-| 12.12 | How do we build a simple BI layer? | Grading Database analytics example |
+| Section | Main Question                            | Core Ideas                                          |
+| ------- | ---------------------------------------- | --------------------------------------------------- |
+| 12.1    | What is Business Intelligence?           | BI, decision support, DIKW, R.E.A.D.                |
+| 12.2    | Why separate operations from analytics?  | OLTP, OLAP, operational systems, analytical systems |
+| 12.3    | How does data move into BI systems?      | ETL, ELT, data integration, data quality            |
+| 12.4    | What is a data warehouse?                | EDW, data marts, metadata, data lakes               |
+| 12.5    | How is analytical data modeled?          | Facts, dimensions, measures, star schema            |
+| 12.6    | How do analysts explore analytical data? | Slice, dice, drill-down, roll-up, pivot, RFM        |
+| 12.7    | How does SQL support BI?                 | Views, aggregation, KPIs, analytical queries        |
+| 12.8    | How do dashboards communicate insight?   | Reports, dashboards, visualizations, KPI cards      |
+| 12.9    | How is performance managed?              | KPIs, targets, Balanced Scorecard                   |
+| 12.10   | Why does BI need governance?             | Metric definitions, stewardship, access, trust      |
+| 12.11   | How does BI differ across platforms?     | Access, SQLite, Supabase/PostgreSQL                 |
+| 12.12   | How do we build a simple BI layer?       | Grading Database analytics example                  |
 
 <div class="callout tip">
    <p><strong>💡 The Big Picture:</strong> Here is the BI pipeline in one view — every section in this chapter maps to one stage:</p>
@@ -120,12 +120,12 @@ The first set of questions supports daily operations. The second set supports an
 
 BI systems help managers and analysts do four things:
 
-| BI Function | What It Means | Grading Database Example |
-|---|---|---|
-| **Monitor** | Track current performance | Average score by deliverable type |
-| **Compare** | Examine differences across groups or periods | Quiz averages by week or section |
-| **Diagnose** | Identify possible causes or risks | Low scores after missed attendance |
-| **Act** | Support decisions or interventions | Contact students whose average is below 70 |
+| BI Function  | What It Means                                | Grading Database Example                   |
+| ------------ | -------------------------------------------- | ------------------------------------------ |
+| **Monitor**  | Track current performance                    | Average score by deliverable type          |
+| **Compare**  | Examine differences across groups or periods | Quiz averages by week or section           |
+| **Diagnose** | Identify possible causes or risks            | Low scores after missed attendance         |
+| **Act**      | Support decisions or interventions           | Contact students whose average is below 70 |
 
 This is why BI belongs in a database course. Databases are valuable not only because they store data but because they support better decisions.
 
@@ -133,12 +133,12 @@ This is why BI belongs in a database course. Databases are valuable not only bec
 
 The DIKW hierarchy helps explain the intellectual movement behind BI:
 
-| DIKW Level | Meaning | Grading Example |
-|---|---|---|
-| **Data** | Raw facts | `StudentID = 101`, `Score = 72` |
-| **Information** | Organized data with context | Average Quiz 2 score is 76 |
-| **Knowledge** | Interpreted patterns | Quiz scores decline after attendance drops |
-| **Wisdom** | Judgment and action | Add an intervention before the next quiz |
+| DIKW Level      | Meaning                     | Grading Example                            |
+| --------------- | --------------------------- | ------------------------------------------ |
+| **Data**        | Raw facts                   | `StudentID = 101`, `Score = 72`            |
+| **Information** | Organized data with context | Average Quiz 2 score is 76                 |
+| **Knowledge**   | Interpreted patterns        | Quiz scores decline after attendance drops |
+| **Wisdom**      | Judgment and action         | Add an intervention before the next quiz   |
 
 BI sits mainly between **information** and **knowledge**. It creates summaries, comparisons, and patterns that help decision-makers interpret what is happening.
 
@@ -146,12 +146,12 @@ BI sits mainly between **information** and **knowledge**. It creates summaries, 
 
 The R.E.A.D. framework from Chapter 2 also applies here. BI does not replace R.E.A.D.; it operationalizes it.
 
-| R.E.A.D. Stage | BI Interpretation | Example |
-|---|---|---|
+| R.E.A.D. Stage             | BI Interpretation                            | Example                                                         |
+| -------------------------- | -------------------------------------------- | --------------------------------------------------------------- |
 | **Represent and Retrieve** | Capture and access reliable operational data | Store grades, attendance, and deliverables in relational tables |
-| **Express and Explain** | Present data in understandable forms | Create reports, dashboards, charts, and KPI cards |
-| **Analyze and Associate** | Identify patterns and relationships | Compare attendance and performance; detect trends |
-| **Decide and Deploy** | Use insight to guide action | Contact at-risk students; revise assessments |
+| **Express and Explain**    | Present data in understandable forms         | Create reports, dashboards, charts, and KPI cards               |
+| **Analyze and Associate**  | Identify patterns and relationships          | Compare attendance and performance; detect trends               |
+| **Decide and Deploy**      | Use insight to guide action                  | Contact at-risk students; revise assessments                    |
 
 BI is the practical layer that moves data from representation into explanation, analysis, and action.
 
@@ -196,15 +196,15 @@ An OLAP-style grading system might analyze trends across weeks, compare assignme
 
 ### OLTP vs. OLAP
 
-| Characteristic | OLTP: Operational | OLAP: Analytical |
-|---|---|---|
-| Primary purpose | Record transactions | Analyze patterns |
-| Typical question | What score did this student receive? | Which assignments have the lowest averages? |
-| Data focus | Current, detailed records | Historical and summarized data |
-| Query style | Short, row-level reads/writes | Large aggregations and comparisons |
-| Schema style | Normalized relational schema | Dimensional schema, star schema, or reporting views |
-| Users | Clerks, instructors, applications | Analysts, managers, decision-makers |
-| Performance priority | Fast transactions and integrity | Fast reporting and exploration |
+| Characteristic       | OLTP: Operational                    | OLAP: Analytical                                    |
+| -------------------- | ------------------------------------ | --------------------------------------------------- |
+| Primary purpose      | Record transactions                  | Analyze patterns                                    |
+| Typical question     | What score did this student receive? | Which assignments have the lowest averages?         |
+| Data focus           | Current, detailed records            | Historical and summarized data                      |
+| Query style          | Short, row-level reads/writes        | Large aggregations and comparisons                  |
+| Schema style         | Normalized relational schema         | Dimensional schema, star schema, or reporting views |
+| Users                | Clerks, instructors, applications    | Analysts, managers, decision-makers                 |
+| Performance priority | Fast transactions and integrity      | Fast reporting and exploration                      |
 
 ### Why Not Just Analyze the Operational Database?
 
@@ -233,11 +233,11 @@ Operational databases are not ideal for heavy analytics because:
 
 ETL is the trust layer of BI. It ensures that the data used for reporting is not simply available, but meaningful, consistent, and ready for analysis.
 
-| ETL Stage | What Happens | Grading Database Example |
-|---|---|---|
-| **Extract** | Pull data from source systems | Read `STUDENT`, `DELIVERABLE`, `STUDENT_GRADE`, and `ATTENDANCE` |
+| ETL Stage     | What Happens                         | Grading Database Example                                                         |
+| ------------- | ------------------------------------ | -------------------------------------------------------------------------------- |
+| **Extract**   | Pull data from source systems        | Read `STUDENT`, `DELIVERABLE`, `STUDENT_GRADE`, and `ATTENDANCE`                 |
 | **Transform** | Clean, standardize, validate, derive | Convert scores to percentages; classify letter grades; calculate attendance rate |
-| **Load** | Store analytics-ready results | Create reporting views, summary tables, or warehouse tables |
+| **Load**      | Store analytics-ready results        | Create reporting views, summary tables, or warehouse tables                      |
 
 ### The Transform Stage
 
@@ -259,14 +259,14 @@ Common transformations include:
 
 Operational data is often "dirty" in ways that make direct analysis unreliable. Consider these real-world problems:
 
-| Problem | Example | Why It Matters for BI |
-|---|---|---|
-| Inconsistent codes | "G" stored as gender instead of "M" or "F" | Averages by gender become meaningless or incomplete |
-| Impossible values | Age recorded as "213" | Pulls averages and distributions far from reality |
-| Missing values | Scores left `NULL` for students who submitted work | Should the null count as zero or be excluded? The decision changes KPI values |
-| Duplicate labels | "HW", "Homework", and "Home Work" all mean the same deliverable type | `GROUP BY Type` splits one category into three, producing misleading breakdowns |
-| Format inconsistency | Phone numbers stored as "(555) 123-4567", "5551234567", and "555-123-4567" | Joins and filters break on mismatched formats |
-| Overwritten history | A student's grade is corrected, but the old value is lost | Trend analysis cannot distinguish a real improvement from a data correction |
+| Problem              | Example                                                                    | Why It Matters for BI                                                           |
+| -------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Inconsistent codes   | "G" stored as gender instead of "M" or "F"                                 | Averages by gender become meaningless or incomplete                             |
+| Impossible values    | Age recorded as "213"                                                      | Pulls averages and distributions far from reality                               |
+| Missing values       | Scores left `NULL` for students who submitted work                         | Should the null count as zero or be excluded? The decision changes KPI values   |
+| Duplicate labels     | "HW", "Homework", and "Home Work" all mean the same deliverable type       | `GROUP BY Type` splits one category into three, producing misleading breakdowns |
+| Format inconsistency | Phone numbers stored as "(555) 123-4567", "5551234567", and "555-123-4567" | Joins and filters break on mismatched formats                                   |
+| Overwritten history  | A student's grade is corrected, but the old value is lost                  | Trend analysis cannot distinguish a real improvement from a data correction     |
 
 These problems are not hypothetical. A survey of operational databases in a typical organization will find every one of them. ETL exists because raw operational data, left untransformed, produces reports that people cannot trust.
 
@@ -310,10 +310,10 @@ The operational tables remain normalized. The view provides an analytics-ready i
 
 ELT is common in modern cloud warehouses because platforms such as BigQuery, Snowflake, Redshift, and PostgreSQL-based systems can perform transformations at scale.
 
-| Approach | Sequence | Common Context |
-|---|---|---|
-| **ETL** | Extract → Transform → Load | Traditional warehouses, controlled pipelines |
-| **ELT** | Extract → Load → Transform | Cloud warehouses, large-scale raw ingestion |
+| Approach | Sequence                   | Common Context                               |
+| -------- | -------------------------- | -------------------------------------------- |
+| **ETL**  | Extract → Transform → Load | Traditional warehouses, controlled pipelines |
+| **ELT**  | Extract → Load → Transform | Cloud warehouses, large-scale raw ingestion  |
 
 For this course, the practical lesson is simple: whether you call it ETL or ELT, BI requires explicit transformation logic. Raw operational data rarely becomes trustworthy insight automatically.
 
@@ -334,12 +334,12 @@ A data warehouse is different from an operational database. It is structured aro
 
 Classically, a data warehouse has four characteristics:
 
-| Characteristic | Meaning | Grading Example |
-|---|---|---|
-| **Subject-oriented** | Organized around major analytical subjects | Student performance, attendance, deliverables |
-| **Integrated** | Combines data from multiple sources | Grades from Access, attendance from LMS, student info from registrar |
-| **Time-variant** | Preserves historical data | Scores and attendance across semesters |
-| **Non-volatile** | Data is loaded and preserved, not constantly overwritten | Historical snapshots remain for comparison |
+| Characteristic       | Meaning                                                  | Grading Example                                                      |
+| -------------------- | -------------------------------------------------------- | -------------------------------------------------------------------- |
+| **Subject-oriented** | Organized around major analytical subjects               | Student performance, attendance, deliverables                        |
+| **Integrated**       | Combines data from multiple sources                      | Grades from Access, attendance from LMS, student info from registrar |
+| **Time-variant**     | Preserves historical data                                | Scores and attendance across semesters                               |
+| **Non-volatile**     | Data is loaded and preserved, not constantly overwritten | Historical snapshots remain for comparison                           |
 
 ### Metadata in BI
 
@@ -359,10 +359,10 @@ Without metadata, users may see numbers but not understand them.
 
 Organizations may build one large warehouse or several focused analytical stores.
 
-| Structure | Scope | Strength | Risk |
-|---|---|---|---|
-| **Enterprise Data Warehouse (EDW)** | Entire organization | Single version of truth | Expensive and complex |
-| **Data Mart** | Specific department or function | Faster and more focused | Can create silos if unmanaged |
+| Structure                           | Scope                           | Strength                | Risk                          |
+| ----------------------------------- | ------------------------------- | ----------------------- | ----------------------------- |
+| **Enterprise Data Warehouse (EDW)** | Entire organization             | Single version of truth | Expensive and complex         |
+| **Data Mart**                       | Specific department or function | Faster and more focused | Can create silos if unmanaged |
 
 A university might have an EDW for institutional reporting, plus data marts for enrollment, advising, finance, and teaching analytics.
 
@@ -372,12 +372,12 @@ A university might have an EDW for institutional reporting, plus data marts for 
 
 Data lakes are useful when organizations want to preserve raw, flexible data for future exploration, data science, or machine learning.
 
-| Feature | Data Warehouse | Data Lake |
-|---|---|---|
-| Data format | Cleaned, structured | Raw, structured/semi-structured/unstructured |
-| Schema approach | Schema-on-write | Schema-on-read |
-| Main users | Analysts, managers | Data scientists, engineers |
-| Best for | Dashboards, KPIs, governed reports | Exploration, machine learning, raw archives |
+| Feature         | Data Warehouse                     | Data Lake                                    |
+| --------------- | ---------------------------------- | -------------------------------------------- |
+| Data format     | Cleaned, structured                | Raw, structured/semi-structured/unstructured |
+| Schema approach | Schema-on-write                    | Schema-on-read                               |
+| Main users      | Analysts, managers                 | Data scientists, engineers                   |
+| Best for        | Dashboards, KPIs, governed reports | Exploration, machine learning, raw archives  |
 
 A warehouse is like a curated library. A data lake is like a large archive. Both can be useful, but they serve different purposes.
 
@@ -403,11 +403,11 @@ A **fact** is an event or observation that can be measured. A **measure** is the
 
 In the Grading Database:
 
-| Fact Event | Measures |
-|---|---|
+| Fact Event                               | Measures                          |
+| ---------------------------------------- | --------------------------------- |
 | A student earns a score on a deliverable | Score, PointsPossible, Percentage |
-| A student attends a class session | AttendedFlag, AttendanceCount |
-| A student submits work | SubmissionCount, LateDays |
+| A student attends a class session        | AttendedFlag, AttendanceCount     |
+| A student submits work                   | SubmissionCount, LateDays         |
 
 Facts are usually narrow and numeric. They are the center of analytical calculations.
 
@@ -415,12 +415,12 @@ Facts are usually narrow and numeric. They are the center of analytical calculat
 
 A **dimension** provides context for a fact. Dimensions answer who, what, when, where, and how. Commonly used dimensions across industries are people, products, place, and time.
 
-| Dimension | Descriptors |
-|---|---|
-| Student | StudentName, Email, Section, Major |
-| Deliverable | Type, DeliverableNumber, Topic |
-| Time | Date, Week, Month, Semester |
-| Course | CourseCode, CourseName, Instructor |
+| Dimension   | Descriptors                        |
+| ----------- | ---------------------------------- |
+| Student     | StudentName, Email, Section, Major |
+| Deliverable | Type, DeliverableNumber, Topic     |
+| Time        | Date, Week, Month, Semester        |
+| Course      | CourseCode, CourseName, Instructor |
 
 Dimensions make facts interpretable. A score of 82 becomes meaningful when we know who earned it, on what deliverable, in which week, and under which grading policy.
 
@@ -463,12 +463,12 @@ The fact table contains foreign keys and measures. The dimension tables contain 
 
 Star schemas intentionally repeat some descriptive values to make analysis easier and faster. This is not careless redundancy. It is controlled denormalization for analytical purposes.
 
-| Operational Design | Analytical Design |
-|---|---|
-| Normalize to prevent anomalies | Denormalize to simplify reporting |
-| Many small related tables | Fewer, wider dimension tables |
-| Optimized for inserts and updates | Optimized for reads and aggregations |
-| Enforces current operational truth | Supports historical comparison |
+| Operational Design                 | Analytical Design                    |
+| ---------------------------------- | ------------------------------------ |
+| Normalize to prevent anomalies     | Denormalize to simplify reporting    |
+| Many small related tables          | Fewer, wider dimension tables        |
+| Optimized for inserts and updates  | Optimized for reads and aggregations |
+| Enforces current operational truth | Supports historical comparison       |
 
 <div class="callout important">
    <p><strong>❗ Important:</strong> Denormalization is acceptable in BI because ETL controls how data enters the analytical system. Users query the warehouse; they do not manually update dimension tables during daily operations.</p>
@@ -492,13 +492,13 @@ Snowflake schemas reduce redundancy but add joins. Star schemas are often prefer
 
 OLAP systems support common analytical operations. These operations describe how users move through data.
 
-| OLAP Operation | Meaning | Grading Example | SQL Analogy |
-|---|---|---|---|
-| **Slice** | Filter one dimension to one value | Show only quizzes | `WHERE Type = 'Quiz'` |
-| **Dice** | Filter multiple dimensions | Quizzes in Section A during March | `WHERE Type='Quiz' AND Section='A' AND Month='March'` |
-| **Drill-down** | Move from summary to detail | Semester average → weekly average → deliverable score | More detailed `GROUP BY` |
-| **Roll-up** | Move from detail to summary | Deliverable score → type average → course average | Less detailed `GROUP BY` |
-| **Pivot** | Rotate analytical view | Put deliverable types as columns instead of rows | Conditional aggregation or pivot tool |
+| OLAP Operation | Meaning                           | Grading Example                                       | SQL Analogy                                           |
+| -------------- | --------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Slice**      | Filter one dimension to one value | Show only quizzes                                     | `WHERE Type = 'Quiz'`                                 |
+| **Dice**       | Filter multiple dimensions        | Quizzes in Section A during March                     | `WHERE Type='Quiz' AND Section='A' AND Month='March'` |
+| **Drill-down** | Move from summary to detail       | Semester average → weekly average → deliverable score | More detailed `GROUP BY`                              |
+| **Roll-up**    | Move from detail to summary       | Deliverable score → type average → course average     | Less detailed `GROUP BY`                              |
+| **Pivot**      | Rotate analytical view            | Put deliverable types as columns instead of rows      | Conditional aggregation or pivot tool                 |
 
 OLAP reports are sometimes called **OLAP cubes**. An OLAP cube uses dimensions as inputs and calculates measures as outputs. Excel PivotTables are a common way to create OLAP reports — they let users drag dimensions to rows, columns, and filters while displaying aggregated measures in the body.
 
@@ -569,25 +569,27 @@ ORDER BY StudentName;
 
 This rotates deliverable types into columns, making student performance easier to compare across categories.
 
-### RFM Analysis: A Classic BI Technique
+After analysts slice, dice, summarize, and compare data, they often use those summaries to create actionable segments. RFM analysis is one classic example.
+
+### Applied BI Technique: RFM Analysis
 
 RFM analysis is a marketing technique used to rank and group customers based on three dimensions of their transaction history. It is one of the most widely taught analytical methods in BI because it connects data directly to business action.
 
-| Dimension | Meaning | Question Answered |
-|---|---|---|
-| **Recency** | How recently did the customer make a purchase? | Is this customer still active? |
-| **Frequency** | How often does the customer purchase? | Is this customer loyal or occasional? |
-| **Monetary** | How much money has the customer spent? | What is the customer's total value? |
+| Dimension     | Meaning                                        | Question Answered                     |
+| ------------- | ---------------------------------------------- | ------------------------------------- |
+| **Recency**   | How recently did the customer make a purchase? | Is this customer still active?        |
+| **Frequency** | How often does the customer purchase?          | Is this customer loyal or occasional? |
+| **Monetary**  | How much money has the customer spent?         | What is the customer's total value?   |
 
 The idea is simple: customers who purchased recently, purchase often, and spend more are usually the most valuable. RFM analysis converts transaction records into actionable segments such as "high-value loyal," "at risk of leaving," or "lost — do not invest further."
 
 RFM connects directly to the Grading Database. Imagine applying the same logic to student performance:
 
-| RFM Dimension | Grading Database Analogy | BI Question |
-|---|---|---|
-| Recency | How recently did the student submit work? | Is the student currently engaged? |
-| Frequency | How consistently does the student submit deliverables? | Is the student developing steady habits? |
-| Monetary (or Performance) | What is the student's average score? | Is the student meeting expectations? |
+| RFM Dimension             | Grading Database Analogy                               | BI Question                              |
+| ------------------------- | ------------------------------------------------------ | ---------------------------------------- |
+| Recency                   | How recently did the student submit work?              | Is the student currently engaged?        |
+| Frequency                 | How consistently does the student submit deliverables? | Is the student developing steady habits? |
+| Monetary (or Performance) | What is the student's average score?                   | Is the student meeting expectations?     |
 
 An instructor could use an RFM-style analysis to segment students into groups for targeted intervention: high-performing and engaged (no action needed), performing but disengaging (reach out), struggling but trying (offer support), and disengaged and low-performing (urgent intervention).
 
@@ -720,35 +722,35 @@ SQL produces rows and columns. Decision-makers often need patterns, trends, exce
 
 BI outputs usually fall into three categories:
 
-| Output Type | Purpose | Example |
-|---|---|---|
-| **Report** | Structured, often scheduled summary | Weekly grade summary |
-| **Dashboard** | Interactive monitoring surface | Class performance dashboard |
-| **KPI Card** | Single metric status indicator | Pass rate = 82% |
+| Output Type   | Purpose                             | Example                     |
+| ------------- | ----------------------------------- | --------------------------- |
+| **Report**    | Structured, often scheduled summary | Weekly grade summary        |
+| **Dashboard** | Interactive monitoring surface      | Class performance dashboard |
+| **KPI Card**  | Single metric status indicator      | Pass rate = 82%             |
 
 ### Choosing the Right Visualization
 
-| Analytical Question | Recommended Visualization |
-|---|---|
-| Compare categories | Bar chart |
-| Show trend over time | Line chart |
-| Show distribution | Histogram or box plot |
-| Show relationship between two variables | Scatter plot |
-| Show single target metric | KPI card |
-| Show part-to-whole | Stacked bar; pie chart only for very few categories |
+| Analytical Question                     | Recommended Visualization                           |
+| --------------------------------------- | --------------------------------------------------- |
+| Compare categories                      | Bar chart                                           |
+| Show trend over time                    | Line chart                                          |
+| Show distribution                       | Histogram or box plot                               |
+| Show relationship between two variables | Scatter plot                                        |
+| Show single target metric               | KPI card                                            |
+| Show part-to-whole                      | Stacked bar; pie chart only for very few categories |
 
 ### Grading Database Dashboard Example
 
 A simple instructor dashboard might include:
 
-| Dashboard Element | BI Question | Query Source |
-|---|---|---|
-| KPI card: average class score | How is the class doing overall? | `AVG(Score)` |
-| KPI card: missing submissions | How much work is unsubmitted? | Cross join + left join |
-| Bar chart: average by deliverable type | Which categories are hardest? | `GROUP BY DeliverableType` |
-| Line chart: average score by week | Are scores improving or declining? | Time-based grouping |
-| Table: at-risk students | Who needs attention? | `HAVING AVG(Score) < 70` |
-| Filter: deliverable type | Which category should we inspect? | Dashboard slicer |
+| Dashboard Element                      | BI Question                        | Query Source               |
+| -------------------------------------- | ---------------------------------- | -------------------------- |
+| KPI card: average class score          | How is the class doing overall?    | `AVG(Score)`               |
+| KPI card: missing submissions          | How much work is unsubmitted?      | Cross join + left join     |
+| Bar chart: average by deliverable type | Which categories are hardest?      | `GROUP BY DeliverableType` |
+| Line chart: average score by week      | Are scores improving or declining? | Time-based grouping        |
+| Table: at-risk students                | Who needs attention?               | `HAVING AVG(Score) < 70`   |
+| Filter: deliverable type               | Which category should we inspect?  | Dashboard slicer           |
 
 ### Characteristics of Effective BI Reporting
 
@@ -767,13 +769,13 @@ Effective BI reporting should be:
 
 ### Visualization Pitfalls
 
-| Mistake | Why It Hurts |
-|---|---|
-| Too many charts | Users do not know where to look |
-| Inconsistent scales | Comparisons become misleading |
-| Unlabeled axes | Interpretation becomes guesswork |
-| Decorative 3D charts | Visual style distorts values |
-| Too many colors | Attention is scattered |
+| Mistake                 | Why It Hurts                                        |
+| ----------------------- | --------------------------------------------------- |
+| Too many charts         | Users do not know where to look                     |
+| Inconsistent scales     | Comparisons become misleading                       |
+| Unlabeled axes          | Interpretation becomes guesswork                    |
+| Decorative 3D charts    | Visual style distorts values                        |
+| Too many colors         | Attention is scattered                              |
 | Metrics without targets | Users cannot tell whether the number is good or bad |
 
 Clarity beats decoration. Always.
@@ -789,25 +791,25 @@ Clarity beats decoration. Always.
 
 A KPI is not just any number. It must connect to an objective.
 
-| Weak Metric | Better KPI |
-|---|---|
-| Number of grades entered | Percentage of deliverables graded within seven days |
-| Number of students | Percentage of students passing |
-| Number of attendance rows | Attendance rate by week |
-| Average score | Average score compared with target |
+| Weak Metric               | Better KPI                                          |
+| ------------------------- | --------------------------------------------------- |
+| Number of grades entered  | Percentage of deliverables graded within seven days |
+| Number of students        | Percentage of students passing                      |
+| Number of attendance rows | Attendance rate by week                             |
+| Average score             | Average score compared with target                  |
 
 A KPI becomes useful when it has context: a target, a time period, an owner, a decision rule, and a clear definition. Here is a reusable template for defining any KPI:
 
-| Field | Description | Grading Database Example |
-|---|---|---|
-| **KPI name** | What the metric is called | At-Risk Rate |
-| **Goal** | What the KPI helps achieve | Identify students needing intervention |
-| **Formula** | Exact calculation | Students with average below 70 / active students |
-| **Grain** | Level of detail | Student-course |
-| **Refresh frequency** | How often it is recalculated | Weekly |
-| **Threshold** | Value that triggers action | Alert if above 20% |
-| **Owner** | Who is responsible for the metric | Instructor or course coordinator |
-| **Action** | What happens when the threshold is crossed | Send outreach or offer support |
+| Field                 | Description                                | Grading Database Example                         |
+| --------------------- | ------------------------------------------ | ------------------------------------------------ |
+| **KPI name**          | What the metric is called                  | At-Risk Rate                                     |
+| **Goal**              | What the KPI helps achieve                 | Identify students needing intervention           |
+| **Formula**           | Exact calculation                          | Students with average below 70 / active students |
+| **Grain**             | Level of detail                            | Student-course                                   |
+| **Refresh frequency** | How often it is recalculated               | Weekly                                           |
+| **Threshold**         | Value that triggers action                 | Alert if above 20%                               |
+| **Owner**             | Who is responsible for the metric          | Instructor or course coordinator                 |
+| **Action**            | What happens when the threshold is crossed | Send outreach or offer support                   |
 
 ### KPI Example: At-Risk Rate
 
@@ -835,22 +837,22 @@ The **Balanced Scorecard** is a performance management framework that organizes 
 
 A common version includes four perspectives:
 
-| Perspective | Main Question | University/Teaching Example |
-|---|---|---|
-| **Financial / Resource** | Are resources being used effectively? | Cost per student supported |
-| **Customer / Stakeholder** | Are stakeholders satisfied? | Student satisfaction, advising responsiveness |
-| **Internal Process** | Are processes working well? | Average grading turnaround time |
-| **Learning and Growth** | Is the organization improving? | Faculty development, course redesign outcomes |
+| Perspective                | Main Question                         | University/Teaching Example                   |
+| -------------------------- | ------------------------------------- | --------------------------------------------- |
+| **Financial / Resource**   | Are resources being used effectively? | Cost per student supported                    |
+| **Customer / Stakeholder** | Are stakeholders satisfied?           | Student satisfaction, advising responsiveness |
+| **Internal Process**       | Are processes working well?           | Average grading turnaround time               |
+| **Learning and Growth**    | Is the organization improving?        | Faculty development, course redesign outcomes |
 
 For the Grading Database, a course-level Balanced Scorecard might include:
 
-| Perspective | KPI | Possible Action |
-|---|---|---|
-| Student success | Pass rate | Identify at-risk students |
-| Internal process | Grading turnaround time | Adjust grading workflow |
-| Engagement | Weekly attendance rate | Contact absent students |
-| Learning improvement | Score trend over semester | Revise difficult modules |
-| Equity/fairness | Outcome gaps across sections | Review assessment consistency |
+| Perspective          | KPI                          | Possible Action               |
+| -------------------- | ---------------------------- | ----------------------------- |
+| Student success      | Pass rate                    | Identify at-risk students     |
+| Internal process     | Grading turnaround time      | Adjust grading workflow       |
+| Engagement           | Weekly attendance rate       | Contact absent students       |
+| Learning improvement | Score trend over semester    | Revise difficult modules      |
+| Equity/fairness      | Outcome gaps across sections | Review assessment consistency |
 
 The Balanced Scorecard matters because it prevents metric tunnel vision. A course could have high average grades but poor attendance, delayed feedback, or unequal outcomes across student groups. BI should support a balanced view of performance.
 
@@ -894,15 +896,15 @@ Those are different metrics. They may all be useful, but they cannot share the s
 
 A metric definition should include:
 
-| Metadata Item | Example |
-|---|---|
-| Metric name | Pass Rate |
-| Formula | Students with average ≥ 60 / total active students |
-| Grain | Student-semester |
-| Refresh schedule | Daily at 2:00 a.m. |
-| Data owner | Course coordinator |
-| Exclusions | Withdrawn students excluded |
-| Action threshold | Alert if below 75% |
+| Metadata Item    | Example                                            |
+| ---------------- | -------------------------------------------------- |
+| Metric name      | Pass Rate                                          |
+| Formula          | Students with average ≥ 60 / total active students |
+| Grain            | Student-semester                                   |
+| Refresh schedule | Daily at 2:00 a.m.                                 |
+| Data owner       | Course coordinator                                 |
+| Exclusions       | Withdrawn students excluded                        |
+| Action threshold | Alert if below 75%                                 |
 
 ### Data Stewardship
 
@@ -933,11 +935,11 @@ BI systems should apply role-based access control, row-level security, and aggre
 
 BI logic is portable. Tools differ, but the analytical thinking remains the same.
 
-| Platform | Best BI Use | Strength | Limitation |
-|---|---|---|---|
-| **Microsoft Access** | Visual reports and small dashboards | Easy forms, queries, reports | Limited scalability and security |
-| **SQLite** | SQL-based BI sandbox | Lightweight, transparent, portable | Limited multi-user/server features |
-| **Supabase/PostgreSQL** | Cloud-hosted analytical backend | Robust SQL, views, security, APIs | Requires stronger administration and governance |
+| Platform                | Best BI Use                         | Strength                           | Limitation                                      |
+| ----------------------- | ----------------------------------- | ---------------------------------- | ----------------------------------------------- |
+| **Microsoft Access**    | Visual reports and small dashboards | Easy forms, queries, reports       | Limited scalability and security                |
+| **SQLite**              | SQL-based BI sandbox                | Lightweight, transparent, portable | Limited multi-user/server features              |
+| **Supabase/PostgreSQL** | Cloud-hosted analytical backend     | Robust SQL, views, security, APIs  | Requires stronger administration and governance |
 
 ### Access BI Pattern
 
@@ -1113,13 +1115,13 @@ This view lets the instructor explore whether attendance and performance move to
 
 ### Step 7: Translate Queries into Dashboard Elements
 
-| Dashboard Element | Query Result | Decision Use |
-|---|---|---|
-| Average class score | `AVG(Score)` | Overall performance monitoring |
-| At-risk count | Students with `AVG(Score) < 70` | Intervention planning |
-| Missing submissions | Missing student-deliverable pairs | Follow-up reminders |
-| Avg score by deliverable type | Grouped grade report | Assessment redesign |
-| Attendance-performance table | AttendancePerformance view | Engagement analysis |
+| Dashboard Element             | Query Result                      | Decision Use                   |
+| ----------------------------- | --------------------------------- | ------------------------------ |
+| Average class score           | `AVG(Score)`                      | Overall performance monitoring |
+| At-risk count                 | Students with `AVG(Score) < 70`   | Intervention planning          |
+| Missing submissions           | Missing student-deliverable pairs | Follow-up reminders            |
+| Avg score by deliverable type | Grouped grade report              | Assessment redesign            |
+| Attendance-performance table  | AttendancePerformance view        | Engagement analysis            |
 
 The BI layer is not the dashboard itself. It is the reliable analytical foundation that the dashboard depends on.
 
@@ -1142,13 +1144,13 @@ Create a SQL view (or saved Access query) that combines student, deliverable, an
 
 Write three queries that each produce a single KPI value. At least one should use a threshold or target comparison. For each KPI, complete this template:
 
-| Field | Your KPI |
-|---|---|
-| KPI name | |
-| Formula | |
-| Grain | |
-| Threshold | |
-| Owner | |
+| Field     | Your KPI |
+| --------- | -------- |
+| KPI name  |          |
+| Formula   |          |
+| Grain     |          |
+| Threshold |          |
+| Owner     |          |
 
 **3. One Missing-Submission Query**
 
@@ -1164,13 +1166,13 @@ Choose one of your KPIs and write a governance note that defines it clearly enou
 
 ### Grading Rubric
 
-| Deliverable | What We Look For |
-|---|---|
-| Analytical view | Correct joins, clear naming, at least one CASE expression |
-| KPI queries (3) | Correct SQL, threshold logic, completed KPI template for each |
+| Deliverable              | What We Look For                                                             |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| Analytical view          | Correct joins, clear naming, at least one CASE expression                    |
+| KPI queries (3)          | Correct SQL, threshold logic, completed KPI template for each                |
 | Missing-submission query | Correct CROSS JOIN + LEFT JOIN pattern, explanation of inner-join limitation |
-| Dashboard sketch | Four distinct elements, each tied to a BI question and query source |
-| Governance note | Formula, sources, exclusions, schedule, and owner all specified |
+| Dashboard sketch         | Four distinct elements, each tied to a BI question and query source          |
+| Governance note          | Formula, sources, exclusions, schedule, and owner all specified              |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>

@@ -2,22 +2,22 @@
 name: lets-build-creator
 description: >
   Create or revise the "Let's Build" (LB) companion section for a BITM330 textbook chapter.
-  Use when: drafting a new LB; revising an existing LB; adding hands-on practice with the
-  Grading Database (GD/GDB); turning chapter concepts into Access, SQL, SQLite, Power BI,
-  macro, DBA, or BI activities; preparing the LB that will feed the chapter's Lab and
-  Autograded Lab. Do not use for full chapter editing, image work, reflection-only files,
-  RAT/quiz files, or PetVax lab transfer.
+  Use when: drafting a new LB; revising an existing LB; adding guided hands-on practice with
+  the Grading Database (GD/GDB); turning chapter concepts into Access, SQL, SQLite, Power BI,
+  macro, DBA, BI, ERD, or strategy activities; preparing the LB that will feed the chapter's
+  Lab and Autograded Lab. Do not use for full chapter editing, image work, reflection-only
+  files, RAT/quiz files, or PetVax lab transfer.
 argument-hint: Chapter number, chapter folder, or main file path (for example, "ch04" or "chapter-drafts/ch04-databases/main/ch04-main-2026-05-19.md").
 ---
 
 # BITM330 Let's Build Creator Skill
 
-Create or revise the Let's Build (LB) section for a BITM330 chapter. The LB translates the chapter's concepts into guided, hands-on practice using the Grading Database. It comes after the main chapter summary and is the foundation for the chapter's Lab and Autograded Lab.
+Create or revise the Let's Build (LB) section for a BITM330 chapter. The LB translates the chapter's concepts into guided, scaffolded practice using the Grading Database. It comes after the main chapter content and serves as the instructional foundation for the chapter's Lab and Autograded Lab.
 
 ## Abbreviations
 
 - **LB** — Let's Build (the chapter companion section/file).
-- **GD** / **GDB** — Grading Database (the canonical running case).
+- **GD** / **GDB** — Grading Database, the canonical running case used for guided practice.
 - **PetVax** — the veterinary clinic case used by the sibling `lab-creation` skill, not by LB.
 
 Use these abbreviations consistently in section text, comments, and commit messages.
@@ -36,6 +36,20 @@ Main chapter  →  Let's Build (GD)  →  Lab (PetVax)  →  Autograded Lab  →
 
 The LB you create here is the source that the sibling skills `lab-creation` and `autograded-lab` will transfer and assess. Design every section so its tasks can be converted into objective questions and into a PetVax transfer.
 
+## Let's Build versus Lab boundary
+
+A Let's Build section shows students **how** to apply the chapter concept using the Grading Database. It is guided, scaffolded, and instructional.
+
+A Lab asks students to **transfer the same skill to PetVax**. It is graded, less scaffolded, and usually has two assessment components:
+
+1. an autograded quiz with objective questions; and
+2. a required file submission, such as an Access file, SQL file, spreadsheet, ERD, Power BI file, or PDF.
+
+The LB should therefore make the expected actions and outputs explicit enough that they can become both:
+
+- PetVax transfer tasks; and
+- autograded quiz questions.
+
 ## When to use
 
 Use this skill when the user asks to:
@@ -43,7 +57,7 @@ Use this skill when the user asks to:
 - create a Let's Build for a chapter
 - revise an existing LB
 - add hands-on GD practice to a chapter
-- turn chapter concepts into Access, SQL, SQLite, Power BI, macro, DBA, or BI activities
+- turn chapter concepts into Access, SQL, SQLite, Power BI, macro, DBA, BI, ERD, or strategy activities
 - prepare the LB that will feed the chapter's Lab and Autograded Lab
 
 Do not use this skill for:
@@ -63,7 +77,7 @@ Every LB section should connect:
 Concept  →  Action  →  Output  →  Interpretation
 ```
 
-The Grading Database is a continuous system. Each chapter's LB extends, refines, queries, analyzes, governs, or interprets the same GD — not a fresh case.
+The Grading Database is a continuous system. Each chapter's LB extends, refines, queries, analyzes, governs, visualizes, or interprets the same GD — not a fresh case.
 
 ## Source file selection
 
@@ -82,14 +96,12 @@ The Grading Database is a continuous system. Each chapter's LB extends, refines,
 The LB file is a companion to a chapter, not a standalone document.
 
 - **No H1.** The H1 is reserved for the chapter title.
-- **H2 `## Let's Build`** opens the file. It is followed immediately by the centered Let's Build icon, and then a brief intro paragraph (what students will think through or build, and how it connects to the chapter just read). Every LB file must include this icon directly under the H2, followed by a centered `<p>` tag for spacing before the intro paragraph:
+- **H2 `## Let's Build`** opens the file. It is followed immediately by the centered Let's Build icon, and then a brief intro paragraph (what students will think through or build, and how it connects to the chapter just read). Every LB file must include this icon directly under the H2, followed by the intro paragraph:
 
 ```html
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
-
-<p align="center">
 ```
 
 - **H3** is used for every named LB section.
@@ -110,11 +122,11 @@ deliverables count, attendance rate, participation rate, ...
 
 ## Required output structure — choose by chapter type
 
-Pick the pattern that matches the chapter. Both use the same H2 → H3 hierarchy.
+Pick the pattern that matches the chapter. All patterns use the same H2 → H3 hierarchy.
 
-### Section pattern (concept-heavy chapters: Ch 1, 2, 8, 15, 17)
+### Section pattern (concept-heavy chapters: Ch 1, 2, 8, 17)
 
-Canonical exemplar: [`ch02-lets-build-2026-05-22.md`](../../../BITM330-Book-draft/chapter-drafts/ch02-mis-and-bitm/lets-build/ch02-lets-build-2026-05-22.md).
+Canonical exemplar: `ch02-lets-build-2026-06-03.md` in `BITM330-Book-draft/chapter-drafts/ch02-mis-and-bitm/lets-build/`.
 
 Required shape:
 
@@ -124,8 +136,6 @@ Required shape:
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
-
-<p align="center">
 
 <one short paragraph: what students think through, how it connects to the chapter,
 and the no-submission note pointing to the companion Lab NN>
@@ -153,8 +163,6 @@ Required shape:
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
 
-<p align="center">
-
 <one short paragraph: what students will build with the GD and what they will be able
 to do at the end>
 
@@ -170,6 +178,69 @@ to do at the end>
 ```
 
 Each named task section opens with what to do, shows readable SQL or the click path, and describes the expected output before moving on.
+
+### Hybrid strategy-and-analysis pattern (Ch 15)
+
+Use this pattern for Chapter 15 when the chapter combines strategy with SQL-based analysis.
+
+Required shape:
+
+```markdown
+## Let's Build
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
+</p>
+
+<one short paragraph: how students will move from SQL output to strategic interpretation>
+
+### Purpose
+### What You Will Practice
+### Before You Begin
+### Strategic Question — Trend Analysis
+### Strategic Question — Early Warning
+### Strategic Question — Scenario Testing
+### Strategic Question — Assessment or Policy Insight
+### Strategic Interpretation
+### What This Shows
+### Common Mistakes
+### Submit or Save
+### Peek Ahead — Chapter 16
+```
+
+Chapter 15 should connect SQL output to strategic interpretation. It should not become a generic business strategy essay, and it should not introduce frameworks the chapter has not taught.
+
+### Capstone packaging pattern (Ch 16)
+
+Use this pattern for Chapter 16.
+
+Required shape:
+
+```markdown
+## Let's Build
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
+</p>
+
+<one short paragraph: what students will package, verify, and explain>
+
+### Purpose
+### What You Are Submitting
+### Before You Begin
+### Final Database Check
+### ERD and SQL Documentation Check
+### Query Sequence Check
+### Reports, Macros, DBA, and BI Check
+### PDF Portfolio Assembly
+### Final Submission Checklist
+### What This Shows
+### Common Mistakes
+### Submit or Save
+### Peek Ahead — Chapter 17
+```
+
+Chapter 16 should not introduce major new technical content. It should help students package, verify, document, and explain the full Grading Database system. Treat `### Reports, Macros, DBA, and BI Check` as a checklist-style verification section, not a build task.
 
 ## Running case default
 
@@ -187,27 +258,73 @@ GRADE_SCALE(LetterGrade, MinScore, MaxScore)
 
 Do not introduce a concept, tool, or table before the chapter that teaches it.
 
+## Schema naming consistency rule
+
+Use the canonical GD table names unless a chapter-specific file explicitly uses a different working schema.
+
+Preferred canonical names:
+
+- `STUDENT`
+- `ASSIGNMENT`
+- `SCHEDULE`
+- `ATTENDANCE`
+- `DELIVERABLE`
+- `STUDENT_GRADE`
+- `GRADE_SCALE`
+
+Avoid switching among `ASSIGNMENT`, `ASSIGNMENT_TYPE`, `WEIGHT`, and `GRADE_WEIGHT` inside the same LB unless the chapter is explicitly teaching a transition from an early simplified structure to the final normalized structure.
+
+If an early chapter uses simplified names such as `GRADEBOOK` or `GRADE_WEIGHT`, clearly label them as temporary teaching tables.
+
 ## Tool progression (do not jump ahead)
 
 | Chapter | LB focus |
 | --- | --- |
-| 1 | Conceptual: project charter, entities, business questions |
-| 2 | Conceptual: DIKW, KPIs, IPO, five components — no DB yet |
-| 3 | Google Sheets data types, anomalies, spreadsheet limits |
-| 4 | Access tables, form, query, report |
-| 5 | SQL in SQLite and Access SQL view |
-| 6 | Relationships, foreign keys, referential integrity |
-| 7 | Normalization to 3NF |
+| 1 | Conceptual: project orientation, entities, business questions, course arc |
+| 2 | Conceptual: DIKW, R.E.A.D., KPIs, IPO, five components — no database tool yet |
+| 3 | Google Sheets: data types, metadata, anomalies, spreadsheet limits |
+| 4 | Microsoft Access: tables, validation, form, query, report |
+| 5 | SQL: SQLite and Access SQL view; SELECT, filtering, aggregation, first joins |
+| 6 | Relational model: relationships, foreign keys, junction tables, referential integrity |
+| 7 | Normalization: 1NF, 2NF, 3NF, migration from flat table to normalized tables |
 | 8 | Midterm review and consolidation |
-| 9 | Advanced SQL: CTEs, window functions, CASE |
-| 10 | ERD design |
-| 11 | DBA: backup, security, roles, indexing |
-| 12 | BI queries, KPIs, decision memos |
-| 13 | Indexes, views, triggers, transactions |
-| 14 | Access → Power BI dashboard |
-| 15 | Strategic alignment, value-chain audit |
-| 16 | Portfolio assembly |
-| 17 | Transfer to a new problem |
+| 9 | Database design and ER modeling: requirements, entities, relationships, Crow's Foot ERD, Mermaid ERD, SQL DDL |
+| 10 | Advanced SQL for business analysis: diagnostic queries, CTEs, views, window functions, weighted calculations, safe updates |
+| 11 | DBA: backup, recovery, security, roles, integrity checks, indexing |
+| 12 | Business intelligence: KPIs, analytical views, reports, decision memos |
+| 13 | Advanced database techniques: indexes, constraints, views, triggers, audit trails, transactions |
+| 14 | Power BI: Access/SQL data to dashboard, Power Query, DAX, visuals |
+| 15 | Strategic SQL and IS alignment: trend analysis, early warning, scenario testing, strategic interpretation |
+| 16 | Final project packaging and integration |
+| 17 | Course synthesis and systems-thinking reflection |
+
+## Chapter 9 and Chapter 10 sequencing rule
+
+Chapter 9 must frame ER modeling as a **design artifact**, not as retrospective documentation. The LB should help students move from business rules to entities, relationships, cardinality, constraints, ERD, Mermaid code, and SQL DDL.
+
+Chapter 10 must explicitly build on the Chapter 9 ERD. Advanced SQL should be presented as the analytical payoff of database design: once students understand where the facts live and how tables connect, they can write professional queries that diagnose problems, calculate metrics, detect exceptions, and support decisions.
+
+Use this design logic:
+
+```text
+We understand the design problem.
+We model the system.
+Then we query it professionally.
+```
+
+## Artifact clarity rule
+
+For build chapters, every LB must specify the artifact students should save or produce, even if the LB itself is not graded.
+
+Examples:
+
+- Access database file: `LB04-GradingDatabase-YourName.accdb`
+- SQL script: `LB10-AdvancedSQL-YourName.sql`
+- ERD export: `LB09-GradingDatabase-ERD-YourName.pdf`
+- Power BI file: `LB14-GradingDashboard-YourName.pbix`
+- Documentation file: `LB11-DBA-Plan-YourName.docx` or `.pdf`
+
+The artifact name should be easy for the Lab and Autograded Lab skills to reference.
 
 ## Style rules
 
@@ -216,7 +333,7 @@ Do not introduce a concept, tool, or table before the chapter that teaches it.
 - Readable SQL with comments only where logic is non-obvious.
 - Callouts (Tip, Note, Common Mistake, Good Practice, Check Your Work) used sparingly.
 - One quick-classify mini-check per LB at most (5 rows, classify each as X / Y / Z, with model answers). Use it to harden a fuzzy distinction.
-- Do not preview strategy content (scale tradeoffs, financial value, SWOT, ROI) in early chapters; that belongs in Ch 11–15.
+- Do not preview strategy content (scale tradeoffs, financial value, SWOT, ROI, competitive advantage) in early chapters; that belongs in Ch 12–15.
 
 ## Connection to downstream artifacts
 
@@ -243,6 +360,7 @@ Before finalizing, confirm:
 - [ ] The LB stays inside the chapter's scope (no premature tools or topics).
 - [ ] Concept-heavy LBs land at 5–8 H3 sections.
 - [ ] Every section connects concept → action → output → interpretation.
+- [ ] Every build LB specifies a named artifact to save.
 - [ ] Every section is convertible to a PetVax transfer and to objective questions.
 - [ ] The LB ends with a `### Peek Ahead — Chapter N+1` hand-off.
 
@@ -255,6 +373,9 @@ Before finalizing, confirm:
 - Mis-numbering the companion lab.
 - Promoting questions, tasks, or rhythm cues to H4 headings.
 - Using the words "block" or "prompt" as structural labels.
+- Treating Chapter 9 ERD work as after-the-fact documentation instead of design.
+- Treating Chapter 10 advanced SQL as disconnected syntax practice rather than the analytical payoff of Ch 9 design.
+- Mixing PetVax tasks into the LB.
 
 ## Revising an existing LB
 
@@ -275,7 +396,7 @@ After creating or revising, respond with:
 Done — created/revised Let's Build for Chapter NN.
 
 - Source chapter: <filename.md>
-- Pattern used: section / task
+- Pattern used: section / task / hybrid / capstone
 - Sections: <comma-separated H3 names>
 - Companion lab referenced: Lab NN — <title>
 - Concepts reinforced: <short list>
@@ -283,4 +404,4 @@ Done — created/revised Let's Build for Chapter NN.
 
 ## Reference
 
-Detailed style, platform-specific patterns (Access SQL, Power BI, macros, DBA, BI), worked examples, and the per-chapter LB map: [`.agents/reference/lets-build-creator.reference.md`](../../reference/lets-build-creator.reference.md).
+Detailed style, platform-specific patterns (Access SQL, Power BI, macros, DBA, BI, ERD, strategy), worked examples, and the per-chapter LB map: [`.agents/reference/active/lets-build-creator.reference.md`](../../reference/active/lets-build-creator.reference.md).

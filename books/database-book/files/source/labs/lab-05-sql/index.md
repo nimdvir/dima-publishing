@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD013 MD024 MD028 MD033 MD034 MD036 -->
+﻿<!-- markdownlint-disable MD013 MD024 MD028 MD033 MD034 MD036 -->
 
 # Lab 05: Querying the PetVax Database with SQL
 
@@ -18,32 +18,32 @@ The data is the same clinic you moved into Microsoft Access in Lab 04. PetVax ha
 
 This lab has **two graded parts**. You must complete both:
 
-- **Part 1 — Brightspace quiz (auto-graded).** You answer a set of exact-answer questions inside the Brightspace quiz for this lab. Most answers come from running a query, so **run the query first, then answer**.
-- **Part 2 — SQL file (AI-checked).** You upload your finished `.sql` script to the separate file-submission assignment. An AI grader confirms the script is complete and authentic — that the required statements exist and that the values match your quiz answers.
+- **Part 1 â€” Brightspace quiz (auto-graded).** You answer a set of exact-answer questions inside the Brightspace quiz for this lab. Most answers come from running a query, so **run the query first, then answer**.
+- **Part 2 â€” SQL file (AI-checked).** You upload your finished `.sql` script to the separate file-submission assignment. An AI grader confirms the script is complete and authentic â€” that the required statements exist and that the values match your quiz answers.
 
 **Final grade = Brightspace quiz score + SQL file submission.**
 
-- **Chapter:** Chapter 5 — Structured Query Language (SQL)
+- **Chapter:** Chapter 5 â€” Structured Query Language (SQL)
 - **Builds on:** the Chapter 5 Let's Build (Grading Database walkthrough in SQLite)
 - **Tool:** SQLiteOnline (browser) or DB Browser for SQLite (desktop)
 - **Estimated time:** about 60 minutes
 
-> 💡 **Note:** This lab uses **one table at a time**. You will query `PETVAX_APPOINTMENTS` and `SERVICE_RATES` separately. Combining two tables in one query (a `JOIN`) is the focus of Chapter 6, so it is intentionally left out here.
+> ðŸ’¡ **Note:** This lab uses **one table at a time**. You will query `PETVAX_APPOINTMENTS` and `SERVICE_RATES` separately. Combining two tables in one query (a `JOIN`) is the focus of Chapter 6, so it is intentionally left out here.
 
 ## Scenario
 
-PetVax is the same single-location veterinary clinic from Lab 04. The clinic moved its appointments out of Access and into a SQLite database. The owner hands you a starter script that creates two tables — `PETVAX_APPOINTMENTS` (April 2026 appointments) and `SERVICE_RATES` (the standard fee for each service) — and loads 24 starter rows. Your job is to load the script, add two new appointments, answer questions about the data, and produce a clean `.sql` file the owner can rerun whenever she wants.
+PetVax is the same single-location veterinary clinic from Lab 04. The clinic moved its appointments out of Access and into a SQLite database. The owner hands you a starter script that creates two tables â€” `PETVAX_APPOINTMENTS` (April 2026 appointments) and `SERVICE_RATES` (the standard fee for each service) â€” and loads 24 starter rows. Your job is to load the script, add two new appointments, answer questions about the data, and produce a clean `.sql` file the owner can rerun whenever she wants.
 
-> ⚠️ **Heads-up:** This is the same data you used in Lab 04, so a few totals will look familiar. The difference is that you now produce every answer with a SQL query instead of an Access click. Run every query against the data you load in Step 1.
+> âš ï¸ **Heads-up:** This is the same data you used in Lab 04, so a few totals will look familiar. The difference is that you now produce every answer with a SQL query instead of an Access click. Run every query against the data you load in Step 1.
 
-> 🛑 **Run statements in order.** A few check answers depend on rows you insert in Step 8. Running a later query before its step will give you the wrong answer.
+> ðŸ›‘ **Run statements in order.** A few check answers depend on rows you insert in Step 8. Running a later query before its step will give you the wrong answer.
 
 ## Required Files and Tools
 
 | Item | Detail |
 | --- | --- |
-| Tool (option A) | [SQLiteOnline](https://sqliteonline.com/) — browser, no install |
-| Tool (option B) | [DB Browser for SQLite](https://sqlitebrowser.org/) — desktop, saves a `.db` file |
+| Tool (option A) | [SQLiteOnline](https://sqliteonline.com/) â€” browser, no install |
+| Tool (option B) | [DB Browser for SQLite](https://sqlitebrowser.org/) â€” desktop, saves a `.db` file |
 | Starter script | `assets/petvax-lab05-setup-2026-06-03.sql` |
 | Submission file | `Lab05-PetVax-SQL-LastName.sql` (required) |
 | Optional second file | `Lab05-PetVax-SQL-LastName.db` (only if you used DB Browser) |
@@ -61,7 +61,7 @@ From here on, write every statement into that one script and keep it saved. The 
 
 ---
 
-## Step 1 — Load the starter database
+## Step 1 â€” Load the starter database
 
 **Do.** Open `petvax-lab05-setup-2026-06-03.sql` from `assets/`. Copy its entire contents into your SQL editor *below* your comment header and run it. The script drops any old tables, creates `PETVAX_APPOINTMENTS` and `SERVICE_RATES`, and inserts the starter data. Confirm the load:
 
@@ -80,7 +80,7 @@ How many rows are in `PETVAX_APPOINTMENTS` immediately after running the setup s
 
 ---
 
-## Step 2 — Identify the primary key
+## Step 2 â€” Identify the primary key
 
 **Do.** Read the `CREATE TABLE PETVAX_APPOINTMENTS` statement at the top of the setup script and find the column declared as `PRIMARY KEY`.
 
@@ -97,11 +97,11 @@ Which column is the primary key of `PETVAX_APPOINTMENTS`?
 - C. `AppointmentID`
 - D. `ServiceType`
 
-> 💡 **Note:** A single pet or owner can appear on many appointment rows, so neither `PetName` nor `OwnerEmail` can identify a row. `AppointmentID` identifies the appointment.
+> ðŸ’¡ **Note:** A single pet or owner can appear on many appointment rows, so neither `PetName` nor `OwnerEmail` can identify a row. `AppointmentID` identifies the appointment.
 
 ---
 
-## Step 3 — Filter the no-shows
+## Step 3 â€” Filter the no-shows
 
 **Do.** Write a query that returns every appointment whose status is `No-show`. Show `AppointmentID`, `PetName`, `AppointmentDate`, and `ServiceType`. Sort by `AppointmentDate`. Label the query `-- Check 3: No-show appointments`.
 
@@ -122,7 +122,7 @@ How many starter rows have `AppointmentStatus = 'No-show'`?
 
 ---
 
-## Step 4 — Find vaccine-due appointments
+## Step 4 â€” Find vaccine-due appointments
 
 **Do.** Write a query that lists every appointment where `VaccineDue = 'Yes'`. Show `PetName`, `OwnerName`, `ServiceType`, and `AppointmentDate`. Label it `-- Check 4: Vaccine-due appointments`.
 
@@ -136,7 +136,7 @@ How many starter rows have `VaccineDue = 'Yes'`?
 
 ---
 
-## Step 5 — Find appointments that did not get a reminder
+## Step 5 â€” Find appointments that did not get a reminder
 
 **Do.** Write a query that lists every appointment where `ReminderSent = 'No'`. Show `PetName`, `AppointmentDate`, `AppointmentStatus`, and `ReminderSent`. Label it `-- Check 5: Reminder not sent`.
 
@@ -150,7 +150,7 @@ How many starter rows have `ReminderSent = 'No'`?
 
 ---
 
-## Step 6 — List the distinct service types
+## Step 6 â€” List the distinct service types
 
 **Do.** Use `DISTINCT` to list each unique `ServiceType` that appears in the starter data.
 
@@ -169,7 +169,7 @@ How many distinct service types appear in the starter data (before any inserts)?
 
 ---
 
-## Step 7 — Find the highest single payment
+## Step 7 â€” Find the highest single payment
 
 **Do.** Sort the appointments by `PaymentAmount` from high to low and look at the top row. Use `AppointmentID` as a second sort field so the result stays predictable if two appointments tie.
 
@@ -190,7 +190,7 @@ Which pet has the highest single `PaymentAmount` in the starter data?
 
 ---
 
-## Step 8 — Add two new appointments
+## Step 8 â€” Add two new appointments
 
 **Do.** Write two `INSERT` statements. The first records Maple's vaccination (the same appointment you added through the Access form in Lab 04). The second records a new General Checkup for Biscuit, whose owner email is missing on file.
 
@@ -231,7 +231,7 @@ How many rows are in `PETVAX_APPOINTMENTS` after running both inserts?
 
 ---
 
-## Step 9 — Find appointments with a missing owner email
+## Step 9 â€” Find appointments with a missing owner email
 
 **Do.** Write a query that returns every appointment whose `OwnerEmail` is `NULL`.
 
@@ -241,7 +241,7 @@ FROM PETVAX_APPOINTMENTS
 WHERE OwnerEmail IS NULL;
 ```
 
-> ⚠️ **Common mistake:** `WHERE OwnerEmail = NULL` returns no rows, ever. `NULL` is not a value you can compare with `=`. Always use `IS NULL` or `IS NOT NULL`.
+> âš ï¸ **Common mistake:** `WHERE OwnerEmail = NULL` returns no rows, ever. `NULL` is not a value you can compare with `=`. Always use `IS NULL` or `IS NOT NULL`.
 
 **Check (Question 9).**
 
@@ -253,7 +253,7 @@ How many appointments have `OwnerEmail IS NULL` after both inserts?
 
 ---
 
-## Step 10 — Filter on a numeric threshold
+## Step 10 â€” Filter on a numeric threshold
 
 **Do.** Write a query that returns every appointment whose `PaymentAmount` is at least 100. Show `PetName`, `ServiceType`, and `PaymentAmount`. Sort by `PaymentAmount` descending. Label it `-- Check 10: Payments of 100 or more`.
 
@@ -274,7 +274,7 @@ How many rows have `PaymentAmount >= 100` after both inserts?
 
 ---
 
-## Step 11 — Count appointments per service
+## Step 11 â€” Count appointments per service
 
 **Do.** Group the appointments by `ServiceType` and count how many appointments fall in each group. Sort from most to fewest.
 
@@ -300,7 +300,7 @@ After both inserts, which `ServiceType` has the **most** appointments?
 
 ---
 
-## Step 12 — Average payment by service, then filter the groups
+## Step 12 â€” Average payment by service, then filter the groups
 
 **Do.** Group the appointments by `ServiceType`, compute the average `PaymentAmount`, then add a `HAVING` clause to keep only the services whose average is at least 100.
 
@@ -312,7 +312,7 @@ GROUP BY ServiceType
 HAVING AVG(PaymentAmount) >= 100;
 ```
 
-> 💡 **Note:** `WHERE` filters rows before grouping. `HAVING` filters groups after aggregation. Writing `WHERE AVG(PaymentAmount) >= 100` is a common SQL error.
+> ðŸ’¡ **Note:** `WHERE` filters rows before grouping. `HAVING` filters groups after aggregation. Writing `WHERE AVG(PaymentAmount) >= 100` is a common SQL error.
 
 **Check (Question 12).**
 
@@ -330,7 +330,7 @@ Which service categories appear in the `HAVING` result? Select **all** that appl
 
 ---
 
-## Step 13 — Build a CASE calculated field and count the tiers
+## Step 13 â€” Build a CASE calculated field and count the tiers
 
 **Do.** Use a `CASE` expression to label every appointment by payment tier, then group by the label to count how many fall in each tier.
 
@@ -357,7 +357,7 @@ After both inserts, how many appointments fall in the **Low** tier (`PaymentAmou
 
 ---
 
-## Step 14 — Query the service-rate table on its own
+## Step 14 â€” Query the service-rate table on its own
 
 **Do.** The second table, `SERVICE_RATES`, holds the clinic's standard fee for each service. Query it directly to find the most expensive standard service.
 
@@ -367,7 +367,7 @@ FROM SERVICE_RATES
 ORDER BY StandardFee DESC;
 ```
 
-> 💡 **Note:** Right now you are looking at the two tables **separately**. To match each appointment to its standard fee in one result — and flag appointments billed above or below that fee — you would combine the tables with a `JOIN`. That is the focus of Chapter 6.
+> ðŸ’¡ **Note:** Right now you are looking at the two tables **separately**. To match each appointment to its standard fee in one result â€” and flag appointments billed above or below that fee â€” you would combine the tables with a `JOIN`. That is the focus of Chapter 6.
 
 **Check (Question 14).**
 
@@ -384,9 +384,9 @@ Which service has the **highest** `StandardFee` in `SERVICE_RATES`?
 
 ---
 
-## Step 15 — (Optional) Practice a safe update
+## Step 15 â€” (Optional) Practice a safe update
 
-> ⚠️ **Optional, not graded.** If you include this block in your submitted `.sql` file, leave the `UPDATE` statement commented out unless your instructor tells you to run it. The required quiz answers are based on the database state **before** this optional update.
+> âš ï¸ **Optional, not graded.** If you include this block in your submitted `.sql` file, leave the `UPDATE` statement commented out unless your instructor tells you to run it. The required quiz answers are based on the database state **before** this optional update.
 
 **Do.** Suppose the front desk realizes Bella's vaccination should have been recorded as `Completed` instead of left as it is. First verify the row with a `SELECT`. If your instructor asks you to practice the update, uncomment the `UPDATE` lines and run them.
 
@@ -401,11 +401,11 @@ WHERE AppointmentID = 1011;
 -- WHERE  AppointmentID = 1011;
 ```
 
-> 🛑 **Caution:** Never run an `UPDATE` without a `WHERE` clause. `UPDATE PETVAX_APPOINTMENTS SET AppointmentStatus = 'Completed';` would change **every** row in the table.
+> ðŸ›‘ **Caution:** Never run an `UPDATE` without a `WHERE` clause. `UPDATE PETVAX_APPOINTMENTS SET AppointmentStatus = 'Completed';` would change **every** row in the table.
 
 ---
 
-## Step 16 — Save and submit
+## Step 16 â€” Save and submit
 
 **Do.** Make sure your `.sql` file contains, in order:
 
@@ -416,7 +416,7 @@ WHERE AppointmentID = 1011;
 
 Save the file as `Lab05-PetVax-SQL-LastName.sql` (replace `LastName` with your real last name, no spaces). If you used DB Browser for SQLite, you may also save and submit `Lab05-PetVax-SQL-LastName.db`. SQLiteOnline users submit the `.sql` only.
 
-> ✅ **Required statements in your submission**
+> âœ… **Required statements in your submission**
 >
 > - The full setup script (both `CREATE TABLE` and all `INSERT` statements)
 > - The two new `INSERT` rows: Maple (1025) and Biscuit (1026)
@@ -437,4 +437,3 @@ These are not required and are not graded.
 - Add a query that returns the average `PaymentAmount` per `AnimalType` (Dog vs. Cat).
 - Write a query that counts appointments per `AppointmentDate`.
 - Add a `DELETE` *preview* from the Let's Build: write the `SELECT` that would identify a removable row, but do **not** run the `DELETE`.
-

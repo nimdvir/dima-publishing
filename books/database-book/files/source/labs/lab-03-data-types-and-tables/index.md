@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD013 MD024 MD036 -->
+﻿<!-- markdownlint-disable MD013 MD024 MD036 -->
 
 # Lab 03 Questions
 
@@ -6,7 +6,7 @@
 
 ## PetVax Spreadsheet Fundamentals: When a Flat File Starts to Break
 
-**Chapter:** Chapter 3 — Understanding Data Fundamentals  
+**Chapter:** Chapter 3 â€” Understanding Data Fundamentals  
 **Project:** PetVax veterinary clinic  
 **Platform:** Brightspace auto-graded quiz + Google Sheets or Excel workbook  
 **Estimated time:** about 60 minutes  
@@ -50,13 +50,13 @@ You are not building an Access database yet. That begins in Chapter 4. This lab 
 
 This lab has **two graded parts**. You must complete both.
 
-### Part 1 — Brightspace quiz (auto-graded)
+### Part 1 â€” Brightspace quiz (auto-graded)
 
 You answer 24 questions inside the Brightspace quiz for this lab. Brightspace grades these automatically. Every answer is exact: a specific choice, match, order, or value. Many answers come directly from the spreadsheet work you do, so **do the work first, then answer**. Your quiz answers should match what your workbook shows.
 
-### Part 2 — Spreadsheet file (AI-checked)
+### Part 2 â€” Spreadsheet file (AI-checked)
 
-You upload your completed workbook to the separate file-submission assignment. An AI grader checks that the file is **complete** and that your work is **authentic** — that the required artifacts are present and that the values in the file match the quiz answers you gave. The file is not re-scored question by question. It is proof that you actually did the work.
+You upload your completed workbook to the separate file-submission assignment. An AI grader checks that the file is **complete** and that your work is **authentic** â€” that the required artifacts are present and that the values in the file match the quiz answers you gave. The file is not re-scored question by question. It is proof that you actually did the work.
 
 **Final grade = Brightspace quiz score + spreadsheet file submission.**
 
@@ -70,7 +70,7 @@ Use this filename:
 
 `Lab03-PetVax-Spreadsheet-LastName.xlsx`
 
-(Replace `LastName` with your own last name. Do not include spaces or em-dashes — they break some LMS uploads.)
+(Replace `LastName` with your own last name. Do not include spaces or em-dashes â€” they break some LMS uploads.)
 
 Your file should show that you completed the steps, including:
 
@@ -101,7 +101,7 @@ Start in `APPOINTMENTS_FLAT`.
 
 ---
 
-# Step 1 — Inspect the Flat File
+# Step 1 â€” Inspect the Flat File
 
 In `APPOINTMENTS_FLAT`, each row is one appointment record.
 
@@ -123,7 +123,7 @@ This is a flat file because appointment, pet, owner, breed, service, and payment
 ![Figure 3.3 - The Data Hierarchy](../../../../.images/Ch4%20Databases/optimized/ch04-to-add-data-hierarchy.png)
 *Figure 3.3: The Data Hierarchy. Shows how individual data characters (bytes) form fields (columns), which group into records (rows) to build the flat tables checked in Step 1.*
 
-> 🔍 **Filtering and sorting rule.** You may apply a filter when a step asks you to. **Clear the filter before moving to the next step.** Do **not** permanently sort the sheet, because later steps refer to rows by their original `AppointmentID`.
+> ðŸ” **Filtering and sorting rule.** You may apply a filter when a step asks you to. **Clear the filter before moving to the next step.** Do **not** permanently sort the sheet, because later steps refer to rows by their original `AppointmentID`.
 
 ## Quiz Question 1
 
@@ -171,7 +171,7 @@ E. Pumpkin
 
 ---
 
-# Step 2 — Add Lookup Columns
+# Step 2 â€” Add Lookup Columns
 
 The flat file stores `BreedName`, but it does not directly store the animal type, average healthy breed weight, or overweight threshold. Those values are in `BREED_REFERENCE`.
 
@@ -270,7 +270,7 @@ After filling the lookup and weight-status formulas through the starter records,
 
 ---
 
-# Step 3 — Filter the Flat File
+# Step 3 â€” Filter the Flat File
 
 Use filters in `APPOINTMENTS_FLAT`.
 
@@ -304,7 +304,7 @@ Before any modifications, how many records have `ReminderSent = FALSE`?
 
 ---
 
-# Step 4 — Create a Formula-Based Query
+# Step 4 â€” Create a Formula-Based Query
 
 Go to `QUERY_AREA`.
 
@@ -326,7 +326,7 @@ How many records does the fixed-range `FILTER` formula return before you add new
 
 ---
 
-# Step 5 — Create a Pivot Summary
+# Step 5 â€” Create a Pivot Summary
 
 Go to `PIVOT_SUMMARY`.
 
@@ -342,7 +342,7 @@ Use:
 
 If your pivot table does not update automatically, refresh it after formulas are filled.
 
-> 📎 **Treat this pivot as a starter-data snapshot.** Build it now, before Step 7. **Do not refresh or rebuild it** after you add Maple, add Rex, or delete Angel. The pivot is meant to summarize the original 24-row starter file so the grader can compare against fixed expected counts.
+> ðŸ“Ž **Treat this pivot as a starter-data snapshot.** Build it now, before Step 7. **Do not refresh or rebuild it** after you add Maple, add Rex, or delete Angel. The pivot is meant to summarize the original 24-row starter file so the grader can compare against fixed expected counts.
 
 ## Quiz Question 9
 
@@ -374,7 +374,7 @@ D. 20.1
 
 ---
 
-# Step 6 — Identify Flat-File Redundancy
+# Step 6 â€” Identify Flat-File Redundancy
 
 A flat file repeats facts across many rows.
 
@@ -399,15 +399,15 @@ E. Richard Bowman
 
 ---
 
-# Step 6.5 — Same Pet Name, Co-Owned Pet: Why We Need Primary Keys
+# Step 6.5 â€” Same Pet Name, Co-Owned Pet: Why We Need Primary Keys
 
-> 💡 `AppointmentID` identifies an appointment, not a pet. That is why an `AppointmentID` cannot solve the "two Charlies" problem you are about to see.
+> ðŸ’¡ `AppointmentID` identifies an appointment, not a pet. That is why an `AppointmentID` cannot solve the "two Charlies" problem you are about to see.
 
 The starter file already contains two situations that are obvious when a human reads the comments but invisible to the spreadsheet itself.
 
-**Situation 1 — two pets, same name.** Look at rows `AppointmentID = 1003` and `AppointmentID = 1004` in `APPOINTMENTS_FLAT`. Both have `PetName = Charlie`. One is a Labrador Retriever owned by Barry Jones; the other is a Beagle owned by Angela Garcia. The `Notes` column literally says "Different Charlie" — but if those notes were missing, nothing in the columns would tell you these are two different dogs.
+**Situation 1 â€” two pets, same name.** Look at rows `AppointmentID = 1003` and `AppointmentID = 1004` in `APPOINTMENTS_FLAT`. Both have `PetName = Charlie`. One is a Labrador Retriever owned by Barry Jones; the other is a Beagle owned by Angela Garcia. The `Notes` column literally says "Different Charlie" â€” but if those notes were missing, nothing in the columns would tell you these are two different dogs.
 
-**Situation 2 — one pet, two owners.** Now look at rows `AppointmentID = 1007` and `AppointmentID = 1008`. Both have `PetName = Coco`, `BreedName = Poodle`, and `WeightKg = 11`, but two different owners (Alex Rivera and Jordan Rivera). The `Notes` say "Co-owner 1" and "Co-owner 2" — a shared-custody case.
+**Situation 2 â€” one pet, two owners.** Now look at rows `AppointmentID = 1007` and `AppointmentID = 1008`. Both have `PetName = Coco`, `BreedName = Poodle`, and `WeightKg = 11`, but two different owners (Alex Rivera and Jordan Rivera). The `Notes` say "Co-owner 1" and "Co-owner 2" â€” a shared-custody case.
 
 Do not edit these rows. Just inspect them and answer the four checkpoints.
 
@@ -419,10 +419,10 @@ Do not edit these rows. Just inspect them and answer the four checkpoints.
 
 Looking only at the columns in `APPOINTMENTS_FLAT` (no `Notes` text), can you tell whether rows 1003 and 1004 are the same dog named Charlie or two different dogs?
 
-A. Yes — the `OwnerName` is enough to confirm they are different dogs  
-B. Yes — the `BreedName` is enough to confirm they are different dogs  
-C. No — `PetName` is not a unique identifier; only a stable `PetID` could answer this for sure  
-D. No — the only fix is to ban duplicate pet names at the clinic  
+A. Yes â€” the `OwnerName` is enough to confirm they are different dogs  
+B. Yes â€” the `BreedName` is enough to confirm they are different dogs  
+C. No â€” `PetName` is not a unique identifier; only a stable `PetID` could answer this for sure  
+D. No â€” the only fix is to ban duplicate pet names at the clinic  
 
 ---
 
@@ -467,22 +467,22 @@ What database design cleanly records that one pet (Coco) is co-owned by two peop
 
 A. Keep everything in one flat appointment sheet  
 B. Add a third owner column to every appointment row, just in case  
-C. Use a separate `Pets` table, a separate `Owners` table, and a link table that connects them — introduced in Chapter 4 and used in Chapter 6  
+C. Use a separate `Pets` table, a separate `Owners` table, and a link table that connects them â€” introduced in Chapter 4 and used in Chapter 6  
 D. Delete one of the owner rows so each pet has only one owner  
 
 ---
 
-## Workbook task for Q12–Q15
+## Workbook task for Q12â€“Q15
 
 In `APPOINTMENTS_FLAT`, add a short note in the `Notes` cell of row **1003** (or row **1007**, your choice) that reads:
 
 `Why PetName alone is a bad identifier: ...`
 
-Finish that sentence in your own words (about 25–50 words). Mention either *primary key / PetID* or *link / junction table*. This is the only prose in the lab; the AI grader checks for it.
+Finish that sentence in your own words (about 25â€“50 words). Mention either *primary key / PetID* or *link / junction table*. This is the only prose in the lab; the AI grader checks for it.
 
 ---
 
-# Step 7 — Add a New Appointment Record
+# Step 7 â€” Add a New Appointment Record
 
 Add this new record at the bottom of `APPOINTMENTS_FLAT`.
 
@@ -528,7 +528,7 @@ After adding Maple and filling the formulas down, how many appointment records i
 
 ---
 
-> ⚠️ **Do not change the fixed range yet.** The point of the next question is to see that the formula does **not** automatically include the new Maple row. You will not edit the `FILTER` formula in this lab.
+> âš ï¸ **Do not change the fixed range yet.** The point of the next question is to see that the formula does **not** automatically include the new Maple row. You will not edit the `FILTER` formula in this lab.
 
 ## Quiz Question 18
 
@@ -545,7 +545,7 @@ D. A deletion anomaly
 
 ---
 
-# Step 8 — Create an Update Anomaly
+# Step 8 â€” Create an Update Anomaly
 
 Now create an update anomaly.
 
@@ -588,7 +588,7 @@ D. Validity constraint
 
 ---
 
-# Step 9 — Create an Insertion Anomaly
+# Step 9 â€” Create an Insertion Anomaly
 
 A flat appointment file has no clean place to store a pet that does not yet have an appointment.
 
@@ -627,7 +627,7 @@ D. Rex is already in the pivot table
 
 ---
 
-# Step 10 — Create a Deletion Anomaly
+# Step 10 â€” Create a Deletion Anomaly
 
 Now delete the row with:
 
@@ -660,7 +660,7 @@ D. Measurement validity
 
 ---
 
-# Step 11 — Final File Submission
+# Step 11 â€” Final File Submission
 
 This lab is submitted in two places.
 
@@ -670,7 +670,7 @@ Answer all 24 quiz questions inside the Brightspace quiz for this lab. Brightspa
 
 ### 2. Upload your spreadsheet file
 
-Upload your completed workbook to the separate file-submission assignment, using the filename `Lab03-PetVax-Spreadsheet-LastName.xlsx`. The AI grader checks that the required work is present and authentic — not that each cell is re-scored.
+Upload your completed workbook to the separate file-submission assignment, using the filename `Lab03-PetVax-Spreadsheet-LastName.xlsx`. The AI grader checks that the required work is present and authentic â€” not that each cell is re-scored.
 
 ## Required Evidence in the File
 
@@ -694,7 +694,7 @@ Upload your completed workbook to the separate file-submission assignment, using
 | Angel | `AppointmentID = 1022` has been **deleted** (no row remains) |
 | Sarah Perry | Has **two different** email values across her rows |
 | Fixed `FILTER` formula in `QUERY_AREA` | Still uses the range `A2:Q25` (do not expand it) |
-| Pivot summary in `PIVOT_SUMMARY` | Shows the **original starter snapshot** — Dog = 18, Cat = 6, avg dog weight ≈ 18.3 — not the modified file |
+| Pivot summary in `PIVOT_SUMMARY` | Shows the **original starter snapshot** â€” Dog = 18, Cat = 6, avg dog weight â‰ˆ 18.3 â€” not the modified file |
 | Identifier note from Step 6.5 | Appears in the `Notes` cell of row `1003` **or** row `1007` and begins `Why PetName alone is a bad identifier:` |
 
 ---
@@ -725,4 +725,3 @@ Not required.
 
 1. Create a second pivot table showing average weight by `BreedName`.
 2. Add data validation to `BreedName` using the breed list.
-

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Lab 12: Business Intelligence"
 chapter: 12
 section: "Lab Questions"
@@ -99,5 +99,4 @@ For advanced learners:
 - Modification 1
 - Modification 2
 - Modification 3
-
 

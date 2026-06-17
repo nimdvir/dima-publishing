@@ -143,18 +143,25 @@ The artifact template should use stable headings or fixed tables so the grader c
 
 ## 11. Chapter Progression Rules
 
-| Lab | Chapter | Tool / Artifact                                | Focus                                              |
-| --- | ------- | ---------------------------------------------- | -------------------------------------------------- |
-| 01  | intro   | Google Doc                                     | PetVax project orientation; very light             |
-| 02  | ch02    | Google Doc — PetVax Performance Logic Map      | Conceptual MIS/BITM; no schema, SQL, Access        |
-| 03  | ch03    | Google Sheet                                   | Data types, fields, records, simple tables         |
-| 04  | ch04    | MS Access `.accdb`                             | Intro to Access; tables and basic objects          |
-| 05  | ch05    | SQL file + screenshots / CSV                   | SELECT, filtering, aggregation                     |
-| 06  | ch06    | MS Access `.accdb`                             | Relational model; relationships                    |
-| 07  | ch07    | MS Access `.accdb`                             | Normalization                                      |
-| 08  | ch08    | Mixed                                          | Midterm test review                                |
-
-Labs 09–15 not yet slugged.
+| Lab | Chapter | Tool / Artifact | Focus |
+| --- | --- | --- | --- |
+| 01 | ch01 | Quiz only or short Google Doc | PetVax project orientation |
+| 02 | ch02 | Google Doc/PDF — PetVax Performance Logic Map | DIKW, R.E.A.D., KPIs, information systems |
+| 03 | ch03 | Google Sheet / `.xlsx` | Data types, fields, records, metadata, validation |
+| 04 | ch04 | Microsoft Access `.accdb` | Tables, validation, forms, queries, reports |
+| 05 | ch05 | SQL file + screenshots/CSV | SQL basics, SELECT, filtering, aggregation, first joins |
+| 06 | ch06 | Microsoft Access `.accdb` | Relational model, PK/FK, relationships, referential integrity |
+| 07 | ch07 | Microsoft Access `.accdb` | Normalization to 3NF |
+| 08 | ch08 | Mixed review artifact | Midterm review and integration |
+| 09 | ch09 | ERD PDF/PNG + Mermaid/DDL text | Database design and ER modeling |
+| 10 | ch10 | SQL file + screenshots/CSV | Advanced SQL, diagnostics, CTEs, views, window functions |
+| 11 | ch11 | DBA plan + database evidence | Security, backup, recovery, roles, indexing |
+| 12 | ch12 | BI reports/queries + memo | KPIs, analytical views, decision support |
+| 13 | ch13 | SQL hardening script + evidence | Indexes, constraints, triggers, audit trails, transactions |
+| 14 | ch14 | `.pbix` or dashboard PDF | Power BI, Power Query, DAX, dashboard design |
+| 15 | ch15 | Strategic analysis memo + SQL outputs | Strategy, trend analysis, early warning, scenario testing |
+| 16 | ch16 | Complete PetVax capstone package | Full-course integration |
+| 17 | ch17 | Portfolio/reflection package | Course synthesis and professional reflection |
 
 ## 12. Output Sequence Inside Each File
 

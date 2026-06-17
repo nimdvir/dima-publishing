@@ -1,10 +1,10 @@
 {
   "files": {
     "main": {
-      "hash": "sha256:DBD6BEC7D6256CDF6DFFEC1273027F1FC9A9E60A20EFFD60611AD9728965F535",
-      "source": "ch09-database-design\\main\\ch09-main-2026-06-16.md",
-      "source_date": "2026-06-16",
-      "synced_at": "2026-06-16T18:34:24Z"
+      "hash": "sha256:84A768090AF2F743230D030AEFC73D43B7CA1DD2939A846D7E80A25D16A032A9",
+      "source": "ch09-database-design\\main\\ch09-main-2026-06-17.md",
+      "source_date": "2026-06-17",
+      "synced_at": "2026-06-17T21:24:11Z"
     },
     "lab": {
       "hash": "sha256:3667DDA68B3BADB700CFDE7F84A9C467CA5C67984F2A7C13F11BDD70AB6AB709",
@@ -37,6 +37,6 @@
       "synced_at": "2026-06-16T18:34:24Z"
     }
   },
-  "last_sync": "2026-06-16T18:34:24Z",
+  "last_sync": "2026-06-17T21:24:11Z",
   "chapter": "ch09-database-design"
 }

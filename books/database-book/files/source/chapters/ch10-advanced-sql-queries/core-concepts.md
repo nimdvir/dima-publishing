@@ -26,11 +26,27 @@ author: "Nimrod Dvir, PhD"
 
 <!-- FIGURE PLACEHOLDER: Chapter 10 infographic previewing the advanced SQL arc (diagnostics → normalization → joins → aggregation → weighted grades → pipelines → at-risk report). Recommend chapter-media. -->
 
-Chapter 5 introduced SQL as the language of relational databases. Chapter 9 showed how to design databases from requirements. This chapter returns to SQL with a more advanced goal: using queries to diagnose data problems, restructure messy data into clean normalized tables, connect those tables, calculate meaningful metrics, and create reusable reporting logic.
+In Chapter 9, we stepped back from the database as a finished product and treated it as a designed information system. We identified entities, clarified relationships, mapped cardinality, examined business rules, and used ER modeling to show how structure supports reliable decision-making.
 
-Advanced SQL is not a different language. It is the same core logic — `SELECT`, `FROM`, `WHERE`, `JOIN`, `GROUP BY`, `ORDER BY` — used in more deliberate combinations. The shift is from asking isolated questions to building reliable analytical workflows.
+That design work now becomes the foundation for advanced SQL.
 
-<!-- FIGURE PLACEHOLDER: Video overview embed for Chapter 10. Recommend chapter-media. -->
+A strong query does not begin with syntax. It begins with a model. Before we can write meaningful SQL, we need to understand where the facts live, how tables connect, which relationships matter, and what business question the query is supposed to answer. The ERD gives us that map. SQL lets us travel through it.
+
+In earlier chapters, SQL helped us retrieve records, filter rows, sort results, join tables, and calculate basic summaries. In this chapter, SQL becomes a tool for deeper business analysis. We will use it to diagnose data problems, build multi-step calculations, detect missing work, calculate weighted grades, rank performance, create reusable reporting views, and support managerial decisions.
+
+The shift is important:
+
+```
+Basic SQL asks: What records match this condition?
+
+Advanced SQL asks: What pattern, risk, trend, exception, or decision does this data reveal?
+```
+
+That is why Chapter 10 follows database design. Once we understand the structure of the system, we can query it professionally. Advanced SQL is not just about writing longer queries. It is about using the database as an analytical instrument — one that turns well-designed data into insight, evidence, and action.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kFlSsAMlYTU?si=qGKLqvzRD9zckvIB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+*Video 10.1 — Chapter overview: advanced SQL for business analysis, from diagnostics to decision-ready reports.*
 
 ---
 
@@ -63,20 +79,20 @@ After completing this chapter, you will be able to:
 
 ## Chapter Roadmap
 
-| Section | Main Focus | Why It Matters |
-|---:|---|---|
-| 10.1 | From Basic SQL to Advanced SQL | Mental shift from retrieval to analysis. |
-| 10.2 | Grading Database Refresher | Reviews the schema used throughout the chapter. |
-| 10.3 | Diagnosing and Restructuring Data | SQL reveals problems, then fixes them through normalization. |
-| 10.4 | Advanced JOIN Patterns | Joins reconstruct reports and find missing records. |
-| 10.5 | Cleaning and Conditional Functions | Access-specific and portable SQL patterns compared. |
-| 10.6 | Analytical Aggregation | Metrics using `GROUP BY`, `HAVING`, and conditional counts. |
-| 10.7 | Date and Time Queries | Due dates, deadlines, and time-window analysis. |
-| 10.8 | Weighted Grades and Policy Tables | Final grades calculated from stored rules, not hard-coded formulas. |
-| 10.9 | Window Functions | Rankings and running analytics without collapsing rows. |
-| 10.10 | Reusable Reporting Pipelines | Views, CTEs, and subqueries manage complexity and reuse. |
-| 10.11 | Safe Data Modification | `UPDATE` and `DELETE` with discipline. |
-| 10.12 | Integrated Example: At-Risk Student Report | End-to-end capstone combining multiple techniques. |
+| Section | Main Focus                                 | Why It Matters                                                      |
+| ------: | ------------------------------------------ | ------------------------------------------------------------------- |
+|    10.1 | From Basic SQL to Advanced SQL             | Mental shift from retrieval to analysis.                            |
+|    10.2 | Grading Database Refresher                 | Reviews the schema used throughout the chapter.                     |
+|    10.3 | Diagnosing and Restructuring Data          | SQL reveals problems, then fixes them through normalization.        |
+|    10.4 | Advanced JOIN Patterns                     | Joins reconstruct reports and find missing records.                 |
+|    10.5 | Cleaning and Conditional Functions         | Access-specific and portable SQL patterns compared.                 |
+|    10.6 | Analytical Aggregation                     | Metrics using `GROUP BY`, `HAVING`, and conditional counts.         |
+|    10.7 | Date and Time Queries                      | Due dates, deadlines, and time-window analysis.                     |
+|    10.8 | Weighted Grades and Policy Tables          | Final grades calculated from stored rules, not hard-coded formulas. |
+|    10.9 | Window Functions                           | Rankings and running analytics without collapsing rows.             |
+|   10.10 | Reusable Reporting Pipelines               | Views, CTEs, and subqueries manage complexity and reuse.            |
+|   10.11 | Safe Data Modification                     | `UPDATE` and `DELETE` with discipline.                              |
+|   10.12 | Integrated Example: At-Risk Student Report | End-to-end capstone combining multiple techniques.                  |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -91,12 +107,12 @@ A beginner writes one query to answer one question. An advanced user asks how th
 
 ### Four Questions Before Writing an Advanced Query
 
-| Question | SQL Implication |
-|---|---|
-| What is the business question? | Determines filters, calculations, and output columns. |
-| Which table stores the main event? | Start from `STUDENT_GRADE`, `ATTENDANCE`, etc. |
-| Which tables provide context? | Join to `STUDENT`, `DELIVERABLE`, `ASSIGNMENT_TYPE`, `SCHEDULE`. |
-| What kind of output is needed? | Choose joins, aggregation, window functions, views, or CTEs. |
+| Question                           | SQL Implication                                                  |
+| ---------------------------------- | ---------------------------------------------------------------- |
+| What is the business question?     | Determines filters, calculations, and output columns.            |
+| Which table stores the main event? | Start from `STUDENT_GRADE`, `ATTENDANCE`, etc.                   |
+| Which tables provide context?      | Join to `STUDENT`, `DELIVERABLE`, `ASSIGNMENT_TYPE`, `SCHEDULE`. |
+| What kind of output is needed?     | Choose joins, aggregation, window functions, views, or CTEs.     |
 
 ### Example: Turning a Business Question into SQL Logic
 
@@ -124,15 +140,15 @@ ORDER BY AverageScore ASC;
 
 The Grading Database is the running case for this chapter. Most queries follow one of three relational pathways.
 
-| Table | What It Stores |
-|---|---|
-| `STUDENT` | Student identity and contact information |
+| Table             | What It Stores                                 |
+| ----------------- | ---------------------------------------------- |
+| `STUDENT`         | Student identity and contact information       |
 | `ASSIGNMENT_TYPE` | Category-level grading rules (weights, points) |
-| `DELIVERABLE` | Specific graded items (Quiz 1, Exam 2, etc.) |
-| `STUDENT_GRADE` | One student's score on one deliverable |
-| `SCHEDULE` | Class meetings, weeks, dates, and topics |
-| `ATTENDANCE` | Whether a student attended a class meeting |
-| `GRADE_SCALE` | Letter-grade thresholds |
+| `DELIVERABLE`     | Specific graded items (Quiz 1, Exam 2, etc.)   |
+| `STUDENT_GRADE`   | One student's score on one deliverable         |
+| `SCHEDULE`        | Class meetings, weeks, dates, and topics       |
+| `ATTENDANCE`      | Whether a student attended a class meeting     |
+| `GRADE_SCALE`     | Letter-grade thresholds                        |
 
 **Student Performance:** `STUDENT → STUDENT_GRADE → DELIVERABLE → ASSIGNMENT_TYPE`
 **Attendance:** `STUDENT → ATTENDANCE → SCHEDULE`
@@ -178,12 +194,12 @@ If this returns rows, the same student has conflicting email values — an updat
 
 The same `GROUP BY` + `HAVING COUNT(DISTINCT ...) > 1` pattern detects many problems:
 
-| Problem | What to Check |
-|---|---|
+| Problem                              | What to Check                                                                           |
+| ------------------------------------ | --------------------------------------------------------------------------------------- |
 | Inconsistent deliverable definitions | `GROUP BY DeliverableType, DeliverableNumber` then `HAVING COUNT(DISTINCT DueDate) > 1` |
-| Duplicate grade records | `GROUP BY StudentID, DeliverableID` then `HAVING COUNT(*) > 1` |
-| Scores outside valid range | `WHERE Score < 0 OR Score > 100` |
-| Orphaned grade records | `LEFT JOIN STUDENT ... WHERE s.StudentID IS NULL` |
+| Duplicate grade records              | `GROUP BY StudentID, DeliverableID` then `HAVING COUNT(*) > 1`                          |
+| Scores outside valid range           | `WHERE Score < 0 OR Score > 100`                                                        |
+| Orphaned grade records               | `LEFT JOIN STUDENT ... WHERE s.StudentID IS NULL`                                       |
 
 <div class="callout tip">
   <p><strong>💡 Tip: Diagnose before you analyze</strong></p>
@@ -437,12 +453,12 @@ ORDER BY s.LastName, d.DueDate;
 
 ### 10.4.3 Join Checklist
 
-| Situation | Preferred Join |
-|---|---|
-| Only matched records matter | `INNER JOIN` |
-| Need all rows from the left table | `LEFT JOIN` |
-| Need expected combinations | `CROSS JOIN` + `LEFT JOIN` |
-| Need to diagnose missing parent records | `LEFT JOIN` + `IS NULL` |
+| Situation                               | Preferred Join             |
+| --------------------------------------- | -------------------------- |
+| Only matched records matter             | `INNER JOIN`               |
+| Need all rows from the left table       | `LEFT JOIN`                |
+| Need expected combinations              | `CROSS JOIN` + `LEFT JOIN` |
+| Need to diagnose missing parent records | `LEFT JOIN` + `IS NULL`    |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -453,13 +469,13 @@ Real data is rarely clean. Access uses `Nz()` and `IIf()`; other SQL systems use
 
 ### Access vs. Portable SQL
 
-| Need | Microsoft Access | SQLite / PostgreSQL |
-|---|---|---|
-| Replace `NULL` with a default | `Nz([Score], 0)` | `COALESCE(Score, 0)` |
-| Conditional value | `IIf([Score] >= 60, "Pass", "Fail")` | `CASE WHEN Score >= 60 THEN 'Pass' ELSE 'Fail' END` |
-| Current date | `Date()` | `CURRENT_DATE` / `DATE('now')` |
-| Days between dates | `DateDiff("d", [Start], [End])` | Platform-specific |
-| Extract year | `DatePart("yyyy", [DueDate])` | `EXTRACT(YEAR FROM DueDate)` / `strftime('%Y', DueDate)` |
+| Need                          | Microsoft Access                     | SQLite / PostgreSQL                                      |
+| ----------------------------- | ------------------------------------ | -------------------------------------------------------- |
+| Replace `NULL` with a default | `Nz([Score], 0)`                     | `COALESCE(Score, 0)`                                     |
+| Conditional value             | `IIf([Score] >= 60, "Pass", "Fail")` | `CASE WHEN Score >= 60 THEN 'Pass' ELSE 'Fail' END`      |
+| Current date                  | `Date()`                             | `CURRENT_DATE` / `DATE('now')`                           |
+| Days between dates            | `DateDiff("d", [Start], [End])`      | Platform-specific                                        |
+| Extract year                  | `DatePart("yyyy", [DueDate])`        | `EXTRACT(YEAR FROM DueDate)` / `strftime('%Y', DueDate)` |
 
 The concept is portable. The function name is not always portable.
 
@@ -548,11 +564,11 @@ ORDER BY AttendanceRate ASC;
 
 ### 10.6.5 `COUNT(*)` vs. `COUNT(column)`
 
-| Expression | Meaning |
-|---|---|
-| `COUNT(*)` | Counts all rows, including rows with `NULL` values. |
-| `COUNT(Score)` | Counts rows where `Score` is not `NULL`. |
-| `COUNT(DISTINCT StudentID)` | Counts unique student IDs. |
+| Expression                  | Meaning                                             |
+| --------------------------- | --------------------------------------------------- |
+| `COUNT(*)`                  | Counts all rows, including rows with `NULL` values. |
+| `COUNT(Score)`              | Counts rows where `Score` is not `NULL`.            |
+| `COUNT(DISTINCT StudentID)` | Counts unique student IDs.                          |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -563,12 +579,12 @@ Date syntax varies across platforms, so learn the pattern and look up the specif
 
 ### Date Function Reference
 
-| Need | Access | SQLite | PostgreSQL |
-|---|---|---|---|
-| Current date | `Date()` | `DATE('now')` | `CURRENT_DATE` |
-| Add 7 days | `DateAdd("d", 7, [DueDate])` | `DATE(DueDate, '+7 days')` | `DueDate + INTERVAL '7 days'` |
-| Days between | `DateDiff("d", [Start], [End])` | `JULIANDAY(End) - JULIANDAY(Start)` | `EndDate - StartDate` |
-| Extract year | `DatePart("yyyy", [DueDate])` | `strftime('%Y', DueDate)` | `EXTRACT(YEAR FROM DueDate)` |
+| Need         | Access                          | SQLite                              | PostgreSQL                    |
+| ------------ | ------------------------------- | ----------------------------------- | ----------------------------- |
+| Current date | `Date()`                        | `DATE('now')`                       | `CURRENT_DATE`                |
+| Add 7 days   | `DateAdd("d", 7, [DueDate])`    | `DATE(DueDate, '+7 days')`          | `DueDate + INTERVAL '7 days'` |
+| Days between | `DateDiff("d", [Start], [End])` | `JULIANDAY(End) - JULIANDAY(Start)` | `EndDate - StartDate`         |
+| Extract year | `DatePart("yyyy", [DueDate])`   | `strftime('%Y', DueDate)`           | `EXTRACT(YEAR FROM DueDate)`  |
 
 ### Overdue Deliverables Without Grades
 
@@ -642,11 +658,11 @@ Ordinary aggregation collapses rows. Window functions calculate summaries while 
 
 ### `GROUP BY` vs. Window Functions
 
-| Need | Use |
-|---|---|
-| One row per group | `GROUP BY` |
+| Need                                    | Use             |
+| --------------------------------------- | --------------- |
+| One row per group                       | `GROUP BY`      |
 | Keep detail rows and add summary values | Window function |
-| Rank rows | Window function |
+| Rank rows                               | Window function |
 
 ### Student Average Next to Each Score
 
@@ -689,11 +705,11 @@ FROM StudentAverages;
 
 Writing one correct query is useful. Writing query logic that can be reused is more valuable.
 
-| Tool | Best For | Scope |
-|---|---|---|
-| **Subquery** | One calculation inside another query | Temporary |
-| **CTE** | Multi-step readable logic | Temporary |
-| **View** | Saved reporting logic | Persistent |
+| Tool         | Best For                             | Scope      |
+| ------------ | ------------------------------------ | ---------- |
+| **Subquery** | One calculation inside another query | Temporary  |
+| **CTE**      | Multi-step readable logic            | Temporary  |
+| **View**     | Saved reporting logic                | Persistent |
 
 ### Views as Saved Reports
 
@@ -736,13 +752,13 @@ WHERE EXISTS (
 
 ### Choosing the Right Tool
 
-| Situation | Best Tool |
-|---|---|
-| Short one-time comparison | Subquery |
-| Multi-step readable logic | CTE |
-| Logic reused across reports | View |
+| Situation                     | Best Tool             |
+| ----------------------------- | --------------------- |
+| Short one-time comparison     | Subquery              |
+| Multi-step readable logic     | CTE                   |
+| Logic reused across reports   | View                  |
 | Combining similar result sets | `UNION` / `UNION ALL` |
-| Access-based reusable query | Saved query |
+| Access-based reusable query   | Saved query           |
 
 <div class="callout key-takeaway">
   <p><strong>🔑 Key Takeaway: Query logic as infrastructure</strong></p>
@@ -839,12 +855,12 @@ LEFT JOIN AttendanceRates AS ar ON s.StudentID = ar.StudentID
 ORDER BY RiskCategory, AverageScore ASC;
 ```
 
-| CTE | What It Does |
-|---|---|
-| `MissingGrades` | Counts expected student-deliverable pairs with no grade. |
-| `ScoreAverages` | Calculates each student's average score. |
-| `AttendanceRates` | Calculates each student's attendance percentage. |
-| Final `SELECT` | Joins the pieces and labels each student by risk category. |
+| CTE               | What It Does                                               |
+| ----------------- | ---------------------------------------------------------- |
+| `MissingGrades`   | Counts expected student-deliverable pairs with no grade.   |
+| `ScoreAverages`   | Calculates each student's average score.                   |
+| `AttendanceRates` | Calculates each student's attendance percentage.           |
+| Final `SELECT`    | Joins the pieces and labels each student by risk category. |
 
 <div class="callout key-takeaway">
   <p><strong>🔑 Key Takeaway: SQL as a decision pipeline</strong></p>

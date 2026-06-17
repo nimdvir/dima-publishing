@@ -1,3 +1,4 @@
+<!-- Chapter edit: targeted revision — un-numbered roadmap, culled figure placeholders to 7, compressed cursors into Advanced Note, added Practicing DBA Thinking, MVCC mention, aligned LOs, added opening bridge. -->
 ---
 title: "Chapter 11: Database Administration"
 chapter: 11
@@ -15,7 +16,7 @@ keywords:
   - backup and recovery
   - performance tuning
   - cloud databases
-date: 2026-05-18
+date: 2026-06-17
 author: "Nimrod Dvir, PhD"
 lang: en-US
 toc: true
@@ -24,6 +25,10 @@ toc: true
 # Chapter 11: Database Administration
 
 *Keeping Databases Secure, Reliable, Recoverable, and Ready for Use*
+
+Chapter 9 showed us how to design databases from business requirements. Chapter 10 showed us how to query them professionally for insight. Chapter 11 now asks a different question: who protects the data, keeps it running, and makes sure it is still there tomorrow?
+
+Database design and SQL are forward-looking disciplines — they build and query. Database administration is a sustaining discipline — it guards, maintains, recovers, and evolves. Every well-designed system that supports real decisions depends on someone making sure it stays secure, fast, available, and trustworthy.
 
 Database design answers the question: **How should data be structured?**
 
@@ -52,7 +57,7 @@ After completing this chapter, you will be able to:
 7. Explain database security concepts including authentication, authorization, role-based access control, and least privilege.
 8. Compare full, incremental, and differential backups.
 9. Explain rollback, rollforward, recovery logs, before-images, and after-images.
-10. Describe how indexes, query plans, and maintenance tasks support performance.
+10. Describe how indexes and basic maintenance tasks support performance, and recognize that query plans help advanced tuning.
 11. Compare DBA responsibilities in Microsoft Access, SQLite, PostgreSQL, Supabase, and cloud-hosted systems.
 12. Apply basic DBA thinking to the Grading Database.
 
@@ -65,16 +70,16 @@ After completing this chapter, you will be able to:
 
 | Section | Main Question | Core Ideas |
 |---|---|---|
-| 11.1 | What is database administration? | DBA role, data administration, operational reliability |
-| 11.2 | What does a DBA do? | Security, concurrency, backup, performance, maintenance |
-| 11.3 | What happens when multiple users access data? | Locks, lost updates, deadlocks, optimistic and pessimistic control |
-| 11.4 | How do transactions protect reliability? | ACID, `BEGIN`, `COMMIT`, `ROLLBACK` |
-| 11.5 | How is database access controlled? | Authentication, authorization, roles, privileges, least privilege |
-| 11.6 | How do databases recover from failure? | Backups, logs, rollback, rollforward, disaster recovery |
-| 11.7 | How do DBAs keep databases fast? | Indexes, query plans, tuning, monitoring |
-| 11.8 | How do databases evolve safely? | Maintenance, integrity checks, schema change |
-| 11.9 | How does administration differ by platform? | Access, SQLite, PostgreSQL, Supabase, cloud responsibility |
-| 11.10 | How can students practice DBA thinking? | Hands-on administrative tasks using the Grading Database |
+| What is database administration? | DBA role, data administration, operational reliability |
+| What does a DBA do? | Security, concurrency, backup, performance, maintenance |
+| What happens when multiple users access data? | Locks, lost updates, deadlocks, optimistic and pessimistic control |
+| How do transactions protect reliability? | ACID, `BEGIN`, `COMMIT`, `ROLLBACK` |
+| How is database access controlled? | Authentication, authorization, roles, privileges, least privilege |
+| How do databases recover from failure? | Backups, logs, rollback, rollforward, disaster recovery |
+| How do DBAs keep databases fast? | Indexes, query plans, tuning, monitoring |
+| How do databases evolve safely? | Maintenance, integrity checks, schema change |
+| How does administration differ by platform? | Access, SQLite, PostgreSQL, Supabase, cloud responsibility |
+| Practicing DBA Thinking | Hands-on checklist, Try It exercises, Let's Build companion |
 
 ---
 
@@ -84,9 +89,6 @@ After completing this chapter, you will be able to:
 ## What Is Database Administration?
 
 **Database administration** is the discipline of managing databases so that they remain secure, reliable, available, recoverable, and efficient over time.
-
-<!-- Pending figure: figure-11.1-a-dba-ensures-the.png — A DBA ensures the database survives real-world use. — A conceptual illustration showing a DBA monitoring a healthy database system, preventing chaos and data loss. -->
-
 
 Earlier chapters focused on the structure and use of databases:
 
@@ -114,10 +116,9 @@ A database administrator, or **DBA**, is responsible for keeping the database tr
 
 ### Design vs. Administration
 
+<!-- FIGURE PLACEHOLDER: Design creates structure; Administration keeps it running. Recommend chapter-media. -->
+
 Database design and database administration are related, but they are not the same.
-
-<!-- Pending figure: figure-11.2-design-creates-structure-administration.png — Design creates structure; Administration keeps it running. — A split-screen illustration comparing a blueprint (Design) with engine maintenance (Administration). -->
-
 
 | Question | Design Perspective | Administration Perspective |
 |---|---|---|
@@ -135,9 +136,6 @@ A simple way to remember the difference:
 
 In larger organizations, there is often a distinction between **Data Administration** and **Database Administration**.
 
-<!-- Pending figure: figure-11.3-da-manages-policy-dba.png — DA manages policy; DBA manages operations. — A visual comparing Data Administration (focusing on policy documents and governance) to Database Administration (focusing on servers and technical performance). -->
-
-
 | Role | Scope | Main Focus | Typical Questions |
 |---|---|---|---|
 | **Data Administration (DA)** | Organization-wide | Governance, policy, standards, meaning, compliance | What does this data mean? Who owns it? How may it be used? |
@@ -152,9 +150,6 @@ In a small organization, one person may perform both roles. In a large organizat
 ### The DBA as Guardian of Data Trust
 
 The DBA protects the conditions under which data can be trusted.
-
-<!-- Pending figure: figure-11.4-visualizing-the-dba-as.png — Visualizing The DBA as Guardian of Data Trust. — A diagram or illustration explaining the key concepts of The DBA as Guardian of Data Trust. -->
-
 
 Those conditions include:
 
@@ -173,9 +168,6 @@ For the Grading Database, these responsibilities are concrete. Students should n
 
 A DBA does not work alone. Database administration interacts with several other data-focused roles:
 
-<!-- Pending figure: figure-11.5-the-dba-supports-the.png — The DBA supports the entire data ecosystem. — An organization chart showing how the DBA interacts with Data Engineers, Data Scientists, and Data Analysts. -->
-
-
 - **Data Engineers** build and maintain the pipelines that move data from operational databases into analytical data warehouses or data lakes.
 - **Data Analysts** query the data to produce reports, dashboards, and business insights.
 - **Data Scientists** use the data to build predictive models, run experiments, and uncover deep patterns using machine learning.
@@ -189,9 +181,6 @@ The DBA enables all these roles by ensuring the foundational database remains fa
 ## Core DBA Responsibilities
 
 Although DBA work varies by organization and platform, most responsibilities fall into several major categories.
-
-<!-- Pending figure: figure-11.6-the-five-pillars-of.png — The five pillars of DBA responsibility. — A circular diagram showing the core DBA duties: Security, Concurrency, Backup, Performance, and Maintenance. -->
-
 
 | Responsibility | What It Protects | Example in the Grading Database |
 |---|---|---|
@@ -208,9 +197,6 @@ Although DBA work varies by organization and platform, most responsibilities fal
 
 Security ensures that users can do what they need to do, but no more.
 
-<!-- Pending figure: figure-11.7-visualizing-security-and-access.png — Visualizing Security and Access Management. — A diagram or illustration explaining the key concepts of Security and Access Management. -->
-
-
 In a grading system:
 
 - Students may read their own grades.
@@ -225,17 +211,11 @@ A DBA implements those boundaries through authentication, authorization, roles, 
 
 Concurrency control manages simultaneous access. Databases are shared systems. Multiple users may read and write at the same time. Without coordination, one user's update may overwrite another's work or produce inconsistent results.
 
-<!-- Pending figure: figure-11.8-visualizing-concurrency-control.png — Visualizing Concurrency Control. — A diagram or illustration explaining the key concepts of Concurrency Control. -->
-
-
 Concurrency control protects the database when many operations overlap.
 
 ### Transaction Management
 
 A transaction groups several database operations into one logical unit. Either all of the operations succeed, or none of them do. Transactions are essential when a business action requires multiple related updates.
-
-<!-- Pending figure: figure-11.9-visualizing-transaction-management.png — Visualizing Transaction Management. — A diagram or illustration explaining the key concepts of Transaction Management. -->
-
 
 For example, updating a grade may also require recording who made the change and when. The update and the audit record should succeed together.
 
@@ -243,26 +223,17 @@ For example, updating a grade may also require recording who made the change and
 
 Backups protect against data loss. Recovery procedures define how the database will be restored after a failure.
 
-<!-- Pending figure: figure-11.10-visualizing-backup-and-recovery.png — Visualizing Backup and Recovery. — A diagram or illustration explaining the key concepts of Backup and Recovery. -->
-
-
 A backup strategy is not complete until it has been tested. An untested backup is a hope, not a plan.
 
 ### Performance Monitoring and Tuning
 
 Performance is the difference between a useful system and an ignored system. A report that takes too long to run may not be used. A gradebook that freezes during updates undermines trust.
 
-<!-- Pending figure: figure-11.11-visualizing-performance-monitoring-and.png — Visualizing Performance Monitoring and Tuning. — A diagram or illustration explaining the key concepts of Performance Monitoring and Tuning. -->
-
-
 DBAs monitor query speed, indexing, locks, storage, memory, and system load.
 
 ### Maintenance and Evolution
 
 Databases change. New reports are requested. New columns are added. Old data is archived. Indexes are rebuilt. Files are compacted. Permissions are reviewed. Maintenance keeps the database healthy as it ages.
-
-<!-- Pending figure: figure-11.12-visualizing-maintenance-and-evolution.png — Visualizing Maintenance and Evolution. — A diagram or illustration explaining the key concepts of Maintenance and Evolution. -->
-
 
 > **Real-World Example:**  
 > An online retailer stores orders, inventory, customers, and payments in PostgreSQL. The DBA team manages nightly backups, monitors slow queries, restricts payment-data access, and creates indexes for high-volume order searches. When a software bug deletes several hundred order rows, the DBA restores the affected data from backup and transaction logs. The business experiences a manageable incident instead of a permanent loss.
@@ -275,9 +246,6 @@ Databases change. New reports are requested. New columns are added. Old data is 
 ## Multi-User Databases and Concurrency Control
 
 A database becomes more complicated the moment more than one person or process uses it at the same time.
-
-<!-- Pending figure: figure-11.13-visualizing-multi-user-databases.png — Visualizing Multi-User Databases and Concurrency Control. — A diagram or illustration explaining the key concepts of Multi-User Databases and Concurrency Control. -->
-
 
 Imagine this grading scenario:
 
@@ -292,10 +260,9 @@ Without concurrency control, one update may overwrite the other. This is called 
 
 ### Common Concurrency Problems
 
+<!-- FIGURE PLACEHOLDER: Lost update scenario — two users read the same value, both update it, and the last write overwrites the first. Recommend chapter-media. -->
+
 When operations overlap, several read and write anomalies can occur:
-
-<!-- Pending figure: figure-11.14-without-concurrency-control-updates.png — Without concurrency control, updates can be lost. — A diagram illustrating a lost update: two users read the same value, both update it, and the last write overwrites the first. -->
-
 
 | Problem | What Happens | Example |
 |---|---|---|
@@ -308,24 +275,21 @@ These problems occur because database operations overlap in time.
 
 ### Cursors
 
-A **cursor** is a database mechanism that acts as a pointer to a specific row within a query result set. When an application needs to process rows one by one instead of as a single batch, it uses a cursor. 
+A **cursor** is a database mechanism that processes query results one row at a time instead of as a single batch. Cursors are sometimes necessary in application code, but they can degrade concurrency by holding locks open while waiting for user interaction. In most analytical and reporting scenarios, set-based SQL operations are preferred over row-by-row cursor processing.
 
-<!-- Pending figure: figure-11.15-a-cursor-processes-one.png — A cursor processes one row at a time. — A visual representation of a query result set with a pointer (cursor) highlighting one specific row as the active record. -->
-
-
-Different cursor types handle concurrency differently:
-- **Static cursors** take a snapshot of the data. If another user changes the data while the cursor is open, the static cursor does not see the change.
-- **Dynamic cursors** reflect all changes made to the rows in the result set as you scroll through them.
-- **Keyset cursors** fix the membership of the result set when opened, but detect changes to the values of those existing rows.
-
-Holding cursors open while waiting for user input can severely degrade concurrency by keeping locks active too long.
+<div class="callout note">
+  <p><strong>📝 Advanced Note: Cursor Types</strong></p>
+  <p>Different cursor types handle concurrency differently:</p>
+  <ul>
+    <li><strong>Static cursors</strong> take a snapshot of the data. Changes made by other users while the cursor is open are not visible.</li>
+    <li><strong>Dynamic cursors</strong> reflect all changes to the result set rows as you scroll.</li>
+    <li><strong>Keyset cursors</strong> fix the membership of the result set when opened but detect changes to existing row values.</li>
+  </ul>
+</div>
 
 ### Locks
 
 A **lock** is a temporary control that prevents conflicting access to data.
-
-<!-- Pending figure: figure-11.16-locks-prevent-conflicting-modifications.png — Locks prevent conflicting modifications. — An illustration of a padlock on a specific database table row, preventing a second user from modifying it while the first user is active. -->
-
 
 | Lock Type | Purpose | Example |
 |---|---|---|
@@ -335,9 +299,6 @@ A **lock** is a temporary control that prevents conflicting access to data.
 ### Lock Granularity
 
 Locks may apply at different levels.
-
-<!-- Pending figure: figure-11.17-finer-granularity-increases-concurrency.png — Finer granularity increases concurrency but requires more overhead. — A visual comparing different lock levels: a padlock on an entire database, a padlock on a table, and a padlock on a single row. -->
-
 
 | Granularity | Meaning | Advantage | Disadvantage |
 |---|---|---|---|
@@ -352,9 +313,6 @@ A file-based database may use broader locks. A server-based DBMS usually support
 
 DBMSs and applications generally manage conflicts using one of two strategies.
 
-<!-- Pending figure: figure-11.18-visualizing-pessimistic-and-optimistic.png — Visualizing Pessimistic and Optimistic Locking. — A diagram or illustration explaining the key concepts of Pessimistic and Optimistic Locking. -->
-
-
 | Strategy | Assumption | How It Works | Best For |
 |---|---|---|---|
 | **Pessimistic locking** | Conflicts are likely | Lock data before editing | Banking, inventory, high-risk updates |
@@ -366,9 +324,6 @@ In a grading database, pessimistic locking might be appropriate if several instr
 
 **Two-Phase Locking (2PL)** is a protocol that helps ensure transactions behave correctly under concurrency.
 
-<!-- Pending figure: figure-11.19-2pl-ensures-serializable-transactions.png — 2PL ensures serializable transactions. — A line graph showing the Two-Phase Locking protocol: a growing phase where locks are acquired, and a shrinking phase where locks are released. -->
-
-
 It has two phases:
 
 1. **Growing phase:** the transaction acquires locks but cannot release any.
@@ -379,9 +334,6 @@ Once a transaction enters the shrinking phase and starts releasing locks, it can
 ### Deadlocks
 
 A **deadlock** occurs when two or more transactions wait for each other indefinitely.
-
-<!-- Pending figure: figure-11.20-deadlocks-occur-when-two.png — Deadlocks occur when two transactions wait indefinitely for each other. — A diagram showing User A holding Lock 1 and waiting for Lock 2, while User B holds Lock 2 and waits for Lock 1, creating a circular wait. -->
-
 
 Example:
 
@@ -402,23 +354,19 @@ DBAs reduce deadlocks by:
 
 > **Key Takeaway:** Concurrency control allows many users to work with the same database without turning shared data into shared chaos.
 
+> **Advanced Note: Multi-Version Concurrency Control (MVCC).** PostgreSQL and Supabase use MVCC instead of traditional read locks. Under MVCC, readers see a consistent snapshot of the data without blocking writers, and writers create new versions of rows rather than overwriting them. This is why PostgreSQL can handle high-concurrency analytical workloads efficiently. The trade-off is that old row versions must be periodically cleaned up through a process called vacuuming.
+
 ---
 
 ## Transactions and ACID Reliability
 
-Concurrency control manages simultaneous users. Transactions manage reliability when operations succeed, fail, or partially complete.
-
-<!-- Pending figure: figure-11.21-visualizing-transactions-and-acid.png — Visualizing Transactions and ACID Reliability. — A diagram or illustration explaining the key concepts of Transactions and ACID Reliability. -->
-
+Concurrency control manages simultaneous users. Transactions manage reliability when operations succeed, fail, or partially complete. A transaction defines the unit of work; concurrency control determines how multiple transactions interact safely.
 
 A **transaction** is a logical unit of work made of one or more database operations. The database treats the group as one all-or-nothing action.
 
 ### Why Transactions Matter
 
 Suppose an instructor updates a grade and records an audit entry.
-
-<!-- Pending figure: figure-11.22-transactions-ensure-operations-complete.png — Transactions ensure operations complete entirely or not at all. — A sequence diagram showing an incomplete transaction (money deducted from Account A but not added to Account B) causing inconsistent data. -->
-
 
 ```text
 Step 1: Update STUDENT_GRADE.
@@ -432,9 +380,6 @@ A transaction ensures that the two operations succeed or fail together.
 ### Transaction Control Commands
 
 Most relational DBMSs support three core transaction commands:
-
-<!-- Pending figure: figure-11.23-commit-saves-changes-rollback.png — COMMIT saves changes; ROLLBACK discards them. — A flowchart showing BEGIN, followed by SQL operations, ending in either a COMMIT (saving) or ROLLBACK (undoing). -->
-
 
 | Command | Meaning |
 |---|---|
@@ -465,10 +410,9 @@ ROLLBACK;
 
 ### The ACID Properties
 
+<!-- FIGURE PLACEHOLDER: ACID quadrant — Atomicity, Consistency, Isolation, Durability as four pillars of transaction reliability. Recommend chapter-media. -->
+
 Reliable transactions are governed by the **ACID** properties.
-
-<!-- Pending figure: figure-11.24-acid-guarantees-reliable-transactions.png — ACID guarantees reliable transactions. — A quadrant graphic summarizing the four ACID properties: Atomicity, Consistency, Isolation, and Durability. -->
-
 
 | Property | Meaning | Grading Database Example |
 |---|---|---|
@@ -481,15 +425,9 @@ Reliable transactions are governed by the **ACID** properties.
 
 Atomicity means **all or nothing**. If a transaction has five steps, the database does not keep only the first three if Step 4 fails. It rolls the entire transaction back.
 
-<!-- Pending figure: figure-11.25-atomicity-all-steps-succeed.png — Atomicity: all steps succeed, or all fail. — An illustration of an 'all-or-nothing' concept: either all steps of a process light up green, or they all revert to empty. -->
-
-
 ### Consistency
 
 Consistency means that a transaction moves the database from one valid state to another. It cannot violate constraints such as:
-
-<!-- Pending figure: figure-11.26-visualizing-consistency.png — Visualizing Consistency. — A diagram or illustration explaining the key concepts of Consistency. -->
-
 
 - primary key uniqueness,
 - valid foreign keys,
@@ -503,15 +441,9 @@ For example, a transaction should not insert a grade for a nonexistent student.
 
 Isolation means that each transaction behaves as if it were running alone, even when many transactions are active. Different DBMSs offer different isolation levels, but the purpose is always the same: prevent one transaction from seeing or disrupting unsafe intermediate states.
 
-<!-- Pending figure: figure-11.27-isolation-hides-uncommitted-changes.png — Isolation hides uncommitted changes from other users. — An illustration showing two separate, shielded transaction tunnels operating independently on a database. -->
-
-
 ### Durability
 
 Durability means that once a transaction is committed, the change survives system failure. If the database confirms that a grade update was saved, the grade should still be there after a restart.
-
-<!-- Pending figure: figure-11.28-committed-data-survives-system.png — Committed data survives system failures. — An illustration of a server experiencing a power outage, but the committed data remains safely stored on a hard drive. -->
-
 
 > **Real-World Example:**  
 > In banking, transferring money requires decreasing one account balance and increasing another. If the debit succeeds but the credit fails, money disappears. If the credit succeeds but the debit fails, money appears. Transactions prevent both failures by treating the transfer as one unit of work.
@@ -522,17 +454,11 @@ Durability means that once a transaction is committed, the change survives syste
 
 Database security ensures that data is protected from unauthorized access, unauthorized modification, accidental damage, and unnecessary exposure.
 
-<!-- Pending figure: figure-11.29-visualizing-database-security.png — Visualizing Database Security. — A diagram or illustration explaining the key concepts of Database Security. -->
-
-
 Security is not only about hackers. Many security problems come from ordinary users having more privileges than they need.
 
 ### The CIA Triad
 
 Database security is often described through the **CIA triad**.
-
-<!-- Pending figure: figure-11.30-the-cia-triad-defines.png — The CIA triad defines core security goals. — A triangle diagram showing Confidentiality, Integrity, and Availability. -->
-
 
 | Goal | Meaning | Grading Database Example |
 |---|---|---|
@@ -546,9 +472,6 @@ Security must balance all three. A database that is perfectly confidential but u
 
 Security begins with two questions.
 
-<!-- Pending figure: figure-11.31-visualizing-authentication-and-authorization.png — Visualizing Authentication and Authorization. — A diagram or illustration explaining the key concepts of Authentication and Authorization. -->
-
-
 | Concept | Question | Example |
 |---|---|---|
 | **Authentication** | Who are you? | User logs in with credentials |
@@ -559,9 +482,6 @@ A user may be authenticated but still not authorized to perform a specific actio
 ### Roles and Privileges
 
 Professional databases usually use **role-based access control (RBAC)**.
-
-<!-- Pending figure: figure-11.32-roles-simplify-permission-management.png — Roles simplify permission management. — A diagram showing individual users assigned to roles (like 'Instructor' or 'Student'), and roles being granted specific privileges on tables. -->
-
 
 - A **user** is an individual account.
 - A **role** represents a job function.
@@ -583,17 +503,11 @@ Example roles for the Grading Database:
 
 The **principle of least privilege** says that users should receive only the permissions required to do their work.
 
-<!-- Pending figure: figure-11.33-users-receive-only-the.png — Users receive only the access they strictly need. — An illustration of a user passing through a restricted access gate with a badge that only allows entry to specific required rooms. -->
-
-
 This principle protects against both malicious misuse and honest mistakes. A teaching assistant who does not need to delete grades should not have `DELETE` privileges on `STUDENT_GRADE`.
 
 ### Example: Role-Based Permissions
 
 In PostgreSQL-style SQL, permissions may look like this:
-
-<!-- Pending figure: figure-11.34-visualizing-example-role-based.png — Visualizing Example: Role-Based Permissions. — A diagram or illustration explaining the key concepts of Example: Role-Based Permissions. -->
-
 
 ```sql
 CREATE ROLE instructor;
@@ -615,9 +529,6 @@ The exact syntax varies across platforms, but the principle is stable: assign pr
 
 Views can reduce exposure by showing only the fields a role needs.
 
-<!-- Pending figure: figure-11.35-visualizing-views-as-security.png — Visualizing Views as Security Layers. — A diagram or illustration explaining the key concepts of Views as Security Layers. -->
-
-
 Example:
 
 ```sql
@@ -634,9 +545,6 @@ A student-facing view might omit email addresses, audit fields, instructor notes
 
 **SQL injection** occurs when an attacker submits input that changes the meaning of a SQL command.
 
-<!-- Pending figure: figure-11.36-sql-injection-tricks-the.png — SQL injection tricks the database into running malicious commands. — An illustration of a web form where an attacker enters 'DROP TABLE users' hidden in a name field, showing how untrusted input can execute as code. -->
-
-
 Unsafe pattern:
 
 ```text
@@ -652,9 +560,6 @@ The safer approach is to use **parameterized queries**, where user input is trea
 ### Security as a Continuous Process
 
 Security is not finished after accounts are created. DBAs must regularly:
-
-<!-- Pending figure: figure-11.37-visualizing-security-as-a.png — Visualizing Security as a Continuous Process. — A diagram or illustration explaining the key concepts of Security as a Continuous Process. -->
-
 
 - remove inactive users,
 - rotate or manage credentials,
@@ -675,9 +580,6 @@ Security is not finished after accounts are created. DBAs must regularly:
 
 Backup and recovery planning answers one of the most important operational questions:
 
-<!-- Pending figure: figure-11.38-visualizing-backup-and-recovery.png — Visualizing Backup and Recovery. — A diagram or illustration explaining the key concepts of Backup and Recovery. -->
-
-
 > **What will we do when something goes wrong?**
 
 Not if. When.
@@ -686,23 +588,21 @@ Failures can come from hardware, software, human error, cyberattacks, cloud outa
 
 ### Backup Types
 
+<!-- FIGURE PLACEHOLDER: Backup timeline comparing full, incremental, and differential backup strategies. Recommend chapter-media. -->
+
 | Backup Type | What It Stores | Advantage | Disadvantage |
 |---|---|---|---|
 | **Full backup** | Complete database copy | Easiest to restore | Takes the most time and storage |
 | **Incremental backup** | Changes since the last backup of any type | Efficient storage | Slower restore; multiple files needed |
 | **Differential backup** | Changes since the last full backup | Faster restore than incremental | Grows larger until next full backup |
 
-<!-- Pending figure: figure-11.39-comparing-backup-strategies.png — Comparing backup strategies. — A timeline graphic comparing Full backups (large, infrequent) with Incremental (small, frequent) and Differential backups. -->
-
-
 A common strategy combines periodic full backups with more frequent incremental or differential backups.
 
 ### Recovery Objectives: RPO and RTO
 
+<!-- FIGURE PLACEHOLDER: RPO/RTO disaster timeline showing the recovery point and recovery time objectives on a visual timeline. Recommend chapter-media. -->
+
 Two practical concepts guide recovery planning.
-
-<!-- Pending figure: figure-11.40-rpo-and-rto-guide.png — RPO and RTO guide recovery planning. — A timeline showing a disaster event. RPO measures maximum acceptable data loss (time backwards); RTO measures maximum acceptable downtime (time forwards). -->
-
 
 | Term | Meaning | Question |
 |---|---|---|
@@ -714,9 +614,6 @@ For a personal practice database, losing one day of work may be acceptable. For 
 ### Recovery Logs
 
 A **recovery log** records changes made to the database. Logs allow the system to undo or redo operations during recovery.
-
-<!-- Pending figure: figure-11.41-logs-record-changes-to.png — Logs record changes to enable recovery. — An illustration of a transaction log acting like a flight recorder, sequentially recording every INSERT, UPDATE, and DELETE. -->
-
 
 | Log Record | Meaning | Used For |
 |---|---|---|
@@ -730,17 +627,11 @@ A **recovery log** records changes made to the database. Logs allow the system t
 | **Rollback** | Undoes incomplete or incorrect transactions | Undo a failed grade update |
 | **Rollforward** | Restores a backup, then reapplies logged changes | Restore Monday backup and replay Tuesday transactions |
 
-<!-- Pending figure: figure-11.42-rollback-undoes-rollforward-rebuilds.png — Rollback undoes; Rollforward rebuilds. — A visual comparing Rollback (rewinding an action) to Rollforward (replaying logs to rebuild a lost state). -->
-
-
 Rollback is like pressing undo. Rollforward is like restoring an older version and replaying everything valid that happened after it.
 
 ### Disaster Recovery Planning
 
 A backup file alone is not a disaster recovery plan. A recovery plan should define:
-
-<!-- Pending figure: figure-11.43-a-backup-file-is.png — A backup file is only part of a full DR plan. — A checklist graphic showing a comprehensive Disaster Recovery Plan covering backups, offsite storage, and team roles. -->
-
 
 - where backups are stored,
 - how often backups run,
@@ -756,9 +647,6 @@ A DBA should periodically perform test restores. The worst time to discover that
 
 For Microsoft Access or SQLite, backup may be as simple as copying the database file. But the file should be closed or safely backed up through a proper backup mechanism.
 
-<!-- Pending figure: figure-11.44-visualizing-file-based-backup.png — Visualizing File-Based Backup Example. — A diagram or illustration explaining the key concepts of File-Based Backup Example. -->
-
-
 Example naming convention:
 
 ```text
@@ -771,9 +659,6 @@ A timestamped naming convention makes it easier to identify recovery points.
 ### SQLite Backup and Journal Modes
 
 SQLite supports explicit backup and journal mechanisms.
-
-<!-- Pending figure: figure-11.45-visualizing-sqlite-backup-and.png — Visualizing SQLite Backup and Journal Modes. — A diagram or illustration explaining the key concepts of SQLite Backup and Journal Modes. -->
-
 
 Example command-line backup:
 
@@ -794,9 +679,6 @@ PRAGMA journal_mode = WAL;
 
 Cloud platforms often provide automated backups, snapshots, and point-in-time recovery. However, cloud backups do not remove DBA responsibility.
 
-<!-- Pending figure: figure-11.46-visualizing-cloud-backup-considerations.png — Visualizing Cloud Backup Considerations. — A diagram or illustration explaining the key concepts of Cloud Backup Considerations. -->
-
-
 A DBA still needs to know:
 
 - how often backups occur,
@@ -812,10 +694,9 @@ A DBA still needs to know:
 
 ### End-to-End Scenario: The Gradebook Crash
 
+<!-- FIGURE PLACEHOLDER: Recovery in action — the Gradebook Crash scenario showing backup, log replay, and rollforward. Recommend chapter-media. -->
+
 Consider how security, transactions, and recovery work together during an incident:
-
-<!-- Pending figure: figure-11.47-recovery-in-action.png — Recovery in action. — A comic-style storyboard showing an instructor updating grades, a system crash, and the DBA restoring the database using a backup and rollforward logs. -->
-
 
 1. **The Mistake:** An exhausted teaching assistant intends to delete one duplicate grade row. Because their role was mistakenly granted broad `DELETE` privileges instead of least privilege, they run a delete query without a `WHERE` clause.
 2. **The Damage:** All 4,000 grades for the semester are deleted. Because this was a single atomic transaction, it succeeds completely. The data is gone.
@@ -833,9 +714,6 @@ This is why DBA work is a continuous cycle of protection, response, and improvem
 
 Performance tuning is the work of keeping the database responsive as usage grows.
 
-<!-- Pending figure: figure-11.48-visualizing-performance-monitoring-and.png — Visualizing Performance Monitoring and Tuning. — A diagram or illustration explaining the key concepts of Performance Monitoring and Tuning. -->
-
-
 A query that runs instantly on 50 rows may become slow on 5 million rows. A report that works for one instructor may fail when used by 400 users. Performance issues often appear gradually, which means DBAs must monitor proactively.
 
 ### Common Performance Problems
@@ -849,15 +727,9 @@ A query that runs instantly on 50 rows may become slow on 5 million rows. A repo
 | Storage growth | Tables/logs/indexes expanding | Archive data, compact, plan capacity |
 | High cloud cost | Inefficient queries or over-provisioning | Optimize queries, right-size resources |
 
-<!-- Pending figure: figure-11.49-monitoring-identifies-performance-bottlenecks.png — Monitoring identifies performance bottlenecks. — A dashboard showing slow queries, high CPU usage, and lock waits. -->
-
-
 ### Indexes
 
 An **index** is a data structure that helps the DBMS find rows faster.
-
-<!-- Pending figure: figure-11.50-indexes-speed-up-data.png — Indexes speed up data retrieval. — A visual comparison between scanning a full book chapter page-by-page versus jumping directly to the correct page using the index at the back of the book. -->
-
 
 Without an index, the DBMS may scan every row in a table. With an index, it can jump more directly to matching rows.
 
@@ -873,9 +745,6 @@ This index can speed up queries that filter or join on `StudentID`.
 ### Index Trade-Offs
 
 Indexes are not free.
-
-<!-- Pending figure: figure-11.51-visualizing-index-trade-offs.png — Visualizing Index Trade-Offs. — A diagram or illustration explaining the key concepts of Index Trade-Offs. -->
-
 
 | Benefit | Cost |
 |---|---|
@@ -895,9 +764,6 @@ In **Chapter 13**, you will explore advanced database hardening. That chapter di
 
 Some performance problems are not caused by the DBMS. They are caused by poor query logic.
 
-<!-- Pending figure: figure-11.52-visualizing-performance-and-query.png — Visualizing Performance and Query Design. — A diagram or illustration explaining the key concepts of Performance and Query Design. -->
-
-
 Common issues include:
 
 - joining more tables than necessary,
@@ -910,9 +776,6 @@ Common issues include:
 
 Performance is not only technical. It affects behavior.
 
-<!-- Pending figure: figure-11.53-visualizing-performance-and-business.png — Visualizing Performance and Business Impact. — A diagram or illustration explaining the key concepts of Performance and Business Impact. -->
-
-
 If grade reports take too long, instructors may export data into spreadsheets and create unofficial copies. If dashboards are slow, managers may stop using them. If registration systems slow down under load, students lose trust.
 
 > **Key Takeaway:** Performance tuning supports both technical efficiency and organizational confidence.
@@ -922,9 +785,6 @@ If grade reports take too long, instructors may export data into spreadsheets an
 ## Maintenance and Database Evolution
 
 Databases are living systems. Once deployed, they continue to grow, change, and age.
-
-<!-- Pending figure: figure-11.54-visualizing-maintenance-and-database.png — Visualizing Maintenance and Database Evolution. — A diagram or illustration explaining the key concepts of Maintenance and Database Evolution. -->
-
 
 ### Routine Maintenance Tasks
 
@@ -938,9 +798,6 @@ Databases are living systems. Once deployed, they continue to grow, change, and 
 | Backup testing | Verify recoverability | Restore backup to test environment |
 | Schema documentation | Preserve institutional knowledge | Update ERDs and data dictionaries |
 
-<!-- Pending figure: figure-11.55-databases-require-ongoing-maintenance.png — Databases require ongoing maintenance. — An illustration of a DBA performing routine tasks like reindexing, compaction, and permission review. -->
-
-
 SQLite examples:
 
 ```sql
@@ -952,9 +809,6 @@ VACUUM;
 ### Schema Changes
 
 No schema remains perfect forever. New requirements emerge:
-
-<!-- Pending figure: figure-11.56-schemas-evolve-as-business.png — Schemas evolve as business needs change. — A diagram showing a schema evolution from Version 1 (simple table) to Version 2 (added columns and constraints). -->
-
 
 - Add submission timestamps.
 - Track multiple attempts.
@@ -976,9 +830,6 @@ Schema evolution should be managed carefully. A DBA should consider:
 
 Professional database environments usually require formal change management.
 
-<!-- Pending figure: figure-11.57-formal-processes-protect-production.png — Formal processes protect production databases. — A workflow diagram showing the change management process: Request -> Review -> Test -> Approve -> Deploy. -->
-
-
 A change request should answer:
 
 1. What is changing?
@@ -993,9 +844,6 @@ This may feel bureaucratic, but uncontrolled database changes are dangerous. A s
 ### Documentation
 
 A database without documentation becomes harder to maintain every semester, every release, and every staff transition.
-
-<!-- Pending figure: figure-11.58-visualizing-documentation.png — Visualizing Documentation. — A diagram or illustration explaining the key concepts of Documentation. -->
-
 
 Useful documentation includes:
 
@@ -1018,15 +866,9 @@ Useful documentation includes:
 
 The principles of database administration are stable, but the implementation differs across platforms.
 
-<!-- Pending figure: figure-11.59-visualizing-dba-work-across.png — Visualizing DBA Work Across Platforms. — A diagram or illustration explaining the key concepts of DBA Work Across Platforms. -->
-
-
 ### Microsoft Access
 
 Microsoft Access is file-based and visual. It is useful for learning and small-team systems.
-
-<!-- Pending figure: figure-11.60-visualizing-microsoft-access.png — Visualizing Microsoft Access. — A diagram or illustration explaining the key concepts of Microsoft Access. -->
-
 
 | DBA Area | Access Reality |
 |---|---|
@@ -1043,9 +885,6 @@ Access makes many concepts visible. Students can see relationships, referential 
 
 SQLite is lightweight, serverless, and file-based. The database is a single file, but the engine is powerful and widely used.
 
-<!-- Pending figure: figure-11.61-visualizing-sqlite.png — Visualizing SQLite. — A diagram or illustration explaining the key concepts of SQLite. -->
-
-
 | DBA Area | SQLite Reality |
 |---|---|
 | Security | Mostly file-system and application-level |
@@ -1061,9 +900,6 @@ SQLite teaches an important lesson: simple deployment does not eliminate respons
 
 PostgreSQL is a server-based, enterprise-grade relational DBMS.
 
-<!-- Pending figure: figure-11.62-visualizing-postgresql.png — Visualizing PostgreSQL. — A diagram or illustration explaining the key concepts of PostgreSQL. -->
-
-
 | DBA Area | PostgreSQL Reality |
 |---|---|
 | Security | Users, roles, privileges, schemas, row-level security |
@@ -1078,9 +914,6 @@ PostgreSQL exposes many professional DBA concepts directly.
 ### Supabase and Cloud Databases
 
 Supabase is a managed platform built on PostgreSQL. It provides database hosting, authentication, APIs, and administrative tools.
-
-<!-- Pending figure: figure-11.63-visualizing-supabase-and-cloud.png — Visualizing Supabase and Cloud Databases. — A diagram or illustration explaining the key concepts of Supabase and Cloud Databases. -->
-
 
 Cloud platforms introduce the **shared responsibility model**.
 
@@ -1100,15 +933,14 @@ The cloud reduces infrastructure burden. It does not remove accountability.
 
 ### Platform Comparison
 
+<!-- FIGURE PLACEHOLDER: Platform comparison matrix — Access vs SQLite vs PostgreSQL vs Supabase across DBA dimensions. Recommend chapter-media. -->
+
 | Platform | Strength | Limitation | Main DBA Lesson |
 |---|---|---|---|
 | Access | Visual, approachable | Limited concurrency and security | Administration can be visible and local |
 | SQLite | Simple, portable, real SQL | Limited built-in user security | File-based systems still require discipline |
 | PostgreSQL | Powerful, scalable, secure | More complex | Professional DBMSs require active management |
 | Supabase | Managed PostgreSQL in the cloud | Shared responsibility can be misunderstood | Cloud DBAs still govern data and access |
-
-<!-- Pending figure: figure-11.64-comparing-database-platforms-by.png — Comparing database platforms by use case. — A quadrant chart mapping Access, SQLite, PostgreSQL, and Supabase by complexity and deployment scale. -->
-
 
 ---
 
@@ -1117,71 +949,77 @@ The cloud reduces infrastructure burden. It does not remove accountability.
 
 ## Common DBA Mistakes
 
-
-<!-- Pending figure: figure-11.65-visualizing-common-dba-mistakes.png — Visualizing Common DBA Mistakes. — A diagram or illustration explaining the key concepts of Common DBA Mistakes. -->
-
 ### Mistake 1: Assuming Backups Work Without Testing
 
 A backup is useful only if it can be restored. Test restores should be scheduled.
-
-<!-- Pending figure: figure-11.66-visualizing-mistake-1-assuming.png — Visualizing Mistake 1: Assuming Backups Work Without Testing. — A diagram or illustration explaining the key concepts of Mistake 1: Assuming Backups Work Without Testing. -->
-
 
 ### Mistake 2: Giving Users Too Much Access
 
 Excessive permissions are convenient until someone deletes, exports, or modifies data they should never have touched.
 
-<!-- Pending figure: figure-11.67-visualizing-mistake-2-giving.png — Visualizing Mistake 2: Giving Users Too Much Access. — A diagram or illustration explaining the key concepts of Mistake 2: Giving Users Too Much Access. -->
-
-
 ### Mistake 3: Treating Security as an Application-Only Problem
 
 The database itself should enforce security where possible. Application controls are important, but they should not be the only defense.
-
-<!-- Pending figure: figure-11.68-visualizing-mistake-3-treating.png — Visualizing Mistake 3: Treating Security as an Application-Only Problem. — A diagram or illustration explaining the key concepts of Mistake 3: Treating Security as an Application-Only Problem. -->
-
 
 ### Mistake 4: Ignoring Slow Queries Until Users Complain
 
 Performance problems are easier to fix before they become emergencies. Monitoring is cheaper than crisis response.
 
-<!-- Pending figure: figure-11.69-visualizing-mistake-4-ignoring.png — Visualizing Mistake 4: Ignoring Slow Queries Until Users Complain. — A diagram or illustration explaining the key concepts of Mistake 4: Ignoring Slow Queries Until Users Complain. -->
-
-
 ### Mistake 5: Indexing Everything
 
 Indexes speed up reads but slow down writes and consume storage. They should be chosen intentionally.
-
-<!-- Pending figure: figure-11.70-visualizing-mistake-5-indexing.png — Visualizing Mistake 5: Indexing Everything. — A diagram or illustration explaining the key concepts of Mistake 5: Indexing Everything. -->
-
 
 ### Mistake 6: Using Cascade Delete Casually
 
 Cascade delete can erase large amounts of related data automatically. It should be used only when the business rule clearly supports it.
 
-<!-- Pending figure: figure-11.71-visualizing-mistake-6-using.png — Visualizing Mistake 6: Using Cascade Delete Casually. — A diagram or illustration explaining the key concepts of Mistake 6: Using Cascade Delete Casually. -->
-
-
 ### Mistake 7: Making Unrecorded Schema Changes
 
 Changes without documentation become future confusion. Every schema change should be recorded and justified.
 
-<!-- Pending figure: figure-11.72-visualizing-mistake-7-making.png — Visualizing Mistake 7: Making Unrecorded Schema Changes. — A diagram or illustration explaining the key concepts of Mistake 7: Making Unrecorded Schema Changes. -->
-
-
 ### Mistake 8: Assuming the Cloud Handles Everything
 
 Cloud platforms handle infrastructure. They do not automatically fix bad permissions, bad schemas, bad queries, or bad governance.
-
-<!-- Pending figure: figure-11.73-visualizing-mistake-8-assuming.png — Visualizing Mistake 8: Assuming the Cloud Handles Everything. — A diagram or illustration explaining the key concepts of Mistake 8: Assuming the Cloud Handles Everything. -->
-
 
 ---
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Key Concepts
+## Practicing DBA Thinking
+
+Database administration is not only a professional role. It is also a mindset — a way of asking what could go wrong and what should be done before it does. This section gives you a reusable checklist and three short Try It exercises to practice that mindset on the Grading Database.
+
+### DBA Thinking Checklist
+
+Use this checklist when you think about any database you are responsible for, even a small one:
+
+- Who can access this database, and should they?
+- What roles exist, and what can each role do?
+- Are backups scheduled, and when was the last restore tested?
+- What is the recovery plan if the database becomes unavailable?
+- Are there slow queries that should be reviewed?
+- Do critical queries use appropriate indexes?
+- Are foreign keys indexed where they are used in joins?
+- When was the last integrity check run?
+- Is there a maintenance window for reindexing or compaction?
+- Is there a documented record of recent schema changes?
+
+### Try It: Apply DBA Judgment
+
+These three short exercises ask you to think like a DBA using the Grading Database.
+
+**Try It 1 — Backup Naming.** A DBA names backups so that anyone can identify what they contain without opening them. Design a backup filename convention for the Grading Database. Your convention should include the database name, the date, and the backup type. Write one example filename using your convention.
+
+**Try It 2 — Least Privilege.** An instructor needs to view student grades but should not be able to change them. A teaching assistant needs to enter grades for their section only. Describe what permissions each role should have, and explain why giving both roles full edit access would violate least privilege.
+
+**Try It 3 — Transaction Safety.** A student's final grade is calculated by averaging scores across multiple deliverables and then storing the result. Write the SQL transaction outline using `BEGIN`, `COMMIT`, and `ROLLBACK` that would make this calculation safe: if any step fails, no partial result should be saved.
+
+### From This Chapter to the Let's Build
+
+The **Let's Build companion** for this chapter walks you through a complete DBA practice session on the Grading Database: setting up roles, simulating a concurrency problem, performing a backup, testing a restore, running integrity checks, and documenting changes. Use this chapter for the concepts and the checklist. Use the Let's Build for step-by-step guided practice.
+
+---
 
 - Database administration keeps databases reliable, secure, recoverable, and performant after deployment.
 - Data Administration governs meaning, ownership, policy, and compliance; Database Administration implements technical controls.
@@ -1197,6 +1035,7 @@ Cloud platforms handle infrastructure. They do not automatically fix bad permiss
 - Indexes improve read performance but add write and storage overhead.
 - Maintenance includes integrity checks, reindexing, compaction, backup testing, and documentation.
 - Cloud database administration follows a shared responsibility model: infrastructure may be managed, but data governance remains the organization's responsibility.
+- Practicing DBA thinking — using checklists, testing backups, applying least privilege, and documenting changes — builds the habits that protect real databases.
 
 ---
 
@@ -1219,7 +1058,7 @@ Security was framed through confidentiality, integrity, and availability. You le
 
 Backup and recovery planning showed that reliable databases require tested recovery procedures, not just backup files. Full, incremental, and differential backups serve different purposes. Rollback, rollforward, before-images, after-images, and logs help restore data to a valid state after failure.
 
-Finally, the chapter examined performance, maintenance, platform differences, and hands-on DBA practice. Indexes, query plans, integrity checks, compaction, and schema-change discipline all contribute to long-term system health. The comparison among Access, SQLite, PostgreSQL, and Supabase reinforced the central lesson: platforms differ, but DBA responsibilities remain.
+Finally, the chapter examined performance, maintenance, platform differences, and practical DBA thinking. The DBA Thinking Checklist, Try It exercises, and Let's Build companion give you structured ways to practice backup planning, least privilege, and transaction safety. Indexes, query plans, integrity checks, compaction, and schema-change discipline all contribute to long-term system health. The comparison among Access, SQLite, PostgreSQL, and Supabase reinforced the central lesson: platforms differ, but DBA responsibilities remain.
 
 > **Final Takeaway:** A database becomes valuable only when people can trust it. Database administration is the work that protects that trust.
 

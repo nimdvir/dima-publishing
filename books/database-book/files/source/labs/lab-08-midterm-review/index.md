@@ -1,4 +1,4 @@
----
+﻿---
 title: "Lab 08: Midterm Review"
 chapter: 8
 section: "Lab Questions"
@@ -99,5 +99,4 @@ For advanced learners:
 - Modification 1
 - Modification 2
 - Modification 3
-
 

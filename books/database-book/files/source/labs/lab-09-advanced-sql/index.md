@@ -1,4 +1,4 @@
----
+﻿---
 title: "Lab 09: Advanced SQL"
 chapter: 9
 section: "Lab Questions"
@@ -99,5 +99,4 @@ For advanced learners:
 - Modification 1
 - Modification 2
 - Modification 3
-
 

@@ -358,7 +358,7 @@ foreach ($lab in $Labs) {
         if (-not (Test-Path -LiteralPath $labDestDir)) {
             New-Item -ItemType Directory -Path $labDestDir -Force | Out-Null
         }
-        Set-Content -LiteralPath $destFile -Value $sanitizedText -Encoding utf8NoBOM
+        [System.IO.File]::WriteAllText($destFile, $sanitizedText, [System.Text.Encoding]::UTF8)
     }
 
     $labNotes = if ($wasSanitized) { 'sanitized answer references' } else { '' }

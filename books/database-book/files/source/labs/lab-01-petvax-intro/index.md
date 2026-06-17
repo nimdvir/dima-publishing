@@ -1,4 +1,4 @@
-
+﻿
 # Lab 01: PetVax Project Introduction
 
 <p align="center">
@@ -102,7 +102,7 @@ insert this image plus caption
 
 Answer all questions. This quiz is your complete deliverable for Lab 01. There is no file to upload.
 
-### Question 1 — System Purpose (Multiple Choice)
+### Question 1 â€” System Purpose (Multiple Choice)
 
 In business terms, what is the PetVax Veterinary Clinic Database mainly meant to do?
 
@@ -111,7 +111,7 @@ In business terms, what is the PetVax Veterinary Clinic Database mainly meant to
 - C. Store marketing images for the clinic's website.
 - D. Track the personal social media accounts of pet owners.
 
-### Question 2 — Operational Data Inventory (Select All That Apply)
+### Question 2 â€” Operational Data Inventory (Select All That Apply)
 
 Which of the following are pieces of data a veterinary clinic would realistically need to track? Select all that apply.
 
@@ -122,7 +122,7 @@ Which of the following are pieces of data a veterinary clinic would realisticall
 - E. Invoice amounts and payment status
 - F. The clinic's favorite color
 
-### Question 3 — Business Question Fit (Multiple Choice)
+### Question 3 â€” Business Question Fit (Multiple Choice)
 
 Which question is the kind of **operational or managerial** question the finished PetVax database should be able to answer?
 
@@ -131,7 +131,7 @@ Which question is the kind of **operational or managerial** question the finishe
 - C. What is the best restaurant near the clinic?
 - D. Which celebrity owns a pet like mine?
 
-### Question 4 — Entity Preview (Matching)
+### Question 4 â€” Entity Preview (Matching)
 
 Match each PetVax entity to the kind of data it stores. Record your answers as pairs (for example, 1-C).
 
@@ -143,7 +143,7 @@ Match each PetVax entity to the kind of data it stores. Record your answers as p
 | 4   | Treatment | D      | An animal that receives care at the clinic               |
 | 5   | Invoice   | E      | A specific service or procedure performed during a visit |
 
-### Question 5 — Spreadsheet vs. Database (Multiple Choice)
+### Question 5 â€” Spreadsheet vs. Database (Multiple Choice)
 
 Why should a veterinary clinic avoid keeping all of its records in one large spreadsheet?
 
@@ -152,7 +152,7 @@ Why should a veterinary clinic avoid keeping all of its records in one large spr
 - C. Spreadsheets cannot store any numbers.
 - D. A database is always cheaper than any spreadsheet.
 
-### Question 6 — One Owner, Many Pets (Multiple Choice)
+### Question 6 â€” One Owner, Many Pets (Multiple Choice)
 
 The PetVax project notes that one owner may have multiple pets and one pet may have many visits. What does this pattern tell you about the data?
 
@@ -161,7 +161,7 @@ The PetVax project notes that one owner may have multiple pets and one pet may h
 - C. Every owner must have exactly one pet.
 - D. Pets and owners should never be linked.
 
-### Question 7 — Two Projects, One Goal (Multiple Choice)
+### Question 7 â€” Two Projects, One Goal (Multiple Choice)
 
 What is the main difference between the Grading Database and the PetVax project in this course?
 
@@ -170,7 +170,7 @@ What is the main difference between the Grading Database and the PetVax project 
 - C. PetVax is used for grading exams; the Grading Database is about pets.
 - D. Only the Grading Database uses real tables.
 
-### Question 8 — Professional Roles (Multiple Choice)
+### Question 8 â€” Professional Roles (Multiple Choice)
 
 When you ask "what questions should this data eventually answer?", which professional role are you practicing?
 
@@ -179,7 +179,7 @@ When you ask "what questions should this data eventually answer?", which profess
 - C. Communicator
 - D. Database designer
 
-### Question 9 — Tool Readiness (Multiple Choice)
+### Question 9 â€” Tool Readiness (Multiple Choice)
 
 Which list best matches the kinds of tools you will use as the PetVax labs become more technical?
 
@@ -188,7 +188,7 @@ Which list best matches the kinds of tools you will use as the PetVax labs becom
 - C. Video editing and photo retouching software
 - D. None; the labs require no tools at all
 
-### Question 10 — Lab 01 Deliverable (Multiple Choice)
+### Question 10 â€” Lab 01 Deliverable (Multiple Choice)
 
 What do you submit for Lab 01?
 
@@ -196,4 +196,3 @@ What do you submit for Lab 01?
 - B. A SQL script and result screenshots.
 - C. Only this quiz; Lab 01 has no file submission.
 - D. A Power BI dashboard of clinic revenue.
-

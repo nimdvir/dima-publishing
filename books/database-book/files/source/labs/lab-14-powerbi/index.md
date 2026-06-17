@@ -1,4 +1,4 @@
----
+﻿---
 title: "Lab 14: Power BI"
 chapter: 14
 section: "Lab Questions"
@@ -35,13 +35,13 @@ This file preserves the current section-based lab handout inside the new numbere
 
 ## Migrated Section Draft
 
-<!-- Companion: Lab assignment — 2026-05-06 -->
+<!-- Companion: Lab assignment â€” 2026-05-06 -->
 
 ### Lab Overview
 
 **Lab Title:** Grading Dashboard in Power BI  
-**Chapter:** 14 — Power BI: Data Visualization and Business Reporting  
-**Estimated Time:** 60–90 minutes  
+**Chapter:** 14 â€” Power BI: Data Visualization and Business Reporting  
+**Estimated Time:** 60â€“90 minutes  
 **Tools Required:** Power BI Desktop (free), GRADECENTER data export (Excel or SQL)
 
 ---
@@ -68,7 +68,7 @@ Tables to use: `Students`, `Courses`, `Enrollments`, `Grades`
 
 ### Part 1: Connect and Prepare (15 min)
 
-1. Open Power BI Desktop. Click **Get Data → Excel** and load `gradecenter-export.xlsx`.
+1. Open Power BI Desktop. Click **Get Data â†’ Excel** and load `gradecenter-export.xlsx`.
 2. Open **Power Query Editor**:
    - Remove any rows in `Grades` where `Score` is blank or null.
    - Confirm all data types are correct (`Score` = Decimal, `StudentID` = Whole Number).
@@ -98,7 +98,7 @@ DIVIDE(
 
 ---
 
-### Part 3: Report Page 1 — Course Overview (20 min)
+### Part 3: Report Page 1 â€” Course Overview (20 min)
 
 Build a report page titled **"Course Overview"**:
 
@@ -115,7 +115,7 @@ Format the page with a dark or professional theme. Add a text box title at the t
 
 ---
 
-### Part 4: Report Page 2 — Student Detail (15 min)
+### Part 4: Report Page 2 â€” Student Detail (15 min)
 
 Build a second report page titled **"Student Detail"**:
 
@@ -127,10 +127,10 @@ Build a second report page titled **"Student Detail"**:
 
 ---
 
-### Part 5: Publish (Optional — 5 min)
+### Part 5: Publish (Optional â€” 5 min)
 
 1. Save your file as `ch14-lab-yourname.pbix`.
-2. If you have a Microsoft account: **Publish → My Workspace**.
+2. If you have a Microsoft account: **Publish â†’ My Workspace**.
 3. Share the report URL with your instructor.
 
 ---
@@ -160,8 +160,7 @@ Submit the following via the course LMS:
 
 ---
 
-### Reflection Prompt (written response, 2–3 sentences)
+### Reflection Prompt (written response, 2â€“3 sentences)
 
 After building this dashboard, describe one business decision a school administrator could make using it. What data would drive that decision?
-
 
