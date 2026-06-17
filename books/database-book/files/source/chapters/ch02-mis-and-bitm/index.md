@@ -4,10 +4,10 @@ This chapter introduces the core vocabulary and frameworks of information system
 
 ## Chapter Files
 
-- [Main Chapter](ch02-main-2026-06-06.md)
+- [Main Chapter](ch02-main-2026-06-16.md)
 - [Let's Build](ch02-lets-build-2026-06-03.md)
 - [Review & Reflection](ch02-reflection-2026-06-03.md)
-- [Terms Treasury](ch02-terms-2026-06-02.md)
+- [Terms Treasury](ch02-terms-2026-06-16.md)
 - [Readiness Assessment Test](ch02-rat-2026-06-03.md)
 
 ## Lab

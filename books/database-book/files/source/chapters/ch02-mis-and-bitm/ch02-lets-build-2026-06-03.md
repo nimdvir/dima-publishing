@@ -108,9 +108,10 @@ A question cannot be answered if the underlying records do not exist. This step 
 
 **Concept connection.** This is Chapter 2's **IPO model** in miniature: course processes (inputs and processing) produce records (outputs). It is also the boundary between **data** and **knowledge** — internal records tell you *what happened*, external knowledge helps you judge *whether that is good or bad*.
 
-![The IPO model: every system turns inputs into outputs through a process.](../../../../.images/ch02/figure-2.2-ipo-model.png)
+![Figure 2](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-letsbuild-ipo-model)
 
-*The IPO model: every system turns inputs into outputs through a process.*
+_The IPO model: every system turns inputs into outputs through a process._
+
 
 **Reflection.** Which record on your list is the most fragile — the one most likely to be missed or written down inconsistently?
 
@@ -194,9 +195,10 @@ You now have questions, data, KPIs, and decisions. The harder question is *how a
 
 **Concept connection.** DIKW is not a vocabulary exercise. It is a ladder, and every rung takes work — recording, summarizing, interpreting, deciding. The Grading Database is valuable only because it lets people climb that ladder reliably.
 
-![The DIKW ladder applied to the course Grading Database.](../../../../.images/ch02/dikw-grading.png)
+![Dikw Grading](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-letsbuild-dikw-grading)
 
-*The DIKW ladder applied to the course Grading Database.*
+_The DIKW ladder applied to the course Grading Database._
+
 
 **Reflection.** At which rung does *human judgment* start to matter more than software?
 
@@ -221,9 +223,10 @@ DIKW names the *stages of meaning*. R.E.A.D. names the *work* an organization do
 
 **Concept connection.** Chapter 2 pairs DIKW and R.E.A.D. on purpose. DIKW is the staircase; R.E.A.D. is the climbing. One describes what meaning looks like at each stage, the other describes the technical and organizational work that gets you there.
 
-![The R.E.A.D. framework: the work of moving from records to decisions.](../../../../.images/ch02/read-framework.png)
+![Read Framework](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-letsbuild-read-framework)
 
-*The R.E.A.D. framework: the work of moving from records to decisions.*
+_The R.E.A.D. framework: the work of moving from records to decisions._
+
 
 **Reflection.** Which R.E.A.D. stage in your trace leans most on human judgment, and which leans most on the system?
 
