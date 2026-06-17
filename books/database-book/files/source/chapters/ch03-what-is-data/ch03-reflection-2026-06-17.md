@@ -51,6 +51,8 @@ author: "Nimrod Dvir"
 
 **8. What are the six data quality dimensions, and why is it risky to ignore any one of them when building reports or dashboards?**
 
+**9. What is a schema, and how does the compact notation `TABLE_NAME(Attribute1, Attribute2, ...)` help separate the structure of data from the data itself? Why does the chapter call a schema "the blueprint for data"?**
+
 ## Reflection Questions
 
 *These questions encourage you to interpret the chapter, connect ideas, and think critically about how they apply in practice.*
@@ -121,6 +123,9 @@ author: "Nimrod Dvir"
 
 **Question 8: What are the six data quality dimensions, and why is it risky to ignore any one of them when building reports or dashboards?**
 **Suggested Answer:** The six dimensions are accuracy, completeness, consistency, timeliness, validity, and uniqueness. Each addresses a different way data can fail: accuracy means the value matches reality; completeness means required values are present; consistency means the same fact is represented the same way everywhere; timeliness means data is current when needed; validity means values follow defined rules and ranges; uniqueness means each entity appears once. Ignoring any dimension creates a weak link. A dashboard built on accurate but incomplete data hides gaps. A report built on consistent but stale data answers yesterday's question. The dimensions work together — a weakness in any one can undermine every analysis built on top of the data.
+
+**Question 9: What is a schema, and how does the compact notation `TABLE_NAME(Attribute1, Attribute2, ...)` help separate the structure of data from the data itself? Why does the chapter call a schema "the blueprint for data"?**
+**Suggested Answer:** A schema is a formal description of how data is organized — the names of tables and their attributes, plus any rules or relationships. The compact notation shows the structure (table name and attribute names) without showing any actual rows, which separates the pattern from the records that follow it. The chapter calls a schema "the blueprint for data" because, like an architect's blueprint, it describes what should be built — the plan exists before the construction, and many buildings (or in this case, many rows of data) can follow the same plan.
 
 ### Reflection Questions
 
