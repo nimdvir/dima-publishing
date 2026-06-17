@@ -1,0 +1,46 @@
+# Chapter 9 Term Treasury — From Data to Design
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-terms-sizedmin" alt="Terms Treasury section icon" width="220">
+</p>
+
+<p align="center">
+
+<!-- Companion: Key terms and definitions - 2026-06-16 -->
+
+| Term / Concept | Definition | Business Significance | Examples |
+|---|---|---|---|
+| **Associative Entity** | An entity created to resolve a many-to-many relationship, containing foreign keys to both parent entities and often carrying its own attributes. | Makes M:N relationships implementable in relational databases and stores facts that belong to the relationship itself rather than to either parent. | `STUDENT_GRADE` stores `Score` for the student-deliverable pair; `ORDER_LINE` stores `Quantity` for the order-item pair. |
+| **Attribute** | A property or characteristic of an entity that describes a single fact about it. | Determines what information the database can store about each entity; correct attribute placement prevents redundancy. | `Email` in `STUDENT`; `DueDate` in `DELIVERABLE`; `Score` in `STUDENT_GRADE`. |
+| **Business Rule** | A statement about how the organization operates that database design can translate into structural constraints. | Ensures data integrity is enforced by the system, not left to human memory. | "A student should not have two scores for the same deliverable" becomes `UNIQUE(StudentID, DeliverableID)`. |
+| **Conceptual Design** | A high-level, technology-independent model that identifies what entities and relationships the business domain contains. | Lets business stakeholders confirm the system captures the right concepts before technical work begins. | Identifying that the Grading Database needs `STUDENT`, `DELIVERABLE`, and `ATTENDANCE` entities. |
+| **Crow's Foot Notation** | A visual notation for ER diagrams that uses specific symbols to represent cardinality and optionality at the ends of relationship lines. | Makes business rules visible in a diagram so designers and stakeholders can verify structure before implementation. | `STUDENT ||--o{ STUDENT_GRADE` means one student can have zero or many grades; each grade must belong to one student. |
+| **Data Anomaly** | A data integrity problem — insertion, update, or deletion — caused by storing data in a poorly structured or redundant way. | Damages trust in reports, increases hidden data-cleaning labor, and weakens business decisions. | In `GRADE_FLAT`, deleting Brian's only grade row also deletes his student identity (deletion anomaly). |
+| **Entity** | A real-world object, concept, person, place, event, or transaction that the database needs to represent. | Each entity becomes a table; correct entity identification is the foundation of a sound design. | `STUDENT`, `DELIVERABLE`, `SCHEDULE`, `ATTENDANCE` in the Grading Database. |
+| **Entity-Relationship (ER) Modeling** | A visual and conceptual method for designing databases before implementation, representing entities, attributes, relationships, keys, cardinality, and optionality. | Separates design thinking from software implementation, providing a shared language for business and technical stakeholders. | Peter Chen's 1976 ER model; drawing an ERD for the Grading Database before writing SQL. |
+| **Logical Design** | A platform-independent model that defines tables, attributes, keys, and constraints without committing to a specific DBMS. | A good logical design can move across platforms; tool-dependent designs are fragile and costly to migrate. | `STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)` is the same in Access, SQLite, or PostgreSQL. |
+| **Mapping Algorithm** | A systematic process for translating an ER diagram into relational tables, columns, keys, and constraints. | Turns a visual design artifact into an implementable schema, ensuring each ER concept has a clear table-level expression. | Step 1: map strong entities; Step 2: map weak entities; Step 3: map 1:N; Step 4: map M:N; Step 5: map special attributes. |
+| **Optionality** | Whether an entity's participation in a relationship is required (mandatory) or permitted but not required (optional). | Determines `NOT NULL` vs. nullable foreign keys; affects whether records can exist independently. | A student can exist before grades are entered (optional participation on the STUDENT side of STUDENT_GRADE). |
+| **Physical Design** | A technology-specific model that specifies data types, indexes, storage parameters, and settings for a particular DBMS. | Translates a logical model into a working database; platform choices affect performance, features, and constraints. | Access `AutoNumber` vs. SQLite `INTEGER PRIMARY KEY` vs. PostgreSQL `GENERATED AS IDENTITY`. |
+| **Recursive Relationship** | A relationship in which an entity is related to itself. | Models hierarchies and self-referencing structures such as organizational reporting chains. | `EMPLOYEE.ManagerID` references `EMPLOYEE.EmployeeID`; self-join queries show employee-manager pairs. |
+| **Relationship** | An association between entities that reflects a business rule and is implemented through keys. | Connects separate tables so SQL can answer cross-entity questions without redundant data storage. | `STUDENT` to `STUDENT_GRADE` (1:N); `STUDENT` to `DELIVERABLE` (M:N resolved via `STUDENT_GRADE`). |
+| **SDLC (System Development Life Cycle)** | A structured framework for planning, building, deploying, and maintaining information systems through deliberate phases. | Places database design early in the process; structural mistakes become more expensive after data and users depend on the system. | Planning → Conceptual design → Logical design → Physical design → Development → Testing → Deployment → Maintenance. |
+| **Specialization / Generalization** | Modeling "is-a" relationships where subtypes inherit attributes from a shared supertype (specialization = top-down; generalization = bottom-up). | Handles real-world complexity where entities share common attributes but also have type-specific ones. | `PERSON` supertype with `STUDENT` and `INSTRUCTOR` subtypes; disjoint vs. overlapping constraints. |
+| **Weak Entity** | An entity that cannot be uniquely identified by its own attributes alone; its identity depends on an owner (strong) entity. | Models entities whose existence and identity are tied to a parent, enforced through composite primary keys. | `SECTION(CourseID, SectionNumber)` depends on `COURSE(CourseID)`; `SectionNumber` alone is not unique. |
+
+## Acronyms and Abbreviations
+
+| Abbreviation | Full Form | Brief Meaning | Where It Appears |
+|---|---|---|---|
+| **1:1** | One-to-One | One record relates to at most one record. | Relationship types (Section 9.7.1) |
+| **1:N** | One-to-Many | One record relates to many records. | Foreign key placement, Crow's Foot notation |
+| **1NF** | First Normal Form | Each cell holds one atomic value; no repeating groups. | Normal forms review (Section 9.9) |
+| **2NF** | Second Normal Form | No partial dependencies on a composite key. | Normalization as design check |
+| **3NF** | Third Normal Form | No transitive dependencies among non-key attributes. | Normalization as design check |
+| **BCNF** | Boyce-Codd Normal Form | Every determinant is a candidate key. | Normal forms review |
+| **ER** | Entity-Relationship | A conceptual data modeling approach. | ER modeling, ERD elements, ER history |
+| **ERD** | Entity-Relationship Diagram | A visual diagram of entities, attributes, and relationships. | ER modeling, Crow's Foot notation, mapping algorithm |
+| **FK** | Foreign Key | An attribute referencing another table's primary key. | Crow's Foot to SQL, relationship implementation |
+| **M:N** | Many-to-Many | A relationship where many records relate to many records. | Relationship types, associative entities |
+| **PK** | Primary Key | The attribute chosen as the unique row identifier. | Key hierarchy, mapping algorithm, SQL examples |
+| **SDLC** | System Development Life Cycle | A phased framework for building information systems. | Database design in the SDLC (Section 9.3) |

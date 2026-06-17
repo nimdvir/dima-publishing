@@ -8,6 +8,7 @@ const FORM_FIELDS = {
   readerSection: "entry.2020264049",
   pageNumber: "entry.1101982669",
   currentHeading: "entry.387659526",
+  pageTitle: "entry.1479531159",
   browserDevice: "entry.1910882756",
   screenSize: "entry.1418577056",
   viewportSize: "entry.1979254209",
@@ -28,6 +29,11 @@ function getReaderRouteContext() {
     readerSection: readerSection ?? "",
     pageNumber: pageNumber ?? "",
   };
+}
+
+function getPageTitle() {
+  const title = document.querySelector(".reader-page-title") as HTMLElement | null;
+  return title?.textContent?.trim() ?? document.title ?? "";
 }
 
 function getCurrentHeading() {
@@ -66,6 +72,7 @@ export function buildFeedbackUrl() {
 
   params.set("usp", "pp_url");
   params.set(FORM_FIELDS.fullPageUrl, window.location.href);
+  params.set(FORM_FIELDS.pageTitle, getPageTitle());
   params.set(FORM_FIELDS.readerScope, route.readerScope);
   params.set(FORM_FIELDS.chapterId, route.chapterId);
   params.set(FORM_FIELDS.readerSection, route.readerSection);

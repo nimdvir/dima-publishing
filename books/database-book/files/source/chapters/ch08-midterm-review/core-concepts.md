@@ -1,44 +1,60 @@
-# Chapter 8: Midterm Review - Concepts
+<!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. Integrated NotebookLM additions (video embed, "So What?" framing, expert benchmarks) and placed slide images from .images/ch08-midterm. Images optimized and Cloudinary-linked 2026-06-16. -->
 
-Putting the First Half of the Course Together
+---
+date: 2026-06-16
+---
+
+# Chapter 8: Midterm Review — Concepts
+
+*Putting the First Half of the Course Together*
 
 Chapter 8 is the point where the first half of the course comes together. Up to this point, you have studied data, databases, tables, keys, relationships, SQL, and normalization in separate pieces. The midterm asks you to connect those pieces and use them as one working system.
 
 This chapter has two purposes. First, it gives you a clear review of the core ideas from the first half of the course. Second, it explains the two major midterm tasks: the midterm test and the midterm project. By the end of this chapter, you should understand what knowledge is being tested, what work you must submit, and how the review topics connect to the database work ahead.
 
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch08-midterm/ch08-midterm-guide" alt="Midterm guide infographic showing the test and project components, key concepts, and submission requirements" width="800" loading="lazy">
+</p>
+<p align="center"><em>Figure 8.1 — Midterm guide: test, project, and key concepts at a glance.</em></p>
+
+<p align="center">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/yzmAvsBa6M0" title="Midterm review video overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</p>
+<p align="center"><em>Video 8.1 — Chapter 8 midterm review overview.</em></p>
+
+## Learning Objectives
+
 **After reading this chapter, students will be able to:**
 
-- explain how data, tables, relationships, queries, and normalization fit together
-- identify the main concepts from the first half of the course that need review before the midterm
-- describe the structure and expectations of the Chapter 8 midterm test
-- describe the deliverables and grading criteria for the Chapter 8 midterm project
-- prepare for the second half of the course, which begins with more advanced SQL work in Chapter 9
+- explain how data, tables, relationships, queries, and normalization fit together as one working system
+- identify the key concepts from Chapters 2–7 that need review before the midterm
+- describe the structure, expectations, and question types in the Chapter 8 midterm test
+- describe the deliverables, point values, and grading criteria for the Chapter 8 midterm project
+- prepare for the second half of the course, which begins with advanced database design and SQL in Chapter 9
 
-## In This Chapter
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-1. [Chapter Overview](#chapter-overview)
-2. [The First Half as One Connected Framework](#the-first-half-as-one-connected-framework)
-3. [What to Review Before the Midterm](#what-to-review-before-the-midterm)
-4. [Midterm Test Instructions](#midterm-test-instructions)
-5. [Midterm Test Question Set](#midterm-test-question-set)
-6. [Midterm Project Instructions](#midterm-project-instructions)
-7. [How the Test and Project Work Together](#how-the-test-and-project-work-together)
-8. [Chapter Summary](#chapter-summary)
-9. [Readiness Checklist](#readiness-checklist)
-10. [References](#references)
+## Core Concepts
 
-## Chapter Overview
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
+</p>
+
+<p align="center">
 
 The first half of BITM330 follows a simple path:
 
-Data -> Tables -> Relationships -> Queries -> Decisions
+```text
+Data → Tables → Relationships → Queries → Decisions
+```
 
 That path matters because the midterm is not just a memory check. It asks you to work with a database, interpret structure, write or explain SQL, and show that you understand why a relational design supports better reporting and better decisions. If one part of that chain is weak, the later parts become harder.
 
 This chapter reviews the concepts that support the midterm. It then gives you the full instructions for two major Chapter 8 tasks:
 
-- the midterm test, which uses a quiz database in Microsoft Access
-- the midterm project, which asks you to build the foundation of a grading database in Microsoft Access
+- the **midterm test**, which uses a quiz database in Microsoft Access
+- the **midterm project**, which asks you to build the foundation of a grading database in Microsoft Access
 
 Read this chapter as a working guide. It is meant to help you study, complete the required work, and see how the first half of the course connects to the more advanced SQL and design topics that follow.
 
@@ -46,37 +62,42 @@ Read this chapter as a working guide. It is meant to help you study, complete th
 
 The strongest way to study for the midterm is to stop treating each chapter as a separate island. In practice, databases work as connected systems. Data is collected for a reason, stored in tables, linked through keys, queried with SQL, and used to support decisions. Chapter 8 asks you to review that full path.
 
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch08-midterm/ch08-slide-02" alt="Slide introducing the midterm structure: two components — test and project — that together assess first-half database skills" width="800" loading="lazy">
+</p>
+<p align="center"><em>Figure 8.2 — The midterm has two complementary parts: a test that checks your ability to work with an existing database, and a project that checks your ability to build one from scratch.</em></p>
+
 ### Data and Information
 
 Data is the raw material. It may be a student ID, quiz score, class date, or attendance mark. By itself, a data value does not tell you much. It becomes more useful when it is organized, labeled, and connected to a business question. That is how raw data becomes information.
 
-In earlier chapters, you learned that good information should be accurate, timely, complete enough for the task, and easy to understand. Those ideas still matter here. If a database stores the wrong student, the wrong quiz, or the wrong score, then every query built on that data becomes less trustworthy.
+In earlier chapters, you learned that good information should be accurate, timely, complete enough for the task, and easy to understand. Those ideas still matter here. If a database stores the wrong student, the wrong quiz, or the wrong score, then every query built on that data becomes less trustworthy. **So what?** If the underlying data is inaccurate or incomplete, the resulting information is unreliable, and decisions built on that information become flawed. Clean data is not a luxury — it is the prerequisite for every query, every report, and every decision.
 
 ### Databases and DBMS Concepts
 
 A database stores related data in an organized way. A database management system, or DBMS, helps people create, store, update, retrieve, and secure that data. Microsoft Access is the DBMS used in this chapter's midterm work. It gives you tables, relationships, forms, queries, and reports in one place.
 
-This matters because the midterm is not only about definitions. You will work inside a real Access database. You need to understand how the tool supports the logic of a relational system. Tables store the data. Relationships connect the tables. Queries answer questions. Forms support cleaner data entry. Reports present results in a usable format.
+This matters because the midterm is not only about definitions. You will work inside a real Access database. You need to understand how the tool supports the logic of a relational system. Tables store the data. Relationships connect the tables. Queries answer questions. Forms support cleaner data entry. Reports present results in a usable format. **So what?** Without a functioning DBMS, the logic of a relational system cannot be enforced. Data becomes scattered, integrity rules vanish, and what should be a connected system turns into disconnected fragments.
 
 ### Tables, Keys, and Relationships
 
 A table stores one subject. For example, a STUDENT table stores students, and a QUESTION table stores quiz questions. Each row represents one record. Each column represents one field. A primary key uniquely identifies a row. A foreign key links one table to another.
 
-These keys are what make relational design work. In a grading database, a student can have many grades, and one assignment type can apply to many students. That kind of many-row activity should not be forced into a single student table. Instead, the design uses separate related tables so the data remains clear and flexible.
+These keys are what make relational design work. In a grading database, a student can have many grades, and one assignment type can apply to many students. That kind of many-row activity should not be forced into a single student table. Instead, the design uses separate related tables so the data remains clear and flexible. **So what?** A weak understanding of keys makes relationships impossible to build. Data stays locked in isolated tables — "islands" that cannot be joined — and the database cannot answer questions that span more than one subject.
 
-When you review the midterm database, pay close attention to which table stores the main event or transaction. In the quiz database, that role is played by STUDENT_ANSWER. It records what each student did on each question. That table makes it possible to count correct answers, track missing submissions, and compare performance across quizzes and sessions.
+When you review the midterm database, pay close attention to which table stores the main event or transaction. In the quiz database, that role is played by STUDENT_ANSWER. It records what each student did on each question. That table makes it possible to count correct answers, track missing submissions, and compare performance across quizzes and sessions. Identifying this "transactional hub" in any schema is one of the most important skills you can develop: it tells you where the action is and which table will anchor most of your important queries.
 
 ### SQL and Query Logic
 
 SQL turns stored data into answers. A good query starts with a clear question, then chooses the right tables, joins, filters, grouping rules, and calculations. In the first half of the course, you practiced SELECT, FROM, WHERE, ORDER BY, GROUP BY, and aggregate functions such as Count and Avg. Those skills are central to the midterm.
 
-You should also be ready to explain what a query is doing. If a query groups by Session and counts rows, you should be able to say that it is counting how many records appear in each session. If a query filters NULL values, you should be able to explain that it is isolating missing data.
+You should also be ready to explain what a query is doing. If a query groups by Session and counts rows, you should be able to say that it is counting how many records appear in each session. If a query filters NULL values, you should be able to explain that it is isolating missing data. **So what?** Poor query logic produces incorrect totals, misleading averages, and wrong answers. The database fails its primary purpose — providing trustworthy answers to business questions — when the SQL is written without understanding what it actually counts, filters, or joins.
 
 ### Normalization and Data Quality
 
 Normalization reduces repeated facts and helps prevent update problems. It separates data into related tables so each fact is stored in the right place. In a quiz database, questions and answer choices belong in different tables because one question can have many answers. In a grading database, attendance, deliverables, students, and grades should not all be crowded into one wide table.
 
-Normalization is not just a design rule to memorize. It affects data quality. If a design repeats the same fact in many places, errors become easier to introduce and harder to fix. A cleaner design makes future queries more reliable, which is one reason normalization is part of midterm review.
+Normalization is not just a design rule to memorize. It affects data quality. If a design repeats the same fact in many places, errors become easier to introduce and harder to fix. A cleaner design makes future queries more reliable, which is one reason normalization is part of midterm review. **So what?** A non-normalized database invites insertion, update, and deletion anomalies — repeated facts that drift out of sync, corrupt reports, and erode the long-term reliability of the entire system.
 
 ### Why This Review Matters
 
@@ -104,13 +125,36 @@ If you are unsure where to focus, start with three questions:
 
 If you can answer those three questions clearly, you are usually studying at the right level.
 
+<div class="callout tip">
+   <p><strong>💡 Tip: Expert-level self-check</strong></p>
+   <p>To move from memorization to mastery, test yourself against these four benchmarks:</p>
+   <ul>
+      <li><strong>Structural logic:</strong> Can you explain exactly why tables are separated the way they are (for example, why attendance and grades live in different tables) rather than combined into one large list?</li>
+      <li><strong>Query purpose:</strong> When you run a query, can you explain in plain language what the resulting average or count actually represents in a business context?</li>
+      <li><strong>Data integrity:</strong> Can you identify how a missing value (NULL) or an incorrect entry would specifically change your final reporting results?</li>
+      <li><strong>Relational flow:</strong> Can you identify the transactional table in any given schema — the table where the main events or facts are recorded?</li>
+   </ul>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ## Midterm Test Instructions
 
 The midterm test checks whether you can work with a small relational database and explain what your queries and design choices mean. The test uses a Microsoft Access quiz database stored in the Chapter 8 midterm-data folder.
 
+In a professional setting, data professionals rarely build from scratch every day. More often, they must dive into existing systems, understand their logic, and use SQL to answer pressing business questions. The midterm test mirrors that real-world skill: it validates your ability to interpret an existing relational schema and extract meaningful insights.
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch08-midterm/ch08-slide-03" alt="Slide overview of the midterm test: assesses schema reading, SQL writing, NULL handling, and plain-language query explanation" width="800" loading="lazy">
+</p>
+<p align="center"><em>Figure 8.3 — Midterm test overview: the test checks your ability to work with an existing database, not just recall definitions.</em></p>
+
 ### Files for the Midterm Test
 
 Use these source files for the test portion of Chapter 8:
+
+<!-- make sure these files are in the shared folder "G:\My Drive\0-Projects\!-important\BITM330-book-drive\BITM330-Book-draft\Database-Book-Files" - for example https://drive.google.com/file/d/1IDTOLpB6Nhaw3IcT01y6efqzex52XgIq/view?usp=sharing -->
 
 - [Midterm2026.accdb](../midterm-data/Midterm2026.accdb)
 - [Midterm2026-answered.accdb](../midterm-data/Midterm2026-answered.accdb)
@@ -186,6 +230,11 @@ STUDENT_ANSWER(
 )
 ```
 
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch08-midterm/ch08-slide-04" alt="Slide showing the quiz database schema with five tables: STUDENT, QUIZ, QUESTION, ANSWER, and STUDENT_ANSWER, and how they connect through primary and foreign keys" width="800" loading="lazy">
+</p>
+<p align="center"><em>Figure 8.4 — The five-table quiz database schema. STUDENT_ANSWER is the transactional hub that records every student response.</em></p>
+
 Use this schema to reason about joins and query design. For example, if you want student-level performance by quiz, you need QUESTION to identify the quiz, STUDENT_ANSWER to identify what the student submitted, and ANSWER to identify which answer is correct.
 
 The data set is large enough to support meaningful totals and averages:
@@ -197,9 +246,11 @@ The data set is large enough to support meaningful totals and averages:
 
 These totals help you sanity-check your queries. If a result is far outside that scale, stop and inspect your joins and filters.
 
+The STUDENT_ANSWER table is the transactional hub of this database. While STUDENT, QUIZ, QUESTION, and ANSWER provide the necessary context, STUDENT_ANSWER records the actual events — every time a student answers a question. This is the table that makes it possible to count correct answers, track missing submissions, compare performance across quizzes, and answer almost every analytical question the test will ask.
+
 ## Midterm Test Question Set
 
-Use the questions below as the Chapter 8 midterm test set. Questions 1-25 focus on data work and SQL reasoning. Questions 26-30 focus on concepts, relational design, and normalization.
+Use the questions below as the Chapter 8 midterm test set. Questions 1–25 focus on data work and SQL reasoning. Questions 26–30 focus on concepts, relational design, and normalization.
 
 ### Data and Query Questions
 
@@ -265,9 +316,17 @@ FROM STUDENT;
 
 That example shows the pattern you should use on the full test: match the question to the table, choose the right operation, and label the result so it is easy to read.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ## Midterm Project Instructions
 
-The Chapter 8 midterm project asks you to build the foundation of a grading database. This project checks whether you can move from a business need to a working relational design in Microsoft Access.
+The Chapter 8 midterm project asks you to build the foundation of a grading database. This project checks whether you can move from a business need to a working relational design in Microsoft Access. Where the test asked you to interpret a database someone else designed, the project asks you to become the architect — to design, populate, and query a database of your own.
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch08-midterm/ch08-slide-05" alt="Slide overview of the midterm project showing the 7 components, point values, and submission requirements" width="800" loading="lazy">
+</p>
+<p align="center"><em>Figure 8.5 — Midterm project overview: seven components totaling 100 base points plus a 10-point bonus, covering schema design, data entry, forms, and queries.</em></p>
 
 ### Objective
 
@@ -309,7 +368,7 @@ You must:
 - create proper relationships between the tables
 - include a screenshot of the relationship page
 
-Your structure should separate major subjects into their own tables. At a minimum, think carefully about students, deliverables, grades, attendance, and any lookup or category tables that help support the design.
+Your structure should separate major subjects into their own tables. At a minimum, think carefully about students, deliverables, grades, attendance, and any lookup or category tables that help support the design. Proper structure ensures that each subject lives in its own table, preventing data redundancy and making the system scalable.
 
 ### 2. Data Entry (20 points)
 
@@ -322,7 +381,7 @@ You must:
 - run a query for each table that selects all content
 - submit the SQL code and a screenshot of the result for each table
 
-The goal of this section is not just to populate the database. It is to show that every table is usable and that the relationships support real data.
+The goal of this section is not just to populate the database. It is to prove that every table is usable and that the relationships support real transactional data.
 
 ### 3. Form Creation (10 points)
 
@@ -336,7 +395,7 @@ The form must include:
 
 Submit a screenshot of the completed form.
 
-This requirement matters because forms make data entry cleaner and reduce the chance of input mistakes.
+Forms are critical for data quality: they make entry cleaner and significantly reduce the likelihood of input errors. A well-designed form is the difference between a database that stays accurate and one that accumulates mistakes.
 
 ### 4. Show Student Data (15 points)
 
@@ -353,6 +412,8 @@ The result must include:
 
 Submit the SQL code and a screenshot of the result.
 
+This requirement demonstrates your ability to filter and retrieve time-sensitive information for an individual record — a skill you will use repeatedly in any database job.
+
 ### 5. Calculate Averages (20 points)
 
 Build queries to calculate the current average per deliverable type.
@@ -368,6 +429,8 @@ Display the following in your result:
 
 Submit the SQL code and screenshots of the results.
 
+This requirement applies aggregate functions to provide high-level summaries of performance categories — exactly the kind of query a manager would ask for.
+
 ### 6. Calculate Attendance Percentage (20 points)
 
 Create queries to calculate your current attendance as a percentage of all classes up to spring break.
@@ -381,11 +444,13 @@ Display the following in your result:
 
 Submit the SQL code and screenshots of the results.
 
+This transforms simple "present" and "absent" marks into a meaningful metric that can be tracked, compared, and used for decisions.
+
 ### 7. Calculate Your Final Percentage Grade Up to Date Out of 100 (Bonus 10 points)
 
 Build a query that calculates your final percentage grade up to date out of 100.
 
-This is a bonus requirement. If you complete it well, it adds 10 points beyond the 100-point base project.
+This is a bonus requirement. If you complete it well, it adds 10 points beyond the 100-point base project. This is the ultimate test of query logic — synthesizing multiple data points from different tables into a single decision-making figure.
 
 ### Important Reminder for Submission
 
@@ -396,17 +461,22 @@ You must submit:
 
 Before you submit, make sure your PDF is readable and that every screenshot clearly shows the result that matches the SQL you wrote.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ## How the Test and Project Work Together
 
 The test and the project measure different parts of the same skill set. The midterm test checks whether you can read a schema, interpret database structure, and write or explain queries against an existing database. The midterm project checks whether you can design a database, populate it, create a form, and produce useful query outputs of your own.
 
-Together, these tasks reflect the first half of the course. You are not only learning what a database is. You are learning how relational structure supports calculation, reporting, and decision making. That same logic continues in Chapter 9, where you will build more advanced SQL queries on top of the same foundation.
+Together, these two assessments function as complementary halves of a single evaluation. The test measures your ability to interpret and query a system designed by others — the skill you need when you join an organization with existing databases. The project measures your ability to create and manage a system of your own — the skill you need when you are asked to build something new from a business requirement. Mastering both means you have moved beyond isolated concepts to a working understanding of how relational structures support reporting and decision-making.
+
+That same logic continues in Chapter 9, where you will apply these foundations to database design and entity-relationship modeling, and in Chapter 10, where you will build more advanced SQL queries. The midterm is not an endpoint — it is the bridge between learning individual database concepts in the first half of the course and applying them as a connected system in the second half.
 
 ## Chapter Summary
 
 Chapter 8 brings the first half of the course together. You reviewed how data becomes information, how databases organize that information, how tables and keys create structure, how SQL answers questions, and how normalization supports reliable design. You also received the full instructions for the Chapter 8 midterm test and the Chapter 8 midterm project.
 
-If you can explain the structure of the database, identify the right tables for a query, write or interpret basic Access SQL, and design a clean grading database, you are preparing at the right level. The next chapter builds on that foundation by moving into more advanced SQL patterns.
+If you can explain the structure of the database, identify the right tables for a query, write or interpret basic Access SQL, and design a clean grading database, you are preparing at the right level. The second half of the course builds on this foundation with advanced database design, entity-relationship modeling, and progressively more powerful SQL patterns.
 
 ## Readiness Checklist
 

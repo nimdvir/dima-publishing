@@ -1,44 +1,53 @@
-import { useState } from 'react';
-import type { ReaderScope, BookChapter, BookLab, BookPage } from '../types';
-import { FLAT_READER_PAGES } from '../generated/bookData';
+import { useState } from "react";
+import type { ReaderScope, BookChapter, BookLab, BookPage } from "../types";
+import { FLAT_READER_PAGES } from "../generated/bookData";
 import {
-  BookOpen, FlaskConical, LogIn, ChevronDown, ChevronRight,
-  LayoutDashboard, BookMarked, Layers, Terminal, HelpCircle, Sparkles, Award,
-} from 'lucide-react';
-import { FeedbackLink } from './FeedbackLink';
-
+  BookOpen,
+  FlaskConical,
+  LogIn,
+  ChevronDown,
+  ChevronRight,
+  LayoutDashboard,
+  BookMarked,
+  Layers,
+  Terminal,
+  HelpCircle,
+  Sparkles,
+  Award,
+} from "lucide-react";
+import { FeedbackLink } from "./FeedbackLink";
 
 /** Icons for each reader area (keyed by section title). */
 const SECTION_ICONS: Record<string, React.ReactNode> = {
-  'Preface': <BookOpen size={14} />,
-  'Copyright & Acknowledgements': <BookMarked size={14} />,
-  'Introduction': <BookMarked size={14} />,
-  'Core Concepts': <Layers size={14} />,
+  Preface: <BookOpen size={14} />,
+  "Copyright & Acknowledgements": <BookMarked size={14} />,
+  Introduction: <BookMarked size={14} />,
+  "Core Concepts": <Layers size={14} />,
   "Let's Build": <Terminal size={14} />,
-  'Review Questions': <HelpCircle size={14} />,
-  'Terms Treasury': <Sparkles size={14} />,
-  'Key Terms': <Sparkles size={14} />,
-  'RAT: Reading Test': <Award size={14} />,
-  'Chapter Lab': <FlaskConical size={14} />,
+  "Review Questions": <HelpCircle size={14} />,
+  "Terms Treasury": <Sparkles size={14} />,
+  "Key Terms": <Sparkles size={14} />,
+  "RAT: Reading Test": <Award size={14} />,
+  "Chapter Lab": <FlaskConical size={14} />,
 };
 
 /** Student-facing display labels (override internal section titles). */
 const SECTION_LABELS: Record<string, string> = {
-  'Terms Treasury': 'Key Terms',
+  "Terms Treasury": "Key Terms",
 };
 
 /** Subtitles for reader areas. */
 const SECTION_SUBTITLES: Record<string, string> = {
-  'Preface': 'About this book',
-  'Copyright & Acknowledgements': 'Rights & attribution',
-  'Introduction': 'Course overview',
-  'Core Concepts': 'Core reading',
-  "Let's Build": 'Hands-on practice',
-  'Review Questions': 'Check your understanding',
-  'Terms Treasury': 'Essential vocabulary',
-  'Key Terms': 'Essential vocabulary',
-  'RAT: Reading Test': 'Reading assessment',
-  'Chapter Lab': 'PetVax hands-on project',
+  Preface: "About this book",
+  "Copyright & Acknowledgements": "Rights & attribution",
+  Introduction: "Course overview",
+  "Core Concepts": "Core reading",
+  "Let's Build": "Hands-on practice",
+  "Review Questions": "Check your understanding",
+  "Terms Treasury": "Essential vocabulary",
+  "Key Terms": "Essential vocabulary",
+  "RAT: Reading Test": "Reading assessment",
+  "Chapter Lab": "PetVax hands-on project",
 };
 
 interface SidebarProps {
@@ -71,11 +80,11 @@ export default function Sidebar({
   onClose,
 }: SidebarProps) {
   const [expandedChapters, setExpandedChapters] = useState<Set<string>>(
-    new Set([activeChapterId])
+    new Set([activeChapterId]),
   );
 
   const toggleChapter = (chId: string) => {
-    setExpandedChapters(prev => {
+    setExpandedChapters((prev) => {
       const next = new Set(prev);
       if (next.has(chId)) next.delete(chId);
       else next.add(chId);
@@ -88,26 +97,29 @@ export default function Sidebar({
       {/* Scope nav */}
       <div className="sidebar-scope-nav">
         <button
-          className={`scope-link ${scope === 'welcome' ? 'active' : ''}`}
-          onClick={() => { onNavigateScope('welcome'); onClose(); }}
+          className={`scope-link ${scope === "welcome" ? "active" : ""}`}
+          onClick={() => {
+            onNavigateScope("welcome");
+            onClose();
+          }}
         >
           <LayoutDashboard size={16} className="scope-icon" /> Home
         </button>
         <button
-          className={`scope-link ${scope === 'book' ? 'active' : ''}`}
-          onClick={() => onNavigateScope('book')}
+          className={`scope-link ${scope === "book" ? "active" : ""}`}
+          onClick={() => onNavigateScope("book")}
         >
           <BookOpen size={16} className="scope-icon" /> Book
         </button>
         <button
-          className={`scope-link ${scope === 'labs' ? 'active' : ''}`}
-          onClick={() => onNavigateScope('labs')}
+          className={`scope-link ${scope === "labs" ? "active" : ""}`}
+          onClick={() => onNavigateScope("labs")}
         >
           <FlaskConical size={16} className="scope-icon" /> Labs
         </button>
         <button
-          className={`scope-link ${scope === 'login' ? 'active' : ''}`}
-          onClick={() => onNavigateScope('login')}
+          className={`scope-link ${scope === "login" ? "active" : ""}`}
+          onClick={() => onNavigateScope("login")}
         >
           <LogIn size={16} className="scope-icon" /> Sign in
         </button>
@@ -116,50 +128,70 @@ export default function Sidebar({
       <hr className="sidebar-divider" />
 
       {/* Book scope: chapters and sections */}
-      {scope === 'book' && (
+      {scope === "book" && (
         <div className="sidebar-chapters">
-          {chapters.map(ch => (
+          {chapters.map((ch) => (
             <div key={ch.id} className="sidebar-chapter">
               <button
-                className={`chapter-toggle ${activeChapterId === ch.id ? 'active' : ''}`}
+                className={`chapter-toggle ${activeChapterId === ch.id ? "active" : ""}`}
                 onClick={() => toggleChapter(ch.id)}
               >
-                <span className="chapter-caret">{expandedChapters.has(ch.id) ? <ChevronDown size={14} /> : <ChevronRight size={14} />}</span>
+                <span className="chapter-caret">
+                  {expandedChapters.has(ch.id) ? (
+                    <ChevronDown size={14} />
+                  ) : (
+                    <ChevronRight size={14} />
+                  )}
+                </span>
                 <span className="chapter-label">
-                  {ch.id === 'ch00' ? ch.title : `${ch.id.toUpperCase()}: ${ch.title}`}
+                  {ch.id === "ch00"
+                    ? ch.title
+                    : `${ch.id.toUpperCase()}: ${ch.title}`}
                 </span>
               </button>
               {expandedChapters.has(ch.id) && (
                 <div className="chapter-sections">
-                  {ch.sections.map(sec => {
-                    const sectionPages = FLAT_READER_PAGES.filter(p => p.sectionId === sec.id);
+                  {ch.sections.map((sec) => {
+                    const sectionPages = FLAT_READER_PAGES.filter(
+                      (p) => p.sectionId === sec.id,
+                    );
                     return (
                       <div key={sec.id} className="sidebar-section">
                         <button
-                          className={`section-link ${activeSectionId === sec.id ? 'active' : ''}`}
+                          className={`section-link ${activeSectionId === sec.id ? "active" : ""}`}
                           onClick={() => onSelectSection(sec.id)}
                         >
                           <span className="section-icon">
                             {SECTION_ICONS[sec.title] || null}
                           </span>
                           <span className="section-text">
-                            <span className="section-title">{SECTION_LABELS[sec.title] || sec.title}</span>
+                            <span className="section-title">
+                              {SECTION_LABELS[sec.title] || sec.title}
+                            </span>
                             {SECTION_SUBTITLES[sec.title] && (
-                              <span className="section-subtitle">{SECTION_SUBTITLES[sec.title]}</span>
+                              <span className="section-subtitle">
+                                {SECTION_SUBTITLES[sec.title]}
+                              </span>
                             )}
                           </span>
-                          {!sec.exists && <span className="badge-placeholder">missing</span>}
+                          {!sec.exists && (
+                            <span className="badge-placeholder">missing</span>
+                          )}
                         </button>
                         {sectionPages.length > 1 && (
                           <div className="section-pages">
-                            {sectionPages.map(p => (
+                            {sectionPages.map((p) => (
                               <button
                                 key={p.id}
-                                className={`page-link ${p.id === activePageId ? 'active' : ''}`}
+                                className={`page-link ${p.id === activePageId ? "active" : ""}`}
                                 onClick={() => onSelectPage(p)}
                               >
-                                <span className="page-link-num">{p.pageNumber}</span>
-                                <span className="page-link-title">{p.navTitle || p.title}</span>
+                                <span className="page-link-num">
+                                  {p.pageNumber}
+                                </span>
+                                <span className="page-link-title">
+                                  {p.navTitle || p.title}
+                                </span>
                               </button>
                             ))}
                           </div>
@@ -175,17 +207,19 @@ export default function Sidebar({
       )}
 
       {/* Labs scope: lab list */}
-      {scope === 'labs' && (
+      {scope === "labs" && (
         <div className="sidebar-labs">
-          {labs.map(lab => (
+          {labs.map((lab) => (
             <button
               key={lab.id}
-              className={`lab-link ${activeLabId === lab.id ? 'active' : ''}`}
+              className={`lab-link ${activeLabId === lab.id ? "active" : ""}`}
               onClick={() => onSelectLab(lab)}
             >
-              <span className="lab-num">{lab.id.replace('lab-', 'Lab ')}</span>
+              <span className="lab-num">{lab.id.replace("lab-", "Lab ")}</span>
               <span className="lab-title">{lab.title}</span>
-              {!lab.exists && <span className="badge-placeholder">missing</span>}
+              {!lab.exists && (
+                <span className="badge-placeholder">missing</span>
+              )}
             </button>
           ))}
         </div>
@@ -193,10 +227,11 @@ export default function Sidebar({
 
       <hr className="sidebar-divider" />
       <div className="sidebar-feedback">
-        <p className="sidebar-feedback-text">Found something broken, confusing, or missing?</p>
+        <p className="sidebar-feedback-text">
+          Found something broken, confusing, or missing?
+        </p>
         <FeedbackLink />
       </div>
     </div>
   );
 }
-

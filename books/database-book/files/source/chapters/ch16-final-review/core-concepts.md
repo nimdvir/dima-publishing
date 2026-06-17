@@ -16,23 +16,6 @@ The final assessments are intentionally different. The project asks you to **bui
 
 ---
 
-## Chapter Roadmap
-
-| Section | Focus | Main Skill |
-|---|---|---|
-| 16.1 | Final integration | Seeing the course as one connected system |
-| 16.2 | Final project overview | Understanding deliverables and expectations |
-| 16.3 | Final project tasks | Completing the grading database project |
-| 16.4 | Project SQL guidance | Writing Access queries clearly and correctly |
-| 16.5 | Final test overview | Understanding the research-publications database |
-| 16.6 | Publication scoring logic | Calculating author, professor, and department scores |
-| 16.7 | Final test question map | Preparing by topic rather than memorization |
-| 16.8 | Concept review for the test | Cardinality, normalization, BI, macros, security, and transactions |
-| 16.9 | Submission and quality checklist | Avoiding avoidable mistakes |
-| 16.10 | Final reflection | Connecting technical skill to professional judgment |
-
----
-
 ## Learning Objectives
 
 After completing this chapter, you will be able to:
@@ -47,6 +30,24 @@ After completing this chapter, you will be able to:
 8. Interpret cardinality and participation constraints in a normalized schema.
 9. Evaluate database limitations, normalization problems, BI potential, and access-control policies.
 10. Connect the full course arc to practical information systems work.
+
+---
+
+## Chapter Roadmap
+
+| Section | Focus | Main Skill |
+| --- | --- | --- |
+| [16.1 The Final Integration Point](#16-1-the-final-integration-point) | Final integration | Seeing the course as one connected system |
+| [16.2 Final Project Overview](#16-2-final-project-overview) | Final project overview | Understanding deliverables and expectations |
+| [16.3 Final Project Tasks](#16-3-final-project-tasks) | Final project tasks | Completing the grading database project |
+| [16.4 Project SQL Guidance and Common Pitfalls](#16-4-project-sql-guidance-and-common-pitfalls) | Project SQL guidance | Writing Access queries clearly and correctly |
+| [16.5 Final Test Overview: The Research Publications Database](#16-5-final-test-overview-the-research-publications-database) | Final test overview | Understanding the research-publications database |
+| [16.6 Publication Scoring Logic](#16-6-publication-scoring-logic) | Publication scoring logic | Calculating author, professor, and department scores |
+| [16.7 Building the Core Test Queries](#16-7-building-the-core-test-queries) | Core test queries | Translating scoring rules into SQL |
+| [16.8 Final Test Question Map](#16-8-final-test-question-map) | Final test question map | Preparing by topic rather than memorization |
+| [16.9 Final Test Study Strategy](#16-9-final-test-study-strategy) | Final test study strategy | Cardinality, normalization, BI, macros, security, and transactions |
+| [16.10 Submission and Quality Checklist](#16-10-submission-and-quality-checklist) | Submission and quality checklist | Avoiding avoidable mistakes |
+| [16.11 Final Reflection: What This Course Was Really About](#16-11-final-reflection-what-this-course-was-really-about) | Final reflection | Connecting technical skill to professional judgment |
 
 ---
 

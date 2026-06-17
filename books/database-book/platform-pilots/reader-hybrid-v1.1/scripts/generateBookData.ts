@@ -133,11 +133,50 @@ const CHAPTERS: { id: string; slug: string; folderName: string }[] = [
   { id: "ch03", slug: "ch03-what-is-data", folderName: "ch03-what-is-data" },
   { id: "ch04", slug: "ch04-databases", folderName: "ch04-databases" },
   { id: "ch05", slug: "ch05-sql", folderName: "ch05-sql" },
-  { id: "ch06", slug: "ch06-relational-model", folderName: "ch06-relational-model" },
+  {
+    id: "ch06",
+    slug: "ch06-relational-model",
+    folderName: "ch06-relational-model",
+  },
   { id: "ch07", slug: "ch07-normalization", folderName: "ch07-normalization" },
-  { id: "ch08", slug: "ch08-midterm-review", folderName: "ch08-midterm-review" },
-  { id: "ch09", slug: "ch09-database-design", folderName: "ch09-database-design" },
-  { id: "ch10", slug: "ch10-advanced-sql-queries", folderName: "ch10-advanced-sql-queries" },
+  {
+    id: "ch08",
+    slug: "ch08-midterm-review",
+    folderName: "ch08-midterm-review",
+  },
+  {
+    id: "ch09",
+    slug: "ch09-database-design",
+    folderName: "ch09-database-design",
+  },
+  {
+    id: "ch10",
+    slug: "ch10-advanced-sql-queries",
+    folderName: "ch10-advanced-sql-queries",
+  },
+  {
+    id: "ch11",
+    slug: "ch11-database-administration",
+    folderName: "ch11-database-administration",
+  },
+  {
+    id: "ch12",
+    slug: "ch12-business-intelligence",
+    folderName: "ch12-business-intelligence",
+  },
+  {
+    id: "ch13",
+    slug: "ch13-advanced-database-techniques",
+    folderName: "ch13-advanced-database-techniques",
+  },
+  { id: "ch14", slug: "ch14-powerbi", folderName: "ch14-powerbi" },
+  {
+    id: "ch15",
+    slug: "ch15-business-strategy-is",
+    folderName: "ch15-business-strategy-is",
+  },
+  { id: "ch16", slug: "ch16-final-review", folderName: "ch16-final-review" },
+  { id: "ch17", slug: "ch17-conclusion", folderName: "ch17-conclusion" },
 ];
 
 // ── Section definitions (in order) ──
@@ -246,13 +285,43 @@ const LABS: {
     id: "lab-09",
     slug: "lab-09-advanced-sql",
     folderName: "lab-09-advanced-sql",
-    chapterId: "ch09",
+    chapterId: "ch10",
   },
   {
     id: "lab-10",
     slug: "lab-10-database-design",
     folderName: "lab-10-database-design",
-    chapterId: "ch10",
+    chapterId: "ch09",
+  },
+  {
+    id: "lab-11",
+    slug: "lab-11-database-admin",
+    folderName: "lab-11-database-admin",
+    chapterId: "ch11",
+  },
+  {
+    id: "lab-12",
+    slug: "lab-12-business-intelligence",
+    folderName: "lab-12-business-intelligence",
+    chapterId: "ch12",
+  },
+  {
+    id: "lab-13",
+    slug: "lab-13-advanced-techniques",
+    folderName: "lab-13-advanced-techniques",
+    chapterId: "ch13",
+  },
+  {
+    id: "lab-14",
+    slug: "lab-14-powerbi",
+    folderName: "lab-14-powerbi",
+    chapterId: "ch14",
+  },
+  {
+    id: "lab-15",
+    slug: "lab-15-strategy-and-is",
+    folderName: "lab-15-strategy-and-is",
+    chapterId: "ch15",
   },
 ];
 
@@ -404,6 +473,21 @@ function deriveNavTitle(
 
   // 5. Final fallback
   return `Page ${pageNumber}`;
+}
+
+/**
+ * Derive the reader page title shown in the page header.
+ * Format: "{sectionTitle} — Page {N} — {navTitle}"
+ * This keeps the title specific and informative even when chapters are
+ * updated or recompiled. The navTitle already contains the first H2/H3
+ * (or best available content label) for each page.
+ */
+function derivePageTitle(
+  sectionTitle: string,
+  pageNumber: number,
+  navTitle: string,
+): string {
+  return `${sectionTitle} \u2014 Page ${pageNumber} \u2014 ${navTitle}`;
 }
 
 // ── Placeholder content ──
@@ -752,7 +836,7 @@ function main() {
         return {
           id: `${sectionId}-page-${i + 1}`,
           slug: `${fmSec.slug}-page-${i + 1}`,
-          title: extractTitle(seg, `${fmSec.title} \u2014 Page ${i + 1}`),
+          title: derivePageTitle(fmSec.title, i + 1, navTitle),
           navTitle,
           content: seg,
           pageNumber: i + 1,
@@ -794,7 +878,9 @@ function main() {
     allPages.push(...fmPages);
     console.log(`  Front matter: loaded (preface + acknowledgements)`);
   } else {
-    console.log(`  Front matter: folder not found (${FRONT_MATTER_FOLDER}) — skipped`);
+    console.log(
+      `  Front matter: folder not found (${FRONT_MATTER_FOLDER}) — skipped`,
+    );
   }
 
   for (const ch of CHAPTERS) {
@@ -802,27 +888,48 @@ function main() {
     const sections: BookSection[] = [];
 
     // Extract chapter title: handle two-line H1 pattern ("# Chapter N:" / "# Real Title")
-    let chapterTitle = ch.slug;
-    const mainPattern = new RegExp(
-      `^${ch.id}-main-\\d{4}-\\d{2}-\\d{2}\\.md$`,
-      "i",
-    );
-    const mainFile = findLatestDated(chapterDir, mainPattern);
-    if (mainFile) {
-      const mainContent = readFileSafe(path.join(chapterDir, mainFile));
-      if (mainContent) {
-        const lines = mainContent.split("\n");
-        const h1Lines = lines
-          .filter((l) => /^#\s+/.test(l))
-          .map((l) => l.replace(/^#\s+/, "").trim());
-        if (h1Lines.length >= 2 && /^Chapter\s+\d+/i.test(h1Lines[0])) {
-          // Two-line H1: "Chapter N:" / "Real Title"
-          chapterTitle = h1Lines[1];
-        } else if (h1Lines.length >= 1) {
-          // Single H1: strip "Chapter N: " prefix if present
-          chapterTitle = h1Lines[0].replace(/^Chapter\s+\d+:\s*/i, "");
+    let chapterTitle = "";
+
+    // Look for index.md first (always exists per chapter folder convention)
+    const indexContent = readFileSafe(path.join(chapterDir, "index.md"));
+    if (indexContent) {
+      const idxTitle = extractTitle(indexContent, "");
+      if (idxTitle && !/^Chapter\s+\d+[:\s]*$/i.test(idxTitle)) {
+        chapterTitle = idxTitle.replace(/^Chapter\s+\d+:\s*/i, "").trim();
+      }
+    }
+
+    // Fallback to main dated file H1
+    if (!chapterTitle) {
+      const mainPattern = new RegExp(
+        `^${ch.id}-main-\\d{4}-\\d{2}-\\d{2}\\.md$`,
+        "i",
+      );
+      const mainFile = findLatestDated(chapterDir, mainPattern);
+      if (mainFile) {
+        const mainContent = readFileSafe(path.join(chapterDir, mainFile));
+        if (mainContent) {
+          const lines = mainContent.split("\n");
+          const h1Lines = lines
+            .filter((l) => /^#\s+/.test(l))
+            .map((l) => l.replace(/^#\s+/, "").trim());
+          if (h1Lines.length >= 2 && /^Chapter\s+\d+/i.test(h1Lines[0])) {
+            // Two-line H1: "Chapter N:" / "Real Title"
+            chapterTitle = h1Lines[1];
+          } else if (h1Lines.length >= 1) {
+            // Single H1: strip "Chapter N: " prefix if present
+            chapterTitle = h1Lines[0].replace(/^Chapter\s+\d+:\s*/i, "").trim();
+          }
         }
       }
+    }
+
+    // Last-resort fallback
+    if (!chapterTitle) {
+      chapterTitle = ch.slug
+        .replace(/^ch\d+-/, "")
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
     }
 
     for (const sectionDef of SECTIONS) {
@@ -844,7 +951,7 @@ function main() {
         return {
           id: `${sectionId}-page-${i + 1}`,
           slug: `${sectionDef.slug}-page-${i + 1}`,
-          title: extractTitle(seg, `${sectionDef.title} \u2014 Page ${i + 1}`),
+          title: derivePageTitle(sectionDef.title, i + 1, navTitle),
           navTitle,
           content: seg,
           pageNumber: i + 1,
@@ -877,6 +984,57 @@ function main() {
 
       if (!exists) {
         warn(`${ch.id}/${sectionDef.slug}: placeholder (no source file found)`);
+      }
+    }
+
+    // ── Append matching lab as a chapter section ──
+    const matchingLab = LABS.find((l) => l.chapterId === ch.id);
+    if (matchingLab) {
+      const labResult = resolveLab(matchingLab);
+      if (labResult.sourceType !== "placeholder") {
+        const letsBuildSlug = `${ch.id}-lets-build`;
+        const labHeader = `> 🧪 **Chapter Lab** — This lab extends the [Let's Build](/book/${ch.id}/lets-build/1) section. Work through the Let's Build activities first, then apply what you learned in the PetVax Veterinary Clinic project.\n\n---\n\n`;
+        const labContent = labHeader + labResult.content;
+        const labSectionId = `${ch.id}-chapter-lab`;
+        const pageSegments = splitPages(labContent);
+        let prevNavTitle: string | null = null;
+        const labPages: BookPage[] = pageSegments.map((seg, i) => {
+          const navTitle = deriveNavTitle(seg, i + 1, prevNavTitle);
+          prevNavTitle = navTitle;
+          return {
+            id: `${labSectionId}-page-${i + 1}`,
+            slug: `chapter-lab-page-${i + 1}`,
+            title: extractTitle(seg, `Chapter Lab \u2014 Page ${i + 1}`),
+            navTitle,
+            content: seg,
+            pageNumber: i + 1,
+            totalPages: pageSegments.length,
+            chapterId: ch.id,
+            chapterSlug: ch.slug,
+            sectionId: labSectionId,
+            sectionSlug: "chapter-lab",
+            sectionTitle: "Chapter Lab",
+            sourceFile: labResult.sourceFile,
+            sourceType: labResult.sourceType,
+            exists: true,
+          };
+        });
+
+        sections.push({
+          id: labSectionId,
+          slug: "chapter-lab",
+          title: "Chapter Lab",
+          fileName: labResult.sourceFile || "",
+          exists: true,
+          sourceFile: labResult.sourceFile,
+          sourceType: labResult.sourceType,
+          pages: labPages,
+        });
+
+        allPages.push(...labPages);
+        totalSectionsResolved++;
+        sourceTypeCounts[labResult.sourceType] =
+          (sourceTypeCounts[labResult.sourceType] || 0) + 1;
       }
     }
 

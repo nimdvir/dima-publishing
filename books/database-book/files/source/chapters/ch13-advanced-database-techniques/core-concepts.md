@@ -1,28 +1,70 @@
-<!-- metadata: date="2026-05-18"; chapter="13"; section="main"; title="Chapter 13 – Advanced Database Techniques"; description="Introduces advanced database techniques that harden relational systems for performance, integrity, auditability, security, and scalability across Access, SQLite, and cloud-hosted PostgreSQL."; author="Nimrod Dvir, PhD" -->
+<!-- Chapter edit: restructured to canonical skeleton, reduced window functions to scope note, added Macros and Stored Procedures sections, trimmed Ch11 overlap, moved companion content to companion files, converted callouts to canonical HTML, and improved build hygiene. Technical meaning preserved. -->
+---
+title: "Chapter 13 – Advanced Database Techniques"
+chapter: 13
+section: "Core Concepts"
+description: "Introduces advanced database techniques that harden relational systems for performance, integrity, auditability, security, and scalability across Access, SQLite, and cloud-hosted PostgreSQL."
+keywords:
+  - advanced SQL
+  - indexes
+  - query plans
+  - transactions
+  - constraints
+  - triggers
+  - window functions
+  - permissions
+  - database hardening
+  - Microsoft Access
+  - SQLite
+  - Supabase
+  - PostgreSQL
+  - macros
+  - stored procedures
+date: 2026-06-16
+author: "Nimrod Dvir, PhD"
+---
+
 # Chapter 13: Advanced Database Techniques
 
 *Hardening Databases for Performance, Integrity, Security, and Scale*
 
+![Infographic previewing the database hardening techniques covered in this chapter](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch13-advanced-techniques/ch13-infographic)
+
+*Figure 13.1 — Database hardening techniques build on each other to make systems faster, safer, and more trustworthy.*
+
+<!-- FIGURE PLACEHOLDER: Video overview embed for Chapter 13. Recommend chapter-media. -->
+
 Earlier chapters focused on making databases **correct**. You learned how to design tables, define keys, normalize data, write SQL queries, administer systems, and use data for business intelligence. Those skills are essential. But in real organizations, correctness is only the beginning.
 
-A database also has to survive real use.
-
-It must remain fast as tables grow. It must reject invalid data before errors spread into reports. It must protect sensitive records from unauthorized access. It must preserve an audit trail when important values change. It must support users and applications that read and write data at the same time. A database that works during a classroom exercise may still fail when it becomes part of an operational system.
+A database also has to survive real use. It must remain fast as tables grow. It must reject invalid data before errors spread into reports. It must protect sensitive records from unauthorized access. It must preserve an audit trail when important values change. It must support users and applications that read and write data at the same time. A database that works during a classroom exercise may still fail when it becomes part of an operational system.
 
 This chapter introduces the advanced techniques that turn a working database into a more reliable system.
 
-**After reading this chapter, you will be able to:**
-
-- explain how indexes improve query performance and why they create trade-offs;
-- use transactions to protect multi-step operations from partial failure;
-- apply constraints to enforce business rules at the database level;
-- explain when triggers are useful for auditing, validation, and automation;
-- use window functions and conditional aggregation for advanced analytics;
-- describe how security and permissions protect sensitive database objects;
-- compare how advanced techniques differ across Microsoft Access, SQLite, and Supabase/PostgreSQL;
-- harden the Grading Database for performance, integrity, auditability, and controlled access.
-
 ---
+
+## Learning Objectives
+
+After completing this chapter, you will be able to:
+
+1. Explain how indexes improve query performance and why they create trade-offs.
+2. Use transactions to protect multi-step operations from partial failure.
+3. Apply constraints to enforce business rules at the database level.
+4. Explain when triggers are useful for auditing, validation, and automation.
+5. Describe how window functions and conditional aggregation support advanced analytics and know where they are taught in detail.
+6. Describe how security and permissions protect sensitive database objects.
+7. Compare how advanced techniques differ across Microsoft Access, SQLite, and Supabase/PostgreSQL.
+8. Use macros in Microsoft Access to automate form-level workflows.
+9. Explain how stored procedures differ from triggers and when they are useful.
+10. Harden the Grading Database for performance, integrity, auditability, and controlled access.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Core Concepts
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
+</p>
 
 ## Chapter Roadmap
 
@@ -33,13 +75,15 @@ This chapter introduces the advanced techniques that turn a working database int
 | 13.3 | How do we prevent partial updates? | Transactions, `BEGIN`, `COMMIT`, `ROLLBACK` |
 | 13.4 | How do we block bad data? | `CHECK`, `UNIQUE`, `DEFAULT`, `NOT NULL` constraints |
 | 13.5 | How can the database react automatically? | Triggers, audit logs, validation triggers |
-| 13.6 | How do we analyze without losing detail? | Window functions, rankings, running totals |
+| 13.6 | Where are window functions taught? | Scope note — detailed coverage in Chapter 9 |
 | 13.7 | How do we build transparent metrics? | Conditional aggregation, ratios, dashboard-ready queries |
 | 13.8 | How do we control access? | Authentication, authorization, roles, permissions |
 | 13.9 | How do techniques vary by platform? | Access, SQLite, PostgreSQL/Supabase comparison |
-| 13.10 | How do we apply all of this? | Hardening the Grading Database |
+| 13.10 | How does Access automate workflows? | Macros, data macros, form-level automation |
+| 13.11 | How do stored procedures help? | Server-side code, functions, platform comparison |
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.1 From Correct Queries to Reliable Systems
 
@@ -93,10 +137,13 @@ In the Grading Database, hardening means:
 
 A hardened database does not depend entirely on users remembering rules. It embeds important rules into the database itself.
 
-> **Key Takeaway:**  
-> Basic SQL asks, “Does the query work?” Advanced database work asks, “Will the system remain fast, safe, auditable, and trustworthy when real users depend on it?”
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: From queries to systems</strong></p>
+  <p>Basic SQL asks, "Does the query work?" Advanced database work asks, "Will the system remain fast, safe, auditable, and trustworthy when real users depend on it?"</p>
+</div>
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.2 Indexes: Making Queries Fast at Scale
 
@@ -243,18 +290,24 @@ WHERE StudentID = 101;
 
 If the plan says the database is scanning the entire table, an index may be needed. If the plan shows an index search, the database is using a more efficient path.
 
-> **Tip:**  
-> Do not guess about performance. Use query plans to see what the database is actually doing. Databases are many things, but they are not impressed by confidence.
+<div class="callout tip">
+  <p><strong>💡 Tip: Trust the query plan</strong></p>
+  <p>Do not guess about performance. Use query plans to see what the database is actually doing. Databases are many things, but they are not impressed by confidence.</p>
+</div>
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.3 Transactions: Protecting Multi-Step Operations
 
 Many database operations involve more than one step. A transaction groups those steps into a single unit of work.
 
-### 13.3.1 What a Transaction Is
+<div class="callout discipline-definition">
+  <p><strong>📘 Definition: Transaction</strong></p>
+  <p>A <strong>transaction</strong> is a set of database operations that must succeed or fail together. It is a logical unit of work controlled by <code>BEGIN</code>, <code>COMMIT</code>, and <code>ROLLBACK</code>.</p>
+</div>
 
-A **transaction** is a set of database operations that must succeed or fail together.
+### 13.3.1 How Transactions Work
 
 The core commands are:
 
@@ -272,7 +325,7 @@ The basic principle is simple:
 
 > Either every operation inside the transaction succeeds, or none of them do.
 
-### 13.3.2 Why Transactions Matter
+### 13.3.2 Why Transactions Matter in Grading
 
 Consider a grading workflow:
 
@@ -323,7 +376,7 @@ This transaction makes the grade update and the audit record part of the same op
 
 ### 13.3.4 ACID in Practice
 
-Chapter 11 introduced ACID properties. Chapter 13 applies them.
+As introduced in Chapter 11, transactions are governed by ACID properties. Here they are applied to the grading context:
 
 | ACID Property | Practical Meaning | Grading Example |
 |---|---|---|
@@ -334,7 +387,8 @@ Chapter 11 introduced ACID properties. Chapter 13 applies them.
 
 Transactions are one of the main reasons databases are more reliable than spreadsheets. A spreadsheet has cells. A database has rules about what happens when things go wrong.
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.4 Constraints Beyond Primary Keys
 
@@ -454,10 +508,13 @@ Before adding a constraint, ask:
 
 If the answer to the first four questions is yes, the rule probably belongs as a database constraint.
 
-> **Key Takeaway:**  
-> Constraints are business rules made enforceable. They move data quality from “please be careful” to “the system will not allow this.”
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Constraints are enforceable rules</strong></p>
+  <p>Constraints are business rules made enforceable. They move data quality from "please be careful" to "the system will not allow this."</p>
+</div>
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.5 Triggers: Automated Database Responses
 
@@ -590,124 +647,29 @@ WHERE GradeID = 10;
 
 and not realize that three other actions are happening behind the scenes.
 
-> **Warning:**  
-> Hidden logic is still logic. Document triggers clearly, name them consistently, and avoid using them for rules that belong more naturally in queries, constraints, or application code.
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Hidden logic is still logic</strong></p>
+  <p>Document triggers clearly, name them consistently, and avoid using them for rules that belong more naturally in queries, constraints, or application code.</p>
+</div>
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-## 13.6 Window Functions: Analytics Without Losing Detail
+## 13.6 Window Functions: A Note on Scope
 
-Traditional aggregation collapses rows.
+Window functions are powerful analytical tools that let you compute rankings, running totals, moving averages, and comparative metrics while preserving row-level detail. They are especially useful in dashboards and early-warning systems because they combine individual records with comparison context — a student's score can appear beside the class average, or a deliverable's pass rate can be tracked over time.
 
-```sql
-SELECT StudentID, AVG(Score) AS AvgScore
-FROM STUDENT_GRADE
-GROUP BY StudentID;
-```
+Chapters 9 and 10 cover window functions in detail, including the full syntax and practical examples using `ROW_NUMBER()`, `RANK()`, `DENSE_RANK()`, `NTILE()`, `PARTITION BY`, `ORDER BY`, and frame clauses (`ROWS BETWEEN`). If you need to write a ranking query, compute a running average, or understand the difference between `RANK()` and `DENSE_RANK()`, those chapters provide the complete treatment.
 
-This query gives one row per student. That is useful, but the individual grade rows disappear. Window functions solve this problem by adding analytical values while preserving row-level detail.
+This chapter uses window functions only as part of the hardening story — for example, a progress-tracking view that adds a running average beside each student's individual grades (see Section 13.7.6 for a dashboard-ready view example). The key point here is not how window functions work, but that they are one more tool for turning raw data into actionable information without losing detail.
 
-### 13.6.1 GROUP BY vs. Window Functions
+<div class="callout info">
+  <p><strong>ℹ️ Info: Window functions — where to learn more</strong></p>
+  <p>For a full treatment of window function syntax, rankings, frame clauses, and step-by-step examples, see Chapters 9 and 10. This chapter applies them as part of the hardening toolkit, not as a re-teaching.</p>
+</div>
 
-| Feature | `GROUP BY` | Window Function |
-|---|---|---|
-| Output | One row per group | Original rows remain |
-| Best for | Summaries | Detail plus comparison |
-| Example | Average per student | Each score plus student average |
-| Row detail retained? | No | Yes |
-
-### 13.6.2 Basic Syntax
-
-```sql
-function_name() OVER (
-    PARTITION BY grouping_column
-    ORDER BY ordering_column
-)
-```
-
-- `PARTITION BY` divides rows into groups.
-- `ORDER BY` defines order within each group.
-- The function computes a value over the window.
-
-### 13.6.3 Student Average Beside Each Grade
-
-```sql
-SELECT
-    StudentID,
-    DeliverableID,
-    Score,
-    AVG(Score) OVER (
-        PARTITION BY StudentID
-    ) AS StudentAverage
-FROM STUDENT_GRADE;
-```
-
-Each grade row remains visible, but the student's average appears beside it.
-
-### 13.6.4 Ranking Students Within a Deliverable
-
-```sql
-SELECT
-    DeliverableID,
-    StudentID,
-    Score,
-    RANK() OVER (
-        PARTITION BY DeliverableID
-        ORDER BY Score DESC
-    ) AS RankWithinDeliverable
-FROM STUDENT_GRADE;
-```
-
-This ranks students separately for each deliverable. `PARTITION BY DeliverableID` resets the ranking for each assignment.
-
-### 13.6.5 Running Average Over Time
-
-```sql
-SELECT
-    sg.StudentID,
-    d.DueDate,
-    sg.Score,
-    ROUND(
-        AVG(sg.Score) OVER (
-            PARTITION BY sg.StudentID
-            ORDER BY d.DueDate
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ),
-        2
-    ) AS RunningAverage
-FROM STUDENT_GRADE AS sg
-JOIN DELIVERABLE AS d
-    ON sg.DeliverableID = d.DeliverableID
-ORDER BY sg.StudentID, d.DueDate;
-```
-
-This shows each score and the student's cumulative average up to that point.
-
-### 13.6.6 Ranking Functions
-
-| Function | What It Does | Tie Behavior |
-|---|---|---|
-| `ROW_NUMBER()` | Assigns a unique sequence number | No ties; every row gets a different number |
-| `RANK()` | Assigns rank based on order | Ties share rank; gaps appear |
-| `DENSE_RANK()` | Assigns rank based on order | Ties share rank; no gaps |
-| `NTILE(n)` | Divides rows into `n` groups | Useful for quartiles or percentile bands |
-
-Example:
-
-```sql
-SELECT
-    StudentID,
-    AVG(Score) AS AvgScore,
-    DENSE_RANK() OVER (
-        ORDER BY AVG(Score) DESC
-    ) AS DenseClassRank
-FROM STUDENT_GRADE
-GROUP BY StudentID;
-```
-
-Window functions are especially useful for dashboards and early-warning systems because they combine individual records with comparison context.
-
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.7 Advanced Analytics Patterns
 
@@ -857,9 +819,15 @@ FROM StudentRiskSummary
 WHERE RiskStatus <> 'On Track';
 ```
 
-The dashboard consumes a trusted metric instead of recreating the calculation.
+The dashboard consumes a trusted metric instead of recreating the calculation each time.
 
----
+<div class="callout business-insight">
+  <p><strong>💼 Business Insight: SQL as a single source of truth</strong></p>
+  <p>When metrics are defined once in SQL views instead of being recalculated separately by different tools, reports become consistent. Every dashboard, spreadsheet, and decision memo works from the same logic.</p>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.8 Security and Permissions
 
@@ -875,7 +843,7 @@ A student may be authenticated into a system but not authorized to view another 
 
 ### 13.8.2 Role-Based Access Control
 
-Role-based access control assigns permissions to roles rather than individuals.
+As introduced in Chapter 11, role-based access control assigns permissions to roles rather than individuals.
 
 | Role | Typical Permissions |
 |---|---|
@@ -937,10 +905,13 @@ A secure grading system should record:
 
 This can be supported by triggers, audit tables, and controlled update procedures.
 
-> **Important:**  
-> If a database stores sensitive information but cannot explain who changed what, when, and why, it is not fully trustworthy.
+<div class="callout important">
+  <p><strong>❗ Important: Traceability is security</strong></p>
+  <p>If a database stores sensitive information but cannot explain who changed what, when, and why, it is not fully trustworthy.</p>
+</div>
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 13.9 Advanced Techniques Across Platforms
 
@@ -960,7 +931,7 @@ Access is visual, local, and workflow-oriented. It is useful for learning and fo
 | Query plans | Limited compared with server DBMSs |
 | Analytics | Queries, reports, forms, charts |
 
-Access is strongest when the database is also an application interface. Forms, reports, and macros help guide user behavior.
+Access is strongest when the database is also an application interface. Forms, reports, and macros help guide user behavior. Its automation mechanism — macros — is covered in detail in Section 13.10.
 
 ### 13.9.2 SQLite
 
@@ -1016,275 +987,187 @@ The right DBMS depends on the use case.
 
 Tool choice should follow requirements, not habit.
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-## 13.10 Let's Build: Hardening the Grading Database
+## 13.10 Macros in Microsoft Access
 
-This section applies the chapter's techniques to the Grading Database. The goal is not to use every advanced feature everywhere. The goal is to improve the database in targeted, meaningful ways.
+Microsoft Access provides a distinctive mechanism for automation called **macros**. While most of this chapter focuses on database-level controls such as indexes, transactions, constraints, and triggers, Access macros operate at the **application interface level** — they connect database rules to the forms, reports, and workflows that users interact with every day.
 
-### 13.10.1 Step 1: Identify Critical Risks
+### 13.10.1 What Access Macros Are
 
-Start by asking what could go wrong.
+A macro in Access is an event-driven, declarative automation tool. Unlike SQL or VBA code, macros are built by selecting actions from a catalog and arranging them in sequence. They do not require programming in a traditional sense, but they can still produce meaningful automation.
 
-| Risk | Example | Technique |
-|---|---|---|
-| Slow queries | Grade reports take too long | Indexes |
-| Duplicate grade records | Student has two scores for Quiz 1 | Unique constraint |
-| Invalid values | Score = 145 | Check constraint |
-| Partial updates | Grade changed but audit not recorded | Transaction |
-| Hidden changes | Instructor changes a grade with no record | Trigger/audit table |
-| Unauthorized access | Student sees all grades | Roles/permissions/RLS |
+Macros answer a practical question: *What should happen when a user opens a form, clicks a button, or changes a value?*
 
-A hardened database responds to each risk with a control.
+Common trigger events include:
 
-### 13.10.2 Step 2: Add Performance Indexes
+- opening or closing a form;
+- clicking a command button;
+- changing a field value;
+- loading a report;
+- navigating between records.
 
-```sql
-CREATE INDEX idx_sg_student
-ON STUDENT_GRADE(StudentID);
+When the event fires, the macro runs its defined sequence of actions — such as validating input, refreshing data, opening another form, or displaying a message.
 
-CREATE INDEX idx_sg_deliverable
-ON STUDENT_GRADE(DeliverableID);
+### 13.10.2 What Macros Are Good For
 
-CREATE INDEX idx_attendance_student
-ON ATTENDANCE(StudentID);
+Macros are best suited for lightweight, interface-level automation.
 
-CREATE INDEX idx_deliverable_duedate
-ON DELIVERABLE(DueDate);
-```
-
-These indexes support common joins, filters, and date-based reports.
-
-### 13.10.3 Step 3: Add Data Quality Constraints
-
-```sql
-ALTER TABLE STUDENT_GRADE
-ADD CONSTRAINT chk_score_range
-CHECK (Score BETWEEN 0 AND 100);
-```
-
-```sql
-ALTER TABLE STUDENT
-ADD CONSTRAINT uq_student_email
-UNIQUE (Email);
-```
-
-```sql
-ALTER TABLE STUDENT_GRADE
-ADD CONSTRAINT uq_student_deliverable
-UNIQUE (StudentID, DeliverableID);
-```
-
-If using SQLite, constraints may need to be included when the table is created or added by recreating the table, depending on the constraint type.
-
-### 13.10.4 Step 4: Create an Audit Trail
-
-```sql
-CREATE TABLE GRADE_AUDIT (
-    AuditID INTEGER PRIMARY KEY,
-    GradeID INTEGER NOT NULL,
-    OldScore INTEGER,
-    NewScore INTEGER,
-    ChangedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ChangeReason TEXT
-);
-```
-
-SQLite trigger:
-
-```sql
-CREATE TRIGGER trg_audit_grade_update
-AFTER UPDATE ON STUDENT_GRADE
-FOR EACH ROW
-WHEN OLD.Score <> NEW.Score
-BEGIN
-    INSERT INTO GRADE_AUDIT (GradeID, OldScore, NewScore)
-    VALUES (OLD.GradeID, OLD.Score, NEW.Score);
-END;
-```
-
-This records grade changes automatically.
-
-### 13.10.5 Step 5: Use a Transaction for Grade Correction
-
-```sql
-BEGIN;
-
-UPDATE STUDENT_GRADE
-SET Score = 92
-WHERE GradeID = 10;
-
--- Optional: manually add reason if not handled by trigger
-UPDATE GRADE_AUDIT
-SET ChangeReason = 'Corrected data entry error'
-WHERE GradeID = 10
-  AND ChangeReason IS NULL;
-
-COMMIT;
-```
-
-If something goes wrong:
-
-```sql
-ROLLBACK;
-```
-
-### 13.10.6 Step 6: Create a Performance Monitoring Query
-
-```sql
-SELECT
-    d.Type,
-    d.DeliverableNumber,
-    COUNT(*) AS Submissions,
-    ROUND(AVG(sg.Score), 2) AS AverageScore,
-    MIN(sg.Score) AS LowestScore,
-    MAX(sg.Score) AS HighestScore,
-    ROUND(
-        100.0 * SUM(CASE WHEN sg.Score >= 60 THEN 1 ELSE 0 END) / COUNT(*),
-        2
-    ) AS PassRatePercent
-FROM DELIVERABLE AS d
-JOIN STUDENT_GRADE AS sg
-    ON d.DeliverableID = sg.DeliverableID
-GROUP BY d.DeliverableID, d.Type, d.DeliverableNumber
-ORDER BY AverageScore ASC;
-```
-
-This query is BI-ready. It identifies difficult deliverables, summarizes submissions, and supports instructional decisions.
-
-### 13.10.7 Step 7: Build a Student Progress View
-
-```sql
-CREATE VIEW StudentProgress AS
-SELECT
-    s.StudentID,
-    s.FirstName,
-    s.LastName,
-    d.DueDate,
-    d.Type,
-    d.DeliverableNumber,
-    sg.Score,
-    AVG(sg.Score) OVER (
-        PARTITION BY s.StudentID
-        ORDER BY d.DueDate
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-    ) AS RunningAverage
-FROM STUDENT AS s
-JOIN STUDENT_GRADE AS sg
-    ON s.StudentID = sg.StudentID
-JOIN DELIVERABLE AS d
-    ON sg.DeliverableID = d.DeliverableID;
-```
-
-This view supports progress tracking without losing grade-level detail.
-
-### 13.10.8 What You Accomplished
-
-By the end of this hardening exercise, the Grading Database has been strengthened in five ways:
-
-| Improvement | Technique |
+| Use Case | Example |
 |---|---|
-| Faster queries | Indexes |
-| Safer updates | Transactions |
-| Better data quality | Constraints |
-| Auditability | Triggers and audit table |
-| Better analytics | Window functions and views |
+| Input validation | Reject a score above 100 before the record is saved |
+| Workflow control | Require a student to be selected before grades can be entered |
+| Auto-refresh | Update a subform after a new grade is added |
+| Navigation | Open a related report from a student detail form |
+| Confirmation messages | Warn before deleting a grade record |
+| Controlled sequences | Guide users through a multi-step data-entry process |
 
-This is the difference between a database that merely stores data and a database that can support real organizational work.
+These are interaction-level guardrails. They do not replace database constraints, but they complement them by catching problems at the point of user interaction — before the bad data reaches the table.
 
----
+### 13.10.3 Data Macros: Trigger-Like Behavior in Access
 
-## Key Concepts
+Access also supports **data macros**, which are closer in spirit to SQL triggers. A data macro runs at the table level in response to `INSERT`, `UPDATE`, or `DELETE` events.
 
-### Foundational Ideas
+Data macros can:
 
-- Advanced database techniques protect performance, integrity, auditability, and security.
-- Indexes improve read performance but introduce storage and write-maintenance costs.
-- Transactions protect multi-step operations from partial failure.
-- Constraints turn business rules into enforceable database rules.
-- Triggers allow the database to respond automatically to changes.
-- Window functions support analytics while preserving row-level detail.
-- Conditional aggregation creates transparent KPI-style metrics directly in SQL.
-- Permissions and roles protect sensitive data and support least privilege.
-- Advanced techniques are conceptually portable, but implementation varies across Access, SQLite, and PostgreSQL.
+- log changes to an audit table;
+- validate data before it is committed;
+- update related records automatically;
+- enforce rules that are too complex for a simple validation rule.
 
-### Practical Design Rules
+For example, a data macro on `STUDENT_GRADE` can check that a score falls between 0 and 100 and reject the update with a custom message if it does not — similar to the `CHECK` constraint or `BEFORE INSERT` trigger pattern described earlier in this chapter.
 
-- Index columns that are frequently used in joins, filters, sorting, and date ranges.
-- Do not index every column.
-- Use transactions when multiple changes must succeed or fail together.
-- Prefer constraints over after-the-fact data cleaning.
-- Use triggers for auditing and universal enforcement, not for complex hidden workflows.
-- Use views to make advanced analytics reusable.
-- Grant permissions to roles, not individual users.
-- Treat security, auditability, and performance as design responsibilities.
+### 13.10.4 Macros vs. VBA vs. SQL
 
----
+Choosing the right tool for automation in Access depends on the job.
+
+| Tool | Best For | Limitation |
+|---|---|---|
+| Macros | Interface automation, simple workflows, validation messages | Limited programming logic; harder to debug at scale |
+| Data macros | Table-level enforcement similar to triggers | Access-specific; does not port to other DBMSs |
+| VBA | Complex business logic, custom functions, external integrations | Requires programming knowledge; harder to maintain |
+| SQL constraints | Universal data rules | Cannot produce custom messages or interface behavior |
+
+A good Access application often uses all four: constraints protect the data, data macros log changes, form macros guide users, and VBA handles advanced logic when macros are not enough.
+
+### 13.10.5 Why Macros Matter in Practice
+
+Not every data-quality problem should be solved with SQL alone. In an Access-based grading system, an instructor who enters grades through a form should not need to understand `CHECK` constraints to avoid mistakes. A well-designed macro can display a clear message — "Score must be between 0 and 100" — at the moment of entry, making the rule visible and actionable.
+
+Macros are the glue between database rules and day-to-day user workflows. They help keep user behavior aligned with database design.
+
+<div class="callout tip">
+  <p><strong>💡 Tip: Start with constraints, then add macros</strong></p>
+  <p>Use database constraints for rules that must always hold. Use Access macros to make those rules visible, friendly, and immediate at the point of user interaction.</p>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## 13.11 Stored Procedures and Database Functions
+
+While triggers respond automatically to data events and macros automate interface workflows, **stored procedures** and **database functions** provide another form of server-side logic: reusable, explicitly called code that lives inside the database.
+
+### 13.11.1 What Stored Procedures Are
+
+A **stored procedure** is a named block of SQL code that is saved in the database and can be executed on demand. Unlike a trigger — which fires automatically when data changes — a stored procedure is called explicitly by a user, application, or scheduled job.
+
+Database **functions** are similar but are designed to return a value and can be used inside SQL statements, much like built-in functions such as `AVG()` or `UPPER()`.
+
+The key distinction:
+
+| Feature | Trigger | Stored Procedure | Function |
+|---|---|---|---|
+| How it runs | Automatically on data events | Called explicitly | Called explicitly, often inside queries |
+| Returns a value? | No | Optional | Yes |
+| Can modify data? | Yes | Yes | Usually not (read-only) |
+| Used inside SQL? | No | No (called separately) | Yes |
+
+### 13.11.2 A PostgreSQL Stored Procedure Example
+
+The following procedure updates a student's score and logs the change in one call:
+
+```sql
+CREATE OR REPLACE PROCEDURE update_grade(
+    p_grade_id INTEGER,
+    p_new_score INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Record the old score before updating
+    INSERT INTO GradeAudit (GradeID, OldScore, NewScore, ChangedAt)
+    SELECT GradeID, Score, p_new_score, CURRENT_TIMESTAMP
+    FROM STUDENT_GRADE
+    WHERE GradeID = p_grade_id;
+
+    -- Apply the new score
+    UPDATE STUDENT_GRADE
+    SET Score = p_new_score
+    WHERE GradeID = p_grade_id;
+
+    COMMIT;
+END;
+$$;
+```
+
+The procedure is called explicitly:
+
+```sql
+CALL update_grade(10, 92);
+```
+
+This pattern is especially useful when the same multi-step operation is needed from different places — a web application, a reporting tool, or an administrative script. Instead of repeating the logic, every caller uses the same stored procedure.
+
+### 13.11.3 When to Use Stored Procedures
+
+Stored procedures are a good fit when:
+
+- the same multi-step operation is needed from multiple applications or tools;
+- the logic involves conditional branching that is awkward in pure SQL;
+- you want to enforce a consistent process (such as grade correction with mandatory auditing);
+- performance matters and sending many individual SQL statements over the network is inefficient.
+
+They are less useful when:
+
+- the database platform does not support them well (SQLite has no stored procedures; Access uses VBA instead);
+- the logic is simple enough for a single SQL statement;
+- the application already has strong service-layer logic that is easier to maintain outside the database.
+
+### 13.11.4 Platform Availability
+
+| Platform | Stored Procedure Support |
+|---|---|
+| PostgreSQL / Supabase | Full support (`CREATE PROCEDURE`, `CREATE FUNCTION`, PL/pgSQL) |
+| Microsoft SQL Server | Full support (T-SQL stored procedures) |
+| MySQL | Supported (`CREATE PROCEDURE`) |
+| SQLite | Not supported; use application-level functions |
+| Microsoft Access | Not supported; use VBA modules or macros |
+
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Different tools for different jobs</strong></p>
+  <p>Constraints enforce rules passively. Triggers react to changes automatically. Stored procedures package multi-step logic for explicit execution. Macros guide user behavior at the interface. A hardened database uses each where it fits best.</p>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## Chapter Summary
 
 This chapter extended the course from correct SQL to reliable database systems. Earlier chapters taught you how to design schemas, normalize tables, query data, administer databases, and build BI outputs. Chapter 13 showed how to harden those databases so they remain trustworthy under real use.
 
-Indexes improve performance by helping the DBMS find rows efficiently. Transactions protect related changes so that operations succeed completely or fail safely. Constraints prevent invalid data from entering the system. Triggers provide automatic auditing and enforcement. Window functions and conditional aggregation support advanced analytics without abandoning SQL transparency. Permissions and roles control who can see and modify sensitive data.
+Indexes improve performance by helping the DBMS find rows efficiently — but they are not free, and over-indexing slows writes. Transactions protect related changes so that operations succeed completely or fail safely, preventing the partial updates that corrupt reports and erode trust. Constraints prevent invalid data from entering the system by turning business rules into enforceable database rules. Triggers provide automatic auditing and enforcement that work regardless of which application or user makes the change.
 
-The Grading Database provided a running example throughout the chapter. By adding indexes, constraints, transactions, audit triggers, analytical views, and access controls, the database became more than a classroom schema. It became a model of how database systems support reliability, accountability, and organizational trust.
+Advanced analytics patterns — conditional aggregation, normalized scores, weighted calculations, and dashboard-ready views — turn raw data into transparent, reusable metrics. Window functions, taught in detail in Chapters 9 and 10, add comparative context without losing row-level detail. Permissions and roles control who can see and modify sensitive data, supporting least-privilege design and auditability.
 
-The larger lesson is simple: advanced database techniques are not decorative extras. They are the mechanisms that make data systems dependable. A database that stores correct data today must also protect that data tomorrow, next semester, and next year.
+Different platforms implement these concepts differently. Access offers macros and data macros for interface-level and table-level automation. SQLite provides a lightweight but capable SQL environment. PostgreSQL and Supabase deliver full enterprise features including stored procedures, row-level security, and rich indexing.
 
----
+The Grading Database provided a running example throughout the chapter. By adding indexes, constraints, transactions, audit triggers, analytical views, access controls, and — where the platform supports it — macros and stored procedures, the database becomes more than a classroom schema. It becomes a model of how database systems support reliability, accountability, and organizational trust.
 
-## Key Terms
-
-| Term | Definition |
-|---|---|
-| Audit Table | A table that records important changes for accountability and review |
-| Composite Index | An index built on two or more columns |
-| Conditional Aggregation | Using `CASE` inside aggregate functions to calculate condition-specific metrics |
-| Constraint | A rule enforced by the database to restrict allowed data or relationships |
-| Database Hardening | Strengthening a database for performance, integrity, auditability, and security |
-| Default Constraint | A rule that supplies a value when none is provided |
-| Index | A lookup structure that improves query performance |
-| Query Plan | The DBMS's strategy for executing a query |
-| Row-Level Security | A security mechanism that restricts access to individual rows |
-| Trigger | Database logic that runs automatically in response to data changes |
-| Transaction | A unit of work that succeeds or fails as a whole |
-| Unique Constraint | A rule that prevents duplicate values in a column or group of columns |
-| Window Function | A SQL function that computes analytical values over a set of rows while preserving row-level detail |
+The larger lesson is simple: advanced database techniques are not decorative extras. They are the mechanisms that make data systems dependable. A database that stores correct data today must also protect that data tomorrow, next semester, and next year. Chapter 14 will apply these principles in a visual reporting environment, connecting hardened database logic to dashboards that decision-makers can use.
 
 ---
-
-## Review Questions
-
-1. What does it mean to harden a database?
-2. Why can a logically correct query still be operationally weak?
-3. What is an index, and why does it improve performance?
-4. Why should foreign keys often be indexed?
-5. What are the trade-offs of adding too many indexes?
-6. What is a transaction, and why is it important for grade updates?
-7. Explain the difference between `COMMIT` and `ROLLBACK`.
-8. Give an example of a `CHECK` constraint in the Grading Database.
-9. Why might a composite `UNIQUE` constraint be useful on `(StudentID, DeliverableID)`?
-10. What is a trigger, and when should it be used?
-11. Why can triggers create debugging problems?
-12. How do window functions differ from `GROUP BY`?
-13. Write a query that ranks students by average score.
-14. What is conditional aggregation, and how can it support KPIs?
-15. Explain authentication vs. authorization.
-16. What is the principle of least privilege?
-17. How does SQLite differ from PostgreSQL in security and concurrency?
-18. How can Microsoft Access simulate trigger-like behavior?
-19. Which advanced technique would you use to prevent invalid scores?
-20. Which advanced technique would you use to record grade changes automatically?
-
-## Discussion Questions
-
-1. Should grade changes always require an audit trail? Why or why not?
-2. When might performance optimization conflict with data integrity?
-3. Is it better to enforce rules in the application or in the database? When might each be appropriate?
-4. Should students be able to view class-rank dashboards based on window functions? What ethical issues might arise?
-5. What risks are introduced when business logic is hidden inside triggers?
-6. How does database hardening support organizational trust?
-7. Which platform—Access, SQLite, or Supabase/PostgreSQL—best fits a small departmental grading system? What changes if the system must support thousands of students?
 
 ## References
 

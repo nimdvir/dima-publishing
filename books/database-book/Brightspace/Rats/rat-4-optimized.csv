@@ -1,0 +1,159 @@
+﻿// Brightspace CSV Import — RAT 4 Top Questions (Optimized),,,,
+// Source: Chapter 4 — Introduction to Databases (ch04-main-2026-06-04.md),,,,
+// Date: 2026-06-17,,,,
+// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC),,,,
+// Save as CSV UTF-8 before importing,,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 4: Introduction to Databases,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 4 at: https://data-pilot.dimapublishing.com/book/ch04/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+// MULTI-SELECT QUESTION 1,,,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT4-Q1,,,,,
+Title,Flat table anomalies,,,,,
+QuestionText,"A veterinary clinic tracks appointments in a single flat table with these columns: PetID, PetName, OwnerName, OwnerPhone, AppointmentDate, VetName, ServiceDescription. 
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,4,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,Update anomaly: changing an owner's phone number requires editing every appointment row for that owner,,"Correct — owner information is repeated in every appointment row, so a phone number change requires multiple edits."
+Option,0,Index anomaly: the table cannot be sorted by AppointmentDate,,Incorrect — flat tables can be sorted; there is no named anomaly called an index anomaly in Chapter 4.
+Option,1,Insertion anomaly: a new pet cannot be recorded in the system until they have an appointment,,"Correct — because the table mixes appointments and pets, there is no place to record a pet without also recording an appointment."
+Option,1,Deletion anomaly: cancelling the only appointment for a pet also removes the only record that the pet and owner exist,,"Correct — when pet, owner, and appointment data are mixed, deleting an appointment row can destroy the pet and owner records."
+Option,1,Data redundancy: the same owner name and phone number are stored in every appointment row for that owner's pets,,"Correct — repeating owner attributes across multiple rows is data redundancy, increasing storage and risking inconsistency."
+Hint,"Chapter 4 names the same four anomaly types as Chapter 3. Think about what happens to pet/owner data when appointment rows are added, changed, or removed.",,,,
+Feedback,"Chapter 4 revisits the four modification anomalies — insertion, update, deletion, and data redundancy — in the context of flat table design. The veterinary clinic flat table exhibits all four: update anomaly (owner phone change requires many edits), insertion anomaly (new pet needs an appointment to be recorded), deletion anomaly (cancelling an appointment loses pet/owner data), and data redundancy (owner info repeated per appointment).",,,,
+,,,,
+// MULTI-SELECT QUESTION 2,,,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT4-Q2,,,,,
+Title,Database benefits,,,,,
+QuestionText,"A retailer's purchasing, inventory, and sales departments each maintain their own spreadsheets with overlapping product data. Product IDs are inconsistent across departments, and the same product may have three different descriptions. The company is considering moving to a shared database. 
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,4,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,Centralized source of truth: a single shared database ensures all departments work from the same product data,,"Correct — a database provides one authoritative copy of each data element, eliminating conflicting versions across spreadsheets."
+Option,0,Faster spreadsheet formulas: the database will calculate totals faster than Excel,,"Incorrect — the database approach is about structural integrity, not formula speed comparisons with spreadsheets."
+Option,1,"Redundancy control: product data is stored once and referenced by ID, eliminating repeated and inconsistent product descriptions",,Correct — databases control redundancy by design: each fact is stored in one place and linked via keys rather than copied.
+Option,1,Referential integrity enforcement: the database can enforce that every product ID in an order row matches a real product in the Products table,,"Correct — foreign key constraints ensure that references between tables are valid, preventing orphaned or mismatched records."
+Option,0,Automatic report generation: the database will generate all department reports without any configuration,,Incorrect — databases provide reliable data for reports but do not automatically generate reports without configuration or query design.
+Hint,What specific structural problems does a database solve that separate spreadsheets cannot?,,,,
+Feedback,"Chapter 4 identifies key benefits of the database approach over file-based systems: centralized source of truth (one authoritative copy), controlled redundancy (each fact stored once), and referential integrity (enforced valid references between tables). These directly address the retailer's problems of inconsistent IDs, conflicting descriptions, and data spread across silos. The database approach is about data integrity, not formula speed or automatic reporting.",,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 3,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q3,,,,,
+Title,DBMS terminology,,,,,
+QuestionText,"A student says, ""Our company just bought a new database called PostgreSQL."" According to Chapter 4's terminology, what is the most accurate correction to this statement?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,The statement is correct; PostgreSQL is a database,,Incorrect — Chapter 4 distinguishes the database (the stored collection of data) from the DBMS (the software that manages it).
+Option,100,PostgreSQL is a DBMS — database management system software. The database is the actual collection of structured data that PostgreSQL manages,,"Correct — the DBMS is the software (PostgreSQL, Access, SQLite). The database is the data itself — the tables, relationships, and stored records managed by the DBMS."
+Option,0,"PostgreSQL is a database system, not a database or a DBMS",,"Incorrect — while ""database system"" can refer to the DBMS + database combination, the more precise distinction is between DBMS (software) and database (data)."
+Option,0,"PostgreSQL is a query language, not a database or DBMS",,Incorrect — SQL is the query language; PostgreSQL is the DBMS that processes SQL queries.
+Hint,What is the difference between the software that manages data and the data itself?,,,,
+Feedback,"Chapter 4 defines three distinct terms: a database is the structured collection of related data; a DBMS (database management system) is the software that creates, manages, and controls access to databases (e.g., PostgreSQL, Microsoft Access, SQLite); and a database system is the combination of database + DBMS + applications. PostgreSQL is a DBMS — the software — not the database itself.",,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 4,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q4,,,,,
+Title,Data independence,,,,,
+QuestionText,A DBA moves a large customer table to a faster SSD storage array to improve query performance. Application developers who write reports against the customer table notice no difference and make no code changes. What Chapter 4 concept does this scenario illustrate?,,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,Referential integrity — the foreign keys remained valid after the move,,"Incorrect — referential integrity is about valid references between tables, not about storage location transparency."
+Option,0,Program-data dependence — the applications depended on the old storage location,,Incorrect — program-data dependence is the problem databases solve. This scenario shows the opposite: applications were NOT affected by the storage change.
+Option,100,Data independence — changes to the physical storage layer do not require changes to the logical view or application code,,"Correct — data independence means the DBMS insulates applications from physical storage details. Developers query the logical structure, and the DBMS handles where data physically resides."
+Option,0,Data redundancy — the table was duplicated on the faster drive,,"Incorrect — the scenario describes moving (not duplicating) a table; this is about storage management, not redundancy."
+Hint,"The key phrase is ""no code changes"" — what concept describes insulation from physical storage changes?",,,,
+Feedback,"Chapter 4 explains data independence as a core DBMS benefit: the separation of the logical view (how data appears to users and applications — tables, columns, relationships) from the physical view (how data is actually stored on disk). When the DBA moved the table to a faster drive, the logical structure remained unchanged, so application code needed no modification.",,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 5,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q5,,,,,
+Title,Primary keys,,,,,
+QuestionText,"A university's Student table uses StudentID as its primary key. Which of the following is the most important characteristic that StudentID must have to function correctly as a primary key, according to Chapter 4?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,StudentID must be easy for students to remember,,Incorrect — memorability is not a technical requirement for primary keys. Surrogate keys like auto-numbers are often not memorable at all.
+Option,0,"StudentID must be a number, not text",,"Incorrect — primary keys can be numeric, text, or other data types. The data type is a design choice, not a requirement."
+Option,100,StudentID must be unique for every student and must never be NULL,,Correct — a primary key must uniquely identify each row (entity integrity) and cannot contain NULL values. Every row must have a valid primary key value.
+Option,0,StudentID must be the same across all related tables like Enrollment and Grades,,"Incorrect — while StudentID does appear as a foreign key in related tables, that is a foreign key relationship, not a primary key requirement."
+Hint,"What are the two non-negotiable rules for primary keys: one about identity, one about values?",,,,
+Feedback,Chapter 4 defines a primary key as a column (or set of columns) that uniquely identifies each row in a table. Two essential rules apply: uniqueness — no two rows can have the same primary key value; and non-nullability — every row must have a primary key value. These two properties together guarantee entity integrity: every row can be reliably identified and referenced.,,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 6,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q6,,,,,
+Title,Foreign keys,,,,,
+QuestionText,"An Enrollment table has a foreign key StudentID that references the Student table's primary key. A staff member tries to insert an enrollment record for StudentID 99999, but no student with that ID exists in the Student table. According to Chapter 4, what should happen?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,The DBMS should insert the enrollment and automatically create a new student with ID 99999,,Incorrect — DBMSs do not automatically create parent records to satisfy foreign key constraints. That would violate data integrity principles.
+Option,100,The DBMS should reject the insertion and return an error because the foreign key constraint is violated,,Correct — referential integrity requires that every foreign key value must match an existing primary key value in the referenced table. A non-existent StudentID violates this constraint.
+Option,0,"The DBMS should insert the enrollment but mark StudentID 99999 as ""pending verification""",,"Incorrect — DBMSs enforce constraints definitively; there is no ""pending"" state for constraint violations."
+Option,0,The DBMS should insert the enrollment with a NULL StudentID instead,,"Incorrect — NULL may or may not be allowed depending on the column definition, but the DBMS does not silently substitute NULL for an invalid value."
+Hint,Foreign keys enforce that every reference must point to something that actually exists. What happens when it doesn't?,,,,
+Feedback,"Chapter 4 explains that foreign key constraints enforce referential integrity: every value in a foreign key column must match an existing primary key value in the referenced table, or be NULL if the column allows it. Inserting an enrollment with a non-existent StudentID violates this constraint, and the DBMS rejects the operation with an error. This protection prevents orphaned records.",,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 7,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q7,,,,,
+Title,Constraint types,,,,,
+QuestionText,"A Product table needs these rules: (1) ProductName cannot be left blank, (2) no two products can have the same SKU value, and (3) Price must be greater than zero. According to Chapter 4's constraint types, which constraint handles rule (3)?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,NOT NULL constraint — because Price must have a value,,"Incorrect — NOT NULL prevents blank values, but a price of $0 or -$5 would pass a NOT NULL check. Rule (3) is about valid values, not presence/absence."
+Option,0,UNIQUE constraint — because each product must have a unique price,,Incorrect — the scenario does not require unique prices; different products can have the same price. Rule (3) is about value validation.
+Option,100,CHECK constraint — because it validates that a column's value satisfies a specific condition,,"Correct — CHECK constraints enforce domain integrity by validating that column values meet specified conditions (e.g., Price > 0, Age >= 18, Status IN ('Active','Inactive'))."
+Option,0,FOREIGN KEY constraint — because Price references values in another table,,Incorrect — FOREIGN KEY constraints manage relationships between tables. Price validation against a business rule (must be > 0) is not a cross-table reference.
+Hint,"Which constraint type validates that a value meets a specific condition like ""greater than zero""?",,,,
+Feedback,"Chapter 4 covers five constraint types: NOT NULL (value required), UNIQUE (no duplicates), PRIMARY KEY (unique + not null, identifies each row), FOREIGN KEY (references must exist), and CHECK (value must satisfy a condition). Rule (3) — Price > 0 — is a CHECK constraint because it validates data against a domain condition rather than managing row identity, nullability, uniqueness, or cross-table references.",,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 8,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q8,,,,,
+Title,Declarative SQL,,,,,
+QuestionText,"<p>A new analyst writes a SQL query: <code>SELECT CustomerName, COUNT(OrderID) FROM Customers JOIN Orders ON Customers.CustomerID = Orders.CustomerID GROUP BY CustomerName</code>. According to Chapter 4, what makes SQL a ""declarative"" language?</p>",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,SQL requires the analyst to specify which index to use for the JOIN,,Incorrect — specifying indexes is a procedural instruction about HOW to execute the query. SQL does not require this.
+Option,0,SQL requires the analyst to write the exact sequence of steps the DBMS must follow,,Incorrect — this describes a procedural language. SQL is declarative precisely because it does NOT require step-by-step instructions.
+Option,100,SQL describes the desired result — what data to retrieve and how to group it — while the DBMS determines the most efficient way to execute the query,,"Correct — declarative languages express the WHAT (desired output) while the system handles the HOW (execution plan, index selection, join strategy)."
+Option,0,SQL cannot perform calculations like COUNT without a separate programming language,,"Incorrect — SQL includes aggregate functions like COUNT, SUM, and AVG natively; no separate language is needed."
+Hint,Declarative = you say WHAT you want. Procedural = you say HOW to get it. Which one describes SQL?,,,,
+Feedback,"Chapter 4 contrasts SQL's declarative nature with procedural programming. In SQL, you declare the desired result — which columns, from which tables, with what grouping and conditions. You do not specify how the DBMS should scan tables, choose join algorithms, or use indexes. The DBMS query optimizer determines the most efficient execution plan automatically.",,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 9,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q9,,,,,
+Title,Platform choice,,,,,
+QuestionText,"A growing e-commerce company needs a database for its website that must: (1) support 500 simultaneous customer sessions, (2) enforce strict data types and relationships, and (3) run on a cloud server accessible to a development team. Using Chapter 4's platform comparison, which DBMS is the strongest fit?",,,,,
+Points,1,,,,,
+Difficulty,5,,,,,
+Option,0,Microsoft Access — because it enforces relationships and is easy to use,,Incorrect — Access is a desktop/file-server DBMS not designed for 500 concurrent web users. It lacks the server-based architecture needed for high-concurrency web applications.
+Option,0,SQLite — because it requires no server setup and is lightweight,,"Incorrect — SQLite is serverless and designed for single-user or low-concurrency embedded use (mobile apps, local tools). It is not suitable for 500 concurrent web sessions."
+Option,100,"PostgreSQL — because it supports high concurrency, strict data typing, and client-server architecture suitable for web applications",,"Correct — PostgreSQL is a client-server DBMS designed for high-concurrency, production web workloads with strong typing, referential integrity, and cloud deployment."
+Option,0,Any of the three — all databases handle 500 users equally well,,"Incorrect — Chapter 4 explicitly distinguishes between desktop/file-server DBMSs (Access), embedded DBMSs (SQLite), and client-server DBMSs (PostgreSQL). They are designed for very different concurrency and deployment scenarios."
+Hint,Which platform is designed for high-concurrency web applications with client-server architecture?,,,,
+Feedback,"Chapter 4 compares Access (desktop/file-server, single-user or small workgroup focus), SQLite (serverless embedded engine, low-concurrency applications), and PostgreSQL (client-server, designed for high-concurrency production workloads). For 500 simultaneous web users with strict data integrity requirements, PostgreSQL's client-server architecture and robust concurrency handling make it the clear choice.",,,,
+,,,,
+// MULTIPLE CHOICE QUESTION 10,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT4-Q10,,,,,
+Title,Spreadsheet limits,,,,,
+QuestionText,"A small business has tracked customers and orders in a single Google Sheet for two years. The sheet now has 8,000 rows, multiple people edit it simultaneously, and orders occasionally reference non-existent customer names due to typos. Which single step would most effectively address ALL of these problems, according to Chapter 4?",,,,,
+Points,1,,,,,
+Difficulty,5,,,,,
+Option,0,Add data validation dropdowns in Google Sheets to prevent typos,,Incorrect — dropdowns reduce but do not eliminate entry errors. They do not address the structural problems of mixing themes in one sheet.
+Option,0,Split the single sheet into separate Customer and Order sheets with VLOOKUP formulas,,Incorrect — VLOOKUP has no enforcement. A mistyped customer name still silently fails. The structural problems of flat files persist.
+Option,100,Move to a database with two related tables (Customer and Order) linked by a CustomerID foreign key with referential integrity enforced,,"Correct — a database separates mixed themes into related tables, eliminates redundancy, and enforces valid references through foreign key constraints — addressing all three problems structurally."
+Option,0,Restrict editing access to one person at a time,,Incorrect — this addresses the concurrency problem but not the structural problems of mixed themes and lack of referential integrity.
+Hint,Which solution addresses the STRUCTURAL problems — not just the symptoms like concurrency or typos?,,,,
+Feedback,"Chapter 4 explains that flat files like spreadsheets break down due to mixed themes, lack of referential integrity, and concurrency limits. A database with properly designed related tables and foreign key constraints solves all three problems at the structural level: Customer and Order are separate tables (clean themes), foreign keys ensure valid references (no phantom customers), and the DBMS manages concurrent access.",,,,
+,,,,

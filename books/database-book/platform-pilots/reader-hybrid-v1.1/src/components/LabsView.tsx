@@ -1,5 +1,5 @@
-import type { BookLab } from '../types';
-import MarkdownRenderer from './MarkdownRenderer';
+import type { BookLab } from "../types";
+import MarkdownRenderer from "./MarkdownRenderer";
 
 interface LabsViewProps {
   labs: BookLab[];
@@ -7,26 +7,33 @@ interface LabsViewProps {
   onSelectLab: (lab: BookLab) => void;
 }
 
-export default function LabsView({ labs, activeLab, onSelectLab }: LabsViewProps) {
-  const activeIdx = labs.findIndex(l => l.id === activeLab.id);
+export default function LabsView({
+  labs,
+  activeLab,
+  onSelectLab,
+}: LabsViewProps) {
+  const activeIdx = labs.findIndex((l) => l.id === activeLab.id);
   const hasPrev = activeIdx > 0;
   const hasNext = activeIdx < labs.length - 1;
+
+  // Derive chapter ID from lab ID (lab-01 → ch01, etc.)
+  const chapterId = activeLab.id.replace("lab-", "ch");
+  const chapterLabel = chapterId.toUpperCase();
 
   return (
     <div className="labs-view">
       {/* Lab tabs */}
       <div className="lab-tabs">
-        {labs.map(lab => (
+        {labs.map((lab) => (
           <button
             key={lab.id}
-            className={`lab-tab ${lab.id === activeLab.id ? 'active' : ''}`}
+            className={`lab-tab ${lab.id === activeLab.id ? "active" : ""}`}
             onClick={() => onSelectLab(lab)}
           >
-            <span className="lab-tab-num">{lab.id.replace('lab-', 'Lab ')}</span>
-            <span className="lab-tab-title">{lab.title}</span>
-            <span className={`source-badge source-${lab.sourceType}`}>
-              {lab.sourceType}
+            <span className="lab-tab-num">
+              {lab.id.replace("lab-", "Lab ")}
             </span>
+            <span className="lab-tab-title">{lab.title}</span>
           </button>
         ))}
       </div>
@@ -35,11 +42,15 @@ export default function LabsView({ labs, activeLab, onSelectLab }: LabsViewProps
       <div className="lab-content">
         <div className="lab-header">
           <h2>{activeLab.title}</h2>
-          <div className="lab-meta">
-            <span className={`source-badge source-${activeLab.sourceType}`}>
-              {activeLab.sourceType}
-            </span>
-          </div>
+        </div>
+
+        <div className="lab-chapter-link">
+          🧪 <strong>{activeLab.title}</strong> extends the{" "}
+          <a href={`/book/${chapterId}/lets-build/1`}>
+            {chapterLabel} Let's Build
+          </a>{" "}
+          section. Complete the Let's Build activities first, then apply what
+          you learned in this PetVax Veterinary Clinic project.
         </div>
 
         <div className="lab-body">
@@ -65,7 +76,7 @@ export default function LabsView({ labs, activeLab, onSelectLab }: LabsViewProps
         </div>
 
         <div className="lab-notice">
-          Labs are prototype-only and not submission-enabled. No login required.
+          Labs are for hands-on practice — not submission-enabled.
         </div>
       </div>
     </div>

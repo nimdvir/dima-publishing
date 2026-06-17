@@ -30,6 +30,17 @@ A database is more than storage. It is a structured environment that helps organ
 
 In **Lab 03** you felt the problem firsthand. A flat PetVax appointment sheet held useful data, but it struggled with repeated owner information, two pets named Coco, co-ownership, fragile `FILTER()` ranges, and update, insertion, and deletion anomalies. Chapter 4 explains the database structures that solve those problems.
 
+## Chapter Roadmap
+
+| Section                                                                                       | Main Question                                                             | Why It Matters                                                                                                                                     |
+| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Why Databases Matter](#why-databases-matter)                                                 | What organizational problems do databases solve?                          | Every capability — centralized truth, reduced redundancy, shared governance — connects to business outcomes, not abstract technology.              |
+| [What a Database and DBMS Are](#what-a-database-and-dbms-are)                                 | What is the difference between a database, a DBMS, and a database system? | Three distinct concepts — knowing which part is failing (structure, engine, or process) speeds up diagnosis and prevents misdirected fixes.        |
+| [Why Spreadsheets and File Systems Break Down](#why-spreadsheets-and-file-systems-break-down) | What specific problems do flat files create?                              | Formalizes redundancy, inconsistency, and modification anomalies — connects directly to the Lab 03 PetVax appointment-sheet experience.            |
+| [The Database Approach](#the-database-approach)                                               | How does separating data into related tables solve problems?              | Keys eliminate repetition while preserving connections — data discipline as a business solution, not IT busywork.                                  |
+| [Tables, Keys, and Constraints](#tables-keys-and-constraints)                                 | What makes a table reliable?                                              | Eight table rules each prevent a specific problem. Primary keys, foreign keys, and constraints protect data integrity before reports are affected. |
+| [SQL and Platforms as the Next Step](#sql-and-platforms-as-the-next-step)                     | How does SQL work across platforms?                                       | SQL is the shared language — sets up Chapter 5 for query work and Chapter 6 for relational design.                                                 |
+
 After completing this chapter, you will be able to:
 
 1. Define what a database is and explain how it differs from files and spreadsheets.
@@ -52,6 +63,17 @@ After completing this chapter, you will be able to:
 ![Figure 4.8 — Concept Map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-chapter-4-concept-mapcreate-a-cl)
 *Figure 4.8 — Concept map illustrating how day-to-day user interactions link to underlying database structures.*
 
+## Chapter Roadmap
+
+| Section                                                                                       | Main Question                                                             | Why It Matters                                                                                                                                     |
+| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Why Databases Matter](#why-databases-matter)                                                 | What organizational problems do databases solve?                          | Every capability — centralized truth, reduced redundancy, shared governance — connects to business outcomes, not abstract technology.              |
+| [What a Database and DBMS Are](#what-a-database-and-dbms-are)                                 | What is the difference between a database, a DBMS, and a database system? | Three distinct concepts — knowing which part is failing (structure, engine, or process) speeds up diagnosis and prevents misdirected fixes.        |
+| [Why Spreadsheets and File Systems Break Down](#why-spreadsheets-and-file-systems-break-down) | What specific problems do flat files create?                              | Formalizes redundancy, inconsistency, and modification anomalies — connects directly to the Lab 03 PetVax appointment-sheet experience.            |
+| [The Database Approach](#the-database-approach)                                               | How does separating data into related tables solve problems?              | Keys eliminate repetition while preserving connections — data discipline as a business solution, not IT busywork.                                  |
+| [Tables, Keys, and Constraints](#tables-keys-and-constraints)                                 | What makes a table reliable?                                              | Eight table rules each prevent a specific problem. Primary keys, foreign keys, and constraints protect data integrity before reports are affected. |
+| [SQL and Platforms as the Next Step](#sql-and-platforms-as-the-next-step)                     | How does SQL work across platforms?                                       | SQL is the shared language — sets up Chapter 5 for query work and Chapter 6 for relational design.                                                 |
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
@@ -73,14 +95,14 @@ The same logic applies to the Grading Database used in this book and to the PetV
 
 Databases matter because they turn scattered records into shared organizational infrastructure.
 
-| Capability | Why It Matters |
-| --- | --- |
-| **Centralized source of truth** | Everyone works from the same official data rather than competing copies. |
-| **Reduced redundancy** | Important facts are stored once and referenced where needed. |
-| **Improved accuracy** | Rules and constraints prevent many bad values from entering the system. |
-| **Historical analysis** | Stored records allow organizations to study patterns over time. |
-| **Timely access** | Users and applications can retrieve current information when decisions need to be made. |
-| **Shared governance** | Ownership, access, and quality rules can be managed more consistently. |
+| Capability                      | Why It Matters                                                                          |
+| ------------------------------- | --------------------------------------------------------------------------------------- |
+| **Centralized source of truth** | Everyone works from the same official data rather than competing copies.                |
+| **Reduced redundancy**          | Important facts are stored once and referenced where needed.                            |
+| **Improved accuracy**           | Rules and constraints prevent many bad values from entering the system.                 |
+| **Historical analysis**         | Stored records allow organizations to study patterns over time.                         |
+| **Timely access**               | Users and applications can retrieve current information when decisions need to be made. |
+| **Shared governance**           | Ownership, access, and quality rules can be managed more consistently.                  |
 
 These strengths connect directly to the R.E.A.D. framework from earlier in the book: databases represent data in structured form, make it expressible through reports and queries, associate related records, and support deployment when trustworthy information leads to action.
 
@@ -112,11 +134,11 @@ A database is a structured collection of related data designed for reliable stor
 
 Students often use the words database, DBMS, and **database system** as if they mean the same thing. They do not.
 
-| Term | Meaning | Grading Example | PetVax Example |
-| --- | --- | --- | --- |
-| **Database** | The structured collection of related data and metadata | The Grading tables, relationships, and rules | The pet, owner, appointment, and vaccine tables |
-| **DBMS** | The software engine that creates, manages, queries, secures, and administers databases | Access, SQLite, PostgreSQL | Access managing the PetVax tables |
-| **Database system** | The full arrangement of users, applications, DBMS, and database | A grade-entry form connected to Access tables through the Access DBMS | An appointment form used by clinic staff, the Access DBMS, and the PetVax reports |
+| Term                | Meaning                                                                                | Grading Example                                                       | PetVax Example                                                                    |
+| ------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Database**        | The structured collection of related data and metadata                                 | The Grading tables, relationships, and rules                          | The pet, owner, appointment, and vaccine tables                                   |
+| **DBMS**            | The software engine that creates, manages, queries, secures, and administers databases | Access, SQLite, PostgreSQL                                            | Access managing the PetVax tables                                                 |
+| **Database system** | The full arrangement of users, applications, DBMS, and database                        | A grade-entry form connected to Access tables through the Access DBMS | An appointment form used by clinic staff, the Access DBMS, and the PetVax reports |
 
 A simple distinction helps: the database holds records according to rules, the DBMS manages and protects those records, and the database system includes the people and applications that use them.
 
@@ -175,21 +197,21 @@ That problem grows in the traditional **file environment**. Before databases bec
 
 The classic problems of the file environment are straightforward:
 
-| Problem | What It Means | Business Result |
-| --- | --- | --- |
-| **Redundancy** | The same fact is stored in many places | Waste and repeated updates |
-| **Inconsistency** | Different copies stop matching | Conflicting reports and bad decisions |
+| Problem                     | What It Means                               | Business Result                           |
+| --------------------------- | ------------------------------------------- | ----------------------------------------- |
+| **Redundancy**              | The same fact is stored in many places      | Waste and repeated updates                |
+| **Inconsistency**           | Different copies stop matching              | Conflicting reports and bad decisions     |
 | **Program-data dependence** | Programs are tightly tied to file structure | Small file changes break reports and apps |
-| **Low flexibility** | It is hard to combine data across sources | Slow, fragile analysis |
-| **Weak control** | Rules and access are often informal | More errors and less trust |
+| **Low flexibility**         | It is hard to combine data across sources   | Slow, fragile analysis                    |
+| **Weak control**            | Rules and access are often informal         | More errors and less trust                |
 
 Spreadsheets also struggle with modification anomalies when too many facts are mixed into one flat table.
 
-| Anomaly | What Happens | Grading Example |
-| --- | --- | --- |
-| **Insertion anomaly** | You cannot add one kind of fact without another | A new deliverable cannot be recorded cleanly until a student has a score |
-| **Update anomaly** | One fact must be changed in many rows | A student's email must be updated everywhere it appears |
-| **Deletion anomaly** | Removing one row removes another fact too | Deleting the last score for a deliverable erases evidence that the deliverable existed |
+| Anomaly               | What Happens                                    | Grading Example                                                                        |
+| --------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Insertion anomaly** | You cannot add one kind of fact without another | A new deliverable cannot be recorded cleanly until a student has a score               |
+| **Update anomaly**    | One fact must be changed in many rows           | A student's email must be updated everywhere it appears                                |
+| **Deletion anomaly**  | Removing one row removes another fact too       | Deleting the last score for a deliverable erases evidence that the deliverable existed |
 
 ### Anomalies in Flat Tables
 
@@ -200,14 +222,14 @@ You met every one of these problems in Lab 03. The table below ties what you fel
 ![Figure 4.18 — Flat Table vs. Related Tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-one-big-table-vs-related-tablesc)
 *Figure 4.18 — Insertion, update, and deletion anomalies in a single flat table.*
 
-| Lab 03 problem | Database concept |
-| --- | --- |
-| Sarah Perry's email changed in one row only | Update anomaly |
-| Rex could not be stored cleanly without an appointment | Insertion anomaly |
-| Deleting Angel's appointment erased evidence Angel existed | Deletion anomaly |
-| A fixed `FILTER()` range missed newly added rows | Query fragility |
-| Two pets named Charlie or Coco could not be told apart | Need for stable identifiers (primary keys) |
-| One pet (Coco) had two owners | Need for related tables and a link table |
+| Lab 03 problem                                             | Database concept                           |
+| ---------------------------------------------------------- | ------------------------------------------ |
+| Sarah Perry's email changed in one row only                | Update anomaly                             |
+| Rex could not be stored cleanly without an appointment     | Insertion anomaly                          |
+| Deleting Angel's appointment erased evidence Angel existed | Deletion anomaly                           |
+| A fixed `FILTER()` range missed newly added rows           | Query fragility                            |
+| Two pets named Charlie or Coco could not be told apart     | Need for stable identifiers (primary keys) |
+| One pet (Coco) had two owners                              | Need for related tables and a link table   |
 
 ![Figure 4.19 — File environment vs database](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-file-vs-db)
 *Figure 4.19 — File silos compared with the centralized database approach.*
@@ -235,14 +257,14 @@ The **database approach** answers these problems by storing related facts in str
 
 The contrast is sharp when you place the two approaches side by side.
 
-| Spreadsheet or flat file | Database approach |
-| --- | --- |
-| One big sheet mixes many subjects | Separate tables store different subjects |
-| Repeated facts are typed many times | Shared facts are stored once and referenced |
-| Formulas simulate connections between sheets | Keys define real relationships between tables |
-| Users manually try to avoid errors | Constraints enforce many rules automatically |
-| Queries depend on fragile ranges | Queries use table and field names |
-| One file may become many conflicting copies | One database can serve as a shared source of truth |
+| Spreadsheet or flat file                     | Database approach                                  |
+| -------------------------------------------- | -------------------------------------------------- |
+| One big sheet mixes many subjects            | Separate tables store different subjects           |
+| Repeated facts are typed many times          | Shared facts are stored once and referenced        |
+| Formulas simulate connections between sheets | Keys define real relationships between tables      |
+| Users manually try to avoid errors           | Constraints enforce many rules automatically       |
+| Queries depend on fragile ranges             | Queries use table and field names                  |
+| One file may become many conflicting copies  | One database can serve as a shared source of truth |
 
 You do not need to know how to design tables yet. The point for now is that the database approach is a different way of thinking about data, not just a fancier spreadsheet. The rest of this chapter unpacks the pieces that make it work.
 
@@ -263,26 +285,26 @@ At the heart of a relational database is the **relational table**. A table store
 
 Here is a simple `STUDENT` table:
 
-| StudentID | FirstName | LastName | Email | Birthday |
-| --- | --- | --- | --- | --- |
-| 1001 | Maria | Santos | `msantos@albany.edu` | 2003-05-14 |
-| 1002 | James | Chen | `jchen@albany.edu` | 2002-11-22 |
-| 1003 | Aisha | Rahman | `arahman@albany.edu` | 2004-01-08 |
+| StudentID | FirstName | LastName | Email                | Birthday   |
+| --------- | --------- | -------- | -------------------- | ---------- |
+| 1001      | Maria     | Santos   | `msantos@albany.edu` | 2003-05-14 |
+| 1002      | James     | Chen     | `jchen@albany.edu`   | 2002-11-22 |
+| 1003      | Aisha     | Rahman   | `arahman@albany.edu` | 2004-01-08 |
 
 Each row represents one student. Each column has one clear meaning. The table works well because the structure is disciplined.
 
 Relational tables follow a few core rules:
 
-| Rule | Why It Matters |
-| --- | --- |
-| **Each table has a unique name** | Queries and documentation can refer to it without ambiguity |
-| **Each row represents one instance of one entity** | Student facts do not get mixed with deliverable facts |
-| **No two rows are identical** | The database can distinguish one record from another |
-| **Each cell contains one atomic value** | Filtering, sorting, and aggregation stay possible |
-| **Each column has one clear meaning** | Users and systems interpret values consistently |
-| **Values in a column follow a consistent type** | Dates behave like dates, numbers like numbers, text like text |
-| **Rows must be uniquely identifiable** | A specific record can be found and referenced reliably |
-| **Row and column order do not create meaning** | Data is retrieved by names and values, not by position |
+| Rule                                               | Why It Matters                                                |
+| -------------------------------------------------- | ------------------------------------------------------------- |
+| **Each table has a unique name**                   | Queries and documentation can refer to it without ambiguity   |
+| **Each row represents one instance of one entity** | Student facts do not get mixed with deliverable facts         |
+| **No two rows are identical**                      | The database can distinguish one record from another          |
+| **Each cell contains one atomic value**            | Filtering, sorting, and aggregation stay possible             |
+| **Each column has one clear meaning**              | Users and systems interpret values consistently               |
+| **Values in a column follow a consistent type**    | Dates behave like dates, numbers like numbers, text like text |
+| **Rows must be uniquely identifiable**             | A specific record can be found and referenced reliably        |
+| **Row and column order do not create meaning**     | Data is retrieved by names and values, not by position        |
 
 When database designers document a table, they often use a compact schema notation:
 
@@ -346,13 +368,13 @@ The same idea shows up clearly in PetVax.
 ![Figure 4.30 — Dimensions of Data Quality](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-quality-dimensions)
 *Figure 4.30 — Data quality dimensions protected by database constraints.*
 
-| Constraint | What It Protects |
-| --- | --- |
-| **`NOT NULL`** | Requires a value |
-| **`UNIQUE`** | Prevents duplicates in a field that should stay unique |
-| **`PRIMARY KEY`** | Ensures unique, non-null row identity |
-| **`FOREIGN KEY`** | Preserves valid relationships across tables |
-| **`CHECK`** | Restricts values to an allowed range or rule |
+| Constraint        | What It Protects                                       |
+| ----------------- | ------------------------------------------------------ |
+| **`NOT NULL`**    | Requires a value                                       |
+| **`UNIQUE`**      | Prevents duplicates in a field that should stay unique |
+| **`PRIMARY KEY`** | Ensures unique, non-null row identity                  |
+| **`FOREIGN KEY`** | Preserves valid relationships across tables            |
+| **`CHECK`**       | Restricts values to an allowed range or rule           |
 
 For example, `CHECK (Score BETWEEN 0 AND 100)` prevents impossible scores. A foreign key prevents a grade from referring to a missing student. `NOT NULL` can require an essential email address, score, or due date.
 
@@ -377,12 +399,12 @@ You do not need to write SQL like this yet. Notice only that the code includes t
 
 These rules are part of the database's **metadata**: data about the database itself. A **data dictionary** collects table names, column names, data types, keys, relationships, and constraints in a form people can read.
 
-| Table | Column | Type | Key | Rule |
-| --- | --- | --- | --- | --- |
-| `STUDENT` | `StudentID` | INTEGER | Primary | Not null, unique |
-| `STUDENT` | `Email` | TEXT | None | Not null, unique |
+| Table           | Column      | Type    | Key                 | Rule                          |
+| --------------- | ----------- | ------- | ------------------- | ----------------------------- |
+| `STUDENT`       | `StudentID` | INTEGER | Primary             | Not null, unique              |
+| `STUDENT`       | `Email`     | TEXT    | None                | Not null, unique              |
 | `STUDENT_GRADE` | `StudentID` | INTEGER | Foreign → `STUDENT` | Must match a real `StudentID` |
-| `STUDENT_GRADE` | `Score` | NUMERIC | None | Between 0 and 100 |
+| `STUDENT_GRADE` | `Score`     | NUMERIC | None                | Between 0 and 100             |
 
 The DBMS uses this structural information to reject many bad values before they distort a report, dashboard, or decision.
 
@@ -412,11 +434,11 @@ The same SQL logic works across many platforms because the relational structure 
 
 This course uses three platforms because each teaches a different part of database work.
 
-| Platform | Best For | What It Helps Students See |
-| --- | --- | --- |
-| **Microsoft Access** | Visual learning and small local databases | Tables, relationships, forms, and reports in one environment |
-| **SQLite** | Lightweight SQL practice | Portable, file-based database behavior with little setup |
-| **PostgreSQL / Supabase** | Shared and production-style systems | Strong typing, multi-user access, and server-based workflows |
+| Platform                  | Best For                                  | What It Helps Students See                                   |
+| ------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
+| **Microsoft Access**      | Visual learning and small local databases | Tables, relationships, forms, and reports in one environment |
+| **SQLite**                | Lightweight SQL practice                  | Portable, file-based database behavior with little setup     |
+| **PostgreSQL / Supabase** | Shared and production-style systems       | Strong typing, multi-user access, and server-based workflows |
 
 ![Figure 4.34 — Microsoft Access Objects](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-ms-access-objects)
 *Figure 4.34 — Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports.*
@@ -508,51 +530,51 @@ Laudon, K. C., & Laudon, J. P. (2024). *Management information systems: Managing
 
 ## Figures Index
 
-| Figure | Section | Caption | Source file |
-|---|---|---|---|
-| Figure 4.2 | Introduction | Lecture slide introducing how technology structures business processes and information flows. | `ch04-001.png` |
-| Figure 4.3 | Introduction | Lecture slide reviewing qualitative, quantitative, categorical, and numerical data. | `ch04-004.png` |
-| Figure 4.4 | Introduction | Knowledge check connecting Chapter 3 data structures to Chapter 4 database concepts. | `ch04-003.png` |
-| Figure 4.5 | Introduction | Learning path from data structures and file limits to SQL queries. | `ch04-002.png` |
-| Figure 4.6 | Introduction | Raw records become useful when a database organizes them for queries, reports, and decisions. | `ch04-database-intro.png` |
-| Figure 4.7 | Introduction | Roadmap tracking the transition from Chapter 3's data fundamentals to Chapter 4's database structures and Chapter 5's queries. | `ch04-40b-chapter-roadmapcreate-a-textboo.png` |
-| Figure 4.8 | Introduction | Concept map illustrating how day-to-day user interactions link to underlying database structures. | `ch04-chapter-4-concept-mapcreate-a-cl.png` |
-| Figure 4.9 | Why Databases Matter | One shared database supports multiple users, outputs, and decisions across the organization. | `ch04-41a-one-shared-database-multiple-outp.png` |
-| Figure 4.10 | Why Databases Matter | Hub-and-spoke view of a centralized database driving business operations across different organizational roles. | `ch04-datbase-in-center.png` |
-| Figure 4.11 | Why Databases Matter | One transaction coordinating inventory, sales, and loyalty updates. | `ch04-datamanagement-lifecyclecreate.png` |
-| Figure 4.12 | What a Database and DBMS Are | Users, applications, the DBMS, and the database shown as a layered system. | `ch04-43b-database-system-layerscreate-a.png` |
-| Figure 4.13 | What a Database and DBMS Are | A quiz score moving from form entry to DBMS validation and storage. | `ch04-grading-database-preview.png` |
-| Figure 4.14 | What a Database and DBMS Are | Logical tables and fields separated from physical storage and indexes. | `ch04-logical-vs-physical-views-of-data.png` |
-| Figure 4.15 | Why Spreadsheets and File Systems Break Down | High-level contrast between flexible spreadsheet sheets and structured database tables. | `ch04-spreadsheet-vs-database-strengths.png` |
-| Figure 4.16 | From Spreadsheets to File Silos | Common structural failures in multi-theme spreadsheet files compared to relational structures. | `ch04-spreadsheet-vs-database-detailed.png` |
-| Figure 4.17 | From Spreadsheets to File Silos | Inconsistencies and redundancies when customer records are scattered across billing, sales, and support files. | `ch04-database-vs-filesystem.png` |
-| Figure 4.18 | Anomalies in Flat Tables | Insertion, update, and deletion anomalies in a single flat table. | `ch04-one-big-table-vs-related-tablesc.png` |
-| Figure 4.19 | Anomalies in Flat Tables | File silos compared with the centralized database approach. | `ch04-file-vs-db.png` |
-| Figure 4.20 | The Database Approach | How moving customer and order subjects to independent tables eliminates redundancy. | `ch04-users-to-tables.png` |
-| Figure 4.21 | The Database Approach | Flow diagram demonstrating data integration through metadata, keys, constraints, and shared queries. | `ch04-data-flow.png` |
-| Figure 4.22 | The Database Approach | The data hierarchy, showing how bits build fields, fields build records, and records build tables in a database. | `ch04-data-hierarchy.png` |
-| Figure 4.23 | Rows, Columns, and Table Rules | Structure of a relational table, highlighting columns (attributes), rows (records), and cells. | `ch04-anatomy-of-a-relational-tablecre.png` |
-| Figure 4.24 | Rows, Columns, and Table Rules | Disciplined single-theme table compared with a mixed table. | `ch04-normalization.png` |
-| Figure 4.25 | Primary and Foreign Keys | Nominal values are labels with no ranking, such as major or ID. | `ch04-010.png` |
-| Figure 4.26 | Primary and Foreign Keys | How primary and foreign keys connect STUDENT and STUDENT_GRADE tables. | `ch04-sql-relationships.png` |
-| Figure 4.27 | Primary and Foreign Keys | Terminology map for candidate, primary, composite, natural, and surrogate keys. | `ch04-keys.png` |
-| Figure 4.28 | Primary and Foreign Keys | Ordinal values are ranked labels, such as class standing or course level. | `ch04-011.png` |
-| Figure 4.29 | Constraints That Protect Data | Constraint rules (NOT NULL, UNIQUE, CHECK, FOREIGN KEY) serving as structural filters for database input. | `ch04-constraint-enforcementcreate-a-s.png` |
-| Figure 4.30 | Constraints That Protect Data | Data quality dimensions protected by database constraints. | `ch04-data-quality-dimensions.png` |
-| Figure 4.31 | Constraints That Protect Data | A relational table shown with labeled columns, sample rows, and a clearly marked primary key. | `ch04-database-schema.png` |
-| Figure 4.32 | SQL and Platforms as the Next Step | SQL translating a user's question into table, field, and condition logic. | `ch04-sqlquestions.png` |
-| Figure 4.33 | SQL and Platforms as the Next Step | Architectural spectrum contrasting lightweight, local file-based systems (Access, SQLite) with multi-user server databases (PostgreSQL). | `ch04-local-vs-server.png` |
-| Figure 4.34 | SQL and Platforms as the Next Step | Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports. | `ch04-ms-access-objects.png` |
-| Figure 4.35 | SQL and Platforms as the Next Step | Data types and measurement scales mapped to analytical use. | `ch04-data-types-analytical-uses.png` |
-| Figure 4.36 | SQL and Platforms as the Next Step | Transition from qualitative properties to measurable numbers. | `ch04-005.png` |
-| Figure 4.37 | SQL and Platforms as the Next Step | Qualitative attributes compared with quantitative measurements. | `ch04-006.png` |
-| Figure 4.38 | SQL and Platforms as the Next Step | Qualities and numeric scale values as different forms of measurement. | `ch04-007.png` |
-| Figure 4.39 | SQL and Platforms as the Next Step | Categorical classes compared with numerical scale values. | `ch04-008.png` |
-| Figure 4.40 | SQL and Platforms as the Next Step | Categorical values can use numbers without becoming measurements. | `ch04-009.png` |
-| Figure 4.41 | SQL and Platforms as the Next Step | Interval data has equal differences but no absolute zero. | `ch04-012.png` |
-| Figure 4.42 | SQL and Platforms as the Next Step | Ratio data has equal intervals and a true zero point. | `ch04-013.png` |
-| Figure 4.43 | SQL and Platforms as the Next Step | NOIR summary matrix for query and analysis choices. | `ch04-014.png` |
-| Figure 4.44 | SQL and Platforms as the Next Step | Access, SQLite, and PostgreSQL shown along a spectrum of database environments. | `ch04-dbms-compare.png` |
-| Figure 4.45 | Summary | Databases, tables, SQL, and platforms brought together in one closing recap image. | `ch04-summary.png` |
-| Figure 4.46 | Summary | Conceptual pathway from file system limitations to database tables, keys, constraints, and SQL. | `ch04-learning-map.png` |
-| Figure 4.47 | Summary | In-class review on data types, structure, and concept translation. | `ch04-015.png` |
+| Figure      | Section                                      | Caption                                                                                                                                  | Source file                                      |
+| ----------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Figure 4.2  | Introduction                                 | Lecture slide introducing how technology structures business processes and information flows.                                            | `ch04-001.png`                                   |
+| Figure 4.3  | Introduction                                 | Lecture slide reviewing qualitative, quantitative, categorical, and numerical data.                                                      | `ch04-004.png`                                   |
+| Figure 4.4  | Introduction                                 | Knowledge check connecting Chapter 3 data structures to Chapter 4 database concepts.                                                     | `ch04-003.png`                                   |
+| Figure 4.5  | Introduction                                 | Learning path from data structures and file limits to SQL queries.                                                                       | `ch04-002.png`                                   |
+| Figure 4.6  | Introduction                                 | Raw records become useful when a database organizes them for queries, reports, and decisions.                                            | `ch04-database-intro.png`                        |
+| Figure 4.7  | Introduction                                 | Roadmap tracking the transition from Chapter 3's data fundamentals to Chapter 4's database structures and Chapter 5's queries.           | `ch04-40b-chapter-roadmapcreate-a-textboo.png`   |
+| Figure 4.8  | Introduction                                 | Concept map illustrating how day-to-day user interactions link to underlying database structures.                                        | `ch04-chapter-4-concept-mapcreate-a-cl.png`      |
+| Figure 4.9  | Why Databases Matter                         | One shared database supports multiple users, outputs, and decisions across the organization.                                             | `ch04-41a-one-shared-database-multiple-outp.png` |
+| Figure 4.10 | Why Databases Matter                         | Hub-and-spoke view of a centralized database driving business operations across different organizational roles.                          | `ch04-datbase-in-center.png`                     |
+| Figure 4.11 | Why Databases Matter                         | One transaction coordinating inventory, sales, and loyalty updates.                                                                      | `ch04-datamanagement-lifecyclecreate.png`        |
+| Figure 4.12 | What a Database and DBMS Are                 | Users, applications, the DBMS, and the database shown as a layered system.                                                               | `ch04-43b-database-system-layerscreate-a.png`    |
+| Figure 4.13 | What a Database and DBMS Are                 | A quiz score moving from form entry to DBMS validation and storage.                                                                      | `ch04-grading-database-preview.png`              |
+| Figure 4.14 | What a Database and DBMS Are                 | Logical tables and fields separated from physical storage and indexes.                                                                   | `ch04-logical-vs-physical-views-of-data.png`     |
+| Figure 4.15 | Why Spreadsheets and File Systems Break Down | High-level contrast between flexible spreadsheet sheets and structured database tables.                                                  | `ch04-spreadsheet-vs-database-strengths.png`     |
+| Figure 4.16 | From Spreadsheets to File Silos              | Common structural failures in multi-theme spreadsheet files compared to relational structures.                                           | `ch04-spreadsheet-vs-database-detailed.png`      |
+| Figure 4.17 | From Spreadsheets to File Silos              | Inconsistencies and redundancies when customer records are scattered across billing, sales, and support files.                           | `ch04-database-vs-filesystem.png`                |
+| Figure 4.18 | Anomalies in Flat Tables                     | Insertion, update, and deletion anomalies in a single flat table.                                                                        | `ch04-one-big-table-vs-related-tablesc.png`      |
+| Figure 4.19 | Anomalies in Flat Tables                     | File silos compared with the centralized database approach.                                                                              | `ch04-file-vs-db.png`                            |
+| Figure 4.20 | The Database Approach                        | How moving customer and order subjects to independent tables eliminates redundancy.                                                      | `ch04-users-to-tables.png`                       |
+| Figure 4.21 | The Database Approach                        | Flow diagram demonstrating data integration through metadata, keys, constraints, and shared queries.                                     | `ch04-data-flow.png`                             |
+| Figure 4.22 | The Database Approach                        | The data hierarchy, showing how bits build fields, fields build records, and records build tables in a database.                         | `ch04-data-hierarchy.png`                        |
+| Figure 4.23 | Rows, Columns, and Table Rules               | Structure of a relational table, highlighting columns (attributes), rows (records), and cells.                                           | `ch04-anatomy-of-a-relational-tablecre.png`      |
+| Figure 4.24 | Rows, Columns, and Table Rules               | Disciplined single-theme table compared with a mixed table.                                                                              | `ch04-normalization.png`                         |
+| Figure 4.25 | Primary and Foreign Keys                     | Nominal values are labels with no ranking, such as major or ID.                                                                          | `ch04-010.png`                                   |
+| Figure 4.26 | Primary and Foreign Keys                     | How primary and foreign keys connect STUDENT and STUDENT_GRADE tables.                                                                   | `ch04-sql-relationships.png`                     |
+| Figure 4.27 | Primary and Foreign Keys                     | Terminology map for candidate, primary, composite, natural, and surrogate keys.                                                          | `ch04-keys.png`                                  |
+| Figure 4.28 | Primary and Foreign Keys                     | Ordinal values are ranked labels, such as class standing or course level.                                                                | `ch04-011.png`                                   |
+| Figure 4.29 | Constraints That Protect Data                | Constraint rules (NOT NULL, UNIQUE, CHECK, FOREIGN KEY) serving as structural filters for database input.                                | `ch04-constraint-enforcementcreate-a-s.png`      |
+| Figure 4.30 | Constraints That Protect Data                | Data quality dimensions protected by database constraints.                                                                               | `ch04-data-quality-dimensions.png`               |
+| Figure 4.31 | Constraints That Protect Data                | A relational table shown with labeled columns, sample rows, and a clearly marked primary key.                                            | `ch04-database-schema.png`                       |
+| Figure 4.32 | SQL and Platforms as the Next Step           | SQL translating a user's question into table, field, and condition logic.                                                                | `ch04-sqlquestions.png`                          |
+| Figure 4.33 | SQL and Platforms as the Next Step           | Architectural spectrum contrasting lightweight, local file-based systems (Access, SQLite) with multi-user server databases (PostgreSQL). | `ch04-local-vs-server.png`                       |
+| Figure 4.34 | SQL and Platforms as the Next Step           | Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports.                                        | `ch04-ms-access-objects.png`                     |
+| Figure 4.35 | SQL and Platforms as the Next Step           | Data types and measurement scales mapped to analytical use.                                                                              | `ch04-data-types-analytical-uses.png`            |
+| Figure 4.36 | SQL and Platforms as the Next Step           | Transition from qualitative properties to measurable numbers.                                                                            | `ch04-005.png`                                   |
+| Figure 4.37 | SQL and Platforms as the Next Step           | Qualitative attributes compared with quantitative measurements.                                                                          | `ch04-006.png`                                   |
+| Figure 4.38 | SQL and Platforms as the Next Step           | Qualities and numeric scale values as different forms of measurement.                                                                    | `ch04-007.png`                                   |
+| Figure 4.39 | SQL and Platforms as the Next Step           | Categorical classes compared with numerical scale values.                                                                                | `ch04-008.png`                                   |
+| Figure 4.40 | SQL and Platforms as the Next Step           | Categorical values can use numbers without becoming measurements.                                                                        | `ch04-009.png`                                   |
+| Figure 4.41 | SQL and Platforms as the Next Step           | Interval data has equal differences but no absolute zero.                                                                                | `ch04-012.png`                                   |
+| Figure 4.42 | SQL and Platforms as the Next Step           | Ratio data has equal intervals and a true zero point.                                                                                    | `ch04-013.png`                                   |
+| Figure 4.43 | SQL and Platforms as the Next Step           | NOIR summary matrix for query and analysis choices.                                                                                      | `ch04-014.png`                                   |
+| Figure 4.44 | SQL and Platforms as the Next Step           | Access, SQLite, and PostgreSQL shown along a spectrum of database environments.                                                          | `ch04-dbms-compare.png`                          |
+| Figure 4.45 | Summary                                      | Databases, tables, SQL, and platforms brought together in one closing recap image.                                                       | `ch04-summary.png`                               |
+| Figure 4.46 | Summary                                      | Conceptual pathway from file system limitations to database tables, keys, constraints, and SQL.                                          | `ch04-learning-map.png`                          |
+| Figure 4.47 | Summary                                      | In-class review on data types, structure, and concept translation.                                                                       | `ch04-015.png`                                   |

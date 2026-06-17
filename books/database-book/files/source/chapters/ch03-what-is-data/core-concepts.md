@@ -12,6 +12,18 @@ In Chapter 2, you learned why information systems matter to organizational perfo
 
 This chapter sits at the start of the book's move from data to tables. Here you will learn how to classify data, how to represent it in structured systems, and why metadata, quality, governance, lifecycle thinking, and ethics matter. In Chapter 4, you will use that foundation to understand why databases are needed and how a DBMS brings more discipline than a spreadsheet alone.
 
+## Chapter Roadmap
+
+| Section                                                                                               | Main Question                                                            | Why It Matters                                                                                                                                          |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Why Data Fundamentals Drive Business Performance](#why-data-fundamentals-drive-business-performance) | Why do data fundamentals matter to business outcomes?                    | Weak fundamentals show up downstream — wrong metrics, inconsistent reports. Strong fundamentals make analytics efficient and decisions reliable.        |
+| [Data, Meaning, and Context](#data-meaning-and-context)                                               | What makes data meaningful?                                              | A value like `92` is useless without knowing what, who, when. The data hierarchy shows how meaning accumulates through organized structure.             |
+| [Classifying Data](#classifying-data)                                                                 | What kinds of data exist, and why does classification matter?            | Knowing whether a field is qualitative/quantitative, categorical/numerical, or nominal/ordinal/interval/ratio determines what analysis is valid.        |
+| [Representing Data in Structured Systems](#representing-data-in-structured-systems)                   | How should data be stored for consistent use?                            | Representation affects validation, accuracy, and analytics — a date stored as text breaks time-series; an ID stored as number breaks averaging.         |
+| [From Spreadsheets to Databases](#from-spreadsheets-to-databases)                                     | When do spreadsheets break down?                                         | Formalizes the redundancy and modification anomalies students have experienced firsthand, and shows how the database approach solves them.              |
+| [Managing Data as an Organizational Asset](#managing-data-as-an-organizational-asset)                 | How do organizations keep data trustworthy over time?                    | Governance, metadata, lifecycle thinking, and ethical considerations become more critical at scale — quality is the condition, governance maintains it. |
+| [Big Data and the Digital Age](#big-data-and-the-digital-age)                                         | How do big data and modern tools change what organizations need to know? | Scale (volume, velocity, variety) makes fundamentals more critical, not less — AI and streaming magnify the importance of clean, governed data.         |
+
 [Video intro: Chapter 3, Understanding Data Fundamentals](https://youtu.be/dDJM0lB2654)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dDJM0lB2654?si=NixMRKBJHqILc0kI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -34,6 +46,18 @@ After completing this chapter, you will be able to:
 
 ![Learning objectives overview](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-learning-objectives)
 *Figure 3.2. Learning objectives visual: what you will be able to do after this chapter.*
+
+## Chapter Roadmap
+
+| Section                                                                                               | Main Question                                                            | Why It Matters                                                                                                                                          |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Why Data Fundamentals Drive Business Performance](#why-data-fundamentals-drive-business-performance) | Why do data fundamentals matter to business outcomes?                    | Weak fundamentals show up downstream — wrong metrics, inconsistent reports. Strong fundamentals make analytics efficient and decisions reliable.        |
+| [Data, Meaning, and Context](#data-meaning-and-context)                                               | What makes data meaningful?                                              | A value like `92` is useless without knowing what, who, when. The data hierarchy shows how meaning accumulates through organized structure.             |
+| [Classifying Data](#classifying-data)                                                                 | What kinds of data exist, and why does classification matter?            | Knowing whether a field is qualitative/quantitative, categorical/numerical, or nominal/ordinal/interval/ratio determines what analysis is valid.        |
+| [Representing Data in Structured Systems](#representing-data-in-structured-systems)                   | How should data be stored for consistent use?                            | Representation affects validation, accuracy, and analytics — a date stored as text breaks time-series; an ID stored as number breaks averaging.         |
+| [From Spreadsheets to Databases](#from-spreadsheets-to-databases)                                     | When do spreadsheets break down?                                         | Formalizes the redundancy and modification anomalies students have experienced firsthand, and shows how the database approach solves them.              |
+| [Managing Data as an Organizational Asset](#managing-data-as-an-organizational-asset)                 | How do organizations keep data trustworthy over time?                    | Governance, metadata, lifecycle thinking, and ethical considerations become more critical at scale — quality is the condition, governance maintains it. |
+| [Big Data and the Digital Age](#big-data-and-the-digital-age)                                         | How do big data and modern tools change what organizations need to know? | Scale (volume, velocity, variety) makes fundamentals more critical, not less — AI and streaming magnify the importance of clean, governed data.         |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -154,12 +178,12 @@ Another useful distinction is categorical versus numerical data. Categorical dat
 
 The four measurement levels give a more precise way to classify data. They help determine what operations make analytical sense.
 
-| Level        | Order? | Equal Intervals? | True Zero? | Valid Operations                    | Business Example                                  |
-| ------------ | ------ | ---------------- | ---------- | ----------------------------------- | ------------------------------------------------- |
-| **Nominal**  | No     | No               | No         | Count, mode, frequency              | Deliverable type, region, payment method          |
-| **Ordinal**  | Yes    | No               | No         | Rank, median, ordered comparison    | Customer satisfaction rating (1–5), letter grade  |
-| **Interval** | Yes    | Yes              | No         | Add, subtract, mean                 | Temperature, calendar year                        |
-| **Ratio**    | Yes    | Yes              | Yes        | All arithmetic, ratios, percentages | Revenue, units sold, hours worked                 |
+| Level        | Order? | Equal Intervals? | True Zero? | Valid Operations                    | Business Example                                 |
+| ------------ | ------ | ---------------- | ---------- | ----------------------------------- | ------------------------------------------------ |
+| **Nominal**  | No     | No               | No         | Count, mode, frequency              | Deliverable type, region, payment method         |
+| **Ordinal**  | Yes    | No               | No         | Rank, median, ordered comparison    | Customer satisfaction rating (1–5), letter grade |
+| **Interval** | Yes    | Yes              | No         | Add, subtract, mean                 | Temperature, calendar year                       |
+| **Ratio**    | Yes    | Yes              | Yes        | All arithmetic, ratios, percentages | Revenue, units sold, hours worked                |
 
 Each level supports a different kind of business analysis. Nominal fields support segmentation: how many orders came from each region? Ordinal fields support comparison: which course has the most "Strongly Agree" ratings? Interval fields support change-over-time analysis: how did average temperature shift across quarters? Ratio fields support the full range of arithmetic: what share of total revenue came from one product line, and how did it grow year over year?
 
@@ -184,14 +208,14 @@ Every stored value has a type, whether the system enforces it strictly or not. D
 
 Different systems use different names for familiar type families, but the core concepts are consistent. The choice of data type affects storage, accuracy, and performance.
 
-| Category       | MS Access             | SQLite        | PostgreSQL              | Typical Use                 |
-| -------------- | --------------------- | ------------- | ----------------------- | --------------------------- |
-| **Text**       | Short Text, Long Text | TEXT          | VARCHAR, TEXT           | Codes, names, labels, notes |
-| **Integer**    | Number (Long Integer) | INTEGER       | INTEGER, BIGINT         | Counts, identifiers, keys   |
-| **Decimal**    | Number (Double), Currency | REAL, NUMERIC | NUMERIC, DECIMAL, FLOAT | Prices, measurements, rates |
-| **Date/Time**  | Date/Time             | TEXT, REAL, INTEGER | DATE, TIMESTAMP, TIME   | Due dates, submission times |
-| **Boolean**    | Yes/No                | INTEGER (0/1) | BOOLEAN                 | Status flags (e.g., Active) |
-| **Binary**     | OLE Object, Attachment | BLOB          | BYTEA                   | Images, documents, files    |
+| Category      | MS Access                 | SQLite              | PostgreSQL              | Typical Use                 |
+| ------------- | ------------------------- | ------------------- | ----------------------- | --------------------------- |
+| **Text**      | Short Text, Long Text     | TEXT                | VARCHAR, TEXT           | Codes, names, labels, notes |
+| **Integer**   | Number (Long Integer)     | INTEGER             | INTEGER, BIGINT         | Counts, identifiers, keys   |
+| **Decimal**   | Number (Double), Currency | REAL, NUMERIC       | NUMERIC, DECIMAL, FLOAT | Prices, measurements, rates |
+| **Date/Time** | Date/Time                 | TEXT, REAL, INTEGER | DATE, TIMESTAMP, TIME   | Due dates, submission times |
+| **Boolean**   | Yes/No                    | INTEGER (0/1)       | BOOLEAN                 | Status flags (e.g., Active) |
+| **Binary**    | OLE Object, Attachment    | BLOB                | BYTEA                   | Images, documents, files    |
 
 ![Dashboard tiles resting on typed underlying data fields](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-dashboard-representation)
 *Figure 3.14. Dashboards depend on the underlying representation of values such as numbers, dates, and labels.*
@@ -259,14 +283,14 @@ We will treat this as a conceptual preview only; the hands-on work of designing 
 
 Good tables follow simple rules even before students learn the full relational model. The checklist below summarizes the habits that separate a usable table from a fragile one.
 
-| Rule                          | What it means                                         | What goes wrong without it                              |
-| ----------------------------- | ----------------------------------------------------- | ------------------------------------------------------- |
-| **One row, one record**       | Each row describes one instance of the same thing.   | Mixed rows make filtering and counting unreliable.      |
-| **One column, one attribute** | Each column stores one clearly defined attribute.    | Combined columns (e.g., "Name and ID") block sorting.   |
-| **Consistent representation** | Values in a column share the same format and units.  | `Quiz`, `quiz`, and `QUIZ` count as three categories.   |
-| **Atomic values**             | Each cell holds one indivisible value.               | Multi-value cells break joins, filters, and totals.     |
-| **Separated themes**          | Different subjects (students, grades) live apart.   | Updates must be repeated in many places.                |
-| **Stable identifiers**        | Each row has a reliable key, not just a position.    | Sorting or inserting rows changes what a row "means."   |
+| Rule                          | What it means                                       | What goes wrong without it                            |
+| ----------------------------- | --------------------------------------------------- | ----------------------------------------------------- |
+| **One row, one record**       | Each row describes one instance of the same thing.  | Mixed rows make filtering and counting unreliable.    |
+| **One column, one attribute** | Each column stores one clearly defined attribute.   | Combined columns (e.g., "Name and ID") block sorting. |
+| **Consistent representation** | Values in a column share the same format and units. | `Quiz`, `quiz`, and `QUIZ` count as three categories. |
+| **Atomic values**             | Each cell holds one indivisible value.              | Multi-value cells break joins, filters, and totals.   |
+| **Separated themes**          | Different subjects (students, grades) live apart.   | Updates must be repeated in many places.              |
+| **Stable identifiers**        | Each row has a reliable key, not just a position.   | Sorting or inserting rows changes what a row "means." |
 
 We will formalize this move in Chapter 4 when databases, tables, and DBMS features become the main topic, and deepen it again in Chapters 6 and 7 when keys, relationships, and normalization are introduced directly.
 
@@ -332,15 +356,15 @@ Data should also be managed across a lifecycle. It is collected, stored, cleaned
 
 The table below summarizes how value and risk shift across the lifecycle. Managers do not need to memorize every stage, but they should recognize that each stage has its own typical risks and its own owner.
 
-| Stage                     | Main activity                         | Typical risk if ignored                         |
-| ------------------------- | ------------------------------------- | ----------------------------------------------- |
-| **Collection**            | Gather from trusted sources           | Capturing the wrong field or unclear definition |
-| **Storage**               | Store securely with controlled access | Unauthorized access or unclear ownership        |
-| **Cleaning**              | Fix errors, remove duplicates         | Bad data flows into every later report          |
-| **Integration**           | Combine data across systems           | Mismatched definitions produce false totals     |
-| **Use**                   | Analyze, report, and decide           | Decisions made on stale or wrong numbers        |
-| **Retention & Archiving** | Keep only as long as needed           | Old data inflates cost and legal exposure       |
-| **Anonymization & Deletion** | Remove identifiers, then delete   | Privacy harm from data kept past its purpose    |
+| Stage                        | Main activity                         | Typical risk if ignored                         |
+| ---------------------------- | ------------------------------------- | ----------------------------------------------- |
+| **Collection**               | Gather from trusted sources           | Capturing the wrong field or unclear definition |
+| **Storage**                  | Store securely with controlled access | Unauthorized access or unclear ownership        |
+| **Cleaning**                 | Fix errors, remove duplicates         | Bad data flows into every later report          |
+| **Integration**              | Combine data across systems           | Mismatched definitions produce false totals     |
+| **Use**                      | Analyze, report, and decide           | Decisions made on stale or wrong numbers        |
+| **Retention & Archiving**    | Keep only as long as needed           | Old data inflates cost and legal exposure       |
+| **Anonymization & Deletion** | Remove identifiers, then delete       | Privacy harm from data kept past its purpose    |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>

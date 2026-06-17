@@ -1,8 +1,9 @@
-import type { ReactNode } from 'react';
-import type { ReaderScope, DemoUser, BookChapter, BookLab } from '../types';
-import Sidebar from './Sidebar';
-import MobileNav from './MobileNav';
-import { Home, Menu, X, User, LogOut } from 'lucide-react';
+import type { ReactNode } from "react";
+import type { ReaderScope, DemoUser, BookChapter, BookLab } from "../types";
+import Sidebar from "./Sidebar";
+import MobileNav from "./MobileNav";
+import { FeedbackLink } from "./FeedbackLink";
+import { Home, Menu, X, User, LogOut } from "lucide-react";
 
 interface LayoutProps {
   scope: ReaderScope;
@@ -16,7 +17,7 @@ interface LayoutProps {
   activeSectionId: string;
   activePageId: string;
   onSelectSection: (sectionId: string) => void;
-  onSelectPage: (page: import('../types').BookPage) => void;
+  onSelectPage: (page: import("../types").BookPage) => void;
   labs: BookLab[];
   activeLabId: string;
   onSelectLab: (lab: BookLab) => void;
@@ -27,10 +28,10 @@ interface LayoutProps {
 }
 
 const SCOPE_LABELS: Record<ReaderScope, string> = {
-  welcome: 'Home',
-  book: 'Reader',
-  labs: 'Labs',
-  login: 'Sign in',
+  welcome: "Home",
+  book: "Reader",
+  labs: "Labs",
+  login: "Sign in",
 };
 
 export default function Layout({
@@ -57,7 +58,9 @@ export default function Layout({
   return (
     <div className="app-shell">
       {/* Skip link — first focusable element for keyboard users */}
-      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
 
       {/* Header */}
       <header className="site-header">
@@ -65,15 +68,22 @@ export default function Layout({
           <button
             className="hamburger"
             onClick={onToggleSidebar}
-            aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
+            aria-label={sidebarOpen ? "Close menu" : "Open menu"}
           >
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
           <div className="header-brand">
-            <button className="home-btn" onClick={() => onNavigateScope('welcome')} title="Home">
+            <button
+              className="home-btn"
+              onClick={() => onNavigateScope("welcome")}
+              title="Home"
+            >
               <Home size={18} />
             </button>
-            <span className="brand-publisher">DIMA Publishing</span>
+            <span className="brand-publisher">
+              Using <span className="brand-highlight">Data</span> to Drive{" "}
+              <span className="brand-highlight">Performance</span>
+            </span>
             <span className="brand-scope">{SCOPE_LABELS[scope]}</span>
           </div>
           <div className="header-right">
@@ -81,12 +91,19 @@ export default function Layout({
               <div className="user-chip">
                 <User size={14} className="user-avatar" />
                 <span className="user-name">{demoUser.netId}</span>
-                <button className="sign-out-btn" onClick={onSignOut} title="Sign out">
+                <button
+                  className="sign-out-btn"
+                  onClick={onSignOut}
+                  title="Sign out"
+                >
                   <LogOut size={14} />
                 </button>
               </div>
             ) : (
-              <button className="header-login-btn" onClick={() => onNavigateScope('login')}>
+              <button
+                className="header-login-btn"
+                onClick={() => onNavigateScope("login")}
+              >
                 Sign in
               </button>
             )}
@@ -95,9 +112,12 @@ export default function Layout({
       </header>
 
       {/* Progress bar */}
-      {scope === 'book' && (
+      {scope === "book" && (
         <div className="progress-bar-container">
-          <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
+          <div
+            className="progress-bar-fill"
+            style={{ width: `${progress}%` }}
+          />
         </div>
       )}
 
@@ -121,10 +141,7 @@ export default function Layout({
         </aside>
 
         {/* Mobile nav */}
-        <MobileNav
-          open={sidebarOpen}
-          onClose={() => onToggleSidebar()}
-        >
+        <MobileNav open={sidebarOpen} onClose={() => onToggleSidebar()}>
           <Sidebar
             scope={scope}
             onNavigateScope={onNavigateScope}
@@ -147,14 +164,41 @@ export default function Layout({
         </main>
       </div>
 
-      {/* Prototype notice — dismissible */}
-      {!noticeDismissed && scope !== 'welcome' && scope !== 'login' && (
+      {/* Footer */}
+      <footer className="site-footer">
+        <div className="footer-brand">
+          <img
+            className="footer-logo"
+            src="/dima-publishing-logo.png"
+            alt="DIMA Publishing"
+            width={176}
+            height={97}
+          />
+          <span className="footer-copyright">
+            &copy; {new Date().getFullYear()} DIMA Publishing. All rights
+            reserved.
+          </span>
+        </div>
+        <span className="footer-updated">Last updated June 17, 2026</span>
+      </footer>
+
+      {/* Preview notice — dismissible */}
+      {!noticeDismissed && scope !== "welcome" && scope !== "login" && (
         <div className="prototype-notice is-visible">
-          <span>Frontend prototype only &mdash; no real auth, payments, or production infrastructure.</span>
-          <button className="notice-dismiss" onClick={onDismissNotice} aria-label="Dismiss notice">
+          <span>Course preview &mdash; not for classroom use.</span>
+          <button
+            className="notice-dismiss"
+            onClick={onDismissNotice}
+            aria-label="Dismiss notice"
+          >
             <X size={14} />
           </button>
         </div>
+      )}
+
+      {/* Feedback — floating report button */}
+      {scope !== "welcome" && scope !== "login" && (
+        <FeedbackLink />
       )}
     </div>
   );

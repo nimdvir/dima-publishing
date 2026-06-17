@@ -1,21 +1,50 @@
-<!-- Sources: BITM330-Book-draft/chapter-drafts/ch13-advanced-database-techniques/main/ch13-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
+<!-- Let's Build revision: restructured to task pattern with descriptive H3 names, added canonical icon and intro, added Peek Ahead. Content preserved from ch13-lets-build-2026-05-19.md. -->
+---
+title: "Chapter 13: Let's Build — Hardening the Grading Database"
+chapter: 13
+section: "Let's Build"
+description: "Students apply indexes, transactions, constraints, triggers, audit trails, and analytical views to harden the Grading Database for performance, integrity, auditability, and reliability."
+keywords:
+  - Let's Build
+  - indexes
+  - transactions
+  - constraints
+  - triggers
+  - audit trail
+  - database hardening
+  - Grading Database
+  - SQL
+  - SQLite
+  - PostgreSQL
+  - Microsoft Access
+date: 2026-06-16
+author: "Nimrod Dvir, PhD"
+---
 
-# Let's Build: Hardening the Grading Database
+## Let's Build
 
-![Let's Build](<../../../../.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif>)
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
+</p>
 
-## Overview
+<p align="center">
 
-In this chapter, you strengthen the Grading Database so it behaves more like a professional system. The goal is not to use every advanced feature just because it exists. The goal is to identify real risks and apply targeted controls that improve performance, data quality, auditability, and reliability.
+In this chapter, you strengthen the Grading Database so it behaves more like a professional system. The goal is not to use every advanced feature just because it exists. The goal is to identify real risks and apply targeted controls that improve performance, data quality, auditability, and reliability. By the end, your database will be faster, safer, and more trustworthy — ready for the reporting tools in Chapter 14.
 
-## What You Will Need
+This Let's Build is hands-on. You will write SQL, create database objects, and explain your design choices. The companion lab — **Lab 13 — Hardening PetVax for Production** — transfers these same techniques to the PetVax veterinary clinic project.
+
+### Before You Begin
+
+You will need:
 
 - Your current Grading Database
-- A SQL environment that supports indexes and transactions
-- SQLite or PostgreSQL if you want to implement triggers directly in SQL
+- A SQL environment that supports indexes and transactions (SQLite or PostgreSQL recommended for full trigger support)
+- Microsoft Access if you want to implement macros and data macros
 - A short write-up explaining your design choices
 
-## Part A: Identify the Risks First
+If your platform does not support a particular technique — for example, triggers in Access — describe the closest practical alternative and explain the trade-off.
+
+### Identify Critical Risks
 
 Before writing code, decide what problem each advanced technique is solving.
 
@@ -27,9 +56,9 @@ Before writing code, decide what problem each advanced technique is solving.
 | Partial updates | A grade changes but the audit entry is missing | Transaction |
 | Hidden changes | Someone edits grades without a record | Trigger and audit table |
 
-Write one sentence for each risk explaining whether it is currently present in your database.
+**Write one sentence for each risk explaining whether it is currently present in your database.** This risk assessment is the most important step — hardening without first identifying what needs protection often wastes effort.
 
-## Part B: Add Performance Indexes
+### Add Performance Indexes
 
 Create indexes on the fields you filter or join most often.
 
@@ -44,11 +73,18 @@ CREATE INDEX idx_attendance_student
 ON ATTENDANCE(StudentID);
 ```
 
-Then explain why those indexes make sense for the grading workflow.
+**Explain why those indexes make sense for the grading workflow.** Which queries become faster? Which reports or screens benefit most?
 
-If your platform supports plan inspection, test one query before and after indexing.
+If your platform supports plan inspection, test one query before and after indexing. For example, in SQLite:
 
-## Part C: Add Data Quality Controls
+```sql
+EXPLAIN QUERY PLAN
+SELECT * FROM STUDENT_GRADE WHERE StudentID = 101;
+```
+
+**Describe what changed in the query plan.** A full table scan before indexing should become an index lookup after.
+
+### Add Data Quality Controls
 
 Use constraints to stop bad data at the point of entry.
 
@@ -70,9 +106,9 @@ ADD CONSTRAINT uq_student_deliverable
 UNIQUE (StudentID, DeliverableID);
 ```
 
-If you are working in Access or another platform with syntax limits, explain how you enforced the same rule through indexed fields, validation rules, or table design.
+**If you are working in Access or another platform with syntax limits, explain how you enforced the same rule** — through indexed fields, validation rules, or table design properties. The principle matters more than the exact syntax.
 
-## Part D: Create an Audit Trail
+### Create an Audit Trail
 
 Create a table that records grade changes.
 
@@ -100,11 +136,13 @@ BEGIN
 END;
 ```
 
-If your platform does not support triggers in the same way, describe the closest practical alternative.
+**If your platform does not support triggers in the same way, describe the closest practical alternative.** In Access, data macros can produce similar behavior. In application-only environments, document where the audit logic would need to live.
 
-## Part E: Use a Transaction for a Grade Correction
+**Test your trigger.** Update a grade, then check whether a row appeared in `GRADE_AUDIT`. If nothing appears, check that your trigger condition is correct.
 
-Protect a multi-step correction with transaction control.
+### Protect Grade Corrections with Transactions
+
+Wrap a multi-step correction in transaction control.
 
 ```sql
 BEGIN;
@@ -127,9 +165,9 @@ If the result is wrong, use:
 ROLLBACK;
 ```
 
-Explain why a transaction is safer than running the steps one at a time without protection.
+**Explain why a transaction is safer than running the steps one at a time without protection.** What would happen if the first `UPDATE` succeeded but the second failed? Why does that matter for a grading system?
 
-## Part F: Build One Advanced Analytical Object
+### Build One Analytical Object
 
 Create one reusable object that supports monitoring or reporting.
 
@@ -157,9 +195,30 @@ JOIN DELIVERABLE AS d
     ON sg.DeliverableID = d.DeliverableID;
 ```
 
-If your platform does not support window functions, build a simpler summary object and explain the tradeoff.
+If your platform does not support window functions, build a simpler summary object — such as a view that calculates each student's average score — and explain the trade-off.
 
-## Deliverable
+**Query your view.** Does it return the data you expect? Are the running averages increasing sensibly as more deliverables are added?
+
+### Check Your Work
+
+Before submitting, verify each control:
+
+- [ ] Indexes exist on `StudentID`, `DeliverableID`, and `DueDate`.
+- [ ] A `CHECK` constraint prevents scores outside 0–100.
+- [ ] A `UNIQUE` constraint prevents duplicate grade records.
+- [ ] A `GRADE_AUDIT` table exists and is populated by a trigger or equivalent.
+- [ ] A transaction-protected grade correction runs without errors.
+- [ ] At least one analytical view or query returns usable monitoring data.
+
+### Common Mistakes
+
+- **Indexing too many columns.** Indexes speed up reads but slow down writes. Start with join columns and common filter columns.
+- **Forgetting `WHERE` in trigger conditions.** An `AFTER UPDATE` trigger without `WHEN OLD.Score <> NEW.Score` writes an audit row on every update, even if nothing changed.
+- **Skipping `ROLLBACK` testing.** Test what happens when a transaction fails. The database should return to its prior valid state.
+- **Using triggers for simple rules.** A `CHECK` constraint is clearer, faster, and easier to debug than a trigger for simple range validation.
+- **Mixing platform syntax without checking.** Constraints written for PostgreSQL may not run in SQLite or Access without adjustment. Always test on your actual platform.
+
+### Submit or Save
 
 Submit the following:
 
@@ -167,12 +226,10 @@ Submit the following:
 - one brief note explaining each design choice
 - evidence that the audit or monitoring object works
 
-## Reflection Questions
+### What This Shows
 
-- Which advanced technique gave the biggest reliability improvement?
-- Which technique would be hardest to maintain over time?
-- How do these controls support trust in the database's outputs?
+By the end of this exercise, your Grading Database has been strengthened in at least five ways: faster queries (indexes), safer updates (transactions), better data quality (constraints), automatic auditability (triggers), and reusable analytics (views). These are the same categories of hardening that real production databases use — not because someone decided to "add features," but because each control protects against a specific, predictable risk.
 
-## Connection Forward
+### Peek Ahead — Chapter 14
 
-Chapter 14 uses a more polished reporting tool, but that tool is only useful if the database underneath it is reliable.
+Chapter 14 connects your now-hardened Grading Database to Microsoft Power BI. The dashboards you build there will be more trustworthy because the data underneath them is protected by the controls you added here. A dashboard is only as reliable as the database that feeds it.

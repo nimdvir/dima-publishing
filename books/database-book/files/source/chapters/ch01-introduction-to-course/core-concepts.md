@@ -43,6 +43,22 @@ You will also put theory into practice. You will work with two main projects, th
   <p>Keep this sequence in mind as you read. Every chapter helps you move from raw data to better business decisions.</p>
 </div>
 
+## Chapter Roadmap
+
+| Section                                                                                      | Main Question                                                 | Why It Matters                                                                                                                                                                                        |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Core Concepts: The Data-to-Decisions Journey](#core-concepts-the-data-to-decisions-journey) | What is the book's central learning arc?                      | Establishes the unifying thread (Data → Tables → Relationships → Queries → Analytics → Decisions) that connects all later chapters into one system.                                                   |
+| [How the Book Is Organized](#how-the-book-is-organized)                                      | How are chapters grouped, and what does each part accomplish? | Shows the progression from foundations to databases to SQL to analytics to strategy. Early chapters build the foundation for later technical work.                                                    |
+| [Why the Book Is Sequenced This Way](#why-the-book-is-sequenced-this-way)                    | What is the reasoning behind the chapter order?               | The sequence follows how professionals think — from business value to decisions to measurement to systems to design to queries to strategy.                                                           |
+| [How Each Chapter Works](#how-each-chapter-works)                                            | What is the structure of a typical chapter?                   | Students know what to expect and can use the structure strategically — Introduction → Learning Objectives → Core Concepts → Let's Build → Key Terms → Review & Reflection → Reading Assessment → Lab. |
+| [Bloom's Taxonomy in Practice](#blooms-taxonomy-in-practice)                                 | How does the book support deeper learning?                    | Shows how the course moves from remembering to creating — not just memorization, but building real systems and making evidence-based decisions.                                                       |
+| [The Two Running Projects](#the-two-running-projects)                                        | What projects will you build throughout the course?           | Introduces the Grading Database (guided practice) and PetVax Veterinary Clinic (transfer practice) that appear in every chapter.                                                                      |
+| [The Tools You Will Use](#the-tools-you-will-use)                                            | What software and platforms will you learn?                   | SQLite, Microsoft Access, PostgreSQL, Supabase, and Power BI — each introduced where it fits the learning arc.                                                                                        |
+| [How to Read and Use This Book](#how-to-read-and-use-this-book)                              | How should you approach each chapter?                         | Practical strategies for reading, practicing, and using the companion materials effectively.                                                                                                          |
+| [How to Succeed in This Course](#how-to-succeed-in-this-course)                              | What habits lead to success in technical business learning?   | Concrete study strategies for a course that builds cumulatively — each chapter depends on the previous one.                                                                                           |
+| [The Digital Companion](#the-digital-companion)                                              | Where do you find the online resources?                       | Introduces the reader platform, labs, and companion materials that support the textbook.                                                                                                              |
+| [What Comes Next](#what-comes-next)                                                          | How does Chapter 1 prepare you for Chapter 2?                 | Bridges the orientation chapter to the first content chapter on information systems and business performance.                                                                                         |
+
 
 
 
@@ -63,6 +79,22 @@ You will also put theory into practice. You will work with two main projects, th
 - recognize how the book's chapter structure supports guided learning and independent application;
 - describe the habits that help students succeed in technical business learning; and
 - explain why this course takes a systems-thinking rather than a tool-first approach.
+
+## Chapter Roadmap
+
+| Section                                                                                      | Main Question                                                 | Why It Matters                                                                                                                                                                                        |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Core Concepts: The Data-to-Decisions Journey](#core-concepts-the-data-to-decisions-journey) | What is the book's central learning arc?                      | Establishes the unifying thread (Data → Tables → Relationships → Queries → Analytics → Decisions) that connects all later chapters into one system.                                                   |
+| [How the Book Is Organized](#how-the-book-is-organized)                                      | How are chapters grouped, and what does each part accomplish? | Shows the progression from foundations to databases to SQL to analytics to strategy. Early chapters build the foundation for later technical work.                                                    |
+| [Why the Book Is Sequenced This Way](#why-the-book-is-sequenced-this-way)                    | What is the reasoning behind the chapter order?               | The sequence follows how professionals think — from business value to decisions to measurement to systems to design to queries to strategy.                                                           |
+| [How Each Chapter Works](#how-each-chapter-works)                                            | What is the structure of a typical chapter?                   | Students know what to expect and can use the structure strategically — Introduction → Learning Objectives → Core Concepts → Let's Build → Key Terms → Review & Reflection → Reading Assessment → Lab. |
+| [Bloom's Taxonomy in Practice](#blooms-taxonomy-in-practice)                                 | How does the book support deeper learning?                    | Shows how the course moves from remembering to creating — not just memorization, but building real systems and making evidence-based decisions.                                                       |
+| [The Two Running Projects](#the-two-running-projects)                                        | What projects will you build throughout the course?           | Introduces the Grading Database (guided practice) and PetVax Veterinary Clinic (transfer practice) that appear in every chapter.                                                                      |
+| [The Tools You Will Use](#the-tools-you-will-use)                                            | What software and platforms will you learn?                   | SQLite, Microsoft Access, PostgreSQL, Supabase, and Power BI — each introduced where it fits the learning arc.                                                                                        |
+| [How to Read and Use This Book](#how-to-read-and-use-this-book)                              | How should you approach each chapter?                         | Practical strategies for reading, practicing, and using the companion materials effectively.                                                                                                          |
+| [How to Succeed in This Course](#how-to-succeed-in-this-course)                              | What habits lead to success in technical business learning?   | Concrete study strategies for a course that builds cumulatively — each chapter depends on the previous one.                                                                                           |
+| [The Digital Companion](#the-digital-companion)                                              | Where do you find the online resources?                       | Introduces the reader platform, labs, and companion materials that support the textbook.                                                                                                              |
+| [What Comes Next](#what-comes-next)                                                          | How does Chapter 1 prepare you for Chapter 2?                 | Bridges the orientation chapter to the first content chapter on information systems and business performance.                                                                                         |
 
 <div class="page-break"></div>
 
@@ -351,22 +383,22 @@ In other words, the book moves from **why systems matter** to **how systems are 
 
 The chapters are arranged to support that cognitive progression:
 
-| Chapters | Topic Focus | Cognitive Goal |
-|---|---|---|
-| **1–3** | Business foundations, information systems, and data fundamentals | Build conceptual understanding |
-| **4** | Databases and DBMS concepts | Understand structured data storage |
-| **5** | SQL basics | Develop procedural querying skills |
-| **6** | The relational model | Understand structural reasoning through keys and relationships |
-| **7** | Normalization | Learn design logic and data integrity principles |
-| **8** | Midterm review | Integrate and check first-half understanding |
-| **9** | Database design and ER modeling | Think like a system designer |
-| **10** | Advanced SQL for business analysis | Ask deeper analytical questions of designed databases |
-| **11** | Database administration | Understand operational reliability, security, and maintenance |
-| **12** | Business intelligence and analytics | Turn operational data into insight |
-| **13** | Advanced database techniques | Improve performance, flexibility, and technical robustness |
-| **14** | Power BI and business reporting | Communicate insight to decision-makers |
-| **15** | Business strategy and information systems | Connect systems to competitive advantage |
-| **16–17** | Final integration and conclusion | Synthesize the full data-to-decisions journey |
+| Chapters  | Topic Focus                                                      | Cognitive Goal                                                 |
+| --------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| **1–3**   | Business foundations, information systems, and data fundamentals | Build conceptual understanding                                 |
+| **4**     | Databases and DBMS concepts                                      | Understand structured data storage                             |
+| **5**     | SQL basics                                                       | Develop procedural querying skills                             |
+| **6**     | The relational model                                             | Understand structural reasoning through keys and relationships |
+| **7**     | Normalization                                                    | Learn design logic and data integrity principles               |
+| **8**     | Midterm review                                                   | Integrate and check first-half understanding                   |
+| **9**     | Database design and ER modeling                                  | Think like a system designer                                   |
+| **10**    | Advanced SQL for business analysis                               | Ask deeper analytical questions of designed databases          |
+| **11**    | Database administration                                          | Understand operational reliability, security, and maintenance  |
+| **12**    | Business intelligence and analytics                              | Turn operational data into insight                             |
+| **13**    | Advanced database techniques                                     | Improve performance, flexibility, and technical robustness     |
+| **14**    | Power BI and business reporting                                  | Communicate insight to decision-makers                         |
+| **15**    | Business strategy and information systems                        | Connect systems to competitive advantage                       |
+| **16–17** | Final integration and conclusion                                 | Synthesize the full data-to-decisions journey                  |
 
 The first half of the book builds the foundation. You begin with business performance, information systems, data fundamentals, databases, SQL basics, the relational model, and normalization. These chapters give you the vocabulary and structure needed to understand how reliable data systems work.
 
@@ -567,13 +599,13 @@ Together, the two projects move you from guided practice to transfer practice. T
 
 The table below previews where each project shows up across the book so you can see how the work compounds.
 
-| Chapter range | Grading Database (Let's Build) | PetVax (Lab)                                                       |
-| ------------- | ------------------------------ | ------------------------------------------------------------------ |
-| Ch 3–5        | Build first tables, run first SELECT queries | Inspect PetVax tables and write parallel queries     |
-| Ch 6–7        | Add relationships, normalize the schema      | Diagnose anomalies and redesign PetVax tables        |
-| Ch 9          | Advanced SQL for grade analytics             | Advanced SQL for appointment and revenue analytics   |
-| Ch 11–13      | Apply administration, views, and procedures  | Apply the same techniques to PetVax operations       |
-| Ch 14         | Build a Power BI dashboard on grading data   | Build a Power BI dashboard on PetVax performance     |
+| Chapter range | Grading Database (Let's Build)               | PetVax (Lab)                                       |
+| ------------- | -------------------------------------------- | -------------------------------------------------- |
+| Ch 3–5        | Build first tables, run first SELECT queries | Inspect PetVax tables and write parallel queries   |
+| Ch 6–7        | Add relationships, normalize the schema      | Diagnose anomalies and redesign PetVax tables      |
+| Ch 9          | Advanced SQL for grade analytics             | Advanced SQL for appointment and revenue analytics |
+| Ch 11–13      | Apply administration, views, and procedures  | Apply the same techniques to PetVax operations     |
+| Ch 14         | Build a Power BI dashboard on grading data   | Build a Power BI dashboard on PetVax performance   |
 
 Use this table as a quick reference whenever you wonder where the next stretch of practice is going.
 ---
@@ -592,20 +624,20 @@ Real data work rarely happens in one tool. Different tools support different par
 
 
 
-| Tool or Environment                           | Main Role in the Book                                                                                |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Microsoft Access**                          | Helps you see tables, relationships, forms, queries, and reports in a visual database environment.   |
-| **SQL**                                       | Provides the core language for asking precise questions of relational data.                          |
-| **SQLite**                                    | Offers a lightweight way to practice SQL and relational database logic.                              |
-| **Supabase / PostgreSQL**                     | Introduces a modern cloud database environment based on PostgreSQL.                                  |
+| Tool or Environment                           | Main Role in the Book                                                                                    |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Microsoft Access**                          | Helps you see tables, relationships, forms, queries, and reports in a visual database environment.       |
+| **SQL**                                       | Provides the core language for asking precise questions of relational data.                              |
+| **SQLite**                                    | Offers a lightweight way to practice SQL and relational database logic.                                  |
+| **Supabase / PostgreSQL**                     | Introduces a modern cloud database environment based on PostgreSQL.                                      |
 | **Google Sheets or spreadsheets**             | Shows how raw or messy data often begins before it is cleaned, structured, and moved into database form. |
-| **Google Forms**                              | Shows one practical way data can be collected before it enters a database workflow.                  |
-| **Google Colab**                              | Supports code-based analysis and reproducible examples when that format helps.                       |
-| **Lucidchart, Mermaid, or diagramming tools** | Support ERDs, data models, workflows, and other visual plans before a system is built.               |
-| **BigQuery**                                  | Provides light exposure to larger-scale analytical environments.                                     |
-| **Power BI**                                  | Turns cleaned and queried data into dashboards and reports for decision-makers.                      |
-| **GitHub and digital companion materials**    | Provide working files, examples, scripts, sample data, and supporting resources.                     |
-| **AI-supported workflows**                    | Can help explain, debug, revise, and reflect on technical work when used carefully and responsibly.  |
+| **Google Forms**                              | Shows one practical way data can be collected before it enters a database workflow.                      |
+| **Google Colab**                              | Supports code-based analysis and reproducible examples when that format helps.                           |
+| **Lucidchart, Mermaid, or diagramming tools** | Support ERDs, data models, workflows, and other visual plans before a system is built.                   |
+| **BigQuery**                                  | Provides light exposure to larger-scale analytical environments.                                         |
+| **Power BI**                                  | Turns cleaned and queried data into dashboards and reports for decision-makers.                          |
+| **GitHub and digital companion materials**    | Provide working files, examples, scripts, sample data, and supporting resources.                         |
+| **AI-supported workflows**                    | Can help explain, debug, revise, and reflect on technical work when used carefully and responsibly.      |
 
 The goal is not to memorize every button in every platform. The goal is to understand what each tool is good for and where it fits in a larger workflow.
 

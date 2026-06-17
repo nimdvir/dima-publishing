@@ -1,0 +1,174 @@
+"// Brightspace CSV Import — RAT 2 Top Questions (DeepSeek Curation)",,,,
+"// Source: Chapter 2 — Foundations of Information Systems (ch02-main-2026-06-16.md)",,,,
+"// Date: 2026-06-17",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Bloom distribution: 2 Understand, 4 Apply, 3 Analyze, 1 Evaluate",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+// MULTI-SELECT QUESTION 1,,,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT2-Q1,,,,,
+Title,"RAT 2 Q1: Five-Component Framework — POS System Failure",,,,,
+QuestionText,"A coffee shop owner installs new point-of-sale software but does not train staff, update inventory processes, or define data entry standards. Six months later, reports are inconsistent and staff do not trust the numbers. 
+
+Select ALL that apply.
+
+Short description: Tests your ability to diagnose an IS failure using the five-component framework and distinguish IT from IS.",,,,,
+Points,2,,,,,
+Difficulty,4,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Neglecting the people and processes components of the five-component framework",,"Correct — the five-component framework includes hardware, software, data, processes, and people. Installing software without training (people) and defined workflows (processes) means two components were neglected."
+Option,0,"The software is defective and must be replaced",,"Incorrect — the scenario does not describe a software defect; it describes missing organizational components around the software."
+Option,1,"Confusing IT (the software) with IS (the full system)",,"Correct — the owner treated buying software as building an information system, but IS requires all five components working together."
+Option,0,"A strategic alignment failure — the software does not fit the business",,"Incorrect — the scenario does not indicate the software is misaligned with business strategy; the issue is incomplete implementation."
+Option,1,"A failure of data quality because of inconsistent data entry",,"Correct — without defined data entry standards, inconsistent entries produce unreliable reports — a data quality problem."
+Hint,,,,"Think about which components of an information system extend beyond the software itself."
+Feedback,,,,"Installing software without processes, training, and data standards is confusing IT with IS. The five-component framework (hardware, software, data, processes, people) shows that missing people and processes causes system failure. Inconsistent entries are a data quality problem — all three are correct diagnoses of this scenario."
+,,,,
+// MULTI-SELECT QUESTION 2,,,,,,
+NewQuestion,MS,,,,,
+Title,"RAT 2 Q2: DIKW Hierarchy — Monthly Sales Report",,,,,
+QuestionText,"A regional manager receives a spreadsheet showing that ""Region A sold 1,247 units last month."" The manager needs to determine whether performance is improving or declining. 
+
+Select ALL that apply.
+
+Short description: Tests your ability to apply the DIKW hierarchy and recognize what transforms raw data into actionable information.",,,,,
+Points,2,,,,,
+Difficulty,4,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"The number 1,247 is data — it has no context, comparison, or interpretation by itself",,"Correct — data is raw facts without context. A single number with no comparison point is data, not information."
+Option,0,"The number 1,247 is already information because it describes a business result",,"Incorrect — the chapter defines information as data placed in context. A standalone number without comparison lacks context."
+Option,1,"Adding last month's figure of 1,103 units transforms data into information by providing context",,"Correct — placing data in relation to other data (comparison, trend) creates context, which transforms data into information in the DIKW hierarchy."
+Option,0,"The manager already has knowledge because they can read the spreadsheet",,"Incorrect — knowledge requires synthesis and pattern recognition across multiple information sources, not just reading one data point."
+Option,1,"Wisdom would require the manager to combine this information with strategic goals and market conditions to decide what action to take",,"Correct — wisdom is the highest DIKW level, involving judgment about what to do with information in light of broader goals."
+Hint,,,,"Trace the DIKW levels: where does a raw number sit? What transforms it upward?"
+Feedback,,,,"The DIKW hierarchy (Data → Information → Knowledge → Wisdom) is a core concept in Chapter 2. Raw numbers without context are data. Adding comparison (last month's figure) provides context, creating information. Knowledge requires synthesis across sources. Wisdom involves strategic judgment about what action to take."
+,,,,
+// MULTIPLE CHOICE QUESTION 3,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q3,,,,,
+Title,"RAT 2 Q3: R.E.A.D. Framework — Weekly Sales Spreadsheet",,,,,
+QuestionText,"An analyst opens a weekly sales spreadsheet that the team has used for months. Which action best demonstrates the ""Assess"" step of the R.E.A.D. framework described in Chapter 2?
+
+Short description: Tests your ability to identify which specific action maps to each step of the R.E.A.D. framework for data evaluation.",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,100,"Checking whether the ""Total Sales"" column formula is still correct and that no rows were accidentally deleted",,"Correct — Assess means evaluating data quality: checking accuracy, completeness, and consistency before using the data."
+Option,0,"Pulling the spreadsheet from the shared drive and opening it",,"Incorrect — this is more like the Recognize step: identifying what data is available and where it lives."
+Option,0,"Creating a pivot table to summarize sales by product category",,"Incorrect — this is closer to the Decide/Deploy step: using the data for analysis after it has been verified."
+Option,0,"Emailing the spreadsheet to the regional director with a summary paragraph",,"Incorrect — sharing results is a communication step, not an assessment of data quality."
+Hint,,,,"Which R.E.A.D. step is about verifying data quality before using it?"
+Feedback,,,,"Chapter 2 introduces the R.E.A.D. framework: Recognize what data is available, Evaluate/Assess its quality, Analyze it for patterns, and Decide or Deploy actions based on it. Checking formula accuracy and data completeness is the Assess step — verifying quality before analysis."
+,,,,
+// MULTIPLE CHOICE QUESTION 4,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q4,,,,,
+Title,"RAT 2 Q4: Input-Process-Output Model — University Application",,,,,
+QuestionText,"A university admissions office receives applications (input), reviews them against criteria (process), and sends acceptance letters (output). According to Chapter 2's IPO model, which of the following would be the most appropriate KPI for measuring the PROCESS component?
+
+Short description: Tests your ability to map KPIs to the correct stage of the Input-Process-Output model.",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Number of applications received per semester",,"Incorrect — this measures input volume, not process performance."
+Option,100,"Average number of days from application submission to decision letter",,"Correct — this measures the throughput speed of the process itself: how efficiently inputs are transformed into outputs."
+Option,0,"Percentage of accepted students who enroll",,"Incorrect — this is an output/outcome metric measuring what happens after the process completes."
+Option,0,"Total number of acceptance letters mailed",,"Incorrect — this is a raw output count, not a measure of process efficiency."
+Hint,,,,"Process KPIs measure how efficiently inputs are transformed — think about speed, cost, or quality of the transformation itself."
+Feedback,,,,"Chapter 2's IPO model (Input → Process → Output) maps to different KPI types. Input KPIs measure what comes in (application count). Process KPIs measure the transformation (processing time). Output KPIs measure what comes out (acceptance count). Outcome KPIs measure downstream results (enrollment rate). Average processing time is the clear process KPI."
+,,,,
+// MULTIPLE CHOICE QUESTION 5,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q5,,,,,
+Title,"RAT 2 Q5: KPI Design — Call Center Trap",,,,,
+QuestionText,"A call center introduces a KPI that rewards agents for the shortest average call time. Within weeks, agents start hanging up on complex calls and rushing customers off the phone. What Chapter 2 principle does this scenario best illustrate?
+
+Short description: Tests your understanding of how poorly designed KPIs can distort behavior and undermine the actual business goal.",,,,,
+Points,1,,,,,
+Difficulty,4,,,,,
+Option,0,"KPIs should always measure efficiency, not effectiveness",,"Incorrect — Chapter 2 emphasizes that both efficiency AND effectiveness matter, and KPIs should balance both."
+Option,0,"The five-component framework failed because the phone hardware was outdated",,"Incorrect — the scenario describes a KPI design problem, not a hardware or technology failure."
+Option,100,"KPIs shape behavior, and poorly designed KPIs encourage behaviors that undermine the real goal",,"Correct — Chapter 2 warns that what you measure drives what people do. A KPI targeting speed alone incentivizes speed at the expense of quality."
+Option,0,"Data quality suffered because agents entered incorrect call durations",,"Incorrect — the issue is not inaccurate data entry but the incentive structure created by the KPI design."
+Hint,,,,"What does Chapter 2 say about the relationship between what you measure and how people behave?"
+Feedback,,,,"Chapter 2's discussion of KPIs emphasizes that ""what you measure drives what people do."" A KPI that only rewards speed will produce fast but low-quality interactions. Good KPI design balances efficiency (speed) with effectiveness (resolution quality) to avoid behavior distortion."
+,,,,
+// MULTIPLE CHOICE QUESTION 6,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q6,,,,,
+Title,"RAT 2 Q6: Data-to-Performance Chain — Broken Link",,,,,
+QuestionText,"A retail chain's dashboard shows sales are ""up 12%"" but the underlying transaction data has duplicate entries from a system migration error. Using Chapter 2's Data-to-Performance Chain, which link is broken?
+
+Short description: Tests your ability to trace a performance metric problem back through the Data-to-Performance Chain to identify which link failed.",,,,,
+Points,1,,,,,
+Difficulty,4,,,,,
+Option,0,"The Performance link — because the dashboard metric is wrong",,"Incorrect — the dashboard metric is a symptom, but the chain failure is upstream."
+Option,0,"The Decision link — because managers will make bad decisions",,"Incorrect — bad decisions would be a downstream consequence of the broken link, not the broken link itself."
+Option,100,"The Data link — because the raw transaction data is unreliable due to duplicate entries",,"Correct — the Data-to-Performance Chain starts with data quality. If raw data is corrupted, every downstream link (information, knowledge, decisions, performance) is compromised."
+Option,0,"The Analytics link — because the dashboard calculated the percentage incorrectly",,"Incorrect — the calculation is correct (12% of corrupted data); the problem is the data feeding the calculation."
+Hint,,,,"Follow the chain from left to right: Data → ? → ? → ? → Performance. Where does the problem originate?"
+Feedback,,,,"Chapter 2's Data-to-Performance Chain traces how raw data becomes business performance: Data → Information → Knowledge → Decisions → Performance. When raw transaction data has duplicates, the entire chain is compromised from the start. Fixing the dashboard display (Performance link) without fixing the data is treating a symptom, not the cause."
+,,,,
+// MULTIPLE CHOICE QUESTION 7,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q7,,,,,
+Title,"RAT 2 Q7: Information Behavior — Analyst Research Pattern",,,,,
+QuestionText,"A business analyst always starts new projects by searching the company's shared drive for existing reports on the topic before building anything new. Which information behavior principle from Chapter 2 does this demonstrate?
+
+Short description: Tests your ability to recognize how real workplace behaviors map to the information behavior concepts introduced in the chapter.",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Information avoidance — the analyst is delaying the actual work",,"Incorrect — the analyst is actively seeking information, not avoiding it."
+Option,0,"Satisficing — the analyst is settling for whatever is easiest to find",,"Incorrect — satisficing means accepting ""good enough"" rather than optimal; the scenario describes a deliberate search strategy."
+Option,100,"Information seeking — the analyst is actively searching for relevant existing information before creating new work",,"Correct — Chapter 2 describes information behavior as how people search for, evaluate, and use information. Deliberately searching existing repositories before creating new analysis is information-seeking behavior."
+Option,0,"Knowledge management — the analyst is archiving reports for future use",,"Incorrect — knowledge management is about organizing and preserving information; the analyst is seeking, not archiving."
+Hint,,,,"Which information behavior describes actively looking for existing information?"
+Feedback,,,,"Chapter 2 introduces information behavior — how people search for, evaluate, and use information. Information seeking is the active process of looking for relevant information. The analyst's habit of checking existing reports before creating new ones is a textbook example of productive information-seeking behavior."
+,,,,
+// MULTIPLE CHOICE QUESTION 8,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q8,,,,,
+Title,"RAT 2 Q8: IT vs. IS — University Registration System",,,,,
+QuestionText,"A university spends $2 million on a new registration software platform. After launch, students still cannot register because the academic advising workflow was not updated, staff were not trained on the new system, and course prerequisite rules were never entered. Which Chapter 2 distinction does this failure illustrate?
+
+Short description: Tests your ability to distinguish between purchasing information technology and building a functioning information system.",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"The university chose the wrong database platform",,"Incorrect — the scenario does not describe a platform selection error; it describes incomplete implementation."
+Option,100,"Confusing IT (the purchased software) with IS (the full system of technology, processes, data, and people)",,"Correct — Chapter 2 explicitly distinguishes IT (the technology tools) from IS (the complete system integrating technology with processes, data, and people). Buying software is buying IT; building a working registration system requires all five components."
+Option,0,"A failure of strategic alignment — the software does not match the university's mission",,"Incorrect — the software itself may be well-aligned; the failure is in implementation, not strategy."
+Option,0,"The registration software had a data quality problem with duplicate student records",,"Incorrect — the scenario describes missing processes, training, and data, not data quality issues with the software."
+Hint,,,,"What is the difference between buying technology tools and building a working system?"
+Feedback,,,,"Chapter 2 draws a critical distinction: IT (information technology) is the hardware and software — the tools. IS (information systems) is the complete system integrating technology, data, processes, and people to accomplish organizational goals. The university bought IT (software) but did not build the IS (processes, training, data rules)."
+,,,,
+// MULTIPLE CHOICE QUESTION 9,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q9,,,,,
+Title,"RAT 2 Q9: Strategic Alignment — Discount Retailer's ERP Choice",,,,,
+QuestionText,"A discount retailer whose strategy is ""lowest possible prices through operational efficiency"" is choosing between two ERP systems. System X excels at supply-chain cost optimization. System Y excels at personalized customer recommendations and loyalty programs. Applying Chapter 2's strategic alignment principle, which system should the retailer choose, and why?
+
+Short description: Tests your ability to apply the strategic alignment principle to a concrete IT investment decision.",,,,,
+Points,1,,,,,
+Difficulty,5,,,,,
+Option,0,"System Y, because customer personalization is a modern business trend",,"Incorrect — following trends without strategic fit is misalignment, not strategic alignment."
+Option,0,"Both systems, because more technology is always better",,"Incorrect — Chapter 2 does not advocate for technology for its own sake; alignment means choosing technology that supports the specific strategy."
+Option,100,"System X, because its supply-chain optimization directly supports the retailer's low-cost operational efficiency strategy",,"Correct — strategic alignment means IT investments should directly support the organization's strategy. System X's supply-chain focus matches the low-cost strategy."
+Option,0,"Neither system — the retailer should build custom software instead",,"Incorrect — the scenario does not provide evidence that custom software is necessary; the question is about strategic fit between the options given."
+Hint,,,,"Strategic alignment: Does the IT investment directly support the organization's stated strategy?"
+Feedback,,,,"Chapter 2's principle of strategic alignment states that information systems should directly support organizational strategy. A discount retailer pursuing lowest possible prices needs systems that drive operational efficiency and cost reduction — exactly what System X provides. System Y's personalization features, while valuable for a different strategy, do not align with a low-cost strategy."
+,,,,
+// MULTIPLE CHOICE QUESTION 10,,,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT2-Q10,,,,,
+Title,"RAT 2 Q10: IT Governance — Who Decides?",,,,,
+QuestionText,"A mid-sized company is evaluating whether to allow individual departments to choose their own analytics tools or mandate a single company-wide platform. According to Chapter 2's IT governance principles, which question is most important to answer first?
+
+Short description: Tests your understanding of IT governance as the framework for deciding who makes which technology decisions.",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Which analytics tool has the highest user satisfaction rating?",,"Incorrect — tool features and ratings are implementation details; governance is about decision rights first."
+Option,100,"Who should have the authority to make platform decisions — central IT, department heads, or a shared governance committee?",,"Correct — IT governance is fundamentally about decision rights: who decides what. Chapter 2 frames governance around establishing clear authority before evaluating specific solutions."
+Option,0,"What is the total cost of each analytics tool option?",,"Incorrect — cost is an evaluation criterion, not a governance question. Governance determines who makes the evaluation, not which tool is cheapest."
+Option,0,"How quickly can each department migrate its existing reports?",,"Incorrect — migration speed is an implementation concern, not a governance decision about authority and accountability."
+Hint,,,,"IT governance is about decision rights — who gets to decide what. Focus on authority, not features."
+Feedback,,,,"Chapter 2 defines IT governance as the framework for deciding who makes which technology decisions and how those decisions are made. Before evaluating specific tools, costs, or timelines, the organization must determine decision rights: who has authority over platform selection. Governance establishes accountability before procurement begins."
+,,,,

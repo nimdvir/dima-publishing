@@ -10,7 +10,7 @@ keywords:
   - referential integrity
   - Access
   - SQL
-date: 2026-05-26
+date: 2026-06-16
 author: "Nimrod Dvir"
 ---
 
@@ -25,7 +25,7 @@ author: "Nimrod Dvir"
 You are given one flat table, `PETVAX_FLAT`, that mixes owner, pet, veterinarian, visit, and treatment facts in every row. Your job is to redesign it as a normalized six-table Microsoft Access database, enforce real relationships between the tables, and rebuild the original report with a single query.
 
 - Chapter: Chapter 7 — Data Normalization.
-- Builds on: [ch07-lets-build-2026-05-26.md](../../ch07-normalization/lets-build/ch07-lets-build-2026-05-26.md).
+- Builds on: [ch07-lets-build-2026-06-16.md](../../ch07-normalization/lets-build/ch07-lets-build-2026-06-16.md).
 - Estimated time: about 60 minutes.
 - Tool: Microsoft Access (2019 or newer; Microsoft 365 also works).
 

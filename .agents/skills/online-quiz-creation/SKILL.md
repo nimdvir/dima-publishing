@@ -317,21 +317,21 @@ Every question uses this structure, with slight variations by type:
 
 **Q{N}. {Title}**
 
-*Short description: {one-sentence description of what the question tests}*
+_Short description: {one-sentence description of what the question tests}_
 
 {Full question text}
 
-A. {option text}  ← ✓ CORRECT
-*Feedback: {per-option feedback}*
+A. {option text} ← ✓ CORRECT
+_Feedback: {per-option feedback}_
 
 B. {option text}
-*Feedback: {per-option feedback}*
+_Feedback: {per-option feedback}_
 
 C. {option text}
-*Feedback: {per-option feedback}*
+_Feedback: {per-option feedback}_
 
 D. {option text}
-*Feedback: {per-option feedback}*
+_Feedback: {per-option feedback}_
 
 **Hint:** {hint text}
 
@@ -374,6 +374,7 @@ The question text should include "Select ALL that apply".
 {Full question text}
 
 **Expected Answer(s):**
+
 - "{answer text}" {regexp indicator}
 
 **Input Box:** {rows} rows × {cols} columns
@@ -411,8 +412,8 @@ The question text should include "Select ALL that apply".
 
 {Full question text}
 
-| Choice | Correct Match |
-|--------|---------------|
+| Choice     | Correct Match        |
+| ---------- | -------------------- |
 | {choice 1} | {match for choice 1} |
 | {choice 2} | {match for choice 2} |
 
@@ -433,6 +434,7 @@ The question text should include "Select ALL that apply".
 {Full question text}
 
 **Correct Order:**
+
 1. {item 1}
 2. {item 2}
 3. {item 3}
@@ -455,13 +457,13 @@ Every MD must end with a summary table:
 
 ## Quick-Reference Answer Key
 
-| # | Type | Correct Answer(s) | Points | Difficulty | Bloom |
-|---|------|-------------------|--------|------------|-------|
-| 1 | MS   | A, C, D, E        | 2      | 5          | Evaluate |
-| 2 | MS   | A, C, D, E        | 2      | 4          | Analyze |
-| 3 | MC   | C                 | 1      | 4          | Analyze |
-| 4 | MC   | A                 | 1      | 5          | Evaluate |
-| ... | ... | ...              | ...    | ...        | ... |
+| #   | Type | Correct Answer(s) | Points | Difficulty | Bloom    |
+| --- | ---- | ----------------- | ------ | ---------- | -------- |
+| 1   | MS   | A, C, D, E        | 2      | 5          | Evaluate |
+| 2   | MS   | A, C, D, E        | 2      | 4          | Analyze  |
+| 3   | MC   | C                 | 1      | 4          | Analyze  |
+| 4   | MC   | A                 | 1      | 5          | Evaluate |
+| ... | ...  | ...               | ...    | ...        | ...      |
 ```
 
 ### MD Writing Rules
@@ -567,8 +569,8 @@ Before finalizing, verify:
 - [ ] All question IDs are unique
 - [ ] MD metadata header matches CSV comment block
 - [ ] MD per-question sections include: Title, Short description, QuestionText,
-  lettered options with correctness markers, per-option feedback, Hint (if present),
-  Explanation, Points, Difficulty, ID, Bloom
+      lettered options with correctness markers, per-option feedback, Hint (if present),
+      Explanation, Points, Difficulty, ID, Bloom
 - [ ] MD Quick-Reference Answer Key table is complete and correct
 - [ ] CSV and MD question counts match
 - [ ] CSV and MD correct answers are consistent
@@ -585,10 +587,12 @@ After creating both files, report:
 ## Quiz Created: {quiz title}
 
 **Files:**
+
 - CSV: `{full path to CSV}`
-- MD:  `{full path to MD}`
+- MD: `{full path to MD}`
 
 **Summary:**
+
 - {N} total questions
 - Type breakdown: {e.g., 8 MC + 2 MS}
 - Bloom distribution: {e.g., 2 Remember, 5 Analyze, 3 Evaluate}
@@ -596,6 +600,7 @@ After creating both files, report:
 - All questions include hints and per-option feedback
 
 **Import instructions:**
+
 1. Open the CSV in a text editor and confirm it reads correctly
 2. In Brightspace, go to Course Admin → Import/Export/Copy Components
 3. Select "Import Components" → upload the CSV file

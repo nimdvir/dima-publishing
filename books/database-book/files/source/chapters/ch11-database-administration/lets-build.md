@@ -1,148 +1,76 @@
-<!-- Sources: BITM330-Book-draft/chapter-drafts/ch11-database-administration/main/ch11-main-rewritten-2026-05-18.md; .docs/lets-build/lets-build-outline-2026-05-06.md -->
+---
+title: "Let's Build: Hands-On DBA Practice"
+chapter: 11
+section: "Let's Build"
+description: "Hands-on practice applying DBA concepts like relationships, backups, constraints, and roles to the Grading Database across different platforms."
+date: 2026-06-16
+author: "Nimrod Dvir, PhD"
+---
 
-# Let's Build: Applying DBA Practices to the Grading Database
+## Hands-On DBA Practice with the Grading Database
 
-![Let's Build](<../../../../.images/Ch0 General/sections/section optimized/resize-let-build-resize-optimized.gif>)
+This section turns the chapter's concepts into practice. The goal is not to become a professional DBA immediately. The goal is to recognize administrative responsibilities and apply them thoughtfully.
 
-## Overview
+### Practice Layer 1: Microsoft Access
 
-In this activity, you take the role of database administrator for the department's Grading Database. Your job is not to redesign the data model from scratch. Your job is to keep the system trustworthy, available, secure, and fast enough for real work.
+**Task 1: Identify critical tables.**
 
-This lab focuses on four DBA responsibilities: access control, backup and recovery, integrity and maintenance, and basic performance tuning.
+Rank tables by sensitivity.
 
-## What You Will Need
-
-- Your current Grading Database in Access, SQLite, or PostgreSQL
-- Permission to create a backup copy of the database file
-- A short written document for policies and observations
-
-## Part A: Identify Sensitive Data and Define Roles
-
-Start by deciding what needs the most protection.
-
-| Table | Risk level | Why it matters |
+| Table | Risk Level | Why |
 |---|---|---|
-| `STUDENT` | High | Stores personal information |
-| `STUDENT_GRADE` | High | Stores academic performance |
-| `ATTENDANCE` | Medium to high | Stores participation history |
-| `DELIVERABLE` | Medium | Stores grading structure |
-| `GRADE_SCALE` | Medium | Stores policy rules |
-| `SCHEDULE` | Lower | Stores course calendar information |
+| `STUDENT` | High | Personal information |
+| `STUDENT_GRADE` | High | Academic performance |
+| `ATTENDANCE` | Medium to high | Participation record |
+| `DELIVERABLE` | Medium | Course structure |
+| `GRADE_SCALE` | Medium | Policy rules |
+| `SCHEDULE` | Lower | Course calendar |
 
-Now define three roles for the system:
+**Task 2: Enforce referential integrity.**
 
-- `Instructor`: may read course data and update grades for assigned sections
-- `Advisor`: may read student progress data but should not change grades
-- `Admin`: may manage structure, backup, recovery, and permissions
-
-Create a simple role matrix.
-
-| Role | Read student data | Update grades | Change schema | Run backup |
-|---|---|---|---|---|
-| Instructor | Yes, limited | Yes, limited | No | No |
-| Advisor | Yes | No | No | No |
-| Admin | Yes | Yes | Yes | Yes |
-
-### Platform Notes
-
-- In Access, document these roles as a policy and implement the safest practical version through split databases, forms, saved queries, and controlled distribution.
-- In PostgreSQL or Supabase, you can represent the policy with explicit role statements.
-
-Example SQL:
-
-```sql
-CREATE ROLE instructor;
-CREATE ROLE advisor;
-CREATE ROLE admin;
-
-GRANT SELECT ON STUDENT TO advisor;
-GRANT SELECT ON STUDENT_GRADE TO advisor;
-
-GRANT SELECT, INSERT, UPDATE ON STUDENT_GRADE TO instructor;
-```
-
-## Part B: Build a Backup and Recovery Plan
-
-Write a one-page backup plan that answers these questions:
-
-1. How often will the database be backed up?
-2. Will the backup be full, incremental, or file-copy based?
-3. Where will the backup be stored?
-4. How long will backups be kept?
-5. What is the recovery time objective (RTO)?
-6. What is the recovery point objective (RPO)?
-
-Then perform a simple backup drill.
-
-### Access Version
-
-1. Close the `.accdb` file.
-2. Copy it to a backup folder.
-3. Rename the copy with a timestamp.
-4. Reopen the copied file and confirm that the data appears intact.
-
-### SQLite Version
-
-Run a file copy or export, then test the copy.
-
-Recommended checks:
-
-```sql
-PRAGMA foreign_keys = ON;
-PRAGMA integrity_check;
-```
-
-## Part C: Simulate a Recovery Scenario
-
-Use this scenario:
-
-> A faculty member accidentally deleted all grade records for one section.
-
-Document your response in order.
-
-1. Identify the affected tables.
-2. Confirm when the last good backup was created.
-3. Restore the backup copy to a safe location.
-4. Compare restored data with the damaged version.
-5. Explain what data could be recovered and what might still be lost.
-
-The point of this part is not dramatic storytelling. The point is to prove that your backup plan can actually support recovery.
-
-## Part D: Check Integrity and Routine Maintenance
-
-Choose one platform path.
-
-### Access
+In Access:
 
 1. Open **Database Tools > Relationships**.
-2. Confirm that key relationships are present.
-3. Turn on **Enforce Referential Integrity** where appropriate.
-4. Review cascade update and cascade delete carefully before enabling them.
-5. Run **Compact and Repair Database**.
+2. Add `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE`.
+3. Connect `STUDENT.StudentID` to `STUDENT_GRADE.StudentID`.
+4. Connect `DELIVERABLE.DeliverableID` to `STUDENT_GRADE.DeliverableID`.
+5. Check **Enforce Referential Integrity**.
+6. Allow cascade update only when appropriate.
+7. Avoid cascade delete unless you can justify it.
 
-### SQLite
+**Task 3: Simulate backup.**
 
-Use these checks:
+1. Close the database.
+2. Copy the `.accdb` file.
+3. Rename the copy with a timestamp.
+4. Reopen the backup copy and verify the data.
+
+**Task 4: Compact and repair.**
+
+Use **Database Tools > Compact and Repair Database**. This reinforces the idea that file-based databases need maintenance.
+
+### Practice Layer 2: SQLite
+
+**Enable foreign keys.**
 
 ```sql
 PRAGMA foreign_keys = ON;
+```
+
+**Check database integrity.**
+
+```sql
 PRAGMA integrity_check;
 ```
 
-Then review whether the schema clearly prevents orphaned grade rows.
-
-## Part E: Run a Basic Performance Check
-
-Pick one frequently filtered or joined field, such as `StudentID` in `STUDENT_GRADE`.
-
-Create an index:
+**Create an index.**
 
 ```sql
 CREATE INDEX idx_student_grade_student
 ON STUDENT_GRADE(StudentID);
 ```
 
-Then run a simple query and inspect the plan.
+**Check whether the index is used.**
 
 ```sql
 EXPLAIN QUERY PLAN
@@ -151,28 +79,96 @@ FROM STUDENT_GRADE
 WHERE StudentID = 5;
 ```
 
-Write two or three sentences answering:
+**Use a transaction.**
 
-- What query did you test?
-- Why was this column a reasonable indexing choice?
-- Did the index improve the query enough to justify keeping it?
+```sql
+BEGIN TRANSACTION;
 
-## Deliverable
+UPDATE STUDENT_GRADE
+SET Score = 95
+WHERE GradeID = 10;
 
-Submit the following:
+-- If the result is correct:
+COMMIT;
 
-- role and permission policy
-- backup and recovery plan
-- documented recovery walkthrough
-- integrity and maintenance notes
-- short performance comparison note
+-- If the result is wrong:
+-- ROLLBACK;
+```
 
-## Reflection Questions
+**Switch to WAL mode.**
 
-- Which DBA responsibility feels most important for a grading system?
-- Which control would be easiest to ignore in real life?
-- What is the business cost of getting DBA work wrong?
+```sql
+PRAGMA journal_mode = WAL;
+```
 
-## Connection Forward
+### Practice Layer 3: Supabase / PostgreSQL
 
-Chapter 12 uses the same database for a different purpose: turning stored data into reports, KPIs, and managerial insight.
+**Create roles.**
+
+```sql
+CREATE ROLE instructor;
+CREATE ROLE analyst;
+```
+
+**Grant privileges.**
+
+```sql
+GRANT SELECT ON STUDENT TO analyst;
+GRANT SELECT ON STUDENT_GRADE TO analyst;
+
+GRANT SELECT, INSERT, UPDATE ON STUDENT_GRADE TO instructor;
+```
+
+**Create an index.**
+
+```sql
+CREATE INDEX idx_student_grade_deliverable
+ON STUDENT_GRADE(DeliverableID);
+```
+
+**Use a transaction.**
+
+```sql
+BEGIN;
+
+UPDATE STUDENT_GRADE
+SET Score = 88
+WHERE GradeID = 12;
+
+COMMIT;
+```
+
+**Create a safer reporting view.**
+
+```sql
+CREATE VIEW GradeReport AS
+SELECT s.StudentID,
+       s.FirstName,
+       s.LastName,
+       d.DeliverableType,
+       d.DeliverableNumber,
+       sg.Score
+FROM STUDENT AS s
+JOIN STUDENT_GRADE AS sg
+  ON s.StudentID = sg.StudentID
+JOIN DELIVERABLE AS d
+  ON sg.DeliverableID = d.DeliverableID;
+```
+
+Then grant access to the view rather than the base tables:
+
+```sql
+GRANT SELECT ON GradeReport TO analyst;
+```
+
+### What the Hands-On Work Teaches
+
+| Platform | What You Practice |
+|---|---|
+| Access | Visual relationships, local backup, compact/repair |
+| SQLite | Explicit pragmas, transactions, indexes, file responsibility |
+| Supabase/PostgreSQL | Roles, privileges, transactions, views, cloud responsibility |
+
+The core lesson is consistent:
+
+> DBA thinking is not platform-specific. The tools change, but the responsibilities remain.

@@ -214,7 +214,7 @@ Let’s begin.
 
 ## About the Author
 
-**Dr. Nimrod Dvir **teaches Information Systems and Business Analytics at the University at Albany, State University of New York. His academic and professional background spans information science, human-computer interaction, management information systems, UX research, and digital product development.
+**Dr. Nimrod Dvir** teaches Information Systems and Business Analytics at the University at Albany, State University of New York. His academic and professional background spans information science, human-computer interaction, management information systems, UX research, and digital product development.
 
 His teaching and research focus on the ways data, technology, and information systems shape organizational decision-making and business performance. This book reflects that perspective by connecting databases, analytics, and information systems to practical business problems, human behavior, and the everyday work of modern organizations.
 

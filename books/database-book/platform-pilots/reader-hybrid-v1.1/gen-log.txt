@@ -1,0 +1,63 @@
+
+> reader-hybrid-v1-1@1.1.0 generate
+> tsx scripts/generateBookData.ts --force
+
+Reader Hybrid ΓÇö Book Data Generator
+
+  --force: skipping incremental check.
+
+  Front matter: loaded (preface + acknowledgements)
+  ΓÜá ch08/review-questions: placeholder (no source file found)
+  ΓÜá ch08/rat: placeholder (no source file found)
+  ΓÜá ch11/introduction: placeholder (no source file found)
+  ΓÜá ch12/introduction: placeholder (no source file found)
+  ΓÜá ch13/introduction: placeholder (no source file found)
+  ΓÜá ch14/introduction: placeholder (no source file found)
+  ΓÜá ch15/introduction: placeholder (no source file found)
+  ΓÜá ch15/terms-treasury: placeholder (no source file found)
+  ΓÜá ch15/rat: placeholder (no source file found)
+  ΓÜá ch16/introduction: placeholder (no source file found)
+  ΓÜá ch16/review-questions: placeholder (no source file found)
+  ΓÜá ch16/terms-treasury: placeholder (no source file found)
+  ΓÜá ch16/rat: placeholder (no source file found)
+  ΓÜá ch17/introduction: placeholder (no source file found)
+  ΓÜá ch17/review-questions: placeholder (no source file found)
+  ΓÜá ch17/terms-treasury: placeholder (no source file found)
+  ΓÜá ch17/rat: placeholder (no source file found)
+
+  Wrote C:\Users\nd115232\Documents\GitHub\dima-publishing\books\database-book\platform-pilots\reader-hybrid-v1.1\src\generated\bookData.ts
+  Wrote generation manifest
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+  GENERATION SUMMARY
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+  Chapters loaded:      18
+  Sections resolved:    119
+    stable:             76
+    dated-fallback:     26
+    placeholder:        17
+  Reader pages:         291
+  Labs loaded:          15
+    stable:             15
+    chapter-fallback:   0
+    placeholder:        0
+  Warnings:             17
+    - ch08/review-questions: placeholder (no source file found)
+    - ch08/rat: placeholder (no source file found)
+    - ch11/introduction: placeholder (no source file found)
+    - ch12/introduction: placeholder (no source file found)
+    - ch13/introduction: placeholder (no source file found)
+    - ch14/introduction: placeholder (no source file found)
+    - ch15/introduction: placeholder (no source file found)
+    - ch15/terms-treasury: placeholder (no source file found)
+    - ch15/rat: placeholder (no source file found)
+    - ch16/introduction: placeholder (no source file found)
+    - ch16/review-questions: placeholder (no source file found)
+    - ch16/terms-treasury: placeholder (no source file found)
+    - ch16/rat: placeholder (no source file found)
+    - ch17/introduction: placeholder (no source file found)
+    - ch17/review-questions: placeholder (no source file found)
+    - ch17/terms-treasury: placeholder (no source file found)
+    - ch17/rat: placeholder (no source file found)
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+

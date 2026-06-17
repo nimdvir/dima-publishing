@@ -1,13 +1,12 @@
-import { useMemo } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
-import type { BookPage } from '../types';
-import { extractHeadingToc } from '../utils/headings';
-import MarkdownRenderer from './MarkdownRenderer';
-import OnThisPage, { OnThisPageMobile } from './OnThisPage';
-import BottomNavigation from './BottomNavigation';
-import ReaderEntryCoverRotator from './ReaderEntryCoverRotator';
-import { FeedbackLink } from './FeedbackLink';
-
+import { useMemo } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import type { BookPage } from "../types";
+import { extractHeadingToc } from "../utils/headings";
+import MarkdownRenderer from "./MarkdownRenderer";
+import OnThisPage, { OnThisPageMobile } from "./OnThisPage";
+import BottomNavigation from "./BottomNavigation";
+import ReaderEntryCoverRotator from "./ReaderEntryCoverRotator";
+import { FeedbackLink } from "./FeedbackLink";
 
 interface ChapterReaderProps {
   page: BookPage;
@@ -37,17 +36,20 @@ export default function ChapterReader({
   showEntryCover,
 }: ChapterReaderProps) {
   // Extract H2/H3 headings from the current page content for "On this page"
-  const headings = useMemo(() => extractHeadingToc(page.content), [page.content]);
+  const headings = useMemo(
+    () => extractHeadingToc(page.content),
+    [page.content],
+  );
   const reducedMotion = useReducedMotion();
 
   // Roadmap and other in-content "#anchor" links must jump across reader pages,
   // so intercept them and route through the chapter-aware handler.
   const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!onHashNavigate) return;
-    const anchor = (e.target as HTMLElement).closest('a');
+    const anchor = (e.target as HTMLElement).closest("a");
     if (!anchor) return;
-    const href = anchor.getAttribute('href');
-    if (!href || !href.startsWith('#') || href.length < 2) return;
+    const href = anchor.getAttribute("href");
+    if (!href || !href.startsWith("#") || href.length < 2) return;
     e.preventDefault();
     onHashNavigate(href.slice(1));
   };
@@ -59,12 +61,16 @@ export default function ChapterReader({
         className="reader-page-motion"
         initial={reducedMotion ? false : { opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={reducedMotion ? { duration: 0 } : { duration: 0.22, ease: 'easeOut' }}
+        transition={
+          reducedMotion ? { duration: 0 } : { duration: 0.22, ease: "easeOut" }
+        }
       >
         {/* Reader header */}
         <div className="reader-header">
           <div className="reader-breadcrumb">
-            <span className="breadcrumb-chapter">{page.chapterId.toUpperCase()}</span>
+            <span className="breadcrumb-chapter">
+              {page.chapterId.toUpperCase()}
+            </span>
             <span className="breadcrumb-sep">/</span>
             <span className="breadcrumb-section">{page.sectionTitle}</span>
           </div>
@@ -81,10 +87,10 @@ export default function ChapterReader({
         {/* Page tabs (if multi-page section) */}
         {allPages.length > 1 && (
           <div className="page-tabs">
-            {allPages.map(p => (
+            {allPages.map((p) => (
               <button
                 key={p.id}
-                className={`page-tab ${p.id === page.id ? 'active' : ''}`}
+                className={`page-tab ${p.id === page.id ? "active" : ""}`}
                 onClick={() => onNavigate(p)}
               >
                 {p.pageNumber}
@@ -105,18 +111,22 @@ export default function ChapterReader({
                 goldUrl="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto/bitm330book/0-cover-image/ch00-cover-gold.gif"
               />
             )}
-            <MarkdownRenderer content={page.content} suppressFirstImage={showEntryCover} />
+            <MarkdownRenderer
+              content={page.content}
+              suppressFirstImage={showEntryCover}
+            />
             <div className="chapter-feedback">
               <hr className="feedback-divider" />
               <div className="feedback-content">
-                <span className="feedback-text">Found something broken, confusing, or missing?</span>
+                <span className="feedback-text">
+                  Found something broken, confusing, or missing?
+                </span>
                 <FeedbackLink />
               </div>
             </div>
           </div>
           <OnThisPage headings={headings} />
         </div>
-
 
         {/* Bottom navigation */}
         <BottomNavigation

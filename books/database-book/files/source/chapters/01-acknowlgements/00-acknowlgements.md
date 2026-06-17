@@ -21,17 +21,15 @@ insert the image here for the publisher - "G:\My Drive\0-Projects\!-important\BI
 **Publication year:** 2026  
 **Edition:** First Edition  
 **Version:** 1.0  
-**Last updated:** [Month Day, 2026]
+**Last updated:** June 17, 2026
 
-**ISBN paperback:** forthcoming  
-**ISBN ebook:** forthcoming  
-**ISBN PDF edition:** forthcoming
+**ISBN ebook:** 979-8-9955692-0-6
 
 **Library of Congress Control Number:** forthcoming
 
 ## Suggested Citation
 
-Dvir, N. (2026). *Using Data to Drive Business Performance: Databases and Management Information Systems*. First edition. Albany, NY: [Publisher or Imprint Name].
+Dvir, N. (2026). *Using Data to Drive Business Performance: Databases and Management Information Systems* (First edition). Dima Publishing. ISBN: 979-8-9955692-0-6.
 
 ## Permissions
 

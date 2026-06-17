@@ -15,14 +15,14 @@ This prototype loads Chapters 1–4 and the first four labs from `files/source/`
 
 Each chapter exposes six reader sections:
 
-| Section | Stable File | Dated Fallback Pattern |
-|---|---|---|
-| Introduction | `index.md` | *(none — placeholder if index.md is a TOC stub)* |
-| Core Concepts | `core-concepts.md` | `chNN-main-YYYY-MM-DD.md` |
-| Let's Build | `lets-build.md` | `chNN-lets-build-YYYY-MM-DD.md` |
-| Review Questions | `review-questions.md` | `chNN-reflection-YYYY-MM-DD.md` |
-| Terms Treasury | `terms-treasury.md` | `chNN-terms-YYYY-MM-DD.md` |
-| RAT: Reading Test | `rat.md` | `chNN-rat-YYYY-MM-DD.md` |
+| Section           | Stable File           | Dated Fallback Pattern                           |
+| ----------------- | --------------------- | ------------------------------------------------ |
+| Introduction      | `index.md`            | *(none — placeholder if index.md is a TOC stub)* |
+| Core Concepts     | `core-concepts.md`    | `chNN-main-YYYY-MM-DD.md`                        |
+| Let's Build       | `lets-build.md`       | `chNN-lets-build-YYYY-MM-DD.md`                  |
+| Review Questions  | `review-questions.md` | `chNN-reflection-YYYY-MM-DD.md`                  |
+| Terms Treasury    | `terms-treasury.md`   | `chNN-terms-YYYY-MM-DD.md`                       |
+| RAT: Reading Test | `rat.md`              | `chNN-rat-YYYY-MM-DD.md`                         |
 
 ## Page-Break Handling
 
@@ -86,11 +86,17 @@ Vite, React 18, TypeScript, react-markdown, remark-gfm, rehype-raw, rehype-sanit
 
 **Reader Hybrid v1.1** — frontend prototype, not production-ready.
 
+## Deployment Safety
+
+Before testing reader changes on Vercel, see:
+
+- [Vercel Preview Deployment Guide](./vercel-preview-deployment.md)
+
 ## Deployment
 
-| Target | Root Directory | Build | Output | Notes |
-|---|---|---|---|---|
-| Vercel | `books/database-book/platform-pilots/reader-hybrid-v1.1` | `npm run build` | `dist` | Leave `VITE_BASE_PATH` unset |
-| GitHub Pages | nested under combined site | same build with `VITE_BASE_PATH=/dima-publishing/platform-pilots/reader-hybrid-v1.1/` | `dist` | Entry: `?scope=welcome` |
+| Target       | Root Directory                                           | Build                                                                                 | Output | Notes                        |
+| ------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------ | ---------------------------- |
+| Vercel       | `books/database-book/platform-pilots/reader-hybrid-v1.1` | `npm run build`                                                                       | `dist` | Leave `VITE_BASE_PATH` unset |
+| GitHub Pages | nested under combined site                               | same build with `VITE_BASE_PATH=/dima-publishing/platform-pilots/reader-hybrid-v1.1/` | `dist` | Entry: `?scope=welcome`      |
 
 See `../README.md` for the full platform-pilots deployment guide.

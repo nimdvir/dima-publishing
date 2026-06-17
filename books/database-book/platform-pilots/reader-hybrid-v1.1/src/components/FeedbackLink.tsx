@@ -7,8 +7,8 @@ export function FeedbackLink() {
   };
 
   return (
-    <button type="button" className="feedback-link" onClick={handleClick}>
-      Report an issue
+    <button type="button" className="floating-feedback-link" onClick={handleClick}>
+      <span aria-hidden="true">💬</span> Report issue
     </button>
   );
 }

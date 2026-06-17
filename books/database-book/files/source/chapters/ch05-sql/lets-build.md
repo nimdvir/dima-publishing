@@ -202,6 +202,78 @@ You've moved from querying a single, flat table to a properly structured, multi-
 
 This is the foundation for the more advanced SQL you will learn in Chapter 9.
 
+### Appendix: Quick References & Platform Differences
+
+This appendix shows the chapter's ideas at work in the Let's Build grading database. Each section reuses the `GRADEBOOK` and `GRADE_WEIGHT` tables defined in Part 2 and Part 3 of the main chapter.
+
+![Figure 5.47 — Appendix Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-review.jpg)
+*Figure 5.47 — Appendix Roadmap. Maps the appendix examples back to the core chapter concepts: Access-style inserts and side-by-side age expressions.*
+
+#### A1. Inserting Rows One at a Time (Access-Friendly)
+
+Multi-row `INSERT` works in SQLite and PostgreSQL. Microsoft Access expects one row per statement. In the Chapter 4 build, `RecordID` is an Access AutoNumber field, so it is generated automatically and you do not type a value for it. The first two rows from Part 3 would look like this in Access form:
+
+![Figure 5.48 — SQLite vs. Access Insertions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-tables.png)
+*Figure 5.48 — SQLite vs. Access insertions. Compares multi-row SQL insert statements in SQLite with single-row, AutoNumber-compliant insert statements in Access.*
+
+```sql
+INSERT INTO GRADEBOOK (StudentID, FirstName, LastName, Email, Birthday,
+    DeliverableType, DeliverableNumber, DueDate, Topic, Score)
+VALUES ('S1001', 'Alice', 'Johnson', 'alice@university.edu', #2004-05-14#,
+    'Quiz', 1, #2026-09-08#, 'Database Basics', 92);
+
+INSERT INTO GRADEBOOK (StudentID, FirstName, LastName, Email, Birthday,
+    DeliverableType, DeliverableNumber, DueDate, Topic, Score)
+VALUES ('S1002', 'Brian', 'Lee', 'brian@university.edu', #2003-11-22#,
+    'Quiz', 1, #2026-09-08#, 'Database Basics', 84);
+```
+
+Notice three Access differences: `RecordID` is omitted so Access can generate it as AutoNumber, dates are wrapped in `#` rather than quotes, and each row needs its own statement.
+
+#### A2. A Side-by-Side Age Calculation
+
+*Platform SQL Date Operations (Figure 5.45 above) maps the SQLite, PostgreSQL, and Access age expressions side by side.*
+
+| Platform   | Approximate age expression                        |
+| ---------- | ------------------------------------------------- |
+| SQLite     | `strftime('%Y','now') - strftime('%Y', Birthday)` |
+| PostgreSQL | `EXTRACT(YEAR FROM AGE(Birthday))`                |
+| Access     | `DateDiff('yyyy', Birthday, Date())`              |
+
+All three return a rough integer age based on year only. None checks whether the birthday has occurred yet this year, so the value can be one year high for several months.
+
+---
+
+#### A3. SQL Quick Reference
+
+The commands, clauses, and operators covered in this chapter, in one place. Keep this handy while working through the Let's Build and Lab 5.
+
+| Category   | Command / Operator              | What it does                                            | Quick example                                                          |
+| ---------- | ------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
+| DDL        | `CREATE TABLE`                  | Define a new table and its columns                      | `CREATE TABLE PET (PetID INTEGER PRIMARY KEY, PetName TEXT NOT NULL);` |
+| DDL        | `ALTER TABLE`                   | Add, change, or drop a column after creation            | `ALTER TABLE PET ADD COLUMN WeightLb REAL;`                            |
+| DDL        | `DROP TABLE`                    | Permanently delete a table                              | `DROP TABLE PET;`                                                      |
+| DML        | `INSERT INTO`                   | Add one or more rows                                    | `INSERT INTO PET VALUES (1, 'Luna', 8.2);`                             |
+| DML        | `UPDATE`                        | Change existing rows                                    | `UPDATE PET SET WeightLb = 9.0 WHERE PetID = 1;`                       |
+| DML        | `DELETE`                        | Remove rows                                             | `DELETE FROM PET WHERE PetID = 1;`                                     |
+| DQL        | `SELECT`                        | Choose which columns to return                          | `SELECT PetName, WeightLb FROM PET;`                                   |
+| DQL        | `WHERE`                         | Filter rows by a condition                              | `SELECT * FROM PET WHERE AnimalType = 'Cat';`                          |
+| DQL        | `ORDER BY`                      | Sort results (ASC default, DESC optional)               | `SELECT * FROM PET ORDER BY WeightLb DESC;`                            |
+| DQL        | `DISTINCT`                      | Remove duplicate values from output                     | `SELECT DISTINCT AnimalType FROM PET;`                                 |
+| DQL        | `IS NULL` / `IS NOT NULL`       | Test for missing values                                 | `SELECT * FROM PET WHERE WeightLb IS NULL;`                            |
+| DQL        | `LIKE`                          | Match a text pattern (`%` = any string, `_` = one char) | `WHERE PetName LIKE 'L%';`                                             |
+| DQL        | `BETWEEN`                       | Filter a range (inclusive)                              | `WHERE WeightLb BETWEEN 5 AND 20;`                                     |
+| DQL        | `IN`                            | Match any value in a list                               | `WHERE AnimalType IN ('Cat', 'Dog');`                                  |
+| DQL        | `AS`                            | Rename a column in output (alias)                       | `SELECT WeightLb AS Weight_Pounds FROM PET;`                           |
+| Aggregate  | `COUNT()`                       | Count rows                                              | `SELECT COUNT(*) FROM PET;`                                            |
+| Aggregate  | `SUM()`                         | Total of a numeric column                               | `SELECT SUM(WeightLb) FROM PET;`                                       |
+| Aggregate  | `AVG()`                         | Average of a numeric column                             | `SELECT AVG(WeightLb) FROM PET;`                                       |
+| Aggregate  | `MIN()` / `MAX()`               | Lowest or highest value                                 | `SELECT MIN(WeightLb), MAX(WeightLb) FROM PET;`                        |
+| Clause     | `GROUP BY`                      | Group rows for per-group aggregation                    | `SELECT AnimalType, COUNT(*) FROM PET GROUP BY AnimalType;`            |
+| Clause     | `HAVING`                        | Filter groups after aggregation                         | `... GROUP BY AnimalType HAVING COUNT(*) > 10;`                        |
+| Expression | `CASE`                          | Conditional label or value                              | `CASE WHEN WeightLb > 30 THEN 'Large' ELSE 'Small' END`                |
+| TCL        | `BEGIN` / `COMMIT` / `ROLLBACK` | Wrap changes in a transaction for safety                | `BEGIN; UPDATE ...; COMMIT;`                                           |
+
 ### Save Your Work
 
 Save your script as `ch05_lb_advanced_<lastname>.sql`. Keep it as a reference for how to query a normalized database. This experience will be invaluable as we move into Chapter 6, where we dive deep into the theory and practice of relational database design and joins.

@@ -1,0 +1,149 @@
+"// Brightspace CSV Import — RAT 6 Top Questions (Optimized)",,,,
+"// Source: Chapter 6 — The Relational Model (ch06-main-2026-05-29.md)",,,,
+"// Date: 2026-06-17",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 6: The Relational Model,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 6 at: https://data-pilot.dimapublishing.com/book/ch06/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT6-Q1,,,,,
+Title,Flat-table anomalies,,,,,
+QuestionText,"A professor stores all grading data in one flat spreadsheet with these columns: StudentID, StudentName, StudentEmail, DeliverableName, Score, DeliverableType, Weight. A student changes their email address.
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Update anomaly: the new email must be edited in every row where that student appears",,"Correct — update anomaly occurs when changing one fact requires updating many rows, risking inconsistency."
+Option,0,"Join anomaly: the flat table cannot be joined with other tables",,"Incorrect — there is no anomaly called a join anomaly. The four named anomalies are insertion, update, deletion, and redundancy."
+Option,1,"Insertion anomaly: a new student who has not submitted any work cannot be added to the spreadsheet",,"Correct — because student and grade data are mixed, there is no place to record a student without also recording a grade."
+Option,1,"Deletion anomaly: removing the only grade row for a student also removes the only record that the student exists",,"Correct — when deleting the last grade for a student, the student record itself is lost because themes are mixed."
+Option,1,"Redundancy: the same student name, email, deliverable type, and weight repeat across multiple rows",,"Correct — flat tables store the same data in many rows, wasting storage and creating inconsistency risk."
+Hint,Chapter 6 names four specific anomaly types. Think about what happens when data is mixed in one table.,,,
+Feedback,"Chapter 6 revisits the four modification anomalies: update (one change requires many edits), insertion (cannot add one fact without another), deletion (removing one fact destroys another), and redundancy (same data stored repeatedly). The flat grading spreadsheet exhibits all four because it mixes student, deliverable, and grade themes in one table.",
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT6-Q2,,,,,
+Title,Key types identification,,,,,
+QuestionText,"The Grading Database uses several types of keys across its seven tables. Match each description to the correct key type.
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,4,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"A surrogate key is a system-generated identifier like an auto-numbered StudentID that has no business meaning",,"Correct — surrogate keys are artificial identifiers created by the system, such as auto-increment integers."
+Option,0,"A surrogate key is any column that could uniquely identify a row, including natural values like email",,"Incorrect — that describes a candidate key. Surrogate keys are specifically artificial, not natural."
+Option,1,"A composite key uses two or more columns together to uniquely identify a row",,"Correct — composite keys combine multiple columns (e.g., StudentID + DeliverableID) to form a unique identifier."
+Option,0,"A natural key is always preferred over a surrogate key because it carries business meaning",,"Incorrect — Chapter 6 discusses trade-offs. Natural keys can change (emails, names) while surrogates are stable."
+Option,1,"A candidate key is any column or set of columns that could serve as the primary key",,"Correct — candidate keys are all possible unique identifiers. The primary key is the one chosen from among the candidates."
+Hint,Surrogate = artificial. Natural = real-world meaning. Composite = multiple columns. Candidate = any potential PK.,,,
+Feedback,"Chapter 6 defines key types: candidate keys (any column(s) that could uniquely identify rows), primary keys (the chosen candidate), surrogate keys (system-generated, no business meaning), natural keys (real-world identifiers like SSN), and composite keys (two or more columns combined). Each serves a different purpose in relational design.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q3,,,,,
+Title,Relational model definition,,,,,
+QuestionText,"Chapter 6 defines the relational model. Which statement best captures what distinguishes the relational model from flat-file approaches?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"The relational model stores all data in a single table with relationships defined by formulas",,"Incorrect — that describes a flat file. The relational model separates data into multiple related tables."
+Option,100,"The relational model organizes data into separate tables by subject and uses keys to define relationships between them",,"Correct — the relational model's core principle is separating data into themed tables linked by primary and foreign keys."
+Option,0,"The relational model requires all relationships to be defined through spreadsheet formulas like VLOOKUP",,"Incorrect — VLOOKUP is a spreadsheet concept. The relational model uses keys and joins, not cell formulas."
+Option,0,"The relational model stores relationships as separate files outside the database",,"Incorrect — relationships are defined within the database through foreign key constraints, not in external files."
+Hint,The key word is separate tables linked by keys — not one big table.,,,
+Feedback,"Chapter 6 defines the relational model as organizing data into separate tables (relations) by subject, with keys (primary and foreign) defining relationships between tables. This separation by theme is what solves the anomalies of flat-file design and is the foundation of modern database systems.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q4,,,,,
+Title,Entity vs attribute,,,,,
+QuestionText,"In the Grading Database, STUDENT is an entity and StudentName is an attribute. Which of the following correctly distinguishes an entity from an attribute?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"An entity is a column; an attribute is a row",,"Incorrect — an entity maps to a table (or row), not a column. An attribute maps to a column."
+Option,100,"An entity is a thing we track (like STUDENT); an attribute is a property that describes it (like StudentName)",,"Correct — entities are the objects or concepts we store data about. Attributes are the characteristics that describe them."
+Option,0,"An entity and an attribute are the same thing — the terms are interchangeable",,"Incorrect — Chapter 6 explicitly distinguishes entities from attributes as different relational concepts."
+Option,0,"An entity is the database file; an attribute is the table name",,"Incorrect — a database file contains tables. An entity represents a real-world object that becomes a table."
+Hint,Entity = thing we track. Attribute = property that describes that thing.,,,
+Feedback,"Chapter 6 defines entities as the objects or concepts we store data about (STUDENT, DELIVERABLE, COURSE). Attributes are the properties or characteristics that describe entities (StudentName, Score, DueDate). In the relational model, entities become tables and attributes become columns.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q5,,,,,
+Title,Surrogate vs natural keys,,,,,
+QuestionText,"The Grading Database uses StudentID (an auto-number) as the primary key for the STUDENT table rather than StudentEmail. What is the strongest justification for this choice according to Chapter 6?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"StudentID is shorter and takes less storage space than StudentEmail",,"Incorrect — storage efficiency is a minor concern. The primary reason is stability, not size."
+Option,100,"StudentEmail can change; a surrogate key like StudentID never needs to change, making it a stable identifier for relationships",,"Correct — natural keys (emails, names) can change. Surrogate keys are immutable, which protects foreign key relationships from cascading updates."
+Option,0,"Auto-numbers are required by SQLite — natural keys are not supported",,"Incorrect — SQLite supports both natural and surrogate keys. Surrogate keys are a design choice, not a technical requirement."
+Option,0,"StudentEmail might not be unique across all students",,"Incorrect — emails are generally unique. The issue is mutability (values can change), not uniqueness."
+Hint,What happens to foreign key references in other tables if the primary key value changes?,,,
+Feedback,"Chapter 6 recommends surrogate keys (like auto-numbered IDs) because they are stable: they never need to change once assigned. Natural keys like emails can change (students change email providers), and changing a primary key value requires updating every foreign key that references it — a costly cascade. Surrogates avoid this problem entirely.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q6,,,,,
+Title,One-to-many relationship,,,,,
+QuestionText,"In the Grading Database, one STUDENT can submit many DELIVERABLEs. The DELIVERABLE table contains a StudentID column that references STUDENT.StudentID. What type of relationship does this represent?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"One-to-one — each student has exactly one deliverable",,"Incorrect — students have many deliverables. One-to-one would mean exactly one deliverable per student."
+Option,100,"One-to-many — one student relates to many deliverables, and the foreign key is placed in the DELIVERABLE table",,"Correct — the foreign key goes in the many-side table (DELIVERABLE). Each deliverable references exactly one student, but one student can have many deliverables."
+Option,0,"Many-to-many — students and deliverables have a complex relationship",,"Incorrect — this is a direct one-to-many relationship. Many-to-many requires a junction table."
+Option,0,"Self-referencing — the table references itself through the foreign key",,"Incorrect — a self-referencing relationship would have a foreign key pointing to the same table, not a different one."
+Hint,Foreign key goes on the many side. Where is StudentID placed?,,,
+Feedback,"Chapter 6 explains that one-to-many relationships are implemented by placing the foreign key in the table on the many side. DELIVERABLE.StudentID references STUDENT.StudentID, meaning each deliverable belongs to one student, but each student can have multiple deliverables — a classic one-to-many relationship.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q7,,,,,
+Title,Many-to-many resolution,,,,,
+QuestionText,"A STUDENT can enroll in multiple COURSEs, and each COURSE has multiple STUDENTs. According to Chapter 6, how should this many-to-many relationship be implemented in a relational database?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Put a foreign key in both the STUDENT and COURSE tables pointing to each other",,"Incorrect — mutual foreign keys cannot represent multiple relationships between the same entities."
+Option,100,"Create a junction table (e.g., ENROLLMENT) with foreign keys to both STUDENT and COURSE",,"Correct — many-to-many relationships require a third table that breaks the relationship into two one-to-many relationships."
+Option,0,"Store multiple CourseIDs in a single STUDENT column, separated by commas",,"Incorrect — multi-valued cells violate first normal form and prevent reliable querying and integrity enforcement."
+Option,0,"Create a separate database for each relationship type",,"Incorrect — all relationships should exist within a single database. Separate databases would prevent joining across the relationship."
+Hint,Many-to-many needs three tables: the two entities plus a bridge table with foreign keys to both.,,,
+Feedback,"Chapter 6 explains that many-to-many relationships cannot be directly implemented with a single foreign key. Instead, a junction (or associative) table is created — such as ENROLLMENT — containing foreign keys to both STUDENT and COURSE. Each row in the junction table represents one student enrolled in one course, resolving the M:M relationship into two 1:M relationships.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q8,,,,,
+Title,Referential integrity,,,,,
+QuestionText,"A staff member tries to insert a STUDENT_GRADE row with StudentID 99999, but no student with that ID exists in the STUDENT table. The DBMS rejects the insertion. Which integrity rule is being enforced?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Entity integrity — every table must have a primary key",,"Incorrect — entity integrity requires that primary keys are unique and non-null. The issue here is a foreign key violation."
+Option,100,"Referential integrity — every foreign key value must match an existing primary key in the referenced table",,"Correct — referential integrity ensures that cross-table references are valid. A non-existent StudentID violates this rule."
+Option,0,"Domain integrity — StudentID must be a valid integer",,"Incorrect — domain integrity enforces data type and value constraints. The issue is cross-table reference validity, not data type."
+Option,0,"User-defined integrity — a custom business rule blocks the insertion",,"Incorrect — while referential integrity can be seen as a type of business rule, it is specifically enforced by foreign key constraints in the DBMS."
+Hint,Foreign key constraint: every reference must point to something that exists. What rule enforces this?,,,
+Feedback,"Chapter 6 defines referential integrity as the rule that every foreign key value must match an existing primary key value in the referenced table (or be NULL if allowed). The DBMS enforces this automatically through foreign key constraints, preventing orphaned records that reference non-existent parents.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q9,,,,,
+Title,Entity integrity,,,,,
+QuestionText,"The STUDENT table has StudentID as its primary key. A user tries to insert a new student row but leaves StudentID blank (NULL). The DBMS rejects the insertion. Which rule is being enforced?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,100,"Entity integrity — a primary key cannot be NULL; every row must have a valid identifier",,"Correct — entity integrity requires that every row has a unique, non-null primary key value. NULL violates this fundamental rule."
+Option,0,"Referential integrity — the StudentID must match an existing value in another table",,"Incorrect — referential integrity governs foreign keys, not primary keys. StudentID is a primary key."
+Option,0,"Domain integrity — StudentID must be a positive integer",,"Incorrect — while domain integrity could enforce data type, the NULL rejection is specifically about entity integrity."
+Option,0,"Check constraint — a rule was defined that StudentID cannot be NULL",,"Incorrect — while CHECK could also enforce non-null, entity integrity is the fundamental relational rule that primary keys cannot be NULL."
+Hint,Primary key = must be unique and never NULL. Which rule guarantees this?,,,
+Feedback,"Chapter 6 defines entity integrity as the requirement that every table have a primary key and that the primary key value cannot be NULL. This ensures that every row can be uniquely identified and referenced. Without entity integrity, there would be no reliable way to distinguish or reference individual rows.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT6-Q10,,,,,
+Title,Join reconstruction,,,,,
+QuestionText,"The Grading Database separates student names (in STUDENT) from grades (in STUDENT_GRADE). A report needs to show StudentName alongside each grade. According to Chapter 6, how is this information reconstructed?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Copy the student name into every grade row each time a report is generated",,"Incorrect — copying data is exactly what the relational model avoids. Data should be stored once and linked via keys."
+Option,100,"Join STUDENT and STUDENT_GRADE on StudentID to bring the student name into the grade result set",,"Correct — JOIN reconstructs the original view by linking related tables through their primary/foreign key relationship."
+Option,0,"Use a spreadsheet VLOOKUP function to pull names from the STUDENT table into the grade report",,"Incorrect — VLOOKUP is a spreadsheet concept. In a database, JOIN performs this operation natively and with enforcement."
+Option,0,"Store all data in one flat table so nothing needs to be reconstructed",,"Incorrect — this is the flat-table approach that the relational model explicitly rejects because of anomalies."
+Hint,When data is split across tables, how do you bring it back together for a report?,,,
+Feedback,"Chapter 6 demonstrates that JOINS are the mechanism for reconstructing information split across related tables. When STUDENT_GRADE is joined with STUDENT ON StudentID, the student's name, email, and other attributes are brought into the result set. This is the power of the relational model: store once, join as needed.",
+,,,,

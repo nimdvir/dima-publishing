@@ -25,23 +25,6 @@ Every database you have built, every query you have written, and every design de
 
 ---
 
-## In This Chapter
-
-1. [15.1 What Is Business Strategy?](#151-what-is-business-strategy)
-2. [15.2 Information Systems as Strategic Infrastructure](#152-information-systems-as-strategic-infrastructure)
-3. [15.3 Competitive Advantage and IS Frameworks](#153-competitive-advantage-and-is-frameworks)
-4. [15.4 Strategy Requires Analytics](#154-strategy-requires-analytics)
-5. [15.5 Advanced SQL as Strategic Capability](#155-advanced-sql-as-strategic-capability)
-6. [15.6 Strategic Alignment: Business Goals and System Design](#156-strategic-alignment-business-goals-and-system-design)
-7. [15.7 Risks of Poor Information Strategy](#157-risks-of-poor-information-strategy)
-8. [15.8 The Grading Database as a Strategic System](#158-the-grading-database-as-a-strategic-system)
-9. [15.9 Integration & Looking Ahead](#159-integration--looking-ahead)
-10. [Chapter Summary](#chapter-summary)
-11. [References](#references)
-12. [Table of Figures](#table-of-figures)
-
----
-
 ## Chapter Overview
 
 This chapter moves beyond *how systems work* to **why they matter strategically**. After learning how to design databases, write advanced SQL, administer systems, and build BI solutions, you now examine how **information systems shape competitive advantage, organizational performance, and managerial decision-making**.
@@ -78,6 +61,22 @@ After completing this chapter, you will be able to:
 **Gemini Prompt**: "Create a professional, clean educational illustration for a college textbook showing a learning objectives roadmap for Chapter 15. Show 12 numbered milestones arranged along a winding path from bottom-left to top-right. Key milestone labels: 'IS & Strategy,' 'R.E.A.D. + DIKW,' 'Five Forces,' 'Value Chain + DB,' 'Trade-offs,' 'Data Quality & Design,' 'BI Feedback,' 'Star Schema,' 'Alignment,' 'Risks,' 'Grading DB,' 'Bridge to Ch16.' Blue and warm-gold color palette. Modern flat design, white background."
 
 </details>
+
+---
+
+## Chapter Roadmap
+
+| Section | Main Question | Why It Matters |
+| --- | --- | --- |
+| [15.1 What Is Business Strategy?](#15-1-what-is-business-strategy) | What does it mean for an organization to compete, not just operate? | Frames strategy as the purpose behind every technical decision in the course. |
+| [15.2 Information Systems as Strategic Infrastructure](#15-2-information-systems-as-strategic-infrastructure) | How do information systems become strategic, not just operational? | Positions data and systems as competitive infrastructure. |
+| [15.3 Competitive Advantage and IS Frameworks](#15-3-competitive-advantage-and-is-frameworks) | How do we analyze competitive position? | Applies Porter's Five Forces, value chain, and the Resource-Based View. |
+| [15.4 Strategy Requires Analytics](#15-4-strategy-requires-analytics) | Why does strategy depend on data and analysis? | Connects analytics directly to strategic decisions. |
+| [15.5 Advanced SQL as Strategic Capability](#15-5-advanced-sql-as-strategic-capability) | How do query skills become a strategic asset? | Shows advanced SQL as an organizational capability, not just a technical one. |
+| [15.6 Strategic Alignment: Business Goals and System Design](#15-6-strategic-alignment-business-goals-and-system-design) | How do system design choices support or block strategy? | Links design decisions to business goals and governance. |
+| [15.7 Risks of Poor Information Strategy](#15-7-risks-of-poor-information-strategy) | What happens when information strategy is weak? | Identifies how poor design and governance erode advantage. |
+| [15.8 The Grading Database as a Strategic System](#15-8-the-grading-database-as-a-strategic-system) | How does our running example act strategically? | Reframes the Grading Database as a system that shapes behavior and accountability. |
+| [15.9 Integration & Looking Ahead](#15-9-integration-and-looking-ahead) | How does everything connect to the final review? | Bridges strategic frameworks to the full-course integration in Chapter 16. |
 
 ---
 
