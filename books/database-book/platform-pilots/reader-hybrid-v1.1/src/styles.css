@@ -25,6 +25,7 @@
   --color-accent: #D9B44F;         /* gold — progress, brand mark */
   --color-accent-dark: #8E7B55;
   --color-accent-soft: #EEF2FF;    /* pale indigo — active nav fill */
+  --brand-highlight: #0E7490;      /* teal — header title highlight, AA on white */
 
   /* Section accent colors */
   --intro-text: #4F46E5;    --intro-bg: #EEF2FF;    --intro-border: #C7D2FE;
@@ -117,6 +118,7 @@ h1 { font-size: 1.75rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.15rem; }
   font-weight: 700; color: var(--color-heading);
   font-size: 0.95rem; letter-spacing: 0.02em;
 }
+.brand-highlight { color: var(--brand-highlight); font-weight: 800; }
 .brand-scope { color: var(--color-text-muted); font-size: 0.85rem; }
 .header-right { display: flex; align-items: center; gap: 0.75rem; }
 .header-login-btn {
@@ -807,6 +809,8 @@ h1 { font-size: 1.75rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.15rem; }
 .markdown-body h2 { font-size: 1.3rem; margin: 1.4em 0 0.5em; color: var(--color-heading); }
 .markdown-body h3 { font-size: 1.1rem; margin: 1.3em 0 0.4em; color: var(--color-heading); }
 .markdown-body h1:first-child, .markdown-body h2:first-child, .markdown-body h3:first-child { margin-top: 0; }
+/* Offset anchor jumps (roadmap links) so headings clear the sticky header. */
+.markdown-body h2[id], .markdown-body h3[id] { scroll-margin-top: calc(var(--header-height) + var(--progress-height) + 1rem); }
 .markdown-body p { margin: 0 0 1em; }
 .markdown-body ul, .markdown-body ol { margin: 0 0 1em; padding-left: 1.5em; }
 .markdown-body li { margin-bottom: 0.25em; }
@@ -1183,7 +1187,129 @@ button:focus-visible {
 @media (max-width: 480px) {
   .header-inner { padding: 0 0.75rem; }
   .brand-publisher { font-size: 0.8rem; }
+  .brand-scope { display: none; }
   .reader-page-title { font-size: 1.2rem; }
   .markdown-body { font-size: 0.93rem; }
   .cta-btn { font-size: 0.82rem; padding: 0.55rem 1rem; }
 }
+
+/* ═══════════════════════════ SITE FOOTER ═══════════════════════════ */
+.site-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  text-align: center;
+  padding: 1.75rem 1.5rem 2.5rem;
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.footer-logo {
+  height: 44px;
+  width: auto;
+  opacity: 0.92;
+}
+.footer-copyright {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+.footer-updated {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════ LAB CHAPTER LINK ═══════════════════════════ */
+.lab-chapter-link {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  background: var(--color-accent-soft);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  font-size: 0.88rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+.lab-chapter-link a {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ═══════════════════════════ FEEDBACK LINK ═══════════════════════════ */
+.feedback-link {
+  border: 1px solid #d4d4d8;
+  background: #ffffff;
+  color: #3730a3;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-link:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: var(--color-primary-soft);
+}
+
+.sidebar-feedback {
+  padding: 1rem 0.5rem 0.5rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.sidebar-feedback-text {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.6rem;
+  line-height: 1.45;
+}
+
+.chapter-feedback {
+  margin-top: 3rem;
+}
+
+.feedback-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+}
+
+.feedback-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--color-surface-muted);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.feedback-text {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .feedback-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+

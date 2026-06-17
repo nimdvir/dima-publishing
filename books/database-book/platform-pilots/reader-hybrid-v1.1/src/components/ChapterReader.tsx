@@ -6,11 +6,14 @@ import MarkdownRenderer from './MarkdownRenderer';
 import OnThisPage, { OnThisPageMobile } from './OnThisPage';
 import BottomNavigation from './BottomNavigation';
 import ReaderEntryCoverRotator from './ReaderEntryCoverRotator';
+import { FeedbackLink } from './FeedbackLink';
+
 
 interface ChapterReaderProps {
   page: BookPage;
   allPages: BookPage[];
   onNavigate: (page: BookPage) => void;
+  onHashNavigate?: (targetId: string) => void;
   hasPrev: boolean;
   hasNext: boolean;
   prevPage: BookPage | null;
@@ -24,6 +27,7 @@ export default function ChapterReader({
   page,
   allPages,
   onNavigate,
+  onHashNavigate,
   hasPrev,
   hasNext,
   prevPage,
@@ -35,6 +39,18 @@ export default function ChapterReader({
   // Extract H2/H3 headings from the current page content for "On this page"
   const headings = useMemo(() => extractHeadingToc(page.content), [page.content]);
   const reducedMotion = useReducedMotion();
+
+  // Roadmap and other in-content "#anchor" links must jump across reader pages,
+  // so intercept them and route through the chapter-aware handler.
+  const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!onHashNavigate) return;
+    const anchor = (e.target as HTMLElement).closest('a');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (!href || !href.startsWith('#') || href.length < 2) return;
+    e.preventDefault();
+    onHashNavigate(href.slice(1));
+  };
 
   return (
     <div className="chapter-reader">
@@ -59,9 +75,6 @@ export default function ChapterReader({
                 Page {page.pageNumber} of {page.totalPages}
               </span>
             )}
-            <span className={`source-badge source-${page.sourceType}`}>
-              {page.sourceType}
-            </span>
           </div>
         </div>
 
@@ -85,7 +98,7 @@ export default function ChapterReader({
 
         {/* Reader body: main article + right-side "On this page" rail */}
         <div className="reader-body">
-          <div className="reader-content">
+          <div className="reader-content" onClick={handleContentClick}>
             {showEntryCover && (
               <ReaderEntryCoverRotator
                 classicUrl="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto/bitm330book/0-cover-image/ch00-cover-art2-cropped.gif"
@@ -93,9 +106,17 @@ export default function ChapterReader({
               />
             )}
             <MarkdownRenderer content={page.content} suppressFirstImage={showEntryCover} />
+            <div className="chapter-feedback">
+              <hr className="feedback-divider" />
+              <div className="feedback-content">
+                <span className="feedback-text">Found something broken, confusing, or missing?</span>
+                <FeedbackLink />
+              </div>
+            </div>
           </div>
           <OnThisPage headings={headings} />
         </div>
+
 
         {/* Bottom navigation */}
         <BottomNavigation

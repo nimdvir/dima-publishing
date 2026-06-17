@@ -5,6 +5,8 @@ import {
   BookOpen, FlaskConical, LogIn, ChevronDown, ChevronRight,
   LayoutDashboard, BookMarked, Layers, Terminal, HelpCircle, Sparkles, Award,
 } from 'lucide-react';
+import { FeedbackLink } from './FeedbackLink';
+
 
 /** Icons for each reader area (keyed by section title). */
 const SECTION_ICONS: Record<string, React.ReactNode> = {
@@ -15,19 +17,28 @@ const SECTION_ICONS: Record<string, React.ReactNode> = {
   "Let's Build": <Terminal size={14} />,
   'Review Questions': <HelpCircle size={14} />,
   'Terms Treasury': <Sparkles size={14} />,
+  'Key Terms': <Sparkles size={14} />,
   'RAT: Reading Test': <Award size={14} />,
+  'Chapter Lab': <FlaskConical size={14} />,
+};
+
+/** Student-facing display labels (override internal section titles). */
+const SECTION_LABELS: Record<string, string> = {
+  'Terms Treasury': 'Key Terms',
 };
 
 /** Subtitles for reader areas. */
 const SECTION_SUBTITLES: Record<string, string> = {
   'Preface': 'About this book',
   'Copyright & Acknowledgements': 'Rights & attribution',
-  'Introduction': 'Hook & Core Alignment',
-  'Core Concepts': 'Theory & Core Frameworks',
-  "Let's Build": 'Hands-on Code Laboratory',
-  'Review Questions': 'Self-explanation Exercises',
-  'Terms Treasury': 'Key Glossary & Core Definitions',
-  'RAT: Reading Test': 'Verify Knowledge Retention',
+  'Introduction': 'Course overview',
+  'Core Concepts': 'Core reading',
+  "Let's Build": 'Hands-on practice',
+  'Review Questions': 'Check your understanding',
+  'Terms Treasury': 'Essential vocabulary',
+  'Key Terms': 'Essential vocabulary',
+  'RAT: Reading Test': 'Reading assessment',
+  'Chapter Lab': 'PetVax hands-on project',
 };
 
 interface SidebarProps {
@@ -132,7 +143,7 @@ export default function Sidebar({
                             {SECTION_ICONS[sec.title] || null}
                           </span>
                           <span className="section-text">
-                            <span className="section-title">{sec.title}</span>
+                            <span className="section-title">{SECTION_LABELS[sec.title] || sec.title}</span>
                             {SECTION_SUBTITLES[sec.title] && (
                               <span className="section-subtitle">{SECTION_SUBTITLES[sec.title]}</span>
                             )}
@@ -179,6 +190,13 @@ export default function Sidebar({
           ))}
         </div>
       )}
+
+      <hr className="sidebar-divider" />
+      <div className="sidebar-feedback">
+        <p className="sidebar-feedback-text">Found something broken, confusing, or missing?</p>
+        <FeedbackLink />
+      </div>
     </div>
   );
 }
+
