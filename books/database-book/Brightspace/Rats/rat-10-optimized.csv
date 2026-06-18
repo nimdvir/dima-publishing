@@ -1,0 +1,147 @@
+﻿// Brightspace CSV Import — RAT 10 Top Questions (Optimized),,,,
+// Source: Chapter 10 — Advanced SQL for Business Analysis (ch10-main-2026-06-16.md),,,,
+// Date: 2026-06-17,,,,
+// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC),,,,
+// Save as CSV UTF-8 before importing,,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 10: Advanced SQL for Business Analysis,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 10 at: https://data-pilot.dimapublishing.com/book/ch10/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT10-Q1,,,,,
+Title,Advanced SQL vs basic SQL,,,,,
+QuestionText,"Chapter 10 distinguishes advanced SQL from the basic SQL covered in Chapter 5. Which characteristics describe advanced SQL as presented in Chapter 10?
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Advanced SQL uses multi-step pipelines — CTEs, subqueries, and views — to build answers from simple, verifiable pieces",,"Correct — Chapter 10 emphasizes composing complex queries from simple, testable building blocks rather than writing one giant query."
+Option,0,Advanced SQL replaces the need for database design — well-written queries can compensate for poor table structure,,"Incorrect — Chapter 10 emphasizes that advanced queries work WITH good design, not instead of it. Many query problems are design problems in disguise."
+Option,1,"Advanced SQL transforms raw data into managerial insight through aggregation, window functions, and conditional logic",,Correct — the chapter focuses on turning normalized data into actionable business reports using analytical SQL features.
+Option,1,Advanced SQL includes safe data modification workflows using transactions and verify-modify-verify patterns,,Correct — Chapter 10 covers UPDATE and DELETE safety through explicit transactions with verification steps.
+Option,0,Advanced SQL is only used for SELECT queries — data modification is always handled by application code,,Incorrect — Chapter 10 includes a dedicated section (§10.11) on safe data modification with SQL UPDATE and DELETE within transactions.
+Hint,Advanced SQL = multi-step pipelines + analytical functions + safe data modification. It builds on basic SQL, not replaces it.,,,
+Feedback,"Chapter 10 defines advanced SQL by its purpose: transforming raw normalized data into managerial insight. Key characteristics include multi-step CTE pipelines, window functions, conditional aggregation, safe transaction-based data modification, and reusable reporting structures (views, CTEs). Advanced SQL works WITH good database design, not around it.",
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT10-Q2,,,,,
+Title,Reusable reporting tools,,,,,
+QuestionText,"Chapter 10 presents several tools for building reusable reporting structures. Which statements correctly describe these tools?
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,4,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,A VIEW is a stored query definition that persists in the database and can be queried like a table by multiple users and applications,,"Correct — views are persistent database objects. Once created, they are available to all authorized users and applications."
+Option,1,A CTE (Common Table Expression) exists only for the duration of a single query — it is a temporary named result set defined with WITH,,Correct — CTEs are query-scoped. They simplify complex queries by breaking them into named steps but disappear after the query completes.
+Option,0,Views and CTEs are interchangeable — any CTE can be replaced by a view with identical performance,,"Incorrect — while functionally similar, views persist across sessions while CTEs are query-scoped. Performance characteristics may also differ."
+Option,1,Policy tables store configurable values (like grading weights) so business rules can change without rewriting SQL queries,,"Correct — moving weights, thresholds, and grading scales into policy tables is a key design principle in Chapter 10."
+Option,0,Subqueries are always more efficient than CTEs because they execute in a single pass,,"Incorrect — Chapter 10 discusses trade-offs among CTEs, subqueries, and views. No single approach is always fastest; the query optimizer determines execution plans."
+Hint,Views = persistent. CTEs = query-scoped. Policy tables = configurable business rules.,,,
+Feedback,"Chapter 10 presents a toolkit for reusable reporting: views (persistent stored queries), CTEs (temporary named steps within a query), subqueries (inline expressions), and policy tables (configurable weight/threshold storage). Choosing the right tool depends on how often the logic will be reused and by whom.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q3,,,,,
+Title,CTE definition,,,,,
+QuestionText,"What does the acronym CTE stand for in SQL, and what is its primary purpose as described in Chapter 10?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,Calculated Table Expression — a table whose values are computed from formulas,,"Incorrect — CTE stands for Common Table Expression, not Calculated Table Expression."
+Option,100,Common Table Expression — a temporary named result set defined with WITH that simplifies complex queries by breaking them into logical steps,,"Correct — CTEs let you name intermediate results, making multi-step queries more readable and easier to debug."
+Option,0,Conditional Transformation Engine — a function that applies CASE logic to each row,,Incorrect — CTE is not an acronym for a transformation engine. CASE expressions handle conditional logic separately.
+Option,0,Composite Table Extractor — a tool for extracting entities from flat tables,,"Incorrect — CTE stands for Common Table Expression. Entity extraction from flat tables uses CREATE TABLE AS SELECT, not CTEs."
+Hint,CTE = Common Table Expression. Defined with WITH. Exists only during query execution.,,,
+Feedback,"Chapter 10 introduces CTEs (Common Table Expressions) as named query steps defined using WITH. CTEs make complex analytical queries readable by breaking them into logical stages — for example, computing averages in one CTE, attendance in another, and joining results in the final SELECT.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q4,,,,,
+Title,Window functions vs GROUP BY,,,,,
+QuestionText,"A window function differs from GROUP BY aggregation in what fundamental way, according to Chapter 10?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,Window functions are faster than GROUP BY in all cases,,"Incorrect — performance depends on the query, indexes, and data. The fundamental difference is about row retention, not speed."
+Option,100,Window functions compute aggregate values without collapsing rows — each original row is preserved alongside the calculated aggregate,,Correct — GROUP BY collapses multiple rows into one summary row per group. Window functions add aggregate values as new columns while keeping every original row.
+Option,0,Window functions can only operate on numeric columns,,"Incorrect — window functions like RANK() and ROW_NUMBER() work on any sortable data type, not just numbers."
+Option,0,Window functions replace the need for JOINs in analytical queries,,Incorrect — window functions complement JOINs; they do not replace them. They operate within the result set produced by FROM and JOIN.
+Hint,GROUP BY collapses rows. Window functions keep all rows and add computed values alongside them.,,,
+Feedback,"Chapter 10 explains the key distinction: GROUP BY reduces multiple rows to one summary row per group (losing detail), while window functions using OVER() and PARTITION BY preserve every source row and display aggregate values alongside the original data. This makes window functions ideal for reports that need both detail and summary in the same view.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q5,,,,,
+Title,HAVING vs WHERE,,,,,
+QuestionText,"A student writes: SELECT StudentID, AVG(Score) FROM STUDENT_GRADE WHERE AVG(Score) &lt; 75 GROUP BY StudentID. The query produces an error. According to Chapter 10, what is the problem?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,AVG(Score) is not a valid function — the correct function is AVERAGE(Score),,"Incorrect — AVG is the correct SQL aggregate function for calculating averages. The problem is about WHERE vs HAVING, not function names."
+Option,0,GROUP BY StudentID is unnecessary — aggregate functions do not require GROUP BY,,"Incorrect — when combining aggregate and non-aggregate columns, GROUP BY is required to define the grouping."
+Option,100,WHERE cannot be used with aggregate functions — HAVING must be used to filter on aggregated results after grouping,,"Correct — WHERE filters individual rows before grouping. HAVING filters groups after aggregation. AVG(Score) is an aggregate; it must appear in HAVING, not WHERE."
+Option,0,"StudentID must be included in the AVG function — the correct syntax is AVG(StudentID, Score)",,"Incorrect — AVG takes a single column argument. The error is about WHERE filtering on an aggregate, not about function syntax."
+Hint,WHERE filters rows before grouping. HAVING filters groups after aggregation. Which one works with AVG?,,,
+Feedback,"Chapter 10 explains the WHERE vs HAVING distinction: WHERE filters individual rows before any grouping occurs, while HAVING filters groups after aggregation. Since AVG(Score) is computed during aggregation, it cannot appear in WHERE. The correct query uses HAVING AVG(Score) < 75.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q6,,,,,
+Title,Transaction commands,,,,,
+QuestionText,Chapter 10 recommends wrapping UPDATE and DELETE operations in explicit transactions. Which sequence of SQL commands correctly implements a safe data modification?,,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"COMMIT; UPDATE ...; ROLLBACK; — commit first, then update, then rollback if needed",,"Incorrect — COMMIT should come after the UPDATE, not before. The order is BEGIN → verify → modify → verify → COMMIT or ROLLBACK."
+Option,100,"BEGIN TRANSACTION; -- verify before; UPDATE ...; -- verify after; COMMIT; — verify before and after, commit only when correct",,"Correct — the safe modification workflow starts a transaction, verifies the state before changing, applies the change, verifies the result, and commits only when both verifications pass."
+Option,0,"UPDATE ...; SELECT ...; — run the update, then check the result with a SELECT",,"Incorrect — without a transaction, an incorrect UPDATE cannot be rolled back. Chapter 10 emphasizes explicit transactions."
+Option,0,DELETE ...; COMMIT; — delete and immediately commit to minimize locking,,Incorrect — Chapter 10 recommends verifying before DELETE and reviewing the result before committing. Immediate commit prevents rollback.
+Hint,Safe workflow = BEGIN → verify before → modify → verify after → COMMIT (or ROLLBACK if wrong).,,,
+Feedback,"Chapter 10's safe modification workflow uses transactions: BEGIN TRANSACTION, run a verification query to confirm affected rows, perform the UPDATE or DELETE, run a second verification to confirm the result is correct, then COMMIT. If either verification fails, ROLLBACK undoes the change.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q7,,,,,
+Title,Policy tables vs hard-coding,,,,,
+QuestionText,"A university changes its grading policy: exams now count for 50% instead of 40%. In the Grading Database, where is the BEST place to make this change according to Chapter 10?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,Update every SQL query that references exam weights — search and replace '0.40' with '0.50',,Incorrect — hard-coding weights in queries creates a maintenance nightmare. One missed query produces inconsistent results.
+Option,100,Update the weight value in the grading policy table — all queries that JOIN to the policy table will automatically use the new weight,,Correct — storing weights in a policy table centralizes business rules. Changing one row updates every report that references it.
+Option,0,Create a new database for each grading policy version,,Incorrect — maintaining separate databases for policy changes is impractical and violates the principle of single source of truth.
+Option,0,Add a new column to STUDENT_GRADE to store the override weight for each student,,"Incorrect — this embeds policy at the data level and creates redundancy. Policy should live in a policy table, not in every grade row."
+Hint,Where should configurable business rules live so one change updates everything?,,,
+Feedback,"Chapter 10 advocates policy tables: storing configurable business rules (weights, thresholds, grade scales) in dedicated tables that queries JOIN to. This way, changing a policy requires updating one row in one table, and all reports, dashboards, and analyses automatically reflect the new rule — no code changes needed.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q8,,,,,
+Title,COALESCE function,,,,,
+QuestionText,"In the at-risk student report (§10.12), a student has no attendance records. The query uses COALESCE(ar.AttendanceRate, 0). What does COALESCE do in this context?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,100,Returns the first non-NULL value in the list — 0 replaces NULL so the student shows 0% attendance instead of NULL,,Correct — COALESCE scans its arguments left to right and returns the first one that is not NULL. This ensures calculations work even when data is missing.
+Option,0,Converts the attendance rate from a percentage (0-100) to a decimal (0-1),,Incorrect — COALESCE handles NULLs; it does not perform mathematical conversion. Casting or arithmetic would be needed to change ranges.
+Option,0,Combines multiple attendance records into a single average value,,"Incorrect — COALESCE handles NULL replacement, not aggregation. AVG or SUM would combine multiple records."
+Option,0,Deletes attendance records where the rate is zero,,Incorrect — COALESCE is a read-only function that returns a value. It does not modify or delete data.
+Hint,COALESCE(val1, val2, ...) = returns the first argument that is NOT NULL.,,,
+Feedback,"Chapter 10 introduces COALESCE as the standard SQL function for NULL handling. It takes a list of values and returns the first non-NULL one. In reporting pipelines, COALESCE ensures that missing data (NULL from LEFT JOINs) is replaced with a sensible default (like 0) so calculations and comparisons work correctly.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q9,,,,,
+Title,Diagnostic queries before reports,,,,,
+QuestionText,"Chapter 10 emphasizes running diagnostic queries before building analytical reports. A GRADE_FLAT table stores StudentID, FirstName, Email, DeliverableType, DeliverableNumber, DueDate, and Score in one table. Alice's email appears in 6 different rows with two different values. According to Chapter 10, why should this be diagnosed before any reporting?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,Because flat tables always produce incorrect results — they should never be used for any purpose,,Incorrect — Chapter 10 acknowledges that real-world data often arrives in flat formats. The issue is diagnosing problems before trusting the data.
+Option,100,Because inconsistent data (like two different emails for the same person) produces unreliable reports — diagnostic queries reveal data quality issues that must be understood or corrected before analysis,,Correct — Chapter 10's diagnostic-first approach ensures data inconsistencies are identified and understood before they silently corrupt reports and decisions.
+Option,0,Because the DBMS requires all email addresses to be unique — the table violates a database constraint,,"Incorrect — in a flat table without normalization, there are no uniqueness constraints on email. The issue is data quality, not constraint violation."
+Option,0,Because reports can only query normalized tables — flat tables must be converted first,,"Incorrect — SQL can query flat tables directly. The issue is data reliability, not SQL capability."
+Hint,Would you trust a report built on data that contains two different email addresses for the same person?,,,
+Feedback,"Chapter 10's diagnostic-first approach (§10.3) advises running data quality checks before building reports. Inconsistent data in flat tables — duplicate emails, conflicting dates, missing values — silently corrupts analytical results. Diagnostic queries (finding duplicates, checking for NULLs, verifying consistency) reveal problems that must be fixed or understood before analysis begins.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT10-Q10,,,,,
+Title,CROSS JOIN product,,,,,
+QuestionText,"To find missing grades, Chapter 10 uses CROSS JOIN between STUDENT (5 rows) and DELIVERABLE (6 rows). How many rows does the CROSS JOIN produce, and why is this useful?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,11 rows — one for each unique combination of student and deliverable that exists in the data,,"Incorrect — CROSS JOIN produces the Cartesian product (every possible combination), not just existing ones. 5 × 6 = 30, not 5 + 6 = 11."
+Option,100,"30 rows — the Cartesian product of all students and all deliverables, creating every possible pairing so missing combinations can be found with a LEFT JOIN",,Correct — CROSS JOIN generates every possible student-deliverable pair. LEFT JOIN with IS NULL then identifies which pairs have no grade — the missing grades.
+Option,0,"5 rows — one for each student, with all deliverables compressed into a single row",,"Incorrect — CROSS JOIN does not compress data. Each student appears once per deliverable, producing 5 × 6 = 30 rows."
+Option,0,"6 rows — one for each deliverable, showing which students completed it",,"Incorrect — CROSS JOIN pairs every student with every deliverable. The result has student × deliverable rows, not deliverable rows."
+Hint,CROSS JOIN = Cartesian product. STUDENT rows × DELIVERABLE rows = every possible combination.,,,
+Feedback,"Chapter 10 uses CROSS JOIN to generate the complete set of expected student-deliverable pairings (5 students × 6 deliverables = 30 rows). LEFT JOIN with the actual grades table, followed by WHERE grade IS NULL, reveals which combinations have no recorded grade — a pattern used throughout the chapter for finding missing data.",
+,,,,

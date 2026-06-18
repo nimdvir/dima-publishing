@@ -1,0 +1,149 @@
+"// Brightspace CSV Import — RAT 11 Top Questions (Optimized)",,,,
+"// Source: Chapter 11 — Database Administration (ch11-main-2026-06-17.md)",,,,
+"// Date: 2026-06-17",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 11: Database Administration,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 11 at: https://data-pilot.dimapublishing.com/book/ch11/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT11-Q1,,,,,
+Title,ACID properties,,,,,
+QuestionText,"Chapter 11 introduces ACID as the foundation of reliable database transactions. Which statements correctly describe ACID properties?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Atomicity ensures a transaction is all-or-nothing — either every step completes successfully or the entire transaction is rolled back",,"Correct — atomicity means the DBMS treats a multi-step transaction as a single unit. If any step fails, all changes are undone."
+Option,0,"Consistency means the database automatically optimizes query performance for every transaction",,"Incorrect — consistency means a transaction moves the database from one valid state to another, preserving all defined rules and constraints. It is not about query optimization."
+Option,1,"Isolation ensures concurrent transactions do not interfere with each other — each transaction appears to run alone",,"Correct — isolation prevents the problems of concurrent access (dirty reads, non-repeatable reads, phantom reads) so transactions do not see each other's intermediate states."
+Option,1,"Durability guarantees that once a transaction is committed, it survives system failures — the result is permanent",,"Correct — durability means committed data is written to stable storage (disk, write-ahead log) and will survive crashes, power loss, or hardware failures."
+Option,0,"ACID properties only apply to financial databases — they are unnecessary for educational or analytical systems",,"Incorrect — Chapter 11 emphasizes that ACID is relevant to ANY multi-user database where data integrity matters, from banking to grading systems."
+Hint,ACID = Atomicity (all-or-nothing), Consistency (valid state), Isolation (no interference), Durability (permanent).,,,
+Feedback,"Chapter 11 presents ACID as the four essential guarantees of transaction processing: Atomicity (all-or-nothing execution), Consistency (valid state transitions), Isolation (concurrent transactions don't interfere), and Durability (committed data survives failures). These properties ensure that databases remain reliable even under concurrent access and system failures.",
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT11-Q2,,,,,
+Title,DBA responsibilities,,,,,
+QuestionText,"Chapter 11 describes the role of the Database Administrator (DBA). Which responsibilities does the chapter identify as core DBA duties?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Managing backup and recovery — ensuring data can be restored after hardware failure, human error, or disaster",,"Correct — backup and recovery is a primary DBA responsibility. The DBA designs backup strategies (full, incremental, differential) and tests recovery procedures."
+Option,1,"Implementing security and access control — managing user accounts, permissions, and role-based access",,"Correct — the DBA controls who can access what data through authentication, authorization, and role-based access control (RBAC)."
+Option,0,"Writing all SQL queries for end users — the DBA serves as the only interface to the database",,"Incorrect — DBAs manage the database environment, not write every query. End users, analysts, and applications write their own queries against properly secured databases."
+Option,1,"Monitoring and tuning performance — identifying slow queries, managing indexes, and optimizing resource usage",,"Correct — performance monitoring and tuning is an ongoing DBA responsibility to ensure the database responds quickly as data volume and user count grow."
+Option,0,"Designing ER diagrams and normalization — the DBA is primarily a database designer",,"Incorrect — database design is a separate role (often performed by data architects or developers). The DBA focuses on operational management of running databases."
+Hint,DBA = operational management: security, backup, performance, maintenance. Design is a separate role.,,,
+Feedback,"Chapter 11 positions the DBA as the operational steward of the database: responsible for security and access control, backup and recovery planning, performance monitoring and tuning, maintenance (schema changes, data migrations), and ensuring ACID reliability. The DBA role is distinct from database design — it focuses on keeping running databases secure, fast, and available.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q3,,,,,
+Title,Concurrency control,,,,,
+QuestionText,"Two instructors try to update the same student's grade simultaneously. The DBMS prevents them from interfering with each other. According to Chapter 11, what mechanism provides this protection?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Normalization — separating data into related tables prevents update conflicts",,"Incorrect — normalization reduces redundancy but does not manage simultaneous access by multiple users."
+Option,100,"Concurrency control — locking mechanisms and isolation levels ensure transactions do not interfere with each other",,"Correct — concurrency control uses locks and isolation levels to manage simultaneous access, preventing lost updates, dirty reads, and other interference."
+Option,0,"ACID consistency — the database rejects any transaction that changes a grade",,"Incorrect — consistency ensures valid state transitions, not simultaneous access management. Both grade updates may be individually valid but need concurrency control to avoid conflicts."
+Option,0,"Triggers — automated database programs that fire when a grade changes",,"Incorrect — triggers respond to data changes but do not manage simultaneous access by multiple users."
+Hint,Multiple users changing the same data simultaneously requires what kind of control?,,,
+Feedback,"Chapter 11 explains concurrency control as the set of mechanisms (locks, isolation levels, two-phase locking) that allow multiple users to work with the same database simultaneously without corrupting data. Without concurrency control, lost updates, dirty reads, and other anomalies would occur.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q4,,,,,
+Title,Transaction definition,,,,,
+QuestionText,"According to Chapter 11, what is a database transaction?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"A SQL SELECT query that retrieves data without modifying it",,"Incorrect — a SELECT is a query, which may be part of a transaction, but a transaction is a broader concept of grouped operations."
+Option,100,"A logical unit of work — one or more database operations that must succeed or fail together as a single unit",,"Correct — a transaction groups multiple SQL statements (e.g., deduct from one account AND add to another) into an all-or-nothing unit."
+Option,0,"The process of converting a flat table into normalized tables",,"Incorrect — that is database design or data migration, not a transaction."
+Option,0,"A backup copy of the database stored in a separate location",,"Incorrect — that is a backup, not a transaction. Transactions manage live data operations."
+Hint,A transaction groups operations so they succeed together or fail together. Think: bank transfer.,,,
+Feedback,"Chapter 11 defines a transaction as a logical unit of work — a sequence of database operations (SELECT, INSERT, UPDATE, DELETE) that must be treated as a single, indivisible unit. If any operation in the transaction fails, the entire transaction is rolled back, maintaining the ACID guarantee of atomicity.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q5,,,,,
+Title,Deadlock,,,,,
+QuestionText,"Transaction A locks Table X and then waits for Table Y. Transaction B locks Table Y and then waits for Table X. Neither can proceed. According to Chapter 11, what is this situation called?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Transaction timeout — both transactions will automatically abort after a set time period",,"Incorrect — while timeouts can break deadlocks, the situation described is a deadlock itself, not a timeout."
+Option,100,"Deadlock — two transactions each hold a lock the other needs, creating a circular wait that prevents both from completing",,"Correct — deadlock occurs when each transaction is waiting for a resource held by the other. Neither can proceed until one releases its lock, but neither will release until it completes."
+Option,0,"Lock escalation — the DBMS upgrades row-level locks to table-level locks to resolve the conflict",,"Incorrect — lock escalation converts many fine-grained locks into fewer coarse ones for efficiency, not to resolve circular waits."
+Option,0,"Optimistic locking — both transactions assume no conflict and proceed without locking",,"Incorrect — optimistic locking avoids locks by checking for conflicts at commit time. The scenario describes actual locking with a circular dependency."
+Hint,Circular wait: A waits for B's resource, B waits for A's resource. What is this called?,,,
+Feedback,"Chapter 11 describes deadlock as a situation where two or more transactions form a circular dependency — each holds a resource the other needs. The DBMS detects deadlocks and resolves them by aborting one transaction (the victim), rolling back its work, and allowing the other to proceed.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q6,,,,,
+Title,Backup types,,,,,
+QuestionText,"A DBA runs a full backup every Sunday and backs up only the data that changed since Sunday on Tuesday. According to Chapter 11, what type of backup is the Tuesday backup?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Full backup — all data is copied each time",,"Incorrect — a full backup copies everything. The Tuesday backup only copies changes, not the entire database."
+Option,0,"Differential backup — it copies all changes since the last full backup",,"Incorrect — differential backup copies all changes since the last FULL backup (cumulative). The question describes an incremental backup."
+Option,100,"Incremental backup — it copies only the data that changed since the last backup of any type",,"Correct — incremental backup captures only changes since the most recent backup (full or incremental), minimizing time and storage per backup."
+Option,0,"Mirror backup — a real-time copy maintained on a separate server",,"Incorrect — mirroring maintains a live synchronized copy, not periodic backups of changes."
+Hint,Full = everything. Differential = all changes since last full. Incremental = only changes since last backup.,,,
+Feedback,"Chapter 11 distinguishes three backup types: full (complete copy), differential (all changes since the last full backup — cumulative), and incremental (only changes since the last backup of any type — smallest/fastest). Incremental backups are efficient but require the full backup PLUS all subsequent incrementals for a complete restore.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q7,,,,,
+Title,Role-based access control,,,,,
+QuestionText,"A university database gives instructors permission to update grades for their own courses but not to view student financial records. According to Chapter 11, what security model implements this?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,100,"Role-Based Access Control (RBAC) — permissions are assigned to roles (Instructor, Registrar, Student) rather than individual users",,"Correct — RBAC groups users into roles and assigns permissions to roles. Instructors get grade-update permissions; registrars get financial-record access."
+Option,0,"Discretionary Access Control — each user decides who can access their own data",,"Incorrect — discretionary access control lets data owners grant permissions. The scenario describes centrally managed role-based permissions."
+Option,0,"Mandatory Access Control — the operating system enforces security classifications on all data",,"Incorrect — mandatory access control uses system-enforced security labels. The scenario describes role-based access management."
+Option,0,"Network firewall — the database is protected by restricting IP addresses",,"Incorrect — a firewall protects at the network level. RBAC protects at the database level based on user roles."
+Hint,Permissions assigned to roles (Instructor, Student, Admin), not individuals. What model is this?,,,
+Feedback,"Chapter 11 presents Role-Based Access Control (RBAC) as the standard database security model. Users are assigned to roles, and permissions (SELECT, INSERT, UPDATE, DELETE) are granted to roles. This simplifies administration — change a role's permissions once, and all users in that role are affected.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q8,,,,,
+Title,Recovery log,,,,,
+QuestionText,"After a power failure, the DBMS uses a recovery log to restore the database to a consistent state. According to Chapter 11, what does the recovery log record?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Only the SQL queries that users submitted — SELECT statements are replayed in order",,"Incorrect — SELECT queries do not change data and are not logged for recovery. The log records changes (INSERT, UPDATE, DELETE), not reads."
+Option,100,"Every change to the database — before-images and after-images of modified data, recorded in a write-ahead log before changes are applied",,"Correct — the write-ahead log records all modifications (both old and new values) to stable storage BEFORE the actual data is changed, enabling undo/redo during recovery."
+Option,0,"Only failed transactions — the DBMS only logs operations that did not complete successfully",,"Incorrect — the log records ALL changes, successful and failed, so the DBMS can undo uncommitted transactions and redo committed ones after a crash."
+Option,0,"The current state of every table — a snapshot taken before each transaction begins",,"Incorrect — the log records individual changes, not full table snapshots. Snapshots are backup operations, not transaction logging."
+Hint,The recovery log writes changes BEFORE applying them to the database. Why? So it can undo or redo after a crash.,,,
+Feedback,"Chapter 11 explains the write-ahead log as the foundation of recovery. Before any change is written to the database, the log records the change (both old and new values). After a crash, the DBMS uses the log to UNDO uncommitted transactions (rollback) and REDO committed ones (roll-forward), restoring the database to a consistent state.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q9,,,,,
+Title,Optimistic vs pessimistic locking,,,,,
+QuestionText,"A DBA chooses a locking strategy for a database where most transactions read data and conflicts are rare. According to Chapter 11, which strategy is most appropriate?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Pessimistic locking — lock resources before reading to prevent any possibility of conflict",,"Incorrect — pessimistic locking acquires locks early, which adds overhead even when conflicts are rare. It is better for high-conflict environments."
+Option,100,"Optimistic locking — assume conflicts are rare, proceed without locks, and check for conflicts only at commit time",,"Correct — optimistic locking is ideal for read-heavy, low-conflict workloads. It avoids lock overhead and only checks for conflicts when a transaction tries to commit."
+Option,0,"No locking — disable all concurrency control since conflicts are rare",,"Incorrect — even if conflicts are rare, completely disabling concurrency control risks data corruption when conflicts do occur."
+Option,0,"Two-phase locking — acquire all locks before any operation and release all after commit",,"Incorrect — two-phase locking is a protocol for ensuring serializability, not a choice between optimistic and pessimistic strategies."
+Hint,If conflicts are rare, why pay the overhead of locking everything? Check for conflicts only when committing.,,,
+Feedback,"Chapter 11 contrasts pessimistic locking (acquire locks early, prevent conflicts proactively) with optimistic locking (assume conflicts are rare, check at commit time). Optimistic locking is preferred for read-heavy, low-conflict environments because it avoids lock management overhead. Pessimistic locking is better when conflicts are frequent.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT11-Q10,,,,,
+Title,Performance tuning,,,,,
+QuestionText,"A query that used to run in under a second now takes 30 seconds after the database grew to 100,000 rows. According to Chapter 11, what should the DBA investigate FIRST?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Rewrite the query as a stored procedure — stored procedures always run faster than regular SQL",,"Incorrect — stored procedures can help in some cases, but the first step is diagnosing WHY performance degraded, not assuming a specific fix."
+Option,100,"Check whether the query can use an index — missing indexes are the most common cause of performance degradation as data grows",,"Correct — indexes are the primary tool for query performance. As tables grow, queries without proper indexes switch from fast scans to slow full-table scans."
+Option,0,"Restore the database from backup — the performance problem indicates data corruption",,"Incorrect — slower performance as data grows is expected without proper indexing. Data corruption would cause errors, not just slowness."
+Option,0,"Add more RAM to the server — hardware upgrades are the first response to performance problems",,"Incorrect — Chapter 11 emphasizes that hardware upgrades should come AFTER software optimization. Indexing and query tuning are the first line of defense."
+Hint,As tables grow, the DBMS scans more data. What structure helps the DBMS find rows without scanning everything?,,,
+Feedback,"Chapter 11 emphasizes that performance tuning starts with diagnosis: examine query plans, check for missing indexes, analyze slow queries, and review resource usage. Indexes are the most impactful tool — a well-indexed query can find specific rows in a 100,000-row table nearly as fast as in a 1,000-row table. Hardware upgrades are the last resort, not the first step.",
+,,,,

@@ -10,20 +10,8 @@
 ---
 
 <div style="background: #F0FDFA; border-left: 4px solid #0F766E; padding: 16px 20px; margin: 24px 0; border-radius: 0 6px 6px 0;">
-  <p style="margin: 0 0 8px 0; font-size: 1.05em; color: #18181B;">
-    This <strong>Reading Assessment Test (RAT)</strong> is based on
-    <strong style="color: #0F766E;">Chapter 6: The Relational Model</strong>
-    in the course textbook,
-    <a href="https://data-pilot.dimapublishing.com/" style="color: #0E7490; font-weight: 600; text-decoration: none;">
-      <strong>Using Data to Drive Business Performance</strong>
-    </a>.
-  </p>
-  <p style="margin: 0; font-size: 0.95em; color: #18181B;">
-    Make sure you complete reading the chapter and then answer the questions here:
-    <a href="https://data-pilot.dimapublishing.com/book/ch06/introduction/1" style="color: #4F46E5; font-weight: 600; text-decoration: none;">
-      Chapter 6 — The Relational Model →
-    </a>
-  </p>
+<p style="margin: 0 0 8px 0; font-size: 1.05em; color: #18181b;">This <strong>Reading Assessment Test (RAT)</strong> is based on <strong style="color: #0f766e;">Chapter 6: The Relational Model</strong> in the course textbook, <a rel="noopener" href="https://data-pilot.dimapublishing.com/" style="color: #0e7490; font-weight: 600; text-decoration: none;"> <strong>Using Data to Drive Business Performance</strong> </a>.</p>
+<p style="margin: 0; font-size: 0.95em; color: #18181b;">Make sure you complete reading the chapter and then answer the questions here: <a rel="noopener" href="https://data-pilot.dimapublishing.com/book/ch06/introduction/1" style="color: #4f46e5; font-weight: 600; text-decoration: none;"> Chapter 6 — The Relational Model → </a></p>
 </div>
 
 ---

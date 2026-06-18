@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-06-03" -->
-
 
 # Lab 01: PetVax Project Introduction
 

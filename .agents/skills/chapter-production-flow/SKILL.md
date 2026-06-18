@@ -4,7 +4,7 @@ description: >
   End-to-end production orchestrator for BITM330 database-book chapters.
   Use when planning, editing, producing companions, handling media, logging work,
   tracking status, running final review, and building DOCX across the full chapter
-  lifecycle. Delegates final whole-package review to chapter-review-codex and
+  lifecycle. Delegates final readiness check to chapter-final-check and
   delegates domain work to specialized skills.
 ---
 
@@ -12,11 +12,11 @@ description: >
 
 `chapter-production-flow` is the end-to-end conductor for producing a BITM330 chapter.
 
-It is **not** a replacement for `chapter-review-codex`.
+It is **not** a replacement for `chapter-final-check`.
 
 - Use `chapter-command-center` when you want guidance on what to do next or which skill to launch.
 - Use `chapter-production-flow` when managing the whole lifecycle.
-- Use `chapter-review-codex` when running the final whole-package review.
+- Use `chapter-final-check` when running the final readiness check.
 - Use specialized skills for actual domain work.
 
 ## When NOT To Use This Skill
@@ -24,7 +24,7 @@ It is **not** a replacement for `chapter-review-codex`.
 Use a more specific skill when your task is narrow:
 
 - Single editing or authoring task: use the specialized skill directly (for example `chapter-editor`, `lets-build-creator`, `lab-creation`, `term-creator`, `reflection`, `rat-creator`, or `call-out`).
-- Final whole-package review only: use `chapter-review-codex`.
+- Final readiness check only: use `chapter-final-check`.
 - DOCX build only: use `chapter-docx-build`.
 - You just want guidance on what to do next or which skill to launch: use `chapter-command-center`.
 
@@ -67,7 +67,7 @@ Use the smallest appropriate skill.
 | Log session history | `progress-update` |
 | Track chapter-specific unresolved items | `edits` |
 | Track status across chapters | `chapter-tracker` |
-| Final whole-package review | `chapter-review-codex` |
+| Final readiness check | `chapter-final-check` |
 | Build DOCX | `chapter-docx-build` |
 | Choose Pandoc extensions/profile for DOCX | `pandoc-extensions` |
 | Get guidance / route to the right skill | `chapter-command-center` |
@@ -247,7 +247,7 @@ If no mode is provided, present this menu:
 4. Build or audit companion files (companions)
 5. Handle media (media)
 6. Terms and term appendix (terms)
-7. Run final whole-package review (final-review)
+7. Run final readiness check (final-review)
 8. Build DOCX (docx)
 9. Update logs/tracker only (logs-only)
 10. Full production flow (full-flow)
@@ -389,7 +389,7 @@ Safety reminders:
 - Do not create companion content inside the chapter index.
 - Do not place answer files under `books/database-book/files/source`.
 
-Domain rules (Lab uses PetVax, Let's Build uses the Grading Database, canonical Lab 1 `index.md`, and dated lab-question merge/cleanup) are owned by the companion skills above and verified by `chapter-review-codex`. Do not restate them here.
+Domain rules (Lab uses PetVax, Let's Build uses the Grading Database, canonical Lab 1 `index.md`, and dated lab-question merge/cleanup) are owned by the companion skills above and verified by `chapter-final-check`. Do not restate them here.
 
 After companion work:
 
@@ -503,12 +503,12 @@ Do not put generated reports in `.edits`.
 
 ---
 
-# Phase 7 — Final Whole-Package Review
+## Phase 7 — Final Readiness Check
 
 Delegate to:
 
 ```text
-chapter-review-codex
+chapter-final-check
 ```
 
 Use when:
@@ -517,10 +517,9 @@ Use when:
 - companions exist or intentional gaps are documented;
 - lab is ready or intentionally deferred;
 - media is ready or intentionally flagged;
-- you need one final report across the package;
-- you want pre-DOCX validation.
+- you need one final readiness verdict before DOCX, sync, or deployment.
 
-After `chapter-review-codex`:
+After `chapter-final-check`:
 
 1. add final-review summary to `edit-log.md`;
 2. move unresolved chapter items into `chNN-edits.md`;
@@ -606,7 +605,7 @@ End each production session with:
 6. Do not run DOCX before content is stable unless the user requests a draft export.
 7. Do not deploy, publish, commit, push, merge, or run `book-deploy`.
 8. Do not run `chapter-sync` unless explicitly requested as a separate legacy/import task.
-9. Do not duplicate final-review logic already owned by `chapter-review-codex`.
+9. Do not duplicate final-review logic already owned by `chapter-final-check`.
 10. Do not duplicate domain rules owned by specialized skills.
 11. Do not claim production completion if unresolved blockers remain.
 12. When uncertain, document the uncertainty in `chNN-edits.md` and in the handoff.

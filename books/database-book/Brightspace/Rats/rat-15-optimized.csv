@@ -1,0 +1,149 @@
+"// Brightspace CSV Import — RAT 15 Top Questions (Optimized)",,,,
+"// Source: Chapter 15 — Business Strategy and Information Systems (ch15-main-2026-05-08.md)",,,,
+"// Date: 2026-06-17",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 15: Business Strategy and Information Systems,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 15 at: https://data-pilot.dimapublishing.com/book/ch15/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT15-Q1,,,,,
+Title,Porter's Five Forces,,,,,
+QuestionText,"Chapter 15 discusses Porter's Five Forces as a framework for analyzing industry competition. Which forces does the framework include?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Threat of new entrants — how easily new competitors can enter the market",,"Correct — barriers to entry (capital requirements, regulations, brand loyalty) determine how easily new competitors can challenge incumbents."
+Option,1,"Bargaining power of suppliers — how much leverage suppliers have over the industry",,"Correct — concentrated suppliers with unique resources can demand higher prices or favorable terms."
+Option,0,"Threat of government regulation — how likely new laws will disrupt the industry",,"Incorrect — while regulation affects competition, it is not a separate force in Porter's model. It is typically analyzed within the existing five forces."
+Option,1,"Bargaining power of buyers — how much leverage customers have to demand lower prices or better quality",,"Correct — concentrated buyers or low switching costs give customers power over industry profitability."
+Option,1,"Threat of substitute products or services — how easily customers can switch to alternatives",,"Correct — substitutes from outside the industry (e.g., video conferencing instead of air travel) can cap prices and profits."
+Hint,Porter's Five Forces = New Entrants, Suppliers, Buyers, Substitutes, Competitive Rivalry.,,,
+Feedback,"Chapter 15 presents Porter's Five Forces: Threat of New Entrants, Bargaining Power of Suppliers, Bargaining Power of Buyers, Threat of Substitute Products/Services, and Competitive Rivalry. These forces determine industry profitability and inform where information systems can create strategic advantage.",
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT15-Q2,,,,,
+Title,Operational effectiveness vs strategy,,,,,
+QuestionText,"Chapter 15 distinguishes between operational effectiveness and strategic positioning. Which statements correctly describe this distinction?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,4,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Operational effectiveness means performing similar activities better than rivals — faster, cheaper, or with fewer defects",,"Correct — operational effectiveness is about efficiency: doing the same things better. It is necessary but not sufficient for sustained advantage."
+Option,1,"Strategic positioning means performing different activities from rivals, or performing similar activities in different ways",,"Correct — strategy is about being different, not just better. It involves deliberate trade-offs about what NOT to do."
+Option,0,"Operational effectiveness and strategy are the same thing — any efficiency improvement is a strategy",,"Incorrect — Chapter 15 emphasizes this as a dangerous confusion. Operational effectiveness can be copied; true strategy involves unique positioning."
+Option,1,"Operational effectiveness is easily imitated — competitors can copy best practices, benchmark, and adopt the same tools",,"Correct — because operational effectiveness is about best practices, competitors can replicate improvements, eroding any temporary advantage."
+Option,0,"Strategic positioning is irrelevant in the digital age — technology has made all industries identical",,"Incorrect — technology creates new opportunities for strategic differentiation. The question is HOW technology is used, not whether it eliminates strategy."
+Hint,Operational effectiveness = doing the same things better. Strategy = doing different things or doing things differently.,,,
+Feedback,"Chapter 15 emphasizes that strategy is not operational effectiveness. Being efficient (operational effectiveness) is necessary but not sufficient — competitors can copy efficiency. True strategy means choosing a unique position, making deliberate trade-offs, and creating fit among activities that rivals cannot easily replicate.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q3,,,,,
+Title,Business strategy definition,,,,,
+QuestionText,"According to Chapter 15, what is business strategy?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"A detailed annual budget that allocates resources across departments",,"Incorrect — a budget is a financial plan. Strategy is broader: a coherent set of choices about where and how to compete."
+Option,100,"A deliberate set of choices and trade-offs about where to compete and how to win — creating a unique and valuable position through different activities",,"Correct — strategy is about making choices: which customers to serve, what value proposition to offer, and which activities to perform differently from rivals."
+Option,0,"A technology roadmap that lists which software the organization will purchase",,"Incorrect — a technology roadmap supports strategy. Strategy itself is about competitive choices, not software procurement."
+Option,0,"A mission statement that describes the organization's values and purpose",,"Incorrect — mission describes purpose. Strategy describes how the organization will achieve competitive advantage within its chosen markets."
+Hint,Strategy = deliberate choices about where to compete and how to win, not just being efficient.,,,
+Feedback,"Chapter 15 defines business strategy as a deliberate and coherent set of choices that positions an organization for competitive advantage. Strategy involves deciding what to do AND what not to do — making trade-offs — to create a unique and valuable position that rivals cannot easily match.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q4,,,,,
+Title,Value Chain,,,,,
+QuestionText,"According to Chapter 15, Porter's Value Chain divides organizational activities into primary and support activities. Which is a primary activity?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,100,"Operations — activities that transform inputs into the final product or service",,"Correct — primary activities directly create value: Inbound Logistics, Operations, Outbound Logistics, Marketing & Sales, and Service."
+Option,0,"Human Resource Management — recruiting, training, and compensating employees",,"Incorrect — HR management is a support activity. It enables primary activities but does not directly create the product or service."
+Option,0,"Technology Development — research, development, and process automation",,"Incorrect — technology development is a support activity that enhances primary activities but is not directly value-creating."
+Option,0,"Firm Infrastructure — general management, finance, legal, and planning",,"Incorrect — firm infrastructure is a support activity. It provides the foundation but does not directly create customer value."
+Hint,Primary activities directly create the product/service. Support activities enable the primary ones.,,,
+Feedback,"Chapter 15 presents Porter's Value Chain: primary activities (Inbound Logistics, Operations, Outbound Logistics, Marketing & Sales, Service) directly create value. Support activities (Firm Infrastructure, HR Management, Technology Development, Procurement) enable the primary activities. Information systems can enhance every link in the chain.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q5,,,,,
+Title,Resource-Based View,,,,,
+QuestionText,"A company's proprietary customer database, built over 15 years with unique analytics capabilities, cannot be easily replicated by competitors. According to Chapter 15, which strategic framework explains why this is a source of competitive advantage?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Porter's Five Forces — the database creates a barrier to entry for new competitors",,"Incorrect — while the database could create entry barriers, the framework that explains advantage from unique internal resources is the Resource-Based View."
+Option,100,"Resource-Based View (RBV) — the database is valuable, rare, inimitable, and the organization is organized to exploit it (VRIO)",,"Correct — RBV explains competitive advantage from internal resources that are Valuable, Rare, Inimitable, and Organizationally supported. The proprietary database meets all four criteria."
+Option,0,"Balanced Scorecard — the database appears as a Learning & Growth metric",,"Incorrect — the Balanced Scorecard measures performance across perspectives. It is not a framework for explaining the source of competitive advantage."
+Option,0,"Value Chain — the database is a support activity in the firm's infrastructure",,"Incorrect — the Value Chain identifies where value is created. RBV explains why a specific resource provides sustained advantage."
+Hint,VRIO = Valuable, Rare, Inimitable (hard to copy), Organizationally supported. This framework explains advantage from internal resources.,,,
+Feedback,"Chapter 15 introduces the Resource-Based View (RBV) which explains competitive advantage from internal resources and capabilities. For a resource to provide sustained advantage, it must be Valuable, Rare, Inimitable (hard to copy), and the Organization must be structured to exploit it (VRIO). A proprietary database with embedded analytics meets these criteria.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q6,,,,,
+Title,Strategic IS alignment,,,,,
+QuestionText,"A university's new student information system is technically excellent but forces advisors to use workflows that conflict with how they actually help students. According to Chapter 15, what is the core problem?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"The system needs more technical features — the current functionality is insufficient",,"Incorrect — the problem is not technical capability. The system is technically excellent but misaligned with how work is actually done."
+Option,100,"Misalignment between information systems and business strategy — the system was designed for technical excellence rather than to support the actual work of advising students",,"Correct — Chapter 15 emphasizes that IS must align with business goals, processes, and user needs. Technical excellence without strategic alignment creates friction rather than advantage."
+Option,0,"The database is not normalized to third normal form",,"Incorrect — normalization is a design concern, not the root cause. The issue is strategic misalignment between the system and business processes."
+Option,0,"Insufficient training — the advisors need more hours of system training",,"Incorrect — while training may help, the fundamental issue is that the system was not designed around the actual work processes. Training cannot fix a fundamentally misaligned system."
+Hint,Is the problem the technology, or is the technology designed for the wrong thing? Alignment with business goals matters more than technical features.,,,
+Feedback,"Chapter 15 emphasizes strategic alignment: information systems must support — not dictate — business strategy and processes. A technically sophisticated system that forces users into unnatural workflows creates resistance, reduces productivity, and fails to deliver strategic value. Good systems align technology with how people actually work.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q7,,,,,
+Title,Data as strategic asset,,,,,
+QuestionText,"According to Chapter 15, what transforms data from an operational byproduct into a strategic asset?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Storing data in the cloud — cloud storage automatically makes data strategic",,"Incorrect — where data is stored does not determine its strategic value. Strategic value comes from how data is used."
+Option,100,"The organizational capability to analyze data and act on insights — data becomes strategic when it systematically informs better decisions that create competitive advantage",,"Correct — data is valuable only when paired with analytical capability and organizational willingness to act on evidence. The same data is worthless without analysis and action."
+Option,0,"Collecting as much data as possible — data volume automatically creates strategic value",,"Incorrect — more data without the capability to analyze and act on it just creates storage costs. Strategic value comes from use, not volume."
+Option,0,"Purchasing the most expensive analytics software — the right tool guarantees strategic advantage",,"Incorrect — tools enable analysis but do not guarantee strategic use. The organizational capability to ask the right questions and act on answers is what matters."
+Hint,Data + analysis + action = strategic asset. Data alone (without analysis and action) = storage cost.,,,
+Feedback,"Chapter 15's capstone message: data is not inherently strategic. It becomes strategic when the organization has the capability to extract insight and the willingness to act. Chapters 1-14 built the technical foundation; Chapter 15 explains why it matters — competitive advantage comes from using data systematically to make better decisions than competitors.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q8,,,,,
+Title,Grading Database as strategic system,,,,,
+QuestionText,"Chapter 15 reframes the Grading Database — used throughout the book — as a strategic system. What makes it strategic?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"It uses advanced SQL features like window functions and CTEs",,"Incorrect — technical features alone do not make a system strategic. Strategic value comes from how the system influences decisions and behavior."
+Option,100,"It transforms grading from a record-keeping task into an evidence-based system that can identify at-risk students, evaluate teaching effectiveness, and inform resource allocation",,"Correct — the Grading Database becomes strategic when it moves beyond recording grades to actively informing decisions about student support, curriculum design, and institutional effectiveness."
+Option,0,"It is stored in a cloud database rather than a local Access file",,"Incorrect — infrastructure choice does not determine strategic value. What matters is how the system is used for decision-making."
+Option,0,"It has more tables than a typical university grading system",,"Incorrect — table count is irrelevant to strategic value. The question is whether the system enables better decisions."
+Hint,Strategic = influences decisions, behavior, and resource allocation, not just records data.,,,
+Feedback,"Chapter 15 closes the book's arc by showing that even a grading database can be strategic. The system's strategic value comes from enabling evidence-based decisions: identifying struggling students early, evaluating which teaching approaches work best, and informing resource allocation. The same data, used differently, creates different strategic outcomes.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q9,,,,,
+Title,Risks of poor information strategy,,,,,
+QuestionText,"A company makes decisions based on intuition because managers don't trust the data — every department defines 'revenue' differently. According to Chapter 15, what is the strategic consequence?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"No consequence — intuition-based decisions are often better than data-driven ones",,"Incorrect — Chapter 15 argues that while intuition has a role, systematic reliance on inconsistent data creates strategic vulnerability."
+Option,100,"The organization loses the ability to make evidence-based decisions — inconsistent data definitions mean managers cannot compare, analyze, or learn from data, ceding advantage to competitors who can",,"Correct — when data is not trusted, decisions revert to intuition and politics. Competitors who build analytical capability systematically make better-informed decisions."
+Option,0,"The company saves money by not investing in data infrastructure",,"Incorrect — the hidden costs of poor decisions based on bad data far exceed the savings from not investing in data quality and governance."
+Option,0,"The IT department becomes more influential because they control the data",,"Incorrect — when data is not trusted, IT loses influence because managers bypass formal systems. The consequence is strategic, not organizational politics."
+Hint,If nobody trusts the data, decisions are made on gut feeling. What does that mean compared to competitors who use evidence?,,,
+Feedback,"Chapter 15 warns that poor information strategy has strategic consequences: when data definitions are inconsistent and reports are untrusted, organizations cannot learn systematically. Decisions revert to intuition and organizational politics. Competitors with reliable data and analytical capability gain systematic advantage in understanding customers, markets, and operations.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT15-Q10,,,,,
+Title,Strategic trade-offs,,,,,
+QuestionText,"According to Chapter 15, why are trade-offs essential to strategy?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Trade-offs are unnecessary — the best strategy is to be excellent at everything",,"Incorrect — Chapter 15 argues that trying to be best at everything is operational effectiveness, not strategy. It leads to mediocrity and imitation."
+Option,100,"Trade-offs force choices about what NOT to do — they make a strategy difficult to imitate because competitors would have to abandon their own positioning to copy yours",,"Correct — deliberate trade-offs create strategic fit and sustainability. A competitor cannot copy your strategy without undermining their own."
+Option,0,"Trade-offs reduce costs by eliminating unnecessary activities",,"Incorrect — cost reduction is an operational benefit. Trade-offs are strategically important because they create uniqueness and sustainability."
+Option,0,"Trade-offs are a temporary phase — once the organization matures, it can excel at everything simultaneously",,"Incorrect — trade-offs are inherent to strategy, not a temporary phase. Resources are always limited; choices must be made."
+Hint,Strategy = choosing what NOT to do. Why does saying 'no' make a strategy harder to copy?,,,
+Feedback,"Chapter 15 argues that strategy is defined as much by what an organization chooses NOT to do as by what it does. Trade-offs create uniqueness, protect against imitation, and force discipline. A strategy without trade-offs is not a strategy — it is a wish to be everything to everyone, which leads to competitive mediocrity.",
+,,,,

@@ -34,6 +34,12 @@ For non-chapter rows, the Ch column is `—`.
 | 2026-06-17 | 01  | Created ch01-main-2026-06-17.md: removed duplicate Chapter Roadmap, added Key Takeaways section, strengthened business performance framing |
 | 2026-06-17 | 02  | Created ch02-main-2026-06-17.md: removed YAML frontmatter, removed duplicate Chapter Roadmap, added Why System Design Matters section, strengthened Ch3 bridge |
 | 2026-06-17 | 03  | Created ch03-main-2026-06-17.md: removed duplicate Chapter Roadmap, added Tables: Rows/Columns/Rules and Schemas: Describing the Structure of Data H3 sections under Representing Data in Structured Systems |
+| 2026-06-17 | 01  | Synced ch01 to platform: lets-build (06-17), lab-01-questions (06-03), regenerated index.md, wrote .sync-manifest.json |
+| 2026-06-17 | 05  | First full sync of ch05 to platform: all 5 sections + lab-05-questions (06-16), regenerated index.md, wrote .sync-manifest.json |
+| 2026-06-17 | 06  | Synced ch06 to platform: main (06-17), lets-build (06-17), deleted superseded 05-29 and 05-24, regenerated index.md |
+| 2026-06-17 | 11  | First full sync of ch11 to platform: all 5 sections + lab-11-questions (05-22), regenerated index.md, wrote .sync-manifest.json |
+| 2026-06-17 | —   | Fixed 9 corrupted lab index.md files (labs 01-07, 10, 14) — double UTF-8 encoding mojibake restored from clean questions files |
+| 2026-06-17 | —   | Ran bookData.ts regeneration (reader-hybrid-v1.1): 18 chapters, 119 sections, 349 reader pages, 15 labs loaded |
 | 2026-06-10 | —   | Verified v1.1 reader build, browser layout, favicon wiring, mobile on-this-page behavior, and removed dead `AiAssistant.tsx`                                                                             |
 | 2026-06-10 | —   | Validated the source migration, confirmed no stale `.sync-manifest.json` files, removed answer-link leakage from migrated lab indexes, and taught the importer to sanitize lab answer references on copy |
 <!-- markdownlint-enable MD060 -->

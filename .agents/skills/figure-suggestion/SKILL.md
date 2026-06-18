@@ -49,43 +49,42 @@ When a sub-section could support more than one distinct visual (for example a pr
 
 ## Canonical Form
 
-Use an `<!-- FIGURE SUGGESTION -->` HTML comment followed immediately by a fenced code block.
-The comment marks the suggestion for pipeline scanners; the code block holds the suggestion
-text without appearing in any rendered output (HTML, DOCX, TOC). Stage 2 scans for this pattern.
+Use a single `<!-- 🎨 Figure Suggestion: [description] -->` HTML comment. The description is
+inline, hidden from all rendered output (HTML, DOCX, TOC). Stage 2 scanners detect this pattern.
 
-```markdown
-<!-- FIGURE SUGGESTION -->
-```
-A side-by-side comparison: on the left, one wide spreadsheet with mixed customer and
-order columns; on the right, two related tables (CUSTOMER and ORDER) connected by a
-foreign key. Highlight the duplicated customer name in the spreadsheet in red.
-Caption hint: One subject per table reduces duplication.
-```
+```html
+<!-- 🎨 Figure Suggestion: A side-by-side comparison: on the left, one wide spreadsheet with mixed customer and order columns; on the right, two related tables (CUSTOMER and ORDER) connected by a foreign key. Highlight the duplicated customer name in the spreadsheet in red. -->
 ```
 
 Rules:
 
-- The comment is `<!-- FIGURE SUGGESTION -->` exactly (case-sensitive).
-- The fenced code block follows on the next line — no blank line between comment and code fence.
-- Code block uses triple backticks with no language tag.
-- One short paragraph inside the code block describing **what** the figure shows and **why** it helps the reader.
-- Optionally end with a single line prefixed `Caption hint: …`.
+- The comment is `<!-- 🎨 Figure Suggestion: [description] -->` exactly.
+- One concise sentence describing **what** the figure shows and **why** it helps the reader.
+- Optionally end with `Caption hint: …` inside the comment.
 - No image URL, no alt text, no file path, no filename, no Gemini prompt. Those belong to stage 2 and stage 3.
+- The comment replaces the section's text anchor. Do not leave a blank fenced code block after the comment.
 
 ### Deprecated forms (recognize, do not produce)
 
-Two older forms still appear in some chapters. Stage 2 recognizes them, but new work must use the canonical form above.
+Three older forms still appear in some chapters. Stage 2 recognizes them, but new work must use the canonical form above.
 
 **H4 heading** (deprecated):
 ```markdown
 #### 🎨 Figure Suggestion
+```
+**Legacy FIGURE SUGGESTION + code block** (deprecated):
+```markdown
+<!-- FIGURE SUGGESTION -->
+```
+description text here...
+```
 ```
 **Legacy italic line** (deprecated):
 ```markdown
 *Figure suggestion: A diagram showing how customer, order, and payment tables connect.*
 ```
 
-If you encounter a deprecated form while editing a section, upgrade it to the canonical `<!-- FIGURE SUGGESTION -->` + code block pattern.
+If you encounter a deprecated form while editing a section, upgrade it to the canonical `<!-- 🎨 Figure Suggestion: [description] -->` comment.
 
 ---
 

@@ -30,7 +30,7 @@ This skill **does**:
 - scan image folders and place existing images that fit the suggestions;
 - reuse good-quality unused images from **earlier** chapters when they fit;
   generate missing figures with Gemini — produces Gemini prompts, pauses for human review at the Generation Gate, then calls the Gemini API to create images saved into the chapter image folder;
-- replace `<!-- FIGURE SUGGESTION -->` comment + code block pairs (and deprecated `#### 🎨 Figure Suggestion` blocks and `*Figure suggestion: …*` lines) with real local figure blocks;
+- replace `<!-- 🎨 Figure Suggestion: [description] -->` HTML comments (and deprecated `<!-- FIGURE SUGGESTION -->` + code block pairs, `#### 🎨 Figure Suggestion` blocks, and `*Figure suggestion: …*` lines) with real local figure blocks;
 - number figures and maintain a figures-index.md in the chapter's image folder.
 
 This skill **does NOT**:
@@ -78,7 +78,7 @@ Before producing the plan, gather:
 
 1. **Target sub-sections** — every `##` and `###` heading, in order.
 2. **Existing figures** — every `![…](…)` image link and its caption line.
-3. **Figure suggestions** — every `<!-- FIGURE SUGGESTION -->` comment followed by a fenced code block (canonical), every deprecated `#### 🎨 Figure Suggestion` heading block, every legacy `*Figure suggestion: …*` italic line, and any `<!-- Figure: … -->` or `// Figure: …` comment.
+3. **Figure suggestions** — every `<!-- 🎨 Figure Suggestion: [description] -->` comment (canonical), every deprecated `<!-- FIGURE SUGGESTION -->` + code block pair, every deprecated `#### 🎨 Figure Suggestion` heading block, every legacy `*Figure suggestion: …*` italic line, and any `<!-- Figure: … -->` or `// Figure: …` comment.
 4. **Image candidates** — see the scan order below.
 5. **Slide-deck renders** — files matching `*-slide-*.png` or any sequential `*-image-NNN.*` set with more than 20 files. Flag for the slide-deck question in Phase 2.
 6. **Existing figure numbers** — the highest figure number already present, if any.
@@ -182,7 +182,7 @@ Then ask:
 For each approved row, in document order:
 
 1. **Find the anchor** by matching the section heading and the suggestion snippet. Never rely on line numbers — they shift after the first edit.
-2. **Replace the suggestion** with the figure block. For a `#### 🎨 Figure Suggestion` block, replace the whole block; for a legacy italic line, replace that line.
+2. **Replace the suggestion** with the figure block. For an `<!-- 🎨 Figure Suggestion: ... -->` comment, replace it; for a deprecated `<!-- FIGURE SUGGESTION -->` + code block pair, replace the pair; for a `#### 🎨 Figure Suggestion` block or legacy italic line, replace that line.
 3. **Insert a standard figure block** using the format in [figure-markdown-standards.md](figure-markdown-standards.md):
 
    ```markdown

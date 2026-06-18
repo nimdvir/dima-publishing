@@ -1,0 +1,149 @@
+"// Brightspace CSV Import — RAT 12 Top Questions (Optimized)",,,,
+"// Source: Chapter 12 — Business Intelligence and Analytics (ch12-main-2026-06-16.md)",,,,
+"// Date: 2026-06-17",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 12: Business Intelligence and Analytics,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 12 at: https://data-pilot.dimapublishing.com/book/ch12/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT12-Q1,,,,,
+Title,OLTP vs OLAP,,,,,
+QuestionText,"Chapter 12 distinguishes between OLTP (operational) and OLAP (analytical) systems. Which characteristics describe OLTP systems?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"OLTP systems are optimized for fast, frequent, small transactions — like recording a grade or processing a sale",,"Correct — OLTP systems handle day-to-day operations with many short, concurrent transactions that INSERT, UPDATE, or DELETE individual rows."
+Option,0,"OLTP systems store years of historical data and are optimized for complex aggregation queries",,"Incorrect — that describes OLAP systems. OLTP systems focus on current operational data, not historical analysis."
+Option,1,"OLTP databases are typically normalized to minimize redundancy and ensure data integrity during frequent updates",,"Correct — normalization reduces update anomalies, which is critical for systems that constantly modify data."
+Option,0,"OLTP systems use star schemas with fact and dimension tables for fast analytical queries",,"Incorrect — star schemas are OLAP design patterns. OLTP systems use normalized relational schemas."
+Option,1,"OLTP systems support the day-to-day operations of the organization — they run the business",,"Correct — OLTP systems handle orders, grades, reservations, and other operational transactions that keep the business running."
+Hint,OLTP = running the business (orders, grades, transactions). OLAP = analyzing the business (reports, dashboards, trends).,,,
+Feedback,"Chapter 12 draws a clear distinction: OLTP (Online Transaction Processing) systems handle operational work — recording grades, processing orders, updating inventory. They are normalized, transaction-heavy, and optimized for fast row-level operations. OLAP (Online Analytical Processing) systems support analysis — querying historical data, computing aggregates, and identifying trends.",
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT12-Q2,,,,,
+Title,ETL and ELT processes,,,,,
+QuestionText,"Chapter 12 describes ETL and ELT as processes for moving data from operational systems to analytical systems. Which statements are correct?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"ETL (Extract, Transform, Load) transforms data BEFORE loading it into the analytical system",,"Correct — in ETL, data is extracted from source systems, cleaned and restructured in a staging area, then loaded into the data warehouse."
+Option,1,"ELT (Extract, Load, Transform) loads raw data first, then transforms it using the analytical database's processing power",,"Correct — ELT leverages modern analytical databases to perform transformations AFTER loading, which can be more efficient for large datasets."
+Option,0,"ETL and ELT are identical processes — the order of letters does not change how data is handled",,"Incorrect — the order matters. ETL transforms before loading; ELT loads first and transforms afterward."
+Option,1,"Both ETL and ELT serve the same purpose: moving data from where it is collected to where it can be analyzed",,"Correct — both are data integration pipelines. The difference is WHEN and WHERE transformation occurs."
+Option,0,"ETL is always better than ELT — Chapter 12 recommends ETL for all scenarios",,"Incorrect — Chapter 12 discusses trade-offs. ELT can be more efficient when the target database has strong processing capabilities."
+Hint,ETL = Transform BEFORE Load. ELT = Load first, Transform AFTER. Both move data for analysis.,,,
+Feedback,"Chapter 12 explains ETL (Extract → Transform → Load) and ELT (Extract → Load → Transform) as the two primary data integration patterns. ETL transforms data before loading into the warehouse; ELT loads raw data and transforms it using the analytical database's power. The choice depends on data volume and the target system's capabilities.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q3,,,,,
+Title,BI definition,,,,,
+QuestionText,"According to Chapter 12, what is Business Intelligence (BI)?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"A type of database software that replaces operational systems like Access and SQLite",,"Incorrect — BI is not a replacement for operational databases. It is a layer that sits on top of operational data for analysis."
+Option,100,"An organizational capability that transforms data into actionable insight through tools, processes, and skilled people",,"Correct — BI combines technology (databases, dashboards), processes (ETL, governance), and people (analysts, decision-makers) to turn data into decisions."
+Option,0,"A SQL technique for writing faster queries using indexes and query plans",,"Incorrect — while SQL is a BI tool, BI is much broader than query optimization. It encompasses strategy, governance, and organizational culture."
+Option,0,"A method for normalizing databases to third normal form for analytical purposes",,"Incorrect — BI systems typically use denormalized structures (star schemas), not 3NF, for analytical performance."
+Hint,BI = technology + processes + people, all aimed at turning data into better decisions.,,,
+Feedback,"Chapter 12 defines BI as an organizational capability — not just a tool or technology. BI combines data infrastructure (warehouses, ETL), analytical tools (SQL, dashboards), governance processes, and skilled people to provide evidence-based insight that supports strategic and operational decisions.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q4,,,,,
+Title,Star schema,,,,,
+QuestionText,"A data warehouse uses a central SALES fact table surrounded by DATE, PRODUCT, STORE, and CUSTOMER dimension tables. According to Chapter 12, what is this design pattern called?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Normalized schema — each table represents a single theme with no redundancy",,"Incorrect — a normalized schema would separate all themes. The star schema deliberately denormalizes dimensions for analytical query speed."
+Option,100,"Star schema — a central fact table containing measures (sales amounts) surrounded by dimension tables that provide context (who, what, when, where)",,"Correct — the star schema is the standard dimensional model for data warehouses. Facts store numeric measures; dimensions store descriptive attributes."
+Option,0,"Snowflake schema — dimensions are further normalized into additional tables",,"Incorrect — in a snowflake schema, dimension tables are normalized into sub-dimensions. A star schema keeps each dimension in a single table."
+Option,0,"Entity-relationship model — entities and relationships map directly to business concepts",,"Incorrect — ER models are used for operational database design. Star schemas are used for analytical data warehouses."
+Hint,Facts = numbers you measure (sales, counts). Dimensions = context (who, what, when, where). What shape does this form?,,,
+Feedback,"Chapter 12 presents the star schema as the foundational dimensional model for data warehouses. The central fact table contains numeric measures (facts). Surrounding dimension tables provide descriptive context. This denormalized structure is optimized for fast analytical queries across large datasets.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q5,,,,,
+Title,OLAP operations,,,,,
+QuestionText,"An analyst viewing annual sales by region clicks to expand and see quarterly sales within each region. According to Chapter 12, what OLAP operation is this?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Slice — selecting a subset of data by fixing one dimension",,"Incorrect — slicing filters data on one dimension (e.g., Region = 'Northeast'). The scenario describes expanding a hierarchy."
+Option,100,"Drill-down — navigating from a summary level (year) to a more detailed level (quarter) within the same dimension hierarchy",,"Correct — drill-down moves from higher to lower levels of aggregation (year → quarter → month → day), revealing more detail."
+Option,0,"Dice — selecting a sub-cube by fixing values on multiple dimensions",,"Incorrect — dicing filters on multiple dimensions simultaneously. The scenario describes navigating a time hierarchy."
+Option,0,"Pivot — rotating the axes of a crosstab to view data from a different perspective",,"Incorrect — pivoting reorients rows and columns. The scenario describes moving down a hierarchy."
+Hint,Going from year → quarter → month is navigating down a time hierarchy. What OLAP operation is this?,,,
+Feedback,"Chapter 12 covers OLAP operations: drill-down (more detail within a hierarchy), roll-up (less detail, higher aggregation), slice (filter on one dimension), dice (filter on multiple dimensions), and pivot (reorient axes). These operations let analysts explore data interactively from multiple angles.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q6,,,,,
+Title,Fact vs dimension,,,,,
+QuestionText,"In the Grading Database analytical layer, the STUDENT_SCORES fact table contains StudentID, DeliverableID, DateKey, and Score. According to Chapter 12, why is Score stored in the fact table rather than a dimension table?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Because Score is a text description that categorizes students",,"Incorrect — Score is a numeric value that can be aggregated, not a descriptive text attribute."
+Option,100,"Because Score is a measure — a numeric value that can be summed, averaged, or counted across different dimensions",,"Correct — fact tables store measures (numeric, additive values). Dimension tables store descriptive attributes used for grouping and filtering."
+Option,0,"Because Score uniquely identifies each grade record",,"Incorrect — Score is not an identifier. StudentID + DeliverableID serves as the identifier."
+Option,0,"Because Score cannot be stored in the same table as StudentID or DeliverableID",,"Incorrect — fact tables contain both foreign keys (to dimensions) and measures. Score belongs with its foreign keys."
+Hint,Facts = things you measure (sum, average, count). Dimensions = things you group by (who, what, when, where).,,,
+Feedback,"Chapter 12 distinguishes facts (numeric measures like scores, sales amounts, quantities) from dimensions (descriptive attributes like names, dates, categories). Facts go in the central fact table because they are aggregated (SUM, AVG, COUNT). Dimensions surround the fact table and provide GROUP BY context.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q7,,,,,
+Title,KPI and Balanced Scorecard,,,,,
+QuestionText,"A university tracks graduation rate, average time-to-degree, and student satisfaction across four perspectives: Financial, Student, Internal Process, and Learning & Growth. According to Chapter 12, what framework is this?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"OLAP cube — a multidimensional data structure for fast analytical queries",,"Incorrect — an OLAP cube is a data structure. The scenario describes a strategic management framework."
+Option,100,"Balanced Scorecard — a strategic framework that links KPIs across multiple perspectives to align operations with strategy",,"Correct — the Balanced Scorecard organizes performance measures into perspectives (Financial, Customer, Internal Process, Learning & Growth) to provide a balanced view of organizational performance."
+Option,0,"ETL pipeline — a data integration process that extracts, transforms, and loads data",,"Incorrect — ETL is a data integration process, not a strategic performance framework."
+Option,0,"Star schema — a dimensional model with fact and dimension tables",,"Incorrect — a star schema is a data structure for warehouses. The Balanced Scorecard is a strategic management framework."
+Hint,Four perspectives: Financial, Customer, Internal Process, Learning & Growth. What framework uses these?,,,
+Feedback,"Chapter 12 presents the Balanced Scorecard as a framework for translating strategy into measurable KPIs across four perspectives. It ensures organizations don't focus exclusively on financial metrics but also track customer satisfaction, operational efficiency, and organizational learning — creating a balanced, strategy-aligned view of performance.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q8,,,,,
+Title,Data governance,,,,,
+QuestionText,"According to Chapter 12, what is the primary purpose of BI governance?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"To ensure all database queries run in under one second",,"Incorrect — query performance is a DBA concern. BI governance focuses on data quality, definitions, and responsible use."
+Option,100,"To establish policies for data quality, consistent definitions, access control, and responsible use of analytical outputs",,"Correct — BI governance ensures that data is accurate, definitions are consistent across the organization, access is appropriate, and analytical results are trustworthy."
+Option,0,"To replace all spreadsheet-based reporting with automated dashboards",,"Incorrect — while dashboards are a BI tool, governance is about policies and standards, not about eliminating spreadsheets."
+Option,0,"To design the star schema and dimension tables for the data warehouse",,"Incorrect — schema design is part of BI architecture. Governance focuses on data quality, standards, and stewardship."
+Hint,Governance = rules, policies, and standards for data quality, definitions, and responsible use.,,,
+Feedback,"Chapter 12 emphasizes BI governance as essential for trustworthy analytics. Without governance, different departments may define ""revenue"" differently, data quality deteriorates, and decision-makers lose confidence in reports. Governance establishes the policies, standards, and accountability that make BI outputs reliable.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q9,,,,,
+Title,Data warehouse vs data lake,,,,,
+QuestionText,"According to Chapter 12, what is the key difference between a data warehouse and a data lake?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"A data warehouse stores raw, unprocessed data; a data lake stores structured, processed data for reporting",,"Incorrect — this is reversed. Data lakes store raw data; warehouses store structured, processed data."
+Option,100,"A data warehouse stores structured, processed data ready for analysis; a data lake stores raw data in its original format — structured, semi-structured, or unstructured",,"Correct — warehouses contain curated, schema-defined data for reporting. Lakes hold raw data of any format for exploration and future processing."
+Option,0,"A data warehouse is on-premises only; a data lake is cloud-only",,"Incorrect — both can be deployed on-premises or in the cloud. The distinction is about data structure and processing, not infrastructure location."
+Option,0,"A data warehouse is for small datasets; a data lake is for large datasets",,"Incorrect — while lakes often hold larger volumes, the key difference is data structure and processing stage, not size."
+Hint,Warehouse = processed, structured, ready to query. Lake = raw, any format, future exploration.,,,
+Feedback,"Chapter 12 distinguishes data warehouses (structured, processed, schema-defined — ready for BI queries) from data lakes (raw, any format — stored for future processing and exploration). Warehouses support known analytical questions; lakes support data science and discovery where the questions are not yet defined.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT12-Q10,,,,,
+Title,BI as organizational capability,,,,,
+QuestionText,"A company buys the most expensive BI dashboard software but makes poor decisions because sales data is inconsistently entered and nobody trusts the reports. According to Chapter 12, what does this company lack?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Better dashboard software — the tool they bought is clearly inadequate",,"Incorrect — the problem is not the tool. Even the best dashboard software cannot compensate for poor data quality and lack of trust."
+Option,100,"BI capability — technology alone is insufficient without data quality, governance, skilled analysts, and an organizational culture that values evidence-based decisions",,"Correct — Chapter 12 emphasizes that BI is an organizational capability: tools + processes + people + governance. Expensive software without data quality and trust is worthless."
+Option,0,"A larger data warehouse — their storage infrastructure is too small",,"Incorrect — storage size is not the issue. Data quality, governance, and organizational trust are the missing elements."
+Option,0,"More IT staff — technical problems are always solved by hiring more engineers",,"Incorrect — the gap is organizational (governance, data quality, trust), not purely technical. Adding engineers without fixing governance would not solve the problem."
+Hint,Can great software alone make up for poor data quality and organizational mistrust?,,,
+Feedback,"Chapter 12's core message: BI is not just technology. It is an organizational capability that combines tools, clean data, governance, analytical skills, and a decision-making culture that values evidence. Purchasing software without investing in data quality, governance, and analyst training produces expensive dashboards that nobody trusts.",
+,,,,

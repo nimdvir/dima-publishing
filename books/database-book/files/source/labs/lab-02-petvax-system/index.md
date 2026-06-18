@@ -1,8 +1,10 @@
-﻿<!-- markdownlint-disable MD013 MD024 MD036 -->
+<!-- metadata: date="2026-06-03" -->
 
-# Lab 02 Questions â€” Managing PetVax as a Business System
+<!-- markdownlint-disable MD013 MD024 MD036 -->
 
-**Chapter:** Chapter 2 â€” Foundations of Information Systems  
+# Lab 02 Questions — Managing PetVax as a Business System
+
+**Chapter:** Chapter 2 — Foundations of Information Systems  
 **Project:** PetVax veterinary clinic  
 **Platform:** Brightspace auto-graded quiz + separate file upload  
 **Estimated time:** about 60 minutes  
@@ -31,11 +33,11 @@ For now, your job is to look at messy operational notes and ask:
 
 This lab has **two graded parts**. You must complete both.
 
-### Part 1 â€” Brightspace quiz (auto-graded)
+### Part 1 — Brightspace quiz (auto-graded)
 
 You answer 16 questions inside the Brightspace quiz for this lab. Brightspace grades these automatically. Every answer is exact: a specific choice, match, order, or value. Many answers come directly from the work you do while building your Logic Map, so **do the work first, then answer**. Your quiz answers should match what you wrote in your file.
 
-### Part 2 â€” Logic Map file (AI-checked)
+### Part 2 — Logic Map file (AI-checked)
 
 You upload your completed **PetVax Performance Logic Map** to the separate file-submission assignment. An AI grader checks that the file is **complete** and that you carried **one consistent PetVax problem** through the whole map. The file is not re-scored for writing quality. It is proof that you actually did the work behind your quiz answers.
 
@@ -71,7 +73,7 @@ Your task is to use the notebook excerpt below as evidence and build one logic m
 
 ---
 
-## Exhibit A â€” Dr. Dimaâ€™s Tuesday Notebook
+## Exhibit A — Dr. Dima’s Tuesday Notebook
 
 ![Photo of Dr. Dima's handwritten Tuesday notebook with pet visits, payments, reminders, and unresolved follow-up notes](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_900/bitm330book/00-general/labs/dr-dima-tuesday-notebook)
 
@@ -79,26 +81,26 @@ Your task is to use the notebook excerpt below as evidence and build one logic m
 
 Some handwriting is ambiguous. Use this transcription as the official version for the lab.
 
-**Dr. Dimaâ€™s Notebook â€” Tuesday**  
+**Dr. Dima’s Notebook — Tuesday**  
 **Tues 5/14**
 
-- **9:30** Buddy *(Beagle?)* â€” weight 15 â€” Vx + checkup â€” **$120**
-- **10am** Misty â€” cat â†’ sneezing, ear wax. gave drops.  
-  ~11 B.â€™s owner called back about follow up?? need date
-- **11:15** Charlie â€” dog â€” weight 8kg â€” shots? â€” **cash $40**
+- **9:30** Buddy *(Beagle?)* — weight 15 — Vx + checkup — **$120**
+- **10am** Misty — cat → sneezing, ear wax. gave drops.  
+  ~11 B.’s owner called back about follow up?? need date
+- **11:15** Charlie — dog — weight 8kg — shots? — **cash $40**
 
 **12 LUNCH**
 
-Charlie *(other one)* â€” lab â€” **pending**
+Charlie *(other one)* — lab — **pending**
 
-- **~2pm** Bandit â€” york â€” dental cleaning â€” **220**
-- **3:15** emergency â€” vomit, lethargy â€” small dog *(~7)* â€” refer?  
+- **~2pm** Bandit — york — dental cleaning — **220**
+- **3:15** emergency — vomit, lethargy — small dog *(~7)* — refer?  
   **outcome:** ? follow w/ owner
-- **4** vacc reminder calls â€” did 5? **lost track**  
-  Buddy â€” recheck 6 wks (**no date set**)
-- **5:30** Mango â€” cat?? â€” 4.1 â€” **rabies due**
+- **4** vacc reminder calls — did 5? **lost track**  
+  Buddy — recheck 6 wks (**no date set**)
+- **5:30** Mango — cat?? — 4.1 — **rabies due**
 
-**end of day:** **cash drawer ~$600â€“650**, **receipts** in folder
+**end of day:** **cash drawer ~$600–650**, **receipts** in folder
 
 **Totals:** ?
 
@@ -134,7 +136,7 @@ Carry **one PetVax problem** through the whole table. Do not switch examples hal
 
 ---
 
-# Step 1 â€” Inspect the Raw Note
+# Step 1 — Inspect the Raw Note
 
 Before you analyze the system, inspect the note carefully. Good information systems begin with careful attention to what is actually recorded.
 
@@ -142,14 +144,14 @@ In your file, complete the row:
 
 `Notebook evidence`
 
-Use one line or phrase from Exhibit A that you will build your logic map around. Examples: `vacc reminder calls â€” did 5? lost track`, `Buddy â€” recheck 6 wks (no date set)`, `outcome: ? follow w/ owner`, or `cash drawer ~$600â€“650`.
+Use one line or phrase from Exhibit A that you will build your logic map around. Examples: `vacc reminder calls — did 5? lost track`, `Buddy — recheck 6 wks (no date set)`, `outcome: ? follow w/ owner`, or `cash drawer ~$600–650`.
 
 ## Quiz Question 1
 
 **Question type:** Short answer  
 **Points:** 1
 
-What date appears at the top of Dr. Dimaâ€™s notebook?
+What date appears at the top of Dr. Dima’s notebook?
 
 ## Quiz Question 2
 
@@ -170,10 +172,10 @@ D. Mango
 
 What end-of-day cash drawer range is recorded in the notebook?
 
-A. $400â€“$450  
-B. $500â€“$550  
-C. $600â€“$650  
-D. $700â€“$750
+A. $400–$450  
+B. $500–$550  
+C. $600–$650  
+D. $700–$750
 
 ## Quiz Question 4
 
@@ -182,14 +184,14 @@ D. $700â€“$750
 
 Which notebook line most clearly suggests that PetVax lost track of a process?
 
-A. Bandit â€” york â€” dental cleaning â€” 220  
-B. vacc reminder calls â€” did 5? lost track  
-C. Buddy â€” weight 15  
+A. Bandit — york — dental cleaning — 220  
+B. vacc reminder calls — did 5? lost track  
+C. Buddy — weight 15  
 D. receipts in folder
 
 ---
 
-# Step 2 â€” Choose One PetVax Performance Problem
+# Step 2 — Choose One PetVax Performance Problem
 
 A performance problem is something that prevents the organization from achieving a goal that matters.
 
@@ -226,7 +228,7 @@ F. Pet identities may be ambiguous
 
 ---
 
-# Step 3 â€” Choose a KPI
+# Step 3 — Choose a KPI
 
 A KPI is a measurable signal used to evaluate progress toward an important goal.
 
@@ -268,7 +270,7 @@ Match each PetVax problem to the most appropriate KPI.
 **Question type:** Multiple choice  
 **Points:** 1
 
-Which option is the best example of a KPI for the notebook problem `vacc reminder calls â€” did 5? lost track`?
+Which option is the best example of a KPI for the notebook problem `vacc reminder calls — did 5? lost track`?
 
 A. Buddy is a Beagle  
 B. Reminder completion rate  
@@ -277,7 +279,7 @@ D. Dr. Dima writes a note
 
 ---
 
-# Step 4 â€” Build the DIKW Chain
+# Step 4 — Build the DIKW Chain
 
 The DIKW hierarchy explains how raw records become meaningful and actionable.
 
@@ -316,14 +318,14 @@ Match each notebook-based example to the correct DIKW category.
 
 | Example | DIKW category |
 |---|---|
-| `Mango â€” cat?? â€” 4.1 â€” rabies due` | Data |
+| `Mango — cat?? — 4.1 — rabies due` | Data |
 | Several pets have unresolved follow-up or vaccination notes | Information |
 | Missing dates make it more likely that follow-up care will be delayed | Knowledge |
 | Require staff to schedule follow-ups before the visit is closed | Wisdom / Decision |
 
 ---
 
-# Step 5 â€” Connect the Problem to a Business Process
+# Step 5 — Connect the Problem to a Business Process
 
 KPIs do not appear from nowhere. Every KPI depends on a process that creates records.
 
@@ -346,7 +348,7 @@ Examples:
 **Question type:** Multiple choice  
 **Points:** 1
 
-Which process most directly created the problem shown in `vacc reminder calls â€” did 5? lost track`?
+Which process most directly created the problem shown in `vacc reminder calls — did 5? lost track`?
 
 A. Appointment reminder process  
 B. Dental cleaning process  
@@ -355,7 +357,7 @@ D. Weight measurement process
 
 ---
 
-# Step 6 â€” Identify a Data-Quality Risk
+# Step 6 — Identify a Data-Quality Risk
 
 Poor data quality can weaken KPIs and lead to bad decisions.
 
@@ -380,13 +382,13 @@ Match each notebook item to the data-quality issue it best illustrates.
 | Notebook item | Data-quality issue |
 |---|---|
 | `outcome: ?` | Completeness |
-| `cash drawer ~$600â€“650` | Accuracy / precision |
-| `Buddy â€” recheck 6 wks (no date set)` | Completeness / timeliness |
+| `cash drawer ~$600–650` | Accuracy / precision |
+| `Buddy — recheck 6 wks (no date set)` | Completeness / timeliness |
 | `Charlie (other one)` | Consistency / identification ambiguity |
 
 ---
 
-# Step 7 â€” Identify Information Behavior
+# Step 7 — Identify Information Behavior
 
 Information behavior focuses on how people recognize information needs, look for information, interpret it, and use it.
 
@@ -416,7 +418,7 @@ D. The notebook has lined paper
 
 ---
 
-# Step 8 â€” Connect the Problem to R.E.A.D.
+# Step 8 — Connect the Problem to R.E.A.D.
 
 R.E.A.D. explains the work an information system performs to move from records to decisions.
 
@@ -445,7 +447,7 @@ Match each R.E.A.D. stage to the best PetVax example.
 
 ---
 
-# Step 9 â€” Diagnose the Five-Component Risk
+# Step 9 — Diagnose the Five-Component Risk
 
 An information system includes hardware, software, data, processes, and people.
 
@@ -466,7 +468,7 @@ Examples:
 **Question type:** Multi-select  
 **Points:** 1
 
-A PetVax manager says, â€œReminder calls were lost track of, so the software must be broken.â€ Which information-system components might actually be involved? Select all that apply.
+A PetVax manager says, “Reminder calls were lost track of, so the software must be broken.” Which information-system components might actually be involved? Select all that apply.
 
 A. Hardware  
 B. Software  
@@ -476,7 +478,7 @@ E. People
 
 ---
 
-# Step 10 â€” Connect to MIS, BITM, Strategy, and Governance
+# Step 10 — Connect to MIS, BITM, Strategy, and Governance
 
 Chapter 2 also connects information systems to management.
 
@@ -501,7 +503,7 @@ Match each Chapter 2 concept to the best PetVax example.
 
 ---
 
-# Step 11 â€” Final File Check
+# Step 11 — Final File Check
 
 Before submitting, make sure your logic map uses the same PetVax problem from beginning to end.
 
@@ -550,12 +552,12 @@ These are not required.
 1. Add a second KPI for the same PetVax problem.
 2. Propose one improvement to the notebook process that would reduce ambiguity.
 3. Explain how your KPI could create unintended behavior.
-4. Explain what evidence would show that PetVaxâ€™s decision improved performance.
+4. Explain what evidence would show that PetVax’s decision improved performance.
 ---
 
-## Hint â€” What Good Notes Look Like
+## Hint — What Good Notes Look Like
 
-The example below shows how completed performance notes can connect one problem to a KPI, DIKW chain, and business process. Your layout does not need to match this exactly â€” any clear, consistent structure works.
+The example below shows how completed performance notes can connect one problem to a KPI, DIKW chain, and business process. Your layout does not need to match this exactly — any clear, consistent structure works.
 
 ![Example of organized PetVax performance logic map notes showing problem-KPI-DIKW chain connections](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_900/bitm330book/00-general/labs/dr-diamond-notes)
 

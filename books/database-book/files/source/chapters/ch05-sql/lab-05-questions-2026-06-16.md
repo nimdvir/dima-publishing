@@ -1,5 +1,3 @@
-<!-- metadata: date="2026-06-03" -->
-
 <!-- markdownlint-disable MD013 MD024 MD028 MD033 MD034 MD036 -->
 
 # Lab 05: Querying the PetVax Database with SQL

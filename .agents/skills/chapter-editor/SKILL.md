@@ -184,7 +184,7 @@ When working in a bundle, the editor may update the Bundle Notes, the Embedded S
 - Gap audit against source folder (no editing) → use `chapter-gap-analysis`.
 - Lab companion creation or revision → use `lab-creation` or `autograded-lab`.
 - Standalone callout creation, conversion, or auditing → use `call-out`.
-- Media placement, figure suggestions, image generation, Cloudinary upload, image optimization, media ledger updates, or link rewriting → use `chapter-media`.
+- Bulk media production (broad image discovery, image generation, batch optimization, bulk Cloudinary upload, media ledger updates, or link rewriting across the full chapter) → use `chapter-media`.
 - Creating a brand-new companion file from scratch (no existing dated file to edit) → use the matching companion skill: `lets-build-creator`, `reflection`, `term-creator`, or `rat-creator`.
 - Platform publishing sync → use `chapter-sync`.
 
@@ -204,7 +204,7 @@ The chapter editor may convert callouts encountered during a chapter edit, but s
 | RAT | Only if user explicitly asks |
 | Lab | Only if user explicitly asks |
 | `.edits/` files | Read-only scan + update (see .edits Integration) |
-| Images / media | Audit only (see Images and Media) |
+| Images / media | Visual pedagogy + targeted cleanup (see Images and Media) |
 | Sources, archives, backups | Never |
 
 The chapter editor focuses on the main manuscript. Companion files (Let's Build, Reflection, Terms, RAT) are edited only when the user explicitly requests it — otherwise, recommend the matching companion-file skill as a handoff. When a companion section is missing (no canonical dated file), flag it in the report and recommend the matching companion-file skill to create it.
@@ -341,47 +341,91 @@ Expected pattern:
 
 ---
 
-## Images and Media — Audit Only
+## Images and Media — Visual Pedagogy and Targeted Media Cleanup
 
-Check existing media references for build and accessibility issues.
+The chapter editor owns visual pedagogy and targeted cleanup of existing concrete image references. It does not own broad image discovery, image generation, batch optimization, bulk upload, or media-ledger maintenance. Those tasks belong to `chapter-media`.
 
-The chapter editor may audit:
+### Core Policy
 
-- raw local paths such as `G:\...`, `C:\...`, or `file:///...`;
-- local Markdown image links;
-- HTML `<img>` tags;
-- missing or weak alt text;
-- missing or weak captions;
-- duplicate or decorative visuals;
-- unresolved `#### 🎨 Figure Suggestion` blocks;
-- malformed image syntax;
-- existing Cloudinary URLs that appear malformed.
+```text
+Figure idea only → HTML comment (<!-- 🎨 Figure Suggestion: [description] -->)
+Existing image path/link → targeted media normalization (upload or escalate)
+Bulk scan/generate/place/optimize → chapter-media
+```
+
+### What the Editor May Do
+
+The chapter editor may:
+
+- identify sections that would benefit from a diagram, screenshot, table, workflow, ERD, or annotated example;
+- add concise figure suggestions as HTML comments using the canonical format (see below);
+- improve captions and alt text for images already placed in the chapter;
+- flag decorative, redundant, misplaced, or weak visuals;
+- standardize existing concrete image references when the image path or URL is already present;
+- resolve raw local image links, bare image paths, or image comments that point to actual files by preparing them for Cloudinary-backed delivery when the user has approved production cleanup or explicitly asked the editor to resolve existing image references.
+
+### What the Editor Must Not Do
 
 The chapter editor must not:
 
-- place images;
-- create figure suggestions;
-- optimize images;
-- upload images;
-- rewrite image links to Cloudinary;
-- update `.images/book-media.md`;
+- generate new images from scratch;
+- run broad image discovery across folders unless the user approves;
+- bulk-upload candidate images;
+- upload images that are only ideas or suggestions (no actual file path);
+- overwrite source images;
 - delete image files;
-- insert new media URLs unless the user explicitly provided the URL and asked for insertion.
+- update media ledgers or manifests unless the delegated media workflow requires it;
+- run the full media pipeline silently.
 
-Flag media issues in the report and recommend `chapter-media`.
+### Figure Suggestion Format
 
-Suggested report language:
+All figure suggestions must be hidden from student-facing output as HTML comments.
 
+Use:
+
+```html
+<!-- 🎨 Figure Suggestion: A short description of what the figure shows and why it helps the reader. -->
 ```
-Media handoff recommended: Run `chapter-media` to resolve image placement, optimization, Cloudinary links, or media ledger updates.
+
+Do **not** use visible Markdown headings such as:
+
+```markdown
+#### 🎨 Figure Suggestion
 ```
 
-### Image Coverage — Audit, Do Not Force
+Figure suggestions must never appear as visible Markdown headings in student-facing drafts. Use HTML comments only.
 
-Do not force an image into every section or sub-section. Audit visual coverage instead:
+### Existing Image References
+
+If the chapter contains a real image reference — a raw local path, Markdown image link, HTML image tag, or HTML comment pointing to an actual image file — the editor must not ignore it.
+
+The editor should either:
+
+1. convert it into a clean figure reference using the approved Cloudinary workflow when production cleanup is approved; or
+2. list it clearly in the Final Revision Report as a media item requiring `chapter-media`.
+
+Concrete image references include:
+
+```markdown
+![Alt text](G:\My Drive\...\image.png)
+```
+
+```html
+<img src="G:\My Drive\...\image.png" alt="...">
+```
+
+```markdown
+![](file:///G:/My Drive/.../image.png)
+```
+
+A figure suggestion without an actual file path is not an image reference. It should remain an HTML comment until `chapter-media` resolves it.
+
+### Image Coverage — Evaluate, Do Not Force
+
+Do not force an image into every section or sub-section. Evaluate visual coverage instead:
 
 - Every major `##` section should usually have a visual anchor — a figure, table, or callout — but a `###` sub-section needs its own image only if it is long, conceptually important, or visually difficult.
-- If a major section clearly needs a visual and has none, add a single figure suggestion only when useful and flag it for `chapter-media`. Do not pepper the chapter with figure-suggestion blocks.
+- If a major section clearly needs a visual and has none, add a single figure suggestion as an HTML comment when useful. Do not pepper the chapter with suggestion comments.
 
 ### Never Delete Images — Recommend Instead
 
@@ -393,7 +437,7 @@ Preserve all image files and all existing placements. The editor never removes a
 
 List each `RECOMMEND REMOVE` comment in the report. Do not delete or move the image.
 
-### Figure Numbering — Audit Only
+### Figure Numbering — Audit, Delegate Final Numbers
 
 Figure numbering is primarily a `chapter-media` responsibility. The editor may **audit** numbering and normalize obvious existing captions, but final figure numbering, placement, media-ledger updates, and Cloudinary links belong to `chapter-media`.
 
@@ -403,35 +447,26 @@ When auditing, check that:
 - Decorative icons, logos, section badges, recurring navigation graphics, and the Core Concepts GIF are **not** numbered.
 - Captions explain the instructional purpose; alt text describes what the image shows rather than repeating the caption.
 
----
-
-## Media and Companion File Boundaries
-
-> **The chapter editor is the quality gate, not the media pipeline.**
-
-The chapter editor is responsible for checking whether the main chapter is clean, coherent, and build-ready.
-
-It does **not** place media.
-It does **not** optimize media.
-It does **not** upload media.
-It does **not** rewrite image links to Cloudinary.
-It does **not** create new figure suggestions unless the user explicitly asks.
-
-When media issues are found, flag them in the Final Revision Report and recommend the `chapter-media` skill.
+### Handoff to `chapter-media`
 
 Use `chapter-media` for:
 
-- image placement;
-- image-placement reports;
-- figure suggestions;
-- local image insertion;
-- Cloudinary optimization;
-- Cloudinary uploads;
-- image URL rewriting;
-- media ledger updates;
-- audio/video placement.
+- broad image inventory;
+- choosing among image candidates;
+- generating images;
+- placing new local figures;
+- optimizing batches of images;
+- uploading multiple selected images;
+- rewriting links across the full chapter;
+- updating media ledgers, manifests, and figure indexes.
 
-The chapter editor may audit existing media references only.
+When the chapter needs media work beyond suggestions and targeted cleanup, flag it in the Final Revision Report and recommend `chapter-media`.
+
+Suggested report language:
+
+```
+Media handoff recommended: Run `chapter-media` to resolve image placement, optimization, Cloudinary links, or media ledger updates.
+```
 
 ---
 
@@ -604,9 +639,9 @@ Chapter 1 is an orientation chapter and uses a fuller `##` order that introduces
 
 Later chapters (Ch2 onward) use the standard skeleton above, not this orientation variant.
 
-### Image Coverage — Audit Only
+### Image Coverage — Evaluate, Do Not Force
 
-Visual coverage is audited, not enforced. See **Images and Media** for the full rule: every major `##` section usually benefits from a visual anchor, but do not force an image into every sub-section, and never delete images. When a major section clearly needs a visual and has none, flag it for `chapter-media` rather than placing media here.
+Visual coverage is evaluated, not enforced. See **Images and Media** for the full rule: every major `##` section usually benefits from a visual anchor, but do not force an image into every sub-section, and never delete images. When a major section clearly needs a visual and has none, add a figure suggestion comment or flag it for `chapter-media` rather than placing media here.
 
 ### Lists, Tables, and Examples (Strongly Preferred)
 
@@ -838,6 +873,23 @@ For all other target files:
 
 Return the Final Revision Report below.
 
+### Stage 7 — Media Pipeline Offer
+
+After the Final Revision Report, offer a media handoff when one or more of the following are true:
+
+- the chapter contains unresolved figure suggestions;
+- the visual pedagogy pass identified missing visual anchors;
+- existing images need placement, captions, alt text, optimization, upload, or link rewriting;
+- raw local image paths or malformed media references were found.
+
+Use this prompt:
+
+```text
+Text editing is complete. I found [N] media/visual follow-up item(s). Would you like me to run `chapter-media` now to inventory, place, optimize, or resolve the chapter images?
+```
+
+The offer is conditional — only make it when media follow-up work is needed. Do not automatically launch `chapter-media`. The user must approve before the media pipeline runs.
+
 ---
 
 ## Final Revision Report
@@ -876,6 +928,7 @@ Return the Final Revision Report below.
 14. **.edits scan** — pending edits found (N), processed (X), deferred (Y); new edits documented to `.edits/` (Z).
 15. **Companion freshness check** — included only if the user approved the read-only check (table of statuses per companion section).
 16. **Production sync offer** — if the edit is build-ready, offer to run `chapter-sync` to publish, and note that it is incremental and requires explicit approval before running.
+17. **Media pipeline offer** — state whether media follow-up is recommended, why, and whether the user was offered `chapter-media`.
 ```
 
 Keep the report compact. The Author Comments tally is required even when N = 0.

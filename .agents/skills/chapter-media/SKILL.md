@@ -43,7 +43,7 @@ What would you like to do?
 
 1. Full pipeline — suggest → place → optimize (smart-start picks the stage)
 2. Dry run — inventory only, no edits, show what would happen
-3. Suggest only — add 🎨 Figure Suggestion blocks
+3. Suggest only — add figure suggestion comments
 4. Place only — resolve suggestions into real local images
 5. Optimize only — upload to Cloudinary and rewrite links
 6. Scan for new images — check .images/<chapter>/ for unplaced images
@@ -71,8 +71,8 @@ Scan the target and auto-detect the starting stage:
 
 | What exists in the target?                                                      | Start at                      |
 | ------------------------------------------------------------------------------- | ----------------------------- |
-| No `🎨 Figure Suggestion` blocks, no local `![…](…)` images, no Cloudinary URLs | Suggest                       |
-| `🎨 Figure Suggestion` blocks exist, but no local images placed yet             | Place                         |
+| No `<!-- 🎨 Figure Suggestion: ... -->` comments, no local `![…](…)` images, no Cloudinary URLs | Suggest                       |
+| `<!-- 🎨 Figure Suggestion: ... -->` comments exist, but no local images placed yet | Place                         |
 | Local `![…](relative/path)` images exist (not yet on Cloudinary)                | Optimize                      |
 | All images already use Cloudinary `res.cloudinary.com/dkndq6lyz` URLs           | Done — report, return to menu |
 
@@ -113,12 +113,12 @@ chapter. **Never auto-place — always ask first.**
    e. Also scan later chapters for unused images that might fit
    ```
 
-5. If (a): ask which numbers, add `#### 🎨 Figure Suggestion` blocks for each in the
+5. If (a): ask which numbers, add `<!-- 🎨 Figure Suggestion: ... -->` comments for each in the
    most relevant section. Use filename and visual assessment for the description.
 6. If (d) or (e): run the scan on requested folders, append to list, repeat question.
 7. After acting, return to the main menu.
 
-This step only adds `🎨 Figure Suggestion` blocks. It does not place, generate,
+This step only adds `<!-- 🎨 Figure Suggestion: ... -->` comments. It does not place, generate,
 optimize, or upload images. For a read-only inventory with CSV export or an HTML
 thumbnail gallery, use `chapter-media-inventory` instead.
 
@@ -230,7 +230,7 @@ This phase is read-only.
 
 1. Resolve target file (latest-dated main or named companion).
 2. Walk every `##` and `###` heading in scope.
-3. Count: sub-sections, existing `🎨 Figure Suggestion` blocks, existing local
+3. Count: sub-sections, existing `<!-- 🎨 Figure Suggestion: ... -->` comments, existing local
    `![…](…)` images, existing HTML `<img>` tags, existing Cloudinary URLs,
    existing figures index file, existing figure numbers, bare Windows paths,
    broken references.
@@ -250,7 +250,7 @@ Cloudinary folder: Database-book-BITM330/<folder>/
 
 ### Existing State
 - Sub-sections: X
-- 🎨 Figure Suggestions: X
+- Figure suggestion comments: X
 - Local images placed: X
 - Cloudinary URLs: X
 - Figures index: [present / missing] at `.images/<chapter>/figures-index.md`
@@ -281,24 +281,21 @@ For dry run (Menu Option 2), stop here. For other modes, wait for approval.
 
 ## Phase 1 — Suggest
 
-Add `#### 🎨 Figure Suggestion` blocks where sections need visuals.
+Add `<!-- 🎨 Figure Suggestion: ... -->` HTML comments where sections need visuals.
 
-_Reference: `figure-suggestion/SKILL.md` for canonical block format, chapter-wide
+_Reference: `figure-suggestion/SKILL.md` for canonical comment format, chapter-wide
 image-ideas file, and legacy-form recognition._
 
-### Canonical Block
+### Canonical Comment Format
 
-```markdown
-#### 🎨 Figure Suggestion
-
-A short description of what the figure shows and why it helps the reader.
-Caption hint: Short caption idea.
+```html
+<!-- 🎨 Figure Suggestion: A short description of what the figure shows and why it helps the reader. -->
 ```
 
-- Heading is `#### 🎨 Figure Suggestion` exactly.
+- Format is `<!-- 🎨 Figure Suggestion: [description] -->` exactly.
 - Place directly under the paragraph where the visual belongs.
-- Never inside code blocks, tables, callouts, or HTML comments.
-- No file names, URLs, prompts, or Cloudinary links.
+- Must be an HTML comment — never a visible Markdown heading.
+- No file names, URLs, prompts, or Cloudinary links in the description.
 - Prefer instructional visuals over decorative ones.
 
 ### Coverage Rule
@@ -335,7 +332,7 @@ For each suggestion, scan and stop at the first good fit (judge both fit and qua
 
 ### Figure Block
 
-Replace the `#### 🎨 Figure Suggestion` block (or legacy `*Figure suggestion: …*` line) with:
+Replace the `<!-- 🎨 Figure Suggestion: ... -->` comment (or legacy `*Figure suggestion: …*` line) with:
 
 ```markdown
 ![Alt text](relative/path/to/figure-NN.X-slug.ext)
@@ -607,6 +604,6 @@ These companion files define formats and rules referenced by this skill:
 
 The individual stage skills remain available for single-stage work:
 
-- `figure-suggestion` — Stage 1: insert `🎨 Figure Suggestion` blocks
+- `figure-suggestion` — Stage 1: insert `<!-- 🎨 Figure Suggestion: ... -->` comments
 - `image-placement` — Stage 2: place local figures with captions and figures index
 - `image-link-optimizer` — Stage 3: optimize, upload, rewrite, maintain ledger

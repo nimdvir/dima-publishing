@@ -1,580 +1,263 @@
 ---
 name: chapter-command-center
 description: >
-  Standalone interactive VS Code/Codex launcher for BITM330 database-book chapter work.
-  Use when the user is unsure what to do next, wants a recommendation, wants a menu
-  of chapter-production actions, or wants to route work to the correct specialized
-  skill. This skill does not edit chapters directly unless the user selects an action;
-  it recommends, routes, and coordinates operational record updates.
+  Front-door routing and decision support for BITM330 database-book chapter work.
+  Use when the user is unsure what to do next, asks which skill to use, wants a quick
+  chapter-status interpretation, or needs a recommended next action. This skill does
+  not edit chapter content, produce media, revise companions, run final review, build
+  DOCX, or update production files. It routes the user to the smallest appropriate skill.
+argument-hint: Chapter number, chapter folder, file path, or plain-language goal such as "what should I do next for ch09?"
 ---
 
 # Chapter Command Center
 
-`chapter-command-center` is the standalone entry point for chapter work.
+`chapter-command-center` is the front door for BITM330 chapter production. It is a **router, not a worker**.
 
-Use it when the user says things like:
+It helps answer:
 
 ```text
-/chapter-command-center ch01
-what should I do next for chapter 1?
-help me continue chapter 2
-where are we with chapter 3?
-which skill should I use?
-run the chapter command center
+What am I trying to do?
+What state is this chapter in?
+Which skill should run next?
+What should I ask that skill to do?
 ```
-
-This skill should:
-
-1. inspect chapter status;
-2. recommend the next best step;
-3. show a clear menu;
-4. ask what the user wants to do;
-5. route to the right specialized skill;
-6. decide whether operational records should be updated.
-
-This is a **launcher/router skill**, not a replacement for the production, editing, media, review, or DOCX skills.
 
 ---
 
-## Relationship To Other Skills
+## Core Principle
 
-| Skill | Role |
-|---|---|
-| `chapter-command-center` | Main interactive launcher / router |
-| `chapter-production-flow` | Full guided production lifecycle, if installed |
-| `chapter-review-codex` | Canonical final whole-package review |
-| `chapter-editor` | Main chapter prose editing |
-| `chapter-editor-light` | Quick grammar/style polish |
-| `lets-build-creator` | Let's Build creation/revision |
-| `lab-creation` | Lab creation/revision |
-| `reflection` | Review and Reflection creation/revision |
-| `rat-creator` | RAT creation/revision |
-| `term-creator` | Terms Treasury / term appendix |
-| `chapter-media-inventory` | Read-only media inventory |
-| `chapter-media` | Media planning and placement |
-| `image-link-optimizer` | Image optimization/upload/link rewrite |
-| `progress-update` | Chronological session log |
-| `edits` | Chapter-specific unresolved notes |
-| `chapter-tracker` | Cross-chapter production status |
-| `chapter-docx-build` | DOCX export |
+Use the smallest appropriate skill.
 
-If `chapter-production-flow` is installed, use it only when the user wants a full guided lifecycle. Otherwise, route directly to the specialized skill.
+Do not launch a full production workflow when a single specialized skill can handle the task. Do not ask the user to choose among many sub-skills when the correct route is obvious.
 
 ---
 
 ## Source Model
 
-The canonical source root is:
-
-```text
-books/database-book/files/source
-```
-
-Expected chapter package:
-
-```text
-books/database-book/files/source/chapters/chNN-slug/
-  index.md
-  core-concepts.md
-  lets-build.md
-  review-questions.md
-  terms-treasury.md
-  rat.md
-
-books/database-book/files/source/labs/lab-NN-slug/
-  index.md
-```
-
-Reports go under:
-
-```text
-books/database-book/.reports/
-```
-
-Operational notes go under:
-
-```text
-books/database-book/.edits/
-```
-
-Do not use Google Drive dated drafts as live source unless the user explicitly asks for comparison, merge, or import work.
+The canonical source root is `books/database-book/files/source`. Expected chapter package layout and operational record paths are defined in `chapter-production-flow`. Do not duplicate them here.
 
 ---
 
-# Default Behavior
+## What This Skill Does
 
-When invoked, do not immediately edit files.
+The command center may:
 
-Default sequence:
+- interpret the user's goal;
+- identify the likely chapter, component, and stage;
+- recommend the next skill to use;
+- explain why that skill is the best fit;
+- provide the exact suggested invocation;
+- identify when a request is too broad and should go to `chapter-production-flow`;
+- identify when a request is narrow and should go directly to a specialized skill;
+- produce a short routing plan;
+- ask one clarifying question when the target or goal is ambiguous.
 
-```text
-1. Resolve target chapter.
-2. Inspect status.
-3. Recommend next best step.
-4. Present menu.
-5. Wait for user selection.
-6. Route to the selected skill.
-7. Update operational records only when triggers are met and writes are approved.
-```
+## What This Skill Does Not Do
 
----
+The command center must not:
 
-# Phase 0 — Status Scan
+- edit chapter prose;
+- rewrite companion files;
+- add or place images;
+- optimize, upload, or rewrite media links;
+- update media ledgers or manifests;
+- run final review;
+- build DOCX;
+- update tracker files;
+- write reports;
+- sync, deploy, commit, or push.
 
-Before recommending anything, inspect the chapter package.
-
-Check:
-
-- chapter folder exists;
-- lab folder exists;
-- `core-concepts.md` exists;
-- `lets-build.md` exists;
-- `review-questions.md` exists;
-- `terms-treasury.md` exists;
-- `rat.md` exists;
-- matching lab `index.md` exists;
-- `.edits/chNN-edits.md` exists;
-- `.edits/edit-log.md` exists;
-- `.edits/chapter-tracker.md` exists;
-- `.reports/chNN-final-review-*` exists;
-- `.build/chNN-full-*.docx` exists;
-- any `*-answers-*` files exist under `books/database-book/files/source`;
-- obvious TODO/FIXME/TK markers exist;
-- obvious raw local paths such as `G:\`, `C:\`, or `file:///` exist.
-
-Do not write files during the status scan.
+If the task requires action, route to the appropriate skill.
 
 ---
 
-# Phase 1 — Recommend Next Step
+## Five Front Doors
 
-After the status scan, recommend one next action.
+For most user requests, route to one of these five:
 
-Use these rules:
-
-| Condition | Recommend |
+| Front door | Use when |
 |---|---|
-| `core-concepts.md` missing or clearly unfinished | Edit/create main chapter with `chapter-editor` |
-| Main chapter has many TODOs/comments | Main chapter cleanup with `chapter-editor` |
-| Let's Build missing | Create/revise Let's Build with `lets-build-creator` |
-| Lab missing | Create/revise lab with `lab-creation` |
-| Terms Treasury missing or weak | Terms pass with `term-creator` |
-| Review questions missing | Review/reflection pass with `reflection` |
-| RAT missing | RAT pass with `rat-creator` |
-| Image placeholders/raw image paths exist | Media inventory with `chapter-media-inventory` |
-| Companions exist but may not align | Companion audit or `chapter-review-codex` dry run |
-| No final-review report exists | Run `chapter-review-codex` |
-| Final review exists and no blockers | Build DOCX with `chapter-docx-build` |
-| DOCX exists and tracker is outdated | Update logs/tracker |
-| User asks “what happened?” | Read/use `progress-update` |
-| User asks “what remains?” | Read/use `edits` |
-| User asks “where are we?” | Read/use `chapter-tracker` |
+| `chapter-command-center` | The user needs help deciding what to do |
+| `chapter-production-flow` | The user wants chapter lifecycle coordination |
+| `chapter-editor` | The user wants the main chapter edited (prose, structure, callouts, and visual pedagogy) |
+| `chapter-media` | The user wants images, figures, Cloudinary, or media workflow |
+| `chapter-final-check` | The user wants final readiness verification |
 
-Recommendation format:
+All other skills are delegated workers — called by the front-door skills, not by the user directly.
+
+---
+
+## Main Routing Table
+
+| User goal | Route to |
+|---|---|
+| "What should I do next?" | `chapter-command-center` first, then route |
+| "Show me the chapter status" | `chapter-production-flow status` |
+| "Plan the next steps for this chapter" | `chapter-production-flow plan-only` |
+| "Manage this chapter through several steps" | `chapter-production-flow` |
+| "Edit the main chapter" | `chapter-editor` |
+| "Lightly polish the chapter" | `chapter-editor-light` |
+| "Fix or review images/media" | `chapter-media` |
+| "Run media inventory only" | `chapter-media-inventory` or `chapter-media dry-run` |
+| "Create or revise Let's Build" | `lets-build-creator` |
+| "Create or revise a lab" | `lab-creation` |
+| "Create an LMS-only autograded lab" | `autograded-lab` |
+| "Create or revise terms" | `term-creator` |
+| "Create or revise review/reflection" | `reflection` |
+| "Create or revise RAT/quiz" | `rat-creator` |
+| "Check whether this chapter is ready" | `chapter-final-check` |
+| "Run final readiness check" | `chapter-final-check` |
+| "Can I sync/deploy this chapter?" | `chapter-final-check` |
+| "Build DOCX" | `chapter-docx-build` |
+| "Record what happened" | `progress-update` |
+| "Record chapter-specific unresolved items" | `edits` |
+| "Update production status" | `chapter-tracker` |
+
+---
+
+## Decision Tree
+
+### 1. Is the user asking what to do next?
+
+Route to `chapter-command-center`. Return a short recommendation with suggested invocation.
+
+### 2. Is the user asking to manage several steps?
+
+Examples: "Work on Chapter 9 from where we left off.", "Take Chapter 4 through edit, media, review, and DOCX."
+
+Route to `chapter-production-flow`.
+
+### 3. Is the user asking to edit the main chapter only?
+
+Examples: "Edit Chapter 9.", "Clean up the Chapter 4 prose.", "Improve flow and images in Chapter 6."
+
+Route to `chapter-editor`. If the request includes images as part of editing, still route to `chapter-editor` first — the editor handles visual pedagogy and targeted image-reference cleanup, then offers `chapter-media` when needed.
+
+### 4. Is the user asking only about media?
+
+Examples: "Fix the images in Chapter 4.", "Run Cloudinary cleanup.", "Place the figure suggestions."
+
+Route to `chapter-media`.
+
+### 5. Is the user asking for final readiness check?
+
+Examples: "Check if Chapter 9 is ready for DOCX/deploy.", "Run final readiness check."
+
+Route to `chapter-final-check`.
+
+### 6. Is the user asking for one companion?
+
+Route directly: `lets-build-creator`, `lab-creation`, `autograded-lab`, `term-creator`, `reflection`, or `rat-creator`.
+
+### 7. Is the user asking for output?
+
+Route to `chapter-docx-build` (DOCX), `chapter-sync` (sync, only when explicitly requested), or `book-deploy` (deploy, only when explicitly requested).
+
+---
+
+## Ambiguity Rule
+
+Ask at most one clarifying question.
+
+- Chapter clear, task broad → route to `chapter-production-flow plan-only`.
+- Task clear, chapter missing → ask "Which chapter should I use?"
+- Both unclear → ask "Which chapter, and are you trying to edit, handle media, review, or build output?"
+
+---
+
+## Output Format
+
+When routing, respond with:
 
 ```markdown
-## Recommended Next Step
+## Recommended Route
 
-Based on the current chapter state, I recommend:
+**Use:** `<skill-name>`
 
-**<recommended action>**
+**Why:** <one sentence>
 
-Reason:
-- <short reason 1>
-- <short reason 2>
+**Suggested invocation:** `<skill-name> <arg>`
 
-Suggested skill:
-`<skill-name>`
+**What it will do:** ...
+**What it will not do:** ...
 ```
 
 ---
 
-# Phase 2 — Interactive Menu
+## Example Routes
 
-After the recommendation, show this menu and wait.
+### Example 1 — What should I do next?
+
+User: "What should I do next for Chapter 9?"
 
 ```markdown
-## Chapter Command Center — chNN
+## Recommended Route
 
-What would you like to do?
+**Use:** `chapter-production-flow`
 
-1. **Tell me what to do next** — inspect status and recommend next step only
-2. **Edit main chapter** — launch `chapter-editor`
-3. **Quick polish main chapter** — launch `chapter-editor-light`
-4. **Build or revise companions** — choose Let's Build / Lab / Terms / Review / RAT
-5. **Handle media and figures** — inventory, place, optimize, or upload images
-6. **Run final whole-package review** — launch `chapter-review-codex`
-7. **Build DOCX** — launch `chapter-docx-build`
-8. **Update operational records** — progress log, chapter edits, tracker
-9. **Show chapter status** — read tracker, edit notes, reports, and build status
-10. **Full guided production flow** — launch `chapter-production-flow`, if installed
+**Why:** You are asking for chapter status and next production steps, not a single edit.
 
-Reply with a number, or describe what you want in plain English.
+**Suggested invocation:** `chapter-production-flow ch09 plan-only`
+```
+
+### Example 2 — Edit with image awareness
+
+User: "Edit Chapter 4 and make sure images are considered too."
+
+```markdown
+## Recommended Route
+
+**Use:** `chapter-editor`
+
+**Why:** The main task is chapter editing. The editor performs a visual pedagogy pass and can flag or resolve concrete image references, then offers `chapter-media`.
+
+**Suggested invocation:** `chapter-editor ch04`
+```
+
+### Example 3 — Media only
+
+User: "The figures are still local paths. Fix them."
+
+```markdown
+## Recommended Route
+
+**Use:** `chapter-media`
+
+**Why:** The task is media cleanup, optimization, upload, and link rewriting.
+
+**Suggested invocation:** `chapter-media chNN optimize`
 ```
 
 ---
 
-# Phase 3 — Route Selection
-
-## Option 1 — Tell Me What To Do Next
-
-Run only:
-
-- status scan;
-- recommendation;
-- no edits;
-- no logs unless the user asks.
-
-## Option 2 — Edit Main Chapter
-
-Recommend launching:
-
-```text
-chapter-editor
-```
-
-Target:
-
-```text
-core-concepts.md
-```
-
-Before launching, say:
-
-```markdown
-I recommend launching `chapter-editor` because the main chapter needs prose, structure, or comment cleanup.
-
-Proceed? yes / no / choose another option
-```
-
-After completion, evaluate operational-record triggers.
-
-## Option 3 — Quick Polish Main Chapter
-
-Recommend launching:
-
-```text
-chapter-editor-light
-```
-
-Use only for grammar, clarity, and small prose polish.
-
-Do not restructure the chapter deeply.
-
-## Option 4 — Build or Revise Companions
-
-Ask:
-
-```markdown
-Which companion should we work on?
-
-1. Let's Build — `lets-build-creator`
-2. Lab — `lab-creation`
-3. Terms Treasury — `term-creator`
-4. Review and Reflection — `reflection`
-5. RAT — `rat-creator`
-6. Audit all companions and recommend fixes
-```
-
-Route to the selected skill.
-
-## Option 5 — Handle Media and Figures
-
-Ask:
-
-```markdown
-What media task?
-
-1. Inventory existing images — `chapter-media-inventory`
-2. Plan/place images — `chapter-media`
-3. Optimize/upload/rewrite image links — `image-link-optimizer`
-4. Check captions, alt text, and figure numbering
-5. Media dry run only
-```
-
-Rules:
-
-- inventory before media writes;
-- no optimization/upload/rewrite without explicit approval;
-- never overwrite originals;
-- record media provenance in `books/database-book/files/manifests/image-manifest.csv`.
-
-## Option 6 — Final Whole-Package Review
-
-Recommend launching:
-
-```text
-chapter-review-codex
-```
-
-Use this when the chapter package is near production-ready or when the user wants a complete package audit.
-
-After final review:
-
-- update `progress-update` if meaningful work happened;
-- update `edits` if unresolved chapter-specific items remain;
-- update `chapter-tracker` if status changed;
-- recommend DOCX only if no blocking issues remain.
-
-## Option 7 — Build DOCX
-
-Recommend launching:
-
-```text
-chapter-docx-build
-```
-
-Before launching, confirm:
-
-- final review exists, or the user explicitly wants a draft export;
-- answer files are not included;
-- navigation-only chapter index is excluded unless requested;
-- reference DOCX/styling dependency is known or fallback is approved.
-
-After DOCX:
-
-- update `progress-update`;
-- update `edits` if build issues remain;
-- update `chapter-tracker`.
-
-## Option 8 — Update Operational Records
-
-Ask:
-
-```markdown
-What should I update?
-
-1. Session history — `progress-update`
-2. Chapter-specific unresolved notes — `edits`
-3. Cross-chapter production status — `chapter-tracker`
-4. All relevant records
-```
-
-Use the operational trigger rules below.
-
-## Option 9 — Show Chapter Status
-
-Read:
-
-```text
-books/database-book/.edits/edit-log.md
-books/database-book/.edits/chNN-edits.md
-books/database-book/.edits/chapter-tracker.md
-books/database-book/.reports/chNN-*
-chapter .build folder
-```
-
-Report:
-
-```markdown
-## Chapter NN Status
-
-| Area | Status | Evidence | Recommended Next Step |
-|---|---|---|---|
-| Main chapter | ... | ... | ... |
-| Companions | ... | ... | ... |
-| Media | ... | ... | ... |
-| Final review | ... | ... | ... |
-| DOCX | ... | ... | ... |
-| Blockers | ... | ... | ... |
-```
-
-No writes.
-
-## Option 10 — Full Guided Production Flow
-
-If installed, recommend launching:
-
-```text
-chapter-production-flow
-```
-
-If not installed, run the guided flow directly using one milestone at a time:
-
-1. show current status;
-2. recommend next step;
-3. ask for approval;
-4. delegate to the appropriate skill;
-5. update operational records if approved;
-6. stop before the next milestone.
-
-Never run the whole production pipeline blindly.
-
----
-
-# Operational Records Trigger Rules
-
-The user should not need to remember when to update operational records.
-
-At the end of every selected task, evaluate these triggers.
-
-## Trigger 1 — `progress-update`
-
-Use `progress-update` if meaningful work happened.
-
-Examples:
-
-- edited source files;
-- generated or updated reports;
-- ran final review;
-- built DOCX;
-- made a production decision;
-- found a blocker.
-
-Question:
-
-```text
-Did we do something future sessions should remember?
-```
-
-If yes, update:
-
-```text
-books/database-book/.edits/edit-log.md
-```
-
-## Trigger 2 — `edits`
-
-Use `edits` if there are chapter-specific unresolved items.
-
-Examples:
-
-- unresolved author comments;
-- deferred chapter content decisions;
-- chapter-specific media issue;
-- lab/RAT/terms issue;
-- DOCX build blocker;
-- “fix this later” items.
-
-Question:
-
-```text
-Is there anything unresolved that belongs to this chapter?
-```
-
-If yes, update:
-
-```text
-books/database-book/.edits/chNN-edits.md
-```
-
-## Trigger 3 — `chapter-tracker`
-
-Use `chapter-tracker` if the chapter’s production status changed.
-
-Examples:
-
-- main edit complete;
-- companions complete;
-- media reviewed;
-- final review complete;
-- DOCX built;
-- chapter blocked;
-- chapter unblocked.
-
-Question:
-
-```text
-Did the chapter move forward, become blocked, or change status?
-```
-
-If yes, update:
-
-```text
-books/database-book/.edits/chapter-tracker.md
-```
-
-## Trigger 4 — `chapter-docx-build`
-
-Use `chapter-docx-build` only if:
-
-- the user selected DOCX; or
-- final review is complete and the user approves DOCX; or
-- the user explicitly asks for a draft DOCX.
-
-Never run DOCX automatically after review.
-
----
-
-# Approval Rules
-
-Do not write files unless:
-
-1. the user selected a write action; or
-2. the user approved a proposed plan; or
-3. the selected specialized skill's workflow includes the needed approval gate.
-
-Always ask before:
-
-- deleting/removing files;
-- moving archived files;
-- rewriting media paths;
-- optimizing/uploading media;
-- creating Cloudinary folders;
-- writing manifests;
-- building DOCX fallback without reference styling;
-- running sync/deploy/publish/commit/push.
-
-Never run automatically:
-
-```text
-chapter-sync
-book-deploy
-deploy
-publish
-commit
-push
-merge
-```
-
----
-
-# What To Say Before Launching Another Skill
+## What To Say Before Launching
 
 Before routing, say:
 
 ```markdown
-I recommend launching `<skill-name>` because <reason>.
-
-Proceed? yes / no / choose another option
+I recommend launching `<skill-name>` because <reason>. Proceed? yes / no / choose another option
 ```
 
-Then wait.
-
-If the user already explicitly requested a skill, proceed to that skill's own preflight and approval process.
+If the user already explicitly requested a skill, proceed to that skill's own preflight.
 
 ---
 
-# Final Response Contract
+## Approval Rules
 
-At the end of a command-center run, respond:
+Do not write files unless the user selected a write action or approved a proposed plan. Always ask before deleting files, rewriting media paths, optimizing/uploading media, building DOCX, or running sync/deploy/publish/commit/push.
+
+Never run automatically: `chapter-sync`, `book-deploy`, deploy, publish, commit, push, merge.
+
+---
+
+## Final Response Contract
 
 ```markdown
 ## Chapter Command Center — Result
 
-**Chapter:** chNN  
-**Selected action:** <option / plain-language action>  
-**Recommended action:** <recommendation>  
-**Skill launched:** <skill-name or none>  
-
-### What happened
-- ...
-
-### Operational records
-| Record | Updated? | Reason |
-|---|---|---|
-| `progress-update` | yes/no | ... |
-| `edits` | yes/no | ... |
-| `chapter-tracker` | yes/no | ... |
-
-### Current status
-| Area | Status | Next step |
-|---|---|---|
-| Main chapter | ... | ... |
-| Companions | ... | ... |
-| Media | ... | ... |
-| Final review | ... | ... |
-| DOCX | ... | ... |
+**Chapter:** chNN
+**Selected action:** ...
+**Skill launched:** <skill-name or none>
 
 ### Next recommended step
 - ...
@@ -584,17 +267,15 @@ Deployment run: no.
 
 ---
 
-# Safety Rules
+## Safety Rules
 
-1. Use repo source as canonical.
-2. Do not overwrite from Google Drive dated drafts.
-3. Do not create dated files in repo source.
-4. Do not leave answer files under `books/database-book/files/source`.
-5. Do not run media side effects without dry-run approval.
-6. Do not build DOCX without approval.
-7. Do not deploy, publish, commit, push, merge, or run `book-deploy`.
-8. Do not run `chapter-sync` unless explicitly requested as a separate import/sync task.
-9. Do not duplicate final-review logic already owned by `chapter-review-codex`.
-10. Do not duplicate specialized domain logic.
-11. Do not claim completion if unresolved blockers remain.
-12. When uncertain, recommend a read-only status scan first.
+1. Route before acting.
+2. Use the smallest appropriate skill.
+3. Do not run write-producing skills without approval.
+4. Do not route broad lifecycle work to a narrow skill.
+5. Do not route narrow work to `chapter-production-flow` unless sequencing or status tracking is needed.
+6. Do not route final package review to `chapter-editor`.
+7. Do not route media execution to `chapter-editor`.
+8. Do not route prose editing to `chapter-media`.
+9. Never suggest sync, deploy, commit, push, or publish unless explicitly asked.
+10. When uncertain, recommend `chapter-production-flow plan-only`.

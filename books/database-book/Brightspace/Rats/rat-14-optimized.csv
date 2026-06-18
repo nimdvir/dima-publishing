@@ -1,0 +1,149 @@
+"// Brightspace CSV Import — RAT 14 Top Questions (Optimized)",,,,
+"// Source: Chapter 14 — Power BI and Data Analytics (ch14-main-powerbi-mslearn-06-09.md)",,,,
+"// Date: 2026-06-17",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 14: Power BI and Data Analytics,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 14 at: https://data-pilot.dimapublishing.com/book/ch14/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT14-Q1,,,,,
+Title,Types of analytics,,,,,
+QuestionText,"Chapter 14 describes five types of data analytics. Which statements correctly match analytics types to their purposes?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Descriptive analytics answers ""What happened?"" — summarizing historical data through reports, dashboards, and KPIs",,"Correct — descriptive analytics is the foundation: it tells you what occurred based on historical data."
+Option,1,"Diagnostic analytics answers ""Why did it happen?"" — drilling into data to identify root causes and relationships",,"Correct — diagnostic analytics moves beyond description to explanation, using techniques like correlation and drill-down analysis."
+Option,0,"Predictive analytics tells you exactly what will happen — its forecasts are 100% accurate when properly implemented",,"Incorrect — predictive analytics forecasts what MIGHT happen based on patterns. It provides probabilities, not certainties."
+Option,1,"Prescriptive analytics answers ""What should we do?"" — recommending actions based on predictive models and optimization",,"Correct — prescriptive analytics goes beyond prediction to recommend specific actions, such as which students to intervene with."
+Option,0,"Descriptive and diagnostic analytics are the same thing — both describe what happened in the past",,"Incorrect — descriptive tells WHAT happened; diagnostic tells WHY it happened. They are distinct levels of analysis."
+Hint,Descriptive = What? Diagnostic = Why? Predictive = What might? Prescriptive = What should we do?,,,
+Feedback,"Chapter 14 presents the analytics maturity ladder: Descriptive (what happened), Diagnostic (why it happened), Predictive (what might happen), Prescriptive (what should we do), and Cognitive/AI-powered. Each level builds on the previous, and organizations typically progress from descriptive toward prescriptive as their data capabilities mature.",
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT14-Q2,,,,,
+Title,Data roles,,,,,
+QuestionText,"Chapter 14 describes various data professional roles. Which statements correctly distinguish these roles?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"A Data Analyst prepares, models, and visualizes data to answer business questions and communicate insights",,"Correct — data analysts bridge raw data and business decisions through data preparation, modeling, and visualization."
+Option,1,"A Data Engineer builds and maintains the data infrastructure — pipelines, storage, and ETL processes — that make analysis possible",,"Correct — data engineers create the plumbing: data ingestion, transformation pipelines, and storage systems that analysts and scientists depend on."
+Option,0,"A Data Scientist and a Data Analyst are the same role — the terms are interchangeable",,"Incorrect — while there is overlap, data scientists typically focus more on advanced statistical modeling, machine learning, and experimental design."
+Option,1,"A Business Analyst focuses on business processes and requirements — they bridge the gap between business stakeholders and technical teams",,"Correct — business analysts translate business needs into data requirements and ensure analytical outputs support decision-making."
+Option,0,"All data roles require advanced programming skills in Python and machine learning — SQL is insufficient",,"Incorrect — Chapter 14 emphasizes that different roles require different skill sets. SQL is essential for all, but not every role requires machine learning expertise."
+Hint,Analyst = answers questions. Engineer = builds infrastructure. Scientist = advanced modeling. Business Analyst = bridges business and tech.,,,
+Feedback,"Chapter 14 outlines the data professional landscape: Data Analysts (prepare, model, visualize), Data Engineers (pipelines, infrastructure), Data Scientists (advanced modeling, ML), Analytics Engineers (software-engineering practices for data), and Business Analysts (requirements, process improvement). Each role contributes differently to the data-to-decisions pipeline.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q3,,,,,
+Title,Descriptive analytics,,,,,
+QuestionText,"A dashboard shows total sales by region for the last quarter. According to Chapter 14, what type of analytics does this represent?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,100,"Descriptive analytics — it summarizes what happened (sales totals) over a specific period",,"Correct — descriptive analytics summarizes historical data. A sales dashboard showing past performance is classic descriptive analytics."
+Option,0,"Diagnostic analytics — it explains why sales increased in one region but not another",,"Incorrect — diagnostic analytics would investigate the root causes. The dashboard only shows the totals, not the reasons behind them."
+Option,0,"Predictive analytics — it forecasts future sales based on historical patterns",,"Incorrect — predictive analytics would forecast next quarter's sales. The dashboard shows what already happened."
+Option,0,"Prescriptive analytics — it recommends which regions to invest in",,"Incorrect — prescriptive analytics would recommend actions. The dashboard only reports past results."
+Hint,Showing what already happened (totals, counts, averages) = descriptive analytics.,,,
+Feedback,"Chapter 14 identifies descriptive analytics as the most foundational type: summarizing historical data through reports, dashboards, KPIs, and data visualization. It answers ""What happened?"" — total sales, average scores, student counts by program. Most organizations start here before advancing to diagnostic, predictive, and prescriptive analytics.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q4,,,,,
+Title,Prescriptive analytics,,,,,
+QuestionText,"Based on predictive models, a university's analytics system recommends which at-risk students should receive tutoring interventions. According to Chapter 14, what type of analytics is this?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Descriptive analytics — it summarizes student performance data",,"Incorrect — descriptive analytics reports what already happened. The scenario involves recommending future actions."
+Option,0,"Diagnostic analytics — it investigates why students are failing",,"Incorrect — diagnostic analytics explains causes. The scenario goes further to recommend specific interventions."
+Option,0,"Predictive analytics — it forecasts which students are likely to fail",,"Incorrect — predictive analytics identifies at-risk students. The scenario goes one step further: recommending what to DO about it."
+Option,100,"Prescriptive analytics — it recommends specific actions based on predictive models and optimization",,"Correct — prescriptive analytics answers ""What should we do?"" by combining predictions with action recommendations."
+Hint,Predictive = who is at risk. Prescriptive = what to do about it (recommend interventions).,,,
+Feedback,"Chapter 14 describes prescriptive analytics as the highest-value (and most complex) type. It combines predictions with optimization to recommend specific actions: which customers to target, which students to intervene with, which inventory to reorder. Prescriptive analytics turns insight into action recommendations.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q5,,,,,
+Title,PMPVM workflow,,,,,
+QuestionText,"Chapter 14 describes the data analysis workflow as Prepare → Model → Visualize → Analyze → Manage. An analyst cleans data and removes duplicates. Which phase is this?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,100,"Prepare — getting data ready for analysis by cleaning, transforming, and structuring it",,"Correct — the Prepare phase involves data cleaning, deduplication, handling missing values, and transforming data into a usable format."
+Option,0,"Model — creating relationships between tables and defining calculations",,"Incorrect — the Model phase defines relationships and calculations. Cleaning and structuring data happens in Prepare."
+Option,0,"Visualize — creating charts, dashboards, and reports",,"Incorrect — visualization happens after preparation and modeling. Cleaning data is a preparation task."
+Option,0,"Analyze — deriving insights from the prepared and modeled data",,"Incorrect — analysis comes after preparation, modeling, and visualization. Data cleaning is foundational preparation work."
+Hint,Cleaning data, removing duplicates, and structuring = Prepare. This is the first step in the workflow.,,,
+Feedback,"Chapter 14 presents the data analyst workflow: Prepare (clean, transform, structure data), Model (define relationships, create calculations), Visualize (build charts, dashboards), Analyze (derive insights, identify patterns), and Manage (maintain, share, govern). Preparation is the critical foundation — analysis is only as good as the data it's based on.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q6,,,,,
+Title,Power BI purpose,,,,,
+QuestionText,"According to Chapter 14, what is the primary purpose of Microsoft Power BI?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"A database management system that replaces Access and SQL Server",,"Incorrect — Power BI is not a DBMS. It connects to existing databases; it does not replace them."
+Option,100,"A business analytics service that provides interactive visualizations and business intelligence capabilities with a simple interface for creating reports and dashboards",,"Correct — Power BI connects to data sources, enables data modeling, and creates interactive visual reports and dashboards for business users."
+Option,0,"A programming language for statistical computing and machine learning",,"Incorrect — Power BI is a visualization and BI platform, not a programming language. It uses DAX and M for calculations."
+Option,0,"A cloud storage service for backing up database files",,"Incorrect — Power BI is an analytics and visualization tool, not a storage or backup service."
+Hint,Power BI = interactive dashboards and reports. Connects to databases; doesn't replace them.,,,
+Feedback,"Chapter 14 introduces Power BI as Microsoft's business analytics platform. It connects to various data sources (databases, Excel, cloud services), enables data modeling through relationships and DAX calculations, and produces interactive dashboards and reports that business users can explore without writing code.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q7,,,,,
+Title,Analytics engineer,,,,,
+QuestionText,"According to Chapter 14, what distinguishes an Analytics Engineer from a traditional Data Analyst?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Analytics Engineers use spreadsheets; Data Analysts use databases",,"Incorrect — both roles work with databases. The distinction is about engineering practices, not tool choice."
+Option,100,"Analytics Engineers apply software engineering practices — version control, testing, documentation, and CI/CD — to data transformation and modeling workflows",,"Correct — analytics engineers bring software engineering rigor to data work: version-controlled transformations, automated testing, and documented data models."
+Option,0,"Analytics Engineers only work with big data; Data Analysts only work with small datasets",,"Incorrect — the distinction is about methodology, not data volume. Both roles can work with datasets of any size."
+Option,0,"Analytics Engineers focus on visualization; Data Analysts focus on statistical analysis",,"Incorrect — the distinction is about engineering discipline applied to data workflows, not about visualization vs. statistics."
+Hint,Analytics Engineer = software engineering practices applied to data workflows (version control, testing, documentation).,,,
+Feedback,"Chapter 14 describes the Analytics Engineer as a bridge role: applying software engineering best practices (version control, automated testing, documentation, CI/CD) to the data transformation layer. They ensure that data pipelines are reliable, maintainable, and trustworthy — complementing both data analysts and data engineers.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q8,,,,,
+Title,Diagnostic analytics,,,,,
+QuestionText,"An analyst notices that sales dropped 20% in the Northeast region last month. They drill down and discover the drop is entirely due to one major customer switching to a competitor. According to Chapter 14, what type of analytics did the analyst perform?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Descriptive analytics — they reported the 20% drop",,"Incorrect — reporting the drop would be descriptive. Discovering the root cause (customer loss) moves from description to diagnosis."
+Option,100,"Diagnostic analytics — they moved from knowing WHAT happened (20% drop) to understanding WHY it happened (customer churn)",,"Correct — diagnostic analytics investigates causes. The analyst used drill-down and root cause analysis to explain the descriptive finding."
+Option,0,"Predictive analytics — they forecasted future sales based on the drop",,"Incorrect — predictive analytics would forecast future impact. The analyst investigated the cause of past events."
+Option,0,"Prescriptive analytics — they recommended actions to recover the lost customer",,"Incorrect — prescriptive analytics would recommend what to do about the churn. The analyst only identified the cause."
+Hint,Going from ""sales dropped 20%"" to ""one major customer left"" = diagnostic analytics (why it happened).,,,
+Feedback,"Chapter 14 distinguishes diagnostic analytics as the step from description to explanation. Techniques include drill-down, correlation analysis, data mining, and root cause investigation. Diagnostic analytics answers ""Why did it happen?"" — transforming raw descriptive findings into actionable understanding.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q9,,,,,
+Title,Model phase,,,,,
+QuestionText,"In Power BI, an analyst connects the STUDENT table and STUDENT_GRADE table through StudentID so they can analyze grades by student demographics. According to Chapter 14, which PMPVM phase is this?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Prepare — the analyst is cleaning the data before use",,"Incorrect — cleaning and structuring happens in Prepare. Connecting tables through relationships is modeling."
+Option,100,"Model — creating relationships between tables and defining calculations that enable cross-table analysis",,"Correct — the Model phase establishes table relationships (like foreign keys in a database), creates calculated columns and measures, and builds the analytical foundation."
+Option,0,"Visualize — the analyst is creating charts from the connected data",,"Incorrect — visualization uses the model. Building the relationships comes first, in the Model phase."
+Option,0,"Analyze — the analyst is deriving insights from the connected data",,"Incorrect — analysis uses the model to find patterns. Defining the relationships is the modeling step."
+Hint,Connecting tables through relationships and defining calculations = Model phase.,,,
+Feedback,"Chapter 14's PMPVM workflow: Prepare (clean data), Model (define relationships between tables, create calculated columns and measures), Visualize (build charts and dashboards), Analyze (find patterns and insights), Manage (share, govern, maintain). The Model phase creates the analytical structure that the other phases depend on.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT14-Q10,,,,,
+Title,Cognitive analytics,,,,,
+QuestionText,"According to Chapter 14, what distinguishes cognitive (AI-powered) analytics from traditional predictive analytics?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Cognitive analytics is exactly the same as predictive analytics — the terms are synonymous",,"Incorrect — cognitive analytics extends beyond prediction to include AI capabilities like natural language and anomaly detection."
+Option,100,"Cognitive analytics uses AI and machine learning to not only predict outcomes but also understand unstructured data (text, images), detect anomalies, and generate natural-language explanations",,"Correct — cognitive analytics brings AI capabilities: processing unstructured data, generating narrative explanations, and identifying patterns humans might miss."
+Option,0,"Cognitive analytics requires no data — it generates insights from domain expertise alone",,"Incorrect — cognitive analytics still requires data. It uses AI to process data in ways traditional analytics cannot."
+Option,0,"Cognitive analytics replaces all other types — once you have AI, descriptive and diagnostic analytics become unnecessary",,"Incorrect — cognitive analytics is the most advanced type but builds on descriptive and diagnostic foundations. Each type serves a different purpose."
+Hint,Cognitive = AI-powered: handles unstructured data, generates explanations, detects anomalies automatically.,,,
+Feedback,"Chapter 14 presents cognitive analytics as the frontier of data analytics: using AI and machine learning to analyze unstructured data (text, images), automatically detect anomalies, generate natural-language explanations, and identify patterns that traditional statistical methods might miss. It is the most advanced level in the analytics maturity ladder.",
+,,,,

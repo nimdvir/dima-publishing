@@ -1,0 +1,149 @@
+"// Brightspace CSV Import — RAT 13 Top Questions (Optimized)",,,,
+"// Source: Chapter 13 — Advanced Database Techniques (ch13-main-2026-06-16.md)",,,,
+"// Date: 2026-06-17",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+// This Reading Assessment Test (RAT) is based on Chapter 13: Advanced Database Techniques,,,,
+// Textbook: Using Data to Drive Business Performance (https://data-pilot.dimapublishing.com/),,,,
+// Read Chapter 13 at: https://data-pilot.dimapublishing.com/book/ch13/introduction/1,,,,
+// Then answer the questions below to test your understanding.,,,,
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT13-Q1,,,,,
+Title,Database hardening,,,,,
+QuestionText,"Chapter 13 focuses on ""database hardening"" — making databases reliable for real-world use. According to the chapter, which qualities must a hardened database possess?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"Performance — queries must return results quickly even as data grows, through proper indexing and query optimization",,"Correct — performance is the first quality. Without adequate speed, even correct queries are unusable at scale."
+Option,1,"Integrity — constraints, transactions, and triggers ensure data remains accurate and consistent regardless of what users or applications do",,"Correct — integrity goes beyond correctness to enforce business rules automatically through CHECK, UNIQUE, and trigger-based validation."
+Option,0,"Beauty — the database schema must follow aesthetic design principles with visually pleasing table names",,"Incorrect — Chapter 13 does not list aesthetics as a hardening quality. The four qualities are Performance, Integrity, Auditability, and Security."
+Option,1,"Security — access controls, permissions, and encryption protect data from unauthorized access and modification",,"Correct — security ensures only authorized users can access or modify data, protecting confidentiality and preventing tampering."
+Option,1,"Auditability — triggers and logs track who changed what and when, creating an accountability trail",,"Correct — auditability provides transparency: who made changes, when, and what the data looked like before and after."
+Hint,Chapter 13 names four hardening qualities: Performance, Integrity, Security, and Auditability.,,,
+Feedback,"Chapter 13 frames database hardening around four system qualities: Performance (indexes, query plans), Integrity (constraints, transactions, triggers), Security (permissions, access control), and Auditability (audit logs, change tracking). Correct SQL is necessary but not sufficient — real systems need all four.",
+,,,,
+NewQuestion,MS,,,,,
+ID,BITM330-RAT13-Q2,,,,,
+Title,Index fundamentals,,,,,
+QuestionText,"Chapter 13 explains database indexes. Which statements about indexes are correct?
+
+Select ALL that apply.",,,,,
+Points,2,,,,,
+Difficulty,3,,,,,
+Scoring,RightAnswers,,,,,
+Option,1,"An index is a separate data structure that allows the DBMS to find rows without scanning the entire table",,"Correct — indexes work like a book's index: they map values to physical locations, enabling fast lookups without full-table scans."
+Option,1,"Indexes speed up SELECT queries but slow down INSERT, UPDATE, and DELETE operations because the index must also be updated",,"Correct — indexes are a trade-off: faster reads at the cost of slightly slower writes. Every data modification must update both the table and its indexes."
+Option,0,"Every column in a table should have its own index — more indexes always improve performance",,"Incorrect — over-indexing wastes storage and slows data modifications. Chapter 13 recommends indexing columns used in WHERE, JOIN, and ORDER BY clauses."
+Option,1,"A primary key automatically creates an index — the DBMS uses it to enforce uniqueness and speed up key-based lookups",,"Correct — primary key constraints automatically create a unique index, which the DBMS uses for fast row retrieval and uniqueness enforcement."
+Option,0,"Indexes eliminate the need for query optimization — the DBMS always picks the optimal index automatically",,"Incorrect — while the query optimizer chooses among available indexes, poorly chosen indexes may not be used. The DBA must create the right indexes for the workload."
+Hint,Index = faster reads, slower writes. Use on WHERE, JOIN, and ORDER BY columns, not every column.,,,
+Feedback,"Chapter 13 explains indexes as the primary performance tool. An index is a data structure (typically a B-tree) that enables logarithmic-time lookup instead of linear-time scanning. The trade-off: faster SELECT at the cost of slower INSERT/UPDATE/DELETE. Index columns used in WHERE, JOIN, and ORDER BY clauses.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q3,,,,,
+Title,Index purpose,,,,,
+QuestionText,"A STUDENT table has 100,000 rows. A query searches for a student by StudentID. Without an index, the DBMS must scan all 100,000 rows. With an index on StudentID, it finds the row in approximately how many steps?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"1 step — the index points directly to every row's physical location",,"Incorrect — while an index is fast, it requires traversing the index tree structure, not a single direct lookup."
+Option,100,"About 17 steps — a B-tree index reduces the search from linear (100,000) to logarithmic (log₂ 100,000 ≈ 17)",,"Correct — B-tree indexes provide O(log n) search. A 100,000-row table requires roughly 17 comparisons instead of scanning all 100,000 rows."
+Option,0,"About 1,000 steps — the index still must scan 1% of the table",,"Incorrect — an index is much more efficient than scanning 1%. It uses tree traversal for logarithmic search."
+Option,0,"Still 100,000 steps — indexes only help with sorting, not searching",,"Incorrect — indexes dramatically reduce search steps through tree traversal. They do not require scanning every row."
+Hint,B-tree index = logarithmic search (log₂ n). For 100,000 rows, log₂(100,000) ≈ 17.,,,
+Feedback,"Chapter 13 explains that a B-tree index transforms search from O(n) — scanning every row — to O(log n) — traversing a balanced tree. For 100,000 rows, this means approximately 17 comparisons instead of 100,000. This is why indexes are the most impactful performance tool in database management.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q4,,,,,
+Title,Trigger purpose,,,,,
+QuestionText,"According to Chapter 13, what is a database trigger?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"A SQL command that forces the query optimizer to use a specific index",,"Incorrect — that describes a query hint, not a trigger. Triggers are automated procedural code."
+Option,100,"A stored procedure that automatically executes in response to specific database events — INSERT, UPDATE, or DELETE on a table",,"Correct — triggers fire automatically when specified events occur. They can validate data, log changes, enforce business rules, or cascade updates."
+Option,0,"A mechanism that prevents two users from updating the same row simultaneously",,"Incorrect — that is concurrency control (locking), not a trigger."
+Option,0,"A backup utility that copies the database on a schedule",,"Incorrect — triggers are event-driven procedural code, not backup utilities."
+Hint,Trigger = code that fires automatically when you INSERT, UPDATE, or DELETE data.,,,
+Feedback,"Chapter 13 introduces triggers as database objects that automatically execute procedural code in response to table events (INSERT, UPDATE, DELETE). Triggers can enforce complex business rules, maintain audit logs, validate data beyond CHECK constraints, and cascade changes — all without application code involvement.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q5,,,,,
+Title,Constraints beyond PK,,,,,
+QuestionText,"A DELIVERABLE table needs to ensure that DueDate is always in the future and that Weight is between 0 and 100. According to Chapter 13, which constraint type handles these rules?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"PRIMARY KEY constraint — it enforces uniqueness and non-null on the key column",,"Incorrect — PRIMARY KEY ensures unique identification, not domain value validation."
+Option,100,"CHECK constraint — it validates that column values satisfy a specified condition (DueDate > TODAY, Weight BETWEEN 0 AND 100)",,"Correct — CHECK constraints enforce domain integrity by rejecting any INSERT or UPDATE that violates the specified condition."
+Option,0,"FOREIGN KEY constraint — it ensures values reference existing rows in another table",,"Incorrect — FOREIGN KEY enforces referential integrity, not domain value ranges."
+Option,0,"INDEX constraint — it creates a fast lookup structure that also validates values",,"Incorrect — indexes speed up searches but do not validate data values."
+Hint,CHECK constraint = validates that values satisfy a condition like >, <, BETWEEN, IN.,,,
+Feedback,"Chapter 13 covers constraints beyond primary keys: CHECK validates domain values (Weight BETWEEN 0 AND 100), UNIQUE prevents duplicates in non-key columns, NOT NULL requires values, and DEFAULT provides fallback values. These constraints enforce data integrity at the database level, protecting data regardless of how it is accessed.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q6,,,,,
+Title,Stored procedure,,,,,
+QuestionText,"A university needs to calculate final grades using a complex formula involving weighted averages, attendance adjustments, and grade scale lookups — run identically by five different applications. According to Chapter 13, what is the best approach?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Write the formula in each application separately to maximize flexibility",,"Incorrect — duplicating logic across applications creates inconsistency. If the formula changes, five applications must be updated."
+Option,100,"Encapsulate the logic in a stored procedure — define it once in the database and have all applications call the same procedure",,"Correct — stored procedures centralize business logic. Change the procedure once, and all applications automatically use the updated logic."
+Option,0,"Create a view that pre-calculates the grades and store the results in a separate table",,"Incorrect — a view would compute grades but not encapsulate the formula in a reusable, parameterized way across applications."
+Option,0,"Use a trigger on the STUDENT_GRADE table to auto-calculate grades on every insert",,"Incorrect — triggers respond to data changes. The scenario needs a reusable calculation that multiple applications can call on demand."
+Hint,Same logic used by multiple applications = define once, call from everywhere. What database object does this?,,,
+Feedback,"Chapter 13 presents stored procedures as reusable database programs that encapsulate business logic. Unlike triggers (event-driven), procedures are explicitly called. They centralize complex logic — one definition, many callers — reducing duplication, ensuring consistency, and simplifying maintenance when business rules change.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q7,,,,,
+Title,Audit trail with triggers,,,,,
+QuestionText,"A DBA creates a trigger that writes the old Score, new Score, StudentID, and timestamp to an AUDIT_LOG table every time a grade is updated. According to Chapter 13, what hardening quality does this implement?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Performance — the audit log speeds up future queries by pre-recording changes",,"Incorrect — audit logs add overhead, not speed. They serve accountability, not performance."
+Option,100,"Auditability — the trigger creates an immutable record of who changed what and when, providing accountability and supporting forensic analysis",,"Correct — auditability ensures changes are traceable. The AUDIT_LOG records the before-state, after-state, actor, and timestamp for every modification."
+Option,0,"Integrity — the trigger prevents invalid scores from being entered",,"Incorrect — while triggers CAN enforce integrity, this specific trigger records changes rather than preventing invalid data."
+Option,0,"Security — the trigger blocks unauthorized users from accessing the STUDENT_GRADE table",,"Incorrect — triggers do not manage access control. Security is handled through permissions and role-based access."
+Hint,Recording who changed what and when = auditability. Triggers enable automatic audit logging.,,,
+Feedback,"Chapter 13 identifies auditability as a core hardening quality. Triggers that automatically log changes — capturing old values, new values, the user, and a timestamp — create an immutable audit trail. This supports compliance, forensic investigation, and organizational accountability.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q8,,,,,
+Title,Access macros,,,,,
+QuestionText,"According to Chapter 13, what is the role of macros in Microsoft Access compared to triggers in server databases like SQLite?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"Macros and triggers are identical — they use the same syntax and serve the same purpose across all platforms",,"Incorrect — macros and triggers serve similar purposes but use completely different syntax and have different capabilities across platforms."
+Option,100,"Access macros provide automation within the Access environment — forms, reports, and data validation — similar to triggers and stored procedures but using Access's visual macro builder instead of SQL code",,"Correct — macros are Access's automation mechanism, providing trigger-like and procedure-like functionality through a GUI builder rather than procedural SQL."
+Option,0,"Access does not support any form of automation — macros are an obsolete feature",,"Incorrect — Chapter 13 covers Access macros as a platform-specific automation tool still widely used in Access environments."
+Option,0,"Macros replace the need for SQL in Access — all queries must be written as macros",,"Incorrect — macros complement SQL in Access. Queries are still written in SQL or through the Query Designer."
+Hint,Access macros = visual automation (no SQL code). Triggers/procedures = code-based automation (SQL). Same goals, different tools.,,,
+Feedback,"Chapter 13 discusses macros as Microsoft Access's platform-specific automation tool. While server databases use triggers (SQL procedural code), Access provides a visual macro builder for automating form actions, data validation, and report generation. The chapter emphasizes understanding platform-specific tools rather than assuming one approach fits all.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q9,,,,,
+Title,Conditional aggregation,,,,,
+QuestionText,"A query uses CASE WHEN Score >= 90 THEN 'A' WHEN Score >= 80 THEN 'B' ELSE 'F' END to assign letter grades. According to Chapter 13, what SQL technique is this?",,,,,
+Points,1,,,,,
+Difficulty,2,,,,,
+Option,0,"Window function — it computes values across a set of rows related to the current row",,"Incorrect — window functions use OVER() and PARTITION BY. CASE expressions evaluate conditions row by row."
+Option,100,"Conditional logic — CASE expressions evaluate conditions and return different values based on which condition is true, enabling categorization and bucketing",,"Correct — CASE is SQL's if-then-else mechanism. It enables data transformation within queries: categorizing scores, labelling rows, and conditional aggregation."
+Option,0,"Subquery — a nested SELECT statement that returns values to the outer query",,"Incorrect — subqueries are nested SELECTs. CASE is a conditional expression, not a subquery."
+Option,0,"Aggregate function — a function that computes a single result from multiple rows",,"Incorrect — aggregate functions (SUM, AVG, COUNT) reduce multiple rows to one value. CASE operates on each row individually."
+Hint,CASE WHEN condition THEN result ELSE default END = if-then-else logic in SQL.,,,
+Feedback,"Chapter 13 covers conditional logic as a key analytical technique. CASE expressions allow queries to categorize data (assigning letter grades, labelling performance bands, flagging at-risk students) directly in SQL. Combined with aggregation, CASE enables conditional counts and sums (e.g., COUNT of students per letter grade) in a single query.",
+,,,,
+NewQuestion,MC,,,,,
+ID,BITM330-RAT13-Q10,,,,,
+Title,Security and permissions,,,,,
+QuestionText,"According to Chapter 13, which SQL statement grants a user permission to read the STUDENT table but not modify it?",,,,,
+Points,1,,,,,
+Difficulty,3,,,,,
+Option,0,"GRANT ALL ON STUDENT TO username;",,"Incorrect — GRANT ALL gives full permissions (SELECT, INSERT, UPDATE, DELETE), not read-only access."
+Option,100,"GRANT SELECT ON STUDENT TO username; — gives read-only access, allowing the user to query but not insert, update, or delete",,"Correct — GRANT SELECT provides read-only access. Separate permissions (INSERT, UPDATE, DELETE) must be explicitly granted for data modification."
+Option,0,"REVOKE INSERT, UPDATE, DELETE ON STUDENT FROM username;",,"Incorrect — REVOKE removes previously granted permissions. If the user never had modification permissions, REVOKE has no effect."
+Option,0,"CREATE USER username WITH READONLY ON STUDENT;",,"Incorrect — this is not valid SQL syntax. Permissions are managed through GRANT and REVOKE statements."
+Hint,GRANT SELECT = read-only. GRANT INSERT/UPDATE/DELETE = modify. Permissions are assigned separately.,,,
+Feedback,"Chapter 13 covers database security fundamentals through GRANT and REVOKE. Permissions are granular: SELECT (read), INSERT (add rows), UPDATE (modify existing rows), DELETE (remove rows). The principle of least privilege dictates granting only the permissions each user needs — instructors may UPDATE grades but not DELETE students.",
+,,,,

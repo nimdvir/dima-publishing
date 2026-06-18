@@ -6,8 +6,6 @@ import MarkdownRenderer from "./MarkdownRenderer";
 import OnThisPage, { OnThisPageMobile } from "./OnThisPage";
 import BottomNavigation from "./BottomNavigation";
 import ReaderEntryCoverRotator from "./ReaderEntryCoverRotator";
-import { FeedbackLink } from "./FeedbackLink";
-
 interface ChapterReaderProps {
   page: BookPage;
   allPages: BookPage[];
@@ -115,15 +113,6 @@ export default function ChapterReader({
               content={page.content}
               suppressFirstImage={showEntryCover}
             />
-            <div className="chapter-feedback">
-              <hr className="feedback-divider" />
-              <div className="feedback-content">
-                <span className="feedback-text">
-                  Found something broken, confusing, or missing?
-                </span>
-                <FeedbackLink />
-              </div>
-            </div>
           </div>
           <OnThisPage headings={headings} />
         </div>

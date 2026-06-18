@@ -1,17 +1,7 @@
 {
   "chapter": "ch06-relational-model",
-  "last_sync": "2026-06-16T22:00:00Z",
+  "last_sync": "2026-06-18T00:33:05Z",
   "files": {
-    "main": {
-      "source": "BITM330-Book-draft\\chapter-drafts\\ch06-relational-model\\main\\ch06-main-2026-05-29.md",
-      "source_date": "2026-05-29",
-      "synced_at": "2026-06-16T22:00:00Z"
-    },
-    "lets-build": {
-      "source": "BITM330-Book-draft\\chapter-drafts\\ch06-relational-model\\lets-build\\ch06-lets-build-2026-05-24.md",
-      "source_date": "2026-05-24",
-      "synced_at": "2026-06-16T22:00:00Z"
-    },
     "terms": {
       "source": "BITM330-Book-draft\\chapter-drafts\\ch06-relational-model\\terms\\ch06-terms-2026-06-16.md",
       "source_date": "2026-06-16",
@@ -31,6 +21,18 @@
       "source": "BITM330-Book-draft\\chapter-drafts\\Labs-draft\\lab-06-relational-model\\lab-06-questions-2026-05-24.md",
       "source_date": "2026-05-24",
       "synced_at": "2026-06-16T22:00:00Z"
+    },
+    "main": {
+      "source": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\BITM330-Book-draft\\chapter-drafts\\ch06-relational-model\\main\\ch06-main-2026-06-17.md",
+      "hash": "sha256:022721CF4DD1157A86F3CAD75DC571AF90C76B8A11EAE3D991CFA25CA044A94C",
+      "synced_at": "2026-06-18T00:33:05Z",
+      "source_date": "2026-06-17"
+    },
+    "lets-build": {
+      "source": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\BITM330-Book-draft\\chapter-drafts\\ch06-relational-model\\lets-build\\ch06-lets-build-2026-06-17.md",
+      "hash": "sha256:7CAD7138FB4FC8BFDEFD694E4124B60DDD69F18AA0CC7118FDDE251F4354B0CC",
+      "synced_at": "2026-06-18T00:33:05Z",
+      "source_date": "2026-06-17"
     }
   }
 }

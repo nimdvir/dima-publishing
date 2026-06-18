@@ -15,8 +15,6 @@ import {
   Sparkles,
   Award,
 } from "lucide-react";
-import { FeedbackLink } from "./FeedbackLink";
-
 /** Icons for each reader area (keyed by section title). */
 const SECTION_ICONS: Record<string, React.ReactNode> = {
   Preface: <BookOpen size={14} />,
@@ -225,13 +223,6 @@ export default function Sidebar({
         </div>
       )}
 
-      <hr className="sidebar-divider" />
-      <div className="sidebar-feedback">
-        <p className="sidebar-feedback-text">
-          Found something broken, confusing, or missing?
-        </p>
-        <FeedbackLink />
-      </div>
     </div>
   );
 }
