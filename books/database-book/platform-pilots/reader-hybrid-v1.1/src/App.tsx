@@ -11,7 +11,6 @@ import HomePage from "./components/HomePage";
 import DemoLogin from "./components/DemoLogin";
 import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
-import SupabaseAccessTest from "./components/SupabaseAccessTest";
 import { supabase } from "./lib/supabaseClient";
 import { getMyAccess } from "./lib/courseAccess";
 
@@ -453,10 +452,6 @@ export default function App() {
     () => BOOK_LABS.find((l) => l.id === activeLabId) || BOOK_LABS[0],
     [activeLabId],
   );
-
-  if (new URLSearchParams(window.location.search).get('authTest') === '1') {
-    return <SupabaseAccessTest />;
-  }
 
   return (
     <Layout
