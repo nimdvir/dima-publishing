@@ -20,14 +20,15 @@ export type AccessStatus = {
   expires_at: string | null;
 };
 
-export async function activateStudentTrial() {
-  const { data, error } = await supabase
-    .rpc('activate_student_trial')
-    .single();
+export async function activateStudentTrial(): Promise<TrialActivationResult> {
+  const { data, error } = await supabase.rpc('activate_student_trial').single();
 
   if (error) {
     throw error;
   }
+  if (!data) {
+    throw new Error('activate_student_trial returned no data');
+  }
 
   return data as TrialActivationResult;
 }
