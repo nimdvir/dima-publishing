@@ -31,8 +31,20 @@ export function uniqueId(base: string, counts: Map<string, number>): string {
 export function extractHeadingToc(content: string): HeadingTocItem[] {
   const counts = new Map<string, number>();
   const headings: HeadingTocItem[] = [];
+  let activeFence: { char: "`" | "~"; length: number } | null = null;
 
   for (const line of content.split(/\r?\n/)) {
+    const fenceMatch = line.match(/^\s*(`{3,}|~{3,})/);
+    if (fenceMatch) {
+      const fence = fenceMatch[1];
+      const fenceChar = fence[0] as "`" | "~";
+      if (!activeFence) activeFence = { char: fenceChar, length: fence.length };
+      else if (activeFence.char === fenceChar && fence.length >= activeFence.length) activeFence = null;
+      continue;
+    }
+
+    if (activeFence) continue;
+
     const match = line.match(/^(#|##|###)\s+(.+)$/);
     if (!match) continue;
 

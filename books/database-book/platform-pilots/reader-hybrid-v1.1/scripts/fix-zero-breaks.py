@@ -1,7 +1,9 @@
 """Fix zero page-break chapters: add PAGE BREAK before major H2 boundaries in Core Concepts."""
-import re, os
+import os
+import re
+from pathlib import Path
 
-repo = r'c:\Users\nd115232\Documents\GitHub\dima-publishing\books\database-book\files\source\chapters'
+repo = Path(__file__).resolve().parents[3] / 'files' / 'source' / 'chapters'
 
 PAGE_BREAK_BLOCK = '\n\n<!-- PAGE BREAK -->\n<div style="page-break-after: always;"></div>\n\n'
 
@@ -51,8 +53,8 @@ zero_break_chapters = {
 }
 
 for ch_id, rel_path in zero_break_chapters.items():
-    full_path = os.path.join(repo, rel_path)
-    if not os.path.exists(full_path):
+    full_path = repo / rel_path
+    if not full_path.exists():
         print(f'{ch_id}: FILE NOT FOUND - {full_path}')
         continue
     

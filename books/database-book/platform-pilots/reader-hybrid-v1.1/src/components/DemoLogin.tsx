@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
+import { supabase, supabaseConfigError } from '../lib/supabaseClient';
 import {
   activateStudentTrial,
   getMyAccess,
@@ -31,6 +31,12 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
     const cleanEmail = email.trim().toLowerCase();
 
     try {
+      if (!supabase) {
+        setAuthError(supabaseConfigError ?? 'Reader login is not configured yet.');
+        setLoading(false);
+        return;
+      }
+
       let result;
 
       if (action === 'create-account') {
@@ -108,7 +114,8 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
       ? 'Sign in'
       : 'Create account';
 
-  const hasAuth = !!(authSuccess && accessDetails);
+  const hasAuthFeedback = !!authSuccess;
+  const hasReaderAccess = !!accessDetails;
 
   return (
     <div className="demo-login-page">
@@ -139,12 +146,25 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
           </button>
         </div>
 
-        {hasAuth ? (
+        {hasAuthFeedback ? (
           <div className="login-success">
             <p>{authSuccess}</p>
-            <button className="cta-btn cta-primary" onClick={onCancel}>
-              Continue to reader
-            </button>
+            {hasReaderAccess ? (
+              <button className="cta-btn cta-primary" onClick={onCancel}>
+                Continue to reader
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="cta-btn cta-outline"
+                onClick={() => {
+                  setMode('sign-in');
+                  setAuthSuccess('');
+                }}
+              >
+                Back to sign in
+              </button>
+            )}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="login-form">
@@ -195,7 +215,7 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
           </form>
         )}
 
-        {!hasAuth && !authError && (
+        {!hasAuthFeedback && !authError && (
           <div className="login-trial-info">
             <h3>Course reader access</h3>
             <p>

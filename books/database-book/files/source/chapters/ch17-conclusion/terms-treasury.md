@@ -27,7 +27,3 @@ A key chapter term or topic. Students should be able to define it, recognize it 
 ## Designing Systems That Matter
 
 A key chapter term or topic. Students should be able to define it, recognize it in context, and explain how it supports reliable data work or business performance.
-
-## Designing Systems That Matter
-
-A key chapter term or topic. Students should be able to define it, recognize it in context, and explain how it supports reliable data work or business performance.

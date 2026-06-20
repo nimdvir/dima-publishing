@@ -1,7 +1,9 @@
 """Add page breaks to chapters with zero or too few breaks."""
-import re, os
+import os
+import re
+from pathlib import Path
 
-repo = r'c:\Users\nd115232\Documents\GitHub\dima-publishing\books\database-book\files\source\chapters'
+repo = Path(__file__).resolve().parents[3] / 'files' / 'source' / 'chapters'
 PB = '\n\n<!-- PAGE BREAK -->\n<div style="page-break-after: always;"></div>\n\n'
 
 chapters = [
@@ -14,8 +16,8 @@ chapters = [
 ]
 
 for ch_id, rel_path, is_dated in chapters:
-    full_path = os.path.join(repo, rel_path)
-    if not os.path.exists(full_path):
+    full_path = repo / rel_path
+    if not full_path.exists():
         print(f'{ch_id}: NOT FOUND')
         continue
     

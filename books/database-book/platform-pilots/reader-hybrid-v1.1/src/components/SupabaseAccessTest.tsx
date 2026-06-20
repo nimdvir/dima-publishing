@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
+import { supabase, supabaseConfigError } from '../lib/supabaseClient';
 import { activateStudentTrial, getMyAccess } from '../lib/courseAccess';
 
 export default function SupabaseAccessTest() {
@@ -13,6 +13,12 @@ export default function SupabaseAccessTest() {
   const [errorMessage, setErrorMessage] = useState('');
 
   async function refreshUser() {
+    if (!supabase) {
+      setCurrentEmail(null);
+      setErrorMessage(supabaseConfigError ?? 'Reader login is not configured yet.');
+      return;
+    }
+
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -22,6 +28,10 @@ export default function SupabaseAccessTest() {
 
   useEffect(() => {
     refreshUser();
+
+    if (!supabase) {
+      return;
+    }
 
     const { data } = supabase.auth.onAuthStateChange(() => {
       refreshUser();
@@ -36,6 +46,11 @@ export default function SupabaseAccessTest() {
     setStatus('');
     setErrorMessage('');
     setResult(null);
+
+    if (!supabase) {
+      setErrorMessage(supabaseConfigError ?? 'Reader login is not configured yet.');
+      return;
+    }
 
     const cleanEmail = email.trim().toLowerCase();
 
@@ -67,6 +82,11 @@ export default function SupabaseAccessTest() {
     setStatus('');
     setErrorMessage('');
     setResult(null);
+
+    if (!supabase) {
+      setErrorMessage(supabaseConfigError ?? 'Reader login is not configured yet.');
+      return;
+    }
 
     const { error } = await supabase.auth.signInWithPassword({
       email: email.trim().toLowerCase(),
@@ -107,6 +127,13 @@ export default function SupabaseAccessTest() {
   }
 
   async function signOut() {
+    if (!supabase) {
+      setCurrentEmail(null);
+      setResult(null);
+      setStatus('');
+      return;
+    }
+
     await supabase.auth.signOut();
     setCurrentEmail(null);
     setResult(null);

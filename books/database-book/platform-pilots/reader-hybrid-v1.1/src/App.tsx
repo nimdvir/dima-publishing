@@ -11,7 +11,6 @@ import HomePage from "./components/HomePage";
 import DemoLogin from "./components/DemoLogin";
 import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
-import SupabaseAccessTest from "./components/SupabaseAccessTest";
 import { supabase } from "./lib/supabaseClient";
 import { getMyAccess } from "./lib/courseAccess";
 
@@ -160,6 +159,7 @@ function scrollToHeadingId(id: string): boolean {
 export default function App() {
   const [scope, setScope] = useState<ReaderScope>("welcome");
   const [demoUser, setDemoUser] = useState<DemoUser | null>(null);
+  const [authLoading, setAuthLoading] = useState(() => !!supabase);
 
   // Book reader state
   const [activeChapterId, setActiveChapterId] = useState<string>("ch01");
@@ -180,25 +180,35 @@ export default function App() {
 
   // On app load, check existing Supabase session (real authority) and hydrate display state.
   useEffect(() => {
-    async function checkSession() {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+    if (!supabase) {
+      setAuthLoading(false);
+      return;
+    }
+    const client = supabase;
 
-      if (session?.user?.email) {
-        try {
-          const access = await getMyAccess();
-          if (access.has_access) {
-            setDemoUser({
-              netId: session.user.email,
-              studentId: "",
-              accessStatus: "active",
-              createdAt: new Date().toISOString(),
-            });
+    async function checkSession() {
+      try {
+        const {
+          data: { session },
+        } = await client.auth.getSession();
+
+        if (session?.user?.email) {
+          try {
+            const access = await getMyAccess();
+            if (access.has_access) {
+              setDemoUser({
+                netId: session.user.email,
+                studentId: "",
+                accessStatus: "active",
+                createdAt: new Date().toISOString(),
+              });
+            }
+          } catch {
+            // Access check failed — user has session but no access. Don't hydrate.
           }
-        } catch {
-          // Access check failed — user has session but no access. Don't hydrate.
         }
+      } finally {
+        setAuthLoading(false);
       }
     }
 
@@ -207,7 +217,7 @@ export default function App() {
     // Listen for auth state changes (cross-tab signout, etc.)
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
+    } = client.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_OUT") {
         setDemoUser(null);
         localStorage.removeItem(LS_DEMO_USER);
@@ -227,6 +237,8 @@ export default function App() {
           /* access check failed — leave unauthenticated */
         }
       }
+
+      setAuthLoading(false);
     });
 
     return () => {
@@ -248,6 +260,14 @@ export default function App() {
     if (routeLabId) setActiveLabId(routeLabId);
   }, []);
 
+  // Redirect unauthorized users away from Book/Labs (handles direct URL navigation).
+  useEffect(() => {
+    if (!authLoading && (scope === "book" || scope === "labs") && !demoUser) {
+      setScope("login");
+      writeRoute("login");
+    }
+  }, [scope, demoUser, authLoading]);
+
   // Parse route on load. Query-string URLs remain supported for older links.
   useEffect(() => {
     applyRouteState(parseLocationParams());
@@ -262,8 +282,15 @@ export default function App() {
     return () => window.removeEventListener("popstate", handler);
   }, [applyRouteState]);
 
-  // Navigate to a scope
+  // Navigate to a scope — gate Book and Labs behind auth.
   const navigateScope = useCallback((newScope: ReaderScope) => {
+    // Require login for protected scopes.
+    if ((newScope === "book" || newScope === "labs") && !demoUser && !authLoading) {
+      setScope("login");
+      writeRoute("login");
+      return;
+    }
+
     setScope(newScope);
     setSidebarOpen(false);
     if (newScope === "book") {
@@ -289,7 +316,7 @@ export default function App() {
       }
     }
     writeRoute(newScope);
-  }, []);
+  }, [demoUser, authLoading]);
 
   // Navigate to a specific page
   const navigateToPage = useCallback((page: BookPage) => {
@@ -360,7 +387,9 @@ export default function App() {
   }, []);
 
   const handleSignOut = useCallback(async () => {
-    await supabase.auth.signOut();
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
     setDemoUser(null);
     localStorage.removeItem(LS_DEMO_USER);
   }, []);
@@ -439,10 +468,6 @@ export default function App() {
     [activeLabId],
   );
 
-  if (new URLSearchParams(window.location.search).get('authTest') === '1') {
-    return <SupabaseAccessTest />;
-  }
-
   return (
     <Layout
       scope={scope}
@@ -501,7 +526,28 @@ export default function App() {
           onCancel={() => navigateScope("welcome")}
         />
       )}
-      {scope === "book" && currentPage && (
+      {scope === "book" && !demoUser && !authLoading && (
+        <div className="demo-login-page">
+          <div className="login-card">
+            <h2>Access required</h2>
+            <p className="login-desc">
+              Sign in with your university email to read the book.
+            </p>
+            <div className="login-actions">
+              <button
+                className="cta-btn cta-primary"
+                onClick={() => {
+                  setScope("login");
+                  writeRoute("login");
+                }}
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {scope === "book" && demoUser && currentPage && (
         <ChapterReader
           page={currentPage}
           allPages={currentSectionPages}
@@ -516,7 +562,28 @@ export default function App() {
           showEntryCover={showReaderEntryCover}
         />
       )}
-      {scope === "labs" && activeLab && (
+      {scope === "labs" && !demoUser && !authLoading && (
+        <div className="demo-login-page">
+          <div className="login-card">
+            <h2>Access required</h2>
+            <p className="login-desc">
+              Sign in with your university email to access the labs.
+            </p>
+            <div className="login-actions">
+              <button
+                className="cta-btn cta-primary"
+                onClick={() => {
+                  setScope("login");
+                  writeRoute("login");
+                }}
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {scope === "labs" && demoUser && activeLab && (
         <LabsView
           labs={BOOK_LABS}
           activeLab={activeLab}
