@@ -16,10 +16,10 @@ This outline follows the chapter structure and keeps only chapter sections refle
 * Distill the enduring habits of thought the course intends to leave behind: thinking in entities and relationships, designing before implementing, valuing correctness and clarity, and treating data systems as strategic infrastructure.
 * End on the forward-looking claim that specific tools and syntax will change, but the ability to design reliable, explainable, meaningful systems remains rare, valuable, and durable.
 
-## Let's Build
+# Let's Build
 
 The Chapter 17 Let's Build section should function as a synthesis activity rather than a new technical build. It should ask students to revisit the Grading Database and trace the full system lifecycle they practiced across the course: modeling entities and relationships, normalizing tables, writing analytical SQL, applying reliability and governance ideas, and connecting outputs to decision-making. The practical emphasis should stay on integration and reflection, helping students explain how the technical pieces fit together into one coherent information system.
 
-## Lab
+# Lab
 
 The Chapter 17 lab should serve as a capstone reflection and design exercise that asks students to evaluate a completed data system as an intentional decision-support environment. It should prompt them to identify which design choices most affected reliability, insight, and trust; explain how poor design would have changed outcomes; and describe how they would carry these principles into future analytics, software, management, or research work. The current lab file is still a generic scaffold, so this summary is derived from the conclusion manuscript's course-synthesis focus.

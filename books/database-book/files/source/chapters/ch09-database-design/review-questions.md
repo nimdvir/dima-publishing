@@ -1,22 +1,3 @@
----
-title: "Chapter 9: Review and Reflection"
-chapter: 9
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 9 concepts on database design, ER modeling, and the path from requirements to relational schemas."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - database design
-  - ER modeling
-  - Crow's Foot notation
-  - normalization
-  - data anomalies
-  - chapter 9
-date: 2026-06-16
-author: "Nimrod Dvir, PhD"
----
-
 # Chapter 9: Review and Reflection
 
 <p align="center">
@@ -27,7 +8,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-## Review Questions
+# Review Questions
 
 *These questions check your understanding of the key concepts, definitions, and frameworks from Chapter 9.*
 
@@ -49,7 +30,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-## Reflection Questions
+# Reflection Questions
 
 *These questions ask you to interpret, compare, evaluate, or apply the chapter's ideas beyond straightforward recall.*
 
@@ -69,7 +50,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-## Personal Reflection Questions
+# Personal Reflection Questions
 
 *These questions invite you to connect the chapter's ideas to your own experience, goals, and development as a professional.*
 
@@ -88,9 +69,9 @@ author: "Nimrod Dvir, PhD"
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: What are insertion, update, and deletion anomalies? Use the `GRADE_FLAT` table from Section 9.2 to give one concrete example of each.**
 Suggested Answer: An **insertion anomaly** occurs when you cannot add a fact without adding an unrelated fact. In `GRADE_FLAT`, the instructor cannot add a new deliverable (e.g., "Project 1") before any student has submitted it, because every row also requires student and score data. An **update anomaly** occurs when the same fact is stored in many rows and updating only some creates inconsistency. If Alice changes her email, it must be updated in every row where she appears; missing one row creates conflicting versions. A **deletion anomaly** occurs when deleting one fact accidentally destroys another. If Brian has only one grade row and that row is deleted, his entire student record disappears from the database. All three are caused by mixing unrelated facts (student identity, deliverable definition, scores) in a single flat table.
@@ -116,7 +97,7 @@ Suggested Answer: Relational databases cannot store M:N relationships directly b
 **Question 8: Define weak entity. How does a weak entity's primary key differ from a strong entity's? Give an example.**
 Suggested Answer: A **weak entity** cannot be uniquely identified by its own attributes alone; its identity depends on an owner (strong) entity. Its primary key is a **composite key** that includes the owner's primary key plus the weak entity's partial key. For example, `SECTION(CourseID, SectionNumber, MeetingTime)` depends on `COURSE(CourseID, CourseTitle)`. `SectionNumber = 1` is not globally unique (many courses have Section 1), so the section's primary key is `(CourseID, SectionNumber)`. A strong entity like `STUDENT` has its own independent primary key (`StudentID`).
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: The chapter argues that "many query problems are actually design problems in disguise." Do you agree?**
 Suggested Answer: Yes, this claim is well supported. A query against a poorly normalized table may return duplicate rows, conflicting values, or incorrect aggregations not because the SQL is wrong, but because the underlying structure mixes unrelated facts. For example, if student email appears in every grade row, a `COUNT(DISTINCT Email)` to count students could be thrown off by a single mistyped email. The query is syntactically correct, but the result is misleading because the design did not enforce a single source of truth for student identity. Fixing the query is a patch; fixing the schema is the solution.
@@ -139,7 +120,7 @@ Suggested Answer: In early design with business stakeholders, Lucidchart provide
 **Question 7: Which common modeling mistake is the most dangerous in a business context?**
 Suggested Answer: "Building before modeling" (Section 9.12.1) is arguably the most dangerous because it skips the requirements and design phases entirely, leading to schemas that reflect the developer's assumptions rather than the business's actual rules. Every subsequent mistake (unresolved M:N, wrong foreign-key placement, missing optionality) becomes harder to detect and fix once tables are populated and applications depend on them. A design review step — where the ERD is reviewed against written business rules before any SQL is executed — catches most of these problems early, when they are inexpensive to fix.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: How did your understanding of database structure change after this chapter?**
 Suggested Answer: Before this chapter, many students think of databases as collections of tables with data in them, without much thought about why tables are separated or connected the way they are. After learning about anomalies, ER modeling, and the mapping algorithm, the shift is often realizing that table structure is not arbitrary — it encodes business rules. A common "most surprising concept" is that many-to-many relationships cannot be stored directly and require a junction table, which reveals that database structure actively shapes what questions SQL can answer.

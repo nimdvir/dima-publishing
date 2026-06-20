@@ -1,6 +1,4 @@
-<!-- metadata: date="2026-06-03" -->
-
-<!-- markdownlint-disable MD013 MD024 MD033 MD034 MD036 -->
+﻿<!-- markdownlint-disable MD013 MD024 MD033 MD034 MD036 -->
 
 # Lab 04: Building a PetVax Database in Microsoft Access
 
@@ -12,7 +10,7 @@
 
 <p align="center"><em>Take the same DBMS moves you practiced on the Grading Database and apply them to a real PetVax clinic dataset in Microsoft Access.</em></p>
 
-## Overview
+# Overview
 
 This lab is a guided Microsoft Access workflow.
 
@@ -34,7 +32,7 @@ This lab has **two graded parts**. You must complete both:
 - **Tool:** Microsoft Access (Desktop, 2019 or later)
 - **Estimated time:** about 60 minutes
 
-## Scenario
+# Scenario
 
 PetVax is a single-location veterinary clinic. The front desk has been tracking appointments in one flat spreadsheet that mixes pet, owner, appointment, service, and payment details on each row. The owner wants to move to Access so she can enforce data quality, look up information faster, and print simple reports for staff.
 
@@ -52,7 +50,7 @@ You will import both into a new Access database, add rules, build a form, write 
 
 > 🛑 **Do not use the Relationships window in this lab.** Do not open **Database Tools → Relationships** and do not enforce referential integrity. You will create exactly one *query-level* join in Step 9. Formal relationships come in Chapter 6.
 
-## Required Files and Tools
+# Required Files and Tools
 
 | Item            | Detail                                                                                |
 | --------------- | ------------------------------------------------------------------------------------- |
@@ -63,7 +61,7 @@ You will import both into a new Access database, add rules, build a form, write 
 
 ---
 
-## Step 1 — Create the database and import the data
+# Step 1 — Create the database and import the data
 
 **Do.**
 
@@ -99,7 +97,7 @@ Open `PETVAX_APPOINTMENTS` in Datasheet View. How many appointment records does 
 
 ---
 
-## Step 2 — Set and read the primary key
+# Step 2 — Set and read the primary key
 
 **Do.** Right-click the `PETVAX_APPOINTMENTS` tab and choose **Design View**. Click the row selector for `AppointmentID`, then click **Primary Key** on the ribbon. A small key icon appears next to `AppointmentID`. Save the table.
 
@@ -133,7 +131,7 @@ What does `AppointmentID` actually identify?
 
 ---
 
-## Step 3 — Add validation rules and required fields
+# Step 3 — Add validation rules and required fields
 
 **Do.** Stay in Design View for `PETVAX_APPOINTMENTS` and set these field properties.
 
@@ -166,7 +164,7 @@ If a user later tries to enter `WeightKg = 150`, what should Access do?
 
 ---
 
-## Step 4 — Test the validation rule
+# Step 4 — Test the validation rule
 
 **Do.** Switch `PETVAX_APPOINTMENTS` to Datasheet View. Pick any row and temporarily try to change its `WeightKg` to `150`. Press Tab. Access should refuse the value and show your validation text. Press Esc to discard the bad entry and restore the original value.
 
@@ -185,7 +183,7 @@ Which Chapter 4 concept did that test demonstrate?
 
 ---
 
-## Step 5 — Create a data-entry form and add a record
+# Step 5 — Create a data-entry form and add a record
 
 **Do.** In the Navigation Pane, click `PETVAX_APPOINTMENTS` once. On the **Create** tab, click **Form**. Access builds a form bound to the table. Save it as `frmPETVAX_APPOINTMENTS`.
 
@@ -221,7 +219,7 @@ After adding Maple, how many records are in `PETVAX_APPOINTMENTS`?
 
 ---
 
-## Step 6 — Build `qryNoShows`
+# Step 6 — Build `qryNoShows`
 
 **Do.** On the **Create** tab, click **Query Design**. Add `PETVAX_APPOINTMENTS`. Drag these fields to the grid: `AppointmentID`, `AppointmentDate`, `PetName`, `OwnerName`, `OwnerEmail`, `AppointmentStatus`. In the `AppointmentStatus` column **Criteria** row, type `No-show`. Run the query, then save it as `qryNoShows`.
 
@@ -235,7 +233,7 @@ How many records does `qryNoShows` return?
 
 ---
 
-## Step 7 — Build `qryVaccineDue`
+# Step 7 — Build `qryVaccineDue`
 
 **Do.** Start a new query (**Create → Query Design**). Add `PETVAX_APPOINTMENTS`. Drag `AppointmentID`, `AppointmentDate`, `PetName`, `OwnerName`, `BreedName`, `ServiceType`, `VaccineDue`. In the `VaccineDue` column **Criteria** row, type `Yes`. Run and save as `qryVaccineDue`.
 
@@ -251,7 +249,7 @@ After adding Maple, how many records does `qryVaccineDue` return?
 
 ---
 
-## Step 8 — Build `qryAveragePaymentByService`
+# Step 8 — Build `qryAveragePaymentByService`
 
 **Do.** New query. Add `PETVAX_APPOINTMENTS`. Drag `ServiceType` and `PaymentAmount` to the grid. On the ribbon, click **Totals** (the Σ symbol) — a **Total** row appears. Leave `Group By` under `ServiceType` and change `Group By` under `PaymentAmount` to `Avg`. Run and save as `qryAveragePaymentByService`.
 
@@ -278,7 +276,7 @@ Which service type has the **highest** average payment?
 
 ---
 
-## Step 9 — Build the query-level join `qryAppointmentsWithRates`
+# Step 9 — Build the query-level join `qryAppointmentsWithRates`
 
 > ⚠️ **Important:** This is a **query-level join**, not a formal relationship. You are not opening the Relationships window. You are asking Access to match rows from two tables inside one saved query. Formal relationships come in Chapter 6.
 
@@ -316,7 +314,7 @@ How many rows does `qryAppointmentsWithRates` return?
 
 ---
 
-## Step 10 — Build a report
+# Step 10 — Build a report
 
 **Do.** In the Navigation Pane, click `qryNoShows` once. On the **Create** tab, click **Report**. Access builds a report from the query. Save it as `rptNoShows`. If you have time, open it in **Layout View** and tidy the title and column widths.
 
@@ -335,7 +333,7 @@ Which object should the PetVax manager open to review missed appointments?
 
 ---
 
-## Step 11 — What Access improved, and what it did not
+# Step 11 — What Access improved, and what it did not
 
 **Do.** Open `PETVAX_APPOINTMENTS` in Datasheet View one more time. Scroll until you see the same owner or the same pet name on more than one row. Notice that the table is still flat.
 
@@ -384,7 +382,7 @@ Because `PETVAX_APPOINTMENTS` is still a flat table, which problems still exist?
 
 ---
 
-## Step 12 — Save and submit
+# Step 12 — Save and submit
 
 **Do.** Close all open tables, forms, queries, and reports. On the **Database Tools** tab, click **Compact and Repair Database**. Confirm the file is named `Lab04-PetVax-Access-LastName.accdb`, then upload it to the Lab 04 file-submission assignment.
 
@@ -397,14 +395,14 @@ Because `PETVAX_APPOINTMENTS` is still a flat table, which problems still exist?
 > - New record: Maple / Priya Shah (`AppointmentID` 1025)
 > - Validation rules on `WeightKg` (`Between 0 And 100`) and `PaymentAmount` (`>=0`)
 
-## Submission
+# Submission
 
 - Save the file as `Lab04-PetVax-Access-LastName.accdb` (use your real last name, no spaces).
 - Upload the `.accdb` to the Lab 04 file-submission assignment.
 - Answer the auto-graded quiz questions in the Brightspace quiz for this lab.
 - **Grading:** quiz checks (24 pts) + AI-graded review of your `.accdb` (16 pts) = **40 pts**.
 
-## Optional Extensions
+# Optional Extensions
 
 These are not required and are not graded.
 

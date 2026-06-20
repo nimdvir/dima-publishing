@@ -1456,6 +1456,45 @@ h3 {
   font-style: italic;
   margin-top: 0.4rem;
 }
+
+/* ── Highlighting ── */
+.markdown-body mark {
+  background: #fef08a;
+  color: inherit;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+/* ── Section H1 headings (migrated from H2) ── */
+.markdown-body h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin: 1.8em 0 0.6em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--color-border);
+  letter-spacing: -0.01em;
+}
+
+/* ── Sub-section H2 headings ── */
+.markdown-body h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin: 1.5em 0 0.5em;
+}
+
+.markdown-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 1.3em 0 0.4em;
+}
+
 .video-wrapper {
   position: relative;
   padding-bottom: 56.25%;
@@ -1847,6 +1886,10 @@ h3 {
 .otp-item {
   padding: 0;
   line-height: 1.35;
+}
+.otp-item.otp-h1 {
+  font-weight: 600;
+  color: var(--color-text);
 }
 .otp-item.otp-h3 {
   padding-left: 0.75rem;

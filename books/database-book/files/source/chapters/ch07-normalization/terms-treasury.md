@@ -26,7 +26,7 @@
 | **Transitive Dependency** | A flaw where a non-key attribute is determined by another non-key attribute rather than directly by the primary key. | Violates 3NF and causes rules or lookup facts to be dangerously repeated across many rows. | `Score` determining `LetterGrade`. |
 | **Update Anomaly** | A structural error where a single real-world change requires updating multiple rows to maintain consistency. | Increases the risk of human error and data drift if any row is missed during the update. | Changing a quiz's weight from 5 to 6 points and having to update 200 student grade rows. |
 
-## Acronyms and Abbreviations
+# Acronyms and Abbreviations
 
 | Abbreviation | Full Form | Brief Meaning | Where It Appears |
 |---|---|---|---|

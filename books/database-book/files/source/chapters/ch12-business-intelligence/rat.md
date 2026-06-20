@@ -40,9 +40,6 @@ Questions draw from all twelve chapter sections, including the RFM analysis subs
 7. **Output prediction from concrete data** — Questions 21–22 ask students to predict query results and explain null-handling behavior from the chapter's SQL views.
 8. **Platform-specific details** — Questions 23–24 test knowledge of SQLite vs. PostgreSQL vs. Access syntax differences described in 12.7 and 12.11.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Remember Questions
 
 **1. What does the acronym ETL stand for in the context of Business Intelligence?**
@@ -126,9 +123,6 @@ C. KPI Card
 D. Trigger
 
 E. Stored procedure
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Understand Questions
 
@@ -217,9 +211,6 @@ C. Merge
 D. Pivot
 
 E. Drill-down
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Apply Questions
 
@@ -321,9 +312,6 @@ D. Exporting results to Excel or Power BI
 
 E. Running MapReduce jobs on the Access database engine
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Analyze Questions
 
 **25. The chapter connects RFM analysis to the Grading Database with a student-performance analogy. Which pairing correctly maps an RFM dimension to its educational equivalent?**
@@ -409,9 +397,6 @@ C. An owner
 D. A clear definition
 
 E. A decorative 3D chart
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Evaluate Questions
 
@@ -512,7 +497,7 @@ E. Sensitive student performance data visible to all users without access contro
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
 ### Remember Questions
 
@@ -1058,9 +1043,6 @@ Explanation: The chapter's governance and reporting sections identify metric inc
 | C      | **Yes**  | Stale data violates the "timely" characteristic of effective BI reporting (12.8). |
 | D      | No       | Clearly labeled axes and descriptive titles build trust, not undermine it. |
 | E      | **Yes**  | Overexposed sensitive data violates access-control governance (12.10). |
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Question Distribution Summary
 

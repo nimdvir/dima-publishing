@@ -30,9 +30,6 @@ This RAT supports readiness by testing whether students can reason with chapter 
 | Scenario-based | Understand, Apply, Analyze, Evaluate | 10, 12, 14-16, 17-24, 25, 28, 30-40 | 12 |
 | Definition-only | Remember, Understand, Analyze | 1-9, 11, 13, 26, 29, 31-32 | 14 |
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Remember Questions
 
 **1. What does normalization try to accomplish in a relational database?**
@@ -122,9 +119,6 @@ C. Cached totals such as a frequently displayed GPA
 D. Repeating student email in every score row
 
 E. Skipping normalization because joins take effort
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Understand Questions
 
@@ -216,9 +210,6 @@ D. Setting `Indexed: No Duplicates` on `Email` can help enforce uniqueness
 
 E. Access is described as a visual learning tool rather than the only valid platform
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Apply Questions
 
 **17. Alice changes her email address after three deliverables have already been graded. In the normalized design from Chapter 7, where should that change be made?**
@@ -309,9 +300,6 @@ D. When a designer wants to avoid learning joins
 
 E. When summary data can be refreshed or synchronized safely
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Analyze Questions
 
 **25. A designer splits data into two tables, `STUDENT` and `STUDENT_DETAILS`, but still stores `FirstName` and `LastName` redundantly in both. Which chapter idea best diagnoses the problem?**
@@ -401,9 +389,6 @@ C. The table resolves a many-to-many relationship
 D. The main non-key fact depends on both key parts together
 
 E. Every non-key attribute depends on `StudentID` alone
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Evaluate Questions
 
@@ -498,7 +483,7 @@ E. They eliminate the need for primary keys and constraints
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
 ### Remember Questions
 

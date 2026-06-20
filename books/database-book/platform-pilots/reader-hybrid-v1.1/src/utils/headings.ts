@@ -5,7 +5,7 @@
 
 export interface HeadingTocItem {
   id: string;
-  level: 2 | 3;
+  level: 1 | 2 | 3;
   text: string;
 }
 
@@ -27,21 +27,23 @@ export function uniqueId(base: string, counts: Map<string, number>): string {
   return count === 0 ? base : `${base}-${count + 1}`;
 }
 
-/** Extract H2/H3 headings from raw Markdown content for the "On this page" panel. */
+/** Extract H1/H2/H3 headings from raw Markdown content for the "On this page" panel. */
 export function extractHeadingToc(content: string): HeadingTocItem[] {
   const counts = new Map<string, number>();
   const headings: HeadingTocItem[] = [];
 
   for (const line of content.split(/\r?\n/)) {
-    const match = line.match(/^(##|###)\s+(.+)$/);
+    const match = line.match(/^(#|##|###)\s+(.+)$/);
     if (!match) continue;
 
     const text = match[2].replace(/[#*_`~]/g, "").trim();
     if (!text) continue;
 
+    const level = match[1].length as 1 | 2 | 3;
+
     headings.push({
       id: uniqueId(slugifyHeading(text), counts),
-      level: match[1] === "##" ? 2 : 3,
+      level,
       text,
     });
   }

@@ -1,23 +1,3 @@
----
-title: "Chapter 4: Review and Reflection"
-chapter: 4
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 4 concepts about databases, DBMS architecture, relational tables, keys, constraints, and the move from file environments to governed database systems."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - databases
-  - DBMS
-  - relational tables
-  - primary keys
-  - foreign keys
-  - constraints
-  - SQL
-  - chapter 4
-date: 2026-06-04
-author: "Nimrod Dvir"
----
 <!-- markdownlint-disable MD025 -->
 # Chapter 4: Review and Reflection
 
@@ -31,7 +11,7 @@ author: "Nimrod Dvir"
 
 *Use these questions to move from knowing database terms to explaining why structured, rule-protected data matters for reliable business decisions.*
 
-## Review Questions
+# Review Questions
 
 *These questions help you review the chapter's main ideas, terms, frameworks, and examples.*
 
@@ -51,7 +31,7 @@ author: "Nimrod Dvir"
 
 **8. How does the chapter distinguish the logical view of data from the physical view, and why does data independence matter?**
 
-## Reflection Questions
+# Reflection Questions
 
 *These questions encourage you to interpret the chapter, compare alternatives, and connect database design to organizational decisions.*
 
@@ -71,7 +51,7 @@ author: "Nimrod Dvir"
 
 **8. If a small clinic needed to choose between Access, SQLite, and PostgreSQL, what business and technical factors from the chapter's platform spectrum should guide the choice?**
 
-## Personal Reflection Questions
+# Personal Reflection Questions
 
 *These questions help you connect the chapter to your own habits, goals, strengths, and developing professional skills.*
 
@@ -94,9 +74,9 @@ author: "Nimrod Dvir"
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: What is a database, and how does Chapter 4 distinguish it from a spreadsheet or an ordinary file used to store business data?**
 **Suggested Answer:** Chapter 4 defines a database as a structured collection of related data designed for reliable storage, retrieval, and management. Unlike a spreadsheet — which is a flexible grid-based tool that can contain zero, one, or several informal tables — a database enforces structure through defined tables, consistent types, rules, and constraints. A spreadsheet may look neat while quietly allowing inconsistent dates, duplicate records, and fragile relationships. A database protects against these problems by design. The chapter's Key Takeaway states that a database is "not just a better spreadsheet" but "a structured system for storing related data reliably, protecting it with rules, and making it reusable across questions, reports, applications, and decisions."
@@ -122,7 +102,7 @@ author: "Nimrod Dvir"
 **Question 8: How does the chapter distinguish the logical view of data from the physical view, and why does data independence matter?**
 **Suggested Answer:** The logical view is what users and applications see — tables, columns, relationships, and query results. The physical view is behind-the-scenes storage, indexing, and optimization managed by the DBMS and hidden from users. Data independence is the ability to change the physical storage without changing the logical view — for example, adding an index to speed up queries does not change how tables appear or how reports work. This matters because it allows technical staff to optimize performance, storage, and security without disrupting the applications and reports that users rely on every day.
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: Why can a spreadsheet that looks organized still fail as a reliable organizational data system? What structural problems hide behind neat formatting?**
 **Suggested Answer:** A spreadsheet can look organized because formatting — colors, borders, alignment — creates the appearance of order. But the underlying structure may quietly allow inconsistent dates (one row uses `MM/DD/YYYY`, another uses `DD/MM/YYYY`), duplicate records (the same customer entered twice with slightly different names), missing values (blank cells that functions silently skip), and fragile relationships (formulas that break when rows are inserted). None of these problems are visible from the formatting. A database enforces structure through types, keys, and constraints that prevent these problems regardless of how the data looks. The chapter's Warning callout captures this: "A spreadsheet may look neat while quietly allowing inconsistent dates, duplicate records, missing values, and fragile relationships."
@@ -148,7 +128,7 @@ author: "Nimrod Dvir"
 **Question 8: If a small clinic needed to choose between Access, SQLite, and PostgreSQL, what business and technical factors from the chapter's platform spectrum should guide the choice?**
 **Suggested Answer:** The chapter presents a spectrum from local/file-based platforms (Access, SQLite) to server-based platforms (PostgreSQL). The choice depends on scale, users, and needs. For a single user or small team with straightforward data needs, Access offers visual table design, forms, and reports in one environment — good for learning and quick deployment. SQLite provides lightweight, portable SQL practice with minimal setup — ideal for embedded applications or individual projects. For a growing clinic with multiple staff accessing data concurrently, strong typing, and production reliability requirements, PostgreSQL (or Supabase) is the better choice — it manages concurrent access, enforces strict constraints, and scales to organizational use. The decision is not about which platform is "best" in the abstract, but which matches the clinic's current scale and anticipated growth.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: Have you ever used a spreadsheet, shared file, or form that became difficult to trust over time? Which warning signs from this chapter — redundancy, inconsistency, missing constraints — did you see?**
 **Suggested Answer:** Answers will vary. A strong response describes a specific tool or file, identifies the moment trust eroded, and names which chapter concepts — redundancy (same value repeated and diverging), inconsistency (different versions of the same fact), or missing constraints (no rules preventing bad values) — were visible. This connects the student's lived experience to the chapter's formal vocabulary for describing those problems.

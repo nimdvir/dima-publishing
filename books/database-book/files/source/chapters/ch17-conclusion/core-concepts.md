@@ -1,3 +1,14 @@
+# Chapter 17: Designing Systems That Matter
+
+<!-- Draft Status: Edited 2026-05-08 --> # Chapter 17: Designing Systems That Matter
+
+This chapter synthesizes the entire course and shifts focus from competency to responsibility. The chapter addresses the ethical dimensions of data systems, the manager's role in system design decisions, and the habits of mind required for lifelong learning in a data-driven world. The chapter sends students forward with clarity about what they know, what it means, and how to keep growing.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+# Core Concepts
+
 <!-- Draft Status: Edited 2026-05-08 -->
 # Chapter 17: Designing Systems That Matter
 
@@ -10,6 +21,9 @@ This chapter synthesizes the entire course and shifts focus from competency to r
 - Articulate how ethical reasoning applies to data collection, storage, and use decisions
 - Describe the manager's role in system design, governance, and data stewardship
 - Develop a personal learning plan for continued growth in data and IS competency
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## Conclusion: Designing Systems That Matter
 
@@ -40,3 +54,28 @@ As tools, platforms, and technologies continue to evolve, specific syntax will c
 Whether you move into analytics, software development, management, research, or another domain, these habits of thinking will continue to serve you. The ability to design systems that are reliable, explainable, and meaningful is rare, valuable, and increasingly essential.
 
 This course has aimed to provide more than technical proficiency. It has aimed to help you see data systems as designed environments for decision-making. Carry that mindset forward.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Course Integration
+
+The course began with the idea that data becomes valuable only when people can structure it, query it, interpret it, and use it responsibly. This conclusion pulls those ideas together.
+
+## Professional Practice
+
+The same habits practiced in the Grading Database - naming carefully, checking assumptions, documenting choices, and validating outputs - also apply to workplace information systems.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Continuing Development
+
+Students should leave the course ready to keep learning new database, analytics, and reporting tools while preserving the same core reasoning process.
+
+## Final Reflection
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+A strong final reflection names specific skills, explains how they connect, and identifies what the student can now do with data that they could not do before.

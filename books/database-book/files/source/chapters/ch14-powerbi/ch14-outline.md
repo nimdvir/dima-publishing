@@ -13,7 +13,7 @@ This outline follows the chapter structure and keeps only chapter sections refle
 * Frame Power BI as a tool for communicating insights to managers and decision-makers, not just for producing charts.
 * Position the chapter as the practical bridge between analytical logic and stakeholder-facing business reporting.
 
-## Learning Objectives
+# Learning Objectives
 
 * Explain what Power BI is and how it fits into a business intelligence workflow.
 * Connect Power BI Desktop to common data sources such as Excel, CSV, and SQL databases.
@@ -34,7 +34,7 @@ This outline follows the chapter structure and keeps only chapter sections refle
 * Introduce Power BI's ability to connect to relational databases, spreadsheets, flat files, cloud storage, web sources, and APIs.
 * Use the GRADECENTER example to make connection choices concrete and course-relevant.
 
-### Steps to Connect
+## Steps to Connect
 
 * Walk through using Home -> Get Data, choosing a source type, authenticating, and selecting tables or files to load.
 * Reinforce that data access is the first step in turning stored records into report-ready information.
@@ -51,7 +51,7 @@ This outline follows the chapter structure and keeps only chapter sections refle
 * Shift from prepared data to report construction on the Power BI canvas.
 * Emphasize that visualization choice should support the business question rather than decorate the report.
 
-### Core Visual Types
+## Core Visual Types
 
 * Match bar and column charts to category comparison, line charts to trend analysis, pies and donuts to limited part-to-whole views, cards to single KPIs, tables and matrices to grouped detail, and maps to geographic data.
 * Reinforce the chapter's reporting message that the wrong visual can mislead even when the underlying data is correct.
@@ -61,7 +61,7 @@ This outline follows the chapter structure and keeps only chapter sections refle
 * Introduce DAX as the formula language used in Power BI for calculated columns and measures.
 * Position DAX as the logic layer that turns raw fields into reusable analytical metrics.
 
-### Calculated Column vs. Measure
+## Calculated Column vs. Measure
 
 * Distinguish row-by-row stored calculations from on-demand aggregate measures.
 * Use the manuscript's examples such as row counting, point totals, and filtered averages to show how DAX supports reporting logic.
@@ -79,17 +79,17 @@ This outline follows the chapter structure and keeps only chapter sections refle
 * Walk through publishing, signing in, selecting a workspace, opening the report online, and sharing it with others.
 * Connect publishing to the real business goal of making insights accessible to stakeholders where they work.
 
-## Chapter Summary
+# Chapter Summary
 
 * Reaffirm Power BI as the final presentation layer in the course's progression from data storage to managerial decision support.
 * Summarize the chapter's workflow: connect to data, clean it with Power Query, build visuals, add DAX metrics, make reports interactive, and publish them for use.
 * Emphasize that effective reporting depends on both correct underlying data logic and clear report design.
 * Bridge the chapter back to the course theme that well-structured databases only create value when people can understand and act on the outputs.
 
-## Let's Build
+# Let's Build
 
 The Chapter 14 Let's Build section should guide students through building a multi-page Power BI dashboard from the GRADECENTER database or its export. The sequence should cover connecting to the grading data, checking the model relationships, cleaning the data in Power Query, creating measures such as average score and pass rate, building separate report pages for course and student views, and optionally publishing the `.pbix` file to the Power BI Service. The practical emphasis should stay on turning relational data into interactive managerial dashboards that answer real academic performance questions.
 
-## Lab
+# Lab
 
 The Chapter 14 lab should ask students to build a student performance dashboard in Power BI by connecting to the provided grading data, validating relationships, cleaning fields, creating at least one DAX measure, designing multiple visuals, and using slicers to support interactive filtering. The deliverables should remain concrete and tool-focused: screenshots of the data model and report pages, plus the completed `.pbix` file. The work should emphasize report usability, correct measures, and presentation quality rather than SQL authoring alone.

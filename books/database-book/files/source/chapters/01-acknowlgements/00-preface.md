@@ -2,7 +2,7 @@
 
 # Using Data to Drive Business Performance
 
-## Databases and Management Information Systems
+# Databases and Management Information Systems
 
 Welcome to **Using Data to Drive Business Performance: Databases and Management Information Systems**.
 
@@ -212,7 +212,7 @@ The skills you develop here—understanding systems, organizing information, wri
 
 Let’s begin.
 
-## About the Author
+# About the Author
 
 **Dr. Nimrod Dvir** teaches Information Systems and Business Analytics at the University at Albany, State University of New York. His academic and professional background spans information science, human-computer interaction, management information systems, UX research, and digital product development.
 

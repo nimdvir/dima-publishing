@@ -9,7 +9,7 @@ lang: en-US
 
 <!-- LB revision (2026-06-17): added Let's Build icon, converted legacy :::callout blocks to canonical HTML (call-out skill). Fixed relationship count (four→three), added student count note, added Score validation rule. -->
 
-## Let's Build
+# Let's Build
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
@@ -17,11 +17,11 @@ lang: en-US
 
 The main chapter built the first three tables of the Grading Database in Access — `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` — and showed how referential integrity stops orphan rows. This Let's Build extends that work to the full seven-table schema, adds three new relationships (`ASSIGNMENT_TYPE`→`DELIVERABLE`, `SCHEDULE`→`ATTENDANCE`, `STUDENT`→`ATTENDANCE`), and then writes the three queries from §8 inside Access: a weighted-contribution join, an attendance summary with `LEFT JOIN`, and a missing-grades anti-join that uses `CROSS JOIN` and `LEFT JOIN ... WHERE IS NULL`. By the end you will have a complete relational Grading Database that mirrors the §7 ERD and three saved queries that prove the design works. There is no submission for this Let's Build — the graded transfer happens in **Lab 02 — SQL and Relational Database Foundations**, where you apply the same logic to the PetVax clinic.
 
-### Purpose
+## Purpose
 
 Make the §7 seven-table Grading Database real in Access, enforce referential integrity on every parent-child link, and run the §8 queries against the live tables so the relational design pays off in front of you.
 
-### What You Will Practice
+## What You Will Practice
 
 - Extending an existing Access database without breaking the relationships already drawn.
 - Matching foreign-key data types to parent primary-key types (the most common Access error).
@@ -30,7 +30,7 @@ Make the §7 seven-table Grading Database real in Access, enforce referential in
 - Using `LEFT JOIN` two different ways: to keep the left side, and as the core of an anti-join.
 - Reading `CROSS JOIN` as the way to enumerate the universe of expected combinations.
 
-### Before You Begin
+## Before You Begin
 
 You should have the `.accdb` from the main chapter §9 walkthrough open, with three tables already created and populated:
 
@@ -46,7 +46,7 @@ If your instructor provides `gradingdb-ch06-starter.accdb`, use that file — it
   <p>In Chapter 4, you used Access to create a working database. In Chapter 6, you use Access to create a <em>relational design</em>. The difference is not the software — it is that related facts now live in separate tables and are connected through enforced relationships.</p>
 </div>
 
-### Starting State Checklist
+## Starting State Checklist
 
 Before continuing, confirm your database matches every row below. Most later errors come from starting with mismatched field types.
 
@@ -65,7 +65,7 @@ Before continuing, confirm your database matches every row below. Most later err
 
 If any row does not match, fix it before continuing.
 
-### Seed the Deliverables and Grades
+## Seed the Deliverables and Grades
 
 Before adding new tables, populate `DELIVERABLE` and `STUDENT_GRADE` so the later queries have data to work with. Open `DELIVERABLE` and enter five rows. `DeliverableID` is AutoNumber, so Access assigns 1–5 in order:
 
@@ -97,7 +97,7 @@ Then open `STUDENT_GRADE` and enter eight rows. Leave `GradeID` blank (AutoNumbe
   <p>In Design View for <code>STUDENT_GRADE</code>, select the <code>Score</code> field and set <strong>Validation Rule</strong> to <code>Between 0 And 100</code> with <strong>Validation Text</strong> <code>Score must be between 0 and 100.</code> This prevents accidental out-of-range values from entering the database — a small rule that protects data quality.</p>
 </div>
 
-### Add the ASSIGNMENT_TYPE Table
+## Add the ASSIGNMENT_TYPE Table
 
 Create a new table in **Create → Table Design**. This table stores category-level grading rules once, so they no longer repeat in every deliverable row.
 
@@ -120,7 +120,7 @@ Select `AssignmentType` and click the key icon to set it as the primary key. Sav
 
 **Expected output:** four rows. The category rules now live in exactly one place.
 
-### Add the SCHEDULE Table
+## Add the SCHEDULE Table
 
 Class meetings deserve their own table because attendance attaches to them. Create another table in Design View:
 
@@ -143,7 +143,7 @@ Save as `SCHEDULE` and enter four meetings:
 
 **Expected output:** four scheduled class meetings.
 
-### Add the ATTENDANCE Table
+## Add the ATTENDANCE Table
 
 `ATTENDANCE` is a junction table. It resolves the many-to-many relationship between students and class meetings: one student attends many meetings, and one meeting is attended by many students. Create the table in Design View — and read the data-type warning carefully before saving.
 
@@ -182,7 +182,7 @@ Save as `ATTENDANCE`. Enter sixteen rows — every student against every meeting
 
 **Expected output:** sixteen attendance rows.
 
-### Add the GRADE_SCALE Lookup Table
+## Add the GRADE_SCALE Lookup Table
 
 The grade scale converts a final numeric grade into a letter. It is a small reference table that does not connect to anything yet — Chapter 12 will use it in range queries.
 
@@ -204,7 +204,7 @@ Save as `GRADE_SCALE` and enter five rows:
 
 **Expected output:** five letter-grade bands. Policy now lives in one place. This simplified scale uses five broad bands; a later chapter may refine it into plus/minus grades.
 
-### Wire the New Relationships
+## Wire the New Relationships
 
 Close every open table — Access will not let you edit relationships while a child table is open. Then open **Database Tools → Relationships** and add `ASSIGNMENT_TYPE`, `SCHEDULE`, and `ATTENDANCE` to the layout next to your existing three tables.
 
@@ -229,7 +229,7 @@ Draw three new relationships. For each one, check **Enforce Referential Integrit
 | `SCHEDULE`        | `ATTENDANCE`    | 1 → many (new) |
 | `STUDENT`         | `ATTENDANCE`    | 1 → many (new) |
 
-### Test Referential Integrity
+## Test Referential Integrity
 
 The Relationships window is now doing work. Prove it with three insert attempts that should all fail. Open the target table, try to add the bad row, and watch Access reject it. Cancel each row after the error message.
 
@@ -241,7 +241,7 @@ The Relationships window is now doing work. Prove it with three insert attempts 
 
 **Expected output:** three "You cannot add or change a record because a related record is required..." error dialogs. The model from §6 is now enforced by the DBMS.
 
-### Query 1 — Weighted Contribution per Score
+## Query 1 — Weighted Contribution per Score
 
 This is the four-table join from §8.3. It joins each grade to its student, to its deliverable, and to the deliverable's category rules — then multiplies score by per-item weight to show how much each score contributes to the final grade.
 
@@ -289,7 +289,7 @@ ON ASSIGNMENT_TYPE.AssignmentType = DELIVERABLE.AssignmentType;
 
 The category rule lives once in `ASSIGNMENT_TYPE` and is applied wherever it is needed. That is the payoff of separated storage.
 
-### Query 2 — Attendance Summary with LEFT JOIN
+## Query 2 — Attendance Summary with LEFT JOIN
 
 This is §8.4. It counts how many class meetings each student attended. The `LEFT JOIN` matters: it keeps students in the result even if they have no attendance rows yet — useful when looking for students whose attendance was never recorded.
 
@@ -326,7 +326,7 @@ Save as `qryAttendanceSummary`. **Expected output:**
 
 One row per student, even though some students were marked absent for some meetings. If a student had zero attendance rows at all, the `LEFT JOIN` would still return their name with `ClassesAttended = 0`.
 
-### Query 3 — Find Missing Grades (CROSS JOIN + Anti-Join, Stretch)
+## Query 3 — Find Missing Grades (CROSS JOIN + Anti-Join, Stretch)
 
 > **Stretch query — read slowly.** This is the most advanced query in Chapter 6. The chapter (§8.5) explicitly hands it off to this Let's Build because it is the analytical payoff of separated storage. Take your time; the three-move breakdown below makes it readable.
 
@@ -372,7 +372,7 @@ The `FROM (STUDENT, DELIVERABLE)` comma is Access's way of writing a cross join.
 
 A flat single-table gradebook cannot answer this cleanly because the missing rows simply are not there. The relational design plus a cross join makes the gaps visible.
 
-### Check Your Work
+## Check Your Work
 
 | Check                                                                   | Expected      |
 | ----------------------------------------------------------------------- | ------------- |
@@ -387,7 +387,7 @@ A flat single-table gradebook cannot answer this cleanly because the missing row
 | `qryAttendanceSummary` rows                                             | 4             |
 | `qryMissingGrades` rows                                                 | 12            |
 
-### One Table, One Subject
+## One Table, One Subject
 
 Before the takeaway, look at what each table now stores. Every row in this map represents a different *kind* of fact, which is why each row earned its own table.
 
@@ -401,11 +401,11 @@ Before the takeaway, look at what each table now stores. Every row in this map r
 | `ATTENDANCE`      | Student-class attendance records |
 | `GRADE_SCALE`     | Letter-grade policy              |
 
-### What This Shows
+## What This Shows
 
 You did more than add tables. You separated subjects. Student identity lives in `STUDENT`, category rules in `ASSIGNMENT_TYPE`, deliverables in `DELIVERABLE`, scores in `STUDENT_GRADE`, meetings in `SCHEDULE`, attendance in `ATTENDANCE`, and grading policy in `GRADE_SCALE`. Two of those tables — `STUDENT_GRADE` and `ATTENDANCE` — are junction tables that resolve many-to-many relationships into pairs of one-to-many. The three saved queries prove the design works: `INNER JOIN` reconstructs a report from separated tables, `LEFT JOIN` keeps the left side when the right side is absent, and `CROSS JOIN` paired with an anti-join surfaces records that *should* exist but do not. None of those queries are easy to write against a flat table.
 
-### Common Mistakes
+## Common Mistakes
 
 - **Foreign-key type mismatch.** `STUDENT.StudentID` is Short Text, so every `StudentID` foreign key must also be Short Text. `DeliverableID` and `ClassNum` follow the same rule. Access refuses to draw the relationship line if the types disagree.
 - **Trying to open Relationships with a table open.** Close every datasheet first or some relationship changes will silently fail to save.
@@ -414,7 +414,7 @@ You did more than add tables. You separated subjects. Student identity lives in 
 - **Missing a column from `GROUP BY`.** When using the Totals row, every non-aggregated column must be set to `Group By` or Access will refuse to run the query.
 - **Expecting `qryMissingGrades` to return rows once every student has a score.** It will return zero rows — that means the grading is complete, not that the query is broken.
 
-### Submit or Save
+## Submit or Save
 
 There is no graded submission for this Let's Build. To preserve your work for Lab 02:
 
@@ -424,6 +424,6 @@ There is no graded submission for this Let's Build. To preserve your work for La
 
 The graded transfer of this design lives in **Lab 02 — SQL and Relational Database Foundations**, where you apply the same logic — SQL tables, relationships, enforced referential integrity, and join queries — to the PetVax veterinary clinic.
 
-### Peek Ahead — Chapter 7
+## Peek Ahead — Chapter 7
 
 The seven tables are well-separated, but separation alone is not the same as good design. Each table still needs a stricter check: does every non-key column depend on the *whole* primary key and nothing else? That check is **normalization**, and Chapter 7 walks the Grading Database through 1NF, 2NF, and 3NF using the functional dependencies introduced in §10 of this chapter. The relational model gives you tables and keys. Normalization tells you whether the tables and keys you chose are the right ones.

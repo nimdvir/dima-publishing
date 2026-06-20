@@ -41,9 +41,6 @@ This RAT checks whether students completed the Chapter 10 reading and can reason
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Remember Questions
 
 **1. What is the defining characteristic of advanced SQL as described in Chapter 10?**
@@ -101,9 +98,6 @@ A. START and STOP
 B. BEGIN, COMMIT, and ROLLBACK
 C. OPEN, CLOSE, and SAVE
 D. CREATE, ALTER, and DROP
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Understand Questions
 
@@ -163,9 +157,6 @@ B. When you need one summary row per group
 C. When you need to keep detail rows visible while adding summary values like averages or ranks alongside them
 D. When the table has fewer than 100 rows
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Apply Questions
 
 **17. Which SQL query correctly detects duplicate grade records — the same student with more than one score for the same deliverable?**
@@ -224,9 +215,6 @@ B. `SELECT * FROM STUDENT WHERE StudentID = 101; BEGIN; UPDATE STUDENT SET Email
 C. `UPDATE STUDENT SET Email = 'new@email.com' WHERE StudentID = 101; ROLLBACK;`
 D. `BEGIN; SELECT * FROM STUDENT; UPDATE STUDENT SET Email = 'new@email.com'; COMMIT;`
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Analyze Questions
 
 **25. An instructor wants a report showing each student's individual quiz scores alongside that student's overall average and class rank. Which approach is most appropriate?**
@@ -284,9 +272,6 @@ A. That the student is excluded from the report
 B. That the student's attendance rate displays as 0 instead of NULL, so they still appear in the report and can be flagged as at-risk
 C. That the attendance calculation runs faster
 D. That attendance data is averaged with grade data
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Evaluate Questions
 
@@ -351,7 +336,7 @@ D. Export all data to a spreadsheet and use formulas instead of SQL
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
 ### Remember Questions
 

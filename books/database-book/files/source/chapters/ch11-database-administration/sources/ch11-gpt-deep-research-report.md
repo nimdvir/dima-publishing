@@ -63,7 +63,7 @@ These responsibilities align closely with platform-independent DBA best practice
 
 **Why concurrency is a problem.** When multiple users read and write concurrently, the database must prevent interference that produces incorrect outcomes. The DBA lecture materials define concurrency control as ensuring one user’s work does not inappropriately influence another’s work and emphasize the expectation that users should get the same logical result whether the system has one user or hundreds (Dvir, 2021). fileciteturn0file0turn0file1  
 
-### What can go wrong without control
+## What can go wrong without control
 
 The lecture materials highlight two classic anomalies:
 
@@ -72,7 +72,7 @@ The lecture materials highlight two classic anomalies:
 
 These map directly to standard DBMS concurrency theory, where uncontrolled interleavings can violate correctness notions like serializability (Silberschatz et al., 2020; Ramakrishnan & Gehrke, 2003). citeturn5view1turn6view3  
 
-### Locking basics
+## Locking basics
 
 A practical control mechanism emphasized in the slides is **resource locking**, where updates are protected by locks that prevent conflicting access:
 
@@ -81,19 +81,19 @@ A practical control mechanism emphasized in the slides is **resource locking**, 
 
 DBMS textbooks typically expand this into lock granularity (row/page/table), intent locks, and deadlock handling strategies, but the conceptual core remains: locks bound the allowable interleavings to preserve correctness (Ramakrishnan & Gehrke, 2003; Silberschatz et al., 2020). citeturn6view3turn5view1  
 
-### Serializable transactions and two-phase locking
+## Serializable transactions and two-phase locking
 
 The DBA slides introduce an essential correctness target: concurrent results should match results obtained under **some serial ordering** (serializability). They also present **two-phase locking** as a way to achieve serializable schedules (Dvir, 2021). fileciteturn0file0turn0file1  
 
 This is consistent with standard DBMS treatment: serializability provides a strong correctness guarantee for concurrent execution, and disciplined locking protocols (e.g., two-phase locking variants) are a classic way to approach that guarantee (Silberschatz et al., 2020; Ramakrishnan & Gehrke, 2003). citeturn5view1turn6view3  
 
-### Deadlocks
+## Deadlocks
 
 The lecture materials define **deadlock** (the “deadly embrace”) as a condition where transactions wait on each other’s locks, causing a cycle of waiting that prevents completion (Dvir, 2021). fileciteturn0file0turn0file1  
 
 In practice, DBMSs handle deadlocks through combinations of detection (wait-for graphs), victim selection and rollback, and/or timeout-based avoidance strategies (Ramakrishnan & Gehrke, 2003; Silberschatz et al., 2020). citeturn6view3turn5view1  
 
-### Optimistic vs. pessimistic locking
+## Optimistic vs. pessimistic locking
 
 The DBA slides distinguish two philosophies:
 
@@ -102,7 +102,7 @@ The DBA slides distinguish two philosophies:
 
 This aligns with broader transaction processing literature where concurrency control strategies are evaluated as trade-offs between throughput, latency, and the cost of aborts/retries (Gray & Reuter, 1993; Ramakrishnan & Gehrke, 2003). citeturn6view2turn6view3  
 
-### Where cursors appear in DBA practice
+## Where cursors appear in DBA practice
 
 The DBA slides define a **cursor** as a pointer into the row set returned by an SQL `SELECT` statement and note that cursor types differ (e.g., static vs. dynamic vs. keyset in some systems) (Dvir, 2021). fileciteturn0file0turn0file1  
 
@@ -116,7 +116,7 @@ They provide a business-realistic example of atomicity: updating a customer’s 
 
 This “all-or-nothing” framing is foundational in transaction processing as a discipline for building reliable systems (Gray & Reuter, 1993; Silberschatz et al., 2020). citeturn6view2turn5view1  
 
-### ACID properties and why they matter
+## ACID properties and why they matter
 
 ACID is the classic bundle of properties used to explain transactional reliability:
 
@@ -127,7 +127,7 @@ ACID is the classic bundle of properties used to explain transactional reliabili
 
 For business systems, ACID matters because it underwrites outcomes people treat as factual: balances, invoices, inventory counts, grades, audit trails, and compliance artifacts. If the system can “half-post” a transaction, then every downstream report becomes suspect, which is not the kind of excitement accountants or accreditation committees typically request (Gertz & Jajodia, 2007). citeturn10view1  
 
-### Transaction control language in practice
+## Transaction control language in practice
 
 The DBA slides highlight SQL transaction control statements such as `BEGIN TRANSACTION`, `COMMIT`, and `ROLLBACK`, and explicitly note that syntax varies by DBMS (Dvir, 2021). fileciteturn0file0turn0file1  
 
@@ -158,7 +158,7 @@ DBAs are security practitioners whether they planned on it or not. The DBA slide
 
 Security research and practice treat database security as crucial because databases increasingly host not only operational data but also sensitive and high-value information whose compromise can cause financial loss and loss of public trust (Gertz & Jajodia, 2007). citeturn10view1  
 
-### Security goals and the CIA framing
+## Security goals and the CIA framing
 
 A widely used framing is the CIA triad:
 
@@ -168,7 +168,7 @@ A widely used framing is the CIA triad:
 
 In database contexts, these goals connect directly to access control, auditing, recovery, and operational resilience (Ben-Natan, 2005; Gertz & Jajodia, 2007; Mullins, 2002). citeturn10view0turn10view1turn5view0  
 
-### Authentication vs. authorization
+## Authentication vs. authorization
 
 The DBS slides emphasize authentication and authorization as pillars of database security (Dvir, 2021). fileciteturn0file0turn0file1  
 
@@ -177,7 +177,7 @@ The DBS slides emphasize authentication and authorization as pillars of database
 
 In practice, these are enforced by identity mechanisms (accounts, credentials, federated identity) plus privilege systems (grants, roles, object permissions) (Ben-Natan, 2005; Benantar, 2006). citeturn10view0turn10view2  
 
-### Roles, privileges, and least privilege
+## Roles, privileges, and least privilege
 
 A key principle emphasized in the DBA lecture materials is that administrative permissions should be granted to **user groups/roles rather than individual users**, except when necessary (Dvir, 2021). fileciteturn0file0turn0file1  
 
@@ -187,7 +187,7 @@ This maps strongly onto role-based access control (RBAC) as a security model and
 
 In cloud/IAM contexts, Google’s security principles also explicitly call out least privilege and separation of duty as foundational practices for permission management (Google, 2017). citeturn5view4  
 
-### Auditing: the underappreciated DBA superpower
+## Auditing: the underappreciated DBA superpower
 
 DBA security is not only preventive; it is also detective and forensic. A practical DBA security perspective stresses auditing—building the capability to answer: *Who did what, when, from where, and did it succeed?* (Ben-Natan, 2005). citeturn10view0  
 
@@ -195,13 +195,13 @@ This becomes essential for incident response, regulatory requirements, and inter
 
 ## Backup, recovery, performance, and operating databases in modern environments
 
-### Why databases fail
+## Why databases fail
 
 The DBA lecture materials list common causes of database failure and emphasize the need for recovery procedures because failure cannot be completely avoided in real systems (Dvir, 2021). fileciteturn0file0turn0file1  
 
 In professional DBA practice, failure planning is not pessimism; it is realism. DBA guidance treats availability and recoverability as core outcomes, not optional add-ons (Mullins, 2002). citeturn5view0  
 
-### Backup strategies and recovery modes
+## Backup strategies and recovery modes
 
 The lecture materials distinguish recovery approaches such as reprocessing and rollback/rollforward, and they frame logging-based recovery as central to reliable restoration (Dvir, 2021). fileciteturn0file0turn0file1  
 
@@ -213,7 +213,7 @@ From the research perspective, database recovery is treated as a discipline in i
 
 A crucial operational lesson: backups are only as good as the organization’s confidence that restore actually works. DBA best practices therefore emphasize repeatable procedures, verification, and documentation—not just backup creation (Mullins, 2002). citeturn5view0  
 
-### Performance monitoring and tuning
+## Performance monitoring and tuning
 
 Performance becomes a DBA concern because slow databases cause user-visible failure: they block operations, delay decisions, and create cascading workarounds (spreadsheets, shadow systems, duplicated extracts). Platform-independent DBA guidance emphasizes performance as a central administrative responsibility alongside availability and integrity (Mullins, 2002). citeturn5view0  
 
@@ -224,13 +224,13 @@ In introductory courses, it is often helpful to preview indexes as a trade-off:
 - indexes can speed lookups and joins dramatically,  
 - but they impose overhead on writes (inserts/updates/deletes) and require maintenance (Ramakrishnan & Gehrke, 2003; Mullins, 2002). citeturn6view3turn5view0  
 
-### Maintenance and evolution
+## Maintenance and evolution
 
 The DBA slides emphasize operational processes beyond “technical knobs”: error reporting, prioritization, configuration control, documentation, and (in cloud settings) service-level agreements for backups and responsiveness (Dvir, 2021). fileciteturn0file0turn0file1  
 
 This is consistent with broader operations perspectives stressing lifecycle ownership—systems must be monitored, maintained, adapted, and governed over long periods (Beyer et al., 2016; Mullins, 2002). citeturn8view0turn5view0  
 
-### Modern DBA environments: file-based, server-based, and cloud
+## Modern DBA environments: file-based, server-based, and cloud
 
 A practical way to teach “modern DBA” is to present DBA work as a spectrum:
 
@@ -242,7 +242,7 @@ A practical way to teach “modern DBA” is to present DBA work as a spectrum:
 
 The cloud portion is not “DBA disappears”; it is “DBA work changes shape.” The course slides capture this explicitly through the idea of SLAs covering backups and response time (Dvir, 2021), while security guidance emphasizes disciplined role/permission management using least privilege and separation of duty (Google, 2017). fileciteturn0file0turn0file1 citeturn5view4  
 
-### Let’s build: DBA practices for the Grading Database
+## Let’s build: DBA practices for the Grading Database
 
 To synthesize the chapter, treat the Grading Database as a production system—just smaller and friendlier.
 
@@ -264,7 +264,7 @@ This aligns with the slides’ emphasis on backup/recovery procedures and with D
 
 **Key terms (quick reference).** Database administrator (DBA), transaction, atomicity, ACID, lock, deadlock, optimistic locking, pessimistic locking, backup, recovery, rollback, rollforward, cursor, privilege, role, auditing. (Dvir, 2021; Silberschatz et al., 2020). fileciteturn0file0turn0file1 citeturn5view1  
 
-## References
+# References
 
 Benantar, M. (2006). *Access control systems: Security, identity management and trust models*. Springer. citeturn10view2
 

@@ -4,13 +4,13 @@
 
 <!-- Companion: Hands-on build exercise — 2026-05-06 -->
 
-## Overview
+# Overview
 
 In this Let's Build exercise, you will connect Power BI Desktop to the GRADECENTER database and create a multi-page interactive grading dashboard from scratch.
 
 ---
 
-## Prerequisites
+# Prerequisites
 
 - Power BI Desktop installed (free download from Microsoft)
 - Access to the `GRADECENTER` database or the provided Excel export
@@ -18,7 +18,7 @@ In this Let's Build exercise, you will connect Power BI Desktop to the GRADECENT
 
 ---
 
-## Step 1: Get the Data
+# Step 1: Get the Data
 
 1. Open **Power BI Desktop**.
 2. Click **Home → Get Data → SQL Server** (or **Excel** if using the provided export).
@@ -27,7 +27,7 @@ In this Let's Build exercise, you will connect Power BI Desktop to the GRADECENT
 
 ---
 
-## Step 2: Review the Data Model
+# Step 2: Review the Data Model
 
 1. Switch to the **Model view** (table icon on the left rail).
 2. Verify that relationships exist between:
@@ -38,7 +38,7 @@ In this Let's Build exercise, you will connect Power BI Desktop to the GRADECENT
 
 ---
 
-## Step 3: Clean Data with Power Query
+# Step 3: Clean Data with Power Query
 
 1. Click **Transform Data** to open Power Query.
 2. In the `Grades` table:
@@ -48,7 +48,7 @@ In this Let's Build exercise, you will connect Power BI Desktop to the GRADECENT
 
 ---
 
-## Step 4: Create Measures
+# Step 4: Create Measures
 
 Switch to **Report view** and create the following measures in the `Grades` table:
 
@@ -66,7 +66,7 @@ DIVIDE(
 
 ---
 
-## Step 5: Build Page 1 — Course Summary
+# Step 5: Build Page 1 — Course Summary
 
 1. Add a **Card** visual → drag `Average Score` measure to it.
 2. Add a **Bar Chart** → X-axis: `CourseName`, Y-axis: `Average Score`.
@@ -75,7 +75,7 @@ DIVIDE(
 
 ---
 
-## Step 6: Build Page 2 — Student Detail
+# Step 6: Build Page 2 — Student Detail
 
 1. Add a **Table** visual with columns: `StudentName`, `CourseName`, `Score`, `LetterGrade`.
 2. Add a **Slicer** for `InstructorName`.
@@ -83,7 +83,7 @@ DIVIDE(
 
 ---
 
-## Step 7: Publish (Optional)
+# Step 7: Publish (Optional)
 
 1. Save the `.pbix` file as `grading-dashboard.pbix`.
 2. Click **Publish → My Workspace** (requires a Microsoft account).
@@ -91,12 +91,12 @@ DIVIDE(
 
 ---
 
-## Deliverable
+# Deliverable
 
 Submit your `.pbix` file and a screenshot of your completed dashboard showing at least two pages.
 
 ---
 
-## Discussion Prompt
+# Discussion Prompt
 
 How would you use this dashboard if you were the department chair? What additional measures or visuals would help you make staffing or curriculum decisions?

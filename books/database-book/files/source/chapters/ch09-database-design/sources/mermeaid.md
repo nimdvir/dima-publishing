@@ -2,11 +2,11 @@
 
 # Using Mermaid for Entity-Relationship Diagrams
 
-## Introduction to Mermaid ERD
+# Introduction to Mermaid ERD
 
 Mermaid is a powerful JavaScript-based diagramming tool that uses text-based syntax to create diagrams, including Entity-Relationship Diagrams (ERDs). Unlike visual drag-and-drop tools, Mermaid allows developers and technical writers to create and maintain database diagrams using simple, readable code that can be version-controlled and integrated directly into documentation.
 
-### Why Choose Mermaid for ERD?
+## Why Choose Mermaid for ERD?
 
 - **Text-Based**: Write diagrams as code, making them easy to edit, version, and collaborate on
 - **Version Control Friendly**: Store ERD code in Git repositories alongside your database schemas
@@ -14,9 +14,9 @@ Mermaid is a powerful JavaScript-based diagramming tool that uses text-based syn
 - **AI Compatibility**: Easy for AI tools to generate and modify diagram code
 - **Platform Independent**: Runs anywhere JavaScript is supported
 
-## Basic Mermaid ERD Syntax
+# Basic Mermaid ERD Syntax
 
-### Core Structure
+## Core Structure
 
 All Mermaid ER diagrams begin with the `erDiagram` declaration followed by entity definitions and relationships:
 
@@ -33,7 +33,7 @@ erDiagram
 ```
 ````
 
-### Defining Entities and Attributes
+## Defining Entities and Attributes
 
 Entities are defined with their attributes listed inside curly braces. Each attribute follows the pattern: `data_type attribute_name constraints`
 
@@ -58,7 +58,7 @@ erDiagram
 ```
 ````
 
-### Supported Data Types
+## Supported Data Types
 
 Mermaid doesn't enforce specific data types, but common conventions include:
 - `string` for text data
@@ -67,17 +67,17 @@ Mermaid doesn't enforce specific data types, but common conventions include:
 - `date`, `datetime` for temporal data
 - `boolean` for true/false values
 
-### Primary and Foreign Keys
+## Primary and Foreign Keys
 
 - `PK` marks an attribute as a primary key
 - `FK` marks an attribute as a foreign key
 - Composite keys require manual documentation in comments
 
-## Relationship Cardinality Notation
+# Relationship Cardinality Notation
 
 Mermaid uses specific symbols to represent relationship cardinality:
 
-### Cardinality Symbols
+## Cardinality Symbols
 
 | Symbol | Meaning | Description |
 |--------|---------|-------------|
@@ -88,7 +88,7 @@ Mermaid uses specific symbols to represent relationship cardinality:
 | `||--|{` | One-to-Many (at least one) | One to one or more |
 | `}|--||` | Many-to-One (at least one) | One or more to one |
 
-### Reading Relationship Syntax
+## Reading Relationship Syntax
 
 The relationship syntax follows this pattern:
 ```
@@ -100,9 +100,9 @@ Where:
 - **CARDINALITY_2** applies to ENTITY_2
 - The relationship label describes the nature of the relationship
 
-## Complete ERD Examples
+# Complete ERD Examples
 
-### Simple University Database
+## Simple University Database
 
 ````markdown
 ```mermaid
@@ -134,7 +134,7 @@ erDiagram
 ```
 ````
 
-### E-Commerce System
+## E-Commerce System
 
 ````markdown
 ```mermaid
@@ -183,9 +183,9 @@ erDiagram
 ```
 ````
 
-## Advanced Mermaid ERD Features
+# Advanced Mermaid ERD Features
 
-### Weak Entity Representation
+## Weak Entity Representation
 
 While Mermaid doesn't have explicit syntax for weak entities, you can represent them using comments and relationship labels:
 
@@ -211,7 +211,7 @@ erDiagram
 ```
 ````
 
-### Recursive Relationships
+## Recursive Relationships
 
 Represent self-referencing relationships using the same entity on both sides:
 
@@ -229,7 +229,7 @@ erDiagram
 ```
 ````
 
-### Subtype/Supertype Relationships
+## Subtype/Supertype Relationships
 
 Model inheritance relationships using one-to-one relationships:
 
@@ -261,9 +261,9 @@ erDiagram
 ```
 ````
 
-## Styling and Configuration
+# Styling and Configuration
 
-### Basic Styling
+## Basic Styling
 
 Mermaid supports limited styling options through configuration:
 
@@ -295,7 +295,7 @@ erDiagram
 ```
 ````
 
-### Themes
+## Themes
 
 Mermaid supports different themes that can be set in the configuration:
 - `default`
@@ -303,9 +303,9 @@ Mermaid supports different themes that can be set in the configuration:
 - `dark`
 - `neutral`
 
-## Integration with Documentation
+# Integration with Documentation
 
-### GitHub/GitLab Markdown
+## GitHub/GitLab Markdown
 
 Mermaid is natively supported in GitHub and GitLab markdown files:
 
@@ -338,7 +338,7 @@ erDiagram
 - **POSTS**: User-generated content
 ````
 
-### VS Code Integration
+## VS Code Integration
 
 Install the Mermaid extension for VS Code to preview diagrams in real-time:
 
@@ -346,23 +346,23 @@ Install the Mermaid extension for VS Code to preview diagrams in real-time:
 2. Create a `.md` file with Mermaid code blocks
 3. Use the preview pane to see rendered diagrams
 
-## Best Practices for Mermaid ERD
+# Best Practices for Mermaid ERD
 
-### Code Organization
+## Code Organization
 
 1. **Group Related Entities**: Keep entities that have relationships close together in the code
 2. **Consistent Naming**: Use consistent naming conventions for entities and attributes
 3. **Descriptive Labels**: Use meaningful relationship labels
 4. **Comments**: Add comments to explain complex relationships or constraints
 
-### Readability Tips
+## Readability Tips
 
 - Use line breaks between entity groups
 - Order entities logically (parents before children)
 - Keep diagrams focused - break large schemas into multiple diagrams
 - Use consistent indentation
 
-### Example of Well-Organized ERD
+## Example of Well-Organized ERD
 
 ````markdown
 ```mermaid
@@ -407,9 +407,9 @@ erDiagram
 ```
 ````
 
-## Common Patterns and Solutions
+# Common Patterns and Solutions
 
-### Many-to-Many Relationships
+## Many-to-Many Relationships
 
 Always use junction tables for many-to-many relationships:
 
@@ -438,7 +438,7 @@ erDiagram
 ```
 ````
 
-### Self-Referencing Relationships
+## Self-Referencing Relationships
 
 For hierarchical data:
 
@@ -455,9 +455,9 @@ erDiagram
 ```
 ````
 
-## Tools and Workflow
+# Tools and Workflow
 
-### Development Workflow
+## Development Workflow
 
 1. **Design**: Create initial ERD in Mermaid syntax
 2. **Version Control**: Commit to Git repository
@@ -465,7 +465,7 @@ erDiagram
 4. **Collaborate**: Use code review processes for changes
 5. **Maintain**: Update as database schema evolves
 
-### Supported Platforms
+## Supported Platforms
 
 - **GitHub/GitLab**: Native Mermaid support in markdown
 - **VS Code**: With Mermaid preview extension
@@ -473,21 +473,21 @@ erDiagram
 - **Notion**: Limited support
 - **Documentation Generators**: MkDocs, Docusaurus, etc.
 
-## Troubleshooting Common Issues
+# Troubleshooting Common Issues
 
-### Syntax Errors
+## Syntax Errors
 
 - **Missing Braces**: Ensure all entities have opening and closing braces
 - **Relationship Format**: Verify cardinality symbols are correct
 - **Attribute Format**: Use proper `type name constraint` format
 
-### Rendering Issues
+## Rendering Issues
 
 - **Platform Support**: Confirm your platform supports Mermaid
 - **Version Compatibility**: Some features may require specific Mermaid versions
 - **Theme Conflicts**: Check if custom themes affect rendering
 
-## Conclusion
+# Conclusion
 
 Mermaid provides a powerful, text-based approach to creating Entity-Relationship Diagrams that integrates seamlessly with modern development workflows. By treating diagrams as code, teams can version control their database designs, collaborate effectively, and maintain accurate documentation that evolves with their systems.
 

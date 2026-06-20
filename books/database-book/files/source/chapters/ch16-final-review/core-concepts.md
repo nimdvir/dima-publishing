@@ -1,142 +1,11 @@
-<!-- metadata: date="2026-05-18"; chapter="16"; section="main"; title="Chapter 16 – Final Integration: Project, Test, and Course Synthesis"; description="Guides students through the final database project and final test, integrating relational design, Microsoft Access, SQL, macros, DBA concepts, BI, normalization, and strategic information systems thinking." -->
 # Chapter 16: Final Integration
 
-*From Database Student to Information Systems Thinker*
+The final chapter brings the course together. Across the semester, you learned how to move from raw data to structured tables, from tables to relationships, from relationships to SQL queries, from queries to analytics, and from analytics to decisions. This chapter prepares you for the two final assessments: the Final Project, where you complete and document your own grading database in Microsoft Access, and the Final Test, where you analyze a separate research-publications database and answer conceptual and query-based questions.
 
-The final chapter brings the course together.
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-Across the semester, you learned how to move from raw data to structured tables, from tables to relationships, from relationships to SQL queries, from queries to analytics, and from analytics to decisions. You also learned that databases are not merely technical objects. They are information systems that support accountability, performance measurement, automation, governance, and strategic decision-making.
-
-This chapter prepares you for the two final assessments:
-
-1. **The Final Project**, where you complete and document your own grading database in Microsoft Access.
-2. **The Final Test**, where you analyze a separate research-publications database and answer conceptual and query-based questions.
-
-The final assessments are intentionally different. The project asks you to **build, document, and explain** a database system. The test asks you to **read, analyze, and reason from** an existing database system. Together, they measure the central skills of the course: design, querying, interpretation, automation, administration, and business intelligence.
-
----
-
-## Learning Objectives
-
-After completing this chapter, you will be able to:
-
-1. Prepare a complete Microsoft Access grading database for final submission.
-2. Document an ERD, table creation code, queries, macros, and analytical results clearly.
-3. Write Access SQL queries that calculate attendance, deliverable performance, final grades, letter grades, minimum possible grades, and maximum possible grades.
-4. Explain how macros can automate grade calculation and report generation.
-5. Describe core DBA functions, including security, backup and recovery, concurrency control, and integrity management.
-6. Explain how a database can support business intelligence and decision-making.
-7. Analyze a research-publications database using joins, aggregation, scoring rules, and relationship logic.
-8. Interpret cardinality and participation constraints in a normalized schema.
-9. Evaluate database limitations, normalization problems, BI potential, and access-control policies.
-10. Connect the full course arc to practical information systems work.
-
----
-
-## Chapter Roadmap
-
-| Section | Focus | Main Skill |
-| --- | --- | --- |
-| [16.1 The Final Integration Point](#16-1-the-final-integration-point) | Final integration | Seeing the course as one connected system |
-| [16.2 Final Project Overview](#16-2-final-project-overview) | Final project overview | Understanding deliverables and expectations |
-| [16.3 Final Project Tasks](#16-3-final-project-tasks) | Final project tasks | Completing the grading database project |
-| [16.4 Project SQL Guidance and Common Pitfalls](#16-4-project-sql-guidance-and-common-pitfalls) | Project SQL guidance | Writing Access queries clearly and correctly |
-| [16.5 Final Test Overview: The Research Publications Database](#16-5-final-test-overview-the-research-publications-database) | Final test overview | Understanding the research-publications database |
-| [16.6 Publication Scoring Logic](#16-6-publication-scoring-logic) | Publication scoring logic | Calculating author, professor, and department scores |
-| [16.7 Building the Core Test Queries](#16-7-building-the-core-test-queries) | Core test queries | Translating scoring rules into SQL |
-| [16.8 Final Test Question Map](#16-8-final-test-question-map) | Final test question map | Preparing by topic rather than memorization |
-| [16.9 Final Test Study Strategy](#16-9-final-test-study-strategy) | Final test study strategy | Cardinality, normalization, BI, macros, security, and transactions |
-| [16.10 Submission and Quality Checklist](#16-10-submission-and-quality-checklist) | Submission and quality checklist | Avoiding avoidable mistakes |
-| [16.11 Final Reflection: What This Course Was Really About](#16-11-final-reflection-what-this-course-was-really-about) | Final reflection | Connecting technical skill to professional judgment |
-
----
-
-## 16.1 The Final Integration Point
-
-The final assessments are not separate from the rest of the course. They are the course.
-
-The **Final Project** asks you to show that you can build a working database around a business problem. In this case, the business problem is grade management. You must show that your database can store student records, track attendance, calculate performance, produce final grades, automate reports, and support decision-making.
-
-The **Final Test** asks you to analyze a different database: a university research-publications database. This database includes professors, departments, journals, publications, journal rating scores, and authorship records. You will use it to calculate publication scores, identify collaboration patterns, evaluate departmental performance, interpret relationships, and reason about database limitations.
-
-Together, the two assessments measure both sides of database competence:
-
-| Competence | Final Project | Final Test |
-|---|---|---|
-| Database design | Build your own grading database | Read an existing publications schema |
-| ERD thinking | Create and document an ERD | Interpret relationships and cardinality |
-| SQL | Write and document queries | Use SQL logic to answer analytical questions |
-| Normalization | Design tables properly | Identify normalization strengths and weaknesses |
-| Automation | Create macros | Interpret macro designs |
-| DBA thinking | Explain maintenance functions | Apply security, transaction, and concurrency concepts |
-| BI thinking | Describe decision-support uses | Identify strategic and analytical decisions supported by data |
-
-A student who succeeds in both assessments is not merely “good at Access.” They can think like a database designer, analyst, administrator, and decision-maker.
-
----
-
-# Part I: The Final Project
-
-## 16.2 Final Project Overview
-
-For the final project, you will complete a series of tasks using the **grading database** you built throughout the course. The database should track and calculate grades for yourself and at least one additional fictional student.
-
-Every SQL query should generate results for **all students**, and every result should clearly identify which score belongs to which student. The purpose is not just to get correct numbers. The purpose is to demonstrate that you can design, query, analyze, automate, and explain a relational database.
-
-### Required Submission Files
-
-You must submit **two files only**:
-
-| File | Required Contents |
-|---|---|
-| **Microsoft Access file (`.accdb`)** | Your completed grading database, including tables, relationships, queries, macros, and any reports/forms used. |
-| **PDF document** | A complete written report containing each task, SQL code, final results, ERD screenshot, macro screenshots, and explanations where required. |
-
-Do **not** submit separate photos, screenshots, loose images, or multiple documents. Everything must be placed inside the final PDF.
-
-### Query Naming Requirement
-
-In your Access file, name your queries after the task they answer. Use clear names such as:
-
-```text
-Task3_Attendance_To_Date
-Task4_Append_Attendance_Score
-Task5_Deliverable_Summary_To_Date
-Task6_Final_Grade_Up_To_Date
-Task7_Letter_Grade
-Task8_Minimum_Final_Grade
-Task9_Maximum_Final_Grade
-```
-
-Clear query names make your database easier to grade, easier to debug, and easier to maintain. “Query1” is not a professional naming convention. It is a cry for help in database form.
-
-### PDF Formatting Requirement
-
-Each task in your PDF should follow this format:
-
-```markdown
-**Task X: Task Title**
-
-Answer/explanation goes here.
-
-**SQL Code:**
-
-```sql
-SELECT ...
-```
-
-**Final Result:**
-
-Paste the output table here.
-
-**Screenshot:**
-
-Paste ERD, macro, report, or relevant Access screenshot if required.
-```
-
-For every SQL task, include the SQL code as **text**, not only as a screenshot. Screenshots are helpful for evidence, but text SQL is needed for review and feedback.
-
----
+# Core Concepts
 
 ## 16.3 Final Project Tasks
 
@@ -339,6 +208,9 @@ Appending attendance makes participation part of the same grading structure as q
 
 ---
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Task 5: Deliverable Summary Query To Date
 
 #### Objective
@@ -536,6 +408,9 @@ Access does not always make cross joins obvious. The expression `ON 1=1` is a wa
 
 ---
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Task 9: Maximum Grade Analysis
 
 #### Objective
@@ -707,6 +582,9 @@ Strong examples might include:
 
 ---
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Task 13: Final Reflection and Learning Outcomes
 
 #### Objective
@@ -853,6 +731,9 @@ PUBLICATION_AUTHOR (AuthorID, PubID, ProfID)
 | `JOURNAL` | Journals and publishers | Each journal has one rating group |
 | `PUBLICATION` | Publication titles and journals | Each publication appears in one journal |
 | `PUBLICATION_AUTHOR` | Authorship records | Links professors to publications |
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### Core Relationship Structure
 
@@ -1058,6 +939,9 @@ Suggested query name:
 Q_Publications_Per_Professor
 ```
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Query E: Department Scores
 
 ```sql
@@ -1210,6 +1094,9 @@ ORDER BY
 ```
 
 ---
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## 16.8 Final Test Question Map
 
@@ -1389,6 +1276,9 @@ Quick review:
 | **Non-repeatable read** | Reading the same row twice and seeing different values because another transaction updated it. |
 | **Phantom read** | Re-running a query and seeing new rows inserted by another transaction. |
 | **Lost update** | One user’s update overwrites another user’s update. |
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### Full Outer Join Logic
 

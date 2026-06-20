@@ -1,9 +1,9 @@
 <!-- Let's Build for Chapter 3: built with the Grading Database (GD) in Google Sheets. Companion to Lab 03 (PetVax). Revised 2026-06-02. -->
 
-## Let's Build
+# Let's Build
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/Lets-build_fqsqux" alt="Let's Build" />
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
 
 Chapter 3 explained what data is, how it becomes meaningful, and why fields, types, metadata, and quality matter before any database tool enters the picture. In this Let's Build (LB), you will turn those ideas into something you can see and touch. You will build a small Google Sheets workbook based on the Grading Database (GD), then deliberately stress it until its spreadsheet limits become visible. There is no submission required for this LB; it is the rehearsal for **Lab 03 — Transferring Data Fundamentals to PetVax**, where you will apply the same moves to a messy veterinary clinic record and submit your workbook for a grade.
@@ -12,7 +12,7 @@ Chapter 3 explained what data is, how it becomes meaningful, and why fields, typ
 
 *Figure 3.1 — The Grading Database starts as a simple gradebook, but the same fields will later support a more reliable database structure.*
 
-### Purpose
+## Purpose
 
 The point of this build is not to create a database — that begins in Chapter 4. The point is to feel how data behaves inside a spreadsheet: how fields and records work, how types and metadata give values meaning, how filters and pivots produce information, and where the structure begins to crack when data is repeated, shared, and updated. By the end, you should be able to explain in your own words why organizations eventually move from spreadsheets and flat files toward databases.
 
@@ -20,7 +20,7 @@ The point of this build is not to create a database — that begins in Chapter 4
 
 *Figure 3.2 — This build keeps the Grading Database small enough to inspect while previewing why structured tables matter.*
 
-### What You Will Practice
+## What You Will Practice
 
 * fields, records, and table discipline
 * identifying data types and measurement levels
@@ -36,11 +36,11 @@ The point of this build is not to create a database — that begins in Chapter 4
 
 *Figure 3.3 — Different field types support different analytical behaviors: grouping, aggregation, trends, and status filters.*
 
-### Before You Begin
+## Before You Begin
 
 You need a Google account and a blank Google Sheets workbook. Plan about 60 minutes. You will create three tabs in one workbook: `GRADEBOOK`, `GRADE_WEIGHT`, and `DATA_DICTIONARY`. Keep your workbook open as you read — every section asks you to do something small, then check what you see.
 
-### Create the Workbook and Three Sheets
+## Create the Workbook and Three Sheets
 
 Open Google Sheets and create a blank workbook. Name it:
 
@@ -50,7 +50,7 @@ Add three sheet tabs in this order: `GRADEBOOK`, `GRADE_WEIGHT`, `DATA_DICTIONAR
 
 **Why three tabs and not one.** Chapter 3 stresses that themes of data should stay apart even before a database is involved. Grades, grading rules, and field definitions are three different themes, so each gets its own sheet.
 
-### Define the Structure Before Entering Data
+## Define the Structure Before Entering Data
 
 A table is more than a grid. Before typing any values, decide what each column means.
 
@@ -72,7 +72,7 @@ In row 1 of `GRADE_WEIGHT`, enter (column A through D):
 
 *Figure 3.5 — A field such as Score only becomes useful when it sits inside a record, table, and larger data system.*
 
-### Build the Data Dictionary
+## Build the Data Dictionary
 
 Metadata is "data about data." It tells the next person (and your future self) what each field means and how it should behave. In the `DATA_DICTIONARY` tab, add these headers in row 1: `FieldName`, `Sheet`, `Meaning`, `IntendedKind`, `WhyItMatters`. Then enter the rows below.
 
@@ -100,7 +100,7 @@ Metadata is "data about data." It tells the next person (and your future self) w
 
 *Figure 3.6 — A data dictionary turns field names into shared rules that another person can follow.*
 
-### Classify Your Fields by Measurement Level
+## Classify Your Fields by Measurement Level
 
 The chapter introduced four measurement levels — **nominal**, **ordinal**, **interval**, **ratio** — because the level decides which calculations make sense. Try this quick classification in your own words, then check the model answers.
 
@@ -128,7 +128,7 @@ The chapter introduced four measurement levels — **nominal**, **ordinal**, **i
 
 *Figure 3.9 — Moving from nominal to ratio data expands the calculations you can use, but only when the field meaning supports them.*
 
-### Enter the Sample Data
+## Enter the Sample Data
 
 Starting in row 2 of `GRADEBOOK`, enter these seven records:
 
@@ -161,7 +161,7 @@ Then enter four rows in `GRADE_WEIGHT`:
 
 **Notice the repetition already.** Alice's name, email, and birthday already appear twice. So do Brian's and Carla's. That repetition will matter in a few sections.
 
-### Add Metadata, Validation, and Formatting
+## Add Metadata, Validation, and Formatting
 
 On both `GRADEBOOK` and `GRADE_WEIGHT`:
 
@@ -186,7 +186,7 @@ Add two validation rules to `GRADEBOOK`:
 
 **Why this counts as metadata.** A dropdown is not just a UI feature. It is a written rule that says "these are the only valid categories." That rule lives outside the values themselves, which is exactly what metadata does.
 
-### Represent Missing Values Carefully
+## Represent Missing Values Carefully
 
 The chapter showed that `0`, `""`, `" "`, and `NULL` are four different things even when a cell looks empty. Try each one on a temporary 8th row, then delete the row before moving on.
 
@@ -199,7 +199,7 @@ The chapter showed that `0`, `""`, `" "`, and `NULL` are four different things e
 
 **Try it.** Filter `Score` for "is empty." Does the cell containing `0` appear? It should not, because `0` is a real number, not a missing value. That is the conceptual difference that will matter once you start writing SQL with `IS NULL`.
 
-### Filter, Sort, and Query the Data
+## Filter, Sort, and Query the Data
 
 Spreadsheets do not have a query engine, but filters, sorts, and a couple of formulas behave like early queries.
 
@@ -225,7 +225,7 @@ The `FILTER` formula returns the same single low-score row; `SORT` returns the s
 
 **Why these feel almost like queries but aren't.** Both formulas hard-code the range `A2:K8`. Add row 9 later and the formulas will silently ignore it unless you update them by hand. A database query refers to the table by name, not by row range, which is why it keeps working as data grows.
 
-### Simulate a Relationship with VLOOKUP
+## Simulate a Relationship with VLOOKUP
 
 `VLOOKUP` imitates what a database does when it joins two tables on a shared key. It is useful, but the relationship is not enforced.
 
@@ -265,7 +265,7 @@ Copy all three formulas down through row 8. Your output should match:
 
 **Why this is a fragile join.** The lookup works only as long as `DeliverableType` values match exactly between sheets, the range `GRADE_WEIGHT!A:D` stays valid, and nobody overwrites a formula cell with a typed value. A real database relationship would not allow you to type `quiz` in lowercase if the related table only has `Quiz`. The spreadsheet will.
 
-### Summarize with Pivot Tables
+## Summarize with Pivot Tables
 
 Pivot tables are where rows of data turn into information. Select the `GRADEBOOK` data range, then **Insert → Pivot table**.
 
@@ -289,7 +289,7 @@ Pivot tables are where rows of data turn into information. Select the `GRADEBOOK
 
 **The DIKW arc, made visible.** A raw `77` in `GRADEBOOK` is **data**. An average quiz score of `85.25` is **information**. Noticing that quiz scores trail homework scores is the beginning of **knowledge**. Deciding to add a quiz-prep session is **wisdom**. The pivot table is the bridge from one to the next.
 
-### Add and Modify Data — Watch What Breaks
+## Add and Modify Data — Watch What Breaks
 
 This is the most important section. Make each change and write down what you observe.
 
@@ -307,7 +307,7 @@ Check: did your `=FILTER(...)` formula include row 8? (No — it still uses `A2:
 
 **Change a category weight.** In `GRADE_WEIGHT`, change `WeightPerItem` for `Quiz` from `5` to `6`. Every weighted contribution for a Quiz row updates immediately. That is useful — and risky. A single typo in a supporting sheet has just rippled through every quiz score in the workbook with no warning. This is the **accuracy** dimension under stress.
 
-### Why a Flat File Breaks — Redundancy and Anomalies
+## Why a Flat File Breaks — Redundancy and Anomalies
 
 The previous section showed *symptoms*. This section names the underlying *problems*. These four terms are the structural reason organizations move from spreadsheets to databases, and you will meet them again in Chapter 4.
 
@@ -337,7 +337,7 @@ The previous section showed *symptoms*. This section names the underlying *probl
 
 A spreadsheet lets these problems happen. A database is designed to prevent them. That is the move you will make in Chapter 4.
 
-### Lifecycle Thinking in One Minute
+## Lifecycle Thinking in One Minute
 
 The chapter introduced the data lifecycle — collection, storage, cleaning, integration, use, retention, archiving, anonymization, and deletion. Your small workbook already shows why this matters.
 
@@ -349,7 +349,7 @@ The chapter introduced the data lifecycle — collection, storage, cleaning, int
 
 **Write one sentence** for each question. The point is not to produce a policy document. The point is to notice that everyday data decisions — what to keep, what to share, when to delete — are lifecycle and ethics decisions, not just technical ones. When organizations skip these questions, they end up with data that is either too valuable to delete or too risky to keep, and nobody knows who owns the decision.
 
-### Check Your Work
+## Check Your Work
 
 Before moving on, confirm each of these. If any answer is off, retrace the section that produced it.
 
@@ -363,7 +363,7 @@ Before moving on, confirm each of these. If any answer is off, retrace the secti
 | Count of records for StudentID 1001 (after adding row 8)         | 3                                             |
 | Dropdown values available for `DeliverableType`                  | Quiz, Homework, Exam, Project                 |
 
-### What This Shows
+## What This Shows
 
 Each Chapter 3 idea appeared somewhere concrete in this build:
 
@@ -383,7 +383,7 @@ Each Chapter 3 idea appeared somewhere concrete in this build:
 
 A spreadsheet helped you **see** the data. A database is designed to **manage** the data more reliably over time. That gap is the bridge into Chapter 4.
 
-### Common Mistakes
+## Common Mistakes
 
 * Averaging `StudentID` because Sheets allows it. The result is a number with no business meaning.
 * Entering dates as text (`9/8/26`) so they cannot be sorted or filtered as dates.
@@ -393,11 +393,11 @@ A spreadsheet helped you **see** the data. A database is designed to **manage** 
 * Treating a blank cell, `0`, and `""` as the same thing in formulas and filters.
 * Storing student identity on every grade row, so one student ends up with two emails after a single edit.
 
-### Submit or Save
+## Submit or Save
 
 There is no submission for this LB. Save your workbook as **`LB03 — Grading Data Fundamentals — Your Name`** in your course Drive folder. You will reuse these same moves in **Lab 03 — Transferring Data Fundamentals to PetVax**, where you will rebuild this structure for a messy veterinary clinic record and submit the workbook for a grade.
 
-### Peek Ahead — Chapter 4
+## Peek Ahead — Chapter 4
 
 In Chapter 4, you will move from a spreadsheet to **Microsoft Access**, and the four problems you just named will each get a structural fix:
 

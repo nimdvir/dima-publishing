@@ -20,7 +20,7 @@ author: "Nimrod Dvir"
 
 *In Let's Build 07 you normalized the Grading Database together. In this lab you do it again — on your own, for PetVax.*
 
-## Overview
+# Overview
 
 You are given one flat table, `PETVAX_FLAT`, that mixes owner, pet, veterinarian, visit, and treatment facts in every row. Your job is to redesign it as a normalized six-table Microsoft Access database, enforce real relationships between the tables, and rebuild the original report with a single query.
 
@@ -34,11 +34,11 @@ You are given one flat table, `PETVAX_FLAT`, that mixes owner, pet, veterinarian
 > In PetVax, a *charge* belongs to the relationship between a visit and a treatment.
 > Same normalization logic, new domain.
 
-## Scenario
+# Scenario
 
 PetVax is a small veterinary clinic. Each appointment ("visit") can include one or more billable treatments — a vaccine, an exam, a blood panel, a medication. Today the clinic stores every visit-treatment line in a single flat spreadsheet, so owner names, pet breeds, vet names, visit dates, treatment prices, and individual charges are all repeated on every row. The clinic owner wants you to redesign the storage so each fact lives in exactly one place, and then prove the flat report can still be reproduced from the normalized design.
 
-## Required Files and Tools
+# Required Files and Tools
 
 | Item | Detail |
 | --- | --- |
@@ -52,7 +52,7 @@ Before you start: follow [`assets/README.md`](./assets/README.md) to import the 
 
 > ⚠️ **Do not edit or delete `PETVAX_FLAT`.** It is your source table and your comparison point for every later check. Leave it untouched even when you start building the normalized tables.
 
-## Target Normalized Schema
+# Target Normalized Schema
 
 Your finished database must contain these six normalized tables in addition to the unchanged `PETVAX_FLAT`:
 
@@ -67,15 +67,15 @@ VISIT_TREATMENT(VisitTreatmentID, VisitID, TreatmentCode, ActualCharge)
 
 > ✅ **Good Practice:** In Access, foreign keys that point to a Long Integer primary key must themselves be **Number → Field Size = Long Integer**. `TreatmentCode` is text, so its foreign key in `VISIT_TREATMENT` must be **Short Text** of the same size. Mismatched sizes will block referential integrity later.
 
-## Steps
+# Steps
 
-### Step 1 — Import the starter and confirm the row count
+## Step 1 — Import the starter and confirm the row count
 
 **Do.** Follow [`assets/README.md`](./assets/README.md) to import `petvax_flat_starter.csv` into your new database as a table named exactly `PETVAX_FLAT`. Open the table in Datasheet View.
 
 **Check 1.** *(Short answer — exact integer)* How many rows are in `PETVAX_FLAT`?
 
-### Step 2 — Diagnose redundancy
+## Step 2 — Diagnose redundancy
 
 **Do.** Scroll through `PETVAX_FLAT` and look for facts that are repeated across multiple rows. In your screenshot/notes file, list at least five repeated facts, where each one repeats, and which normalized table should store it. Use the format from the Let's Build diagnosis table.
 
@@ -90,7 +90,7 @@ VISIT_TREATMENT(VisitTreatmentID, VisitID, TreatmentCode, ActualCharge)
 | Standard treatment price | `OWNER` · `PET` · `VET` · `VISIT` · `TREATMENT` · `VISIT_TREATMENT` |
 | Actual charge for a treatment on a specific visit | `OWNER` · `PET` · `VET` · `VISIT` · `TREATMENT` · `VISIT_TREATMENT` |
 
-### Step 3 — Create the six normalized tables (Design View)
+## Step 3 — Create the six normalized tables (Design View)
 
 **Do.** Use **Create → Table Design** to build each of the six tables listed above. For every table:
 
@@ -110,7 +110,7 @@ Save each table with the exact name from the schema. Leave all six tables empty 
 - D. `Breed` belongs in `PET` because it is a fact about the pet, not about the owner or the visit.
 - E. `VisitDate` belongs in `VISIT_TREATMENT` because every treatment line happens on a date.
 
-### Step 4 — Append OWNER (worked template)
+## Step 4 — Append OWNER (worked template)
 
 **Do.** Open **Create → Query Design**, close the Show Table dialog, and switch to **SQL View**. Paste, save as `q01_Append_Owners`, then run it.
 
@@ -128,19 +128,19 @@ Open `OWNER` in Datasheet View.
 
 > ⚠️ **Run each append exactly once.** If you re-run an append without first deleting the rows it added, Access will either create duplicates or fail with a primary-key violation halfway through.
 
-### Step 5 — Append PET (write it yourself)
+## Step 5 — Append PET (write it yourself)
 
 **Do.** Create a new query named `q02_Append_Pets`. Use `INSERT INTO PET (...) SELECT DISTINCT ... FROM PETVAX_FLAT;` to populate `PET` with `PetID`, `OwnerID`, `PetName`, `Species`, `Breed`, `BirthDate`. Run it once. Open `PET`.
 
 **Check 5.** *(Short answer — exact integer)* How many rows are in `PET`?
 
-### Step 6 — Append VET (write it yourself)
+## Step 6 — Append VET (write it yourself)
 
 **Do.** Create `q03_Append_Vets` and populate `VET` with `VetID`, `VetFirstName`, `VetLastName`. Run it once. Open `VET`.
 
 **Check 6.** *(Short answer — exact integer)* How many rows are in `VET`?
 
-### Step 7 — Append TREATMENT (write it yourself)
+## Step 7 — Append TREATMENT (write it yourself)
 
 **Do.** Create `q04_Append_Treatments` and populate `TREATMENT` with `TreatmentCode`, `TreatmentName`, `TreatmentCategory`, `StandardPrice`. Run it once. Open `TREATMENT`.
 
@@ -152,13 +152,13 @@ Open `OWNER` in Datasheet View.
 - D. `ActualCharge`
 - E. `VisitDate`
 
-### Step 8 — Append VISIT (write it yourself)
+## Step 8 — Append VISIT (write it yourself)
 
 **Do.** Create `q05_Append_Visits` and populate `VISIT` with `VisitID`, `PetID`, `VetID`, `VisitDate`, `VisitReason`. Run it once. Open `VISIT`.
 
 **Check 8.** *(Short answer — exact integer)* How many rows are in `VISIT`?
 
-### Step 9 — Append VISIT_TREATMENT (the junction)
+## Step 9 — Append VISIT_TREATMENT (the junction)
 
 **Do.** Create `q06_Append_Visit_Treatments`. This time **do not** use `DISTINCT` — every line in `PETVAX_FLAT` is already a unique visit-treatment line.
 
@@ -174,7 +174,7 @@ Run it once. Open `VISIT_TREATMENT`.
 
 > 💡 **Key Takeaway:** `VISIT_TREATMENT` stores a *fact about the relationship* between a visit and a treatment — the charge. Neither side owns it alone.
 
-### Step 10 — Build relationships and enforce referential integrity
+## Step 10 — Build relationships and enforce referential integrity
 
 :::callout{type="warning" title="⚠️ Close every open table first"}
 Access will not let you edit relationships while a child table is open. Close every table before opening the Relationships window.
@@ -201,13 +201,13 @@ Save the layout. You will need a screenshot of it for submission.
 - E. `OWNER.OwnerID` → `VISIT.OwnerID`
 - F. `PETVAX_FLAT.VisitID` → `VISIT.VisitID`
 
-### Step 11 — Test referential integrity
+## Step 11 — Test referential integrity
 
 **Do.** Open `VISIT_TREATMENT` in Datasheet View. Start a new row with `VisitTreatmentID = 9999`, `VisitID = 9999` (a value that does **not** exist in `VISIT`), any real `TreatmentCode`, and any `ActualCharge`. Try to save the row. Take a screenshot of the error Access shows.
 
 **Check 11.** *(True / False)* Access refused to save the row because the `VisitID` did not exist in the parent `VISIT` table.
 
-### Step 12 — Rebuild the original flat report
+## Step 12 — Rebuild the original flat report
 
 **Do.** Create a new query named `q07_PetVax_Report_Normalized` and paste the following into SQL View. Save and run it.
 
@@ -249,7 +249,7 @@ ORDER BY o.OwnerLastName, p.PetName, v.VisitDate, t.TreatmentName;
 
 > 💡 **Key Takeaway:** The query is the report. Normalization did not remove the flat view of the data — it relocated the facts. `q07` reassembles them on demand.
 
-## Check Your Work
+# Check Your Work
 
 Walk through this list before you submit:
 
@@ -263,11 +263,11 @@ Walk through this list before you submit:
 | `q07_PetVax_Report_Normalized` returns the same number of rows as `PETVAX_FLAT` |  |
 | Sum of `ActualCharge` in `q07` equals sum of `ActualCharge` in `PETVAX_FLAT` |  |
 
-## Submission
+# Submission
 
 Submit **two files** to the Lab 07 dropbox in your course site.
 
-### 1. Microsoft Access file
+## 1. Microsoft Access file
 
 ```text
 Lab07-Normalized-PetVax-LastName.accdb
@@ -280,7 +280,7 @@ Must contain:
 - the seven saved queries: `q01_Append_Owners`, `q02_Append_Pets`, `q03_Append_Vets`, `q04_Append_Treatments`, `q05_Append_Visits`, `q06_Append_Visit_Treatments`, `q07_PetVax_Report_Normalized`;
 - the five relationships with referential integrity enforced.
 
-### 2. PDF of screenshots
+## 2. PDF of screenshots
 
 ```text
 Lab07-PetVax-Screenshots-LastName.pdf
@@ -295,7 +295,7 @@ Must include, in this order:
 
 Your final grade combines the check-question answers (Checks 1–12) with a review of the submitted `.accdb` file and PDF screenshots.
 
-## Optional Extensions
+# Optional Extensions
 
 Optional. Not required. Do not turn in if you do not complete them.
 
@@ -303,6 +303,6 @@ Optional. Not required. Do not turn in if you do not complete them.
 2. **Add a STAFF_NOTES table.** Add a seventh table `STAFF_NOTES(NoteID, VisitID, NoteText, NoteDate)` with a relationship to `VISIT` and referential integrity enforced. Add two sample notes for two different visits.
 3. **Dirty-data challenge.** Make a copy of `PETVAX_FLAT` named `PETVAX_FLAT_DIRTY`. Introduce small inconsistencies (e.g., the same owner with two phone formats, the same vet with a name typo, the same treatment with two different `StandardPrice` values). Re-run your six append queries against the dirty copy and write a one-paragraph note in your PDF describing which inconsistencies showed up in the normalized tables and how you would clean them in the source.
 
-## Peek Ahead — Chapter 8
+# Peek Ahead — Chapter 8
 
 Chapter 8 is the midterm review. The PetVax schema you just built is the kind of design you should be able to read, query, and explain from memory. Chapter 9 then returns to SQL with multi-table queries built on exactly this style of normalized schema.

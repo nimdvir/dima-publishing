@@ -1,24 +1,3 @@
----
-title: "Chapter 7: Review and Reflection"
-chapter: 7
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 7 normalization concepts and connect schema design choices to data integrity, referential integrity, junction tables, reporting through joins and views, and managerial decision-making."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - normalization
-  - determinants
-  - anomalies
-  - junction tables
-  - referential integrity
-  - views
-  - denormalization
-  - chapter 7
-date: 2026-06-16
-author: "Nimrod Dvir, PhD"
----
-
 # Chapter 7: Review and Reflection
 
 <p align="center">
@@ -27,7 +6,7 @@ author: "Nimrod Dvir, PhD"
 
 *Use these questions to review how normalization protects data quality and to think more carefully about when structure, relationships, and reporting needs should shape database design.*
 
-## Review Questions
+# Review Questions
 
 *These questions help you review the chapter's main ideas, terms, frameworks, and examples.*
 
@@ -40,7 +19,7 @@ author: "Nimrod Dvir, PhD"
 7. **What does the chapter mean by a single source of truth, and how does normalization help create it?**
 8. **Why does the chapter argue that many-to-many relationships must be resolved with a junction table, and what does that junction table store?**
 
-## Reflection Questions
+# Reflection Questions
 
 *These questions encourage you to interpret the chapter, connect ideas, and think critically about how they apply in practice.*
 
@@ -54,7 +33,7 @@ author: "Nimrod Dvir, PhD"
 8. **If a manager says joins are inconvenient and wants one table to hold everything, how would Chapter 7 respond to that argument?**
 9. **Lab 07 transfers the same normalization logic to a veterinary clinic, where a treatment's catalog price (`StandardPrice`) and what was actually billed on a specific visit (`ActualCharge`) end up in two different tables. Why does the catalog price belong with the treatment itself while the actual charge belongs with the visit-and-treatment pairing, and what would go wrong if you stored both in the same table?**
 
-## Personal Reflection Questions
+# Personal Reflection Questions
 
 *These questions help you connect the chapter to your own habits, goals, strengths, and developing professional skills.*
 
@@ -69,9 +48,9 @@ author: "Nimrod Dvir, PhD"
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: How does Chapter 7 distinguish normalization from the broader relational model introduced in Chapter 6?**
 **Suggested Answer:** Chapter 6 introduces the relational model as the idea of storing data in related tables connected through keys. Chapter 7 builds on that foundation by asking whether those tables are structured well enough to keep facts accurate over time. Normalization is therefore a design-testing discipline inside relational thinking. It does not replace the relational model; it evaluates and improves how a relational design stores facts so that anomalies are prevented before they happen.
@@ -97,7 +76,7 @@ author: "Nimrod Dvir, PhD"
 **Question 8: Why does the chapter argue that many-to-many relationships must be resolved with a junction table, and what does that junction table store?**
 **Suggested Answer:** A many-to-many relationship cannot be stored cleanly in either of the two parent tables without repeating values or losing facts. The chapter resolves this by introducing a junction (also called bridge or associative) table whose rows each represent one pairing of the two entities. The junction table holds foreign keys back to both parents and may store attributes that belong to the pairing itself, such as a score or a date. In the grading database, `STUDENT_GRADE` plays this role: it links one student to one deliverable and records the score for that specific pairing.
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: Why is a wide spreadsheet-like table often attractive to users at first even when it creates update, insertion, and deletion anomalies later?**
 **Suggested Answer:** A wide table puts many facts in one place and feels easy to browse, filter, export, or explain to someone who is thinking like a report consumer rather than a system designer. It avoids the up-front cost of learning joins or relationships. The trade-off is that the convenience hides structural risk: once the data changes often, the repeated facts in that wide table drift apart, and what looked simple becomes the source of inconsistent reports.
@@ -126,7 +105,7 @@ author: "Nimrod Dvir, PhD"
 **Question 9: Lab 07 transfers the same normalization logic to a veterinary clinic, where a treatment's catalog price (`StandardPrice`) and what was actually billed on a specific visit (`ActualCharge`) end up in two different tables. Why does the catalog price belong with the treatment itself while the actual charge belongs with the visit-and-treatment pairing, and what would go wrong if you stored both in the same table?**
 **Suggested Answer:** `StandardPrice` is a fact about the treatment as a catalog item — it has one value per treatment code regardless of which pet receives it. `ActualCharge` is a fact about the relationship between a specific visit and a specific treatment, because the same treatment can be discounted, surcharged, or waived on different visits. That is why the chapter pattern puts `StandardPrice` in `TREATMENT` and `ActualCharge` in the junction table `VISIT_TREATMENT`, exactly like the grading example puts grading rules in their own table and the score in `STUDENT_GRADE`. Storing both prices in one table would either repeat the catalog price on every billing line (an update anomaly waiting to happen when the clinic raises prices) or overwrite the catalog price every time a single visit was discounted, destroying the reference value. Splitting them lets each fact live in one place and lets reports rebuild the billed-vs-standard comparison on demand.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: Which Chapter 7 idea currently feels most intuitive to you: spotting anomalies, tracing determinants, applying 1NF, separating 2NF issues, diagnosing 3NF problems, or designing a junction table for a many-to-many relationship? Why?**
 **Suggested Answer:** A strong response chooses one area and explains why it feels natural. A student might say spotting anomalies feels intuitive because repeated contact information or due dates are easy to notice in a wide table. Another might prefer 1NF because removing multi-valued cells is concrete, or junction tables because they map cleanly onto familiar pairings like students and courses. The best answer connects the choice to a specific habit, prior example, or moment in the Let's Build exercise.

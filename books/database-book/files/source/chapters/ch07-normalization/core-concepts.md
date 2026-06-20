@@ -1,69 +1,13 @@
-<!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. -->
----
-title: "Chapter 7: Data Normalization"
-author: "Nimrod Dvir, PhD"
-date: 2026-06-16
-lang: en-US
-toc: true
----
-
 # Chapter 7: Data Normalization
-
-*From Flat Files to Reliable Relational Design*
 
 Chapter 6 introduced the relational model: data is stored in separate tables, rows represent instances, and keys connect related records. Chapter 7 asks the next question: how do we know whether those tables are designed well?
 
-The answer is **normalization**.
-
 Normalization is the design discipline that helps database designers reduce redundancy, prevent data anomalies, and place each fact where it belongs. It is not a software feature, a button in Access, or a SQL command that automatically fixes a database. It is a way of reasoning about structure.
-
-This chapter uses the **Grading Database** as the main case. We begin with a flat grading table that looks convenient but hides repeated student facts, repeated assignment facts, and repeated grading rules. Then we use **functional dependencies** and the first three **normal forms** to rebuild that table into a more reliable relational design.
-
-By the end of the chapter, you should be able to look at a messy table and ask:
-
-- What facts are repeated?
-- What does each attribute depend on?
-- Which facts belong together?
-- Which facts should be separated into their own tables?
-- How can the original report still be recreated with SQL joins or views?
-
-That last question matters. Normalization does not mean that users lose the reports they need. It means the database stores facts cleanly, and SQL reconstructs useful reporting views when needed.
-
-## Learning Objectives
-
-After completing this chapter, you will be able to:
-
-1. Define normalization and explain why it protects data integrity.
-2. Identify redundancy, inconsistency, and modification anomalies in a flat table.
-3. Explain functional dependencies and use them to reason about table design.
-4. Distinguish among **First Normal Form (1NF)**, **Second Normal Form (2NF)**, and **Third Normal Form (3NF)**.
-5. Apply 1NF by removing multi-valued cells and repeating columns.
-6. Apply 2NF by removing partial dependencies from composite-key tables.
-7. Apply 3NF by removing transitive dependencies and separating rules from transactional facts.
-8. Explain why junction tables are necessary for many-to-many relationships.
-9. Explain when controlled denormalization may be justified and what risks it creates.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AxaULgjuo8o" title="Data Normalization Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-*Video: A short introduction to data normalization concepts.*
-
-## Chapter Roadmap
-
-| Part | Section | Main Question |
-|---:|---|---|
-| 1 | Why Normalization Matters | What goes wrong when too many facts are stored in one table? |
-| 2 | Functional Dependencies | How do we know which facts belong together? |
-| 3 | Normal Forms | What sequence of design checks improves table structure? |
-| 4 | First Normal Form | Is each cell storing one fact? |
-| 5 | Second Normal Form | Does every non-key attribute depend on the whole key? |
-| 6 | Third Normal Form | Does every non-key attribute depend only on the key? |
-| 7 | Normalized Grading Database | What does the improved schema look like? |
-| 8 | Normalization and Analytics | How do normalized databases still support reports and dashboards? |
-| 9 | Denormalization | When is intentional redundancy acceptable? |
-| 10 | Common Mistakes | What pitfalls should designers avoid? |
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
+
+# Core Concepts
 
 ## 7.1 Why Normalization Matters
 
@@ -181,6 +125,9 @@ WHERE StudentID = 'S1003'
 
 Carla remains in `STUDENT`.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 7.1.4 Definition of Normalization
 
 **Normalization** is the process of organizing relational data so that each fact is stored in the right place, redundancy is reduced, and relationships are represented through keys rather than repeated text.
@@ -199,10 +146,6 @@ A retailer faces the same problem as the grading database. One order spreadsheet
 ![Flowchart showing update, insertion, and deletion anomalies](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch07-normalization/ch07-dangers)
 
 *Figure 7.2 — Modification anomalies (update, insertion, and deletion) are structural dangers that occur when multiple subjects are mixed in a single flat table.*
-
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 7.2 Functional Dependencies: The Logic Behind Normalization
 
@@ -274,7 +217,6 @@ If `Score` depends on both `StudentID` and `DeliverableID`, then it belongs in a
 
 *Figure 7.3 — Functional dependencies in the Grading Database: each determinant maps to the attributes that belong in its own table.*
 
-
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
@@ -301,16 +243,11 @@ A common mnemonic captures all three:
 
 Normal forms are cumulative. A table in 3NF must already satisfy 2NF and 1NF.
 
-
 ![Staircase diagram showing 1NF, 2NF, and 3NF as three rising steps with the structural problem each removes labeled on the riser](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch07-normalization/ch07-figure-7.4-staircase)
 
 *Figure 7.4 — The three normal forms as cumulative steps: 1NF removes multi-valued cells, 2NF removes partial dependencies, 3NF removes transitive dependencies.*
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 7.4 First Normal Form (1NF): One Cell, One Fact
-
 
 ### 7.4.1 Definition
 
@@ -396,7 +333,6 @@ This table satisfies 1NF because every cell contains one value. But it still rep
 <div style="page-break-after: always;"></div>
 
 ## 7.5 Second Normal Form (2NF): The Whole Key
-
 
 ### 7.5.1 Definition
 
@@ -496,7 +432,6 @@ The junction table is not extra complexity for its own sake. It represents somet
 <div style="page-break-after: always;"></div>
 
 ## 7.6 Third Normal Form (3NF): Nothing But the Key
-
 
 ### 7.6.1 Definition
 
@@ -603,6 +538,9 @@ But `AssignmentType` is not the primary key of `DELIVERABLE`. The table mixes fa
 
 This is cleaner because category rules live in `ASSIGNMENT_TYPE`, while individual assignments live in `DELIVERABLE`.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 7.6.5 Business Example: Customer Region
 
 A sales table might include:
@@ -640,13 +578,9 @@ Before moving from design to the finished schema, it helps to see the journey in
 
 The normalized schema separates **storage** from **presentation**. Storage stays clean and consistent. Presentation is reconstructed on demand through SQL joins, views, and reporting tools.
 
-
 ![Two-column comparison: flat grading table with redundant cells on the left, seven normalized tables on the right](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch07-normalization/ch07-figure-7.7-comparison)
 
 *Figure 7.7 — Flat versus normalized: the same data, stored with integrity on the right and reconstructed through joins.*
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 7.7 The Normalized Grading Database
 
@@ -694,6 +628,9 @@ In the early flat-table examples, `CategoryWeight` names the business idea plain
 | `STUDENT.StudentID` -> `ATTENDANCE.StudentID` | One student can have many attendance records |
 | `SCHEDULE.ClassNum` -> `ATTENDANCE.ClassNum` | One class meeting can have many attendance records |
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 7.7.4 Why This Design Is Better
 
 | Problem in the Flat Table | Normalized Solution |
@@ -710,9 +647,6 @@ Normalization does not make the data disappear. It moves each fact to the table 
 ![Entity-relationship diagram of the seven-table Grading Database schema with primary keys, foreign keys, and crow's-foot notation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch07-normalization/ch07-figure-7.8-erd)
 
 *Figure 7.8 — The seven-table normalized Grading Database: each table stores one kind of fact, connected through keys.*
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 7.8 Normalization and Analytics
 
@@ -786,11 +720,7 @@ This query is more advanced, but the idea is simple: compare what should exist w
 
 *Figure 7.9 — Storage and presentation are separate layers: normalized tables store facts cleanly; SQL joins and views deliver report-friendly outputs.*
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 7.9 Denormalization: When Redundancy Is Intentional
-
 
 ### 7.9.1 Definition
 
@@ -807,6 +737,9 @@ Denormalization should happen **after** a normalized design exists, not instead 
 | A materialized view of customer order history | Improves reporting performance |
 | A reporting table combining student, deliverable, and score data | Helps BI tools read a simpler structure |
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 7.9.3 Risk of Denormalization
 
 Denormalization creates a synchronization problem. If a fact is stored in more than one place, the system must keep those copies consistent.
@@ -822,9 +755,6 @@ For example, if `AverageScore` is stored in a student summary table, it must be 
 
 *Figure 7.10 — Denormalization shifts weight toward reporting speed — the synchronization cost must be managed.*
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 7.10 Common Normalization Mistakes
 
 | Mistake | Why It Causes Problems | Better Approach |
@@ -839,9 +769,6 @@ For example, if `AverageScore` is stored in a student summary table, it must be 
 ![Quick-reference card listing common normalization mistakes on the left and the better approach for each on the right](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch07-normalization/ch07-figure-7.11-mistakes)
 
 *Figure 7.11 — Common normalization mistakes and their fixes: a scannable reference for design exercises.*
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Key Concepts
 
@@ -876,11 +803,7 @@ Before accepting a table design, ask:
 7. Are lookup rules or category definitions stored once?
 8. Can the original report be recreated with joins or views?
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Chapter Summary
-
 
 This chapter explained how normalization turns a working relational design into a reliable one. Chapter 6 introduced the idea of connected tables; Chapter 7 showed how to test and improve those tables by asking where each fact belongs.
 
@@ -892,9 +815,6 @@ The chapter also showed how normalized storage supports analysis. SQL joins, vie
 
 Normalization is not about making databases more complicated. It is about making them safer, clearer, and easier to maintain as real organizational data changes over time.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Looking Ahead
 
 Chapter 8 reviews and integrates the first half of the course. You will revisit data fundamentals, database structure, SQL basics, keys, relationships, and normalization as one connected system.
@@ -902,9 +822,6 @@ Chapter 8 reviews and integrates the first half of the course. You will revisit 
 Chapter 9 then returns to SQL in a richer way, using the normalized Grading Database to answer more advanced questions across multiple related tables.
 
 Chapter 10 moves from querying normalized databases to designing database systems from business requirements.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## References
 

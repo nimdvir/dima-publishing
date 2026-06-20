@@ -1,4 +1,4 @@
-## Let's Build: Create a BI Layer for the Grading Database
+# Let's Build: Create a BI Layer for the Grading Database
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
@@ -10,13 +10,13 @@ In this build, you will turn the operational Grading Database into a small Busin
 
 By the end, you will have one reusable analytical view, several KPI queries, a missing-submission query, an attendance-performance view, a dashboard blueprint, and a governed metric definition. This activity feeds directly into Lab 12 — Building a BI Layer for PetVax.
 
-### Purpose
+## Purpose
 
 An operational database records what happened. A BI layer helps explain what those events mean. In the Grading Database, scores, attendance, and deliverables are stored in normalized tables. That design is excellent for data entry and integrity. It is not ideal for asking analytical questions such as "Which students are at risk?" or "Are scores improving over time?"
 
 This Let's Build bridges the gap. You will transform operational tables into analytical views, build KPI queries that support decision-making, and learn that BI governance matters as much as BI technology.
 
-### What You Will Practice
+## What You Will Practice
 
 - Translating management questions into BI queries
 - Building reusable analytical views that reshape normalized data
@@ -25,7 +25,7 @@ This Let's Build bridges the gap. You will transform operational tables into ana
 - Sketching a dashboard from query outputs
 - Defining a governed metric
 
-### Before You Begin
+## Before You Begin
 
 You need your current Grading Database with these tables populated:
 
@@ -36,7 +36,7 @@ You need your current Grading Database with these tables populated:
 
 You will work in SQLite, Access SQL View, or the SQL environment you used in previous chapters. Save every query and view you create — you will need them for Lab 12.
 
-### Start with the BI Questions
+## Start with the BI Questions
 
 Before writing any SQL, write down the questions an instructor would want answered from grading data. A BI system is built on decision needs, not on charts.
 
@@ -52,7 +52,7 @@ A useful starting set:
 
 For each question, note what kind of output would be most useful: a single number (KPI), a table of students, a bar chart, a trend line, or a comparison table. Write these down — they will guide every query you build next.
 
-### Build a Core Analytical View
+## Build a Core Analytical View
 
 The first technical step in BI is turning normalized operational tables into a reporting-ready structure. This is a small ETL-style transformation: you are extracting data from source tables, transforming it with a `CASE` expression, and loading it into a reusable view.
 
@@ -95,7 +95,7 @@ The original tables remain normalized and unchanged. The view provides a cleaner
 
 **Important limitation:** This view uses inner joins. It includes only student-deliverable pairs that already have a grade row in `STUDENT_GRADE`. A `NULL` score here means a grade record exists with no score entered. To find deliverables with no grade record at all — truly missing submissions — you need `CROSS JOIN` and `LEFT JOIN`, which you will build next.
 
-### Build a Deliverable Performance Report
+## Build a Deliverable Performance Report
 
 Now use the `GradeBI` view to answer your first BI question: which deliverable types or individual deliverables have the lowest averages?
 
@@ -118,7 +118,7 @@ Run the query and examine the results.
 
 **What do the numbers tell you?** A deliverable with a low average and wide gap between `LowestScore` and `HighestScore` might signal that some students understood the material and others did not — a preparation or instruction gap, not necessarily a bad assessment. A deliverable where everyone scored low might signal unclear instructions or a topic that needs reteaching. The query provides evidence. You provide the interpretation.
 
-### Build an At-Risk Student Report
+## Build an At-Risk Student Report
 
 Your second BI question: which students need attention before the semester ends?
 
@@ -140,7 +140,7 @@ Run the query.
 
 **What would you do with this list?** The `HAVING` clause acts as a threshold — a simple business rule. In a real BI system, this threshold would be a governed parameter, not a hard-coded number buried in SQL. The query does not tell you what to do. It tells you who to look at. The decision — send an email, offer tutoring, investigate attendance — is yours.
 
-### Build a Missing Submission Report
+## Build a Missing Submission Report
 
 This is the most important query in the build because it teaches a subtle BI lesson: sometimes BI must identify what is absent, not only what exists.
 
@@ -175,7 +175,7 @@ Run the query.
 
 This is a major BI concept. Absence can be analytically meaningful. A missing submission is not a low score. It is a different kind of problem that requires a different kind of query.
 
-### Build KPI Queries
+## Build KPI Queries
 
 KPIs turn raw data into signals. Each KPI should answer one clear question and connect to a threshold or target.
 
@@ -242,7 +242,7 @@ SELECT
 
 For each KPI, ask: if this number changed by 10% next week, what would you do? A KPI without an action is just a number.
 
-### Build an Attendance-Performance View
+## Build an Attendance-Performance View
 
 Your final analytical view connects two data sources that were stored separately.
 
@@ -279,7 +279,7 @@ ORDER BY AttendanceRate ASC, AvgScore ASC;
 
 **What patterns do you see?** Do students with the lowest attendance also have the lowest average scores? Is the relationship strong or weak? This view does not prove causation. It surfaces a pattern worth investigating. That is what BI does.
 
-### Sketch a Dashboard Blueprint
+## Sketch a Dashboard Blueprint
 
 A dashboard is a visual summary that helps someone monitor performance and decide what to do next. Before building anything in Power BI, sketch what the dashboard should show.
 
@@ -298,7 +298,7 @@ Use this template for each element:
 
 The dashboard should help an instructor answer three practical questions at a glance: How is the class doing? Where are the problems? Who needs action?
 
-### Define a Governed Metric
+## Define a Governed Metric
 
 BI metrics are not just numbers. They are governed definitions. If two people calculate "pass rate" differently, the dashboard becomes untrustworthy.
 
@@ -334,7 +334,7 @@ Example for At-Risk Rate:
 
 This is what separates BI from ad-hoc querying. Governance makes metrics reusable, comparable, and trustworthy across reports, semesters, and people.
 
-### Check Your Work
+## Check Your Work
 
 Before you submit, verify each deliverable:
 
@@ -349,7 +349,7 @@ Before you submit, verify each deliverable:
 
 **Quick self-check:** Pick one student from your at-risk list. Look up their attendance rate in the `AttendancePerformance` view. Look up their missing submissions. Do the three data points tell a consistent story? If not, which number would you trust most, and why?
 
-### What This Shows
+## What This Shows
 
 This Let's Build demonstrates the full BI pipeline on a real database:
 
@@ -361,7 +361,7 @@ This Let's Build demonstrates the full BI pipeline on a real database:
 - **Dashboard blueprint** → maps queries to visual elements.
 - **Governed metric** → defines a KPI clearly enough that someone else could reproduce it.
 
-### Common Mistakes
+## Common Mistakes
 
 - **Confusing NULL scores with missing submissions.** A `NULL` score means a grade record exists but has no value entered. A missing submission means no grade record exists at all. Use `CROSS JOIN` + `LEFT JOIN` for the second case.
 - **Using the wrong view for section-based queries.** The `GradeBI` view includes `Section`. If you use a different view that does not include `Section`, your dice and drill-down queries will fail.
@@ -369,7 +369,7 @@ This Let's Build demonstrates the full BI pipeline on a real database:
 - **Skipping the dashboard blueprint.** The point is not to make something pretty. The point is to connect queries to decisions before touching a visualization tool.
 - **Using inner joins for attendance.** Use `LEFT JOIN` for attendance so students with no attendance records still appear with a calculated rate.
 
-### Submit or Save
+## Submit or Save
 
 Save your work as a single SQL script or document containing:
 
@@ -384,6 +384,6 @@ Save your work as a single SQL script or document containing:
 
 You will use these artifacts in Lab 12 — Building a BI Layer for PetVax, where you will transfer the same BI patterns to the PetVax veterinary clinic database.
 
-### Peek Ahead — Chapter 13
+## Peek Ahead — Chapter 13
 
 In Chapter 13, we will explore advanced database techniques — indexes, transactions, triggers, and window functions — that make BI queries faster, safer, and more powerful at scale. The views and queries you built here will become the foundation for understanding why those techniques matter.

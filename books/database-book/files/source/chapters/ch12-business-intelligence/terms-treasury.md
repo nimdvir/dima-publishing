@@ -1,8 +1,8 @@
 # Chapter 12: Terms Treasury
 
-## Key Concepts
+# Key Concepts
 
-### Foundational Ideas
+## Foundational Ideas
 
 - Business Intelligence transforms operational data into decision-support insight.
 - Operational systems record events; analytical systems evaluate patterns.
@@ -12,7 +12,7 @@
 - Data marts provide focused analytical stores for departments or functions.
 - Data lakes preserve raw data for exploration and data science.
 
-### Analytical Design
+## Analytical Design
 
 - Dimensional modeling organizes data into facts and dimensions.
 - Measures are numeric values used for calculation; descriptors provide context.
@@ -20,7 +20,7 @@
 - Analytical denormalization is deliberate and controlled, not careless design.
 - OLAP operations include slice, dice, drill-down, roll-up, and pivot.
 
-### Application in Practice
+## Application in Practice
 
 - SQL views can act as BI layers over normalized operational tables.
 - Dashboards should be built on tested queries and consistent metric definitions.
@@ -30,7 +30,7 @@
 
 ---
 
-## Key Terms
+# Key Terms
 
 | Term | Definition |
 |---|---|
@@ -59,7 +59,7 @@
 | Slice | OLAP operation that filters one dimension to one value |
 | Star Schema | Dimensional schema with a central fact table surrounded by dimension tables |
 
-## Acronyms and Abbreviations
+# Acronyms and Abbreviations
 
 | Acronym | Full Form |
 |---|---|

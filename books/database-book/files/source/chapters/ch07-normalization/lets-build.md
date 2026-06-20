@@ -1,6 +1,6 @@
 <!-- Let's Build 07 created 2026-06-16: moved hands-on SQL + Access content from Ch07 main appendix into a guided LB using the Grading Database, and appended Midterm Review from Ch08. Companion lab placeholder: Lab 07 — Normalizing a Veterinary Clinic Database. -->
 
-## Let's Build
+# Let's Build
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
@@ -10,11 +10,11 @@
 Chapter 7 explained that normalization is a way of thinking about <em>where each fact belongs</em>. In this Let's Build (LB) you turn that thinking into action: you take a single flat grading table, split it into four normalized tables in Access, connect those tables with enforced relationships, and rebuild the original report using SQL. Because this chapter marks the end of the first half of the course, this section also includes a Midterm Review wrap-up. The work you do here is the source material for <strong>Lab 07 — Normalizing a Veterinary Clinic Database</strong>.
 </p>
 
-### Purpose
+## Purpose
 
 Move from reading about 1NF, 2NF, and 3NF to building a normalized schema you can defend. By the end you should be able to look at any messy flat table and explain which facts belong together, which belong apart, and how to reconstruct a report without storing the same fact twice. You will also consolidate your knowledge of chapters 1 through 7 into a single framework before the midterm.
 
-### What You Will Practice
+## What You Will Practice
 
 - Diagnosing redundancy and update, insertion, and deletion anomalies in a flat table.
 - Designing four normalized tables in Access (`STUDENT`, `ASSIGNMENT_TYPE`, `DELIVERABLE`, `STUDENT_GRADE`).
@@ -23,7 +23,7 @@ Move from reading about 1NF, 2NF, and 3NF to building a normalized schema you ca
 - Reconstructing a flat report with an `INNER JOIN` query across four tables.
 - Synthesizing database concepts through a schema review, query bank, and concept map.
 
-### Before You Begin
+## Before You Begin
 
 You need:
 
@@ -45,7 +45,7 @@ A useful `GRADE_FLAT` looks like this:
 
 > 💡 **Tip:** If your starter file uses `DeliverableType` rather than `AssignmentType`, rename it consistently before you begin so the SQL examples below run unchanged.
 
-### Diagnose the Flat Table
+## Diagnose the Flat Table
 
 Open `GRADE_FLAT` in Datasheet View and read it row by row before you touch a thing.
 
@@ -70,7 +70,7 @@ The provided starter file is clean. In real data, fix any conflicts in `GRADE_FL
 
 > 📘 **Concept connection:** This is the heart of normalization. Each repeated fact is a sign that the table is mixing *kinds* of facts. 1NF removes multi-valued cells, 2NF removes partial dependencies, 3NF removes transitive dependencies — but the practical effect is always the same: facts move to the table where they belong.
 
-### Create the Four Normalized Tables
+## Create the Four Normalized Tables
 
 In Access, switch to **Create → Table Design** and build four empty tables. Define the primary key and required fields for each one before adding any data.
 
@@ -117,7 +117,7 @@ In Access, switch to **Create → Table Design** and build four empty tables. De
 
 > ✅ **Good Practice:** In Access, every foreign key that points to an AutoNumber primary key must be `Number` with **Field Size = Long Integer**. If the sizes do not match exactly, the Relationships window will refuse to enforce referential integrity — often with a vague error. Set this on every ID field before you load data.
 
-### Extract Students
+## Extract Students
 
 > ⚠️ **Before you run any append query:** Run each append query **once**. If you run the same append query a second time without first clearing the target table, Access will either create duplicate rows or fail with a primary-key violation halfway through. If something goes wrong, open the target table, delete all rows, then re-run the append.
 
@@ -137,7 +137,7 @@ Save the query as `q01_Append_Students` and run it. Open `STUDENT`.
 
 > ⚠️ **Common Mistake:** If the same `StudentID` appears with two spellings of an email, the append may succeed but `STUDENT.Email` will hold whichever spelling Access encountered first. That is a data-quality problem in `GRADE_FLAT`, not an Access bug. Fix the source before continuing.
 
-### Extract Assignment Type Rules
+## Extract Assignment Type Rules
 
 Move grading-category rules out of `GRADE_FLAT` and into `ASSIGNMENT_TYPE`.
 
@@ -159,7 +159,7 @@ Save as `q02_Append_Assignment_Types` and run it.
 
 > ⚠️ **Common Mistake:** If `Quiz` appears more than once with different `PointsPerOne` values, the flat table holds contradictory rules. Normalization surfaces the conflict but does not pick a winner — you have to decide which rule is correct and clean `GRADE_FLAT` before re-running the append.
 
-### Create Deliverables
+## Create Deliverables
 
 Each specific quiz, exam, or project is a deliverable. **Use Option A** — it matches the provided starter CSV, which has no `DeliverableID` column. Use Option B only if your instructor gave you a `GRADE_FLAT` that already includes a stable `DeliverableID`.
 
@@ -183,7 +183,7 @@ Save as `q03_Append_Deliverables` and run it.
 
 **Expected output:** one row per deliverable (e.g., one row for `Quiz 1`, one for `Quiz 2`, one for `Exam 1`) — not one row per student score.
 
-### Load Student Grades
+## Load Student Grades
 
 Now move the score facts. Which append query you use depends on which option you chose in the previous step:
 
@@ -221,7 +221,7 @@ Save as `q04_Append_Student_Grades` and run it.
 
 > 💡 **Key Takeaway:** `STUDENT_GRADE` is the junction between students and deliverables. It stores a *fact about the relationship*, not facts about either side.
 
-### Build Relationships and Enforce Referential Integrity
+## Build Relationships and Enforce Referential Integrity
 
 Open **Database Tools → Relationships**, add all four tables, then drag the parent primary key onto the matching child foreign key for each pair below. In every Edit Relationships dialog, check **Enforce Referential Integrity** before clicking **Create**.
 
@@ -241,7 +241,7 @@ Save the layout and take a screenshot — you will need it for the submission ch
 
 > ⚠️ **Common Mistake:** The Access Lookup Wizard creates a friendly dropdown but does **not** replace a real relationship. A lookup field helps data entry; referential integrity protects the database. Use both, but never confuse one for the other.
 
-### Test Referential Integrity
+## Test Referential Integrity
 
 A normalized design should make bad data hard to enter. Prove it.
 
@@ -253,7 +253,7 @@ A normalized design should make bad data hard to enter. Prove it.
 
 **Why does that matter?** Without enforced referential integrity, a grade could exist for a student who does not. That is an orphan record, and orphan records are the kind of bug that quietly corrupts every report built on top of them.
 
-### Rebuild the Original Report
+## Rebuild the Original Report
 
 Normalization separates storage from presentation. Now show that the original flat report can be reconstructed on demand.
 
@@ -288,7 +288,7 @@ Save as `q05_Grade_Report_Normalized` and run it. Access will keep its own paren
 
 > 💡 **Key Takeaway:** Normalization does not remove the report — it relocates the facts. The query is the report.
 
-### Optional Extension — Add SCHEDULE, ATTENDANCE, GRADE_SCALE
+## Optional Extension — Add SCHEDULE, ATTENDANCE, GRADE_SCALE
 
 If you finish early, extend the schema to the full seven-table Grading Database introduced in §7.7.
 
@@ -309,7 +309,7 @@ Leave `GRADE_SCALE` standalone for now. It is a rule table that translates numer
 
 **Expected output:** a seven-table Relationships window with referential integrity enforced on every line except `GRADE_SCALE`.
 
-### Check Your Work
+## Check Your Work
 
 Walk through this checklist before you save:
 
@@ -323,7 +323,7 @@ Walk through this checklist before you save:
 | `q05_Grade_Report_Normalized` reproduces the flat report      |       |
 | An invalid `StudentID` in `STUDENT_GRADE` is rejected         |       |
 
-### What This Shows
+## What This Shows
 
 You have now done in Access what the chapter described in prose. Five flat-table rows for Alice became one row in `STUDENT`, three rows in `DELIVERABLE`, two rows in `ASSIGNMENT_TYPE`, and five rows in `STUDENT_GRADE`. No fact was lost; every fact moved to the table where it belongs. The report still exists — it is just reconstructed by `q05` instead of stored as raw rows.
 
@@ -332,7 +332,7 @@ Two ideas to carry forward:
 - **Storage and presentation are different jobs.** Tables hold facts; queries and views shape them.
 - **Referential integrity is design, not decoration.** Once enforced, the database itself refuses to accept orphan records.
 
-### Midterm Schema Review Checklist
+## Midterm Schema Review Checklist
 
 Now that your Grading Database is normalized, verify its overall structure. 
 
@@ -350,7 +350,7 @@ Now that your Grading Database is normalized, verify its overall structure.
 
 If you answer "no" to any item, write one sentence explaining what still needs to be fixed.
 
-### Midterm Query Bank Review
+## Midterm Query Bank Review
 
 Return to the business questions from Chapter 1 and rebuild or collect the queries that answer them using your newly normalized database.
 
@@ -363,7 +363,7 @@ For each query, annotate the business question, the tables it uses, the SQL conc
 | `Q1_CurrentGrades` | What is each student's current performance? | `SELECT`, `JOIN`, `AVG`, `GROUP BY` | Chapter 5 |
 | `Q2_AttendanceByStudent` | Who is missing class most often? | `SELECT`, `JOIN`, calculated field | Chapter 5 |
 
-### Midterm Concept Map
+## Midterm Concept Map
 
 Create a one-page concept map connecting the major ideas from the first half of the course. 
 
@@ -371,7 +371,7 @@ Create a one-page concept map connecting the major ideas from the first half of 
 
 Your map should include these terms: data, information, database, table, primary key, foreign key, relational model, normalization, SQL, and anomaly. Next to each term, add one concrete example from your Grading Database.
 
-### Practice Explanation
+## Practice Explanation
 
 **Why is a primary key different from an ordinary field?**
 
@@ -385,11 +385,11 @@ Your map should include these terms: data, information, database, table, primary
 
 Choose any two of the prompts above and answer them in short paragraphs to practice explaining technical concepts in plain language.
 
-### Optional Peer Review
+## Optional Peer Review
 
 If peer review is part of your class process, exchange databases or diagrams with a classmate. Give feedback on an unresolved normalization issue, a missing relationship, an unclear naming convention, or a query that is difficult to understand. Keep the feedback specific and respectful.
 
-### Common Mistakes
+## Common Mistakes
 
 - Treating a Lookup Wizard dropdown as a real relationship.
 - Appending data before defining keys, then discovering duplicates that block the primary key.
@@ -397,7 +397,7 @@ If peer review is part of your class process, exchange databases or diagrams wit
 - Re-running an append query a second time without clearing the target table; you get duplicate rows.
 - Forgetting to check **Enforce Referential Integrity** when creating each relationship.
 
-### Submit or Save
+## Submit or Save
 
 Save your Access file as:
 
@@ -429,6 +429,6 @@ Capture four screenshots and keep them with the file:
 
 There is no LMS submission for this LB. The graded work happens in **Lab 07 — Normalizing a Veterinary Clinic Database**, which transfers the same normalization workflow to the PetVax case.
 
-### Peek Ahead — Chapter 8
+## Peek Ahead — Chapter 8
 
 Chapter 8 is a dedicated Midterm Review that reinforces the connections you built here. After the midterm, Chapter 9 returns to SQL with multi-table queries, CTEs, and window functions that rely on exactly the design you just produced.

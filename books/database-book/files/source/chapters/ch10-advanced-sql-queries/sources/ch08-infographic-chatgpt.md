@@ -10,13 +10,13 @@ This guide presents advanced SQL concepts using a **grading database scenario**,
 
 ---
 
-# 1. Normalization and Schema Refactoring
+## 1. Normalization and Schema Refactoring
 
 ## Diagnostic Queries
 
 Before restructuring a schema, diagnostic queries help identify structural issues.
 
-### Detecting Duplication
+## Detecting Duplication
 
 Identify duplicate records.
 
@@ -27,7 +27,7 @@ GROUP BY column_name
 HAVING COUNT(*) > 1;
 ```
 
-### Detecting Conflicting Values
+## Detecting Conflicting Values
 
 Identify inconsistencies across repeated entities.
 
@@ -40,7 +40,7 @@ GROUP BY StudentID
 HAVING COUNT(DISTINCT Email) > 1;
 ```
 
-### Detecting Spelling Inconsistencies
+## Detecting Spelling Inconsistencies
 
 Look for inconsistent values.
 
@@ -49,7 +49,7 @@ SELECT DISTINCT DeliverableType
 FROM GRADE;
 ```
 
-### Detecting Operational Anomalies
+## Detecting Operational Anomalies
 
 Three anomalies indicate poor schema design:
 
@@ -61,7 +61,7 @@ Three anomalies indicate poor schema design:
 
 ---
 
-# 2. Extracting Entities
+## 2. Extracting Entities
 
 Flat tables often contain multiple entities mixed together.
 
@@ -82,11 +82,11 @@ GROUP BY DeliverableType, DeliverableNumber, DueDate;
 
 ---
 
-# 3. Creating New Tables
+## 3. Creating New Tables
 
 Once entities are identified, new relational tables are created.
 
-### Create Table Using Existing Data
+## Create Table Using Existing Data
 
 ```sql
 CREATE TABLE STUDENT AS
@@ -94,7 +94,7 @@ SELECT DISTINCT StudentID, FirstName, LastName, Email
 FROM GRADE;
 ```
 
-### Using SELECT INTO
+## Using SELECT INTO
 
 ```sql
 SELECT DISTINCT DeliverableType, DeliverableNumber, DueDate
@@ -102,7 +102,7 @@ INTO DELIVERABLE
 FROM GRADE;
 ```
 
-### Junction Table Creation
+## Junction Table Creation
 
 ```sql
 CREATE TABLE STUDENT_GRADE (
@@ -115,7 +115,7 @@ CREATE TABLE STUDENT_GRADE (
 
 ---
 
-# 4. Data Migration
+## 4. Data Migration
 
 Migrating data into the normalized schema.
 
@@ -150,7 +150,7 @@ SELECT COUNT(*) FROM STUDENT_GRADE;
 
 ---
 
-# 5. Hardening with Constraints
+## 5. Hardening with Constraints
 
 Constraints enforce data integrity.
 
@@ -175,18 +175,18 @@ CHECK (Score BETWEEN 0 AND 100)
 
 ---
 
-# 6. SQL Fundamentals and Cleaning
+## 6. SQL Fundamentals and Cleaning
 
 ## SELECT for Reporting
 
-### Column Aliasing
+## Column Aliasing
 
 ```sql
 SELECT FirstName AS Student
 FROM STUDENT;
 ```
 
-### Filtering
+## Filtering
 
 ```sql
 SELECT *
@@ -194,7 +194,7 @@ FROM STUDENT
 WHERE Grade > 90;
 ```
 
-### Ordering
+## Ordering
 
 ```sql
 ORDER BY Grade DESC;
@@ -202,7 +202,7 @@ ORDER BY Grade DESC;
 
 ---
 
-# 7. Cleaning Patterns
+## 7. Cleaning Patterns
 
 ## Trimming Whitespace
 
@@ -245,7 +245,7 @@ CAST(score AS INTEGER)
 
 ---
 
-# 8. Relational Queries (JOINs)
+## 8. Relational Queries (JOINs)
 
 ## INNER JOIN
 
@@ -305,7 +305,7 @@ UNIQUE (StudentID, DeliverableID)
 
 ---
 
-# 9. Performance Metrics
+## 9. Performance Metrics
 
 ## Aggregations
 
@@ -351,7 +351,7 @@ FROM (
 
 ---
 
-# 10. Conditional Logic
+## 10. Conditional Logic
 
 ## CASE Expressions
 
@@ -390,7 +390,7 @@ END
 
 ---
 
-# 11. Time-Aware Queries
+## 11. Time-Aware Queries
 
 ## Upcoming Due Dates
 
@@ -416,7 +416,7 @@ Time-based analytics.
 
 ---
 
-# 12. Weighted Calculations
+## 12. Weighted Calculations
 
 ## Assignment Category Weights
 
@@ -444,7 +444,7 @@ Ensuring grading calculations remain consistent.
 
 ---
 
-# 13. Window Functions
+## 13. Window Functions
 
 Window functions allow calculations across row sets.
 
@@ -489,7 +489,7 @@ OVER (ORDER BY Date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)
 
 ---
 
-# 14. Reusable Query Artifacts
+## 14. Reusable Query Artifacts
 
 ## Views
 
@@ -548,7 +548,7 @@ UNION ALL
 
 ---
 
-# 15. Performance and Speed
+## 15. Performance and Speed
 
 ## Indexes
 
@@ -572,7 +572,7 @@ SELECT * FROM STUDENT;
 
 ---
 
-# 16. Advanced Mechanics
+## 16. Advanced Mechanics
 
 ## Transactions
 
@@ -605,7 +605,7 @@ Tracking historical changes.
 
 ---
 
-# 17. Data Governance
+## 17. Data Governance
 
 Ensuring database reliability and transparency.
 

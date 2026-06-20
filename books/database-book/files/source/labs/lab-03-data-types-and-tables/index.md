@@ -1,12 +1,10 @@
-<!-- metadata: date="2026-06-03" -->
-
-<!-- markdownlint-disable MD013 MD024 MD036 -->
+﻿<!-- markdownlint-disable MD013 MD024 MD036 -->
 
 # Lab 03 Questions
 
 ![Lab banner](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/lab_jpifze?_a=BAMAAAiu0)
 
-## PetVax Spreadsheet Fundamentals: When a Flat File Starts to Break
+# PetVax Spreadsheet Fundamentals: When a Flat File Starts to Break
 
 **Chapter:** Chapter 3 — Understanding Data Fundamentals  
 **Project:** PetVax veterinary clinic  
@@ -17,7 +15,7 @@
 
 ---
 
-## What This Lab Is
+# What This Lab Is
 
 This lab is a guided spreadsheet workflow.
 
@@ -48,15 +46,15 @@ You are not building an Access database yet. That begins in Chapter 4. This lab 
 
 ---
 
-## How This Lab Is Graded
+# How This Lab Is Graded
 
 This lab has **two graded parts**. You must complete both.
 
-### Part 1 — Brightspace quiz (auto-graded)
+## Part 1 — Brightspace quiz (auto-graded)
 
 You answer 24 questions inside the Brightspace quiz for this lab. Brightspace grades these automatically. Every answer is exact: a specific choice, match, order, or value. Many answers come directly from the spreadsheet work you do, so **do the work first, then answer**. Your quiz answers should match what your workbook shows.
 
-### Part 2 — Spreadsheet file (AI-checked)
+## Part 2 — Spreadsheet file (AI-checked)
 
 You upload your completed workbook to the separate file-submission assignment. An AI grader checks that the file is **complete** and that your work is **authentic** — that the required artifacts are present and that the values in the file match the quiz answers you gave. The file is not re-scored question by question. It is proof that you actually did the work.
 
@@ -64,7 +62,7 @@ You upload your completed workbook to the separate file-submission assignment. A
 
 ---
 
-## What You Will Submit
+# What You Will Submit
 
 Submit your completed spreadsheet file.
 
@@ -87,7 +85,7 @@ Your file should show that you completed the steps, including:
 
 ---
 
-## Workbook Overview
+# Workbook Overview
 
 Open the starter workbook. It contains these sheets:
 
@@ -127,7 +125,7 @@ This is a flat file because appointment, pet, owner, breed, service, and payment
 
 > 🔍 **Filtering and sorting rule.** You may apply a filter when a step asks you to. **Clear the filter before moving to the next step.** Do **not** permanently sort the sheet, because later steps refer to rows by their original `AppointmentID`.
 
-## Quiz Question 1
+# Quiz Question 1
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -142,7 +140,7 @@ Do not count the header row.
 ![Figure 3.8 - Data Types and Analytical Uses](../../../../.images/Ch4%20Databases/optimized/ch04-to-add-data-types-analytical-uses.png)
 *Figure 3.8: Data Types and Measurement Scales. Connects nominal labels, ordinal ranks, interval values, and ratio scales with their valid statistical and analytical operations.*
 
-## Quiz Question 2
+# Quiz Question 2
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -157,7 +155,7 @@ D. `PetName`
 
 ---
 
-## Quiz Question 3
+# Quiz Question 3
 
 **Brightspace question type:** Multi-Select  
 **Auto-graded:** Yes  
@@ -187,7 +185,7 @@ In `APPOINTMENTS_FLAT`, use either `XLOOKUP` or `VLOOKUP` to fill these columns:
 | Q | `WeightStatus` |
 | R | `PetOwnerKey` |
 
-## Suggested `XLOOKUP` formulas
+# Suggested `XLOOKUP` formulas
 
 In `N2`:
 
@@ -221,7 +219,7 @@ In `R2`:
 
 Copy these formulas down through all existing appointment rows.
 
-## Alternative `VLOOKUP` formulas
+# Alternative `VLOOKUP` formulas
 
 In `N2`:
 
@@ -245,7 +243,7 @@ Use the same formulas for `Q2` and `R2` as above.
 
 ---
 
-## Quiz Question 4
+# Quiz Question 4
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -260,7 +258,7 @@ D. It turns the spreadsheet into Access
 
 ---
 
-## Quiz Question 5
+# Quiz Question 5
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -280,7 +278,7 @@ Filter `AppointmentStatus` to show only:
 
 `No-show`
 
-## Quiz Question 6
+# Quiz Question 6
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -296,7 +294,7 @@ Filter `ReminderSent` to show only:
 
 `FALSE`
 
-## Quiz Question 7
+# Quiz Question 7
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -318,7 +316,7 @@ In cell `A5`, enter this formula:
 
 This is intentionally a fixed-range formula. It only looks at rows 2 through 25.
 
-## Quiz Question 8
+# Quiz Question 8
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -346,7 +344,7 @@ If your pivot table does not update automatically, refresh it after formulas are
 
 > 📎 **Treat this pivot as a starter-data snapshot.** Build it now, before Step 7. **Do not refresh or rebuild it** after you add Maple, add Rex, or delete Angel. The pivot is meant to summarize the original 24-row starter file so the grader can compare against fixed expected counts.
 
-## Quiz Question 9
+# Quiz Question 9
 
 **Brightspace question type:** Matching  
 **Auto-graded:** Yes  
@@ -361,7 +359,7 @@ Match each animal type to its appointment count in the starter file.
 
 ---
 
-## Quiz Question 10
+# Quiz Question 10
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -385,7 +383,7 @@ In this file, owner and pet information is repeated because each row is an appoi
 ![Figure 3.10 - One Big Table vs. Related Tables](../../../../.images/Ch4%20Databases/optimized/figure_47_one_big_table_vs_related_tablesc.jpg)
 *Figure 3.10: Redundancy in Flat Tables vs. Relational Design. Visualizes how splitting a multi-theme table into independent related tables eliminates duplicate storage and modification risks.*
 
-## Quiz Question 11
+# Quiz Question 11
 
 **Brightspace question type:** Multi-Select  
 **Auto-graded:** Yes  
@@ -413,7 +411,7 @@ The starter file already contains two situations that are obvious when a human r
 
 Do not edit these rows. Just inspect them and answer the four checkpoints.
 
-## Quiz Question 12
+# Quiz Question 12
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -428,7 +426,7 @@ D. No — the only fix is to ban duplicate pet names at the clinic
 
 ---
 
-## Quiz Question 13
+# Quiz Question 13
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -443,7 +441,7 @@ D. A larger spreadsheet
 
 ---
 
-## Quiz Question 14
+# Quiz Question 14
 
 **Brightspace question type:** Multi-Select  
 **Auto-graded:** Yes  
@@ -459,7 +457,7 @@ E. From the columns alone, the workbook cannot prove that 1007 and 1008 refer to
 
 ---
 
-## Quiz Question 15
+# Quiz Question 15
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -474,7 +472,7 @@ D. Delete one of the owner rows so each pet has only one owner
 
 ---
 
-## Workbook task for Q12–Q15
+# Workbook task for Q12–Q15
 
 In `APPOINTMENTS_FLAT`, add a short note in the `Notes` cell of row **1003** (or row **1007**, your choice) that reads:
 
@@ -506,7 +504,7 @@ Add this new record at the bottom of `APPOINTMENTS_FLAT`.
 
 Fill the lookup formulas down for the new row.
 
-## Quiz Question 16
+# Quiz Question 16
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -518,7 +516,7 @@ Do not count the header row.
 
 ---
 
-## Quiz Question 17
+# Quiz Question 17
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -532,7 +530,7 @@ After adding Maple and filling the formulas down, how many appointment records i
 
 > ⚠️ **Do not change the fixed range yet.** The point of the next question is to see that the formula does **not** automatically include the new Maple row. You will not edit the `FILTER` formula in this lab.
 
-## Quiz Question 18
+# Quiz Question 18
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -565,7 +563,7 @@ to:
 
 Do not change Sarah Perry's other rows.
 
-## Quiz Question 19
+# Quiz Question 19
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -575,7 +573,7 @@ After changing Sarah Perry's email in only one row, how many different email val
 
 ---
 
-## Quiz Question 20
+# Quiz Question 20
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -614,7 +612,7 @@ Add this placeholder row at the bottom of `APPOINTMENTS_FLAT`:
 
 Fill lookup formulas where possible.
 
-## Quiz Question 21
+# Quiz Question 21
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -637,7 +635,7 @@ Now delete the row with:
 
 This is Angel's only appointment row in the flat file.
 
-## Quiz Question 22
+# Quiz Question 22
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -647,7 +645,7 @@ After deleting `AppointmentID = 1022`, which pet name disappears from the appoin
 
 ---
 
-## Quiz Question 23
+# Quiz Question 23
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -666,15 +664,15 @@ D. Measurement validity
 
 This lab is submitted in two places.
 
-### 1. Submit the Brightspace quiz
+## 1. Submit the Brightspace quiz
 
 Answer all 24 quiz questions inside the Brightspace quiz for this lab. Brightspace grades them automatically. Make sure your answers match the values in your workbook.
 
-### 2. Upload your spreadsheet file
+## 2. Upload your spreadsheet file
 
 Upload your completed workbook to the separate file-submission assignment, using the filename `Lab03-PetVax-Spreadsheet-LastName.xlsx`. The AI grader checks that the required work is present and authentic — not that each cell is re-scored.
 
-## Required Evidence in the File
+# Required Evidence in the File
 
 | Required Evidence | Where It Should Appear |
 |---|---|
@@ -687,7 +685,7 @@ Upload your completed workbook to the separate file-submission assignment, using
 | Angel appointment deleted | `APPOINTMENTS_FLAT` |
 | Note explaining why `PetName` is a bad identifier (from Step 6.5) | `Notes` cell of row 1003 or 1007 |
 
-## Final-State Checklist (what the AI grader looks for)
+# Final-State Checklist (what the AI grader looks for)
 
 | Item | Final State |
 |---|---|
@@ -706,7 +704,7 @@ Upload your completed workbook to the separate file-submission assignment, using
 ![Figure 3.12 - Spreadsheets vs. Databases Comparative Summary](../../../../.images/Ch4%20Databases/optimized/ch04-to-add-spreadsheet-vs-database-detailed.png)
 *Figure 3.12: Comparative Summary. Detailed structural contrast of flat spreadsheet limitations against relational database capabilities, reinforcing the main takeaways of Lab 03.*
 
-## Quiz Question 24
+# Quiz Question 24
 
 **Brightspace question type:** Ordering  
 **Auto-graded:** Yes  
@@ -721,7 +719,7 @@ D. Chapter 4 moves toward databases because related data needs stronger structur
 
 ---
 
-## Optional Extension
+# Optional Extension
 
 Not required.
 

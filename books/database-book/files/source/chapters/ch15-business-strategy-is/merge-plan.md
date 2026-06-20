@@ -11,7 +11,7 @@
 Students will learn how information systems, databases, analytics, and governance support business strategy. They will also learn how technology can create competitive advantage or create risk when poorly aligned with organizational goals.
 
 ---
-## Highlights
+# Highlights
 
 * **Yes, the two chapters can be united**, but I would **not merge them as-is**. Together they are roughly **22,800 words**, which is too large for one clean textbook chapter.
 * The best approach is to unite them **conceptually** into one chapter/module: **“Business Intelligence, Analytics, and Information Systems Strategy.”**
@@ -36,7 +36,7 @@ So yes, they can be united. But the merger needs discipline.
 
 # My Main Recommendation
 
-## Best Option: Unite Them as One Conceptual Chapter + Separate Lab
+# Best Option: Unite Them as One Conceptual Chapter + Separate Lab
 
 I would create one polished chapter titled something like:
 
@@ -87,7 +87,7 @@ The conceptual fit is very strong. The issue is not whether they belong together
 
 A direct merge would create three problems.
 
-## 1. Length
+# 1. Length
 
 Chapter 12 is already a full BI chapter, and Chapter 14 is a large strategy chapter. Combined without cuts, the chapter becomes too long for students to process in one sitting.
 
@@ -95,7 +95,7 @@ That matters pedagogically. A chapter that tries to teach BI, ETL, OLAP, visuali
 
 In textbook terms: the chapter would become a buffet where students need a map and maybe a small sherpa.
 
-## 2. Repetition
+# 2. Repetition
 
 The strongest overlap appears around:
 
@@ -113,7 +113,7 @@ Chapter 14 already reintroduces BI infrastructure, ETL, dashboards, and dimensio
 
 So the merged chapter should avoid teaching the same concepts twice.
 
-## 3. Different Learning Modes
+# 3. Different Learning Modes
 
 Chapter 12 is partly **conceptual and practical**. It contains extensive “Let’s Build” tutorials in Access, SQLite, and Supabase/PostgreSQL. 
 
@@ -133,15 +133,15 @@ Here is the cleanest structure I would use.
 
 ---
 
-## Proposed Title
+# Proposed Title
 
 # Business Intelligence, Analytics, and Information Systems Strategy
 
-## Turning Operational Data into Organizational Insight and Competitive Advantage
+# Turning Operational Data into Organizational Insight and Competitive Advantage
 
 ---
 
-## 1. From Operational Data to Strategic Insight
+# 1. From Operational Data to Strategic Insight
 
 Purpose: Open with the big idea.
 
@@ -158,7 +158,7 @@ Core message:
 
 ---
 
-## 2. Business Intelligence Fundamentals
+# 2. Business Intelligence Fundamentals
 
 Use Chapter 12 as the base.
 
@@ -175,7 +175,7 @@ Trim repetition from Chapter 14’s BI feedback-loop discussion and integrate it
 
 ---
 
-## 3. Data Warehousing, ETL, and Analytical Architecture
+# 3. Data Warehousing, ETL, and Analytical Architecture
 
 Use Chapter 12 Sections 2–4 as the technical foundation.
 
@@ -198,7 +198,7 @@ This is one of the best conceptual bridges between the chapters.
 
 ---
 
-## 4. Dashboards, KPIs, and Performance Management
+# 4. Dashboards, KPIs, and Performance Management
 
 Merge:
 
@@ -225,7 +225,7 @@ This would be a very strong section.
 
 ---
 
-## 5. SQL as the Language of Evidence
+# 5. SQL as the Language of Evidence
 
 Use Chapter 14 Section 14.5.
 
@@ -244,7 +244,7 @@ This section gives the chapter a distinctive database-textbook identity. Many BI
 
 ---
 
-## 6. Information Systems and Competitive Advantage
+# 6. Information Systems and Competitive Advantage
 
 Use Chapter 14 Sections 14.2–14.3.
 
@@ -261,7 +261,7 @@ This is where the chapter transitions from “BI supports decisions” to “inf
 
 ---
 
-## 7. Strategic Alignment and Technology Decisions
+# 7. Strategic Alignment and Technology Decisions
 
 Use Chapter 14 Section 14.6.
 
@@ -278,7 +278,7 @@ This section should be concise but powerful. It can serve as the senior-level MI
 
 ---
 
-## 8. Risks of Poor Information Strategy
+# 8. Risks of Poor Information Strategy
 
 Merge:
 
@@ -300,7 +300,7 @@ This section should become the warning chapter-within-the-chapter: analytics can
 
 ---
 
-## 9. The Grading Database as a Strategic BI System
+# 9. The Grading Database as a Strategic BI System
 
 Use both chapters’ Grading Database material.
 
@@ -320,7 +320,7 @@ This makes the example feel mature rather than merely technical.
 
 ---
 
-## 10. Chapter Summary and Looking Ahead
+# 10. Chapter Summary and Looking Ahead
 
 End with the full course arc:
 
@@ -332,7 +332,7 @@ This is much stronger than ending with either BI alone or strategy alone.
 
 # What to Cut or Move
 
-## Move to Lab / Appendix
+# Move to Lab / Appendix
 
 The following should not remain in the main merged chapter:
 
@@ -389,7 +389,7 @@ That would give you a strong, readable chapter and a practical lab without overw
 
 # Editorial Verdict
 
-## Yes, unite them — but not mechanically.
+# Yes, unite them — but not mechanically.
 
 The best structure is:
 

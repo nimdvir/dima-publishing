@@ -385,6 +385,17 @@ function cleanInlineMd(text: string): string {
 }
 
 const NAV_TITLE_MAX = 60;
+const GENERIC_NAV_HEADINGS = new Set([
+  "introduction",
+  "learning objectives",
+  "core concepts",
+  "let's build",
+  "review and reflection",
+  "terms treasury",
+  "rat / quiz",
+  "lab: transfer practice",
+  "chapter lab",
+]);
 
 function truncateNavTitle(text: string): string {
   if (text.length <= NAV_TITLE_MAX) return text;
@@ -406,7 +417,41 @@ function deriveNavTitle(
   const lines = content.split("\n");
   let inCodeFence = false;
 
+  // Answer-key pages should label themselves before subsection headings like
+  // "Review Questions" or "Remember Questions" take over the sidebar.
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+    const answerKeyMatch = line.match(/^#\s+Answer Key\s*#*\s*$/i);
+    if (answerKeyMatch) return "Answer Key";
+  }
+
+  // If a page begins a major section, prefer that H1 over lower-level
+  // component headings that may appear later on the same page.
+  inCodeFence = false;
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+    const headingMatch = line.match(/^(#{1,3})\s+(.+?)\s*#*\s*$/);
+    if (!headingMatch) continue;
+    const text = cleanInlineMd(headingMatch[2]);
+    const isGeneric = GENERIC_NAV_HEADINGS.has(text.toLowerCase());
+    if (headingMatch[1] === "#" && text.length > 0 && !isGeneric) {
+      return truncateNavTitle(stripSectionNumber(text));
+    }
+    if (headingMatch[1] !== "#" && !isGeneric) break;
+  }
+
   // 1. First H2/H3 heading
+  inCodeFence = false;
   for (const rawLine of lines) {
     const line = rawLine.trim();
     if (/^(```|~~~)/.test(line)) {
@@ -417,11 +462,29 @@ function deriveNavTitle(
     const headingMatch = line.match(/^#{2,3}\s+(.+?)\s*#*\s*$/);
     if (headingMatch) {
       const text = cleanInlineMd(headingMatch[1]);
-      if (text.length > 0) return truncateNavTitle(text);
+      if (text.length > 0 && !GENERIC_NAV_HEADINGS.has(text.toLowerCase())) {
+        return truncateNavTitle(stripSectionNumber(text));
+      }
     }
   }
 
-  // 2. First bold standalone line
+  // 2. First H1 heading (fallback when page has no H2/H3)
+  inCodeFence = false;
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+    const headingMatch = line.match(/^#\s+(.+?)\s*#*\s*$/);
+    if (headingMatch) {
+      const text = cleanInlineMd(headingMatch[1]);
+      if (text.length > 0) return truncateNavTitle(stripSectionNumber(text));
+    }
+  }
+
+  // 3. First bold standalone line
   inCodeFence = false;
   for (const rawLine of lines) {
     const line = rawLine.trim();
@@ -437,7 +500,7 @@ function deriveNavTitle(
     }
   }
 
-  // 3. First meaningful sentence from prose
+  // 4. First meaningful sentence from prose (skip figure captions)
   inCodeFence = false;
   for (const rawLine of lines) {
     const line = rawLine.trim();
@@ -458,20 +521,28 @@ function deriveNavTitle(
     ) {
       continue;
     }
+    // Skip italic-wrapped lines that are figure captions
+    if (/^\*Figure\s+\d/.test(line) || /^_Figure\s+\d/.test(line)) {
+      continue;
+    }
     const text = cleanInlineMd(line);
+    // Skip prose that is obviously a figure caption
+    if (/^Figure\s+\d/.test(text)) {
+      continue;
+    }
     if (text.length >= 12) {
       const sentence = text.match(/^(.+?[.!?])(\s|$)/);
       return truncateNavTitle(sentence ? sentence[1] : text);
     }
   }
 
-  // 4. Inherit previous page's heading (page continues a subsection)
+  // 5. Inherit previous page's heading (page continues a subsection)
   if (prevNavTitle) {
     const base = prevNavTitle.replace(/\s*\(continued\)$/, "");
     return `${base} (continued)`;
   }
 
-  // 5. Final fallback
+  // 6. Final fallback
   return `Page ${pageNumber}`;
 }
 
@@ -483,11 +554,11 @@ function deriveNavTitle(
  * (or best available content label) for each page.
  */
 function derivePageTitle(
-  sectionTitle: string,
+  _sectionTitle: string,
   pageNumber: number,
   navTitle: string,
 ): string {
-  return `${sectionTitle} \u2014 Page ${pageNumber} \u2014 ${navTitle}`;
+  return `${navTitle}`;
 }
 
 // ── Placeholder content ──
@@ -498,10 +569,42 @@ const LAB_PLACEHOLDER_MD = `# Lab Not Available\n\nThis lab is not available yet
 
 function readFileSafe(filePath: string): string | null {
   try {
-    return fs.readFileSync(filePath, "utf-8");
+    let content = fs.readFileSync(filePath, "utf-8");
+    // Strip YAML frontmatter (--- at start of file)
+    content = stripYamlFrontmatter(content);
+    return content;
   } catch {
     return null;
   }
+}
+
+/** Strip YAML frontmatter delimited by --- fences at the very start of content.
+ *  Also skips leading HTML comments (<!-- ... -->) before the --- fences. */
+function stripYamlFrontmatter(content: string): string {
+  let trimmed = content.trimStart();
+  // Skip leading HTML comments
+  while (trimmed.startsWith("<!--")) {
+    const endComment = trimmed.indexOf("-->");
+    if (endComment === -1) break;
+    trimmed = trimmed.substring(endComment + 3).trimStart();
+  }
+  if (!trimmed.startsWith("---")) return content;
+  const afterFirst = trimmed.indexOf("\n", 3);
+  if (afterFirst === -1) return content;
+  const closingIndex = trimmed.indexOf("\n---", afterFirst + 1);
+  if (closingIndex === -1) return content;
+  // Return everything after the closing ---
+  return trimmed.substring(closingIndex + 4).trimStart();
+}
+
+/** Strip section numbering like "7.1 " or "7.1: " or "Part 3: " from nav titles for cleaner sidebar display. */
+function stripSectionNumber(text: string): string {
+  return text
+    .replace(/^Part\s+\d+\s*:\s*/i, "")
+    .replace(/^\d+(?:\.\d+)+[.)]?\s+/, "")
+    .replace(/^[A-Z]?\d+\.\d+\s+/, "")
+    .replace(/^[A-Z]\d+\.\s+/, "")   // A1., B3., etc.
+    .replace(/^\d+\.\s+/, "");       // 1., 2., etc.
 }
 
 function listDirSafe(dirPath: string): string[] {
@@ -533,12 +636,14 @@ function resolveSection(
   chapterSlug: string,
   sectionDef: SectionDef,
 ): { sourceFile: string | null; sourceType: SourceType; content: string } {
+  let result: { sourceFile: string | null; sourceType: SourceType; content: string } | null = null;
+
   // 1. Try stable file
   if (sectionDef.stableFile) {
     const stablePath = path.join(chapterDir, sectionDef.stableFile);
     const content = readFileSafe(stablePath);
     if (content !== null && content.trim().length > 0) {
-      return {
+      result = {
         sourceFile: sectionDef.stableFile,
         sourceType: "stable",
         content,
@@ -546,22 +651,22 @@ function resolveSection(
     }
   }
 
-  // 2. Try dated fallback
-  if (sectionDef.datedPattern) {
+  // 2. Try dated fallback (only if stable didn't resolve)
+  if (!result && sectionDef.datedPattern) {
     const chNum = chapterId.replace("ch", "");
     const regexStr = sectionDef.datedPattern.replace("{N}", chNum);
     const regex = new RegExp(regexStr, "i");
     const latest = findLatestDated(chapterDir, regex);
     if (latest) {
-      const content = readFileSafe(path.join(chapterDir, latest));
+      let content = readFileSafe(path.join(chapterDir, latest));
       if (content !== null && content.trim().length > 0) {
-        return { sourceFile: latest, sourceType: "dated-fallback", content };
+        result = { sourceFile: latest, sourceType: "dated-fallback", content };
       }
     }
   }
 
   // 3. Introduction special case: extract intro portion from the latest main file
-  if (sectionDef.slug === "introduction") {
+  if (!result && sectionDef.slug === "introduction") {
     const mainPattern = new RegExp(
       `^${chapterId}-main-\\d{4}-\\d{2}-\\d{2}\\.md$`,
       "i",
@@ -570,20 +675,25 @@ function resolveSection(
     if (mainFile) {
       const mainContent = readFileSafe(path.join(chapterDir, mainFile));
       if (mainContent) {
-        // Slice from start to the first page-break marker (intro = page 1)
         const pbIndex = mainContent.search(PAGE_BREAK_REGEX);
         let introContent =
           pbIndex !== -1
             ? mainContent.substring(0, pbIndex).trim()
             : mainContent;
-        // Strip leading H1 lines (the two-line chapter heading: "# Chapter N:" / "# Real Title")
+        let strippedFirstH1 = false;
         introContent = introContent
           .split("\n")
-          .filter((line) => !/^#\s+/.test(line))
+          .filter((line) => {
+            if (!strippedFirstH1 && /^#\s+/.test(line)) {
+              strippedFirstH1 = true;
+              return false;
+            }
+            return true;
+          })
           .join("\n")
           .trim();
         if (introContent.length > 0) {
-          return {
+          result = {
             sourceFile: mainFile,
             sourceType: "dated-fallback",
             content: introContent,
@@ -594,11 +704,28 @@ function resolveSection(
   }
 
   // 4. Placeholder
-  return {
-    sourceFile: null,
-    sourceType: "placeholder",
-    content: PLACEHOLDER_MD,
-  };
+  if (!result) {
+    return {
+      sourceFile: null,
+      sourceType: "placeholder",
+      content: PLACEHOLDER_MD,
+    };
+  }
+
+  // Post-resolution: strip intro from core-concepts (ALL source types — stable + dated)
+  if (sectionDef.slug === "core-concepts") {
+    const pbIndex = result.content.search(PAGE_BREAK_REGEX);
+    if (pbIndex !== -1) {
+      // Remove ONLY the first page break marker, preserve all subsequent breaks
+      const match = PAGE_BREAK_REGEX.exec(result.content.substring(pbIndex));
+      const skipLen = match ? match[0].length : 0;
+      result.content = result.content.substring(pbIndex + skipLen).trim();
+      // Reset regex lastIndex
+      PAGE_BREAK_REGEX.lastIndex = 0;
+    }
+  }
+
+  return result;
 }
 
 /**

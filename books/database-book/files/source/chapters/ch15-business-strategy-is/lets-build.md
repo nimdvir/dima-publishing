@@ -7,7 +7,7 @@
 
 ---
 
-## Overview
+# Overview
 
 This companion file focuses on **applying** the SQL and BI concepts from Chapters 5, 8, and 12 to answer **strategic questions** about student learning, assessment quality, and intervention opportunities. You will use the Grading Database schema (introduced in Chapter 4's lets-build file) to explore performance trends, identify at-risk students, evaluate assessment quality, and simulate policy decisions.
 
@@ -15,7 +15,7 @@ All queries are written in **SQLite** (the primary platform for this course). No
 
 ---
 
-## The Grading Database Schema Review
+# The Grading Database Schema Review
 
 **STUDENT table:**
 - StudentID (Primary Key)
@@ -38,21 +38,21 @@ Sample data: 3 students (Maria Santos, James Chen, Aisha Rahman) with grades acr
 
 ---
 
-## Exercise 1: Trend Analysis – Running Averages and Performance Trajectory
+# Exercise 1: Trend Analysis – Running Averages and Performance Trajectory
 
 **Strategic Question:** *Is each student improving, and who needs intervention?*
 
 A single final grade tells you the outcome; a trend reveals the trajectory. This exercise uses **window functions** (Chapter 8) to compute running averages, showing improvement or decline over time.
 
-### Problem Statement
+## Problem Statement
 
 Compute each student's score on each deliverable along with their **running average** (cumulative average of all scores up to and including that deliverable). Identify students whose running average is declining or below 70%.
 
-### Recommended SQL Approach
+## Recommended SQL Approach
 
 Use the window function `AVG() OVER (PARTITION BY ... ORDER BY ... ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)` to compute a cumulative average as each deliverable is completed.
 
-### SQLite Query
+## SQLite Query
 
 ```sql
 -- Chapter 15, Exercise 1: Trend Analysis
@@ -94,7 +94,7 @@ JOIN DELIVERABLE d ON sg.DeliverableID = d.DeliverableID
 ORDER BY s.StudentID, d.DeliverableID;
 ```
 
-### Expected Output (Sample)
+## Expected Output (Sample)
 
 | StudentID | StudentName | DeliverableNumber | Type | Topic | IndividualScore | RunningAverage | TrendChange |
 |---|---|---|---|---|---|---|---|
@@ -105,12 +105,12 @@ ORDER BY s.StudentID, d.DeliverableID;
 | 2 | James Chen | 2 | Quiz | Aggregation | 72 | 75.00 | -3.00 |
 | 2 | James Chen | 3 | Exam | Comprehensive | 70 | 73.33 | -1.67 |
 
-### Strategic Interpretation
+## Strategic Interpretation
 
 * **Maria Santos:** Dipped on Quiz 2 but recovered on the exam. Overall trend is positive despite mid-course wobble. Status: **Monitor, no intervention needed yet.**
 * **James Chen:** Consistent decline. Running average dropped below 75% after Quiz 2 and is below 74% at exam. Status: **At risk. Early intervention (tutoring, office hours) could have helped. For future students with this pattern, intervene after Quiz 2.**
 
-### Extension: Identify At-Risk Students
+## Extension: Identify At-Risk Students
 
 ```sql
 -- Identify students currently below 70% running average
@@ -123,7 +123,7 @@ WHERE RunningAverage < 70.0
 ORDER BY StudentID;
 ```
 
-### MS Access Alternative
+## MS Access Alternative
 
 MS Access does not support window functions with ROWS frames. Instead, use a self-join to compute running averages:
 
@@ -149,21 +149,21 @@ ORDER BY s.StudentID, d.DeliverableID;
 
 ---
 
-## Exercise 2: Assessment Quality – Identifying Discriminating Assignments
+# Exercise 2: Assessment Quality – Identifying Discriminating Assignments
 
 **Strategic Question:** *Which assignments effectively differentiate high from low performers?*
 
 Assessment quality requires assignments that spread scores -- separating high performers from low performers. This exercise uses **percentile functions and range analysis** to identify which deliverables are most discriminating.
 
-### Problem Statement
+## Problem Statement
 
 For each deliverable, compute: median score, first quartile (Q1), third quartile (Q3), range (max - min), and inter-quartile range (Q3 - Q1). Identify assignments with large ranges (high discrimination) and small ranges (poor discrimination).
 
-### Recommended SQL Approach
+## Recommended SQL Approach
 
 Use percentile aggregates or `PERCENTILE_CONT` (if available) to compute quartiles. Group by deliverable.
 
-### SQLite Query
+## SQLite Query
 
 ```sql
 -- Chapter 15, Exercise 2: Assessment Discrimination Quality
@@ -190,7 +190,7 @@ GROUP BY d.DeliverableID, d.Type, d.DeliverableNumber, d.Topic
 ORDER BY Range DESC;
 ```
 
-### Expected Output (Sample)
+## Expected Output (Sample)
 
 | DeliverableID | Type | DeliverableNumber | Topic | StudentCount | MeanScore | MinScore | MaxScore | Range | DiscriminationLevel |
 |---|---|---|---|---|---|---|---|---|---|
@@ -198,12 +198,12 @@ ORDER BY Range DESC;
 | 1 | Quiz | 1 | SQL Joins | 3 | 83.33 | 78 | 92 | 14 | Moderate discrimination |
 | 2 | Quiz | 2 | Aggregation | 3 | 75.67 | 72 | 85 | 13 | Moderate discrimination |
 
-### Strategic Interpretation
+## Strategic Interpretation
 
 * **Exam (Deliverable 3):** Range of 20 points shows this exam effectively differentiates high from low performers. This is a **good assessment tool** that should continue.
 * **Quiz 1 & 2:** Ranges of 13-14 suggest these quizzes are moderately effective. Scores cluster somewhat, suggesting either the material is well-learned or assignments are too easy. Consider increasing difficulty or requiring deeper analysis.
 
-### Curriculum Design Implication
+## Curriculum Design Implication
 
 If all assignments show low discrimination, students are all performing similarly. This might mean:
 - The course is well-calibrated (everyone is learning)
@@ -215,21 +215,21 @@ The Exam's high discrimination combined with moderate quiz discrimination sugges
 
 ---
 
-## Exercise 3: Early Warning Indicator – Identifying Intervention Opportunities
+# Exercise 3: Early Warning Indicator – Identifying Intervention Opportunities
 
 **Strategic Question:** *Which students show early signs of struggle, enabling proactive intervention?*
 
 This exercise applies **conditional aggregation and thresholds** to flag students who might benefit from tutoring, office hours, or academic advising before they fail.
 
-### Problem Statement
+## Problem Statement
 
 Identify students whose **first quiz score is below 75%**. These students are at higher statistical risk of poor outcomes and should be flagged for proactive advising or tutoring in the second half of the semester.
 
-### Recommended SQL Approach
+## Recommended SQL Approach
 
 Use a subquery or CTE to isolate first quiz scores, then filter for the at-risk threshold.
 
-### SQLite Query
+## SQLite Query
 
 ```sql
 -- Chapter 15, Exercise 3: Early Warning Indicator
@@ -263,7 +263,7 @@ FROM FirstQuizOnly
 ORDER BY FirstQuizScore ASC;
 ```
 
-### Expected Output (Sample)
+## Expected Output (Sample)
 
 | StudentID | StudentName | FirstQuizScore | InterventionLevel | RecommendedAction |
 |---|---|---|---|---|
@@ -271,11 +271,11 @@ ORDER BY FirstQuizScore ASC;
 | 1 | Maria Santos | 92 | On track | Contact advisor within 1 week |
 | 3 | Aisha Rahman | 88 | On track | Contact advisor within 1 week |
 
-### Strategic Interpretation
+## Strategic Interpretation
 
 In this sample data, all students are on track. But in a real semester, students scoring below 75 on the first quiz should be contacted early. Research shows that quiz performance in the first 3-4 weeks is one of the strongest predictors of final grade (Marbouti et al., 2016). Early intervention at this stage is cost-effective and high-impact.
 
-### Operational Implications
+## Operational Implications
 
 Create a **standing query** that runs automatically after each quiz and flags at-risk students. Academic advisors or instructors can then reach out proactively with:
 - Tutoring or study group recommendations
@@ -286,21 +286,21 @@ This transforms the database from a **record-keeping tool** (what happened) into
 
 ---
 
-## Exercise 4: Scenario Testing – Impact of Policy Decisions
+# Exercise 4: Scenario Testing – Impact of Policy Decisions
 
 **Strategic Question:** *What if we drop the lowest quiz score? How would grades change?*
 
 Strategic decisions often involve policies that affect outcomes. This exercise uses **CTEs and conditional logic** to test "what-if" scenarios before implementing them institution-wide.
 
-### Problem Statement
+## Problem Statement
 
 Many instructors drop the lowest quiz score to reduce test anxiety and reward improvement. Compute each student's quiz average **with and without dropping the lowest score**. Evaluate whether this policy is fair (does it disproportionately benefit or hurt any group?) and whether it achieves its goal (improving the average significantly).
 
-### Recommended SQL Approach
+## Recommended SQL Approach
 
 Use a CTE to rank quiz scores from lowest to highest per student, then compute averages excluding the lowest-ranked quiz.
 
-### SQLite Query
+## SQLite Query
 
 ```sql
 -- Chapter 15, Exercise 4: Scenario Testing – Drop Lowest Quiz
@@ -352,7 +352,7 @@ LEFT JOIN QuizzesWithoutLowest qwl
 ORDER BY PointsGained DESC;
 ```
 
-### Expected Output (Sample)
+## Expected Output (Sample)
 
 | StudentID | StudentName | AllQuizzesAverage | AverageWithoutLowest | PointsGained |
 |---|---|---|---|---|
@@ -360,7 +360,7 @@ ORDER BY PointsGained DESC;
 | 1 | Maria Santos | 88.50 | 89.50 | 1.00 |
 | 3 | Aisha Rahman | 86.00 | 87.50 | 1.50 |
 
-### Strategic Interpretation
+## Strategic Interpretation
 
 * **Maria Santos:** Gains 1 point. Her low quiz was 85; dropping it helps slightly.
 * **James Chen:** Gains 0 points. His quizzes are closely bunched (78, 72), so dropping the 72 still leaves a 78 average. His problem is not a single bad quiz; it is consistent struggle.
@@ -375,7 +375,7 @@ The "drop lowest quiz" policy:
 
 **Alternative Policy:** Instead of dropping, weight later quizzes more heavily or provide unlimited retakes of earlier quizzes. This would better incentivize improvement than a one-time drop.
 
-### MS Access Alternative
+## MS Access Alternative
 
 MS Access does not support window function ranking. Use a more complex CTE based on self-joins:
 
@@ -386,21 +386,21 @@ MS Access does not support window function ranking. Use a more complex CTE based
 
 ---
 
-## Exercise 5: Comparative Analysis – Cross-Section Consistency
+# Exercise 5: Comparative Analysis – Cross-Section Consistency
 
 **Strategic Question:** *Do students in different course sections receive equivalent instruction and assessment?*
 
 Strategic quality assurance requires consistency. This exercise uses **aggregation and comparative grouping** to evaluate whether students have equal opportunity across instructors or sections.
 
-### Problem Statement
+## Problem Statement
 
 Group students by course section (if that data exists in your DELIVERABLE table). For each section, compute average scores on each deliverable. Identify sections where average performance is consistently higher or lower, which might indicate instructor/curriculum differences.
 
-### Variant (Using Available Data):
+## Variant (Using Available Data):
 
 If your database lacks section data, compute averages **by deliverable type** (Quiz vs. Exam). Compare average performance to identify whether students do significantly better on one type than another, which might guide curriculum design.
 
-### SQLite Query – By Deliverable Type
+## SQLite Query – By Deliverable Type
 
 ```sql
 -- Chapter 15, Exercise 5: Comparative Analysis by Assessment Type
@@ -428,14 +428,14 @@ GROUP BY d.Type
 ORDER BY AverageScore DESC;
 ```
 
-### Expected Output (Sample)
+## Expected Output (Sample)
 
 | AssessmentType | StudentCount | TotalScores | AverageScore | MinScore | MaxScore | PercentA | PercentB | PercentBelowB |
 |---|---|---|---|---|---|---|---|---|
 | Quiz | 3 | 6 | 79.33 | 72 | 92 | 16.67 | 50.00 | 33.33 |
 | Exam | 3 | 3 | 80.67 | 70 | 90 | 33.33 | 33.33 | 33.33 |
 
-### Strategic Interpretation
+## Strategic Interpretation
 
 * **Quiz average (79.33) vs. Exam average (80.67):** Quiz average is slightly lower, which is common because quizzes have tighter timing constraints. The difference is not dramatic, suggesting course design is consistent.
 
@@ -445,7 +445,7 @@ ORDER BY AverageScore DESC;
 
 ---
 
-## Challenge Continuation: Your Own Strategic Question
+# Challenge Continuation: Your Own Strategic Question
 
 These five exercises cover key frameworks introduced in Chapter 15:
 - **Exercise 1:** Trend analysis (velocity and feedback loops)
@@ -454,7 +454,7 @@ These five exercises cover key frameworks introduced in Chapter 15:
 - **Exercise 4:** Scenario testing (policy evaluation before implementation)
 - **Exercise 5:** Comparative analysis (learning consistency across contexts)
 
-### In Your Own Grading Database:
+## In Your Own Grading Database:
 
 1. **Extend Exercise 1:** Compute the angle or slope of improvement. Which students are improving fastest? Are they maintaining that improvement?
 
@@ -468,7 +468,7 @@ These five exercises cover key frameworks introduced in Chapter 15:
 
 ---
 
-## Connecting to Chapter 15 Concepts
+# Connecting to Chapter 15 Concepts
 
 Each exercise demonstrates how **advanced SQL translates strategic questions into actionable insight**:
 
@@ -484,9 +484,9 @@ The progression reflects strategic maturity: moving from **understanding** (what
 
 ---
 
-## Technical Notes
+# Technical Notes
 
-### SQLite Implementation
+## SQLite Implementation
 
 All queries are written for **SQLite 3.8+**. Key features used:
 - Window functions with OVER, PARTITION BY, ORDER BY (available in SQLite 3.25+)
@@ -494,7 +494,7 @@ All queries are written for **SQLite 3.8+**. Key features used:
 - String concatenation with ||
 - ROUND() for numeric precision
 
-### MS Access Limitations
+## MS Access Limitations
 
 MS Access lacks window functions. For complex analytics, use:
 1. **Subqueries** in SELECT (slower but functional)
@@ -502,7 +502,7 @@ MS Access lacks window functions. For complex analytics, use:
 3. **VBA functions** for row-by-row calculation (advanced)
 4. **Export to Excel** for scenario modeling using spreadsheet functions
 
-### Performance Considerations
+## Performance Considerations
 
 As your Grading Database grows beyond 10,000 grades:
 - **Index StudentID and DeliverableID** in STUDENT_GRADE for faster joins
@@ -512,7 +512,7 @@ As your Grading Database grows beyond 10,000 grades:
 
 ---
 
-## References & Further Reading
+# References & Further Reading
 
 Marbouti, F., Diefes-Dux, H. A., & Madhavan, K. (2016). Models for early prediction of at-risk students in a course using standards-based grading. *Computers & Education*, 103, 1-13.
 

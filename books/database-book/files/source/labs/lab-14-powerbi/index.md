@@ -1,31 +1,43 @@
-<!-- metadata: date="2026-05-22"; lab="14"; type="questions"; title="Lab 14: Power BI"; description="Migrated draft for the Power BI lab based on the centralized chapter 14 section lab."; author="Nimrod Dvir" -->
+﻿---
+title: "Lab 14: Power BI"
+chapter: 14
+section: "Lab Questions"
+description: "Migrated draft for the Power BI lab based on the centralized chapter 14 section lab."
+keywords:
+  - lab 14
+  - PetVax
+  - Power BI
+  - dashboards
+  - visualization
+date: 2026-05-22
+author: "Nimrod Dvir"
+---
+
 # Lab 14: Power BI
 
 ![Lab banner](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/lab_jpifze?_a=BAMAAAiu0)
 
 *Converted draft migrated from the centralized section-based lab sequence.*
 
-## Overview
+# Overview
 
 This file preserves the current section-based lab handout inside the new numbered lab structure. It is a migration draft so the material is now organized by lab folder while the older section hub remains available as reference.
 
-## Source Links
+# Source Links
 
 - [Centralized section lab](../../../Labs/sections/part-03-building-and-managing-systems/ch14-powerbi/lab.md)
-- [Centralized answer outline](../../../Labs/sections/part-03-building-and-managing-systems/ch14-powerbi/answer-sheet-outline.md)
-- [Answer key draft](./lab-14-answers-2026-05-22.md)
 
-## Migration Notes
+# Migration Notes
 
 - Source chapter lab: ch14-powerbi
 - Migration date: 2026-05-22
 - Status: content moved into the numbered lab sequence; a later pass can rebuild this into the full SAM-style format if needed.
 
-## Migrated Section Draft
+# Migrated Section Draft
 
 <!-- Companion: Lab assignment — 2026-05-06 -->
 
-### Lab Overview
+## Lab Overview
 
 **Lab Title:** Grading Dashboard in Power BI  
 **Chapter:** 14 — Power BI: Data Visualization and Business Reporting  
@@ -34,7 +46,7 @@ This file preserves the current section-based lab handout inside the new numbere
 
 ---
 
-### Learning Objectives
+## Learning Objectives
 
 By completing this lab, you will:
 
@@ -46,7 +58,7 @@ By completing this lab, you will:
 
 ---
 
-### Lab Data
+## Lab Data
 
 Use the provided **GRADECENTER Excel export** (`gradecenter-export.xlsx`) available on the course LMS, or connect directly to the SQLite/SQL Server GRADECENTER database if available.
 
@@ -54,7 +66,7 @@ Tables to use: `Students`, `Courses`, `Enrollments`, `Grades`
 
 ---
 
-### Part 1: Connect and Prepare (15 min)
+## Part 1: Connect and Prepare (15 min)
 
 1. Open Power BI Desktop. Click **Get Data → Excel** and load `gradecenter-export.xlsx`.
 2. Open **Power Query Editor**:
@@ -67,7 +79,7 @@ Tables to use: `Students`, `Courses`, `Enrollments`, `Grades`
 
 ---
 
-### Part 2: Create Measures (15 min)
+## Part 2: Create Measures (15 min)
 
 In the `Grades` table, create the following DAX measures:
 
@@ -86,7 +98,7 @@ DIVIDE(
 
 ---
 
-### Part 3: Report Page 1 — Course Overview (20 min)
+## Part 3: Report Page 1 — Course Overview (20 min)
 
 Build a report page titled **"Course Overview"**:
 
@@ -103,7 +115,7 @@ Format the page with a dark or professional theme. Add a text box title at the t
 
 ---
 
-### Part 4: Report Page 2 — Student Detail (15 min)
+## Part 4: Report Page 2 — Student Detail (15 min)
 
 Build a second report page titled **"Student Detail"**:
 
@@ -115,7 +127,7 @@ Build a second report page titled **"Student Detail"**:
 
 ---
 
-### Part 5: Publish (Optional — 5 min)
+## Part 5: Publish (Optional — 5 min)
 
 1. Save your file as `ch14-lab-yourname.pbix`.
 2. If you have a Microsoft account: **Publish → My Workspace**.
@@ -123,7 +135,7 @@ Build a second report page titled **"Student Detail"**:
 
 ---
 
-### Deliverables
+## Deliverables
 
 Submit the following via the course LMS:
 
@@ -135,7 +147,7 @@ Submit the following via the course LMS:
 
 ---
 
-### Grading Rubric
+## Grading Rubric
 
 | Criteria | Points |
 |---|---|
@@ -148,7 +160,7 @@ Submit the following via the course LMS:
 
 ---
 
-### Reflection Prompt (written response, 2–3 sentences)
+## Reflection Prompt (written response, 2–3 sentences)
 
 After building this dashboard, describe one business decision a school administrator could make using it. What data would drive that decision?
 

@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "generate": "tsx scripts/generateBookData.ts",
+    "validate:content": "tsx scripts/validateContent.ts",
     "dev": "npm run generate && vite --host=0.0.0.0 --port=3000",
     "build": "npm run generate && vite build",
     "preview": "vite preview --host=0.0.0.0 --port=3000",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
     "lucide-react": "^1.17.0",
     "motion": "^12.40.0",
     "react": "^18.3.1",

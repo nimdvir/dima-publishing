@@ -1,18 +1,20 @@
 ---
 name: image-link-optimizer
 description: >
-  Stage 3 of the BITM330 image pipeline. Light, fast, MCP-driven optimizer for one chapter at a
-  time. Scans the chapter main file for Markdown images, HTML `<img>` tags, and bare quoted
-  absolute Windows paths; uses `.images/book-media.md` as cache and ledger; optimizes only misses
-  with ImageMagick; saves used optimized files in `.images/{chapter-image-folder}/chNN-used/`;
-  uploads via the Cloudinary asset-management MCP; uses Cloudinary analysis for weak-source
-  captions, alt text, and slug seeds; rewrites chapter links in place with idempotent captions.
+   Stage 3 of the BITM330 image pipeline. Light, fast, MCP-driven optimizer for one chapter at a
+   time. Scans the chapter main file for Markdown images, HTML `<img>` tags, and bare quoted
+   absolute Windows paths; uses `.images/book-media.md` as cache and ledger; optimizes only misses
+   with ImageMagick; saves used optimized files in `.images/{chapter-image-folder}/chNN-used/`;
+   uploads via the Cloudinary asset-management MCP; uses Cloudinary analysis for weak-source
+   captions, alt text, and slug seeds; rewrites chapter links in place with idempotent captions.
+   Use after `image-placement`; for prompt specifications use `image-prompt`, and for hidden
+   visual planning comments use `figure-suggestion`.
 argument-hint: Chapter number, chapter folder, or main file path (e.g., "ch01" or "…/ch01-main-2026-05-26.md").
 ---
 
 # Image Link Optimizer
 
-**Pipeline stage 3 of 3:** `figure-suggestion` → `image-placement` → `image-link-optimizer`.
+**Pipeline stage 3 of 3:** `figure-suggestion` or `image-prompt` → `image-placement` → `image-link-optimizer`.
 
 Take the local figures placed by stage 2 and finish them for delivery: optimize, upload to Cloudinary, and rewrite the chapter links to optimized URLs. Chapter **main** file only — companion files are not touched unless the user names them.
 
@@ -23,10 +25,12 @@ This skill **does**:
 - optimize image files with ImageMagick into `chNN-used/`;
 - upload via the Cloudinary asset-management MCP;
 - rewrite chapter image links to comma-style Cloudinary URLs in place;
-- own and maintain `.images/book-media.md` (the media ledger) — **this is the only skill that writes it**.- own and maintain `.images/master-image-index.csv` — regenerated after every ledger write.
+- own and maintain `.images/book-media.md` (the media ledger) — **this is the only skill that writes it**;
+- own and maintain `.images/master-image-index.csv` — regenerated after every ledger write.
+
 This skill **does NOT**:
 
-- invent figure ideas → `figure-suggestion`;
+- invent figure ideas or prompt specs → `figure-suggestion` or `image-prompt`;
 - place local figures, generate figures, or maintain the figures index → `image-placement`;
 - edit prose, callouts, iframes, or non-image media.
 
@@ -54,7 +58,15 @@ Capture each reference with line number, alt, width, nearest following italic ca
 2. **HTML:** `<img src="path-or-url" ...>` (also capture `width` and `alt`)
 3. **Bare quoted absolute Windows path on its own line:** `^"[A-Za-z]:\\.+\.(png|jpe?g|gif|webp)"\s*$`
 
-Skip references inside fenced code blocks and HTML comments. Skip `<iframe>` and non-image media (`.mp4 .webm .mov .mp3 .wav .pdf`).
+Skip references inside fenced code blocks, HTML comments, and visible `image-prompt`
+prompt blocks (`🎨 **Image Generation Prompt**`, `🎨 **Mermaid → Static Image Prompt**`).
+`image-prompt` blocks are planning artifacts and must be resolved by `image-placement`
+before optimization. Skip `<iframe>` and non-image media (`.mp4 .webm .mov .mp3 .wav .pdf`).
+
+If a Markdown image placement is immediately followed by an `image-prompt` block and the
+referenced local file does not exist yet, treat it as a pending prompt placeholder:
+skip upload/rewrite, flag `pending-image-prompt`, and direct the user to run
+`image-placement` first. If the referenced file does exist, process it normally.
 
 If a resolved local path lies **outside the workspace root**, skip it and log `out-of-workspace-source`; do not copy, optimize, or upload it.
 

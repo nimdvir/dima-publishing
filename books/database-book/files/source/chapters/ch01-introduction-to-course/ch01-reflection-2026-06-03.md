@@ -65,12 +65,13 @@ author: "Nimrod Dvir"
 **6. Which tool in the chapter's ecosystem are you most curious to learn, and which one are you most nervous about? What is one small step you could take this week to reduce the nervousness?**
 **7. The chapter frames this book as preparation for the moment when an employer asks you to "pull data, write a query, read a report, or question a number." What would help you feel ready for that moment by the end of the semester?**
 
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: State the book's central learning arc in order, and briefly describe what happens at each stage.**
 
@@ -104,7 +105,7 @@ Suggested Answer: Part 1 (Foundations, Ch 1-3) orients students to information s
 
 Suggested Answer: The chapters and assessments span Bloom's Taxonomy from Remember through Create. Reading quizzes (RATs) often target Remember and Understand, while reflections and labs push toward Analyze, Evaluate, and Create. An Apply activity is writing a SQL query against the Grading Database. An Evaluate or Create activity is comparing two possible database designs for PetVax and justifying which one better supports a business question, or designing a new dashboard or schema for a given scenario.
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: The chapter argues that "data becomes business performance." Choose one business setting (for example, a coffee shop, hospital, or online retailer) and explain how a weak database design could quietly hurt performance there.**
 
@@ -138,7 +139,7 @@ Suggested Answer: Many students find Data Integrity and System Quality hardest b
 
 Suggested Answer: Treating an error as a clue moves the student from "I cannot do this" to "what is the system telling me?" The next step is to read the error message, check the structure (column names, data types, keys, joins), and test a smaller version of the query or import. This habit builds Resilient Problem Solving, part of the Student Mindset the chapter presents as essential for technical business learning.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: When you read the three student concerns at the start of the chapter ("I understand the terms, but not how they connect," etc.), which one feels closest to your own experience with technical material, and why?**
 

@@ -66,7 +66,7 @@ By the end of this chapter, you will be able to evaluate how information systems
 
 ---
 
-## Learning Objectives
+# Learning Objectives
 
 By the end of this chapter, you will be able to:
 
@@ -82,7 +82,7 @@ By the end of this chapter, you will be able to:
 
 ## 14.1 Why Strategy Matters to IS Professionals
 
-### 14.1.1 The Strategic Imperative
+## 14.1.1 The Strategic Imperative
 
 Consider two organizations. Both operate in the same industry. Both have modern database systems, skilled SQL developers, and business intelligence dashboards. Yet one consistently outperforms the other — growing faster, retaining more customers, and making better decisions under pressure. What separates them?
 
@@ -95,7 +95,7 @@ This chapter introduces the strategic frameworks that connect your technical kno
 [[Figure 14.2 — Prompt: A two-column comparison diagram. Left column header: "Technically Correct" with bullet items: "Tables are normalized," "Queries return accurate results," "Backups run on schedule," "Dashboards display real-time data." Right column header: "Strategically Valuable" with the same items plus arrows connecting each to a business outcome: "Reduces operational cost," "Enables faster decisions," "Protects organizational memory," "Monitors competitive KPIs." Professional textbook style with muted blue/gray palette.]]
 [[Caption: Figure 14.2 — Technical correctness is necessary but not sufficient. Strategic value emerges when technical capabilities are connected to business outcomes.]]
 
-### 14.1.2 Claiming the Wisdom Layer
+## 14.1.2 Claiming the Wisdom Layer
 
 Chapter 3 introduced the DIKW hierarchy — the progression from raw **Data** to structured **Information** to interpreted **Knowledge** to actionable **Wisdom**. Every chapter since then has built one of those layers:
 
@@ -112,7 +112,7 @@ Wisdom requires **strategic frameworks** — structured ways of thinking about c
 [[Figure 14.3 — Prompt: DIKW pyramid diagram with four horizontal layers. Bottom layer "Data" is labeled "Ch03-04: Raw facts in tables." Second layer "Information" is labeled "Ch05-08: SQL queries and organized outputs." Third layer "Knowledge" is labeled "Ch10-13: Design, administration, BI, analytics." Top layer "Wisdom" is highlighted with a distinct color and labeled "Ch14: Strategic decision-making." An arrow along the right side reads "Each layer depends on the one below it." Clean academic infographic style.]]
 [[Caption: Figure 14.3 — Chapter 14 occupies the Wisdom layer of the DIKW hierarchy, where strategic frameworks determine which knowledge to act on and how.]]
 
-### 14.1.3 The R.E.A.D. Framework as a Strategy Tool
+## 14.1.3 The R.E.A.D. Framework as a Strategy Tool
 
 Chapter 1 introduced the R.E.A.D. framework as a way of thinking about how we interact with data. At that point, it was a learning model. Now, thirteen chapters later, it can be reread as a **strategy model** — a description of how organizations use information systems to compete:
 
@@ -131,7 +131,7 @@ Chapter 1 introduced the R.E.A.D. framework as a way of thinking about how we in
 
 ## 14.2 Business Strategy Fundamentals
 
-### 14.2.1 What Is Business Strategy?
+## 14.2.1 What Is Business Strategy?
 
 A **business strategy** is a plan for achieving sustainable competitive advantage. It answers three fundamental questions: *Where do we compete? How do we compete? How do we win?*
 
@@ -145,14 +145,14 @@ Information systems play a role at all three levels. Databases process daily tra
 
 An important point often overlooked in technical courses is that **every organization** needs a strategy — not just large corporations. A university department deciding which programs to invest in, a small veterinary clinic choosing how to manage patient records, and a nonprofit determining how to track donor engagement are all making strategic decisions. When those decisions are informed by well-designed information systems, they tend to be better.
 
-### 14.2.2 Porter's Five Forces Model
+## 14.2.2 Porter's Five Forces Model
 
 One of the most influential frameworks for understanding competitive strategy was developed by Michael Porter of Harvard Business School. **Porter's Five Forces** model identifies five structural pressures that determine the profitability and competitive intensity of any industry. Understanding these forces helps organizations see where information systems can strengthen — or transform — their competitive position.
 
 [[Figure 14.5 — Prompt: Classic Porter's Five Forces diagram with five labeled boxes arranged in a diamond-plus-center pattern. Center box: "Competitive Rivalry." Top: "Threat of New Entrants." Bottom: "Threat of Substitutes." Left: "Bargaining Power of Suppliers." Right: "Bargaining Power of Buyers." Each box includes a one-line IS-related sub-label, e.g., "Barriers via proprietary data," "CRM and customer analytics," etc. Clean, professional business textbook style with arrows indicating pressure direction.]]
 [[Caption: Figure 14.5 — Porter's Five Forces model. Each competitive force can be influenced by strategic use of information systems.]]
 
-#### Threat of New Entrants
+### Threat of New Entrants
 
 New competitors entering a market erode profitability and increase pressure on existing players. Information systems can create **barriers to entry** that make it harder for newcomers to compete:
 
@@ -162,7 +162,7 @@ New competitors entering a market erode profitability and increase pressure on e
 
 Consider a university with a well-designed student information system that tracks performance across multiple semesters, correlates advising interventions with retention outcomes, and feeds predictive models for enrollment planning. A competing institution starting fresh would need years of data collection before its systems could produce comparable insights.
 
-#### Bargaining Power of Suppliers
+### Bargaining Power of Suppliers
 
 Suppliers gain power when an organization depends on them and has few alternatives. Information systems reduce supplier power through:
 
@@ -170,7 +170,7 @@ Suppliers gain power when an organization depends on them and has few alternativ
 - **Automated procurement**: database-driven ordering systems that can quickly shift to alternative suppliers when conditions change.
 - **Transparency**: shared data platforms that make supplier performance visible and comparable.
 
-#### Bargaining Power of Buyers
+### Bargaining Power of Buyers
 
 Buyers (customers) gain power when they have choices and information. Organizations can manage buyer power through:
 
@@ -178,7 +178,7 @@ Buyers (customers) gain power when they have choices and information. Organizati
 - **Customer analytics** that identify at-risk segments before they defect.
 - **Self-service portals** powered by databases that give customers value while deepening their engagement with the organization's ecosystem.
 
-#### Threat of Substitutes
+### Threat of Substitutes
 
 Substitute products or services threaten an industry by offering an alternative way to meet the same need. Information systems combat substitution through:
 
@@ -186,7 +186,7 @@ Substitute products or services threaten an industry by offering an alternative 
 - **Digital transformation**: converting products into services, or services into platforms, in ways that create new value propositions.
 - **Rapid adaptation**: agile systems (designed using SDLC principles from Ch10) that evolve as markets shift.
 
-#### Competitive Rivalry
+### Competitive Rivalry
 
 The intensity of competition among existing players is often the most visible of the five forces. IS contributes to competitive positioning through:
 
@@ -196,14 +196,14 @@ The intensity of competition among existing players is often the most visible of
 
 > **Connection to Ch02**: The five components of an information system — people, hardware, software, data, and procedures — form the infrastructure that an organization deploys to respond to each competitive force. Porter's Five Forces is a lens for evaluating *where* that infrastructure matters most.
 
-### 14.2.3 Porter's Generic Strategies
+## 14.2.3 Porter's Generic Strategies
 
 Having analyzed the competitive landscape, an organization must choose *how* to compete. Porter identified three **generic strategies** — broad approaches to achieving competitive advantage. Each strategy creates a distinct role for information systems.
 
 [[Figure 14.6 — Prompt: A 2x2 matrix diagram. The vertical axis is labeled "Competitive Scope" with "Broad" at top and "Narrow" at bottom. The horizontal axis is labeled "Source of Advantage" with "Lower Cost" at left and "Differentiation" at right. The top-left cell is labeled "Cost Leadership," the top-right cell "Differentiation," and the bottom row spans both columns labeled "Focus (Cost or Differentiation)." Each cell contains a one-line IS example. Professional textbook style with clean lines.]]
 [[Caption: Figure 14.6 — Porter's three generic strategies. Each strategy implies a different role for information systems: efficiency, uniqueness, or specialization.]]
 
-#### Cost Leadership
+### Cost Leadership
 
 A cost leadership strategy aims to become the **lowest-cost** producer or provider in an industry. The goal is not to compete on quality or features but on price — delivering adequate value at a lower cost than competitors.
 
@@ -215,7 +215,7 @@ Information systems support cost leadership through:
 
 **Example**: A large retail chain uses a database-driven inventory system to track stock levels across thousands of locations in real time. Automated reorder triggers minimize overstocking and stockouts. The system's efficiency translates directly into lower operating costs — a competitive advantage rooted in IS design.
 
-#### Differentiation
+### Differentiation
 
 A differentiation strategy aims to offer something **unique** — a product, service, or experience that customers value enough to pay a premium for. The competitive advantage lies not in being cheapest but in being distinctive.
 
@@ -227,7 +227,7 @@ Information systems support differentiation through:
 
 **Example**: A university uses its student performance database to build a personalized advising system. By analyzing the correlation between specific course sequences and graduation outcomes (using SQL JOINs and GROUP BY queries from Ch08), advisors can make data-informed recommendations that no competitor institution can match without years of comparable data.
 
-#### Focus (Niche) Strategy
+### Focus (Niche) Strategy
 
 A focus strategy targets a **narrow segment** of the market and serves it exceptionally well. The organization does not try to be all things to all customers — it aims to be the best choice for a specific group.
 
@@ -243,7 +243,7 @@ Information systems support focus strategies through:
 
 ## 14.3 The Value Chain and Information Systems
 
-### 14.3.1 Porter's Value Chain Model
+## 14.3.1 Porter's Value Chain Model
 
 While the Five Forces model examines the competitive *environment*, Porter's **Value Chain** examines what happens *inside* the organization. The value chain is a model that breaks down an organization's activities into a sequence of steps, each of which adds value to the final product or service delivered to the customer.
 
@@ -269,7 +269,7 @@ The value chain distinguishes between two types of activities:
 
 The strategic insight of the value chain is that **competitive advantage comes from performing one or more of these activities better, cheaper, or differently than competitors**. Information systems are embedded in every link of the chain, and the quality of those systems directly affects the value the organization can deliver.
 
-### 14.3.2 Where IS Creates Value
+## 14.3.2 Where IS Creates Value
 
 The table below maps each value chain activity to the information systems capabilities that support it and to the specific course concepts that build those capabilities. This is where the full scope of what you have learned this semester becomes visible as a coherent system rather than a collection of isolated topics.
 
@@ -287,7 +287,7 @@ The table below maps each value chain activity to the information systems capabi
 
 Notice that no single chapter covers only one activity, and no activity relies on only one chapter's concepts. This cross-cutting relationship is precisely why strategic thinking matters: an organization's IS investments must be evaluated not in isolation but in terms of how they strengthen the overall value chain.
 
-### 14.3.3 Value Creation Through Data Quality
+## 14.3.3 Value Creation Through Data Quality
 
 There is a dimension of value creation that cuts across every cell in the table above: **data quality**. Poor data does not merely produce incorrect reports — it produces incorrect decisions, which compound over time into lost revenue, wasted resources, and eroded trust.
 
@@ -309,7 +309,7 @@ This is why normalization (Ch07), constraints (Ch13), referential integrity (Ch0
 
 ## 14.4 Competitive Advantage Through Information Systems
 
-### 14.4.1 What Is Competitive Advantage?
+## 14.4.1 What Is Competitive Advantage?
 
 **Competitive advantage** exists when an organization can do something **better, faster, or cheaper** than its rivals — and can sustain that difference over time. It is not enough to be temporarily superior; true competitive advantage persists because it is embedded in the organization's capabilities, knowledge, and systems in ways that are difficult for competitors to replicate.
 
@@ -322,23 +322,23 @@ Information systems can be a source of competitive advantage, but the relationsh
 [[Figure 14.9 — Prompt: A horizontal spectrum diagram. Left side labeled "Table Stakes" (gray) with examples: "Basic website," "Transaction processing," "Data backup." Right side labeled "Competitive Differentiator" (blue/green) with examples: "Predictive analytics," "Real-time personalization," "Proprietary data assets." A gradient bar connects them with an arrow labeled "Strategic IS Investment." Professional textbook infographic.]]
 [[Caption: Figure 14.9 — IS capabilities range from table stakes (necessary to compete) to differentiators (sources of advantage). Strategic IS planning determines where to invest along this spectrum.]]
 
-### 14.4.2 Strategic IS Capabilities
+## 14.4.2 Strategic IS Capabilities
 
 The technical skills developed throughout this course map directly to four categories of strategic IS capability. Each category represents a way that information systems, when properly designed and aligned, create sustainable competitive advantage.
 
-#### Capability 1: Efficient Data Architecture (Ch06, Ch07)
+### Capability 1: Efficient Data Architecture (Ch06, Ch07)
 
 A well-normalized relational database is not just technically elegant — it is **economically efficient**. Redundant data costs money to store, maintain, and correct. Data anomalies (the update, insertion, and deletion problems from Ch07) generate operational errors that ripple into customer-facing processes.
 
 Organizations with clean data architectures spend less on fixing problems, respond faster to queries, and extend their systems more easily when business requirements change. The one-time investment in normalization pays compounding returns in reduced operational cost and increased analytical trustworthiness.
 
-#### Capability 2: Analytical Capability (Ch05, Ch08, Ch12)
+### Capability 2: Analytical Capability (Ch05, Ch08, Ch12)
 
 In competitive environments, the organization that can **ask and answer questions fastest** has an advantage. SQL fluency (Ch05 and Ch08) enables ad-hoc analysis — the ability to investigate a question the moment it arises rather than waiting for a pre-built report. BI systems (Ch12) enable pattern detection, trend analysis, and performance monitoring that turn raw data into strategic insight.
 
 Window functions and advanced analytics techniques (Ch13) extend this capability further by enabling competitive benchmarking, ranking, and comparative analysis without collapsing detail. An organization that can rank its products by profitability within each region, compare this quarter's performance to the same quarter last year, and identify outliers in real time has a fundamentally different strategic posture than one that reviews static spreadsheets quarterly.
 
-#### Capability 3: System Reliability and Trust (Ch11, Ch13)
+### Capability 3: System Reliability and Trust (Ch11, Ch13)
 
 Competitive advantage depends on stakeholders — customers, partners, regulators, and employees — **trusting** the organization's data and systems. Trust is built by:
 
@@ -349,7 +349,7 @@ Competitive advantage depends on stakeholders — customers, partners, regulator
 
 An organization whose data cannot be trusted will eventually make a decision that exposes the flaw — and the cost of that failure almost always exceeds the cost of building reliability from the beginning.
 
-#### Capability 4: Agility Through Good Design (Ch10)
+### Capability 4: Agility Through Good Design (Ch10)
 
 Markets change. Customer needs shift. Regulatory requirements evolve. An organization's information systems must be able to change with them. The Systems Development Life Cycle (SDLC) from Chapter 10 is not just a methodology — it is a strategic asset. Organizations that follow a disciplined design process can:
 
@@ -359,7 +359,7 @@ Markets change. Customer needs shift. Regulatory requirements evolve. An organiz
 
 Agility is not the same as speed. It is the ability to change direction efficiently — and that ability is a direct product of design discipline.
 
-### 14.4.3 IS Alignment: When Technology and Strategy Diverge
+## 14.4.3 IS Alignment: When Technology and Strategy Diverge
 
 Not all IS investments create value. **Misalignment** occurs when technology decisions are made without reference to strategic goals — when systems are built because they are technically interesting, because a vendor is persuasive, or because "everyone else is doing it."
 
@@ -379,7 +379,7 @@ The remedy for misalignment is not more technology — it is better communicatio
 
 ## 14.5 From Business Intelligence to Business Strategy
 
-### 14.5.1 The BI-to-Strategy Pipeline
+## 14.5.1 The BI-to-Strategy Pipeline
 
 Chapter 12 taught you how to extract insight from data. You learned to design data warehouse schemas, implement ETL processes, and build analytical queries that surface patterns invisible in raw transactional records. Chapter 13 taught you how to make the systems that produce those insights reliable and performant — through indexing, transactions, triggers, and security.
 
@@ -394,7 +394,7 @@ The critical link is the third step. Without strategic frameworks, insight remai
 [[Figure 14.11 — Prompt: A three-stage horizontal pipeline diagram. Stage 1 (blue): "BI Produces Insight" with icons for dashboard, ETL, OLAP cube, labeled "Ch12." Stage 2 (green): "Advanced Techniques Ensure Trust" with icons for lock, index, transaction log, labeled "Ch13." Stage 3 (gold/orange): "Strategy Determines Action" with icons for compass, target, decision tree, labeled "Ch14." Arrows connect the stages left to right. Below each stage, example outputs are listed. Professional textbook infographic style.]]
 [[Caption: Figure 14.11 — The BI-to-Strategy pipeline. Chapters 12, 13, and 14 represent successive stages: generating insight, ensuring reliability, and driving strategic action.]]
 
-### 14.5.2 Turning BI Outputs into Strategic Actions
+## 14.5.2 Turning BI Outputs into Strategic Actions
 
 A BI dashboard is not an end product — it is a **starting point for strategic reasoning**. The table below illustrates how specific BI outputs from Chapter 12 connect to strategic questions and organizational actions:
 
@@ -408,11 +408,11 @@ A BI dashboard is not an end product — it is a **starting point for strategic 
 
 Notice that the strategic questions cannot be answered by the data alone. They require judgment, context, and an understanding of the organization's goals. This is the domain of wisdom — the layer that strategy provides.
 
-### 14.5.3 KPIs as Strategic Control Instruments
+## 14.5.3 KPIs as Strategic Control Instruments
 
 Key Performance Indicators (KPIs) were first introduced in Chapter 2 as quantifiable measures of business performance. At that point, they were presented as a way to understand whether an organization is achieving its objectives. Now, with the full weight of the course behind you, KPIs can be understood more precisely as **strategic control instruments** — the metrics by which an organization monitors its progress toward strategic goals and makes course corrections.
 
-#### Leading vs. Lagging Indicators
+### Leading vs. Lagging Indicators
 
 Not all KPIs serve the same function. A crucial distinction is between **leading** and **lagging** indicators:
 
@@ -424,7 +424,7 @@ Strategically designed dashboards include both types. A dashboard showing only l
 [[Figure 14.12 — Prompt: A dashboard mockup showing two panels side by side. Left panel "Lagging Indicators" displays a final GPA distribution bar chart and a graduation rate metric. Right panel "Leading Indicators" displays a mid-semester assignment completion trend line and an early attendance rate gauge. Both panels are in a clean dashboard UI style with neutral colors and clear labels. An annotation below reads: "Strategic dashboards balance retrospective measurement with forward-looking signals."]]
 [[Caption: Figure 14.12 — A strategically designed KPI dashboard balances lagging indicators (what already happened) with leading indicators (what is likely coming).]]
 
-#### Designing Strategic KPIs
+### Designing Strategic KPIs
 
 Effective KPIs share several characteristics:
 
@@ -444,7 +444,7 @@ Effective KPIs share several characteristics:
 
 Each of these KPIs can be implemented as a SQL query — a direct connection between the technical skills of Chapters 5 and 8 and the strategic goals of Chapter 14.
 
-### 14.5.4 Data-Driven Decision Making vs. Intuition
+## 14.5.4 Data-Driven Decision Making vs. Intuition
 
 The availability of BI tools and strategic KPIs does not mean that every decision should be made by algorithm. Decision-making exists on a spectrum:
 
@@ -464,7 +464,7 @@ Chapter 2 introduced decision-making under uncertainty as a managerial challenge
 
 ## 14.6 IS Strategy in Practice: Frameworks and Models
 
-### 14.6.1 Strategic IS Planning
+## 14.6.1 Strategic IS Planning
 
 Strategic IS planning is the process of identifying **which IS investments and initiatives** will best support an organization's goals. It is the bridge between business strategy ("What do we want to achieve?") and IS operations ("What systems do we build and maintain?").
 
@@ -479,7 +479,7 @@ A useful framework for thinking about IS planning is the **three horizons model*
 
 All three horizons require simultaneous attention. An organization that invests only in Horizon 3 (transformation) while neglecting Horizon 1 (maintenance) will build impressive systems on an unreliable foundation. Conversely, an organization that invests only in maintenance will have stable systems that never deliver new strategic value.
 
-### 14.6.2 The Information Systems Strategy Triangle
+## 14.6.2 The Information Systems Strategy Triangle
 
 The **IS Strategy Triangle** is a model that makes visible the interdependence among three strategic domains:
 
@@ -494,7 +494,7 @@ The triangle's key insight is that **changing one vertex requires adjusting the 
 
 This is why database decisions (Ch04, Ch10) are ultimately business decisions. Choosing which entities to track, which relationships to model, and which queries to support is not a purely technical exercise — it is a statement about what the organization values and how it intends to compete.
 
-### 14.6.3 Build vs. Buy vs. Cloud
+## 14.6.3 Build vs. Buy vs. Cloud
 
 One of the most consequential strategic IS decisions is whether to **build** a custom system, **buy** a packaged solution, or **adopt** a cloud-based service. This choice reflects and reinforces the organization's competitive strategy.
 
@@ -512,7 +512,7 @@ The decision also carries implications for the technical practices studied in th
 - **Bought** systems require careful data migration (ETL, Ch12) and integration with existing databases.
 - **Cloud** systems shift certain DBA responsibilities (Ch11) to the provider but introduce new challenges around data governance, vendor lock-in, and privacy compliance.
 
-### 14.6.4 Digital Transformation
+## 14.6.4 Digital Transformation
 
 **Digital transformation** is among the most widely used — and widely misunderstood — phrases in business. At its core, digital transformation is not about adopting new technology for its own sake. It is about fundamentally changing **how an organization operates and delivers value** through the integrated use of digital technologies.
 
@@ -536,7 +536,7 @@ The ETL process introduced in Chapter 12 becomes particularly important at the s
 
 Chapter 15 surveys future technology trends in detail — cloud-native databases, AI-assisted querying, streaming analytics, and data governance frameworks. This section takes a different angle: it focuses on the **strategic reasoning** behind technology adoption decisions. The question is not "What new technologies exist?" but rather "How should an organization decide which technologies to adopt, and why?"
 
-### 14.7.1 Technology Choices Are Strategy Choices
+## 14.7.1 Technology Choices Are Strategy Choices
 
 Adopting a new technology is not a neutral, purely technical decision. It is a **strategic commitment** that carries cost, risk, and competitive implications. Every technology investment consumes resources that could have been spent differently, requires organizational change to implement effectively, and locks the organization into a vendor, platform, or architecture that may be difficult to reverse.
 
@@ -547,11 +547,11 @@ The frameworks introduced earlier in this chapter apply directly:
 - **Value Chain**: Which value chain activities does the technology improve? Where does it create the most margin?
 - **Alignment Test**: Does the technology serve the organization's strategic goals, or is it a solution looking for a problem?
 
-### 14.7.2 Strategic Questions Organizations Must Answer
+## 14.7.2 Strategic Questions Organizations Must Answer
 
 Rather than surveying every emerging technology, this section frames the decision through four strategic questions — each grounded in concepts from earlier chapters:
 
-#### "Do we have the data foundation for AI and machine learning?"
+### "Do we have the data foundation for AI and machine learning?"
 
 AI and machine learning systems are only as good as the data they consume. Models trained on redundant, inconsistent, or poorly structured data produce unreliable results — the classic "garbage in, garbage out" problem. Before investing in AI, an organization must honestly assess whether its data architecture meets the prerequisites:
 
@@ -562,13 +562,13 @@ AI and machine learning systems are only as good as the data they consume. Model
 
 If the answer to any of these questions is "no," the strategic priority is improving the data foundation before investing in AI.
 
-#### "Do we need to move beyond the relational model?"
+### "Do we need to move beyond the relational model?"
 
 The relational model (Ch06) has dominated database design for decades, and for good reason: it provides structure, integrity, and a powerful query language. But some business problems generate data that does not fit neatly into tables and rows — social network connections, sensor streams, document collections, or rapidly evolving schemas.
 
 The strategic question is not "Is NoSQL better than relational?" — it is "Does our specific business problem require capabilities that the relational model cannot efficiently provide?" For most organizations, the answer is no. For some, particularly those dealing with massive scale, extreme variety, or real-time ingestion, the answer may be yes — but the trade-off is a loss of the integrity, consistency, and governance that relational systems provide.
 
-#### "Should we migrate to the cloud?"
+### "Should we migrate to the cloud?"
 
 The shift from local databases (Ch04, Microsoft Access) to managed cloud services (Supabase/PostgreSQL, Ch05 and Ch13) is not just a technical upgrade — it is a strategic decision about scalability, cost structure, and organizational capability:
 
@@ -578,7 +578,7 @@ The shift from local databases (Ch04, Microsoft Access) to managed cloud service
 
 The build-vs-buy-vs-cloud decision from Section 14.6.3 applies directly: cloud adoption should be driven by strategic fit, not by trend-following.
 
-#### "Is data governance a cost center or a differentiator?"
+### "Is data governance a cost center or a differentiator?"
 
 Data governance — the policies and processes for managing data quality, security, privacy, and usage — is often treated as an overhead cost: something the compliance department demands and the IT department grudgingly implements. But strategically-minded organizations recognize governance as a source of **trust**, and trust is a competitive asset.
 
@@ -592,7 +592,7 @@ The strategic questions raised in this section require the kind of **integrated 
 
 ## 14.8 Capstone Case Study: The Grading Database as a Strategic Information System
 
-### 14.8.1 Recasting the Grading Database
+## 14.8.1 Recasting the Grading Database
 
 Throughout this course, the Grading Database has served as a learning tool — a manageable system for practicing database design, SQL queries, normalization, and analytics. In this section, we ask you to set aside the classroom perspective and treat the Grading Database as what a comparable real-world system actually is: a **strategic information system** that supports a university department's mission.
 
@@ -601,7 +601,7 @@ This is not as much of a stretch as it might appear. Universities compete for st
 [[Figure 14.17 — Prompt: A conceptual diagram showing the Grading Database at the center, surrounded by six labeled outward-pointing arrows representing strategic stakeholders: "Students" (wanting fair, transparent grading), "Faculty" (wanting usable tools and reliable data), "Department Chair" (wanting performance oversight), "Accreditation Bodies" (wanting evidence of outcomes), "University Administration" (wanting retention and completion metrics), "Prospective Students" (wanting program quality signals). Professional, clean academic infographic.]]
 [[Caption: Figure 14.17 — The Grading Database serves multiple strategic stakeholders, each with different requirements. A strategically aligned system addresses all of them coherently.]]
 
-### 14.8.2 Strategic Analysis Using Course Concepts
+## 14.8.2 Strategic Analysis Using Course Concepts
 
 The following table traces each strategic question a department might ask back to the specific database concept that provides the answer, and to the chapter where that concept was developed. This is the payoff of the entire course: every chapter contributed a capability that the strategic system requires.
 
@@ -619,7 +619,7 @@ The following table traces each strategic question a department might ask back t
 
 The final row is this chapter's contribution. Without it, the system is technically sound but strategically unmoored — a well-built engine with no steering wheel.
 
-### 14.8.3 Building a Strategic IS Plan
+## 14.8.3 Building a Strategic IS Plan
 
 The following six-step framework translates the strategic concepts from this chapter into a practical planning process. It is applied here to the Grading Database, but the same framework works for any organizational information system.
 
@@ -671,7 +671,7 @@ Chapters 15 and 16 answer **"How does it all fit together, and where do you go f
 
 ## Activities and Assessments
 
-### Let's Build: Strategic IS Alignment Exercise
+## Let's Build: Strategic IS Alignment Exercise
 
 **Scenario**: You are an IS consultant hired by a small business or university department. Your client has operational databases but no strategic plan for how to use them. Using the Grading Database (or a business case of your choice), complete the following:
 
@@ -694,7 +694,7 @@ Chapters 15 and 16 answer **"How does it all fit together, and where do you go f
    - Recommended IS investments (build, buy, or cloud)
    - Implementation phases (1-2 sentences per phase)
 
-### Discussion Questions
+## Discussion Questions
 
 1. How does a well-designed database (Ch06-07) contribute to competitive advantage? Give a specific example where poor database design led to a strategic failure (real or hypothetical).
 
@@ -706,7 +706,7 @@ Chapters 15 and 16 answer **"How does it all fit together, and where do you go f
 
 5. How does the journey from "Excel spreadsheet" (Ch03-04) to "strategic information system" (Ch14) mirror an organization's digital maturity? At what stage do most small businesses get stuck, and why?
 
-### Readiness Assessment Test (RAT) Topics
+## Readiness Assessment Test (RAT) Topics
 
 - Porter's Five Forces and the role of IS in each force
 - Porter's Generic Strategies (cost leadership, differentiation, focus) and their IS implications
@@ -742,7 +742,7 @@ Chapters 15 and 16 answer **"How does it all fit together, and where do you go f
 
 ---
 
-## Chapter Summary
+# Chapter Summary
 
 Chapter 14 introduces the strategic lens that gives purpose to every technical skill in the course. Where earlier chapters asked *"How do we build, query, administer, and analyze databases?"*, this chapter asks **"So what?"** — how does an organization use information systems to compete, create value, and make decisions that matter?
 

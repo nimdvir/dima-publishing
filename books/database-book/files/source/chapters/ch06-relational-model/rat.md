@@ -484,9 +484,12 @@ AI-resistance strategies used in this RAT:
 5. Join questions require reconstructing reports from the chapter's actual schema.
 6. Access workflow details are included so students must connect abstract design to implementation.
 
-## Answer Key
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-### Answer Key: Remember
+# Answer Key
+
+## Remember Answers
 
 **1. In the Chapter 6 grading schema, which table stores category-level grading rules such as quantity, points per type, and weight?**
 
@@ -596,7 +599,7 @@ Explanation: Section reference: natural keys versus surrogate keys. The chapter 
 | D | No | `StudentID` is treated as a surrogate key in the chapter. |
 | E | No | `AttendanceID` is also a surrogate key. |
 
-### Answer Key: Understand
+## Understand Answers
 
 **9. Why does the chapter separate `ASSIGNMENT_TYPE` from `DELIVERABLE`?**
 
@@ -706,7 +709,7 @@ Explanation: Section reference: functional dependency bridge to Chapter 7. The c
 | D | No | `AssignmentType` does not belong only in `STUDENT`. |
 | E | No | Due dates belong to specific deliverables, not the assignment type itself. |
 
-### Answer Key: Apply
+## Apply Answers
 
 **17. An instructor changes the Homework weight from 25 to 20. Which table should be updated in the revised schema?**
 
@@ -816,7 +819,7 @@ Explanation: Section reference: surrogate keys and business-rule uniqueness. The
 | D | Yes | The foreign keys are part of the structural design that ties the row to the correct entities. |
 | E | No | `DeliverableName` alone cannot identify one student's unique score row. |
 
-### Answer Key: Analyze
+## Analyze Answers
 
 **25. A department changes the Project weight, but only some rows in the flat table are updated. Which problem does this reveal most directly?**
 
@@ -926,7 +929,7 @@ Explanation: Section reference: flat versus relational comparison. The chapter p
 | D | Yes | More tables can mean clearer responsibilities. |
 | E | No | Queries remain essential in a relational design. |
 
-### Answer Key: Evaluate
+## Evaluate Answers
 
 **33. An instructor adds a new category called Lab with its own quantity, points per type, and weight. What is the best schema-level response?**
 

@@ -49,6 +49,7 @@ single-stage work.
 | `call-out`                | Insert or audit callout/admonition blocks                                       |
 | `chapter-media`           | Unified image pipeline: suggest → place → optimize → upload → rewrite           |
 | `chapter-media-inventory` | Used/unused image tracking, CSV inventories, galleries (read-only)              |
+| `image-prompt`            | Generate figure prompt blocks, placements, Figures Index, and CSV image tracker |
 | `figure-suggestion`       | Stage 1 only: insert figure suggestion blocks per sub-section                   |
 | `image-placement`         | Stage 2 only: place or generate local figures with captions                     |
 | `image-link-optimizer`    | Stage 3 only: optimize, upload to Cloudinary, rewrite links                     |
@@ -71,7 +72,8 @@ single-stage work.
   plus terms, outline coverage, and DOCX readiness; no auto-sync or deploy)
 - Audit and tracking flow: `/chapter-gap-analysis` → `/edits` →
   `/progress-update` → `/chapter-tracker`
-- Single-stage image work: `/figure-suggestion`, `/image-placement`, or
+- Prompt-first image work: `/image-prompt` → `/image-placement` → `/image-link-optimizer`
+- Single-stage image work: `/image-prompt`, `/figure-suggestion`, `/image-placement`, or
   `/image-link-optimizer`
 
 ## Source of Truth

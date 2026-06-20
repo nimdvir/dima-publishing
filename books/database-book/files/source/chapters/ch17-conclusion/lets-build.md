@@ -6,13 +6,13 @@ A capstone activity sequence for connecting the course's technical skills to sys
 
 ---
 
-## Overview
+# Overview
 
 This companion file turns the conclusion chapter into a short synthesis workshop. Instead of introducing a new technical topic, it asks you to revisit the Grading Database and explain how relational design, SQL, governance, analytics, and managerial interpretation work together as one information system.
 
 ---
 
-## Activity 1: Map the System Lifecycle
+# Activity 1: Map the System Lifecycle
 
 **Objective:** Trace the full lifecycle you practiced across the course, from data modeling to analytical decision support.
 
@@ -27,7 +27,7 @@ This companion file turns the conclusion chapter into a short synthesis workshop
 
 ---
 
-## Activity 2: Explain the Design Trade-Offs
+# Activity 2: Explain the Design Trade-Offs
 
 **Objective:** Show that design decisions affect what an organization can measure, explain, and improve.
 
@@ -42,7 +42,7 @@ This companion file turns the conclusion chapter into a short synthesis workshop
 
 ---
 
-## Reflection Questions
+# Reflection Questions
 
 * Which course concept most changed how you think about data systems?
 * Where do you now see the strongest connection between technical design and managerial judgment?
@@ -50,6 +50,6 @@ This companion file turns the conclusion chapter into a short synthesis workshop
 
 ---
 
-## Next Steps
+# Next Steps
 
 Use this chapter as a final checkpoint: if you can explain how the Grading Database moved from tables to trustworthy decisions, you can explain the full course arc. That systems-thinking habit is the real deliverable of the chapter.

@@ -1,23 +1,3 @@
----
-title: "Chapter 13: Readiness Assessment Test — Advanced Database Techniques"
-chapter: 13
-section: "RAT"
-description: "40-question readiness assessment covering indexes, transactions, constraints, triggers, window functions, analytics patterns, security, platform comparisons, macros, and stored procedures from Chapter 13."
-keywords:
-  - RAT
-  - quiz
-  - assessment
-  - indexes
-  - transactions
-  - constraints
-  - triggers
-  - security
-  - macros
-  - stored procedures
-date: 2026-06-16
-author: "Nimrod Dvir, PhD"
----
-
 # Readiness Assessment Test (RAT): Advanced Database Techniques
 
 <p align="center">
@@ -58,9 +38,6 @@ This RAT checks whether students completed the Chapter 13 reading and can reason
 5. **Non-obvious correct answers** — Some correct answers are paraphrased rather than keyword-matched (e.g., "enforcement regardless of access path" rather than "trigger runs automatically").
 6. **Platform-specific details** — Questions test Access macro behavior, SQLite's `PRAGMA foreign_keys`, PostgreSQL's `CREATE FUNCTION` + `CREATE TRIGGER` pattern.
 7. **Output prediction** — Apply-level questions ask students to predict what a specific SQL statement or constraint would produce or prevent.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Remember Questions
 
@@ -145,9 +122,6 @@ C. `AFTER`
 D. `INSTEAD OF`
 
 E. `WHILE`
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Understand Questions
 
@@ -234,9 +208,6 @@ C. Slower `INSERT` operations
 D. Automatically improved data integrity
 
 E. Additional maintenance overhead during `UPDATE` and `DELETE`
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Apply Questions
 
@@ -371,9 +342,6 @@ D. Enable the trigger using `ALTER TRIGGER ... ENABLE`.
 
 E. Write a stored procedure that manually calls the trigger.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Analyze Questions
 
 **25. A developer adds ten indexes to a table with frequent inserts. Queries become faster, but data entry slows noticeably. What is the most likely explanation?**
@@ -473,9 +441,6 @@ D. The process must be consistent regardless of which tool initiates it.
 
 E. Stored procedures automatically create audit trails without additional code.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Evaluate Questions
 
 **33. A team is designing a grading database. One member argues that all business rules should be enforced in the application code because "it is easier to change." Another argues they should be enforced in the database through constraints and triggers because "the database is the last line of defense." Which position does Chapter 13 most support?**
@@ -565,7 +530,7 @@ E. Grade changes are automatically recorded in an audit table through triggers o
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
 ### Remember Questions
 
@@ -649,9 +614,6 @@ E. Grade changes are automatically recorded in an audit table through triggers o
 | C | **Correct.** `AFTER` triggers fire after the data change. |
 | D | **Correct.** `INSTEAD OF` triggers replace the triggering action (used primarily with views). |
 | E | `WHILE` is a control-flow keyword, not a trigger timing option. |
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ### Understand Questions
 
@@ -737,9 +699,6 @@ E. Grade changes are automatically recorded in an audit table through triggers o
 | D | Indexes may enforce uniqueness if declared as `UNIQUE`, but plain indexes do not improve integrity. |
 | E | **Correct.** `UPDATE` and `DELETE` operations must maintain indexes. |
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ### Apply Questions
 
 **17. An instructor runs `CREATE INDEX idx_deliverable_duedate ON DELIVERABLE (DueDate);`. Which query would benefit most?**
@@ -824,9 +783,6 @@ E. Grade changes are automatically recorded in an audit table through triggers o
 | D | Triggers are enabled by default when created; `ALTER TRIGGER ... ENABLE` is not a creation step. |
 | E | Stored procedures and triggers are separate mechanisms. |
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ### Analyze Questions
 
 **25. A developer adds ten indexes. Queries become faster, but data entry slows noticeably. What is the most likely explanation?**
@@ -910,9 +866,6 @@ E. Grade changes are automatically recorded in an audit table through triggers o
 | C | Stored procedures are not inherently faster than all other approaches. |
 | D | **Correct.** Consistent execution regardless of the calling tool is a key benefit. |
 | E | Audit trails require explicit logic — stored procedures do not create them automatically. |
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ### Evaluate Questions
 

@@ -8,7 +8,7 @@
 
 <p align="center"><em>Map, query, and analyze the PetVax veterinary database with advanced SQL</em></p>
 
-## Overview
+# Overview
 
 This lab transfers the advanced SQL techniques from Chapter 10 and Let's Build 10 to the PetVax veterinary clinic. You will map the PetVax database schema in Lucidchart, then write diagnostic queries, CTE pipelines, views, window functions, and safe data modifications — the same skills you practiced on the Grading Database, now applied to a real business context.
 
@@ -19,7 +19,7 @@ This lab transfers the advanced SQL techniques from Chapter 10 and Let's Build 1
 
 **Estimated time:** 60–75 minutes.
 
-## Scenario
+# Scenario
 
 PetVax is a growing veterinary clinic with three locations. The practice manager needs better visibility into clinic operations: Which services generate the most revenue? Which pets are overdue for checkups? Are certain vets seeing more complex cases? The current system stores data in a set of related tables, but no one on staff knows how to query them effectively.
 
@@ -42,7 +42,7 @@ The tables are related as follows:
 - `VISIT` (1) ─── (M) `TREATMENT` — each visit can include multiple treatments.
 - `VISIT` (1) ─── (1) `PAYMENT` — each visit has one associated payment.
 
-## Required Files and Tools
+# Required Files and Tools
 
 | What You Need | Details |
 |---|---|
@@ -53,9 +53,9 @@ The tables are related as follows:
 
 ---
 
-## Steps
+# Steps
 
-### Step 1 — Set Up the PetVax Database
+## Step 1 — Set Up the PetVax Database
 
 **Do:** Download the PetVax starter SQL file from `assets/petvax-starter.sql`. Run it in your SQL environment to create and populate all six tables. Verify the tables exist by running:
 
@@ -74,7 +74,7 @@ D) 7
 
 ---
 
-### Step 2 — Map the PetVax ERD in Lucidchart
+## Step 2 — Map the PetVax ERD in Lucidchart
 
 **Do:** Create a new Entity Relationship Diagram in Lucidchart. Model all six PetVax tables. This is the centerpiece of the lab — a visual map of the entire database that makes every relationship and pathway visible.
 
@@ -107,7 +107,7 @@ E) `VisitID` in the `TREATMENT` table
 
 ---
 
-### Step 3 — Run Diagnostic Queries on PetVax Data
+## Step 3 — Run Diagnostic Queries on PetVax Data
 
 **Do:** Before building reports, check whether the PetVax data is clean. Write and run these two diagnostic queries.
 
@@ -129,7 +129,7 @@ Save both queries in your SQL script file.
 
 ---
 
-### Step 4 — Build a CTE Pipeline for Revenue Analysis
+## Step 4 — Build a CTE Pipeline for Revenue Analysis
 
 **Do:** The practice manager wants to know which pet species generates the most revenue. Build a three-stage CTE pipeline.
 
@@ -148,7 +148,7 @@ D) Rabbit
 
 ---
 
-### Step 5 — Create a View for the Daily Operations Dashboard
+## Step 5 — Create a View for the Daily Operations Dashboard
 
 **Do:** The practice manager needs a reusable view that shows today's key metrics at a glance. Create a view called `DailyOpsSummary` with these columns:
 
@@ -173,7 +173,7 @@ Save both the `CREATE VIEW` statement and the `SELECT` query in your SQL script.
 
 ---
 
-### Step 6 — Rank Vets by Caseload with Window Functions
+## Step 6 — Rank Vets by Caseload with Window Functions
 
 **Do:** The clinic director wants to see how the caseload distributes across vets. Write a query that, for each vet on each date they worked, shows:
 
@@ -196,7 +196,7 @@ D) More than 55% of all visits
 
 ---
 
-### Step 7 — Practice a Safe Update with a Transaction
+## Step 7 — Practice a Safe Update with a Transaction
 
 **Do:** The clinic is running a promotion: a 10% discount on all treatments with a cost above $100, capped so no treatment cost falls below $100 after the discount. Apply this change safely.
 
@@ -211,7 +211,7 @@ Save the entire transaction block in your SQL script.
 
 ---
 
-## Submission
+# Submission
 
 Submit the following three files:
 
@@ -227,7 +227,7 @@ Upload all files to the assignment submission area in your LMS.
 
 **Your final grade = quiz check-question correctness + AI-graded review of your submitted artifact file.**
 
-## Optional Extensions
+# Optional Extensions
 
 These are not required and do not affect your grade. Try them if you finish early or want extra practice.
 

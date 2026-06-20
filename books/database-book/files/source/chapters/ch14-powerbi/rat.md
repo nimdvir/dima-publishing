@@ -1,7 +1,7 @@
 # Chapter 14 RAT — Power BI
 
 <!-- Companion: Readiness Assurance Test (RAT) quiz — 2026-05-06 -->
-<!-- Format: Multiple choice with answer key at end -->
+<!-- Format: Multiple choice with answers at end -->
 
 ## Instructions
 
@@ -81,7 +81,10 @@ Answer each question individually before discussing with your team. These questi
 
 ---
 
-## Answer Key
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+# Answer Key
 
 | # | Answer | Explanation |
 |---|---|---|

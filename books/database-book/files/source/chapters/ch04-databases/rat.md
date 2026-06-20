@@ -37,9 +37,6 @@ This RAT checks whether students completed the Chapter 4 reading and can reason 
 6. **Output prediction** — questions ask what would happen if a constraint were missing, a key were changed, or a flat file were updated incorrectly.
 7. **Platform-specific details** — questions reference Access AutoNumber, SQLite INTEGER PRIMARY KEY, and the chapter's CREATE TABLE constraint syntax.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Remember Questions
 
 **1. What is a DBMS?**
@@ -101,9 +98,6 @@ C. Update anomaly
 D. Deletion anomaly
 E. Compression anomaly
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Understand Questions
 
 **9. Why does Chapter 4 describe a database as "not just a better spreadsheet"?**
@@ -163,9 +157,6 @@ A. The DBMS stores the actual table data on disk
 B. The DBMS validates data, enforces rules and constraints, manages concurrent access, and optimizes queries — the database layer stores the structure
 C. The DBMS is the same thing as the database layer
 D. The DBMS provides the user interface for data entry
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Apply Questions
 
@@ -227,9 +218,6 @@ C. Formulas that simulate connections between sheets
 D. Constraints that enforce rules automatically
 E. One shared source of truth instead of competing copies
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Analyze Questions
 
 **25. How does Chapter 4 distinguish the logical view of a database from the physical view?**
@@ -290,9 +278,6 @@ A. The table would no longer accept any rows
 B. Scores outside 0–100, such as 150 or -20, could be inserted without the DBMS rejecting them
 C. The foreign key constraint would also stop working
 D. The primary key would automatically become the CHECK column
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Evaluate Questions
 
@@ -359,7 +344,7 @@ E. A correctly written JOIN produces results, but the analyst interprets them as
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
 ### Remember Questions
 

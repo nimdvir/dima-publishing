@@ -19,48 +19,48 @@ author: "Nimrod Dvir"
 
 *Converted draft migrated from the centralized section-based lab sequence.*
 
-## Overview
+# Overview
 
 This file preserves the current section-based lab handout inside the new numbered lab structure. It is a migration draft so the material is now organized by lab folder while the older section hub remains available as reference.
 
-## Source Links
+# Source Links
 
 - [Centralized section lab](../../../Labs/sections/part-03-building-and-managing-systems/ch13-advanced-database-techniques/lab.md)
 
-## Migration Notes
+# Migration Notes
 
 - Source chapter lab: ch13-advanced-database-techniques
 - Migration date: 2026-05-22
 - Status: content moved into the numbered lab sequence; a later pass can rebuild this into the full SAM-style format if needed.
 
-## Migrated Section Draft
+# Migrated Section Draft
 
-### Lab Overview
+## Lab Overview
 
 This laboratory exercise provides hands-on practice with the concepts covered in this chapter.
 
-### Learning Objectives
+## Learning Objectives
 
 By completing this lab, you will:
 - Objective 1
 - Objective 2
 - Objective 3
 
-### Lab Requirements
+## Lab Requirements
 
-#### Software/Tools Needed
+### Software/Tools Needed
 - Tool 1
 - Tool 2
 - Tool 3
 
-#### Prerequisites
+### Prerequisites
 - Prior knowledge required
 - Required installations
 - Assumed skill level
 
-### Lab Exercises
+## Lab Exercises
 
-#### Exercise 1: [Exercise Name]
+### Exercise 1: [Exercise Name]
 
 **Time Required:** 30-45 minutes
 
@@ -73,7 +73,7 @@ By completing this lab, you will:
 - Result description
 - Verification method
 
-#### Exercise 2: [Exercise Name]
+### Exercise 2: [Exercise Name]
 
 **Time Required:** 45-60 minutes
 
@@ -86,14 +86,14 @@ By completing this lab, you will:
 - Result description
 - Verification method
 
-### Lab Report
+## Lab Report
 
 Document your findings:
 - What worked?
 - What challenges did you encounter?
 - How would you improve this?
 
-### Extension Activities
+## Extension Activities
 
 For advanced learners:
 - Modification 1

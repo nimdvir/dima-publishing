@@ -26,7 +26,7 @@ SPEAKER NOTES — Title Slide
 | **Mode** | Short lecture → Live demo → Student follow-along |
 | **Tables in focus** | `STUDENT`, `DELIVERABLE`, `WEIGHT`, `STUDENT_GRADE` |
 
-### By the end of class, you will be able to:
+## By the end of class, you will be able to:
 
 1. Explain why advanced techniques matter after the database already "works"
 2. Use Access design settings to improve performance and data quality
@@ -64,7 +64,7 @@ SPEAKER NOTES — Agenda
 
 ---
 
-# Part 1: The Relationship Diagram
+## Part 1: The Relationship Diagram
 
 ## *0–8 Minutes*
 
@@ -152,7 +152,7 @@ SPEAKER NOTES — Relationship Diagram
 
 ---
 
-# Part 2: Indexes in Access
+## Part 2: Indexes in Access
 
 ## *8–18 Minutes*
 
@@ -169,7 +169,7 @@ SPEAKER NOTES — Section divider
 
 📖 **Analogy:** Like the index in a textbook — the pages are the same, but the index lets you jump instead of scanning.
 
-### Three types to know:
+## Three types to know:
 
 | Index Type | Purpose |
 |---|---|
@@ -230,7 +230,7 @@ SPEAKER NOTES — Index Demo Checklist
 
 ---
 
-# Part 3: Constraints and Validation
+## Part 3: Constraints and Validation
 
 ## *18–28 Minutes*
 
@@ -292,7 +292,7 @@ SPEAKER NOTES — Adding a Validation Rule
 
 ---
 
-# Part 4: Grade-Entry Form with Dropdowns
+## Part 4: Grade-Entry Form with Dropdowns
 
 ## *28–40 Minutes*
 
@@ -394,7 +394,7 @@ SPEAKER NOTES — Optional Row Source SQL
 
 ---
 
-# Part 5: Access Macros
+## Part 5: Access Macros
 
 ## *40–48 Minutes*
 
@@ -568,7 +568,7 @@ SPEAKER NOTES — Optional Projected Grade Range Macro
 
 ---
 
-# Part 6: VBA and Transaction Thinking
+## Part 6: VBA and Transaction Thinking
 
 ## *48–55 Minutes*
 
@@ -677,7 +677,7 @@ SPEAKER NOTES — VBA Five Ideas
 
 ---
 
-# Part 7: Analytics and Platform Limits
+## Part 7: Analytics and Platform Limits
 
 ## *55–58 Minutes*
 
@@ -729,7 +729,7 @@ SPEAKER NOTES — Access vs. Server DBMS
 
 ---
 
-# Part 8: Security Close and Recap
+## Part 8: Security Close and Recap
 
 ## *58–60 Minutes*
 
@@ -843,7 +843,7 @@ SPEAKER NOTES — Quick Reference
 
 <!-- _class: title -->
 
-# Chapter 13 Complete
+## Chapter 13 Complete
 
 **Advanced Database Techniques**
 

@@ -4,7 +4,7 @@ weslbo · [microsoft.com](https://learn.microsoft.com/en-us/training/modules/und
 
 100 XP
 
-## Data professionals
+# Data professionals
 
 With organizations gathering, storing, and reporting on vast quantities of information, data needs to be managed before it can be used in important decision-making processes. Various roles are necessary to support business with their data requirements. Data professionals frequently work together to achieve a satisfactory outcome:
 

@@ -1,23 +1,3 @@
----
-title: "Chapter 11: Review and Reflection"
-chapter: 11
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 11 concepts on database administration — security, concurrency, transactions, backup, recovery, performance, and platform responsibility — and connect them to real-world data trust and professional practice."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - database administration
-  - DBA
-  - ACID
-  - concurrency
-  - security
-  - backup and recovery
-  - chapter 11
-date: 2026-06-16
-author: "Nimrod Dvir, PhD"
----
-
 # Chapter 11: Review and Reflection
 
 <p align="center">
@@ -28,7 +8,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-## Review Questions
+# Review Questions
 
 *These questions help you recall and explain the chapter's key concepts, definitions, and frameworks.*
 
@@ -50,7 +30,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-## Reflection Questions
+# Reflection Questions
 
 *These questions ask you to interpret, compare, evaluate, and apply the chapter's ideas beyond simple recall.*
 
@@ -72,7 +52,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-## Personal Reflection Questions
+# Personal Reflection Questions
 
 *These questions invite you to connect the chapter's ideas to your own experience, habits, and professional development.*
 
@@ -93,9 +73,9 @@ author: "Nimrod Dvir, PhD"
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: What is the difference between Database Administration and Data Administration?**
 
@@ -131,7 +111,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: The chapter describes the DBA as a "guardian of data trust" rather than simply a technician. What does this framing mean, and why is it an important way to think about database administration?**
 
@@ -167,7 +147,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: Which DBA responsibility — security, concurrency, backup, or performance — do you find most challenging to think about? What makes it difficult, and what would help you understand it better?**
 
