@@ -27,6 +27,7 @@ const customSchema: Options = {
     figcaption: ['className', 'class'],
     pre: ['className', 'class'],
     code: ['className', 'class'],
+    h1: ['id'],
     h2: ['id'],
     h3: ['id'],
     th: ['align'],
@@ -41,7 +42,7 @@ const customSchema: Options = {
 
 interface MarkdownRendererProps {
   content: string;
-  /** Callback fired with all H2/H3 headings found during render (for "On this page"). */
+  /** Callback fired with all H1/H2/H3 headings found during render (for "On this page"). */
   onHeadingsExtracted?: (headings: HeadingTocItem[]) => void;
   suppressFirstImage?: boolean;
 }
@@ -51,7 +52,7 @@ export default function MarkdownRenderer({
   onHeadingsExtracted,
   suppressFirstImage = false,
 }: MarkdownRendererProps) {
-  // Per-render heading counter keeps DOM IDs aligned with extracted H2/H3 IDs.
+  // Per-render heading counter keeps DOM IDs aligned with extracted H1/H2/H3 IDs.
   const headingCounts = new Map<string, number>();
   let imageCount = 0;
 
@@ -64,7 +65,12 @@ export default function MarkdownRenderer({
           [rehypeSanitize, customSchema],
         ]}
         components={{
-          // Custom H2/H3 with stable IDs for "On this page" navigation
+          // Custom H1/H2/H3 with stable IDs for "On this page" navigation
+          h1: ({ children, ...props }: any) => {
+            const text = textFromChildren(children);
+            const id = uniqueId(slugifyHeading(text), headingCounts);
+            return <h1 id={id} {...props}>{children}</h1>;
+          },
           h2: ({ children, ...props }: any) => {
             const text = textFromChildren(children);
             const id = uniqueId(slugifyHeading(text), headingCounts);

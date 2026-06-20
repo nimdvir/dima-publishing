@@ -31,6 +31,7 @@ For non-chapter rows, the Ch column is `—`.
 <!-- markdownlint-disable MD060 -->
 | Date       | Ch  | Summary                                                                                                                                                                                                  |
 | ---------- | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-06-18 | 10  | Placed query roadmap in [books/database-book/files/source/chapters/ch10-advanced-sql-queries/core-concepts.md](books/database-book/files/source/chapters/ch10-advanced-sql-queries/core-concepts.md#L105), successfully uploaded to Cloudinary, and regenerated hybrid-reader book data |
 | 2026-06-17 | 01  | Created ch01-main-2026-06-17.md: removed duplicate Chapter Roadmap, added Key Takeaways section, strengthened business performance framing |
 | 2026-06-17 | 02  | Created ch02-main-2026-06-17.md: removed YAML frontmatter, removed duplicate Chapter Roadmap, added Why System Design Matters section, strengthened Ch3 bridge |
 | 2026-06-17 | 03  | Created ch03-main-2026-06-17.md: removed duplicate Chapter Roadmap, added Tables: Rows/Columns/Rules and Schemas: Describing the Structure of Data H3 sections under Representing Data in Structured Systems |

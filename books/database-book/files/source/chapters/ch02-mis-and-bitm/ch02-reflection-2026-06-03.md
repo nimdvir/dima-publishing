@@ -87,12 +87,13 @@ author: "Nimrod Dvir"
 
 **8. The Let's Build asked you to answer: "Before this exercise, what did you think a grading database was for? Has that changed?" Reflect on your own answer. If your understanding shifted, what specifically changed? If it did not, what from the chapter most reinforced your original view?**
 
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: What are the four levels of the DIKW hierarchy, and what guiding question does each level answer?**
 **Suggested Answer:** The four levels are Data ("What was recorded?" — raw observations and values), Information ("What happened?" — data organized into a meaningful pattern or summary), Knowledge ("Why is it happening?" — interpretation based on context, comparison, and experience), and Wisdom ("What should we do?" — judgment about action, priorities, and consequences). The hierarchy shows how meaning deepens at each level, from raw records to actionable decisions.
@@ -118,7 +119,7 @@ author: "Nimrod Dvir"
 **Question 8: What does strategic alignment mean, and why does a technically impressive system still fail without it?**
 **Suggested Answer:** Strategic alignment means that information systems and technology investments should support the organization's goals, structure, and strategy. A system can fail without alignment because it may not fit what the organization is actually trying to do. A retailer that competes on low cost needs systems that support inventory control and operational discipline. A hospital that competes on quality needs systems that support accurate records and coordinated care. The better question is not "Does the system work?" but "Does the system help the organization do what it is trying to do?"
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: The chapter argues that "storing data is not the same as using data." Choose one of the chapter's examples (online retailer, hospital, university, or the Let's Build course-as-a-system) and explain what must happen between storing a record and making a decision based on it.**
 **Suggested Answer:** Using the Let's Build course-as-a-system example: storing a submission record in Brightspace is step one. The record must then be organized with other submissions (information — a report showing which students have missing deliverables), analyzed for patterns (knowledge — discovering that students who miss early-term work are far more likely to fail the course), and connected to a decision (wisdom — contacting at-risk students by Week 4 instead of Week 10). Between storing and deciding, the organization needs data organization (a query or report), interpretation (someone recognizes the pattern), and action (someone with authority makes a change). The R.E.A.D. framework maps this exactly: Representation and Retrieval stores the record, Expression and Experience surfaces the pattern, Association and Acquisition reveals the cause, and Decision-Making and Deployment changes the outcome.
@@ -144,7 +145,7 @@ author: "Nimrod Dvir"
 **Question 8: The Let's Build ends by asking you to name "the biggest gap between what is currently captured and what would be useful to capture" in this course. Answer that question now, and explain which of the four data quality dimensions (accuracy, completeness, timeliness, consistency) your gap most relates to.**
 **Suggested Answer:** Answers will vary. A strong response names a specific gap — for example, the course currently captures quiz scores and submission records but does not capture reading-engagement data (did students open the assigned chapter?), participation quality (not just attendance but meaningful contributions), or improvement-over-time trends. The data quality dimension most often implicated is completeness: the data simply is not being captured at all. In some cases, timeliness is the issue — attendance data may be captured but only reviewed at the end of the term, too late for intervention. In other cases, consistency is the problem — different TAs may grade participation differently. The Let's Build teaches that you earn the data-capture list by working backward from performance goals, not by starting with whatever happens to be recorded. Identifying a gap is the first step toward closing it.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: Think about a time you made a decision based on poor or incomplete information. What went wrong, and which of the four data quality dimensions (accuracy, completeness, timeliness, consistency) was most at fault?**
 **Suggested Answer:** Answers will be personal. A strong response names a specific decision (choosing a course section, buying a product, accepting a job, planning a trip), identifies what information was missing or wrong, and maps the failure to one or more of the four dimensions. For example: accepting a job based on an outdated salary range (timeliness), or choosing a course section based on an instructor rating that turned out to be for a different course (accuracy). The reflection is most useful when it connects a personal experience to the chapter's vocabulary — this is the same pattern managers face at organizational scale.

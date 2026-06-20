@@ -1,4 +1,4 @@
-## Let's Build
+# Let's Build
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
@@ -8,11 +8,11 @@
 
 In this Let's Build, you turn the Chapter 4 ideas into a working database. You will create a small grading database in **Microsoft Access** with two tables, a primary key, a validation rule, required fields, a data-entry form, a handful of queries (including one query-level join), and two reports. The companion **Lab 04** applies these same skills to the PetVax veterinary clinic for a grade. The chapter previewed a more relational structure with separate `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` tables. This build deliberately stays one step behind that target: it uses a flat `GRADEBOOK` table and a `GRADE_WEIGHT` lookup table, with no formal relationships. That gap is intentional. Chapter 5 will query these same tables with SQL, and Chapter 6 will refactor this design into a proper relational structure.
 
-### Purpose
+## Purpose
 
 Make the Chapter 4 concepts concrete by building, inspecting, and querying a real Access database. By the end you should be able to recognize how tables, primary keys, constraints, forms, queries, and reports fit together inside a DBMS, and you should be able to name what this design still does not protect against.
 
-### What You Will Practice
+## What You Will Practice
 
 - Defining fields with appropriate data types in Access Design View.
 - Setting a primary key.
@@ -23,7 +23,7 @@ Make the Chapter 4 concepts concrete by building, inspecting, and querying a rea
 - Generating reports from queries.
 - Diagnosing the redundancy and anomaly risks that still remain.
 
-### Before You Begin
+## Before You Begin
 
 **Step 1 — Create the database file.**
 
@@ -34,7 +34,7 @@ Make the Chapter 4 concepts concrete by building, inspecting, and querying a rea
 
 Access opens an empty database with a blank `Table1`. You will rename it in the next section.
 
-### Build the GRADEBOOK Table
+## Build the GRADEBOOK Table
 
 `GRADEBOOK` is a **flat grade-record table**. One row equals one student receiving one score on one deliverable. It is not a Brightspace-style wide gradebook with one column per deliverable.
 
@@ -77,7 +77,7 @@ These are the chapter's `CHECK`-style constraints in the form Access exposes thr
 
 **Step 7 — Save the table.**
 
-### Enter the Starter Records
+## Enter the Starter Records
 
 **Step 8 — Enter six starter rows.** Switch `GRADEBOOK` to **Datasheet View** and enter the six rows below. Do not type `RecordID` — Access fills it in automatically.
 
@@ -100,13 +100,13 @@ These are the chapter's `CHECK`-style constraints in the form Access exposes thr
 | Highest score | Carla, 95 |
 | Lowest score | Brian, 77 |
 
-### Test the Validation Rule
+## Test the Validation Rule
 
 **Step 9 — Try an out-of-range score.** In any row, temporarily try to enter `150` in the `Score` field and press Tab. Access should refuse the value and show the message `Score must be between 0 and 100.` Restore the original score and move on.
 
 The database just enforced a rule that a spreadsheet would have silently accepted. That is one of the chapter's core differences between a flat file and a DBMS.
 
-### Build the GRADE_WEIGHT Table
+## Build the GRADE_WEIGHT Table
 
 `GRADE_WEIGHT` stores grading-category metadata, not student scores.
 
@@ -141,7 +141,7 @@ The database just enforced a rule that a spreadsheet would have silently accepte
 | Weight per quiz | 5 |
 | Total course weight for exams | 40 |
 
-### Create a Data-Entry Form
+## Create a Data-Entry Form
 
 A form is another interface for the same table, not a separate copy of the data. It makes record entry easier to read and reduces accidental edits to neighboring rows.
 
@@ -173,7 +173,7 @@ A form is another interface for the same table, not a separate copy of the data.
 | New deliverable type now present in `GRADEBOOK` | Project |
 | Object used to enter the record | `frmGRADEBOOK` |
 
-### Build Single-Table Queries
+## Build Single-Table Queries
 
 A query asks a question of the data. You will use the **Query Design** grid here. Chapter 5 will rewrite these as SQL.
 
@@ -219,7 +219,7 @@ Expected result (after adding Daniel):
 
 This is the database version of a pivot-table summary, except it lives as a reusable, named object.
 
-### Build a Query-Level Join
+## Build a Query-Level Join
 
 This is the first time you combine two tables. Read carefully: this is a **query-level join**, not a formal relational design. You are not creating relationships or referential integrity yet. You are asking Access to match rows from two tables inside one query so you can display grade records alongside their category-level weights.
 
@@ -241,7 +241,7 @@ Expected result — 7 rows, each showing the category weight alongside the score
 
 This feels like a spreadsheet `VLOOKUP` or `XLOOKUP`, but Access is doing it as part of a saved query. The database design itself is still not relational — that comes in Chapter 6.
 
-### Build Two Reports
+## Build Two Reports
 
 A report turns query output into a layout you can print or share.
 
@@ -251,7 +251,7 @@ A report turns query output into a layout you can print or share.
 
 If you have time, open either report in **Layout View** and clean up the title, column widths, and label names.
 
-### Check Your Work
+## Check Your Work
 
 Your database should now contain these objects:
 
@@ -275,7 +275,7 @@ And these results should match:
 | Quiz average | 85.25 |
 | `qryGradebookWithWeights` row count | 7 |
 
-### What This Shows
+## What This Shows
 
 You now have a small but real DBMS environment instead of a spreadsheet. Tables enforce structure and data types. A primary key uniquely identifies each row. A validation rule rejects bad input before it lands. A form is a friendlier interface to the same underlying table. Queries answer specific questions and live as reusable objects. A query-level join can combine two tables on demand. Reports present query results in a readable layout. None of this required SQL — but everything you just did, you will do again in SQL in Chapter 5.
 
@@ -285,7 +285,7 @@ Three questions worth sitting with before you move on:
 - **What did the `Score` validation rule prevent that a spreadsheet would have allowed?**
 - **Why is `qryGradebookWithWeights` not the same as a real relational design?**
 
-### What This Database Does Well
+## What This Database Does Well
 
 This first version already improves on a spreadsheet in several ways.
 
@@ -307,7 +307,7 @@ A database gives data structure.
 
 In business settings, structure is not a limitation. Structure is what makes reliable analysis possible.
 
-### What This Build Does Not Fix Yet
+## What This Build Does Not Fix Yet
 
 This is the bridge to Chapter 6. The database works, but five problems remain visible in the design:
 
@@ -319,7 +319,7 @@ This is the bridge to Chapter 6. The database works, but five problems remain vi
 
 Chapter 6 will refactor this into a relational design with separate `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE` tables connected by foreign keys.
 
-### Bridge to the Animal Hospital Lab
+## Bridge to the Animal Hospital Lab
 
 The Grading Database is our first controlled build. The companion **Lab 04** applies the same pattern to the PetVax veterinary clinic, but with different content.
 
@@ -346,7 +346,7 @@ In both cases, you need to ask:
 
 That is the larger purpose of this first build. You are not just learning Access buttons. You are learning how business systems turn raw records into usable information.
 
-### Bridge to the Semester Project
+## Bridge to the Semester Project
 
 Your semester project will also follow this pattern.
 
@@ -368,7 +368,7 @@ Same logic. More complexity.
 
 That is how database learning works: first the pattern, then the variation, then the independent build.
 
-### Common Mistakes
+## Common Mistakes
 
 - **Typed `RecordID` values.** `RecordID` is AutoNumber — Access fills it in. If you try to type a value, Access ignores it or warns you.
 - **Set `StudentID` as Number.** Then later realized you wanted `S1001`-style IDs. Changing the data type after data is entered can be painful. Set it to Short Text up front.
@@ -379,7 +379,7 @@ That is how database learning works: first the pattern, then the variation, then
 - **Saved the table instead of the query, or vice versa.** When Access prompts to save, check whether you're saving `GRADEBOOK`, `qryQuizRecords`, or something else. The active object's name appears in the prompt.
 - **Tried to make a report from a table instead of a query.** You can, but reports built from queries inherit your filters and sorts. That's usually what you want.
 
-### Check Your Understanding
+## Check Your Understanding
 
 Before moving on, answer the following questions.
 
@@ -392,7 +392,7 @@ Before moving on, answer the following questions.
 7. Why will repeated student information become a problem later?
 8. How might the Grading Database change when we redesign it as a relational database?
 
-### Key Takeaways
+## Key Takeaways
 
 * A database begins with structure.
 * Tables store records.
@@ -406,11 +406,11 @@ Before moving on, answer the following questions.
 * This first Grading Database is intentionally simple and not yet fully relational.
 * Repeated data in this version prepares us to understand why relational design matters later.
 
-### Submit or Save
+## Submit or Save
 
 Save and close the database. Confirm the file is named `LB04-GradingDatabase-YourName.accdb`. Keep it somewhere you can find it again — Chapter 5 will reuse these same two tables to introduce SQL, and Chapter 6 will use them as the starting point for normalization.
 
-### Peek Ahead — Chapter 5
+## Peek Ahead — Chapter 5
 
 In Chapter 5 you will stop clicking and start writing. The same questions you just answered with the Query Design grid — show the quizzes, show the low scores, sort by score, average by category, combine `GRADEBOOK` with `GRADE_WEIGHT` — become short SQL statements you can read, edit, and share. Chapter 5 will use the same table logic in SQL, including Access SQL View and/or SQLite, so you will start to see why SQL is the lingua franca that every relational database in the chapter's platform table speaks.
 

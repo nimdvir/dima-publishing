@@ -1,92 +1,15 @@
-<!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. -->
----
-title: 'Chapter 5: SQL — The Language of Databases'
-author: 'Nimrod Dvir, PhD'
-date: 2026-06-16
-lang: en-US
-toc: true
----
-
 # Chapter 5: SQL — The Language of Databases
-
-*How Structured Queries Transform Stored Data into Business Insight*
-
-[![Watch the Chapter 5 companion video](https://img.youtube.com/vi/-QBMQXInrAg/hqdefault.jpg)](https://www.youtube.com/watch?v=-QBMQXInrAg)
-
-*Click the image to watch the Chapter 5 companion video.*
-
-<iframe width='560' height='315' src='https://www.youtube.com/embed/-QBMQXInrAg?si=WhniRXJh9OkQK64K' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
 
 Chapter 4 introduced databases as structured systems for storing, protecting, and managing data. Chapter 5 introduces the language used to work with those systems: **SQL**, or **Structured Query Language**.
 
 SQL is the standard language used to define database structures, insert records, retrieve results, and summarize patterns. It is one of the most transferable skills in business technology because the same core logic appears across Microsoft Access, SQLite, PostgreSQL, SQL Server, Oracle, and cloud data platforms. Later chapters extend SQL into reusable patterns and safe data modification.
 
-This chapter treats SQL as a way to ask precise questions of structured data, not as a syntax list to memorize.
-
-A business manager might ask:
-
-- Which product category is underperforming?
-- Which customers have not ordered in the last 90 days?
-- What is the average delivery delay by region?
-
-An instructor might ask:
-
-- Which students are below 80?
-- Who is missing work?
-- What is the average score on Quiz 2?
-- Which deliverable type has the lowest average performance?
-
-Those are **decision-support questions**. SQL turns them into repeatable, inspectable database statements.
-
-**After reading this chapter, you will be able to:**
-
-1. Explain what SQL is and why it matters for relational databases.
-2. Explain how SQL works as a declarative language.
-3. Distinguish among DDL, DML, DQL, and TCL at an introductory level.
-4. Create simple database tables using `CREATE TABLE`.
-5. Insert records using `INSERT INTO`.
-6. Retrieve, filter, sort, and label query results using `SELECT`, `FROM`, `WHERE`, `ORDER BY`, `DISTINCT`, and aliases (`AS`) for both columns and tables.
-7. Handle missing values using `IS NULL` and `IS NOT NULL`, and work with dates stored as text.
-8. Recognize a basic `INNER JOIN` as a preview of combining tables, with full join coverage in Chapter 6.
-9. Summarize records using aggregate functions, `GROUP BY`, and `HAVING`.
-10. Build calculated and conditional outputs using expressions and `CASE`.
-
----
-
-## Chapter Roadmap
-
-This chapter is organized in six short parts that build gradually.
-
-| Part       | Focus                             | Main Question                                                 |
-| ---------- | --------------------------------- | ------------------------------------------------------------- |
-| **Part 1** | SQL foundations and tools         | What is SQL, where does it run, and why does it come next?    |
-| **Part 2** | Teaching dataset                  | What tables will we use for practice?                         |
-| **Part 3** | Creating and inserting data       | How do we define tables and add records?                      |
-| **Part 4** | Basic queries, aliases, and dates | How do we retrieve, filter, sort, label, and work with dates? |
-| **Part 5** | A first look at joins             | How do we begin to combine related tables?                    |
-| **Part 6** | Aggregation and calculations      | How do we summarize and transform data?                       |
-
-SQL becomes easier when it is learned as a sequence:
-
-```text
-Create structure -> add records -> retrieve rows -> filter results -> preview joins -> summarize patterns
-```
-
-Chapter 9 picks the thread back up with more advanced SQL patterns, including complex joins, subqueries, CTEs, and window functions. This chapter stops at the point where you can ask, filter, preview a table combination, and summarize structured data.
-
-The chapter uses **SQLite-friendly syntax** unless otherwise noted. SQLite is lightweight and accessible, and the query logic transfers to Microsoft Access and PostgreSQL/Supabase.
-
-![Figure 5.1 — SQL as the Data Bridge](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-textbook-that-shows-sql)
-*Figure 5.1 — SQL as the Data Bridge. Database tables store raw records on the left, which pass through the declarative SQL query layer in the center to produce business answers, reports, and dashboards on the right.*
-
-![Figure 5.2 — Chapter Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-create-a-lefttoright-instructional)
-*Figure 5.2 — Chapter Roadmap. A step-by-step pathway showing how Chapter 5 concepts progress from defining structure to loading records, retrieving rows, filtering results, previewing a join, and summarizing patterns.*
-
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Core Concepts
+# Core Concepts
 
+# Core Concepts
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>
@@ -413,6 +336,9 @@ A small sample:
 
 Together, `GRADEBOOK` and `GRADE_WEIGHT` allow students to practice single-table queries and to see one introductory example of joining two tables.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Questions These Tables Can Answer
 
 With only two tables, students can already answer useful questions:
@@ -428,9 +354,6 @@ With only two tables, students can already answer useful questions:
 - What is each student's approximate weighted contribution from recorded scores?
 
 This is the core SQL learning pattern: start with a question, identify the table or tables, write the query, inspect the result, and revise as needed.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Part 3: Creating Tables and Inserting Data
 
@@ -578,6 +501,9 @@ Good insertion habits matter.
   <p>Always name your columns explicitly in your <code>INSERT</code> statement. Do not rely on the physical order of columns in the database. If a colleague later adds a new column to the table structure, an <code>INSERT</code> query that lacks explicit column names will fail, potentially breaking production systems.</p>
 </div>
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Inserting Rows into `GRADEBOOK`
 
 ![Figure 5.24 — Step-by-Step Multi-Row INSERT](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-multi-row-insert-flow.png)
@@ -652,9 +578,6 @@ This habit is simple but important. Before writing complicated queries, confirm 
   <p><strong>✅ Good Practice: Inspect before you analyze</strong></p>
   <p>Run a quick <code>SELECT *</code> after every load. Catch a misaligned column or missing row right after insertion, not in the middle of a complex query.</p>
 </div>
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Part 4: Querying Data with `SELECT`
 
@@ -772,6 +695,9 @@ WHERE Score IS NOT NULL;
 </div>
 
 Always ask whether a missing value means not applicable, not entered yet, or unknown.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### Combining Conditions with `AND`, `OR`, and `NOT`
 
@@ -908,6 +834,9 @@ Here `GRADEBOOK AS g` names the table `g`, so `g.Score` means the `Score` column
   <p>Use <code>AS</code> to label output columns, such as <code>Score AS Result</code>, and to nickname tables, such as <code>GRADEBOOK AS g</code>. Writing <code>AS</code> keeps the intent clear.</p>
 </div>
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Working with Dates
 
 Dates appear all over the teaching dataset: `DueDate` for each deliverable and `Birthday` for each student. SQLite has no dedicated date type, so this chapter stores dates as **text in `YYYY-MM-DD` form** (for example, `'2026-09-08'`). That format is not arbitrary: because the year comes first, then the month, then the day, the values sort and compare correctly as plain text.
@@ -988,9 +917,6 @@ ORDER BY
 
 This query precisely targets the required information, filtering out all other records and presenting a clean, sorted list of the relevant student scores. This is the core power of SQL: turning a broad dataset into a specific, actionable answer.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Part 5: A First Look at Joins
 
 So far every query has read from one table. But the teaching dataset has two tables, and some questions need both. This part gives you a single introductory example. Chapter 6 then develops joins in full once you understand why data is split across related tables.
@@ -1036,9 +962,6 @@ Before writing a join between tables like `GRADEBOOK` and `GRADE_WEIGHT`, it hel
 
 Joins fit naturally with the relational design ideas in Chapter 6, so the full treatment lives there: `LEFT JOIN`, finding unmatched rows, comparing join types, and joining three or more tables.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Part 6: Aggregation, Grouping, and Calculated Results
 
 ![Figure 5.37 — Rows-to-Summary Aggregation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-clean-aggregation-diagram.png)
@@ -1079,6 +1002,9 @@ FROM GRADEBOOK;
 ```
 
 This returns one overall average.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### Grouping with `GROUP BY`
 
@@ -1224,6 +1150,9 @@ FROM GRADEBOOK;
 
 `CASE` turns numeric values into interpretable labels. It is one of the most useful tools for making raw data more meaningful.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Complete Student Summary Example
 
 This query combines grouping, aggregation, rounding, and conditional logic.
@@ -1249,9 +1178,6 @@ The result is one row per student with an average score and a performance label.
   <p>Aggregation and calculated expressions turn rows into useful summaries. The same table can produce a roster, a class average, or an at-risk list depending on how you group and label the data.</p>
 </div>
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Looking Ahead
 
 ![Figure 5.46 — The SQL Learning Pathway](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch05-sql/ch05-create-a-lefttoright-instructional.jpg)
@@ -1274,9 +1200,6 @@ Later chapters build on this SQL foundation with:
 SQL will return throughout the book because almost every later database skill depends on the ability to ask clear questions of structured data.
 
 For extra practice between now and the next SQL-heavy chapter, use the [W3Schools SQL Tutorial](https://www.w3schools.com/sql/). The Try it Yourself editors let you run `SELECT`, joins, `GROUP BY`, and other clauses against a sample database directly in the browser.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Appendix: Applying These Concepts to the Grading Database
 
@@ -1350,9 +1273,6 @@ The commands, clauses, and operators covered in this chapter, in one place. Keep
 | Expression | `CASE`                          | Conditional label or value                              | `CASE WHEN WeightLb > 30 THEN 'Large' ELSE 'Small' END`                |
 | TCL        | `BEGIN` / `COMMIT` / `ROLLBACK` | Wrap changes in a transaction for safety                | `BEGIN; UPDATE ...; COMMIT;`                                           |
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Chapter Summary
 
 ![Figure 5.50 — Chapter 5 Visual Summary](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-ch05-summary.jpg)
@@ -1387,4 +1307,3 @@ Elmasri, R., & Navathe, S. B. (2016). *Fundamentals of database systems* (7th ed
 Laudon, K. C., & Laudon, J. P. (2024). *Management information systems: Managing the digital firm* (18th ed.). Pearson.
 
 Silberschatz, A., Korth, H. F., & Sudarshan, S. (2020). *Database system concepts* (7th ed.). McGraw-Hill Education.
-

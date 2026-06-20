@@ -6,15 +6,17 @@ description: >
   HTML comment followed by a fenced code block containing a short description and optional
   caption hint. Use when proposing visuals for a section, marking every sub-section that
   should have a figure, or batch-planning a chapter's figures into an image-ideas file.
-  Aims for at least one figure per sub-section.
+  Aims for at least one figure per sub-section. Use `image-prompt` instead when the
+  requested output is a filename, title, caption, visible Gemini prompt block, Figures
+  Index, or CSV image tracker.
 argument-hint: File path and optional section heading, or `chNN` for a chapter-wide pass (e.g., "ch04/main/...md @ Step 3" or "ch04 chapter-wide").
 ---
 
 # BITM330 Figure Suggestion
 
-**Pipeline stage 1 of 3:** `figure-suggestion` → `image-placement` → `image-link-optimizer`.
+**Pipeline stage 1 of 3:** `figure-suggestion` or `image-prompt` → `image-placement` → `image-link-optimizer`.
 
-Mark where a chapter needs visuals, in a consistent, easy-to-find format. This skill writes **suggestions only** — short descriptions and caption hints. It does not pick real image files, write prompts, generate images, or upload anything. Stage 2 (`image-placement`) consumes these suggestions; stage 3 (`image-link-optimizer`) optimizes and uploads the final files.
+Mark where a chapter needs visuals, in a consistent, easy-to-find format. This skill writes **suggestions only** — short descriptions and caption hints. It does not pick real image files, write prompts, generate images, or upload anything. Use `image-prompt` when production needs visible Gemini prompt blocks, filenames, captions, a Figures Index, or a CSV tracker. Stage 2 (`image-placement`) consumes either hidden suggestions or `image-prompt` blocks; stage 3 (`image-link-optimizer`) optimizes and uploads the final files.
 
 This skill is **content-agnostic**: it works on the main chapter file or any companion segment (Let's Build, Reflection, Terms, RAT, Lab).
 
@@ -31,7 +33,7 @@ This skill **does**:
 This skill **does NOT**:
 
 - pick or insert real image files or links → `image-placement`;
-- write Gemini/Midjourney prompts or filenames in the chapter body → `image-placement`;
+- write Gemini prompts, filenames, Figures Index tables, or CSV trackers → `image-prompt`;
 - generate, optimize, upload, or rewrite image URLs → `image-link-optimizer`;
 - edit `.images/book-media.md` → owned by `image-link-optimizer`.
 
@@ -148,4 +150,6 @@ The image-ideas file lists, per sub-section: the section heading, the figure des
 
 Minimal edits only. No real image links. No tracker updates. The only file this skill may create is the optional `chNN-image-ideas-YYYY-MM-DD.md` planning file in chapter-wide mode.
 
-Hand off to `image-placement` to turn these suggestions into real figures.
+Hand off to `image-placement` to turn these suggestions into real figures. If the next
+needed artifact is a production-ready prompt block rather than a hidden planning comment,
+hand off to `image-prompt` first.

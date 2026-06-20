@@ -335,7 +335,7 @@ Instructor says:
 
 "Do not treat all macros as the same thing. Access gives us three different places to automate. A standalone macro runs as its own object. An embedded macro runs from a form or report event. A data macro runs when table data changes."
 
-### Macro Designer Options to Show Slowly
+## Macro Designer Options to Show Slowly
 
 Show these parts of the Macro Designer window one at a time:
 
@@ -362,7 +362,7 @@ Live demo:
 
 Start with a very simple standalone macro so the class sees the Macro Designer without too many moving parts. After that, show how the same idea connects to the grade-range example and then to data macros.
 
-### Simple Demo 1: Standalone Macro in Macro Designer
+## Simple Demo 1: Standalone Macro in Macro Designer
 
 1. Go to `Create` -> `Macro`.
 2. If the `Action Catalog` is hidden, click `Action Catalog` on the ribbon so students can see the action list.
@@ -382,7 +382,7 @@ Instructor says during this first demo:
 - "A macro is just a list of actions in the order we want Access to perform them."
 - "Do not worry about advanced logic yet. First learn to recognize actions, arguments, and sequence."
 
-### Simple Demo 2: Embedded Macro on the Form
+## Simple Demo 2: Embedded Macro on the Form
 
 1. Open `frmGradeEntry` in `Design View`.
 2. Add a button if the form does not already have one.
@@ -399,7 +399,7 @@ Instructor says:
 
 "Now students can see the difference. The standalone macro lives in the Navigation Pane as its own object. The embedded macro lives inside the form event."
 
-### Simple Demo 3: Data Macro
+## Simple Demo 3: Data Macro
 
 Instructor says:
 
@@ -425,7 +425,7 @@ Explain the purpose clearly:
 - Embedded macro: good for button clicks and form events.
 - Data macro: good for table-level rules that should happen whenever data changes.
 
-### Optional Advanced Example: Projected Grade Range Macro
+## Optional Advanced Example: Projected Grade Range Macro
 
 If the instructor is comfortable, connect the earlier query work to a more useful standalone macro.
 
@@ -439,7 +439,7 @@ If the instructor is comfortable, connect the earlier query work to a more usefu
 8. Save the macro as `mcrProjectedGradeRange`.
 9. Attach it to a button labeled `Show Projected Grade Range` on `frmGradeEntry`.
 
-### Optional Advanced Example: Set All Grades After a Date to 100
+## Optional Advanced Example: Set All Grades After a Date to 100
 
 Use this example only after warning students that update queries change many rows at once.
 

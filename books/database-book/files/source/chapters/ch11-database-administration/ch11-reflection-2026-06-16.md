@@ -90,12 +90,13 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: What is the difference between Database Administration and Data Administration?**
 
@@ -131,7 +132,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: The chapter describes the DBA as a "guardian of data trust" rather than simply a technician. What does this framing mean, and why is it an important way to think about database administration?**
 
@@ -167,7 +168,7 @@ author: "Nimrod Dvir, PhD"
 
 ---
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: Which DBA responsibility — security, concurrency, backup, or performance — do you find most challenging to think about? What makes it difficult, and what would help you understand it better?**
 

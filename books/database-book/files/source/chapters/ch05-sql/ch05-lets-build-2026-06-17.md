@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD013 MD024 MD028 MD033 MD034 MD036 MD041 MD060 -->
 <!-- LB revision (2026-06-17): standardized d.Type→d.AssignmentType, added prebuilt-structure framing note. -->
 
-## Let's Build: Querying a Normalized Database
+# Let's Build: Querying a Normalized Database
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
@@ -15,11 +15,11 @@ The setup script provides a **prebuilt normalized structure** — the seven tabl
 
 There is no submission for this Let's Build. Save your `.sql` file for yourself; the graded work happens in Lab 05.
 
-### Purpose
+## Purpose
 
 To move from simple, single-table queries to more realistic, multi-table queries that require `JOINs`. By the end, you will be able to read and write queries that combine multiple tables to answer complex business questions.
 
-### What You Will Practice
+## What You Will Practice
 
 -   Loading a normalized database from a setup script.
 -   Writing `SELECT` queries that `JOIN` multiple tables.
@@ -28,7 +28,7 @@ To move from simple, single-table queries to more realistic, multi-table queries
 -   Answering complex questions that require data from several tables.
 -   **Challenge:** Getting a preview of **subqueries** and **views**.
 
-### Before You Begin
+## Before You Begin
 
 Use **SQLite**. Either tool works:
 
@@ -45,7 +45,7 @@ Open a new SQL script and start it with a comment header:
 -- Chapter 5 Let's Build
 ```
 
-### 1. Load the Normalized Grading Database
+## 1. Load the Normalized Grading Database
 
 Open `assets/ch05-lb-setup-advanced-2026-06-16.sql`, copy its full contents below your header, and run it. The script drops any old tables, creates all seven tables for the normalized schema, and inserts the starter data.
 
@@ -59,7 +59,7 @@ SELECT COUNT(*) FROM STUDENT_GRADE;
 
 Expected: **5** students, **6** deliverables, and **10** grades. If the counts are off, fix the load before continuing.
 
-### 2. List All Students and Their Grades (Your First JOIN)
+## 2. List All Students and Their Grades (Your First JOIN)
 
 Our first question requires combining three tables: `STUDENT` (for names), `STUDENT_GRADE` (for scores), and `DELIVERABLE` (for the deliverable topic).
 
@@ -83,7 +83,7 @@ ORDER BY
 
 **Expected Result:** A list of 10 rows showing each student, the topic of their submitted work, and their score. Notice how table aliases (`s`, `sg`, `d`) make the query much cleaner to read.
 
-### 3. Calculate the Average Score for Each Student
+## 3. Calculate the Average Score for Each Student
 
 Now, let's use `GROUP BY` with our `JOIN`. This query will show the average score for each student across all their submitted deliverables.
 
@@ -104,7 +104,7 @@ ORDER BY
 
 **Expected Result:** A list of students and their calculated average score. `AVG` automatically ignores the `NULL` score for Emma Scott's lab.
 
-### 4. Find Which Students Scored Below 80 on Any Assignment
+## 4. Find Which Students Scored Below 80 on Any Assignment
 
 This query requires a `JOIN` and a `WHERE` clause to filter the results.
 
@@ -126,7 +126,7 @@ WHERE
 
 **Expected Result:** One row, showing that Brian Lee scored 77 on the 'SQL Basics' quiz.
 
-### 5. Count the Number of Submissions for Each Deliverable
+## 5. Count the Number of Submissions for Each Deliverable
 
 This query uses `GROUP BY` on the `DELIVERABLE` table and `COUNT` to see how many students have a grade record for each item.
 
@@ -147,7 +147,7 @@ ORDER BY
 
 **Expected Result:** A list of all deliverables, showing how many students have a submitted grade for each. We use a `LEFT JOIN` here to ensure that even deliverables with zero submissions would appear in our list (though in this dataset, all have at least one submission record, even if the score is `NULL`).
 
-### 6. Challenge: Use a Subquery to Find Scores Above the Overall Average
+## 6. Challenge: Use a Subquery to Find Scores Above the Overall Average
 
 A **subquery** (or inner query) is a `SELECT` statement nested inside another statement. Let's find all the individual scores that were higher than the overall average score.
 
@@ -171,7 +171,7 @@ WHERE
 
 **Expected Result:** A list of the 6 scores that are higher than the overall average.
 
-### 7. Challenge: Create a VIEW
+## 7. Challenge: Create a VIEW
 
 A **View** is a stored query that you can interact with like a table. It’s useful for simplifying complex queries that you run often. Let's create a view that shows the full student grade report.
 
@@ -199,20 +199,20 @@ SELECT * FROM V_StudentGradeReport WHERE FirstName = 'Alice';
 
 **Expected Result:** Two rows, showing Alice's grades for the 'Database Basics' and 'SQL Basics' quizzes.
 
-### What This Shows
+## What This Shows
 
 You've moved from querying a single, flat table to a properly structured, multi-table database. You saw that while the data is stored in separate tables, `JOINs` allow you to bring it all together to answer much more complex and realistic questions. You also got a preview of how subqueries and views can further extend the power of SQL.
 
 This is the foundation for the more advanced SQL you will learn in Chapter 9.
 
-### Appendix: Quick References & Platform Differences
+## Appendix: Quick References & Platform Differences
 
 This appendix shows the chapter's ideas at work in the Let's Build grading database. Each section reuses the `GRADEBOOK` and `GRADE_WEIGHT` tables defined in Part 2 and Part 3 of the main chapter.
 
 ![Figure 5.47 — Appendix Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch05-sql/ch05-sql-review.jpg)
 *Figure 5.47 — Appendix Roadmap. Maps the appendix examples back to the core chapter concepts: Access-style inserts and side-by-side age expressions.*
 
-#### A1. Inserting Rows One at a Time (Access-Friendly)
+### A1. Inserting Rows One at a Time (Access-Friendly)
 
 Multi-row `INSERT` works in SQLite and PostgreSQL. Microsoft Access expects one row per statement. In the Chapter 4 build, `RecordID` is an Access AutoNumber field, so it is generated automatically and you do not type a value for it. The first two rows from Part 3 would look like this in Access form:
 
@@ -233,7 +233,7 @@ VALUES ('S1002', 'Brian', 'Lee', 'brian@university.edu', #2003-11-22#,
 
 Notice three Access differences: `RecordID` is omitted so Access can generate it as AutoNumber, dates are wrapped in `#` rather than quotes, and each row needs its own statement.
 
-#### A2. A Side-by-Side Age Calculation
+### A2. A Side-by-Side Age Calculation
 
 *Platform SQL Date Operations (Figure 5.45 above) maps the SQLite, PostgreSQL, and Access age expressions side by side.*
 
@@ -247,7 +247,7 @@ All three return a rough integer age based on year only. None checks whether the
 
 ---
 
-#### A3. SQL Quick Reference
+### A3. SQL Quick Reference
 
 The commands, clauses, and operators covered in this chapter, in one place. Keep this handy while working through the Let's Build and Lab 5.
 
@@ -277,11 +277,11 @@ The commands, clauses, and operators covered in this chapter, in one place. Keep
 | Expression | `CASE`                          | Conditional label or value                              | `CASE WHEN WeightLb > 30 THEN 'Large' ELSE 'Small' END`                |
 | TCL        | `BEGIN` / `COMMIT` / `ROLLBACK` | Wrap changes in a transaction for safety                | `BEGIN; UPDATE ...; COMMIT;`                                           |
 
-### Save Your Work
+## Save Your Work
 
 Save your script as `ch05_lb_advanced_<lastname>.sql`. Keep it as a reference for how to query a normalized database. This experience will be invaluable as we move into Chapter 6, where we dive deep into the theory and practice of relational database design and joins.
 
-### Check Your Work
+## Check Your Work
 
 Run these verification queries against your loaded database:
 
@@ -295,7 +295,7 @@ Run these verification queries against your loaded database:
 
 If any count is off, re-run the setup script from Section 1. If your query results differ from the expected outputs in Sections 2-4, compare your SQL against the model queries line by line — the most common issue is a missing or misnamed JOIN condition.
 
-### Common Mistakes
+## Common Mistakes
 
 - **Forgetting the JOIN condition.** `INNER JOIN STUDENT_GRADE ON ...` — without the `ON` clause, the database does not know how to match rows.
 - **Using the wrong column in GROUP BY.** Group by `StudentID`, not by name — two students can share a name, but `StudentID` is unique.
@@ -304,6 +304,6 @@ If any count is off, re-run the setup script from Section 1. If your query resul
 - **Alias confusion.** If you write `FROM STUDENT AS s`, you must use `s.` everywhere after — not `STUDENT.`. Pick one style and stay consistent.
 - **Running queries in the wrong order.** The setup script must run first. If you try a JOIN before the tables exist, the query fails.
 
-### Peek Ahead — Chapter 6
+## Peek Ahead — Chapter 6
 
 Chapter 5 focused on querying a normalized database that was already designed for you. Chapter 6 flips the perspective: you will design and build the relational structure yourself in Microsoft Access. You will create the same seven tables, set primary keys and foreign keys, enforce referential integrity in the Relationships window, and write the queries that prove the design works. The SQL you wrote here — `INNER JOIN`, `GROUP BY`, `AVG` — will be the same operations, but now you will understand why the tables are shaped the way they are before you query them.

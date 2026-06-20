@@ -68,9 +68,12 @@ author: "Nimrod Dvir"
 6. When you write or read a SQL query, do you focus first on the business question, the table structure, the syntax, or the expected result? How might that habit help you, and how might it limit you?
 7. As you think about your future career, why might SQL literacy matter even if your role is not mainly technical?
 
-## Answer Key
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-### Review
+# Answer Key
+
+## Review
 
 **Question 1: How does Chapter 5 define SQL, and why does the chapter describe SQL as a declarative language?**
 Suggested Answer: Chapter 5 defines SQL, or Structured Query Language, as the standard language used to work with relational databases. SQL can define structures, insert records, retrieve rows, combine tables, summarize patterns, and support reporting. The chapter calls SQL declarative because the user states what result they want, such as students below 80 or average score by deliverable type, while the DBMS decides how to retrieve and process the data internally.
@@ -96,7 +99,7 @@ Suggested Answer: Explicit column lists make `INSERT INTO` statements easier to 
 **Question 8: How do `SELECT`, `DISTINCT`, `WHERE`, `IS NULL`, `ORDER BY`, aliases, joins, aggregate functions, `GROUP BY`, `HAVING`, calculated fields, and `CASE` each contribute to turning raw grade records into useful query results?**
 Suggested Answer: `SELECT` chooses the columns to return. `DISTINCT` removes duplicate result values. `WHERE` filters individual rows, and `IS NULL` or `IS NOT NULL` handles missing values correctly. `ORDER BY` sorts results, while aliases make output easier to read. Joins combine related tables such as `GRADEBOOK` and `GRADE_WEIGHT`. Aggregate functions summarize values, `GROUP BY` creates summary groups, and `HAVING` filters those groups. Calculated fields create derived outputs, and `CASE` labels results into meaningful categories such as performance bands.
 
-### Reflection
+## Reflection
 
 **Question 1: Why does SQL come naturally after Chapter 4's database-structure work and before later chapters on richer relational design and advanced SQL?**
 Suggested Answer: SQL comes after Chapter 4 because students first need to understand where data lives: tables, rows, columns, data types, keys, constraints, and the DBMS. Once that structure is visible, the next question is how to ask the stored data for answers. Chapter 5 provides that language. It also prepares later chapters by showing both the power and the limits of a simple teaching dataset, which makes richer relational design and more advanced query patterns feel necessary rather than abstract.
@@ -122,7 +125,7 @@ Suggested Answer: SQLiteOnline is useful for quick practice and live demonstrati
 **Question 8: Which Chapter 5 pattern best represents the book's broader data-to-decisions arc: filtering specific records, joining related tables, summarizing groups, or labeling results with `CASE`? Defend your choice.**
 Suggested Answer: Any of the four patterns can be defended if the reasoning is grounded. Filtering specific records supports decisions by finding cases that meet a condition, such as scores below 80. Joining related tables connects separate facts so they can be used together. Summarizing groups strongly represents the arc because it turns many records into performance patterns. Labeling results with `CASE` also matters because it translates numbers into action-oriented categories. The strongest response explains how the chosen pattern moves from stored data toward a useful judgment.
 
-### Personal Reflection
+## Personal Reflection
 
 **Question 1: Which Chapter 5 SQL action feels most natural to you right now: creating tables, inserting rows, filtering records, joining tables, grouping results, or writing calculated outputs? Why?**
 Suggested Answer: A thoughtful response identifies one action and explains why it feels natural. For example, filtering may feel familiar because it resembles searching a spreadsheet for records that match a condition. Grouping may feel intuitive for someone who already thinks in summaries and averages. Joining may feel less familiar but satisfying once the student sees how separate tables produce one report. The strongest answer connects the choice to a real learning habit or prior experience.

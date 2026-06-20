@@ -8,7 +8,7 @@
 BITM 330
 Prof. Nim Dvir
 
-### Notes:
+## Notes:
 Also called databases
 
 <!-- Slide number: 2 -->
@@ -19,7 +19,7 @@ Learn the basic concepts of business intelligence (B I) systems
 Learn the basic concepts of online analytical processing (O L A P)
 Learn the basic concepts of virtualization and virtual machines
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 3 -->
 # Learning Objectives
@@ -28,7 +28,7 @@ Learn the basic concepts of Big Data, structured storage, and the MapReduce proc
 Understand the limitations and tradeoffs of replicated, partitioned stores as indicated by the C A P (Consistency, Availability, Partition Tolerance) theorem
 Learn the basic concepts of JavaScript Object Notation (J S O N) as a way of structuring nonrelational data
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 4 -->
 # What Is Big Data?
@@ -38,14 +38,14 @@ Facebook
 LinkedIn
 Twitter
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 5 -->
 # Storage Capacity Terms
 
 ![The table data is as follows for the columns Name, Symbol, Approximate value for reference, Actual Value. • Byte, empty data, empty data, 8 bits Store one character • Kilobyte, KB, About 10 superscript 3, 2 superscript 10 = 1,024 bytes • Megabyte, MB, About 10 superscript 6, 2 superscript 20 = 1,024 KB • Gigabyte, GB, About 10 superscript 9, 2 superscript 30 = 1,024 MB • Terabyte, TB, About 10 superscript 12, 2 superscript 40 = 1,024 GB • Petabyte, PB, About 10 superscript 15, 2 superscript 50 = 1,024 TB • Exabyte, EB, About 10 superscript 18, 2 superscript 60 = 1,024 PB • Zettabyte, ZB, About 10 superscript 21, 2 superscript 70 = 1,024 EB • Yottabyte, YB, About 10 superscript 24, 2 superscript 80 = 1,024 ZB](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 6 -->
 # Heather Sweeney Designs: Database Design
@@ -53,7 +53,7 @@ Twitter
 ![1. The columns of Seminar table are SeminarID, which is highlighted with primary key, SeminarDate, SeminarTime, Location and SeminarTitle. 2. Columns of Seminar_Customer are SeminarID, which is highlighted with foreign key, CustomerID which is high-lighted with foreign key. 3. The columns of Customer table are CustomerID which is highlighted with primary key, LastName, FirstName, EmailAddress, EncryptedPassword, Phone, StreetAddress, City, State and ZIP. 4. Columns of Contact table are CustomerID which is highlighted with foreign key, ContactNumber which is high-lighted with primary key, ContactDate, ContactType and SeminarID with a foreign key. 5. Columns of Invoice table are Invoice Number which is highlighted with primary key, InvoiceDate, CustomerID with a foreign key, Subtotal, Shipping, Tax and Total. 6. Columns of Line_item table are Invoice Number which is highlighted with foreign key, LineNumber which is highlighted with primary key, ProductNumber with foreign key, Quantity, UnitPrice and Total. 7. Columns of Product table are ProductNumber which is highlighted with primary key, ProductType, ProductDescription, UnitPrice and QuantityOnHand. Link relationships: • Optional one-to-optional-many relationship from Seminar to Contact. • Mandatory one to optional many relationships from Seminar to Seminar_Customer. • Mandatory one to optional many relationships from Customer to Seminar_Customer. • Option one- to-optional many link from Seminar to Contact represented by dotted line. • Mandatory one-to-optional many link from Customer to Contact. • Mandatory one-to-optional many link from Customer to Invoice represented by dotted line. • Mandatory one-to-mandatory one link from Invoice to Line_item. • Mandatory one-to-optional many link from Product to Line_item.](Picture2.jpg)
 Note: From Chapter 5 showing the final database design for Heather Sweeney
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 7 -->
 # Business Intelligence Systems
@@ -63,7 +63,7 @@ do not support operational activities, such as the recording and processing of o
 these are supported by transaction processing systems
 support management assessment, analysis, planning and control
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 8 -->
 # Business Intelligence Systems
@@ -71,14 +71,14 @@ B I systems fall into two broad categories:
 reporting systems that sort, filter, group, and make elementary calculations on operational data
 data mining applications that perform sophisticated analyses on data; analyses that usually involve complex statistical and mathematical processing
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 9 -->
 # Characteristics of Business Intelligence Applications
 
 ![1. Reporting • Filter, sort, group, and make simple calculation • Summarize current status • Compare current status to past or predicted status • Classify entities (customers, products, employees, etc.) • Report delivery crucial 2. Data Mining • Often employ sophisticated statistical and mathematical techniques • Used for: What-if analyses, Predictions and Decisions • Results often incorporated into some other report or system](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 10 -->
 # B I Terms
@@ -86,21 +86,21 @@ Online analytical processing (O L A P) is the processing of non-operational data
 Data lake is a repository that includes all data relevant to a business (re: photos, documents, other files of any type)
 A data warehouse is a database system that has data, programs, and personnel that specialize in the preparation of data for B I processing.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 11 -->
 # The Relationship Between Operational and B I Applications
 
 ![The steps are, a. Functional users to Operational Applications and vice versa. b. Operational Applications like Order Entry, Manufacturing, Purchasing, Inventory, etcetera to Operational DBMS and vice versa. c. Operational DBMS to Operational Database d. Operational DBMS to Extract of Operational Database e. Operational DBMS to Business Intelligence Applications like Reporting and Data mining. f. Extract of Operational Database to BI DBMS. g. Purchased Data to BI DBMS h. BI DBMS to Business Intelligence Applications like Reporting and Data Mining. i. Business Intelligence Applications to Management and Management Support Users](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 12 -->
 # Components of a Data Warehouse
 
 ![The flow is as below: a. Operational databases, other internal data and external data to ETL System for data extraction or cleaning or preparation programs. b. ETL system to data warehouse DBMS c. Data warehouse metadata to data warehouse DBMS and vice versa d. Data warehouse database to data warehouse DBMS and vice versa e. Data warehouse DBMS to Business Intelligence tools and vice versa f. Business Intelligence tools to B.I users and vice versa](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 13 -->
 # Problems with Operational Data
@@ -114,7 +114,7 @@ Nonintegrated data (data from multiple sources)
 Incorrect format (ex: too many or not enough digits
 Too much data (ex: an excess number of columns)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 14 -->
 # The ETL Process
@@ -132,21 +132,21 @@ joe@somewhere.com → “somewhere.com”
 
 ![Extract, transform, and load (ETL) - Azure Architecture Center | Microsoft Docs](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 16 -->
 # Data Warehouses Versus Data Marts
 A data mart is a collection of data that is smaller than the data warehouse that addresses a specific component
 An enterprise data warehouse (E D W) architecture is when a data mart is combined with the data warehouse architecture.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 17 -->
 # Data Warehouses and Data Marts
 
 ![The flow is as follows: 1. Data transfer between data warehouse metadata and data warehouse DBMS which are Data producers 2. Data transfer between data warehouse database and data warehouse DBMS 3. Data warehouse DBMS to web sales data mart, store sales data mart and inventory data mart. 4. Web sales data mart shows data between web log data and BI tools for web-click-stream analysis in both directions. Then, from BI tools for web-click-stream analysis to web page design features. 5. Store sales data mart shows data between store sales data and BI tools for store management in both directions. Then from BI tools for store management to market basket analysis for sales training. 6. Inventory data mart shows data flow between inventory history data and BI tools for inventory management in both directions. Then from BI tools for inventory management to inventory layout for optimal item picking.](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 18 -->
 # Characteristics of Operational and Dimensional Databases
@@ -154,14 +154,14 @@ A dimensional database is a design used for efficient analysis and efficient que
 Uses a star-schema with a fact table at the center (fully normalized) and a dimensional table radiating out from the center (may be non-normalized)
 May use slowly changing dimensions to track data such as a date or time dimension.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 19 -->
 # Characteristics of Operational and Dimensional Databases
 A dimension is a structure that categorizes facts and measures in order to enable users to answer business questions.
 Commonly used dimensions are people, products, place and time.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 20 -->
 # Characteristics of Operational and Dimensional Databases
@@ -169,7 +169,7 @@ A dimension table is a table in a star schema of a data warehouse.
 A dimension table stores attributes, or dimensions, that describe the objects in a fact table.
 In data warehousing, a dimension is a collection of reference information about a measurable event.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 21 -->
 # Characteristics of Operational and Dimensional Databases
@@ -177,7 +177,7 @@ In a data warehouse, dimensions provide structured labeling information to other
 The dimension is a data set composed of individual, non-overlapping data elements.
 The primary functions of dimensions are threefold: to provide filtering, grouping and labelling.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 22 -->
 # Characteristics of Operational and Dimensional Databases
@@ -187,35 +187,35 @@ The primary functions of dimensions are threefold: to provide filtering, groupin
 | Current data are used | Current and historical data are used |
 | Data are inserted, updated, and deleted by users | Data are loaded and updated systematically, not by users |
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 23 -->
 # A Star Schema
 In computing, the star schema is the simplest style of data mart schema and is the approach most widely used to develop data warehouses and dimensional data marts.
 The star schema consists of one or more fact tables referencing any number of dimension tables.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 24 -->
 # A Star Schema
 
 ![Data flow in star schema is shows as below: a. Data between PRODUCT which is dimension table and PRODUCT_SALES which is Fact Table by a vertical line with two-way arrow. b. PRODUCT_SALES and CUSTOMER which is a dimension table by a vertical line on left side with two-way arrow. c. PRODUCT_SALES and TIME which is a dimension table by a vertical line on left side with two-way arrow. The above representation gives a star shaped appearance.](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 25 -->
 # The H S D – D W Star Schema
 
 ![The following information is given in the slide: A flowchart showing the tables for product, product underscore sales, timeline and customer are seen. 1. Product Product Number CHAR (35) Product Type CHAR (25) Product Name VARCHAR (75) 2. Product underscore sales Time ID INT (11) Customer ID INT (11) Product Number CHAR (35) Quantity INT (11) Unit Price in capital letters DECIMAL (9, 2) Total in capital letters DECIMAL (9, 2) 3. Timeline TimeID INT (11) Date DATE Month ID INT (11) Month Text CHAR (15) Quarter ID INT (11) Quarter Text CHAR (10) Year CHAR (10) 4. Customer Customer ID INT (11) Customer Name CHAR (75) Email Domain VARCHAR (100) Phone Area Code CHAR (6) City CHAR (35) State CHAR (2) ZIP CHAR (10) An arrow is seen between Product and product underscore sales. Product underscore sales is connected to timeline and customer.](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 26 -->
 # The H S D – D W SQL Create Table Statements
 
 ![CREATE TABLE TIMELINE( TimeID Int NOT NULL, Date DateN OT NULL, MonthID Int NOT NULL, MonthText Char(15)NOT NULL, QuarterID Int NOT NULL, QuarterText Char(10)NOT NULL, Year Char(10)NOT NULL, CONSTRAINT TIMELINE_PK PRIMARY KEY(TimeID) ); CREATE TABLE CUSTOMER( CustomerID Int NOT NULL, CustomerName Char(75)NOT NULL, EmailDomain VarChar(100) NOT NULL, PhoneAreaCode Char(6)NOT NULL, City Char(35)NULL, State Char(2)NULL, ZIP Char(10)N ULL, CONSTRAINT CUSTOMER_PK PRIMARY KEY(CustomerID) ); CREATE TABLE PRODUCT( ProductNumber Char(35)NOT NULL, ProductType Char(25)NOT NULL, ProductName Var-Char(75) NOT NULL, CONSTRAINT PRODUCT_PK PRIMARY KEY(ProductNumber) ); CREATE TABLE PRODUCT_SALES( TimeID Int NOT NULL, CustomerID Int NOT NULL, ProductNumber Char(35) NOT NULL, Quantity Int NOT NULL, UnitPrice Numeric(9,2) NOT NULL, Total Numeric(9,2)NULL, CONSTRAINT PRODUCT_SALES_PK PRIMARY KEY (TimeID, CustomerID, ProductNumber), CONSTRAINT PS_TIMELINE_FK FOREIGN KEY(TimeID) REFERENCES TIMELINE(TimeID) ON UPDATE NO ACTION ON DELETE NO ACTION, ON UPDATE NO ACTION ON DELETE NO ACTION, CONSTRAINT PS_CUSTOMER_FK FOREIGN KEY(CustomerID) REFERENCES CUSTOMER(CustomerID) CONSTRAINT PS_PRODUCT_FK FOREIGN KEY(ProductNumber) REFERENCES PRODUCT(ProductNumber) ON UPDATE NO ACTION ON DELETE NO ACTION );](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 27 -->
 # The H S D – D W Table Data
@@ -228,7 +228,7 @@ The star schema consists of one or more fact tables referencing any number of di
 
 ![The table has three columns; ProductNumber, ProductType, and ProductName. The data in the sequence of columns are: • BKOOl, Book, Kitchen Remodeling Basics For Everyone • BKOO2, Book, Advanced Kitchen Remodeling For Everyone • BK003, Book, Kitchen Remodeling Dallas Style For Everyone • VBOOl, Video Companion, Kitchen Remodeling Basics Video Companion • VB002, Video Companion, Advanced Kitchen Remodeling Video Companion • VB003, Video Companion, Kitchen Remodeling Dallas Style Video Companion • VKOO1, Video, Kitchen Remodeling Basics • VK002, Video, Advanced Kitchen Remodeling • VK003, Video, Kitchen Remodeling Dallas Style • VK004, Video, Heather Sweeney Seminar Live in Dalas on 25-OCT-17](Picture4.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 28 -->
 # A Query to Summarize Products Sold by Customer and Product
@@ -236,41 +236,41 @@ The following SQL code is used to summarize products sold by Customer and Produc
 
 ![The following text is given in the image: Line 1: Forward slash asterisk space asterisk asterisk asterisk SQL hyphen QUERY hyphen CH07 hyphen 01 asterisk asterisk asterisk space asterisk Line 2: SELECT C.CustoinerTD, C.CustoifterName, P.ProductNumber, P.ProductName, SUM open parenthesis PS . Quantity close parenthesis AS TotalQuantity Line 3: FROM CUSTOMER C, PRODUCT underscore SALES PS, PRODUCT P Line 4: WHERE C.CustomerID equals PS. CustiomerID Line 5: AND P.ProductNumber equals PS.ProductNumber Line 6: GROUP BY C.CustomerlD, C.CustomerName,P.ProductNumber, P.ProductName Line 5: ORDER BY C.CustomerlD, P.ProductNumber semicolon.](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 29 -->
 # The H S D – D W Query Results: Summarize Product Units Sold by Customer and Product
 
 ![The table has five columns; CustomerID, CustomerName, ProductNumber, ProductName, and TotalQuantity. The data in the order of columns in the table are; • 1, Jacobs, Nancy, BK001, Kitchen Remodeling Basics For Everyone, 1 • 1, Jacobs, Nancy, VBOO1, Kitchen Remodeling Basics Video Companion, 1 • 1, Jacobs, Nancy, VK001, Kitchen Remodeling Basics, 1 • 3, Able, Ralph, BK001, Kitchen Remodeling Basics For Everyone, 1 • 3, Able, Ralph, BK002, Advanced Kitchen Remodeling For Everyone, 1 • 3, Able, Ralph, VBOO1, Kitchen Remodeling Basics Video Companion, 2 • 3, Able, Ralph, VB002, Advanced Kitchen Remodeling Video Companion, 2 • 3, Able, Ralph, VK001, Kitchen Remodeling Basics, 2 • 3, Able, Ralph, VK002, Advanced Kitchen Remodeling, 2 • 4, Baker, Susan, BK001, Kitchen Remodeling Basics For Everyone, 1 • 4, Baker, Susan, BK002, Advanced Kitchen Remodeling For Everyone, 1 • 4, Baker, Susan, VBOO1, Kitchen Remodeling Basics Video Companion, 1 • 4, Baker, Susan, VK001, Kitchen Remodeling Basics, 1 • 4, Baker, Susan, VK002, Advanced Kitchen Remodeling, 1 • 4, Baker, Susan, VK004, Heather Sweeney Seminar Live in Dallas on 25-OCT-17, 1 • 5, Eagle ton, Sam, BK001, Kitchen Remodeling Basics For Everyone, 1 • 5, Eagleton, Sam, VBOO1, Kitchen Remodeling Basics Video Companion, 1 • 5, Eagleton, Sam, VK001, Kitchen Remodeling Basics, 1 • 6, Foxtrot, Kathy, BK002, Advanced Kitchen Remodeling For Everyone, 1 • 6, Foxtrot, Kathy, VB003, Kitchen Remodeling DaBas Style Video Companion, 1 • 6, Foxtrot, Kathy, VK002, Advanced Kitchen Remodeling, 1 • 6, Foxtrot, Kathy, VK003, Kitchen Remodeling Dalas Style, 1 • 6, Foxtrot, Kathy, VK004, Heather Sweeney Seminar Live in Dallas on 25-OCT-17, 1 • 7, George, Sally, BK001, Kitchen Remodeling Basics For Everyone, 1 • 7, George, Sally, BK002, Advanced Kitchen Remodeling For Everyone, 1 • 7, George, Sally, VK003, Kitchen Remodeling Dallas Style, 1 • 7, George, Sally, VK004, Heather Sweeney Seminar Live in Dallas on 25-OCT-17, 2 • 8, HuBett, Shawn, VB003, Kitchen Remodeling Dates Style Video Companion, 1 • 8, HuBett, Shawn, VK003, Kitchen Remodeling Dates Style, 1 • 8, HuBett, Shawn, VK004, Heather Sweeney Seminar Live in Dallas on 25-OCT-17, 1 • 9, Pearson, Bobbi, BK001, Kitchen Remodeling Basics For Everyone, 1 • 9, Pearson, Bobbi, VBOO1, Kitchen Remodeling Basics Video Companion, 1 • 9, Pearson, Bobbi, VB002, Advanced Kitchen Remodeling Video Companion, 1 • 9, Pearson, Bobbi, VK001, Kitchen Remodeling Basics, 1 • 9, Pearson, Bobbi, VK002, Advanced Kitchen Remodeling, 1 • 11, Tyler, Jenny, VB002, Advanced Kitchen Remodeling Video Companion, 2 • 11, Tyler, Jenny, VB003, Kitchen Remodeling Dates Style Video Companion, 2 • 11, Tyler, Jenny, VK002, Advanced Kitchen Remodeling, 2 • 11, Tyler, Jenny, VK003, Kitchen Remodeling Dates Style, 2 • 11, Tyler, Jenny, VK004, Heather Sweeney Seminar Live in Dallas on 25-OCT-17, 2 • 12, Wayne, Joan, BK002, Advanced Kitchen Remodeling For Everyone, 1 • 12, Wayne, Joan, VB003, Kitchen Remodeling Dates Style Video Companion, 1 • 12, Wayne, Joan, VK002, Advanced Kitchen Remodeling, 1 • 12, Wayne, Joan, VK003, Kitchen Remodeling Dates Style, 1 • 12, Wayne, Joan, VK004, Heather Sweeney Seminar Live in Dallas on 25-OCT-17, 1](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 30 -->
 # The Two-Dimensional ProductNumber-CustomerID Matrix
 
 ![The CustomerID is listed from 1 to 12 as columns. The below ProductNUmber is listed as rows. • BK001 • BK002 • VB001 • VB002 • VB003 • VK001 • VK002 • VK003 • VK004 Each cell shows the total quantity of each product that has been purchased by each customer. Few sample data for Product Number: BK001 is as below in the sequence of data value in the cell and CustomerID . • 1,1; 3,1; 4,1; 7,1; 9,1; 12,1 • 3,1; 4,1; 6,1; 7,1; 12,1 • 1,1; 3,2; 4,1; 5,1; 9,1](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 31 -->
 # The Three-Dimensional Time-ProductNumber-CustomerID Cube
 
 ![The cube shows multiple squares on each sides segmented for each value of the three dimensions. 1. CustomerID is on the horizontal dimension data ranging from 1 to 12, with each cube representing a single value. 2. ProductNumber is on the vertical dimension with below data values from top to bottom for each cube. Each cell will show the total quantity of each product that has been purchased by each customer on a speciﬁc date. • BK001 • BK002 • VB001, third column has value 1. • VB002 • VB003 • VK001, third column has value 1. • VK002 • VK003 • VK004 3. The third dimension of cube is represented by time.](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 32 -->
 # R F M Analysis
 RFM analysis is a marketing technique used to quantitatively rank and group customers based on the recency, frequency and monetary total of their recent transactions to identify the best customers and perform targeted marketing campaigns.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 33 -->
 # The H S D – D W Star Schema Extended for R F M Analysis
 
 ![Below are table definitions. Product: • Product Number CHAR (35) which is the primary key • Product Type CHAR (25) • Product Name VARCHAR (75) Product Sales • TimeID INT (11) which is the primary key or foreign key • CustomerID INT (110) which is the primary key or foreign key • Product Number CHAR (35) which is the primary key or foreign key • Quantity INT (11) • UnitPrice DECIMAL (9, 2) • Total DECIMAL (9, 2) Customer • CustomerID INT (11) • Customer Name CHAR (75) • EmailDomain VACHAR (100) • PhoneAreaCode CHAR (6) • City CHAR (35) • State CHAR(2) • ZIP CHAR (10) Timeline • TimeID INT (11) which is the Primary Key • Date DATE • MonthID INT (11) • Month Text CHAR (15) • QuarterID INT (11) • QuarterText CHAR (10) • Year CHAR (10) Sales_for_rtm • TimeID (11) which is the primary key or foreign key • CustomerID INT (11) which is the primary key or foreign key • InvoiceNumber INT (11) which is the primary key • Pre Tax Total Scale DECIMAL (9, 2) Link Relationships between tables: A mandatory-one-to-mandatory-many link exists for each of the below set of tables. • From Product to Product_Sales. • From Timeline to Product_Sales. • From Customer to Product_Sales. • From Sales_for_RFM to Timeline. • From Sales_for_RFM to Customer.](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 34 -->
 # Online Analytical Processing (O L A P)
@@ -278,7 +278,7 @@ Online Analytical Processing (O L A P) is a technique for dynamically examining 
 O L A P uses arithmetic functions such as Sum and Average
 O L A P uses the dimensional database model
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 35 -->
 # Online Analytical Processing (O L A P)
@@ -287,49 +287,49 @@ An O L A P report uses inputs call dimensions
 An O L A P report calculates outputs called measures
 Excel PivotTables can be used to create O L A P reports
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 36 -->
 # S Q L Query for O L A P Data
 
 ![The following information is given in the image: Line 1: forward slash asterisk space asterisk asterisk asterisk SQL-CREATE-VIEW-CH07-01 asterisk asterisk asterisk space asterisk forward slash Line 2: CREATE VIEW HSDDW Product Sales View AS Line 3: SELECT C.CustomerlD, C.CustomerName, C.City, P.ProductNumber, P.ProductName, T.Year,T.QuarterText, SUM open parenthesis PS.Quantity close parenthesis AS TotalQuantity Line 4: FROM CUSTOMER C, PRODUCT_SALES PS, PRODUCT P, TIMELINE T Line 5: WHERE C.Customer ID = PS.CustomerID Line 6: AND P.ProductNumber = PS.ProductNumber Line 7: AND T.TimelD = PS.TimelD Line 8: GROUP BY C.CustomerlD, C.CustomerName, C.City, P.ProductNumber, P.ProductName, T.QuarterText, T.Year;](Picture3.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 37 -->
 # SQL View for O L A P Data
 
 ![The following information is given in the image: Line 1: forward slash asterisk space asterisk asterisk asterisk SQL-CREATE-VIEW-CH07-01 asterisk asterisk asterisk space asterisk forward slash Line 2: CREATE VIEW HSDDW Product Sales View AS Line 3: SELECT C.CustomerlD, C.CustomerName, C.City, P.ProductNumber, P.ProductName, T.Year,T.QuarterText, SUM open parenthesis PS.Quantity close parenthesis AS TotalQuantity Line 4: FROM CUSTOMER C, PRODUCT_SALES PS, PRODUCT P, TIMELINE T Line 5: WHERE C.Customer ID = PS.CustomerID Line 6: AND P.ProductNumber = PS.ProductNumber Line 7: AND T.TimelD = PS.TimelD Line 8: GROUP BY C.CustomerlD, C.CustomerName, C.City, P.ProductNumber, P.ProductName, T.QuarterText, T.Year;](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 38 -->
 # The H S D-D W Query for O L A P Results: Time-Product-Customer Cube
 
 ![Few sample data in the table are: • CustomerlD, 3 • CustomerName, Able, Ralph • City, San Antonio • ProductNumber, VK001 • ProductName, Kitchen Remodefing Basics • Year, 2018 • QuarterText, Qtr3 • TotalQuantity, 1 Row number 2: • CustomerlD, 3 • CustomerName, Able, Ralph • City, San Antonio • ProductNumber, VBOO1 • ProductName, Kitchen Remodehng Basics Video Companion • Year, 2018 • QuarterText, Qtr3 • TotalQuantity, 1 Row number 3: • CustomerlD, 3 • Custom erName, Able, Ralph • City, San Antonio • ProductNumber, VBOO1 • ProductName, Kitchen Remodeling Basics Video Companion • Year, 2019 • QuarterText, Qtr2 • TotalQuantity, 1](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 39 -->
 # The H S D-D W O L A P ProductNumber by City Report
 
 ![The data is grouped based on categories. The columns for display are selected from pivot table fields on the right side tool box. The PivotTable Fields pane— select the report elements to be displayed here. Following fields are on the toolpanel. 1. Choose fields to add to report: Columns are displayed from the table. CustomerName, City, ProductNumber, year and TotalQuantity are selected. 2. Drag fields between areas below: Two multi-text boxes, one for Filters and the other for Columns are shown. The Columns contain ProductNumber. 3. Rows: City, CustomerName and Year are selected in the dropdowns. 4. Summation values: Sum of TotalQuantity is selected in the dropdown. There are two tabs at the bottom. They are, • The PivotTable is in the HSD-DW PivotTable worksheet • The data table is in the HSD-DW query results worksheet The PivotTable report is displayed on the left side and is collapsed to show the count of data. The data is grouped by City by ProductNumber. Also, Sum of Total Quantity, Grand Total data per group are computed.](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 40 -->
 # The H S D – D W O L A P ProductNumber by City Report: CustomerName and Year Dimensions Added
 
 ![The grouped data is in the form of a matrix. The first row on the excel sheet shows the labels Sum of TotalQuantity and Column labels. On the Second row, the row label lists the ProductNumber horizontally. From the third row onwards, the City are listed vertically and are collapsed. When each City data is expanded, it shows the Customer data by Year. The data is as below: 1. Row Label: Austin • BKOO1, 1 • BKOO2, • VBOO1, 1 • VBOO2, 1 • VBOO3, • VKOO1, 1 • VK002, 1 • VKOO3, • VK004, • Grand Total, 5 2. Row Label: Dallas • BKOO1, 1 • BKOO2, 2 • VBOO1, • VBOO2, 2 • VBOO3, 4 • VKOO1, • VK002, 3 • VKOO3, 5 • VK004, 6 • Grand Total, 23 3. Row Label: Fort Worth • BKOO1, 1 • BKOO2, 1 • VBOO1, 1 • VBOO2, • VBOO3, 1 • VKOO1, 1 • VK002, 1 • VKOO3, 1 • VK004, 1 • Grand Total, 8 4. Row Label: San Antonio. • BKOO1, 3 • BKOO2, 2 • VBOO1, 4 • VBOO2, 2 • VBOO3, • VKOO1, 4 • VK002, 3 • VKOO3, • VK004, 1 • Grand Total, 19 The City, San Antonio data also shows customer data for Able, Ralph; Baker, Susan and Eagleton, Sam. The data is expanded by Year data for Able, Ralph. The other two customer data are collapsed. 5. Row Label: Able, Ralph • BKOO1, 1 • BKOO2, 1 • VBOO1, 2 • VBOO2, 2 • VBOO3, • VKOO1, 2 • VK002, 2 • VKOO3, • VK004, • Grand Total, 10 6. Row Label: 2018 • VBOO1, 1 • VKOO1, 1 • Grand Total, 2 7. Row Label: 2019 • BKOO1, 1 • BKOO2, 1 • VBOO1, 1 • VBOO2, 2 • VBOO3, • VKOO1, 1 • VK002, 2 • VKOO3, • VK004, • Grand Total, 8](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 41 -->
 # The H S D – D W O L A P City by ProductNumber, CustomerName, and Year Report
 
 ![One of the collapsed values of the report is expanded by City by CustomerName. The grouping level is as below. • For the City, San Antonio, data are also shown by customer. The city variable is on the column designator. • For the Customer, Able, Ralph data are also shown by year for the ProductNumber as the column. The ProductID variable is on the primary row designator. Sample data: • San Antonio is grouped into Able, Ralph; Baker, Susan, Eagleton, Sam. The data for Able, Ralph is expanded and shown. • Able, Ralph data is grouped into years 2018 and 2019. • The ProductID VB001 data also shows Customer data. • The Customer Able, Ralph also shows Year data. Data is displayed as below. The column values are Row Labels, Austin, Dallas, Fort Worth, San Antonio, Grand Total. Sample data for Product: BK001 • Row Labels, BK001 • Austin, 1 • Dallas, 1 • Fort Worth, 1 • San Antonio, 3 • Grand Total, 6 Sample data for Row Label Product: VB001 • Row Labels, VBOO1 • Austin, 1 • Dallas, empty • Fort Worth, 1 • San Antonio, 4 • Grand Total, 6 The ProductID VB001 data also shows Customer data. Row Label: Able, Ralph • Austin, empty • Dallas, empty • Fort Worth, empty • San Antonio, 2 • Grand Total, 2 The Customer Able, Ralph data also shows Year data. Row Label: 2018 • Austin, empty • Dallas, empty • Fort Worth, empty • San Antonio, 1 • Grand Total, 1 Row Label: 2019 • Austin, empty • Dallas, empty • Fort Worth, empty • San Antonio, 1 • Grand Total, 1](Picture2.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 42 -->
 # Distributed Database Processing
@@ -341,7 +341,7 @@ replicated
 both partitioned and replicated
 Databases are distributed for two major reasons – performance and control.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 43 -->
 # Types of Distributed Databases
@@ -354,7 +354,7 @@ Databases are distributed for two major reasons – performance and control.
 
 ![d. Partitioned, Replicated Alternative • There are two computers, namely computer 1 and computer 2. • Applications AP sub 1 on DBMS or OS is installed on the computer 1. Application AP sub 2 on DBMS or OS is in-stalled on the Computer 2. A communication line is established between both the computers. • Computer 1 communicates with database named DB sub 1 that is partitioned as W, X and Y. • Computer 2 communicates with database named DB sub 2 that is partitioned as Y and Z.](Picture5.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 44 -->
 # Object-Relational Databases
@@ -363,7 +363,7 @@ Some object-oriented programming languages are Java, Python, C++, C#, and Visual
 Objects are data structures that have both methods (programs that perform some task with the object) and properties (data items particular to an object).
 Object persistence is the permanent storing of values of properties of an object in secondary memory (usually disk)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 45 -->
 # Virtualization
@@ -374,7 +374,7 @@ There are two ways to implement hypervisors:
 “bare metal” or type 1 (used in large data centers)
 “hosted” or type 2 (used by students and others)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 46 -->
 # Cloud Computing
@@ -386,7 +386,7 @@ Software as a service (SaaS), Ex: Salesforce.com
 Platform as a service (PaaS), Ex: operating systems, software development tools & system programs provided
 Infrastructure as a service (IaaS), Ex: Only hardware provided and users manage their own software
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 47 -->
 # The C A P Theorem
@@ -395,28 +395,28 @@ Consistency means that all database replicas see the same data at any given poin
 Availability means that every request received by a server will result in a response, as long as the network is available
 Partition tolerance means that the distributed database can continue to operate even when the cluster is partitioned by network failures into two or more disconnected sections (partitions)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 48 -->
 # The C A P Theorem—You Can’t Have All Three at the Same Time!
 
 ![The three circles of the venn diagram that overlap one another and form a common portion at the center is shown. The three circles are described as Consistency, Availability and Partition tolerance. The common portion at the center is where we cannot have complete consistency, availability, and partition tolerance.](Picture3.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 49 -->
 # MapReduce and Hadoop
 MapReduce is a technique to analyze extremely large datasets by breaking down tasks and assigning them to a cluster of computers and then combine them into the final product of the original task.
 Hadoop Distributed File System (H D F S) provides standard file services to clustered servers so their file systems can function as one distributed, replicated file system that can support large-scale MapReduce processing.
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 50 -->
 # MapReduce
 
 ![1. INPUT: DOCUMENT: This block consists of many documents named as Document Section 01, Document Section 02 and so on upto Document Section N. 2. MAP: Each Document Section from the Input is fed to computer, which lists individual words and counts how many times each word appears. This starts from Document Section 01 to Computer 01 and ends with Document Section N to Computer N. 3. REDUCE: • Data from Computer 01 to Computer N from the Map block is fed to Reduce block to the computer. Here, the computer combines lists of individual words and total counts of how many times each word appears. • The computer gives word count as an output as shown below. • A, 56 • And, 85 • Boy, 15 • Dog, 27 • The, 67 • Shown, 12 • Sun, 12 • Way, 7](Picture3.jpg)
 
-### Notes:
+## Notes:
 
 <!-- Slide number: 51 -->
 # Assignment 6 – A due by 11/22 (EOD)

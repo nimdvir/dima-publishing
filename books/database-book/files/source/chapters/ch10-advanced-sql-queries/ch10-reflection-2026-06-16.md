@@ -83,12 +83,13 @@ author: "Nimrod Dvir"
 
 ---
 
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: What is the difference between basic SQL and advanced SQL as described in this chapter?**
 
@@ -122,7 +123,7 @@ author: "Nimrod Dvir"
 
 **Suggested Answer:** `GROUP BY` collapses multiple rows into one summary row per group — you lose the detail rows. Window functions compute summaries *alongside* the detail rows without collapsing them. For example, `AVG(Score) OVER (PARTITION BY StudentID)` adds each student's average as a new column next to every individual grade row. A window function is the right choice when you need both the detail and the summary visible together — such as showing each individual quiz score next to the student's running quiz average, or ranking students by average while still listing every grade they earned.
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: The chapter argues that "advanced SQL is not about making queries complicated — it is about making data work reliable, explainable, and useful for decisions." Do you agree? Support your answer with a specific example from the chapter.**
 
@@ -152,7 +153,7 @@ author: "Nimrod Dvir"
 
 **Suggested Answer:** In a business database, a mistaken `UPDATE` or `DELETE` has immediate downstream consequences — incorrect financial reports, wrong customer communications, flawed inventory orders. Unlike a personal spreadsheet where errors affect only you, a production database error can ripple through departments. The verify → modify → verify pattern ensures you see exactly which rows will change before changing them, and confirms the change affected only the intended rows. Wrapping it in a transaction adds a safety net: if the post-modification verification reveals a problem, `ROLLBACK` undoes everything instantly. Without this discipline, one missing `WHERE` clause could update every customer's email or delete every order — and in many systems, there is no undo.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: Before this chapter, when you worked with data in a spreadsheet or database, how often did you check for data quality problems before building summaries or charts? How will your approach change after learning diagnostic SQL?**
 

@@ -16,7 +16,7 @@ The Grading Database remains the running example, now viewed not as a technical 
 
 ---
 
-## Learning Objectives
+# Learning Objectives
 
 By the end of this chapter, students will be able to:
 
@@ -30,7 +30,7 @@ By the end of this chapter, students will be able to:
 
 ## 14.1 What Is Business Strategy?
 
-### Strategy as Choice and Trade-Off
+## Strategy as Choice and Trade-Off
 
 At its core, **business strategy is about making deliberate choices**. It is not simply a statement of goals or aspirations, but a framework for deciding:
 
@@ -44,7 +44,7 @@ This perspective immediately distinguishes **strategy** from mere activity.
 
 ---
 
-### Operational Effectiveness vs. Strategic Positioning
+## Operational Effectiveness vs. Strategic Positioning
 
 A critical distinction in strategy literature is between **operational effectiveness** and **strategic positioning**:
 
@@ -60,7 +60,7 @@ This distinction matters for information systems because efficiency gains often 
 
 ---
 
-### Why Strategy Depends on Information
+## Why Strategy Depends on Information
 
 Strategic decisions are not made in a vacuum. They require reliable answers to questions such as:
 
@@ -83,7 +83,7 @@ Without these systems, strategy devolves into opinion rather than evidence.
 
 ---
 
-### Strategy as an Information Problem
+## Strategy as an Information Problem
 
 Seen through this lens, strategy is not only about competitive positioning — it is about **what an organization can know about itself and its environment**.
 
@@ -103,7 +103,7 @@ Raw data alone cannot support strategic thinking. Only when data is transformed 
 
 ---
 
-### Implication for Information Systems
+## Implication for Information Systems
 
 This perspective reframes the role of databases, SQL, and analytics introduced throughout the book. They are not technical ends in themselves. They are the **infrastructure of strategy**.
 
@@ -111,7 +111,7 @@ In the sections that follow, strategy will be examined not as an abstract manage
 
 ---
 
-### References
+## References
 
 Kahneman, D. (2011). *Thinking, fast and slow*. Farrar, Straus and Giroux.
 
@@ -119,7 +119,7 @@ Porter, M. E. (1996). What is strategy? *Harvard Business Review*, 74(6), 61–7
 
 ## 14.2 Information Systems as Strategic Infrastructure
 
-### From Tools to Systems
+## From Tools to Systems
 
 A recurring misconception in organizations is that **owning tools is equivalent to having an information system**. Spreadsheets, dashboards, databases, and analytics platforms are often treated as independent solutions rather than as components of a coherent whole. While such tools can improve local efficiency, **isolated tools rarely create sustained strategic advantage**.
 
@@ -137,7 +137,7 @@ This distinction mirrors the shift students have experienced throughout the book
 
 ---
 
-### Strategic Capabilities Enabled by Information Systems
+## Strategic Capabilities Enabled by Information Systems
 
 When information systems are designed as infrastructure rather than convenience, they enable a set of strategic capabilities that directly support competitive advantage.
 
@@ -153,7 +153,7 @@ Together, these capabilities transform information systems into **strategic infr
 
 ---
 
-### Connecting Infrastructure to Design and Reliability
+## Connecting Infrastructure to Design and Reliability
 
 These strategic capabilities are not accidental. They are the direct outcome of design choices examined earlier in the book:
 
@@ -167,7 +167,7 @@ The implication is clear: **strategy depends on infrastructure**, and infrastruc
 
 ---
 
-### References
+## References
 
 Davenport, T. H. (2006). Competing on analytics. *Harvard Business Review*, 84(1), 98–107.
 
@@ -181,7 +181,7 @@ Sambamurthy, V., Bharadwaj, A., & Grover, V. (2003). Shaping agility through dig
 
 ## 14.3 Competitive Advantage and IS Frameworks
 
-### Porter’s Value Chain and Information Systems
+## Porter’s Value Chain and Information Systems
 
 A foundational framework for understanding how information systems create competitive advantage is **Porter’s value chain**. The value chain conceptualizes the firm as a sequence of activities through which inputs are transformed into products or services that customers value (Porter, 1985). These activities are divided into:
 
@@ -198,7 +198,7 @@ This logic directly reflects earlier chapters on relational design. Normalized s
 
 ---
 
-### Porter’s Generic Strategies and Information Systems
+## Porter’s Generic Strategies and Information Systems
 
 Porter’s framework of **generic strategies** further clarifies how information systems support competitive positioning. According to Porter (1985), firms typically pursue one of three strategic paths:
 
@@ -228,7 +228,7 @@ Here, the value of information systems lies not just in efficiency, but in their
 
 ---
 
-### Competitive Advantage as an Information System Outcome
+## Competitive Advantage as an Information System Outcome
 
 Across all three strategies, competitive advantage emerges not from technology alone, but from the **fit between strategy, structure, and information**. Information systems operationalize strategic intent by embedding priorities into data definitions, workflows, and analytics.
 
@@ -245,7 +245,7 @@ The implication is especially clear in the Grading Database project. While the d
 
 ---
 
-### References
+## References
 
 Davenport, T. H. (2006). Competing on analytics. *Harvard Business Review*, 84(1), 98–107.
 
@@ -255,7 +255,7 @@ Porter, M. E., & Millar, V. E. (1985). How information gives you competitive adv
 
 ## 14.4 Strategy Requires Analytics (Why BI Matters)
 
-### Strategy Without Analytics Is Guesswork
+## Strategy Without Analytics Is Guesswork
 
 Strategy is often described in aspirational language—vision, mission, growth, innovation. Yet without measurement, such language remains symbolic rather than operational. At organizational scale, **strategy without analytics becomes guesswork**.
 
@@ -274,7 +274,7 @@ Advanced SQL and careful schema design, introduced in previous chapters, are not
 
 ---
 
-### Business Intelligence as a Strategic Feedback Loop
+## Business Intelligence as a Strategic Feedback Loop
 
 Business Intelligence (BI) transforms analytics into a continuous feedback system. Rather than producing static reports, BI systems answer three fundamental strategic questions:
 
@@ -288,7 +288,7 @@ This feedback loop echoes the logic of the DIKW hierarchy introduced earlier. Da
 
 ---
 
-### Direct Connection to Chapter 13: Business Intelligence as Infrastructure
+## Direct Connection to Chapter 13: Business Intelligence as Infrastructure
 
 Chapter 13 emphasized that BI is not merely a reporting tool but a structured layer built upon foundational systems. Three components are particularly strategic:
 
@@ -305,7 +305,7 @@ Together, these elements convert analytics into **strategic infrastructure**. Da
 
 ---
 
-### From Analytics to Advantage
+## From Analytics to Advantage
 
 The strategic importance of BI lies not in visualization alone, but in its ability to institutionalize learning. Organizations that measure consistently, analyze rigorously, and respond systematically develop a capacity for adaptation. This adaptive capacity is itself a form of competitive advantage (Sambamurthy, Bharadwaj, & Grover, 2003).
 
@@ -320,7 +320,7 @@ Each layer builds upon the previous one. Strategy, therefore, is not detached fr
 
 ---
 
-### References
+## References
 
 Kaplan, R. S., & Norton, D. P. (1996). *The balanced scorecard: Translating strategy into action*. Harvard Business School Press.
 
@@ -330,7 +330,7 @@ Watson, H. J., & Wixom, B. H. (2007). The current state of business intelligence
 
 ## 14.5 Advanced SQL as Strategic Capability
 
-### SQL Is Not Just a Technical Skill
+## SQL Is Not Just a Technical Skill
 
 SQL is often introduced as a technical language for retrieving data from databases. In practice, it plays a far more consequential role. **SQL is a language of evidence**. It determines which facts are surfaced, how patterns are revealed, and which conclusions appear justified.
 
@@ -342,7 +342,7 @@ Seen this way, SQL is not merely a technical tool. It is a **strategic intermedi
 
 ---
 
-### Strategic Questions Enabled by Advanced SQL
+## Strategic Questions Enabled by Advanced SQL
 
 Basic SQL supports simple retrieval: selecting rows, filtering records, joining tables. Advanced SQL enables strategy.
 
@@ -361,7 +361,7 @@ These forms of analysis move beyond descriptive reporting toward **analytical re
 
 ---
 
-### Why Poor SQL Logic Leads to Poor Strategic Conclusions
+## Why Poor SQL Logic Leads to Poor Strategic Conclusions
 
 Because SQL mediates evidence, errors or shortcuts in query logic have strategic consequences. Common problems include:
 
@@ -382,7 +382,7 @@ Together, these techniques form a toolkit for **analytical integrity**. Without 
 
 ---
 
-### Advanced SQL as Organizational Capability
+## Advanced SQL as Organizational Capability
 
 From an organizational perspective, advanced SQL competence represents more than individual skill. It constitutes a **capability**—the ability to consistently generate valid, timely, and actionable insight from complex data environments.
 
@@ -394,7 +394,7 @@ In the next section, this logic will be extended further by examining how analyt
 
 ---
 
-### References
+## References
 
 Burton-Jones, A., & Grange, C. (2013). From use to effective use: A representation theory perspective. *Information Systems Research*, 24(3), 632–658.
 
@@ -402,7 +402,7 @@ Davenport, T. H., & Harris, J. G. (2007). *Competing on analytics: The new scien
 
 ## 14.6 Alignment: Business Goals and System Design
 
-### Strategic Alignment Defined
+## Strategic Alignment Defined
 
 At the heart of effective information systems lies **strategic alignment**—the degree to which an organization’s systems are consistent with, and supportive of, its goals. Alignment is not a single decision or document; it is an ongoing relationship among three interdependent layers:
 
@@ -416,7 +416,7 @@ Alignment therefore reframes system design as a **strategic act**, not a technic
 
 ---
 
-### Why Misalignment Causes Failure
+## Why Misalignment Causes Failure
 
 Misalignment often emerges gradually, as business needs evolve faster than systems. Several common patterns appear across organizations:
 
@@ -431,7 +431,7 @@ These failures are rarely visible at the level of code. They emerge at the level
 
 ---
 
-### Design as Strategic Commitment
+## Design as Strategic Commitment
 
 The connection between alignment and system design ties directly to the core design chapters of this book.
 
@@ -446,7 +446,7 @@ This insight aligns with the broader IS literature, which emphasizes that techno
 
 ---
 
-### Alignment in Practice
+## Alignment in Practice
 
 In practical terms, alignment means that:
 
@@ -460,7 +460,7 @@ The Grading Database you have built throughout this course offers a microcosm of
 
 ---
 
-### References
+## References
 
 Henderson, J. C., & Venkatraman, N. (1993). Strategic alignment: Leveraging information technology for transforming organizations. *IBM Systems Journal*, 32(1), 4–16.
 
@@ -470,7 +470,7 @@ Orlikowski, W. J. (2000). Using technology and constituting structures: A practi
 
 ## 14.7 Risks of Poor Information Strategy
 
-### Strategic Risks
+## Strategic Risks
 
 When information strategy is weak or fragmented, the consequences surface not as isolated technical issues, but as **systemic strategic failures**. These failures distort how organizations perceive reality, evaluate performance, and choose actions.
 
@@ -484,7 +484,7 @@ Finally, poor information strategy can result in **decision paralysis**. Conflic
 
 ---
 
-### Technical Roots of Strategic Failure
+## Technical Roots of Strategic Failure
 
 Although these risks appear at the strategic level, their causes are almost always **technical and structural**.
 
@@ -499,7 +499,7 @@ These failures tend to accumulate gradually. Rarely does an organization experie
 
 ---
 
-### Tie-Back to Core Course Concepts
+## Tie-Back to Core Course Concepts
 
 The risks described here connect directly to the foundational themes developed throughout this book:
 
@@ -515,7 +515,7 @@ Sustainable strategy depends on information systems that are intentionally desig
 
 ---
 
-### References
+## References
 
 Goodhart, C. A. E. (1975). Problems of monetary management: The UK experience. *Papers in Monetary Economics*, 1, 1–27.
 
@@ -527,7 +527,7 @@ Power, M. (2007). *Organized uncertainty: Designing a world of risk management*.
 
 ## 14.8 Information Systems and Organizational Change
 
-### Strategy Is Dynamic
+## Strategy Is Dynamic
 
 Strategy is not a fixed blueprint. It is a living response to a changing environment.
 
@@ -541,7 +541,7 @@ Organizational change, therefore, is not only a managerial challenge—it is a s
 
 ---
 
-### Why Flexible Design Wins
+## Why Flexible Design Wins
 
 Flexibility in information systems does not mean informality or lack of control. On the contrary, **flexibility emerges from disciplined design**.
 
@@ -551,7 +551,7 @@ Several design principles are especially important.
 
 ---
 
-#### Modular Schemas
+### Modular Schemas
 
 Normalized, modular schemas isolate concepts into focused tables with well-defined relationships. This modularity allows organizations to extend systems incrementally—for example, by introducing new performance measures, deliverable types, or reporting dimensions—without destabilizing existing logic.
 
@@ -561,7 +561,7 @@ Normalization, therefore, is not merely about reducing redundancy. It is about p
 
 ---
 
-#### Reusable Analytical Logic
+### Reusable Analytical Logic
 
 Advanced SQL enables analytical logic to be written once and reused consistently.
 
@@ -571,7 +571,7 @@ Reusable logic transforms analytics from a collection of ad hoc calculations int
 
 ---
 
-#### Separation of Storage, Logic, and Presentation
+### Separation of Storage, Logic, and Presentation
 
 Perhaps the most important architectural principle for managing change is **decoupling**:
 
@@ -585,11 +585,11 @@ This separation reflects a mature understanding of information systems: **data o
 
 ---
 
-### Connecting Advanced SQL and BI to Organizational Change
+## Connecting Advanced SQL and BI to Organizational Change
 
 The advanced SQL and Business Intelligence concepts introduced earlier provide the technical foundation for strategic adaptability.
 
-#### Views as Strategic Abstractions
+### Views as Strategic Abstractions
 
 Views allow organizations to present curated, strategic interpretations of underlying data without modifying base tables. As strategic priorities evolve, new views can be created to reflect new definitions of success while preserving data integrity.
 
@@ -597,7 +597,7 @@ Views function as stable interfaces between raw data and managerial insight.
 
 ---
 
-#### Common Table Expressions (CTEs) for Controlled Evolution
+### Common Table Expressions (CTEs) for Controlled Evolution
 
 CTEs improve readability, maintainability, and adaptability. By structuring complex logic into named, reusable components, they make analytical reasoning explicit and easier to revise when business rules change.
 
@@ -605,7 +605,7 @@ Clarity in SQL is not cosmetic—it is a prerequisite for sustainable change.
 
 ---
 
-#### BI and Reporting Layers
+### BI and Reporting Layers
 
 In BI architectures, reporting layers sit above operational databases, often through data warehouses or transformation pipelines. These layers enforce consistent definitions, governance rules, and aggregation logic, ensuring that strategic metrics remain stable even as operational systems evolve.
 
@@ -613,7 +613,7 @@ This layered architecture allows organizations to respond quickly to new strateg
 
 ---
 
-### Decoupling Data from Strategic Expression
+## Decoupling Data from Strategic Expression
 
 Strategic priorities change frequently. Data structures should not.
 
@@ -627,7 +627,7 @@ The same discipline that ensures data quality, integrity, and performance also e
 
 ## 14.8 Information Systems and Organizational Change
 
-### Strategy Is Dynamic
+## Strategy Is Dynamic
 
 Strategy is not a static document. It is a moving target.
 
@@ -650,13 +650,13 @@ In this sense, organizational agility is partly a function of **information syst
 
 ---
 
-### Why Flexible Design Wins
+## Why Flexible Design Wins
 
 Flexible design does not mean chaotic design. It means structured adaptability.
 
 Several design principles introduced earlier in this book directly support strategic flexibility:
 
-#### Modular Schemas
+### Modular Schemas
 
 A well-normalized, modular schema isolates entities and relationships in logically coherent tables. When new requirements emerge—such as adding a new deliverable type or performance metric—the system can often be extended without rewriting existing logic.
 
@@ -666,7 +666,7 @@ Normalization, therefore, is not merely about reducing redundancy—it is about 
 
 ---
 
-#### Reusable Queries
+### Reusable Queries
 
 Advanced SQL techniques enable reusable analytical components:
 
@@ -681,7 +681,7 @@ Reusable SQL is a form of strategic insurance.
 
 ---
 
-#### Clear Separation Between Storage and Presentation
+### Clear Separation Between Storage and Presentation
 
 Perhaps the most important principle is the separation between:
 
@@ -695,11 +695,11 @@ This separation reflects a mature information architecture—one that recognizes
 
 ---
 
-### Connection to Advanced SQL and BI Layers
+## Connection to Advanced SQL and BI Layers
 
 The advanced SQL and Business Intelligence chapters laid the technical groundwork for this flexibility.
 
-#### Views
+### Views
 
 Views abstract complexity. They allow organizations to present curated, strategic interpretations of underlying tables without altering raw data. As strategy evolves, new views can be created without restructuring the database.
 
@@ -707,7 +707,7 @@ Views enable adaptability while preserving integrity.
 
 ---
 
-#### Common Table Expressions (CTEs)
+### Common Table Expressions (CTEs)
 
 CTEs allow complex analytical logic to be written clearly and modularly. They improve maintainability and transparency. When strategic definitions change—such as how “active customers” or “at-risk students” are calculated—CTEs allow targeted modifications without rewriting entire query chains.
 
@@ -715,7 +715,7 @@ Clarity supports change.
 
 ---
 
-#### Reporting Layers
+### Reporting Layers
 
 In BI systems, reporting layers sit above transactional databases. Data warehouses, transformation pipelines (ETL/ELT), and semantic layers allow organizations to:
 
@@ -727,7 +727,7 @@ This architectural layering decouples operational systems from strategic reporti
 
 ---
 
-#### Decoupling Data from Strategy Presentation
+### Decoupling Data from Strategy Presentation
 
 Strategic goals may change quarterly. Data models should not.
 
@@ -743,7 +743,7 @@ In dynamic markets, flexibility is not optional. It is a competitive capability�
 
 ## 14.10 Looking Ahead: From Strategy to Integration
 
-### Preparing for the Final Chapter
+## Preparing for the Final Chapter
 
 * Strategy synthesizes:
   * Data
@@ -758,20 +758,20 @@ This chapter sets up the **final review and course integration**, where students
 
 ## 14.7 The Grading Database as a Strategic System
 
-### From Administrative Tool to Strategic Instrument
+## From Administrative Tool to Strategic Instrument
 
 * What the grading system *signals*:
   * What matters
   * How performance is judged
   * What behaviors are encouraged
 
-### Strategic Questions Enabled by the System
+## Strategic Questions Enabled by the System
 
 * Are students improving over time?
 * Which deliverables drive outcomes?
 * Where should interventions occur?
 
-### What Would Break Strategy?
+## What Would Break Strategy?
 
 * Inconsistent data
 * Poor aggregation logic
@@ -793,7 +793,7 @@ The database you designed is not merely a storage mechanism for grades. It encod
 
 ---
 
-### From Administrative Tool to Strategic Instrument
+## From Administrative Tool to Strategic Instrument
 
 Consider the tables you have built:
 
@@ -808,7 +808,7 @@ STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
 
 At first glance, these appear administrative. But strategically, they communicate three powerful signals:
 
-#### 1. What Matters
+### 1. What Matters
 
 If attendance is stored and measured, it matters.
 If assignments are weighted differently, some activities matter more than others.
@@ -818,13 +818,13 @@ The system encodes priorities structurally.
 
 ---
 
-#### 2. How Performance Is Judged
+### 2. How Performance Is Judged
 
 Performance is not evaluated subjectively. It is computed.
 
 For example, weighted grading logic might be implemented in SQL:
 
-### PostgreSQL / SQLite Example
+## PostgreSQL / SQLite Example
 
 ```sql
 SELECT 
@@ -843,7 +843,7 @@ This query is not just arithmetic. It operationalizes fairness, weighting, and e
 
 ---
 
-#### 3. What Behaviors Are Encouraged
+### 3. What Behaviors Are Encouraged
 
 If quizzes count heavily, students study consistently.
 If participation counts, engagement increases.
@@ -863,7 +863,7 @@ Now consider what strategic questions this system enables.
 
 ---
 
-### 1. Are Students Improving Over Time?
+## 1. Are Students Improving Over Time?
 
 Using time-aware queries:
 
@@ -888,7 +888,7 @@ Intervention becomes proactive, not reactive.
 
 ---
 
-### 2. Which Deliverables Drive Outcomes?
+## 2. Which Deliverables Drive Outcomes?
 
 ```sql
 SELECT 
@@ -911,7 +911,7 @@ Weighting schemes may need adjustment.
 
 ---
 
-### 3. Where Should Interventions Occur?
+## 3. Where Should Interventions Occur?
 
 Identify at-risk students:
 
@@ -936,7 +936,7 @@ Targeted outreach improves overall outcomes.
 
 In Microsoft Access, similar logic can be implemented through saved queries.
 
-### Weighted Grade Query (Access SQL)
+## Weighted Grade Query (Access SQL)
 
 ```sql
 SELECT 
@@ -973,7 +973,7 @@ The system’s strategic power depends entirely on structural integrity.
 
 Strategy fails if:
 
-### 1. Data Is Inconsistent
+## 1. Data Is Inconsistent
 
 * Duplicate students
 * Mismatched deliverable types
@@ -983,7 +983,7 @@ This leads to distorted averages and unreliable insight.
 
 ---
 
-### 2. Aggregation Logic Is Poor
+## 2. Aggregation Logic Is Poor
 
 * Incorrect joins double-count grades
 * Missing GROUP BY clauses distort metrics
@@ -993,7 +993,7 @@ This creates false confidence.
 
 ---
 
-### 3. Constraints Are Missing
+## 3. Constraints Are Missing
 
 If `Score` is not restricted to 0–100:
 
@@ -1005,7 +1005,7 @@ Then invalid data undermines fairness and accuracy.
 
 ---
 
-### 4. Feedback Is Delayed
+## 4. Feedback Is Delayed
 
 If grades are entered weeks late, trend analysis becomes meaningless.
 Velocity matters.
@@ -1091,7 +1091,7 @@ The questions below are designed to move beyond recall and into analysis, evalua
 
 ---
 
-### 1. Can an organization have a strong strategy with weak data systems? Why or why not?
+## 1. Can an organization have a strong strategy with weak data systems? Why or why not?
 
 Consider whether vision alone is sufficient for sustained competitive advantage.
 
@@ -1103,7 +1103,7 @@ Reflect on whether strategy can remain coherent when measurement is inconsistent
 
 ---
 
-### 2. How do KPIs influence behavior differently than informal goals?
+## 2. How do KPIs influence behavior differently than informal goals?
 
 Compare a vague objective such as “improve performance” with a quantified KPI such as “increase customer retention to 92%.”
 
@@ -1115,7 +1115,7 @@ Think about how dashboards, scorecards, and reports shape daily decision-making 
 
 ---
 
-### 3. In what ways does system design constrain future strategic choices?
+## 3. In what ways does system design constrain future strategic choices?
 
 Every database schema encodes assumptions:
 
@@ -1129,7 +1129,7 @@ If a system was designed without anticipating growth, new products, or new perfo
 
 ---
 
-### 4. How does advanced SQL reduce strategic risk?
+## 4. How does advanced SQL reduce strategic risk?
 
 Advanced SQL techniques—window functions, conditional aggregation, time-aware queries—improve analytical precision.
 
@@ -1141,7 +1141,7 @@ Consider how query design influences the reliability of evidence used in executi
 
 ---
 
-### 5. What strategic failures can be traced back to poor data modeling?
+## 5. What strategic failures can be traced back to poor data modeling?
 
 Identify examples where weak schemas, inconsistent definitions, or missing constraints could lead to:
 

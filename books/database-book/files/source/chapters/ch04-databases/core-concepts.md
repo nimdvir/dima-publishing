@@ -1,84 +1,13 @@
-<!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. -->
-
 # Chapter 4: Introduction to Databases
 
-*From Spreadsheets to Structured Systems*
-
-![Chapter 4 introduction — connected database concepts forming a structured digital information system](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-intro-new_qqubhv)
-*Figure 4.1 — Chapter 4 opens the study of databases as structured environments that help organizations preserve, retrieve, protect, and use data consistently.*
-
-[Video intro: Chapter 4, Introduction to Databases](https://youtu.be/Pge4HSn5LIk)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Pge4HSn5LIk?si=L4L6eSA7uN-_0Ao2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-*Video Overview: A short introduction to Chapter 4. We explore why flat files and spreadsheets fail as organizational data grows, and how a Database Management System (DBMS) steps in to provide a single, reliable source of truth.*
-
-![Figure 4.2 — Slide 1: Introduction to Business Performance IT](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-001)
-*Figure 4.2 — Lecture slide introducing how technology structures business processes and information flows.*
-
-Chapter 3 explained what data is, how it gains meaning, and why structure matters. Chapter 4 asks the next question: **where does that data live, and how do organizations work with it reliably?**
-
-The answer is the **database**. You use databases every day when you check a bank balance, order food, register for a class, stream a playlist, or look up an online order. In each case, a database stores records and returns the right information at the right time.
-
-A database is more than storage. It is a structured environment that helps organizations preserve, retrieve, protect, and use data consistently. Reports, dashboards, apps, and analytics all depend on data that people and systems can trust.
-
-![Figure 4.3 — Slide 4: Data Types Overview](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-004)
-*Figure 4.3 — Lecture slide reviewing qualitative, quantitative, categorical, and numerical data.*
-
-![Figure 4.4 — Slide 3: Quiz / Checkpoint](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-003)
-*Figure 4.4 — Knowledge check connecting Chapter 3 data structures to Chapter 4 database concepts.*
-
-In **Lab 03** you felt the problem firsthand. A flat PetVax appointment sheet held useful data, but it struggled with repeated owner information, two pets named Coco, co-ownership, fragile `FILTER()` ranges, and update, insertion, and deletion anomalies. Chapter 4 explains the database structures that solve those problems.
-
-## Chapter Roadmap
-
-| Section                                                                                       | Main Question                                                             | Why It Matters                                                                                                                                     |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Why Databases Matter](#why-databases-matter)                                                 | What organizational problems do databases solve?                          | Every capability — centralized truth, reduced redundancy, shared governance — connects to business outcomes, not abstract technology.              |
-| [What a Database and DBMS Are](#what-a-database-and-dbms-are)                                 | What is the difference between a database, a DBMS, and a database system? | Three distinct concepts — knowing which part is failing (structure, engine, or process) speeds up diagnosis and prevents misdirected fixes.        |
-| [Why Spreadsheets and File Systems Break Down](#why-spreadsheets-and-file-systems-break-down) | What specific problems do flat files create?                              | Formalizes redundancy, inconsistency, and modification anomalies — connects directly to the Lab 03 PetVax appointment-sheet experience.            |
-| [The Database Approach](#the-database-approach)                                               | How does separating data into related tables solve problems?              | Keys eliminate repetition while preserving connections — data discipline as a business solution, not IT busywork.                                  |
-| [Tables, Keys, and Constraints](#tables-keys-and-constraints)                                 | What makes a table reliable?                                              | Eight table rules each prevent a specific problem. Primary keys, foreign keys, and constraints protect data integrity before reports are affected. |
-| [SQL and Platforms as the Next Step](#sql-and-platforms-as-the-next-step)                     | How does SQL work across platforms?                                       | SQL is the shared language — sets up Chapter 5 for query work and Chapter 6 for relational design.                                                 |
-
-After completing this chapter, you will be able to:
-
-1. Define what a database is and explain how it differs from files and spreadsheets.
-2. Distinguish among a database, a DBMS, and a complete database system.
-3. Explain why spreadsheets and traditional file environments create redundancy, inconsistency, and program-data dependence.
-4. Describe how the database approach supports shared access, data independence, and a centralized source of truth.
-5. Identify the basic parts of relational tables, including rows, columns, primary keys, foreign keys, and integrity constraints.
-6. Recognize how SQL works as the shared language of relational systems.
-7. Compare Microsoft Access, SQLite, and PostgreSQL/Supabase at a high level.
-
-![Figure 4.5 — Slide 2: Getting Started with Databases](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-002)
-*Figure 4.5 — Learning path from data structures and file limits to SQL queries.*
-
-![Figure 4.6 — Grid of records becoming useful database output](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-database-intro)
-*Figure 4.6 — Raw records become useful when a database organizes them for queries, reports, and decisions.*
-
-![Figure 4.7 — Chapter Roadmap](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-40b-chapter-roadmapcreate-a-textboo)
-*Figure 4.7 — Roadmap tracking the transition from Chapter 3's data fundamentals to Chapter 4's database structures and Chapter 5's queries.*
-
-![Figure 4.8 — Concept Map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-chapter-4-concept-mapcreate-a-cl)
-*Figure 4.8 — Concept map illustrating how day-to-day user interactions link to underlying database structures.*
-
-## Chapter Roadmap
-
-| Section                                                                                       | Main Question                                                             | Why It Matters                                                                                                                                     |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Why Databases Matter](#why-databases-matter)                                                 | What organizational problems do databases solve?                          | Every capability — centralized truth, reduced redundancy, shared governance — connects to business outcomes, not abstract technology.              |
-| [What a Database and DBMS Are](#what-a-database-and-dbms-are)                                 | What is the difference between a database, a DBMS, and a database system? | Three distinct concepts — knowing which part is failing (structure, engine, or process) speeds up diagnosis and prevents misdirected fixes.        |
-| [Why Spreadsheets and File Systems Break Down](#why-spreadsheets-and-file-systems-break-down) | What specific problems do flat files create?                              | Formalizes redundancy, inconsistency, and modification anomalies — connects directly to the Lab 03 PetVax appointment-sheet experience.            |
-| [The Database Approach](#the-database-approach)                                               | How does separating data into related tables solve problems?              | Keys eliminate repetition while preserving connections — data discipline as a business solution, not IT busywork.                                  |
-| [Tables, Keys, and Constraints](#tables-keys-and-constraints)                                 | What makes a table reliable?                                              | Eight table rules each prevent a specific problem. Primary keys, foreign keys, and constraints protect data integrity before reports are affected. |
-| [SQL and Platforms as the Next Step](#sql-and-platforms-as-the-next-step)                     | How does SQL work across platforms?                                       | SQL is the shared language — sets up Chapter 5 for query work and Chapter 6 for relational design.                                                 |
+This chapter introduces databases as structured systems that replace fragile file environments — covering DBMS architecture, relational tables, primary and foreign keys, constraints, and the bridge from spreadsheets to governed, multi-user data systems.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Core Concepts
+# Core Concepts
 
+# Core Concepts
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>
@@ -124,9 +53,6 @@ These strengths connect directly to the R.E.A.D. framework from earlier in the b
 
 ![Figure 4.11 — Data Management Lifecycle](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-datamanagement-lifecyclecreate)
 *Figure 4.11 — One transaction coordinating inventory, sales, and loyalty updates.*
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## What a Database and DBMS Are
 
@@ -239,9 +165,6 @@ You met every one of these problems in Lab 03. The table below ties what you fel
   <p>A spreadsheet may look neat while quietly allowing inconsistent dates, duplicate records, missing values, and fragile relationships.</p>
 </div>
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## The Database Approach
 
 The **database approach** answers these problems by storing related facts in structured tables, documenting the structure with metadata, using keys to identify and connect records, and enforcing rules through the DBMS.
@@ -313,9 +236,6 @@ STUDENT(StudentID, FirstName, LastName, Email, Birthday)
 ```
 
 The table name is usually written in all caps, and column names appear inside parentheses. The notation is simple, but the rule behind it matters: a table should have one clear subject, clearly named attributes, and a reliable way to identify each row.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ### Primary and Foreign Keys
 
@@ -415,9 +335,6 @@ You will use this structure directly in Chapter 5 when SQL starts working agains
 ![Figure 4.31 — Relational table structure](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-database-schema)
 *Figure 4.31 — A relational table shown with labeled columns, sample rows, and a clearly marked primary key.*
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## SQL and Platforms as the Next Step
 
 SQL, or Structured Query Language, is the standard language used to work with relational databases. SQL matters because it gives users and applications a consistent way to retrieve, filter, update, and summarize structured data.
@@ -444,6 +361,33 @@ This course uses three platforms because each teaches a different part of databa
 *Figure 4.34 — Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports.*
 
 The most useful architectural contrast is between local file-based databases and server-based databases. Access and SQLite are local or file-based tools. PostgreSQL is server-based. Local tools are easier to start with. Server systems are better when many users, applications, and services connect at the same time because the DBMS manages **concurrency**: rules that keep data consistent when users read or update records at once.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+### Microsoft Access as Your First Database Environment
+
+Microsoft Access is the first DBMS you will use in this course because it makes database concepts visible. Where SQLite shows you command-line output and PostgreSQL runs on a server, Access places tables, queries, forms, reports, and relationships together in one desktop environment. That makes Access a powerful learning tool.
+
+In Access, tables store data in rows and columns. Each row is a record. Each column is a field that holds one kind of value, such as a name, a date, or a number. A primary key field gives each row a stable identity. Foreign key fields connect rows across tables. These are the same concepts you saw in the `STUDENT` and `STUDENT_GRADE` tables earlier in this chapter.
+
+Access is different from Excel, and the difference matters. Excel encourages a flat worksheet where everything lives in one place. Access encourages you to separate subjects into their own tables and connect them through keys. In Excel, a student's email might appear in dozens of rows. In Access, the email is stored once in the `STUDENT` table and referenced everywhere it is needed. This shift, from one flat sheet to several connected tables, is the core idea behind relational databases.
+
+Queries are how you ask questions of the data. In Access, you can build queries visually using the Query by Example (QBE) window. You drag tables onto a canvas, draw lines between matching fields, and choose which columns to display. The QBE window is a beginner-friendly way to experiment with joins before you learn to write them in SQL. But QBE is intentionally limited. Some questions can only be answered by writing SQL directly, and Access lets you switch to SQL View to see and edit the underlying code. Chapter 5 will take you deeper into that skill.
+
+Forms and reports are the input and output surfaces of a database. A form gives users a clean way to enter or view records without working directly in a grid of cells. A report formats data for printing, sharing, or presenting. These objects make a database usable by people who are not database designers.
+
+The skills you build in Access transfer to other database systems. A primary key works the same way in Access, SQLite, PostgreSQL, and SQL Server. A foreign key relationship follows the same logic across all of them. SQL is the shared language. Access simply lets you see the structure before you write the code.
+
+<div class="callout info">
+  <p><strong>ℹ️ Access is a learning environment, not the only tool</strong></p>
+  <p>Access is one of three platforms used in this course. You will also work in SQLite for lightweight SQL practice and in PostgreSQL/Supabase for server-based, multi-user database work. The concepts you learn in Access are portable. The interfaces differ. The logic stays the same.</p>
+</div>
+
+<div class="callout info">
+  <p><strong>ℹ️ Sidebar: Access Is Still Evolving</strong></p>
+  <p>Microsoft Access has been around for decades, but it is still maintained as part of Microsoft 365. Recent updates include improvements to the SQL editor, modern chart types, a linked table manager, and a redesigned Relationships window. In this course, we focus on durable database concepts that outlast any single software version. But these updates help explain why Access remains useful as a teaching, prototyping, and small-business database environment.</p>
+</div>
 
 One final preview matters here. Early database work sometimes uses one big table because it keeps rows and columns visible. That simplicity can help students learn, but one big table becomes fragile when it repeats facts and mixes too many themes. Later chapters will show how related tables solve that problem.
 
@@ -510,9 +454,6 @@ You are now ready to talk about data using the right vocabulary, recognize when 
 
 ![Figure 4.47 — Slide 15: Review & Team Exercise](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-015)
 *Figure 4.47 — In-class review on data types, structure, and concept translation.*
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 **Further Reading**
 

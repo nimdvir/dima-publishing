@@ -1,196 +1,19 @@
-<!-- This text explains the **relational model**, a fundamental framework for organizing database data into distinct, connected tables rather than single, flat files. By separating different subjects into their own tables, designers can avoid **redundancy** and prevent **modification anomalies** that occur when data is updated, inserted, or deleted. The author details how **primary keys** provide unique identities for records, while **foreign keys** establish relationships between entities like students and grades. **Entity and referential integrity** serve as essential rules that protect the accuracy of these connections over time. Through a practical redesign of a **grading database**, the source demonstrates how **SQL joins** efficiently reconstruct information for analysis. Ultimately, the material serves as a guide for transitioning from fragile spreadsheets to **scalable, structured database systems**. -->
-<!-- Chapter edit (2026-05-29): received the full joins treatment from Chapter 5 (Ch5 now keeps only a brief INNER JOIN teaser). Added a "Reading a Join" four-question lead-in before §8.1 and a "Join Types at a Glance" recognition table (INNER/LEFT/RIGHT/FULL/CROSS) at the end of §8, both adapted from Ch5's former Part 5 to the relational schema. The verbatim Ch5 Part 5 source is preserved in .edits/ch06-from-ch05-2026-05-29.md. Terms/glossary kept as-is for a later reconciliation pass. Technical meaning preserved. -->
-<!-- Chapter edit: aligned dataset and cast with Ch04/05 (Alice/Brian/Carla/Daniel, S1001-style StudentID, 0–100 Score, locked weights 20/30/40/10, Score REAL); flat table shows both CategoryWeight and WeightPerItem; made Access tutorial fail-proof (text PK + integer FK); trimmed §10 to a sharper bridge; reframed §8.5 as Advanced Preview; routed appendices to terms/reflection companions via .edits. Technical meaning preserved. -->
----
-title: "Chapter 6: The Relational Model"
-author: "Nimrod Dvir, PhD"
-date: 2026-05-29
-lang: en-US
-toc: true
----
-
-<!-- markdownlint-disable MD036 -->
-
 # Chapter 6: The Relational Model
 
 *How Connected Tables Replace Redundancy with Structure, Integrity, and Analytical Power*
 
-[Video intro: Chapter 6, The Relational Model](https://youtu.be/vWVWVtFS070)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vWVWVtFS070?si=00FlymQi8mWqjCj6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 Chapter 4 introduced databases as structured systems for storing organizational data. Chapter 5 showed how SQL retrieves, filters, joins, and summarizes that data. Chapter 6 asks a deeper design question:
-
-**Why should database data be separated into multiple connected tables in the first place?**
-
-The answer is the **relational model**.
-
-The relational model is the foundation of modern database design. It organizes data into separate tables, connects those tables through keys, and uses integrity rules to keep the connections valid over time. This chapter uses the Grading Database to show why one large table eventually breaks down and how relational design replaces repetition with structure.
-
-A flat table feels easier at first. Everything appears in one place. You can scroll, filter, and sort. But once the table repeats student names, email addresses, assignment rules, due dates, attendance records, and scores, the design becomes fragile. The same fact appears in multiple places. Updates become risky. Deleted rows may remove facts that should have remained. New facts may be impossible to store without inventing unrelated data.
-
-Relational design solves these problems by separating different kinds of facts into different tables and connecting them through shared identifiers. Instead of copying a student's name into every grade record, the database stores the student once in `STUDENT`. Grade records refer to that student by `StudentID`. Instead of repeating the rules for quizzes in every quiz row, the database stores the rules once in `ASSIGNMENT_TYPE`. Specific quizzes refer to that category.
-
-This chapter details the **relational model** as the essential framework for creating organized and reliable database systems. It argues that **flat tables** are inherently flawed because they cause **redundancy**, leading to problematic update, insertion, and deletion **anomalies**. To resolve these issues, the model separates data into distinct **relations** connected by **primary and foreign keys**, ensuring each table represents a single subject. The source uses a grading database example to demonstrate how **entity and referential integrity** protect data accuracy and how **SQL joins** reconstruct information for analysis. Ultimately, these design principles, supported by an understanding of **functional dependencies**, establish the structural foundation necessary for advanced **database normalization**.
-
-This design is cleaner, more reliable, more scalable, and easier to query.
-
-## Learning Objectives
-
-After completing this chapter, you will be able to:
-
-1. Explain why a single-table design breaks down as data volume and business complexity grow.
-2. Identify update, insertion, and deletion anomalies in a flat-table design.
-3. Define the relational model and explain its core design logic.
-4. Distinguish among entities, attributes, relationships, and relations.
-5. Use relational terminology such as relation, tuple, and attribute correctly.
-6. Distinguish among candidate, primary, composite, natural, and surrogate keys.
-7. Explain how foreign keys represent one-to-one, one-to-many, and many-to-many relationships.
-8. Explain entity integrity and referential integrity.
-9. Trace the Grading Database from a flat table to a multi-table relational schema.
-10. Use joins to reconstruct meaningful information from related tables.
-11. Build the core of the Grading Database in Microsoft Access and enforce referential integrity.
-12. Explain how functional dependencies prepare the way for normalization in Chapter 7.
-
-## Chapter Roadmap
-
-| Section                        | Main Question                                       | Why It Matters                                                  |
-| ------------------------------ | --------------------------------------------------- | --------------------------------------------------------------- |
-| Why one table fails            | What goes wrong when everything is stored together? | Introduces redundancy and modification anomalies.               |
-| Relational model basics        | What does the relational model do differently?      | Explains the logic of tables, rows, columns, and relationships. |
-| Entities and relations         | What real-world things are we modeling?             | Connects business concepts to schema design.                    |
-| Keys                           | How does each row get a stable identity?            | Shows how records are uniquely identified.                      |
-| Foreign keys and relationships | How do tables connect?                              | Explains one-to-many and many-to-many relationships.            |
-| Referential integrity          | How does the database protect valid connections?    | Prevents orphan records and invalid references.                 |
-| Grading Database redesign      | How does a flat gradebook become relational?        | Applies the model to a concrete course database.                |
-| Joins and queries              | How do separated tables become useful reports?      | Shows why relational structure supports SQL analysis.           |
-| Access as a visual tool        | How does this look in Microsoft Access?             | Builds the design hands-on and makes integrity visible.         |
-| Functional dependencies        | How do we know what belongs together?               | Prepares the transition to normalization.                       |
-
----
-
-## 1. Why One Big Table Fails
-
-Relational thinking begins with a simple observation:
-
-**Different kinds of data should not be forced into one table.**
-
-Students are not assignments. Assignments are not attendance records. Assignment-type rules are not individual student scores. These things are related, but they are not the same thing.
-
-A spreadsheet hides this distinction because it is easy to place many facts side by side in one row. That convenience is useful for quick work, but it creates structural problems when the file becomes an organizational record.
-
-### 1.1 The Flat-Table Temptation
-
-Imagine an instructor starts with one simple gradebook table:
-
-```text
-GRADE_FLAT(
-    GradeID,
-    StudentID,
-    FirstName,
-    LastName,
-    Email,
-    AssignmentType,
-    DeliverableNumber,
-    DueDate,
-    CategoryWeight,
-    WeightPerItem,
-    Score
-)
-```
-
-At first this seems reasonable. One row tells a complete story: a student completed a deliverable and received a score. Scores are stored on a 0–100 scale, matching the convention used in Chapters 4 and 5. The table records both `CategoryWeight` (how much the whole category counts — Quiz 20%, Exam 40%) and `WeightPerItem` (how much one specific deliverable counts — 5% for one quiz, 20% for one exam):
-
-| GradeID | StudentID | FirstName | LastName | Email                | AssignmentType | DeliverableNumber | DueDate    | CategoryWeight | WeightPerItem | Score |
-| ------: | --------- | --------- | -------- | -------------------- | -------------- | ----------------: | ---------- | -------------: | ------------: | ----: |
-|       1 | S1001     | Alice     | Johnson  | alice@university.edu | Quiz           |                 1 | 2026-09-10 |             20 |             5 |    90 |
-|       2 | S1001     | Alice     | Johnson  | alice@university.edu | Quiz           |                 2 | 2026-09-17 |             20 |             5 |    95 |
-|       3 | S1001     | Alice     | Johnson  | alice@university.edu | Exam           |                 1 | 2026-10-05 |             40 |            20 |    87 |
-|       4 | S1002     | Brian     | Lee      | brian@university.edu | Quiz           |                 1 | 2026-09-10 |             20 |             5 |    75 |
-|       5 | S1003     | Carla     | Mendez   | carla@university.edu | Exam           |                 1 | 2026-10-05 |             40 |            20 |    92 |
-
-This table can answer simple questions, but it repeats the same facts many times. Alice's name and email appear in every row related to Alice. The quiz weight appears in every quiz row. Due dates repeat for every student who completed the same deliverable. The two weight columns repeat in every row of the same category. These repeated values are the first warning sign that the table is mixing different subjects.
-
-:::callout{type="design-rule" title="🛠️ Database design rule: One table, one subject"}
-Each table should describe one main subject. A `STUDENT` table describes students. A `DELIVERABLE` table describes assignments. A `STUDENT_GRADE` table connects students to scores. When one table tries to describe everything, no part of it stays clean.
-:::
-
-### 1.2 What the Flat Table Is Mixing
-
-The `GRADE_FLAT` table stores at least four different categories of information.
-
-| Category of information   | Columns in the flat table                           | Better relational destination |
-| ------------------------- | --------------------------------------------------- | ----------------------------- |
-| Student identity          | `StudentID`, `FirstName`, `LastName`, `Email`       | `STUDENT`                     |
-| Assignment category rules | `AssignmentType`, `CategoryWeight`, `WeightPerItem` | `ASSIGNMENT_TYPE`             |
-| Specific deliverables     | `AssignmentType`, `DeliverableNumber`, `DueDate`    | `DELIVERABLE`                 |
-| Student performance       | `StudentID`, deliverable, `Score`                   | `STUDENT_GRADE`               |
-
-A mixed-purpose table creates three common problems: update anomalies, insertion anomalies, and deletion anomalies.
-
-### 1.3 Update Anomaly
-
-An **update anomaly** occurs when the same fact appears in multiple rows and must be changed in multiple places.
-
-Suppose Alice changes her email from `alice@university.edu` to `alice.johnson@albany.edu`. In the flat table, Alice appears in three rows. The instructor must update all three. If one row is missed, the database now stores two emails for the same student.
-
-| GradeID | StudentID | FirstName | LastName | Email                    |
-| ------: | --------- | --------- | -------- | ------------------------ |
-|       1 | S1001     | Alice     | Johnson  | alice.johnson@albany.edu |
-|       2 | S1001     | Alice     | Johnson  | alice@university.edu     |
-|       3 | S1001     | Alice     | Johnson  | alice.johnson@albany.edu |
-
-
-The database now gives conflicting answers to a basic question. In a relational design, Alice's email lives once in `STUDENT`. One update covers every future query.
-
-![A flat table storing the same student email in multiple rows — updating only two of three rows creates conflicting data.](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch06-relational-model/ch06-12-update-anomaly)
-
-_Figure 6.1 — An update anomaly: the same fact (Alice's email) repeats across many rows, so a partial update creates conflicting answers._
-
-### 1.4 Insertion Anomaly
-
-An **insertion anomaly** occurs when the database cannot store one fact unless another, unrelated fact is also available.
-
-Suppose Daniel enrolls before completing any assignment. The flat table is built around grade events. There is no clean place to store Daniel unless the instructor invents a grade row with missing values:
-
-| GradeID | StudentID | FirstName | LastName | Email                 | AssignmentType | DeliverableNumber | Score |
-| ------: | --------- | --------- | -------- | --------------------- | -------------- | ----------------: | ----: |
-|       8 | S1004     | Daniel    | Kim      | daniel@university.edu | NULL           |              NULL |  NULL |
-
-In a relational design, Daniel goes into `STUDENT` immediately, even if he has no rows yet in `STUDENT_GRADE`.
-
-### 1.5 Deletion Anomaly
-
-A **deletion anomaly** occurs when deleting one row unintentionally removes facts that should have remained.
-
-Suppose Carla has only one row in the flat table. If that row is deleted because the score was entered by mistake, the database may also lose Carla's only stored name and email address. In a relational design, deleting a score from `STUDENT_GRADE` does not delete Carla from `STUDENT`. The two facts live in different tables because they describe different things.
-
-### 1.6 Summary of Modification Anomalies
-
-| Anomaly   | What Happens                             | Grading Example                           | Relational Fix                                        |
-| --------- | ---------------------------------------- | ----------------------------------------- | ----------------------------------------------------- |
-| Update    | One fact must change in many rows        | Alice's email repeats in every grade row  | Store Alice once in `STUDENT`                         |
-| Insertion | One fact cannot be added without another | Daniel cannot exist without a score       | Add Daniel to `STUDENT` without grades                |
-| Deletion  | Deleting one fact removes another        | Deleting Carla's only score deletes Carla | Keep scores in `STUDENT_GRADE`, students in `STUDENT` |
-
-:::callout{type="takeaway" title="💡 Key takeaway: Mixed tables become unreliable"}
-A flat table looks simple because everything is visible at once. It becomes unreliable because it repeats facts, mixes subjects, and makes ordinary updates dangerous.
-:::
-
-![A flat grading table with student identity, assignment rules, and scores color-coded to show four mixed subjects.](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch06-relational-model/ch06-13-one-big-table-fails)
-
-_Figure 6.2 — A flat grading table mixes student identity, assignment rules, deliverable details, and scores into one unstable structure, making ordinary updates dangerous._
-
----
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 2. What the Relational Model Does Differently
+# Core Concepts
+
+# 2. What the Relational Model Does Differently
 
 The **relational model** was introduced by Edgar F. Codd in 1970 as a formal way to organize data into relations, which we usually call tables. It is the discipline behind the flat-table fix.
 
-### 2.1 Definition
+## 2.1 Definition
 
 **The relational model** organizes data into tables called relations, where each relation represents one well-defined subject and relationships among subjects are represented through keys.
 
@@ -204,7 +27,7 @@ The model rests on three practical principles.
 
 Instead of one large report-ready table, a relational database stores connected pieces. SQL joins reconstruct the view needed for any specific question.
 
-### 2.2 The Relational Model Is Not a Software Product
+## 2.2 The Relational Model Is Not a Software Product
 
 The relational model is not Microsoft Access, SQLite, PostgreSQL, Oracle, or SQL Server. Those are database management systems that implement relational ideas. The same relational design can appear in any of them:
 
@@ -217,7 +40,7 @@ The relational model is not Microsoft Access, SQLite, PostgreSQL, Oracle, or SQL
 
 The interfaces differ. The relational logic stays the same.
 
-### 2.3 Properties of a Formal Relation
+## 2.3 Properties of a Formal Relation
 
 Not every spreadsheet-like grid is a relation. A formal relation follows structural rules. Each rule exists because violating it causes a specific practical problem.
 
@@ -233,7 +56,7 @@ Not every spreadsheet-like grid is a relation. A formal relation follows structu
 | Column order is irrelevant | Meaning does not depend on column position | Programmatic queries break if a new column is inserted                      |
 | No duplicate rows          | Each row must be distinguishable           | Duplicate records cause double-counting and unreliable reports              |
 
-### 2.4 Relational Vocabulary
+## 2.4 Relational Vocabulary
 
 | Everyday term | Relational term | Legacy file term | Meaning                        |
 | ------------- | --------------- | ---------------- | ------------------------------ |
@@ -244,7 +67,7 @@ Not every spreadsheet-like grid is a relation. A formal relation follows structu
 
 This book usually uses *table*, *row*, and *column*. You should still recognize *relation*, *tuple*, and *attribute* because they appear in database theory and documentation.
 
-### 2.5 Where This Chapter Is Going: The Seven-Table Schema
+## 2.5 Where This Chapter Is Going: The Seven-Table Schema
 
 Before working through keys, relationships, and integrity, it helps to see where the chapter is heading. The redesigned Grading Database will use seven connected tables:
 
@@ -275,14 +98,11 @@ _Figure 6.3 — Moving from one flat table to seven connected relational tables 
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-## 3. Entities, Attributes, Relationships, and Relations
+# 3. Entities, Attributes, Relationships, and Relations
 
 Relational design starts by identifying what the database needs to represent.
 
-### 3.1 Entities
+## 3.1 Entities
 
 An **entity** is a real-world object, person, place, concept, or event the database needs to store information about.
 
@@ -296,7 +116,7 @@ An **entity** is a real-world object, person, place, concept, or event the datab
 
 Entities become tables when they need to be represented in the database.
 
-### 3.2 Attributes
+## 3.2 Attributes
 
 An **attribute** is a property that describes an entity.
 
@@ -311,7 +131,10 @@ The important design question is not "What attributes exist?" but "Which entity 
 - `DueDate` describes a deliverable → `DELIVERABLE`.
 - `Score` describes one student's result on one deliverable → `STUDENT_GRADE`.
 
-### 3.3 Relationships
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## 3.3 Relationships
 
 A **relationship** describes how entities are connected.
 
@@ -325,7 +148,7 @@ A **relationship** describes how entities are connected.
 
 Relationships are implemented with keys, especially foreign keys.
 
-### 3.4 Relations
+## 3.4 Relations
 
 A **relation** is the formal table structure used to store data about an entity, relationship, event, or clearly bounded subject. Not every table represents a simple entity.
 
@@ -339,7 +162,7 @@ A **relation** is the formal table structure used to store data about an entity,
 | `SCHEDULE`        | An entity/event: one class session                                 |
 | `GRADE_SCALE`     | A lookup table: letter-grade thresholds                            |
 
-### 3.5 Schema Notation
+## 3.5 Schema Notation
 
 A **schema** is a formal description of database structure: table names, columns, keys, and relationships. In this book, schemas are written like this:
 
@@ -374,18 +197,15 @@ _Figure 6.4 — Entity, Attribute, Relationship, and Relation are the four vocab
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-## 4. Keys: How Tables Identify Rows
+# 4. Keys: How Tables Identify Rows
 
 Keys are the foundation of relational identity. They let the database know exactly which row is being referenced.
 
-### 4.1 Why Keys Are Necessary
+## 4.1 Why Keys Are Necessary
 
 Names are not reliable identifiers. Two students may share a name. A student may change an email. A deliverable topic may be revised. A database needs stable identifiers that survive changes to descriptive details.
 
-### 4.2 Candidate and Primary Keys
+## 4.2 Candidate and Primary Keys
 
 A **candidate key** is any column, or combination of columns, that could uniquely identify each row. A **primary key** is the candidate key chosen as the official unique identifier for the table. A primary key must be unique and must never be `NULL` — a rule called **entity integrity**.
 
@@ -398,7 +218,7 @@ A **candidate key** is any column, or combination of columns, that could uniquel
 
 In `STUDENT(StudentID, FirstName, LastName, Email)`, `StudentID` is chosen as the primary key. Every student has one, and no row can exist without it.
 
-### 4.3 Composite Keys
+## 4.3 Composite Keys
 
 A **composite key** is made from two or more columns. It is useful when no single column uniquely identifies a row, but a combination does.
 
@@ -409,7 +229,7 @@ APARTMENT(BuildingNumber, ApartmentNumber, Rent)
 
 A student can take many courses; a course runs many semesters. The combination `(StudentID, CourseID, Semester)` may uniquely identify one enrollment. Likewise, many buildings have Apartment 1, but `(BuildingNumber, ApartmentNumber)` identifies one apartment.
 
-### 4.4 Natural Keys
+## 4.4 Natural Keys
 
 A **natural key** is a real-world attribute that already has business meaning and could identify a row.
 
@@ -422,7 +242,7 @@ A **natural key** is a real-world attribute that already has business meaning an
 
 Natural keys are tempting because they carry meaning, but business values can change, be reused, or be entered inconsistently.
 
-### 4.5 Surrogate Keys
+## 4.5 Surrogate Keys
 
 A **surrogate key** is an artificial identifier created only for the database, with no business meaning. It is often an auto-incrementing integer, such as `GradeID`, `DeliverableID`, or `AttendanceID`.
 
@@ -434,7 +254,10 @@ PROPERTY(PropertyID, Street, City, State, ZIP, OwnerID)
 
 Note that `StudentID` in this book is treated as a *labeled* identifier (values like `S1001`) rather than a pure surrogate integer. It still has no arithmetic meaning, but it follows the institutional convention that student IDs are short codes, not numbers.
 
-### 4.6 Business-Rule Uniqueness
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## 4.6 Business-Rule Uniqueness
 
 A surrogate primary key does not remove the need for business-rule constraints. `STUDENT_GRADE` uses `GradeID` as a surrogate primary key:
 
@@ -444,7 +267,7 @@ STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
 
 But the business rule may also say: *a student should have only one score for each deliverable.* That rule is captured by a unique constraint on `(StudentID, DeliverableID)`. Similarly, `(StudentID, ClassNum)` should be unique in `ATTENDANCE` if a student can have only one attendance record per class meeting.
 
-### 4.7 Key Types at a Glance
+## 4.7 Key Types at a Glance
 
 | Key type      | Definition                                                    | Grading Database Example                            |
 | ------------- | ------------------------------------------------------------- | --------------------------------------------------- |
@@ -455,9 +278,10 @@ But the business rule may also say: *a student should have only one score for ea
 | Surrogate key | An artificial system-generated identifier                     | `STUDENT_GRADE.GradeID`                             |
 | Foreign key   | A column that refers to a key in another table                | `STUDENT_GRADE.StudentID`                           |
 
-:::callout{type="takeaway" title="💡 Key takeaway: Identity first, then connection"}
-Primary keys give rows identity. Foreign keys use that identity to connect tables. Without keys, relational design collapses into guesswork.
-:::
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Identity first, then connection</strong></p>
+  <p>Primary keys give rows identity. Foreign keys use that identity to connect tables. Without keys, relational design collapses into guesswork.</p>
+</div>
 
 ![Primary key column highlighted in a parent table, with a foreign key arrow pointing to it from a child table, and candidate, natural, and surrogate key variations labeled below.](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch06-relational-model/ch06-04-keys-overview)
 
@@ -465,14 +289,11 @@ _Figure 6.5 — Primary keys identify rows. Foreign keys connect tables. Candida
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-## 5. Foreign Keys and Relationship Types
+# 5. Foreign Keys and Relationship Types
 
 A primary key identifies a row. A foreign key connects one table to another.
 
-### 5.1 Foreign Keys
+## 5.1 Foreign Keys
 
 A **foreign key** is a column in one table that references a key in another table.
 
@@ -483,7 +304,7 @@ STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
 
 `STUDENT_GRADE.StudentID` is a foreign key because it refers to `STUDENT.StudentID`. The student is stored once, and many grade records connect to that student.
 
-### 5.2 One-to-One Relationships
+## 5.2 One-to-One Relationships
 
 A **one-to-one relationship** means one row in Table A relates to at most one row in Table B.
 
@@ -499,7 +320,7 @@ STUDENT(StudentID, FirstName, LastName)
 STUDENT_PROFILE(StudentID, PreferredName, Pronouns, AccessibilityNotes)
 ```
 
-### 5.3 One-to-Many Relationships
+## 5.3 One-to-Many Relationships
 
 A **one-to-many relationship** means one row in one table can relate to many rows in another. This is the most common pattern in relational databases.
 
@@ -512,7 +333,7 @@ A **one-to-many relationship** means one row in one table can relate to many row
 
 One-to-many relationships place the foreign key on the *many* side.
 
-### 5.4 Many-to-Many Relationships
+## 5.4 Many-to-Many Relationships
 
 A **many-to-many relationship** means many rows in Table A can relate to many rows in Table B. One student completes many deliverables; one deliverable is completed by many students.
 
@@ -544,7 +365,7 @@ STUDENT     1 ─── many STUDENT_GRADE
 DELIVERABLE 1 ─── many STUDENT_GRADE
 ```
 
-### 5.5 Relationship Types Summary
+## 5.5 Relationship Types Summary
 
 | Relationship | Example                                                              | How it is represented                    |
 | ------------ | -------------------------------------------------------------------- | ---------------------------------------- |
@@ -561,11 +382,11 @@ _Figure 6.6 — One-to-one, one-to-many, and many-to-many relationships each req
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 6. Integrity Rules: Protecting Identity and Relationships
+# 6. Integrity Rules: Protecting Identity and Relationships
 
 Relational databases do not rely on good intentions. They enforce rules. Two integrity rules matter most at this stage: **entity integrity** and **referential integrity**.
 
-### 6.1 Entity Integrity
+## 6.1 Entity Integrity
 
 **Entity integrity** means every primary key value must be unique and not `NULL`. This protects row identity.
 
@@ -578,7 +399,7 @@ Invalid examples:
 
 The database cannot accept both rows if `StudentID` is the primary key. A row with `StudentID = NULL` has no identity, and other tables cannot safely refer to it.
 
-### 6.2 Referential Integrity
+## 6.2 Referential Integrity
 
 **Referential integrity** means every non-null foreign key value must match an existing key value in the referenced table.
 
@@ -598,7 +419,7 @@ The database cannot accept both rows if `StudentID` is the primary key. A row wi
 
 The second row is invalid because no student has `StudentID = S9999`. It is an **orphan record**: a child row whose parent does not exist. A DBMS with referential integrity enabled rejects it.
 
-### 6.3 SQL Example
+## 6.3 SQL Example
 
 ```sql
 CREATE TABLE STUDENT (
@@ -631,7 +452,7 @@ INSERT INTO STUDENT_GRADE (GradeID, StudentID, DeliverableID, Score)
 VALUES (2, 'S9999', 1, 80);
 ```
 
-### 6.4 Cascade Update and Cascade Delete
+## 6.4 Cascade Update and Cascade Delete
 
 Some systems allow cascading actions. A cascading action automatically applies a parent-table change to related child rows.
 
@@ -640,13 +461,15 @@ Some systems allow cascading actions. A cascading action automatically applies a
 | Cascade update | If a parent key changes, child foreign keys change too         | Usually safe, but primary keys should rarely change |
 | Cascade delete | If a parent row is deleted, related child rows are deleted too | Dangerous if child records have independent value   |
 
-:::callout{type="warning" title="⚠️ Warning: Be careful with cascade delete"}
-Deleting a student should probably not automatically delete every grade and attendance record. Those records may be needed for audit, advising, grade appeals, or institutional reporting. Cascade delete is appropriate for things like temporary line items on an unsubmitted draft order, but it should be used carefully.
-:::
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Be careful with cascade delete</strong></p>
+  <p>Deleting a student should probably not automatically delete every grade and attendance record. Those records may be needed for audit, advising, grade appeals, or institutional reporting. Cascade delete is appropriate for things like temporary line items on an unsubmitted draft order, but it should be used carefully.</p>
+</div>
 
-:::callout{type="takeaway" title="💡 Key takeaway: Two rules protect the model"}
-Entity integrity protects row identity. Referential integrity protects relationships between tables. Together, they keep a relational database from drifting into contradiction.
-:::
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Two rules protect the model</strong></p>
+  <p>Entity integrity protects row identity. Referential integrity protects relationships between tables. Together, they keep a relational database from drifting into contradiction.</p>
+</div>
 
 ![A parent-child table pair with a valid foreign key arrow and an orphan-row arrow visibly blocked by a referential-integrity X.](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch06-relational-model/ch06-06-referential-integrity)
 
@@ -654,14 +477,11 @@ _Figure 6.7 — Referential integrity blocks orphan records: every non-null fore
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-## 7. Redesigning the Grading Database
+# 7. Redesigning the Grading Database
 
 The Grading Database is the main example in this chapter because it makes relational design visible. The flat table started with one row per student deliverable. The relational design separates the different subjects into connected tables.
 
-### 7.1 Stage-by-Stage Progression
+## 7.1 Stage-by-Stage Progression
 
 | Stage | Added requirement            | What happens in a flat table                     |
 | ----- | ---------------------------- | ------------------------------------------------ |
@@ -672,19 +492,21 @@ The Grading Database is the main example in this chapter because it makes relati
 | 5     | Add final letter-grade rules | Thresholds repeat or float outside the structure |
 | 6     | Redesign relationally        | Each subject gets its own table                  |
 
-### 7.2 Final Seven-Table Schema
+## 7.2 Final Seven-Table Schema
 
-:::callout{type="design-rule" title="🛠️ Canonical Grading Database keys (used throughout Chapters 6–10)"}
-| Table             | Primary key      | Type                 |
-| ----------------- | ---------------- | -------------------- |
-| `STUDENT`         | `StudentID`      | TEXT (e.g., `S1001`) |
-| `ASSIGNMENT_TYPE` | `AssignmentType` | TEXT (natural key)   |
-| `DELIVERABLE`     | `DeliverableID`  | INTEGER (surrogate)  |
-| `STUDENT_GRADE`   | `GradeID`        | INTEGER (surrogate)  |
-| `SCHEDULE`        | `ClassNum`       | INTEGER              |
-| `ATTENDANCE`      | `AttendanceID`   | INTEGER (surrogate)  |
-| `GRADE_SCALE`     | `LetterGrade`    | TEXT (natural key)   |
-:::
+<div class="callout info">
+  <p><strong>ℹ️ Canonical Grading Database keys (used throughout Chapters 6–10)</strong></p>
+  <table>
+    <tr><th>Table</th><th>Primary key</th><th>Type</th></tr>
+    <tr><td><code>STUDENT</code></td><td><code>StudentID</code></td><td>TEXT (e.g., <code>S1001</code>)</td></tr>
+    <tr><td><code>ASSIGNMENT_TYPE</code></td><td><code>AssignmentType</code></td><td>TEXT (natural key)</td></tr>
+    <tr><td><code>DELIVERABLE</code></td><td><code>DeliverableID</code></td><td>INTEGER (surrogate)</td></tr>
+    <tr><td><code>STUDENT_GRADE</code></td><td><code>GradeID</code></td><td>INTEGER (surrogate)</td></tr>
+    <tr><td><code>SCHEDULE</code></td><td><code>ClassNum</code></td><td>INTEGER</td></tr>
+    <tr><td><code>ATTENDANCE</code></td><td><code>AttendanceID</code></td><td>INTEGER (surrogate)</td></tr>
+    <tr><td><code>GRADE_SCALE</code></td><td><code>LetterGrade</code></td><td>TEXT (natural key)</td></tr>
+  </table>
+</div>
 
 | Table             | Purpose                             | Example columns                                                            |
 | ----------------- | ----------------------------------- | -------------------------------------------------------------------------- |
@@ -696,7 +518,10 @@ The Grading Database is the main example in this chapter because it makes relati
 | `ATTENDANCE`      | Student attendance at meetings      | `AttendanceID`, `ClassNum`, `StudentID`, `Attended`                        |
 | `GRADE_SCALE`     | Letter-grade thresholds             | `LetterGrade`, `MinScore`, `MaxScore`                                      |
 
-### 7.3 Sample Rows
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## 7.3 Sample Rows
 
 `STUDENT` stores student identity once, fixing the update anomaly:
 
@@ -736,7 +561,7 @@ The Grading Database is the main example in this chapter because it makes relati
 
 `SCHEDULE`, `ATTENDANCE`, and `GRADE_SCALE` follow the same pattern: each stores one subject. Attendance resolves the many-to-many relationship between students and class meetings. The grade scale stores letter-grade thresholds in one place so a grading-policy change updates one row.
 
-### 7.4 ERD Overview
+## 7.4 ERD Overview
 
 ```mermaid
 erDiagram
@@ -793,7 +618,7 @@ erDiagram
     }
 ```
 
-### 7.5 What the Redesign Solves
+## 7.5 What the Redesign Solves
 
 | Flat-table problem                                  | Relational solution                             |
 | --------------------------------------------------- | ----------------------------------------------- |
@@ -815,7 +640,7 @@ _Figure 6.8 — The full seven-table Grading Database ERD: each table represents
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 8. Querying a Relational Design with Joins
+# 8. Querying a Relational Design with Joins
 
 Relational design separates data into tables. SQL joins put related data back together when a question requires it.
 
@@ -824,7 +649,7 @@ Relational design separates data into tables. SQL joins put related data back to
 
 Chapter 5 introduced the basic shape of an `INNER JOIN` as a preview. This section is the full treatment: it is where joins matter most, because the relational schema you just designed only becomes report-ready when joins reconstruct it.
 
-### 8.0 Reading a Join
+## 8.0 Reading a Join
 
 Every join answers four questions. Asking them before you write SQL keeps even a multi-table query manageable:
 
@@ -844,7 +669,7 @@ For the first query below, the answers are:
 
 The match works because `STUDENT_GRADE.StudentID` is a foreign key that refers to `STUDENT.StudentID` — exactly the relationship defined in Section 5.
 
-### 8.1 Basic Student Scores
+## 8.1 Basic Student Scores
 
 > What scores did each student receive, and on which deliverables?
 
@@ -863,7 +688,7 @@ ORDER BY s.LastName, d.AssignmentType, d.DeliverableNumber;
 
 The result looks like a report, but the database does not store it as one repeated table.
 
-### 8.2 Adding Assignment Rules
+## 8.2 Adding Assignment Rules
 
 > How much is each deliverable worth toward the final grade?
 
@@ -883,7 +708,7 @@ ORDER BY s.LastName, d.DueDate;
 
 The join works because `DELIVERABLE.AssignmentType` connects each specific deliverable to the category rules in `ASSIGNMENT_TYPE`.
 
-### 8.3 Calculating Weighted Contribution
+## 8.3 Calculating Weighted Contribution
 
 > How much does each score contribute to the final grade?
 
@@ -905,7 +730,7 @@ JOIN ASSIGNMENT_TYPE AS at ON d.AssignmentType = at.AssignmentType;
 
 `Score` belongs to one student-deliverable result, while `WeightPerItem` belongs to the assignment category. A flat table would repeat those category rules in every row.
 
-### 8.4 Attendance Summary
+## 8.4 Attendance Summary
 
 > How many classes did each student attend?
 
@@ -923,7 +748,7 @@ ORDER BY s.LastName;
 
 The `LEFT JOIN` keeps students even if they have no attendance rows yet, which is useful when looking for missing records.
 
-### 8.5 Advanced Preview: Finding Missing Grades
+## 8.5 Advanced Preview: Finding Missing Grades
 
 > Which student-deliverable combinations do not yet have a score?
 
@@ -947,7 +772,10 @@ ORDER BY s.LastName, d.DueDate;
 
 The database generates the expected student-deliverable pairs and then identifies which expected records are missing. A flat table cannot answer this cleanly.
 
-### 8.6 Join Types at a Glance
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## 8.6 Join Types at a Glance
 
 The queries above use the two joins you will reach for most often. It helps to see them alongside the others so you recognize the names when they appear:
 
@@ -961,9 +789,10 @@ The queries above use the two joins you will reach for most often. It helps to s
 
 Master `INNER JOIN` and `LEFT JOIN`; recognize the rest. A `CROSS JOIN` multiplies rows: a 4-row table and a 6-row table produce 24 rows, which is occasionally useful (it builds the full set of expected student-deliverable pairs in §8.5) but easy to trigger by accident.
 
-:::callout{type="takeaway" title="💡 Key takeaway: Joins are the payoff of relational design"}
-Joins are not just SQL syntax. They are the practical consequence of separating subjects into tables. The database stores each subject once and reconstructs the exact view you need on demand.
-:::
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Joins are the payoff of relational design</strong></p>
+  <p>Joins are not just SQL syntax. They are the practical consequence of separating subjects into tables. The database stores each subject once and reconstructs the exact view you need on demand.</p>
+</div>
 
 ![Three small tables flowing into one joined result set to show how relational storage rebuilds a report-ready view.](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch06-relational-model/ch06-08-joins-reconstruct-meaning)
 
@@ -971,14 +800,13 @@ _Figure 6.9 — SQL joins reconstruct a report-ready view by reconnecting tables
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-## 9. Microsoft Access as a Visual Learning Tool
+# 9. Microsoft Access as a Visual Learning Tool
 
 Microsoft Access makes relational structure visible. You can see tables, primary keys, relationship lines, and integrity rules in a graphical interface and inspect the SQL behind every visual query. This section walks through building the core of the Grading Database (`STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE`) well enough to see the relational model at work. The companion **Let's Build** extends this walkthrough to the full seven-table Grading Database, including `ATTENDANCE`, `ASSIGNMENT_TYPE`, `SCHEDULE`, and `GRADE_SCALE`.
 
-### 9.1 What Access Makes Visible
+## 9.1 What Access Makes Visible
+
+A helpful way to think about referential integrity is to imagine a library database with an `AUTHOR` table and a `BOOK` table. Each book record stores an `AuthorID` that identifies the book's author. That `AuthorID` should point to an author who actually exists. Without referential integrity, the database could end up with books that refer to deleted or nonexistent authors: orphan records. The same problem can happen in the Grading Database if a grade points to a student or deliverable that does not exist. Access makes these relationships visible and enforceable.
 
 | Access feature                         | What it helps students see                             |
 | -------------------------------------- | ------------------------------------------------------ |
@@ -990,7 +818,7 @@ Microsoft Access makes relational structure visible. You can see tables, primary
 
 Access is not the relational model; it is one implementation that makes the model visible.
 
-### 9.2 Building the Core Tables
+## 9.2 Building the Core Tables
 
 Create three tables in Table Design View. Notice the key-type pattern: `StudentID` is a **Short Text** primary key (a labeled ID like `S1001`), while `DeliverableID` and `GradeID` are **AutoNumber** surrogate keys. Foreign keys must match the parent's type exactly — so the `StudentID` foreign key in `STUDENT_GRADE` is also Short Text.
 
@@ -1025,11 +853,12 @@ Create three tables in Table Design View. Notice the key-type pattern: `StudentI
 
 For each table, set the primary key by selecting the field and clicking the key icon. Save with the table name in CAPS.
 
-:::callout{type="warning" title="⚠️ Watch the data types"}
-Access only allows a relationship between fields of compatible types. If `STUDENT.StudentID` is Short Text but `STUDENT_GRADE.StudentID` is a Number, Access will refuse to create the relationship. The fix is to make both Short Text.
-:::
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Watch the data types</strong></p>
+  <p>Access only allows a relationship between fields of compatible types. If <code>STUDENT.StudentID</code> is Short Text but <code>STUDENT_GRADE.StudentID</code> is a Number, Access will refuse to create the relationship. The fix is to make both Short Text.</p>
+</div>
 
-### 9.3 Defining Relationships and Enforcing Integrity
+## 9.3 Defining Relationships and Enforcing Integrity
 
 1. Close all open tables.
 2. Open **Database Tools → Relationships**.
@@ -1040,9 +869,11 @@ Access only allows a relationship between fields of compatible types. If `STUDEN
    - leave **Cascade Delete Related Records** off (see Section 6.4 warning)
 5. Drag `DELIVERABLE.DeliverableID` onto `STUDENT_GRADE.DeliverableID` and check **Enforce Referential Integrity** again.
 
+In this chapter, all tables are local to the same Access database file, so Access can enforce the relationships directly. In a professional split-database design, some tables may be linked from a separate back-end source. In that situation, relationship enforcement must be configured in the back-end system, not in the front-end Access file alone.
+
 You should now see two relationship lines, each labeled **1** on the parent side and **∞** on the `STUDENT_GRADE` side. Those symbols are Access's way of showing one-to-many relationships.
 
-### 9.4 Watching Referential Integrity Work
+## 9.4 Watching Referential Integrity Work
 
 With the `STUDENT` table containing students `S1001` (Alice) and `S1002` (Brian), try to add this row directly to `STUDENT_GRADE`:
 
@@ -1052,7 +883,12 @@ With the `STUDENT` table containing students `S1001` (Alice) and `S1002` (Brian)
 
 Access refuses the insert because no student has `StudentID = S9999`. The relational logic from Section 6 is now visible and enforced by the DBMS.
 
-### 9.5 Inspecting the SQL Behind the Visual Query
+You can also test referential integrity from the parent side. Try deleting Alice (`StudentID = S1001`) from the `STUDENT` table while she still has grade records in `STUDENT_GRADE`. Access refuses the deletion because those child records still depend on Alice's row. Referential integrity protects both directions: it prevents orphan child records and protects parent rows that are still in use.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## 9.5 Inspecting the SQL Behind the Visual Query
 
 1. Open **Create → Query Design**.
 2. Add `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE`. Access draws the join lines automatically from the relationships you defined.
@@ -1068,20 +904,23 @@ INNER JOIN DELIVERABLE AS d ON sg.DeliverableID = d.DeliverableID;
 
 The visual query, the relationship lines in the Relationships window, and the SQL statement are three views of the same relational design.
 
-:::callout{type="takeaway" title="💡 Key takeaway: Access makes the model visible"}
-Access does not replace the relational model. It shows it. Tables, keys, relationship lines, and the integrity checkbox are the relational concepts from Sections 2–6 made clickable.
-:::
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Access makes the model visible</strong></p>
+  <p>Access does not replace the relational model. It shows it. Tables, keys, relationship lines, and the integrity checkbox are the relational concepts from Sections 2–6 made clickable.</p>
+</div>
 
 > The companion **Let's Build** continues this build by adding `ASSIGNMENT_TYPE`, `SCHEDULE`, `ATTENDANCE`, and `GRADE_SCALE`, setting up their relationships, and writing the weighted-grade and attendance queries from Section 8 inside Access.
+
+<div class="callout info">
+  <p><strong>ℹ️ Sidebar: Local Tables and Linked Tables</strong></p>
+  <p>In this chapter, the tables live directly inside the Access file. These are <strong>local tables</strong>, and they are ideal for learning because everything is visible in one place. In many professional Access applications, however, the file users see is only the front end. It contains forms, reports, queries, and interface logic, while the actual data lives in a separate back-end database. Tables that point to that external data source are called <strong>linked tables</strong>. You do not need to build a split database yet, but the idea matters: Access can be both a learning DBMS and the front end of a larger information system. The full treatment of multi-user database architecture comes later in Chapter 11.</p>
+</div>
 
 <!-- 🎨 Figure Suggestion: A screenshot-style mock of the Access Relationships window showing STUDENT, DELIVERABLE, and STUDENT_GRADE joined by 1-to-∞ lines with the Enforce Referential Integrity checkbox highlighted. (Pending — no matching image found; needs screenshot capture.) -->
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-## 10. Functional Dependencies and the Bridge to Normalization
+# 10. Functional Dependencies and the Bridge to Normalization
 
 Chapter 7 introduces normalization. The bridge from this chapter is the idea of a **functional dependency**: when one attribute, or set of attributes, determines another. In plain language, *if I know A, I can determine B.*
 
@@ -1102,7 +941,7 @@ _Figure 6.10 — Functional dependencies reveal which attributes belong together
 
 ---
 
-## Key Concepts
+# Key Concepts
 
 <!-- markdownlint-enable MD036 -->
 
@@ -1135,7 +974,7 @@ _Figure 6.10 — Functional dependencies reveal which attributes belong together
 
 ---
 
-## Chapter Summary
+# Chapter Summary
 
 This chapter explained the relational model as the foundation of modern database design. A flat table looks simple, but it becomes unreliable when it stores multiple kinds of facts in one structure. Student identities, assignment rules, deliverable details, attendance records, and scores have different meanings and different update patterns. When they are forced into one table, redundancy and anomalies appear.
 
@@ -1151,7 +990,7 @@ _Figure 6.11 — Chapter 6 recap: the relational model replaces flat-table redun
 
 ---
 
-## References
+# References
 
 Codd, E. F. (1970). A relational model of data for large shared data banks. *Communications of the ACM, 13*(6), 377–387.
 

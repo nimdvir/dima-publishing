@@ -4,11 +4,11 @@
 
 # **From Concept to Schema: A Guide to Database Design and the Entity-Relationship Model**
 
-## **The Discipline of Database Design**
+# **The Discipline of Database Design**
 
 The creation of a robust, efficient, and scalable information system is fundamentally dependent on the quality of its underlying database. While it may be tempting to approach data storage in an ad-hoc manner, particularly in the early stages of a project, such a strategy inevitably leads to systems that are difficult to maintain, slow to perform, and incapable of adapting to evolving business needs. The discipline of database design provides a systematic, engineering-based approach to modeling and implementing data storage solutions. A well-designed database is not merely a container for data; it is a structured, logical, and optimized representation of a real-world domain, forming the bedrock upon which successful applications are built.
 
-### **The Imperative for Design: Beyond Ad-Hoc Data Storage**
+## **The Imperative for Design: Beyond Ad-Hoc Data Storage**
 
 Good database design is a matter of following a proper process to achieve a set of critical objectives that directly impact the utility and longevity of an information system.1 The primary goals of a structured design process are to ensure clarity, flexibility, maintainability, and performance.2
 
@@ -18,11 +18,11 @@ Good database design is a matter of following a proper process to achieve a set 
 
 Conversely, the absence of a formal design process leads to significant and predictable problems. Unstructured or poorly structured databases are prone to **data anomalies**. An **insertion anomaly** occurs when one cannot add a new piece of data because another, unrelated piece of data is missing. An **update anomaly** arises from data redundancy, where changing a fact in one place leaves other instances of that fact unchanged, creating inconsistencies. A **deletion anomaly** occurs when deleting a piece of data inadvertently removes another, unrelated piece of data. These issues are symptomatic of a design that fails to correctly model the underlying entities and their relationships, a problem that a formal design process is intended to prevent.
 
-### **The Database Design Lifecycle: A Phased Approach**
+## **The Database Design Lifecycle: A Phased Approach**
 
 The process of designing a database is not a single, monolithic task but a lifecycle that can be broken down into a series of distinct phases, moving from a high-level, abstract understanding of requirements to a concrete, technology-specific implementation.4 While different sources may describe this process with varying terminology or levels of granularity, they converge on a core progression through four key phases: requirements analysis, conceptual design, logical design, and physical design.2
 
-#### **Phase 1: Requirements Analysis**
+### **Phase 1: Requirements Analysis**
 
 The foundational phase of any design project is to determine the purpose of the database.1 This involves a thorough analysis of the information needs of the organization and its end-users. The primary goal is to gather and organize all types of information that the system needs to record and track.6 This is not a passive process; it requires active engagement with the problem domain.
 
@@ -34,19 +34,19 @@ Effective techniques for information gathering include:
 
 The output of this phase is a detailed specification of the data requirements and business rules that the new database must support.
 
-#### **Phase 2: Conceptual Design**
+### **Phase 2: Conceptual Design**
 
 Once the requirements are understood, the conceptual design phase begins. The goal is to create a high-level, abstract data model that is completely independent of any specific hardware or Database Management System (DBMS).2 This model focuses on capturing the essence of the system, representing data as users perceive it in the "real world".2
 
 This phase is about understanding the problem domain: identifying the key concepts (entities), the actors, and the interactions that occur.2 For example, in a library system, the core concepts are likely to be Books, Authors, and Borrowers.2 The conceptual model establishes the overall scope of what is to be included in the database.5 The primary tool and deliverable for this phase is the **Entity-Relationship Diagram (ERD)**, a visual representation of the system's entities and their relationships.2
 
-#### **Phase 3: Logical Design**
+### **Phase 3: Logical Design**
 
 The logical design phase translates the abstract conceptual model into a more detailed model based on a specific data modeling paradigm, most commonly the relational model.2 This stage entails creating tables and defining the relationships between them using primary and foreign keys.2
 
 A key activity in this phase is **normalization**, a formal process of applying rules to the table structures to minimize data redundancy and improve data integrity.1 The logical model remains platform-independent; it describes the structure of a relational database in general, not for a specific product like Oracle or SQL Server.5 The output is a logical schema that captures the essence of the data in the form of tables, columns, and key constraints.2
 
-#### **Phase 4: Physical Design**
+### **Phase 4: Physical Design**
 
 The final phase, physical design, takes the logical model and maps it to a specific DBMS implementation.2 This is where the abstract design becomes a concrete blueprint for construction. This phase is technology-dependent, as different DBMS products have unique features, data types, and performance characteristics.5
 
@@ -61,15 +61,15 @@ The output of this phase is a physical schema that can be used to generate the D
 
 The relationship between these phases and the practical steps of design is not one of contradiction but of integration. The pragmatic steps of requirements analysis, such as interviewing users, are the activities that provide the necessary input for the theoretical phase of conceptual design. The practical task of "dividing information into tables" is the core activity of the logical design phase. This phased approach provides a structured framework that guides the designer from a vague understanding of a business problem to a fully specified, optimized, and implementable database schema.
 
-## **Data Modeling: The Architectural Blueprint**
+# **Data Modeling: The Architectural Blueprint**
 
 Data modeling is the process of creating a visual representation or blueprint that organizes data structures, relationships, and rules to support database design.3 It serves as the essential bridge connecting abstract business requirements to a concrete physical database. A well-designed data model provides a common, unified view of an organization's data, reducing misunderstandings during development and ensuring that the final system accurately reflects the business domain.3 This process is typically carried out at three distinct levels of abstraction: conceptual, logical, and physical. Each level serves a different purpose, is intended for a different audience, and contains a progressively greater level of technical detail.3
 
-### **The Three Levels of Data Model Abstraction**
+## **The Three Levels of Data Model Abstraction**
 
 The transition from a conceptual to a physical model is best understood not just as an increase in detail, but as a process of progressive refinement and the systematic application of constraints. The conceptual model is constrained only by the business rules of the domain. The logical model adds the formal constraints of the chosen data paradigm, such as the relational model's rules of normalization. Finally, the physical model adds the technological constraints of the specific DBMS. This layered approach is a powerful risk management strategy, allowing designers to validate business logic, ensure structural integrity, and optimize for performance in distinct, manageable stages.
 
-#### **The Conceptual Data Model: The "What"**
+### **The Conceptual Data Model: The "What"**
 
 The conceptual data model provides a high-level, abstract overview of the system, focusing on the "what" rather than the "how".3 It is the initial blueprint, often analogized to a whiteboard sketch, created in collaboration with business stakeholders and domain experts.3
 
@@ -77,7 +77,7 @@ The conceptual data model provides a high-level, abstract overview of the system
 * **Audience:** The primary audience is non-technical: business analysts, managers, and end-users.10 The model must therefore be simple and easily understandable, often using basic boxes and lines to represent entities and relationships.3  
 * **Components:** The model consists of high-level entities and the relationships connecting them. It intentionally omits technical details like data types, primary keys, or the specific structure of tables.3 It defines *what* entities exist, not which tables will be created.9
 
-#### **The Logical Data Model: The "How of the Details"**
+### **The Logical Data Model: The "How of the Details"**
 
 The logical data model is a more refined and structured version of the conceptual model. It adds technical detail, describing the "how" of the data structure, but remains independent of any specific DBMS.3
 
@@ -85,7 +85,7 @@ The logical data model is a more refined and structured version of the conceptua
 * **Audience:** The logical model is created and used by data architects and business analysts.3 It is detailed enough for technical personnel but still expressed in terms of business entities and attributes, making it a valuable communication tool between business and technical teams.  
 * **Components:** The model includes all entities (which will become tables), their attributes (columns), primary keys (PKs) to uniquely identify records, and foreign keys (FKs) to establish relationships between tables.10 It specifies relationship cardinalities precisely but does not include implementation-specific details like indexes or stored procedures.10
 
-#### **The Physical Data Model: The "How of the Implementation"**
+### **The Physical Data Model: The "How of the Implementation"**
 
 The physical data model is the final stage, translating the logical model into a specific DBMS implementation. It describes the "how" of the actual implementation, providing the final blueprint for database administrators (DBAs) and developers.2
 
@@ -104,23 +104,23 @@ The following table provides a comparative summary of these three levels of data
 | **DBMS Dependency** | Independent | Independent | Dependent on a specific DBMS |
 | **Example** | Entities: Customer, Order. Relationship: "places". | Table Customer (CustomerID, Name). Table Order (OrderID, OrderDate, *CustomerID*). | Table dbo.Customers (CustomerID INT PRIMARY KEY, Name NVARCHAR(100) NOT NULL). Index on Name. |
 
-## **The Entity-Relationship (ER) Model: A Unified View of Data**
+# **The Entity-Relationship (ER) Model: A Unified View of Data**
 
 At the heart of conceptual and logical data modeling lies the Entity-Relationship (ER) model. It is the de facto industry standard for creating a graphical, high-level representation of data. The ER model provides a formal, systematic way to model a universe of interest by representing what exists (entities), what properties those things have (attributes), and how they are related to one another (relationships).11
 
-### **A Historical Perspective: Peter Chen's Contribution**
+## **A Historical Perspective: Peter Chen's Contribution**
 
 The ER model was introduced by Peter Chen in a seminal 1976 paper titled, "The Entity-Relationship Model: Toward a Unified View of Data".5 Before Chen's work, there was no standardized, easily understandable way to model data at a conceptual level. His contribution was revolutionary because it provided a blueprint to visualize database structures in a way that was both formally rigorous and intuitively understandable to technical and non-technical stakeholders alike.12 The ER model bridged the critical gap between how humans perceive data in the real world and how it must be structured for implementation in a database, typically a relational database.5 For over four decades, it has remained a cornerstone of database education and professional practice.5
 
-### **Core Constructs of the ER Model**
+## **Core Constructs of the ER Model**
 
 The ER model is built upon three fundamental concepts: entities, attributes, and relationships.11 These constructs are visually represented in an Entity-Relationship Diagram (ERD) using a standardized set of symbols.7
 
-#### **Entities and Entity Sets**
+### **Entities and Entity Sets**
 
 An **entity** is a real-world object or concept that is distinguishable from other objects and about which data needs to be stored.11 Entities can be physical objects (e.g., a specific employee, a product), abstract concepts (e.g., a bank account, a course), or events (e.g., a purchase, a registration).7 In an ERD, entities are often described as the "nouns" of the database.15 An **entity set** is a collection of similar entities.5 For example, the set of all students in a university is the STUDENT entity set. In an ERD, an entity set is represented by a **rectangle**.7
 
-#### **Attributes**
+### **Attributes**
 
 **Attributes** are the properties or characteristics that describe an entity.11 For the STUDENT entity set, attributes might include StudentID, Name, and Address. In an ERD, attributes are represented by **ovals** connected to their entity set.7 Attributes are further classified based on their characteristics:
 
@@ -128,14 +128,14 @@ An **entity** is a real-world object or concept that is distinguishable from oth
 * **Single-Valued vs. Multi-valued Attributes:** A single-valued attribute can have only one value for a particular entity (e.g., a person has one BirthDate). A multi-valued attribute can hold multiple values for a single entity (e.g., a person may have multiple PhoneNumber values).7 In an ERD, a multi-valued attribute is depicted with a **double oval**.7  
 * **Stored vs. Derived Attributes:** A stored attribute is one whose value is physically stored in the database (e.g., BirthDate). A derived attribute is one whose value can be calculated or inferred from other stored attributes (e.g., Age can be derived from BirthDate).14 It is a best practice to avoid storing calculated data in tables; instead, the value should be computed when needed.6 A derived attribute is represented by a **dashed oval** in an ERD.7
 
-#### **Relationships and Relationship Sets**
+### **Relationships and Relationship Sets**
 
 A **relationship** is an association between two or more entities.13 Relationships are the "verbs" of an ERD, describing how entities interact (e.g., a Student *enrolls in* a Course).15 A **relationship set** is a collection of similar relationships.5 In an ERD, a relationship set is represented by a **diamond** symbol, connecting the participating entity sets.7
 
 * **Relationship Degree:** This refers to the number of entity sets participating in a relationship. The vast majority of relationships are **binary** (degree two). However, **unary** (or recursive) relationships, where an entity set relates to itself (e.g., an Employee *manages* other Employees), and **ternary** relationships (degree three) are also possible.14  
 * **Roles:** In some relationships, particularly unary ones, the function of an entity is ambiguous. Roles are labels placed on the lines connecting an entity to a relationship to clarify its meaning. For example, in a Manages relationship on the Employee entity, the roles could be "Manager" and "Subordinate" to distinguish the two participants.5
 
-### **The Hierarchy of Keys: Enforcing Uniqueness**
+## **The Hierarchy of Keys: Enforcing Uniqueness**
 
 Keys are a special set of attributes used to uniquely identify entities and form the basis for relationships in a relational database. The concepts form a hierarchy of specificity.
 
@@ -144,11 +144,11 @@ Keys are a special set of attributes used to uniquely identify entities and form
 * **Primary Key:** The primary key is the candidate key that is chosen by the database designer to be the main identifier for the entity set.9 This choice is often based on factors like stability, simplicity, and familiarity. The primary key must not contain null values and is conventionally **underlined** in an ERD.14  
 * **Foreign Key:** A foreign key is an attribute or a set of attributes in one entity set that refers to the primary key of another (or the same) entity set.9 It is the mechanism that implements a relationship, acting as the logical "glue" that connects related data.14
 
-### **Defining Business Rules with Structural Constraints**
+## **Defining Business Rules with Structural Constraints**
 
 The true power of the ER model lies in its ability to translate real-world business rules into precise, unambiguous structural constraints on the data model.20 A business rule such as, "Every employee must be assigned to exactly one department, but a department can exist without any employees," is not just a comment on a diagram; it is formally encoded using a combination of cardinality and participation constraints. This translation from natural language semantics to a formal graphical language is a core function of the ER model.
 
-#### **Cardinality Ratios**
+### **Cardinality Ratios**
 
 Cardinality ratios specify the maximum number of relationship instances in which an entity can participate.20 They define the maximum numerical correspondence between related entities.
 
@@ -156,7 +156,7 @@ Cardinality ratios specify the maximum number of relationship instances in which
 * **One-to-Many (1:N):** An instance of entity set A can be associated with zero or more instances of entity set B, but an instance of B can be associated with at most one instance of A. Example: One Department has many Employees, but each Employee works in only one Department.14  
 * **Many-to-Many (M:N):** An instance of entity set A can be associated with zero or more instances of entity set B, and an instance of B can be associated with zero or more instances of A. Example: A Student can enroll in many Courses, and a Course can have many Students enrolled.14
 
-#### **Participation Constraints**
+### **Participation Constraints**
 
 Participation constraints specify whether an entity's existence is dependent on its participation in a relationship.20 This is also known as the minimum cardinality.
 
@@ -178,11 +178,11 @@ The combination of these constraints allows for a highly expressive model. For i
 | **Total Participation** | Double Line | Indicates that every entity in the set must participate in the relationship. |
 | **Cardinality Ratios** | 1, N, M on lines | Specifies the maximum number of relationship instances per entity. |
 
-## **Advanced Modeling with the Enhanced ER (EER) Model**
+# **Advanced Modeling with the Enhanced ER (EER) Model**
 
 While the classic ER model is powerful, it lacks the constructs to represent more complex data semantics found in advanced applications like engineering design (CAD/CAM), telecommunications, or geographic information systems.23 The Enhanced Entity-Relationship (EER) model extends the original ER model with new concepts to handle these complexities with greater precision.23 These EER concepts, particularly specialization, generalization, and aggregation, show a convergence of database modeling principles with those of object-oriented programming, providing a richer language for describing data.25 This parallelism is crucial in modern software development, where an object-oriented application layer must interact seamlessly with a relational database. A well-designed EER model can lead to a database schema that maps more naturally to object-oriented code, simplifying the complex task of Object-Relational Mapping (ORM).
 
-### **Weak Entity Sets**
+## **Weak Entity Sets**
 
 A **weak entity set** is an entity that cannot be uniquely identified by its own attributes alone; its existence and identity are dependent on a relationship with another "owner" or "parent" entity, which is a strong entity.27
 
@@ -193,14 +193,14 @@ A **weak entity set** is an entity that cannot be uniquely identified by its own
   * **Primary Key:** The primary key of a weak entity set is a composite key formed by combining the primary key of its owner strong entity with the partial key of the weak entity itself.29 For Course\_Offering, the primary key would be {Course\_ID, Section\_Number}.  
 * **Notation:** In an ERD, a weak entity set is represented by a **double-bordered rectangle**, and its identifying relationship is shown as a **double-bordered diamond**. The partial key is underlined with a **dashed line**.7
 
-### **Modeling Hierarchies with Specialization and Generalization**
+## **Modeling Hierarchies with Specialization and Generalization**
 
 Specialization and generalization are powerful mechanisms for modeling "Is-A" relationships, creating a superclass/subclass hierarchy that is analogous to inheritance in object-oriented languages.23 A subclass entity inherits all the attributes and relationships of its superclass.23
 
 * **Specialization (Top-Down Approach):** This is the process of defining subgroups or subclasses of a higher-level entity set (the superclass).25 These subclasses may have their own distinct attributes or participate in unique relationships not applicable to all members of the superclass.32 For example, the superclass EMPLOYEE can be specialized into subclasses SECRETARY (with attribute TypingSpeed) and ENGINEER (with attribute EngType).26  
 * **Generalization (Bottom-Up Approach):** This is the inverse process of specialization.25 It involves identifying common characteristics among several entity sets and creating a shared, higher-level superclass that contains those common features.32 For example, the entity sets CAR and TRUCK could be generalized into a VEHICLE superclass that contains shared attributes like VehicleID and LicensePlateNo.26
 
-#### **Constraints on Hierarchies**
+### **Constraints on Hierarchies**
 
 To model these hierarchies accurately, the EER model includes two key constraints that are applied to the specialization/generalization relationship itself.25
 
@@ -211,29 +211,29 @@ To model these hierarchies accurately, the EER model includes two key constraint
   * **Total Specialization:** Every instance in the superclass *must* be a member of at least one subclass. For example, if every VEHICLE must be either a CAR or a TRUCK, the specialization is total. This is represented by a **double line** connecting the superclass to the circle.25  
   * **Partial Specialization:** An instance in the superclass is *not required* to belong to any of the subclasses. For example, an EMPLOYEE might not be a SECRETARY, ENGINEER, or TECHNICIAN (e.g., they could be a MANAGER, which is not modeled as a subclass). This is represented by a **single line**.25
 
-### **Modeling Complex Associations with Aggregation**
+## **Modeling Complex Associations with Aggregation**
 
 Aggregation is an abstraction concept used to model a relationship between entities and another relationship.24 It allows a relationship set and its participating entities to be treated as a single, higher-level entity set, which can then participate in other relationships.36
 
 * **Purpose:** The primary purpose of aggregation is to resolve ambiguities that arise when a relationship itself needs to be the subject of another relationship. The standard ER model cannot represent relationships between relationships.37 Aggregation overcomes this limitation by "boxing up" a relationship into an abstract entity, thereby allowing other entities to form relationships with it.38  
 * **Example:** Consider a scenario where an EMPLOYEE works on a PROJECT for a certain number of hours. This is represented by a Works\_On relationship. Now, suppose a MANAGER is assigned to supervise this specific work assignment (not just the employee or the project, but the combination of the two). To model this, the Works\_On relationship set is aggregated into a higher-level abstract entity. Then, a new Supervises relationship is created between this abstract entity and the MANAGER entity set.36 This accurately captures the semantic meaning that a manager supervises a specific employee's work on a specific project.
 
-## **From Blueprint to Reality: Mapping the EER Model to a Relational Schema**
+# **From Blueprint to Reality: Mapping the EER Model to a Relational Schema**
 
 The final step in the logical design phase is the translation of the conceptual EER diagram into a relational schema—a set of definitions for tables, columns, and keys that can be implemented in a relational database.39 This is a crucial and systematic process that converts the graphical blueprint into a concrete implementation plan.40 While much of the mapping follows a standard algorithm, certain EER constructs, particularly specialization hierarchies, present the designer with important choices that involve trade-offs between data integrity, query performance, and storage efficiency.
 
-### **Step-by-Step Mapping Algorithm**
+## **Step-by-Step Mapping Algorithm**
 
 The following algorithm provides a set of rules for converting EER constructs into relational tables.
 
-#### **Step 1: Mapping Strong Entity Sets**
+### **Step 1: Mapping Strong Entity Sets**
 
 For each strong (or regular) entity set in the EER diagram, create a new table (relation).41
 
 * The columns of the table correspond to the simple attributes of the entity set.  
 * The primary key of the entity set becomes the primary key of the table.
 
-#### **Step 2: Mapping Weak Entity Sets**
+### **Step 2: Mapping Weak Entity Sets**
 
 For each weak entity set, create a new table.40
 
@@ -241,7 +241,7 @@ For each weak entity set, create a new table.40
 * Include the primary key of the owner strong entity as a set of columns in the new table. This set of columns will be a foreign key referencing the owner's table.  
 * The primary key of the new table is a composite key consisting of the primary key from the owner entity and the partial key (discriminator) of the weak entity.43
 
-#### **Step 3: Mapping Relationship Sets (by Cardinality)**
+### **Step 3: Mapping Relationship Sets (by Cardinality)**
 
 The mapping of a relationship set depends on its cardinality ratio.
 
@@ -253,7 +253,7 @@ The mapping of a relationship set depends on its cardinality ratio.
   * Any attributes on the M:N relationship become columns in this new table.14  
 * **N-ary Relationship ():** Create a new table for the relationship. This table includes foreign keys that reference the primary keys of all n participating entity tables. The primary key of this new table is typically the composite of all these foreign keys.40
 
-#### **Step 4: Mapping Attributes**
+### **Step 4: Mapping Attributes**
 
 Special attribute types require specific handling.
 
@@ -262,13 +262,13 @@ Special attribute types require specific handling.
   * This table will have two main columns: one for the multi-valued attribute itself, and one for the primary key of the original entity (acting as a foreign key).  
   * The primary key of this new table is the combination of both of its columns.40
 
-### **Strategies for Mapping Specialization/Generalization Hierarchies**
+## **Strategies for Mapping Specialization/Generalization Hierarchies**
 
 Mapping a superclass/subclass hierarchy is the most complex part of the process, as there is no single "best" method. The designer must choose a strategy based on the specific constraints of the hierarchy and the expected usage patterns of the application.46
 
 The choice of mapping strategy represents a fundamental design trade-off. The different approaches balance the goals of normalization and data integrity against query performance and storage efficiency. For example, a highly normalized approach using multiple tables avoids data redundancy and null values, which is excellent for integrity. However, retrieving all information about a subclass instance requires performing a join operation, which can be computationally expensive. Conversely, using a single table for the entire hierarchy makes data retrieval for any instance extremely fast (no joins needed), but it can lead to tables with many null values, wasting storage space and complicating queries that use aggregate functions. Therefore, the optimal strategy is context-dependent; a system with high-performance read requirements might favor the single-table approach, whereas a system where data integrity is paramount would favor the multiple-table approach.
 
-#### **Strategy A: Multiple Relations (ER Style)**
+### **Strategy A: Multiple Relations (ER Style)**
 
 Create a separate table for the superclass and for each subclass.34
 
@@ -276,14 +276,14 @@ Create a separate table for the superclass and for each subclass.34
 * **Subclass Tables:** Each contains the primary key of the superclass (which serves as both the primary key and a foreign key for the subclass table) and only the specific attributes unique to that subclass.34  
 * **Applicability:** This method works for any type of hierarchy (disjoint or overlapping, total or partial).42
 
-#### **Strategy B: Multiple Relations (Subclass Relations Only)**
+### **Strategy B: Multiple Relations (Subclass Relations Only)**
 
 Create a separate table for each subclass only. The superclass itself does not get a table.48
 
 * **Subclass Tables:** Each table includes all the attributes of the superclass (inherited) in addition to its own specific attributes. The primary key is the same as the superclass's key.  
 * **Applicability:** This approach is only viable for **total** specializations, where every instance of the superclass must belong to one of the subclasses. If the specialization is partial, information about superclass instances that do not belong to any subclass would be lost.48 It can also lead to data redundancy if an instance belongs to overlapping subclasses.
 
-#### **Strategy C: Single Relation with Nulls**
+### **Strategy C: Single Relation with Nulls**
 
 Create one single table to represent the entire hierarchy.46
 
@@ -297,11 +297,11 @@ Create one single table to represent the entire hierarchy.46
 | **Multiple Relations (ER Style)** | One table for the superclass and one table for each subclass. Subclass tables link to the superclass via a shared primary/foreign key. | \- Highly normalized; no data redundancy. \- No wasted space on NULL values. \- Easy to add new subclasses. | \- Retrieving a complete subclass instance requires a JOIN operation, which can be slow. \- Information about one conceptual object is spread across multiple tables. | When data integrity and storage efficiency are paramount, and the database can handle the performance cost of joins. |
 | **Single Relation with Nulls** | One table for the entire hierarchy, containing all attributes from the superclass and all subclasses. A "type" attribute distinguishes the subclass. | \- Very fast data retrieval; no JOINs are needed to get a complete instance. \- All information for an object is in one place. | \- Can waste significant storage space if subclasses have many specific attributes, leading to many NULL values. \- Can complicate queries (e.g., COUNT may behave unexpectedly with NULLs). \- Difficult to enforce NOT NULL constraints on subclass-specific attributes. | When read performance is the highest priority, the number of subclass-specific attributes is small, and subclasses are disjoint. |
 
-## **Critical Perspectives and the Modern Data Landscape**
+# **Critical Perspectives and the Modern Data Landscape**
 
 The Entity-Relationship model has been a foundational element of database design for decades. Its principles have shaped how generations of developers, architects, and administrators think about data. However, as technology evolves, it is essential to critically evaluate the model's strengths and weaknesses and understand its place within the broader landscape of modern data modeling, which now includes object-oriented paradigms and NoSQL databases.
 
-### **Strengths and Limitations of the ER Model**
+## **Strengths and Limitations of the ER Model**
 
 The enduring popularity of the ER model can be attributed to several key strengths.51
 
@@ -318,11 +318,11 @@ Despite its strengths, the ER model is not without its limitations.51
   * **Potential for Oversimplification:** The model may not be expressive enough to capture all complex business rules and constraints without extensions or additional documentation.51  
   * **Rigidity:** Once a detailed ER model is established, significant changes to business requirements can necessitate a substantial and time-consuming redesign.51
 
-### **Comparative Analysis: ER vs. Other Modeling Paradigms**
+## **Comparative Analysis: ER vs. Other Modeling Paradigms**
 
 The relevance of the ER model today is best understood by comparing it to other dominant modeling approaches.
 
-#### **ER Model vs. UML Class Diagrams**
+### **ER Model vs. UML Class Diagrams**
 
 The Unified Modeling Language (UML) is a general-purpose modeling language for software engineering, and the Class Diagram is one of its most important components. While both ERDs and UML Class Diagrams can be used to model data structures, they originate from different paradigms and have different primary focuses.52
 
@@ -330,7 +330,7 @@ The Unified Modeling Language (UML) is a general-purpose modeling language for s
 * **Scope:** ER modeling is a specialized technique for database design. UML is a much broader language intended to cover all aspects of software design, from requirements (Use Case Diagrams) to behavior (Sequence Diagrams) to structure (Class Diagrams).52 An ERD can be considered a subset of the capabilities offered by UML for data modeling.56  
 * **Usage:** ERDs are the preferred tool for pure database design and data modeling tasks due to their specialized notation and clarity for that purpose. UML Class Diagrams are used when designing an entire object-oriented application, where the database is just one component of a larger system.53
 
-#### **ER Model vs. NoSQL Data Modeling**
+### **ER Model vs. NoSQL Data Modeling**
 
 The rise of NoSQL databases, such as document databases like MongoDB, has introduced new data modeling paradigms that differ significantly from the relational model for which ERDs were designed.45 NoSQL databases are often schema-less and do not use tables or foreign keys in the traditional sense.45
 
@@ -345,7 +345,7 @@ Despite these differences, the conceptual process taught by ER modeling remains 
 
 The critical decision in NoSQL data modeling—whether to embed or to reference—is driven by the same considerations of data access patterns and integrity that inform ER modeling. The intellectual discipline of analyzing a domain to identify its entities and relationships is a timeless and technology-agnostic skill. While the specific notations of an ERD are tied to the relational model, the thought process it instills is a foundational skill for any data professional. It remains one of the most effective pedagogical tools for teaching the fundamental principles of conceptual data modeling.
 
-## **Chapter Summary and Key Terms**
+# **Chapter Summary and Key Terms**
 
 This chapter has provided a comprehensive exploration of the database design process, from initial requirements gathering to the final mapping of a conceptual model to a relational schema.
 
@@ -357,7 +357,7 @@ This chapter has provided a comprehensive exploration of the database design pro
 * **Mapping to a Relational Schema:** A systematic algorithm exists to translate an EER diagram into a set of relational tables. This process involves specific rules for mapping entities, relationships of varying cardinalities, and special attribute types. Mapping specialization hierarchies presents a key design decision with trade-offs between normalization and performance.  
 * **Modern Context:** While the ER model is designed for relational databases, the conceptual modeling skills it teaches are technology-agnostic and remain vital for designing systems with other technologies, including object-oriented applications (UML) and NoSQL databases.
 
-### **Key Terms Glossary**
+## **Key Terms Glossary**
 
 * **Aggregation:** An EER concept that treats a relationship set as a higher-level entity, allowing it to participate in other relationships.  
 * **Attribute:** A property or characteristic of an entity or relationship.  
@@ -378,7 +378,7 @@ This chapter has provided a comprehensive exploration of the database design pro
 * **Superkey:** A set of one or more attributes that, taken collectively, can uniquely identify an entity in an entity set.  
 * **Weak Entity Set:** An entity set that does not have a primary key of its own and is dependent on a strong entity set for its existence and identity.
 
-#### **Works cited**
+### **Works cited**
 
 1. Database Design Structure \- Schema Tutorial | Lucidchart, accessed October 12, 2025, [https://www.lucidchart.com/pages/tutorial/database-design-and-structure](https://www.lucidchart.com/pages/tutorial/database-design-and-structure)  
 2. How to Design a Database in 3 Easy Steps: Conceptual, Logical and Physical Modeling, accessed October 12, 2025, [https://medium.com/@Samietex/how-to-design-a-database-in-3-easy-steps-conceptual-logical-and-physical-modeling-3bd2a789de04](https://medium.com/@Samietex/how-to-design-a-database-in-3-easy-steps-conceptual-logical-and-physical-modeling-3bd2a789de04)  
@@ -447,7 +447,7 @@ Below is a **textbook chapter draft** integrating **Chapters 4 and 5 of Kroenke�
 
 # **Chapter X: From Data Models to Database Design**
 
-## **1\. Introduction**
+# **1\. Introduction**
 
 Designing a database is the process of transforming abstract business requirements into a structured, relational data model that can be implemented in a database management system (DBMS).  
  This chapter introduces the complete life cycle of data modeling and database design—from conceptual thinking using **Entity-Relationship (E-R) models** to **logical relational structures** that define how data is stored, connected, and maintained.
@@ -466,7 +466,7 @@ Students will learn how to:
 
 ---
 
-## **2\. Systems Analysis and the Role of the Data Model**
+# **2\. Systems Analysis and the Role of the Data Model**
 
 Every information system begins with **analysis**—understanding what information the business needs and how that information flows through processes.  
  This process is formalized through the **Systems Development Life Cycle (SDLC)**:
@@ -485,9 +485,9 @@ The **database design phase** focuses on data: what should be stored, how it rel
 
 ---
 
-## **3\. Data Modeling and the Entity-Relationship Model**
+# **3\. Data Modeling and the Entity-Relationship Model**
 
-### **3.1. Entities and Attributes**
+## **3.1. Entities and Attributes**
 
 * **Entity:** Something users want to track (e.g., Student, Course, Deliverable).
 
@@ -501,7 +501,7 @@ The **database design phase** focuses on data: what should be stored, how it rel
 
 Entities are shown as **rectangles**, and attributes are listed inside or connected by ovals.
 
-### **3.2. Relationships**
+## **3.2. Relationships**
 
 Entities associate with others through **relationships**:
 
@@ -515,7 +515,7 @@ The **degree** of a relationship refers to how many entity classes are involved 
 
 ---
 
-## **4\. Cardinality and Crow’s Foot Notation**
+# **4\. Cardinality and Crow’s Foot Notation**
 
 **Cardinality** defines how many instances of one entity relate to another:
 
@@ -536,7 +536,7 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **5\. Weak, Strong, and Associative Entities**
+# **5\. Weak, Strong, and Associative Entities**
 
 * **Strong Entity:** Exists independently (e.g., Customer).
 
@@ -548,7 +548,7 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **6\. Subtypes, Supertypes, and Recursive Relationships**
+# **6\. Subtypes, Supertypes, and Recursive Relationships**
 
 * **Subtype:** A special case of a supertype (e.g., Vehicle → Car, Truck).
 
@@ -558,9 +558,9 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **7\. From Data Models to Database Design**
+# **7\. From Data Models to Database Design**
 
-### **7.1. The Three Levels of Design**
+## **7.1. The Three Levels of Design**
 
 1. **Conceptual Design:** Abstract model (E-R diagrams).
 
@@ -570,9 +570,9 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **8\. Transforming the E-R Model into a Relational Design**
+# **8\. Transforming the E-R Model into a Relational Design**
 
-### **Step 1\. Create a Table for Each Entity**
+## **Step 1\. Create a Table for Each Entity**
 
 Each entity becomes a **table**; attributes become **columns**.
 
@@ -584,7 +584,7 @@ CREATE TABLE Student (
   Major VARCHAR(30)  
 );
 
-### **Step 2\. Add Keys and Relationships**
+## **Step 2\. Add Keys and Relationships**
 
 * **Primary Key (PK):** Uniquely identifies each record.
 
@@ -596,7 +596,7 @@ CREATE TABLE Student (
 **N:M Relationship:**  
  Create a **new intersection table** combining both keys.
 
-### **Step 3\. Specify Column Properties**
+## **Step 3\. Specify Column Properties**
 
 Each column has:
 
@@ -608,9 +608,9 @@ Each column has:
 
 ---
 
-## **9\. Normalization and Denormalization**
+# **9\. Normalization and Denormalization**
 
-### **9.1. The Normalization Process**
+## **9.1. The Normalization Process**
 
 Normalization removes redundancy and update anomalies by splitting data into logical tables.  
  Common forms include:
@@ -623,7 +623,7 @@ Normalization removes redundancy and update anomalies by splitting data into log
 
 * **BCNF:** Advanced rule to ensure all determinants are candidate keys.
 
-### **9.2. When to Denormalize**
+## **9.2. When to Denormalize**
 
 Denormalization combines tables for **performance** or **simplicity** when:
 
@@ -633,7 +633,7 @@ Denormalization combines tables for **performance** or **simplicity** when:
 
 ---
 
-## **10\. Representing Relationships in Practice**
+# **10\. Representing Relationships in Practice**
 
 | Relationship Type | Technique in Relational Model |
 | ----- | ----- |
@@ -644,11 +644,11 @@ Denormalization combines tables for **performance** or **simplicity** when:
 
 ---
 
-## **11\. Practical Example – Honoria Sanchez Designs**
+# **11\. Practical Example – Honoria Sanchez Designs**
 
 The Honoria Sanchez case demonstrates a full transformation from E-R model to relational design.
 
-### **Entities:**
+## **Entities:**
 
 * Customer
 
@@ -684,7 +684,7 @@ Relationships:
 
 ---
 
-## **12\. Database Implementation and Integrity**
+# **12\. Database Implementation and Integrity**
 
 Referential integrity ensures consistency across relationships:
 
@@ -696,7 +696,7 @@ Referential integrity ensures consistency across relationships:
 
 ---
 
-## **13\. Review Questions**
+# **13\. Review Questions**
 
 1. What is the difference between an entity class and an entity instance?
 
@@ -710,7 +710,7 @@ Referential integrity ensures consistency across relationships:
 
 ---
 
-## **14\. Summary**
+# **14\. Summary**
 
 Database design is both a science and an art. It requires:
 
@@ -734,7 +734,7 @@ Would you like me to include:
 
 # **Chapter 4: Database Design and Modeling with Entity-Relationship Diagrams**
 
-## **Learning Objectives**
+# **Learning Objectives**
 
 * Understand the importance of database design in information systems  
 * Learn the stages of database development and their relationship to SDLC  
@@ -744,7 +744,7 @@ Would you like me to include:
 * Understand weak entities, subtype entities, and recursive relationships  
 * Create and validate complete database designs using real-world examples
 
-## **4.1 Introduction to Database Design and Information Systems**
+# **4.1 Introduction to Database Design and Information Systems**
 
 Database design is the process of producing a detailed data model of a database that specifies data structures, relationships, constraints, and access methods. As defined in the Kroenke textbook, data represents recorded facts and numbers, while information is knowledge derived from data presented in a meaningful context.
 
@@ -758,18 +758,18 @@ An information system consists of five key components that work together to tran
 
 *"Well-designed databases are like well-organized libraries: information is easy to find, update, and expand while maintaining accuracy and consistency."*
 
-## **4.2 Database Development Lifecycle and Systems Development**
+# **4.2 Database Development Lifecycle and Systems Development**
 
 The database development process is a crucial subset of the Systems Development Life Cycle (SDLC), which consists of five primary phases:
 
-### **4.2.1 System Definition Phase**
+## **4.2.1 System Definition Phase**
 
 * Define information system project goals and scope  
 * Assess project feasibility (cost, schedule, technical, organizational)  
 * Form project team and create detailed project plan  
 * *Deliverable: Project Plan*
 
-### **4.2.2 Requirements Analysis Phase**
+## **4.2.2 Requirements Analysis Phase**
 
 * Conduct user interviews and evaluate existing systems  
 * Determine needed forms, reports, and queries  
@@ -777,21 +777,21 @@ The database development process is a crucial subset of the Systems Development 
 * Document business rules and security requirements  
 * *Deliverable: Approved User Requirements*
 
-### **4.2.3 Component Design Phase**
+## **4.2.3 Component Design Phase**
 
 * Determine hardware and software specifications  
 * Create the database design (primary focus of this chapter)  
 * Design business procedures and job descriptions  
 * *Deliverable: Documented System Design*
 
-### **4.2.4 Implementation Phase**
+## **4.2.4 Implementation Phase**
 
 * Build system components and conduct testing  
 * Create database and populate with data  
 * Convert to new system and train personnel  
 * *Deliverable: Installed and Functioning Information System*
 
-### **4.2.5 System Maintenance Phase**
+## **4.2.5 System Maintenance Phase**
 
 * Update system with patches and new releases  
 * Record and prioritize change requests  
@@ -799,9 +799,9 @@ The database development process is a crucial subset of the Systems Development 
 
 Key Insight: "During the implementation phase of developing a database system, the database is constructed, but the data model is transformed into a database design during the component design phase." (Kroenke, Chapter 4\)
 
-## **4.3 Conceptual Design with Entity-Relationship Diagrams (ERD)**
+# **4.3 Conceptual Design with Entity-Relationship Diagrams (ERD)**
 
-### **4.3.1 Basic ERD Components**
+## **4.3.1 Basic ERD Components**
 
 Entities are objects or concepts about which data is stored. As defined in Kroenke:
 
@@ -816,7 +816,7 @@ Identifiers are attributes that name or identify entity instances:
 * Nonunique identifiers identify a set of instances  
 * Composite identifiers are composed of two or more attributes
 
-### **4.3.2 Relationships and Cardinality**
+## **4.3.2 Relationships and Cardinality**
 
 Relationships represent associations between entities. The number of entity classes in a relationship is known as the degree:
 
@@ -836,7 +836,7 @@ Minimum Cardinality \- The minimum number of entity instances that must particip
 * Optional (minimum of 0\) \- Participation is not required  
 * Mandatory (minimum of 1\) \- Participation is required
 
-### **4.3.3 ERD Notation Systems**
+## **4.3.3 ERD Notation Systems**
 
 Traditional E-R Notation:
 
@@ -864,7 +864,7 @@ Crow's Foot Symbol Guide:
 
 |0\>\>----|    Optional \- Many (Zero or more)
 
-### **4.3.4 Example: University Database ERD**
+## **4.3.4 Example: University Database ERD**
 
 text
 
@@ -889,9 +889,9 @@ Relationship Analysis:
 * ENROLLMENT is an associative entity with additional attributes like Grade and EnrollmentDate  
 * Minimum cardinality: A Student must exist for an Enrollment (mandatory), but a Course might exist without enrollments (optional)
 
-## **4.4 Advanced E-R Modeling Concepts**
+# **4.4 Advanced E-R Modeling Concepts**
 
-### **4.4.1 Weak Entities**
+## **4.4.1 Weak Entities**
 
 A weak entity is an entity that cannot exist in the database without the existence of another entity. Any entity that is not weak is called a strong entity.
 
@@ -908,7 +908,7 @@ Non-ID-Dependent Weak Entities:
 
 Key Distinction: "An ID-dependent entity is an entity in which the identifier of the entity includes the identifier of another entity." (Kroenke, Chapter 4\)
 
-### **4.4.2 Associative Entities**
+## **4.4.2 Associative Entities**
 
 An associative entity (also called an association entity) is used when a pure N:M relationship cannot properly hold attributes that describe aspects of the relationship between two entities.
 
@@ -932,7 +932,7 @@ With Associative Entity:
 
                           \[Role\]
 
-### **4.4.3 Subtype Entities**
+## **4.4.3 Subtype Entities**
 
 A subtype entity is a special case of another entity called a supertype. An attribute of the supertype called a discriminator indicates which subtype is appropriate.
 
@@ -968,7 +968,7 @@ isGradStudent (discriminator)
 
            \[ScoreOnGMAT\]
 
-### **4.4.4 Recursive Relationships**
+## **4.4.4 Recursive Relationships**
 
 A recursive relationship occurs when an entity has a relationship with itself. These can be 1:1, 1:N, or N:M relationships.
 
@@ -978,9 +978,9 @@ Examples:
 * 1:N: EMPLOYEE manages other EMPLOYEES  
 * N:M: DOCTOR treats other DOCTORS as patients
 
-## **4.5 Logical Design: Transforming E-R Models to Relational Database Design**
+# **4.5 Logical Design: Transforming E-R Models to Relational Database Design**
 
-### **4.5.1 The Database Design Process**
+## **4.5.1 The Database Design Process**
 
 A database design is a set of database specifications that can actually be implemented as a database in a DBMS. The transformation process follows these key steps:
 
@@ -994,7 +994,7 @@ A database design is a set of database specifications that can actually be imple
    * Represent subtypes and recursive relationships  
 3. Verify normalization and consider denormalization if needed
 
-### **4.5.2 Representing Entities as Tables**
+## **4.5.2 Representing Entities as Tables**
 
 Basic Rules:
 
@@ -1015,7 +1015,7 @@ BECOMES TABLE: ITEM
 
 Columns: ItemNumber (PK), Description, Cost, ListPrice, QuantityOnHand
 
-### **4.5.3 Representing Relationships**
+## **4.5.3 Representing Relationships**
 
 1:1 Relationships:
 
@@ -1033,7 +1033,7 @@ N:M Relationships:
 * The intersection table contains foreign keys from both parent tables  
 * Add any relationship attributes to the intersection table
 
-### **4.5.4 Example: Relationship Transformations**
+## **4.5.4 Example: Relationship Transformations**
 
 1:1 Relationship Example:
 
@@ -1077,7 +1077,7 @@ CLASS (ClassNumber, ClassTime, ClassName, Description)
 
 STUDENT\_CLASS (SID(FK), ClassNumber(FK), Grade, EnrollmentDate)
 
-### **4.5.5 Representing Weak Entities**
+## **4.5.5 Representing Weak Entities**
 
 ID-Dependent Weak Entities:
 
@@ -1099,7 +1099,7 @@ Non-ID-Dependent Weak Entities:
 * Use same techniques as strong entities  
 * Include foreign key to parent entity
 
-### **4.5.6 Representing Subtype Entities**
+## **4.5.6 Representing Subtype Entities**
 
 Subtype Representation Options:
 
@@ -1125,7 +1125,7 @@ STUDENT (StudentID, LastName, FirstName, isGradStudent,
 
          HighSchoolGPA, ScoreOnSAT, UndergraduateGPA, ScoreOnGMAT)
 
-### **4.5.7 Representing Recursive Relationships**
+## **4.5.7 Representing Recursive Relationships**
 
 1:1 Recursive:
 
@@ -1153,9 +1153,9 @@ TREATMENT\_INTERSECTION (Physician(FK), Patient(FK))
 
 *\-- Both Physician and Patient must exist in Name in DOCTOR*
 
-## **4.6 Normalization and Denormalization**
+# **4.6 Normalization and Denormalization**
 
-### **4.6.1 Normalization Process**
+## **4.6.1 Normalization Process**
 
 Normalization is the process of organizing data to minimize redundancy and dependency by dividing tables and defining relationships.
 
@@ -1166,7 +1166,7 @@ Key Normal Forms:
 * Third Normal Form (3NF): Meet 2NF, remove transitive dependencies  
 * Boyce-Codd Normal Form (BCNF): Every determinant is a candidate key
 
-### **4.6.2 Normalization Example**
+## **4.6.2 Normalization Example**
 
 Unnormalized Data:
 
@@ -1198,7 +1198,7 @@ SALES\_COMMISSION (SalespersonNumber(FK), CommissionPeriod,
 
                   TotalCommissionSales, CommissionAmount, CheckNumber(FK))
 
-### **4.6.3 Denormalization**
+## **4.6.3 Denormalization**
 
 Denormalization is the process of consolidating relations that are in a higher normal form into a single relation that is in a lower normal form.
 
@@ -1228,9 +1228,9 @@ CONTACT (ContactName, Phone)
 
 Key Consideration: "Relations should not always be normalized to the highest degree possible. Denormalization can be desirable to improve performance when the performance gain outweighs the dangers of additional anomalies." (Kroenke, Chapter 5\)
 
-## **4.7 Physical Database Design Considerations**
+# **4.7 Physical Database Design Considerations**
 
-### **4.7.1 Column Properties Specification**
+## **4.7.1 Column Properties Specification**
 
 When implementing the database design, specify detailed column properties:
 
@@ -1239,7 +1239,7 @@ When implementing the database design, specify detailed column properties:
 * Default Value: Value supplied when no value is provided  
 * Data Constraints: Restrictions on valid values
 
-### **4.7.2 Surrogate Keys**
+## **4.7.2 Surrogate Keys**
 
 A surrogate key is a unique, system-supplied identifier used as the primary key when no natural key is suitable or when the natural key is inefficient.
 
@@ -1258,9 +1258,9 @@ SEMINAR (SeminarID, SeminarDate, SeminarTime, Location, SeminarTitle)
 
 *\-- SeminarID is a surrogate key: Integer, AUTO\_INCREMENT*
 
-## **4.8 Comprehensive Case Study: Honoria Sanchez Designs**
+# **4.8 Comprehensive Case Study: Honoria Sanchez Designs**
 
-### **4.8.1 Business Context**
+## **4.8.1 Business Context**
 
 Honoria Sanchez is an interior designer specializing in home kitchen design who:
 
@@ -1269,7 +1269,7 @@ Honoria Sanchez is an interior designer specializing in home kitchen design who:
 * Provides custom-design consulting services  
 * Needs to track customers, seminars, contacts, and sales
 
-### **4.8.2 Final Database Schema**
+## **4.8.2 Final Database Schema**
 
 sql
 
@@ -1293,7 +1293,7 @@ LINE\_ITEM (InvoiceNumber(FK), LineNumber, ProductNumber(FK),
 
            Quantity, UnitPrice, Total)
 
-### **4.8.3 Referential Integrity Constraints**
+## **4.8.3 Referential Integrity Constraints**
 
 | Parent | Child | Constraint |
 | :---- | :---- | :---- |
@@ -1303,9 +1303,9 @@ LINE\_ITEM (InvoiceNumber(FK), LineNumber, ProductNumber(FK),
 | INVOICE | LINE\_ITEM | InvoiceNumber in child must exist in parent |
 | PRODUCT | LINE\_ITEM | ProductNumber in child must exist in parent |
 
-## **4.9 Database Design Tools and Validation**
+# **4.9 Database Design Tools and Validation**
 
-### **4.9.1 Microsoft Access as a Prototyping Tool**
+## **4.9.1 Microsoft Access as a Prototyping Tool**
 
 Microsoft Access can be used to build prototype databases that allow users to validate the data model by demonstrating the consequences of data modeling decisions. Key features include:
 
@@ -1314,7 +1314,7 @@ Microsoft Access can be used to build prototype databases that allow users to va
 * Banded form and report editors for professional layouts  
 * Ability to prototype regardless of the final DBMS
 
-### **4.9.2 Validating the Data Model**
+## **4.9.2 Validating the Data Model**
 
 Validation Techniques:
 
@@ -1324,7 +1324,7 @@ Validation Techniques:
 * Verifying business rule enforcement  
 * Checking form and report requirements
 
-## **Chapter Summary**
+# **Chapter Summary**
 
 * Database design transforms business requirements into a structured data model using E-R diagrams  
 * The E-R model represents entities, attributes, relationships, and constraints visually  
@@ -1334,7 +1334,7 @@ Validation Techniques:
 * Normalization eliminates data anomalies while denormalization may improve performance  
 * Real-world validation ensures the design meets business needs
 
-## **Key Terms**
+# **Key Terms**
 
 * Entity-Relationship Diagram (ERD)  
 * Cardinality (Maximum, Minimum)  
@@ -1347,7 +1347,7 @@ Validation Techniques:
 * Referential Integrity  
 * Crow's Foot Notation
 
-## **Review Questions**
+# **Review Questions**
 
 1. What are the three main components of an ERD and how are they represented in different notations?  
 2. Explain the difference between maximum and minimum cardinality with examples.  
@@ -1355,7 +1355,7 @@ Validation Techniques:
 4. Describe the process for transforming M:N relationships into relational tables.  
 5. When should you consider denormalization in database design?
 
-## **Exercises**
+# **Exercises**
 
 1. Create an ERD for a hospital management system tracking patients, doctors, appointments, and treatments using crow's foot notation.  
 2. Normalize the following table to 3NF and explain each normalization step:  
@@ -1369,7 +1369,7 @@ Validation Techniques:
 
 # **Chapter 4: Database Design and Modeling with Entity-Relationship Diagrams**
 
-## **Learning Objectives**
+# **Learning Objectives**
 
 * Understand the importance of database design in information systems  
 * Learn the stages of database development and their relationship to SDLC  
@@ -1379,7 +1379,7 @@ Validation Techniques:
 * Understand weak entities, subtype entities, and recursive relationships  
 * Create and validate complete database designs using real-world examples
 
-## **4.1 Introduction to Database Design and Information Systems**
+# **4.1 Introduction to Database Design and Information Systems**
 
 Database design is the process of producing a detailed data model of a database that specifies data structures, relationships, constraints, and access methods. As defined in the Kroenke textbook, data represents recorded facts and numbers, while information is knowledge derived from data presented in a meaningful context.
 
@@ -1393,18 +1393,18 @@ An information system consists of five key components that work together to tran
 
 *"Well-designed databases are like well-organized libraries: information is easy to find, update, and expand while maintaining accuracy and consistency."*
 
-## **4.2 Database Development Lifecycle and Systems Development**
+# **4.2 Database Development Lifecycle and Systems Development**
 
 The database development process is a crucial subset of the Systems Development Life Cycle (SDLC), which consists of five primary phases:
 
-### **4.2.1 System Definition Phase**
+## **4.2.1 System Definition Phase**
 
 * Define information system project goals and scope  
 * Assess project feasibility (cost, schedule, technical, organizational)  
 * Form project team and create detailed project plan  
 * *Deliverable: Project Plan*
 
-### **4.2.2 Requirements Analysis Phase**
+## **4.2.2 Requirements Analysis Phase**
 
 * Conduct user interviews and evaluate existing systems  
 * Determine needed forms, reports, and queries  
@@ -1412,21 +1412,21 @@ The database development process is a crucial subset of the Systems Development 
 * Document business rules and security requirements  
 * *Deliverable: Approved User Requirements*
 
-### **4.2.3 Component Design Phase**
+## **4.2.3 Component Design Phase**
 
 * Determine hardware and software specifications  
 * Create the database design (primary focus of this chapter)  
 * Design business procedures and job descriptions  
 * *Deliverable: Documented System Design*
 
-### **4.2.4 Implementation Phase**
+## **4.2.4 Implementation Phase**
 
 * Build system components and conduct testing  
 * Create database and populate with data  
 * Convert to new system and train personnel  
 * *Deliverable: Installed and Functioning Information System*
 
-### **4.2.5 System Maintenance Phase**
+## **4.2.5 System Maintenance Phase**
 
 * Update system with patches and new releases  
 * Record and prioritize change requests  
@@ -1434,9 +1434,9 @@ The database development process is a crucial subset of the Systems Development 
 
 Key Insight: "During the implementation phase of developing a database system, the database is constructed, but the data model is transformed into a database design during the component design phase." (Kroenke, Chapter 4\)
 
-## **4.3 Conceptual Design with Entity-Relationship Diagrams (ERD)**
+# **4.3 Conceptual Design with Entity-Relationship Diagrams (ERD)**
 
-### **4.3.1 Basic ERD Components**
+## **4.3.1 Basic ERD Components**
 
 Entities are objects or concepts about which data is stored. As defined in Kroenke:
 
@@ -1451,7 +1451,7 @@ Identifiers are attributes that name or identify entity instances:
 * Nonunique identifiers identify a set of instances  
 * Composite identifiers are composed of two or more attributes
 
-### **4.3.2 Relationships and Cardinality**
+## **4.3.2 Relationships and Cardinality**
 
 Relationships represent associations between entities. The number of entity classes in a relationship is known as the degree:
 
@@ -1471,7 +1471,7 @@ Minimum Cardinality \- The minimum number of entity instances that must particip
 * Optional (minimum of 0\) \- Participation is not required  
 * Mandatory (minimum of 1\) \- Participation is required
 
-### **4.3.3 ERD Notation Systems**
+## **4.3.3 ERD Notation Systems**
 
 Traditional E-R Notation:
 
@@ -1496,7 +1496,7 @@ Crow's Foot Symbol Guide:
 
 |0\>\>----|    Optional \- Many (Zero or more)
 
-### **4.3.4 Example: University Database ERD**
+## **4.3.4 Example: University Database ERD**
 
 text
 
@@ -1516,9 +1516,9 @@ Relationship Analysis:
 * ENROLLMENT is an associative entity with additional attributes like Grade and EnrollmentDate  
 * Minimum cardinality: A Student must exist for an Enrollment (mandatory), but a Course might exist without enrollments (optional)
 
-## **4.4 Advanced E-R Modeling Concepts**
+# **4.4 Advanced E-R Modeling Concepts**
 
-### **4.4.1 Weak Entities**
+## **4.4.1 Weak Entities**
 
 A weak entity is an entity that cannot exist in the database without the existence of another entity. Any entity that is not weak is called a strong entity.
 
@@ -1535,7 +1535,7 @@ Non-ID-Dependent Weak Entities:
 
 Key Distinction: "An ID-dependent entity is an entity in which the identifier of the entity includes the identifier of another entity." (Kroenke, Chapter 4\)
 
-### **4.4.2 Associative Entities**
+## **4.4.2 Associative Entities**
 
 An associative entity (also called an association entity) is used when a pure N:M relationship cannot properly hold attributes that describe aspects of the relationship between two entities.
 
@@ -1554,7 +1554,7 @@ With Associative Entity:
 
                           \[Role\]
 
-### **4.4.3 Subtype Entities**
+## **4.4.3 Subtype Entities**
 
 A subtype entity is a special case of another entity called a supertype. An attribute of the supertype called a discriminator indicates which subtype is appropriate.
 
@@ -1581,7 +1581,7 @@ isGradStudent (discriminator)
 
            \[ScoreOnGMAT\]
 
-### **4.4.4 Recursive Relationships**
+## **4.4.4 Recursive Relationships**
 
 A recursive relationship occurs when an entity has a relationship with itself. These can be 1:1, 1:N, or N:M relationships.
 
@@ -1591,9 +1591,9 @@ Examples:
 * 1:N: EMPLOYEE manages other EMPLOYEES  
 * N:M: DOCTOR treats other DOCTORS as patients
 
-## **4.5 Logical Design: Transforming E-R Models to Relational Database Design**
+# **4.5 Logical Design: Transforming E-R Models to Relational Database Design**
 
-### **4.5.1 The Database Design Process**
+## **4.5.1 The Database Design Process**
 
 A database design is a set of database specifications that can actually be implemented as a database in a DBMS. The transformation process follows these key steps:
 
@@ -1607,7 +1607,7 @@ A database design is a set of database specifications that can actually be imple
    * Represent subtypes and recursive relationships  
 3. Verify normalization and consider denormalization if needed
 
-### **4.5.2 Representing Entities as Tables**
+## **4.5.2 Representing Entities as Tables**
 
 Basic Rules:
 
@@ -1627,7 +1627,7 @@ BECOMES TABLE: ITEM
 
 Columns: ItemNumber (PK), Description, Cost, ListPrice, QuantityOnHand
 
-### **4.5.3 Representing Relationships**
+## **4.5.3 Representing Relationships**
 
 1:1 Relationships:
 
@@ -1645,7 +1645,7 @@ N:M Relationships:
 * The intersection table contains foreign keys from both parent tables  
 * Add any relationship attributes to the intersection table
 
-### **4.5.4 Example: Relationship Transformations**
+## **4.5.4 Example: Relationship Transformations**
 
 1:1 Relationship Example:
 
@@ -1683,7 +1683,7 @@ CLASS (ClassNumber, ClassTime, ClassName, Description)
 
 STUDENT\_CLASS (SID(FK), ClassNumber(FK), Grade, EnrollmentDate)
 
-### **4.5.5 Representing Weak Entities**
+## **4.5.5 Representing Weak Entities**
 
 ID-Dependent Weak Entities:
 
@@ -1703,7 +1703,7 @@ Non-ID-Dependent Weak Entities:
 * Use same techniques as strong entities  
 * Include foreign key to parent entity
 
-### **4.5.6 Representing Subtype Entities**
+## **4.5.6 Representing Subtype Entities**
 
 Subtype Representation Options:
 
@@ -1727,7 +1727,7 @@ STUDENT (StudentID, LastName, FirstName, isGradStudent,
 
          HighSchoolGPA, ScoreOnSAT, UndergraduateGPA, ScoreOnGMAT)
 
-### **4.5.7 Representing Recursive Relationships**
+## **4.5.7 Representing Recursive Relationships**
 
 1:1 Recursive:
 
@@ -1754,9 +1754,9 @@ TREATMENT\_INTERSECTION (Physician(FK), Patient(FK))
 
 *\-- Both Physician and Patient must exist in Name in DOCTOR*
 
-## **4.6 Normalization and Denormalization**
+# **4.6 Normalization and Denormalization**
 
-### **4.6.1 Normalization Process**
+## **4.6.1 Normalization Process**
 
 Normalization is the process of organizing data to minimize redundancy and dependency by dividing tables and defining relationships.
 
@@ -1767,7 +1767,7 @@ Key Normal Forms:
 * Third Normal Form (3NF): Meet 2NF, remove transitive dependencies  
 * Boyce-Codd Normal Form (BCNF): Every determinant is a candidate key
 
-### **4.6.2 Normalization Example**
+## **4.6.2 Normalization Example**
 
 Unnormalized Data:
 
@@ -1795,7 +1795,7 @@ SALES\_COMMISSION (SalespersonNumber(FK), CommissionPeriod,
 
                   TotalCommissionSales, CommissionAmount, CheckNumber(FK))
 
-### **4.6.3 Denormalization**
+## **4.6.3 Denormalization**
 
 Denormalization is the process of consolidating relations that are in a higher normal form into a single relation that is in a lower normal form.
 
@@ -1821,9 +1821,9 @@ CONTACT (ContactName, Phone)
 
 Key Consideration: "Relations should not always be normalized to the highest degree possible. Denormalization can be desirable to improve performance when the performance gain outweighs the dangers of additional anomalies." (Kroenke, Chapter 5\)
 
-## **4.7 Physical Database Design Considerations**
+# **4.7 Physical Database Design Considerations**
 
-### **4.7.1 Column Properties Specification**
+## **4.7.1 Column Properties Specification**
 
 When implementing the database design, specify detailed column properties:
 
@@ -1832,7 +1832,7 @@ When implementing the database design, specify detailed column properties:
 * Default Value: Value supplied when no value is provided  
 * Data Constraints: Restrictions on valid values
 
-### **4.7.2 Surrogate Keys**
+## **4.7.2 Surrogate Keys**
 
 A surrogate key is a unique, system-supplied identifier used as the primary key when no natural key is suitable or when the natural key is inefficient.
 
@@ -1851,9 +1851,9 @@ SEMINAR (SeminarID, SeminarDate, SeminarTime, Location, SeminarTitle)
 
 *\-- SeminarID is a surrogate key: Integer, AUTO\_INCREMENT*
 
-## **4.8 Comprehensive Case Study: Honoria Sanchez Designs**
+# **4.8 Comprehensive Case Study: Honoria Sanchez Designs**
 
-### **4.8.1 Business Context**
+## **4.8.1 Business Context**
 
 Honoria Sanchez is an interior designer specializing in home kitchen design who:
 
@@ -1862,7 +1862,7 @@ Honoria Sanchez is an interior designer specializing in home kitchen design who:
 * Provides custom-design consulting services  
 * Needs to track customers, seminars, contacts, and sales
 
-### **4.8.2 Final Database Schema**
+## **4.8.2 Final Database Schema**
 
 sql
 
@@ -1878,7 +1878,7 @@ LINE\_ITEM (InvoiceNumber(FK), LineNumber, ProductNumber(FK),
 
            Quantity, UnitPrice, Total)
 
-### **4.8.3 Referential Integrity Constraints**
+## **4.8.3 Referential Integrity Constraints**
 
 | Parent | Child | Constraint |
 | :---- | :---- | :---- |
@@ -1888,9 +1888,9 @@ LINE\_ITEM (InvoiceNumber(FK), LineNumber, ProductNumber(FK),
 | INVOICE | LINE\_ITEM | InvoiceNumber in child must exist in parent |
 | PRODUCT | LINE\_ITEM | ProductNumber in child must exist in parent |
 
-## **4.9 Database Design Tools and Validation**
+# **4.9 Database Design Tools and Validation**
 
-### **4.9.1 Microsoft Access as a Prototyping Tool**
+## **4.9.1 Microsoft Access as a Prototyping Tool**
 
 Microsoft Access can be used to build prototype databases that allow users to validate the data model by demonstrating the consequences of data modeling decisions. Key features include:
 
@@ -1899,7 +1899,7 @@ Microsoft Access can be used to build prototype databases that allow users to va
 * Banded form and report editors for professional layouts  
 * Ability to prototype regardless of the final DBMS
 
-### **4.9.2 Validating the Data Model**
+## **4.9.2 Validating the Data Model**
 
 Validation Techniques:
 
@@ -1909,7 +1909,7 @@ Validation Techniques:
 * Verifying business rule enforcement  
 * Checking form and report requirements
 
-## **Chapter Summary**
+# **Chapter Summary**
 
 * Database design transforms business requirements into a structured data model using E-R diagrams  
 * The E-R model represents entities, attributes, relationships, and constraints visually  
@@ -1919,7 +1919,7 @@ Validation Techniques:
 * Normalization eliminates data anomalies while denormalization may improve performance  
 * Real-world validation ensures the design meets business needs
 
-## **Key Terms**
+# **Key Terms**
 
 * Entity-Relationship Diagram (ERD)  
 * Cardinality (Maximum, Minimum)  
@@ -1932,7 +1932,7 @@ Validation Techniques:
 * Referential Integrity  
 * Crow's Foot Notation
 
-## **Review Questions**
+# **Review Questions**
 
 1. What are the three main components of an ERD and how are they represented in different notations?  
 2. Explain the difference between maximum and minimum cardinality with examples.  
@@ -1940,7 +1940,7 @@ Validation Techniques:
 4. Describe the process for transforming M:N relationships into relational tables.  
 5. When should you consider denormalization in database design?
 
-## **Exercises**
+# **Exercises**
 
 1. Create an ERD for a hospital management system tracking patients, doctors, appointments, and treatments using crow's foot notation.  
 2. Normalize the following table to 3NF and explain each normalization step:  
@@ -1974,7 +1974,7 @@ Here is a quick comparison to help you understand their different approaches:
 | Key Strengths | Ease of use, real-time collaboration, extensive formatting options | Version control friendly, easily integrated into docs and AI-assisted workflows |
 | ERD Specifics | Supports conceptual, logical, and physical models; includes Enhanced ERD (EERD) features like subtypes/supertypes | Uses Crow's Foot notation; allows attribute definition with data types; relationships are defined with a concise syntax |
 
-### **📊 Using Lucidchart for ERD**
+## **📊 Using Lucidchart for ERD**
 
 Lucidchart is an intelligent diagramming application that is particularly well-suited for creating ERDs through a visual and intuitive process.
 
@@ -1982,7 +1982,7 @@ Lucidchart is an intelligent diagramming application that is particularly well-s
 * Enhanced ERDs (EERDs): For more complex database modeling, Lucidchart supports Enhanced ERDs. EERDs include advanced concepts like supertypes and subtypes (e.g., a Student supertype with Undergraduate and Graduate subtypes), specialization and generalization, and inheritance, where subtypes inherit attributes from their supertype.  
 * Creating Diagrams: You can start from scratch using the drag-and-drop editor, where entity-relationship shape libraries are readily available. Lucidchart also now includes a "Generate Diagram" AI feature that can create a diagram from a text prompt.
 
-### **🧜 Using Mermaid for ERD**
+## **🧜 Using Mermaid for ERD**
 
 Mermaid is a JavaScript-based tool that allows you to create diagrams and charts using a text-based syntax, which is ideal for inclusion in markdown files and documentation.
 
@@ -1992,14 +1992,14 @@ Mermaid is a JavaScript-based tool that allows you to create diagrams and charts
 
 Here is a simple example of a Mermaid ERD syntax and the resulting diagram:
 
-### **🔗 Integration and Workflow**
+## **🔗 Integration and Workflow**
 
 You can use Lucidchart and Mermaid together in your projects.
 
 * Lucidchart's "Diagram as Code" Feature: Lucidchart now allows you to import Mermaid code to create a diagram within a Lucidchart document. This is perfect for visualizing text-based definitions or sharing Mermaid-generated diagrams with collaborators who prefer a visual environment. Note that the resulting image is not editable in Lucidchart's canvas; you must modify the source code.  
 * Community-Driven Workflows: There is significant user demand for the reverse feature—exporting a Lucidchart diagram to Mermaid code—to include diagrams in markdown documentation or use them with AI tools. Although this feature was highly requested, the information I found does not confirm its availability.
 
-### **💡 Recommendations for Use**
+## **💡 Recommendations for Use**
 
 * Choose Lucidchart if you are designing a database collaboratively, need a powerful visual editor, want to create Enhanced ERDs, or are less comfortable with writing code.  
 * Choose Mermaid if your work is development-focused, you need to store your diagrams in version control (like Git), or you want to embed diagrams directly in markdown files for documentation or wikis.  
@@ -2042,18 +2042,18 @@ Let's create the slides one by one.
 
 # **Chapter 4: Database Design and Modeling with Entity-Relationship Diagrams**
 
-## **Slide 1: Title Slide**
+# **Slide 1: Title Slide**
 
 # **Chapter 4**
 
-## **Database Design and Modeling with Entity-Relationship Diagrams**
+# **Database Design and Modeling with Entity-Relationship Diagrams**
 
 Database Concepts, 10e  
 *Kroenke, Auer, Vandenberg, & Yoder*
 
 ---
 
-## **Slide 2: Learning Objectives**
+# **Slide 2: Learning Objectives**
 
 * Understand the importance of database design in information systems  
 * Learn the stages of database development and their relationship to SDLC  
@@ -2064,7 +2064,7 @@ Database Concepts, 10e
 
 ---
 
-## **Slide 3: The Importance of Database Design**
+# **Slide 3: The Importance of Database Design**
 
 Why Proper Design Matters:
 
@@ -2076,7 +2076,7 @@ Why Proper Design Matters:
 "Well-designed databases are like well-organized libraries: information is easy to find, update, and expand."  
 ---
 
-## **Slide 4: Database Development in SDLC**
+# **Slide 4: Database Development in SDLC**
 
 Systems Development Life Cycle (SDLC):
 
@@ -2090,7 +2090,7 @@ Database development occurs primarily in stages 2-4
 
 ---
 
-## **Slide 5: Entity-Relationship Model Fundamentals**
+# **Slide 5: Entity-Relationship Model Fundamentals**
 
 Core Components:
 
@@ -2106,7 +2106,7 @@ Entity Types:
 
 ---
 
-## **Slide 6: Basic ERD Components**
+# **Slide 6: Basic ERD Components**
 
 text
 
@@ -2128,7 +2128,7 @@ Elements:
 
 ---
 
-## **Slide 7: Relationship Cardinality**
+# **Slide 7: Relationship Cardinality**
 
 Maximum Cardinality:
 
@@ -2143,7 +2143,7 @@ Minimum Cardinality:
 
 ---
 
-## **Slide 8: Crow's Foot Notation**
+# **Slide 8: Crow's Foot Notation**
 
 | Symbol | Meaning | Numeric Meaning |  |  |
 | :---- | :---- | :---- | :---- | :---- |
@@ -2162,7 +2162,7 @@ text
 
 ---
 
-## **Slide 9: Weak Entities**
+# **Slide 9: Weak Entities**
 
 ID-Dependent Weak Entities:
 
@@ -2178,7 +2178,7 @@ Non-ID-Dependent Weak Entities:
 
 ---
 
-## **Slide 10: Associative Entities**
+# **Slide 10: Associative Entities**
 
 Used when N:M relationships need attributes:
 
@@ -2186,7 +2186,7 @@ Transforms N:M relationship into two 1:N relationships
 
 ---
 
-## **Slide 11: Subtype Entities**
+# **Slide 11: Subtype Entities**
 
 Supertype/Subtype Relationships:
 
@@ -2212,7 +2212,7 @@ Types:
 
 ---
 
-## **Slide 12: Recursive Relationships**
+# **Slide 12: Recursive Relationships**
 
 Entity has relationship with itself:
 
@@ -2236,7 +2236,7 @@ EMPLOYEE (EmployeeID, LastName, FirstName, ManagerID(FK))
 
 ---
 
-## **Slide 13: Transforming E-R to Relational Design**
+# **Slide 13: Transforming E-R to Relational Design**
 
 Step 1: Create Tables for Entities
 
@@ -2254,7 +2254,7 @@ Step 3: Verify Normalization
 
 ---
 
-## **Slide 14: Relationship Transformation Examples**
+# **Slide 14: Relationship Transformation Examples**
 
 1:1 Relationship:
 
@@ -2284,7 +2284,7 @@ ENROLLMENT (SID(FK), ClassNumber(FK), Grade)
 
 ---
 
-## **Slide 15: Normalization Process**
+# **Slide 15: Normalization Process**
 
 Normal Forms:
 
@@ -2297,7 +2297,7 @@ Goal: Minimize redundancy and dependency
 
 ---
 
-## **Slide 16: Normalization Example**
+# **Slide 16: Normalization Example**
 
 Before Normalization:
 
@@ -2324,7 +2324,7 @@ SALES\_COMMISSION (SalespersonNumber(FK), CommissionPeriod,
 
 ---
 
-## **Slide 17: Denormalization**
+# **Slide 17: Denormalization**
 
 Purpose: Improve performance by reducing joins
 
@@ -2347,7 +2347,7 @@ CUSTOMER (CustomerNumber, CustomerName, StreetAddress,
 
 ---
 
-## **Slide 18: Physical Design Considerations**
+# **Slide 18: Physical Design Considerations**
 
 Column Properties:
 
@@ -2364,7 +2364,7 @@ Surrogate Keys:
 
 ---
 
-## **Slide 19: Case Study \- Honoria Sanchez Designs**
+# **Slide 19: Case Study \- Honoria Sanchez Designs**
 
 Business Context:
 
@@ -2379,7 +2379,7 @@ Key Entities:
 
 ---
 
-## **Slide 20: Honoria Sanchez Database Schema**
+# **Slide 20: Honoria Sanchez Database Schema**
 
 sql
 
@@ -2397,7 +2397,7 @@ LINE\_ITEM (InvoiceNumber(FK), LineNumber, ProductNumber(FK),
 
 ---
 
-## **Slide 21: ERD Tools \- Lucidchart**
+# **Slide 21: ERD Tools \- Lucidchart**
 
 Visual Drag-and-Drop Tool:
 
@@ -2415,7 +2415,7 @@ Best For:
 
 ---
 
-## **Slide 22: ERD Tools \- Mermaid**
+# **Slide 22: ERD Tools \- Mermaid**
 
 Text-Based Diagramming:
 
@@ -2446,7 +2446,7 @@ Best For:
 
 ---
 
-## **Slide 23: Integration Approaches**
+# **Slide 23: Integration Approaches**
 
 Hybrid Workflow:
 
@@ -2468,7 +2468,7 @@ Mermaid Advantages:
 
 ---
 
-## **Slide 24: Chapter Summary**
+# **Slide 24: Chapter Summary**
 
 Key Takeaways:
 
@@ -2481,7 +2481,7 @@ Key Takeaways:
 
 ---
 
-## **Slide 25: Key Terms**
+# **Slide 25: Key Terms**
 
 * Entity-Relationship Diagram (ERD)  
 * Cardinality (Maximum, Minimum)  
@@ -2495,7 +2495,7 @@ Key Takeaways:
 
 ---
 
-## **Slide 26: Review Questions**
+# **Slide 26: Review Questions**
 
 1. What are the three main components of an ERD and how are they represented?  
 2. Explain the difference between maximum and minimum cardinality with examples.  
@@ -2505,7 +2505,7 @@ Key Takeaways:
 
 ---
 
-## **Slide 27: Exercises**
+# **Slide 27: Exercises**
 
 1. Create an ERD for a hospital management system using crow's foot notation  
 2. Normalize a denormalized table to 3NF and explain each step  
@@ -2515,7 +2515,7 @@ Key Takeaways:
 
 ---
 
-## **Slide 28: Next Steps**
+# **Slide 28: Next Steps**
 
 In Chapter 5, we will explore:
 
@@ -2527,7 +2527,7 @@ In Chapter 5, we will explore:
 
 ---
 
-## **Slide 29: References & Resources**
+# **Slide 29: References & Resources**
 
 Textbook:
 
@@ -2542,7 +2542,7 @@ Tools:
 
 ---
 
-## **Slide 30: Questions & Discussion**
+# **Slide 30: Questions & Discussion**
 
 Thank You\!
 
@@ -2566,20 +2566,20 @@ We'll create several slides for this section.
 
 # **Chapter 4: Database Design and Modeling**
 
-## **Using Mermaid for Entity-Relationship Diagrams**
+# **Using Mermaid for Entity-Relationship Diagrams**
 
 ---
 
-## **Slide 1: Introduction to Mermaid for ERD**
+# **Slide 1: Introduction to Mermaid for ERD**
 
-### **What is Mermaid?**
+## **What is Mermaid?**
 
 * Text-based diagramming tool using markdown-inspired syntax  
 * JavaScript-based \- runs in browsers and markdown editors  
 * Version control friendly \- diagrams as code  
 * Perfect for documentation and technical writing
 
-### **Key Advantages:**
+## **Key Advantages:**
 
 * Text-based, so it's developer-friendly  
 * Easily version controlled with Git  
@@ -2588,9 +2588,9 @@ We'll create several slides for this section.
 
 ---
 
-## **Slide 2: Mermaid ERD Basic Structure**
+# **Slide 2: Mermaid ERD Basic Structure**
 
-### **Basic Syntax Template:**
+## **Basic Syntax Template:**
 
 markdown
 
@@ -2607,7 +2607,7 @@ erDiagram
 
 \`\`\`
 
-### **Core Components:**
+## **Core Components:**
 
 * Entities: Defined with ENTITY\_NAME { attributes }  
 * Attributes: Listed with data types and constraints  
@@ -2616,25 +2616,25 @@ erDiagram
 
 ---
 
-## **Slide 3: Entity and Attribute Definition**
+# **Slide 3: Entity and Attribute Definition**
 
-### **Defining Entities:**
+## **Defining Entities:**
 
-### **Attribute Syntax:**
+## **Attribute Syntax:**
 
 * data\_type attribute\_name PK \- Primary Key  
 * data\_type attribute\_name FK \- Foreign Key  
 * data\_type attribute\_name \- Regular attribute
 
-### **Common Data Types:**
+## **Common Data Types:**
 
 * string, int, decimal, date, datetime, boolean
 
 ---
 
-## **Slide 4: Relationship Cardinality in Mermaid**
+# **Slide 4: Relationship Cardinality in Mermaid**
 
-### **Cardinality Symbols:**
+## **Cardinality Symbols:**
 
 | Symbol | Meaning | Description |  |  |  |  |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -2644,16 +2644,16 @@ erDiagram
 | }o--o{ | Many-to-Many | Zero or more to zero or more |  |  |  |  |
 | \` |  | \-- | {\` | One-to-Many (at least one) | One to one or more |  |
 
-### **Reading Direction:**
+## **Reading Direction:**
 
 * Left side symbol applies to the left entity  
 * Right side symbol applies to the right entity
 
 ---
 
-## **Slide 5: Basic ERD Example**
+# **Slide 5: Basic ERD Example**
 
-### **Simple University Schema:**
+## **Simple University Schema:**
 
 markdown
 
@@ -2680,9 +2680,9 @@ erDiagram
 
 ---
 
-## **Slide 6: Complete ERD Example**
+# **Slide 6: Complete ERD Example**
 
-### **University Database with Attributes:**
+## **University Database with Attributes:**
 
 markdown
 
@@ -2724,9 +2724,9 @@ erDiagram
 
 ---
 
-## **Slide 7: Complex Relationships**
+# **Slide 7: Complex Relationships**
 
-### **Multiple Relationship Types:**
+## **Multiple Relationship Types:**
 
 markdown
 
@@ -2761,9 +2761,9 @@ erDiagram
 
 ---
 
-## **Slide 8: Weak Entities and Composite Keys**
+# **Slide 8: Weak Entities and Composite Keys**
 
-### **ID-Dependent Weak Entity:**
+## **ID-Dependent Weak Entity:**
 
 markdown
 
@@ -2788,13 +2788,13 @@ erDiagram
 
 \`\`\`
 
-### **Note: Mermaid doesn't explicitly support composite keys in syntax, but you can document them in comments**
+## **Note: Mermaid doesn't explicitly support composite keys in syntax, but you can document them in comments**
 
 ---
 
-## **Slide 9: Enhanced ERD Features**
+# **Slide 9: Enhanced ERD Features**
 
-### **Subtype Relationships:**
+## **Subtype Relationships:**
 
 markdown
 
@@ -2827,9 +2827,9 @@ erDiagram
 
 ---
 
-## **Slide 10: Relationship Labels and Descriptions**
+# **Slide 10: Relationship Labels and Descriptions**
 
-### **Descriptive Relationship Labels:**
+## **Descriptive Relationship Labels:**
 
 markdown
 
@@ -2864,9 +2864,9 @@ erDiagram
 
 ---
 
-## **Slide 11: Mermaid Configuration Options**
+# **Slide 11: Mermaid Configuration Options**
 
-### **Styling and Configuration:**
+## **Styling and Configuration:**
 
 markdown
 
@@ -2898,23 +2898,23 @@ erDiagram
 
 \`\`\`
 
-### **Themes Available:**
+## **Themes Available:**
 
 * default, forest, dark, neutral  
 * Custom CSS styling
 
 ---
 
-## **Slide 12: Practical Workflow with Mermaid**
+# **Slide 12: Practical Workflow with Mermaid**
 
-### **Development Workflow:**
+## **Development Workflow:**
 
 1. Design in Mermaid syntax  
 2. Version control with Git  
 3. Integrate with documentation  
 4. Collaborate using code review processes
 
-### **Tools that Support Mermaid:**
+## **Tools that Support Mermaid:**
 
 * GitHub/GitLab markdown files  
 * VS Code with Mermaid extension  
@@ -2924,7 +2924,7 @@ erDiagram
 
 ---
 
-## **Slide 13: Mermaid vs. Visual Tools Comparison**
+# **Slide 13: Mermaid vs. Visual Tools Comparison**
 
 | Aspect | Mermaid | Lucidchart/[Draw.io](https://draw.io/) |
 | :---- | :---- | :---- |
@@ -2937,9 +2937,9 @@ erDiagram
 
 ---
 
-## **Slide 14: Mermaid with AI Assistance**
+# **Slide 14: Mermaid with AI Assistance**
 
-### **AI Prompt Examples:**
+## **AI Prompt Examples:**
 
 text
 
@@ -2956,7 +2956,7 @@ text
 
 \- Enrollments (student\_id, course\_code, grade)"
 
-### **Benefits:**
+## **Benefits:**
 
 * AI can generate and modify Mermaid code easily  
 * Consistent syntax is AI-friendly  
@@ -2964,9 +2964,9 @@ text
 
 ---
 
-## **Slide 15: Advanced Mermaid Features**
+# **Slide 15: Advanced Mermaid Features**
 
-### **Complex Database Schema:**
+## **Complex Database Schema:**
 
 markdown
 
@@ -3018,9 +3018,9 @@ erDiagram
 
 ---
 
-## **Slide 16: Best Practices for Mermaid ERD**
+# **Slide 16: Best Practices for Mermaid ERD**
 
-### **Code Organization:**
+## **Code Organization:**
 
 1. Group related entities together  
 2. Use consistent naming conventions  
@@ -3028,7 +3028,7 @@ erDiagram
 4. Break large diagrams into smaller ones  
 5. Use descriptive relationship labels
 
-### **Readability Tips:**
+## **Readability Tips:**
 
 * Order entities logically (parents before children)  
 * Use line breaks between entity groups  
@@ -3037,9 +3037,9 @@ erDiagram
 
 ---
 
-## **Slide 17: Hands-On Exercise**
+# **Slide 17: Hands-On Exercise**
 
-### **Exercise: Create a Library System ERD**
+## **Exercise: Create a Library System ERD**
 
 Create a Mermaid ERD for a library management system with:
 
@@ -3048,7 +3048,7 @@ Create a Mermaid ERD for a library management system with:
 * Loans (loan\_id, member\_id, isbn, loan\_date, due\_date)  
 * Authors (author\_id, name, nationality)
 
-### **Requirements:**
+## **Requirements:**
 
 * A member can borrow multiple books  
 * A book can be borrowed by multiple members over time  
@@ -3057,9 +3057,9 @@ Create a Mermaid ERD for a library management system with:
 
 ---
 
-## **Slide 18: Exercise Solution**
+# **Slide 18: Exercise Solution**
 
-### **Library System Solution:**
+## **Library System Solution:**
 
 markdown
 
@@ -3107,9 +3107,9 @@ erDiagram
 
 ---
 
-## **Slide 19: Integration with Documentation**
+# **Slide 19: Integration with Documentation**
 
-### **GitHub/GitLab Markdown:**
+## **GitHub/GitLab Markdown:**
 
 markdown
 
@@ -3134,7 +3134,7 @@ erDiagram
 
 \- **\*\*COMMENTS\*\***: Responses to posts
 
-### **Benefits:**
+## **Benefits:**
 
 * Documentation stays with code  
 * Automatic updates when schema changes  
@@ -3142,16 +3142,16 @@ erDiagram
 
 ---
 
-## **Slide 20: Common Pitfalls and Solutions**
+# **Slide 20: Common Pitfalls and Solutions**
 
-### **Common Issues:**
+## **Common Issues:**
 
 1. Syntax errors \- missing brackets or commas  
 2. Relationship confusion \- wrong cardinality symbols  
 3. Overly complex diagrams \- too many entities  
 4. Inconsistent naming \- mixed conventions
 
-### **Solutions:**
+## **Solutions:**
 
 * Use Mermaid Live Editor for testing  
 * Start with simple relationships  
@@ -3160,21 +3160,21 @@ erDiagram
 
 ---
 
-## **Slide 21: Mermaid Resources and Tools**
+# **Slide 21: Mermaid Resources and Tools**
 
-### **Official Resources:**
+## **Official Resources:**
 
 * [Mermaid.js.org](https://mermaid.js.org/) \- Official documentation  
 * Mermaid Live Editor \- Online testing tool  
 * GitHub Repository \- Source code and issues
 
-### **Development Tools:**
+## **Development Tools:**
 
 * VS Code Extension \- Mermaid preview  
 * Mermaid CLI \- Command line tool  
 * Mermaid Plugins \- For various platforms
 
-### **Learning Resources:**
+## **Learning Resources:**
 
 * Interactive tutorials  
 * Example gallery  
@@ -3182,9 +3182,9 @@ erDiagram
 
 ---
 
-## **Slide 22: Summary \- Mermaid for ERD**
+# **Slide 22: Summary \- Mermaid for ERD**
 
-### **Key Benefits:**
+## **Key Benefits:**
 
 * ✅ Text-based \- developer friendly  
 * ✅ Version controllable \- works with Git  
@@ -3192,7 +3192,7 @@ erDiagram
 * ✅ AI-friendly \- easy to generate and modify  
 * ✅ Free and open source \- no licensing costs
 
-### **Ideal Use Cases:**
+## **Ideal Use Cases:**
 
 * Technical documentation  
 * Database design in development teams  
@@ -3202,9 +3202,9 @@ erDiagram
 
 ---
 
-## **Slide 23: Next Steps with Mermaid**
+# **Slide 23: Next Steps with Mermaid**
 
-### **Advanced Topics to Explore:**
+## **Advanced Topics to Explore:**
 
 * Custom styling and themes  
 * Interactive diagrams with click events  
@@ -3212,7 +3212,7 @@ erDiagram
 * Automated documentation generation  
 * Custom Mermaid extensions
 
-### **Practice Recommendations:**
+## **Practice Recommendations:**
 
 1. Start with simple schemas  
 2. Practice cardinality notation  
@@ -3221,13 +3221,13 @@ erDiagram
 
 ---
 
-## **Slide 24: Questions and Practice**
+# **Slide 24: Questions and Practice**
 
-### **Practice Exercise:**
+## **Practice Exercise:**
 
 Convert the Honoria Sanchez Designs schema from Chapter 4 into Mermaid ERD syntax.
 
-### **Discussion Questions:**
+## **Discussion Questions:**
 
 1. When would you choose Mermaid over visual tools like Lucidchart?  
 2. How can Mermaid improve collaboration in development teams?  
@@ -3236,9 +3236,9 @@ Convert the Honoria Sanchez Designs schema from Chapter 4 into Mermaid ERD synta
 
 ---
 
-## **Slide 25: Additional Resources**
+# **Slide 25: Additional Resources**
 
-### **Quick Reference Card:**
+## **Quick Reference Card:**
 
 text
 
@@ -3249,7 +3249,7 @@ Many:1:      }o--||
 
 Many:Many:   }o--o{
 
-### **Useful Links:**
+## **Useful Links:**
 
 * Mermaid Official Docs: [https://mermaid.js.org/](https://mermaid.js.org/)  
 * Live Editor: [https://mermaid.live/](https://mermaid.live/)  
@@ -3258,16 +3258,16 @@ Many:Many:   }o--o{
 
 ---
 
-## **Slide 26: End of Mermaid Section**
+# **Slide 26: End of Mermaid Section**
 
-### **Key Takeaways:**
+## **Key Takeaways:**
 
 * Mermaid provides a text-based approach to ERD creation  
 * Perfect for developers and technical documentation  
 * Integrates seamlessly with modern development workflows  
 * AI-compatible for rapid prototyping and iteration
 
-### **Next:**
+## **Next:**
 
 We'll explore how to integrate Mermaid with visual tools like Lucidchart for a complete database design workflow.
 
@@ -3281,7 +3281,7 @@ Below is a **textbook chapter draft** integrating **Chapters 4 and 5 of Kroenke�
 
 # **Chapter X: From Data Models to Database Design**
 
-## **1\. Introduction**
+# **1\. Introduction**
 
 Designing a database is the process of transforming abstract business requirements into a structured, relational data model that can be implemented in a database management system (DBMS).  
  This chapter introduces the complete life cycle of data modeling and database design—from conceptual thinking using **Entity-Relationship (E-R) models** to **logical relational structures** that define how data is stored, connected, and maintained.
@@ -3300,7 +3300,7 @@ Students will learn how to:
 
 ---
 
-## **2\. Systems Analysis and the Role of the Data Model**
+# **2\. Systems Analysis and the Role of the Data Model**
 
 Every information system begins with **analysis**—understanding what information the business needs and how that information flows through processes.  
  This process is formalized through the **Systems Development Life Cycle (SDLC)**:
@@ -3319,9 +3319,9 @@ The **database design phase** focuses on data: what should be stored, how it rel
 
 ---
 
-## **3\. Data Modeling and the Entity-Relationship Model**
+# **3\. Data Modeling and the Entity-Relationship Model**
 
-### **3.1. Entities and Attributes**
+## **3.1. Entities and Attributes**
 
 * **Entity:** Something users want to track (e.g., Student, Course, Deliverable).
 
@@ -3335,7 +3335,7 @@ The **database design phase** focuses on data: what should be stored, how it rel
 
 Entities are shown as **rectangles**, and attributes are listed inside or connected by ovals.
 
-### **3.2. Relationships**
+## **3.2. Relationships**
 
 Entities associate with others through **relationships**:
 
@@ -3349,7 +3349,7 @@ The **degree** of a relationship refers to how many entity classes are involved 
 
 ---
 
-## **4\. Cardinality and Crow’s Foot Notation**
+# **4\. Cardinality and Crow’s Foot Notation**
 
 **Cardinality** defines how many instances of one entity relate to another:
 
@@ -3370,7 +3370,7 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **5\. Weak, Strong, and Associative Entities**
+# **5\. Weak, Strong, and Associative Entities**
 
 * **Strong Entity:** Exists independently (e.g., Customer).
 
@@ -3382,7 +3382,7 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **6\. Subtypes, Supertypes, and Recursive Relationships**
+# **6\. Subtypes, Supertypes, and Recursive Relationships**
 
 * **Subtype:** A special case of a supertype (e.g., Vehicle → Car, Truck).
 
@@ -3392,9 +3392,9 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **7\. From Data Models to Database Design**
+# **7\. From Data Models to Database Design**
 
-### **7.1. The Three Levels of Design**
+## **7.1. The Three Levels of Design**
 
 1. **Conceptual Design:** Abstract model (E-R diagrams).
 
@@ -3404,9 +3404,9 @@ Crow’s Foot notation is the modern standard:
 
 ---
 
-## **8\. Transforming the E-R Model into a Relational Design**
+# **8\. Transforming the E-R Model into a Relational Design**
 
-### **Step 1\. Create a Table for Each Entity**
+## **Step 1\. Create a Table for Each Entity**
 
 Each entity becomes a **table**; attributes become **columns**.
 
@@ -3418,7 +3418,7 @@ CREATE TABLE Student (
   Major VARCHAR(30)  
 );
 
-### **Step 2\. Add Keys and Relationships**
+## **Step 2\. Add Keys and Relationships**
 
 * **Primary Key (PK):** Uniquely identifies each record.
 
@@ -3430,7 +3430,7 @@ CREATE TABLE Student (
 **N:M Relationship:**  
  Create a **new intersection table** combining both keys.
 
-### **Step 3\. Specify Column Properties**
+## **Step 3\. Specify Column Properties**
 
 Each column has:
 
@@ -3442,9 +3442,9 @@ Each column has:
 
 ---
 
-## **9\. Normalization and Denormalization**
+# **9\. Normalization and Denormalization**
 
-### **9.1. The Normalization Process**
+## **9.1. The Normalization Process**
 
 Normalization removes redundancy and update anomalies by splitting data into logical tables.  
  Common forms include:
@@ -3457,7 +3457,7 @@ Normalization removes redundancy and update anomalies by splitting data into log
 
 * **BCNF:** Advanced rule to ensure all determinants are candidate keys.
 
-### **9.2. When to Denormalize**
+## **9.2. When to Denormalize**
 
 Denormalization combines tables for **performance** or **simplicity** when:
 
@@ -3467,7 +3467,7 @@ Denormalization combines tables for **performance** or **simplicity** when:
 
 ---
 
-## **10\. Representing Relationships in Practice**
+# **10\. Representing Relationships in Practice**
 
 | Relationship Type | Technique in Relational Model |
 | ----- | ----- |
@@ -3478,11 +3478,11 @@ Denormalization combines tables for **performance** or **simplicity** when:
 
 ---
 
-## **11\. Practical Example – Honoria Sanchez Designs**
+# **11\. Practical Example – Honoria Sanchez Designs**
 
 The Honoria Sanchez case demonstrates a full transformation from E-R model to relational design.
 
-### **Entities:**
+## **Entities:**
 
 * Customer
 
@@ -3518,7 +3518,7 @@ Relationships:
 
 ---
 
-## **12\. Database Implementation and Integrity**
+# **12\. Database Implementation and Integrity**
 
 Referential integrity ensures consistency across relationships:
 
@@ -3530,7 +3530,7 @@ Referential integrity ensures consistency across relationships:
 
 ---
 
-## **13\. Review Questions**
+# **13\. Review Questions**
 
 1. What is the difference between an entity class and an entity instance?
 
@@ -3544,7 +3544,7 @@ Referential integrity ensures consistency across relationships:
 
 ---
 
-## **14\. Summary**
+# **14\. Summary**
 
 Database design is both a science and an art. It requires:
 
@@ -3568,11 +3568,11 @@ Would you like me to include:
 
 # **Using Mermaid for Entity-Relationship Diagrams**
 
-## **Introduction to Mermaid ERD**
+# **Introduction to Mermaid ERD**
 
 Mermaid is a powerful JavaScript-based diagramming tool that uses text-based syntax to create diagrams, including Entity-Relationship Diagrams (ERDs). Unlike visual drag-and-drop tools, Mermaid allows developers and technical writers to create and maintain database diagrams using simple, readable code that can be version-controlled and integrated directly into documentation.
 
-### **Why Choose Mermaid for ERD?**
+## **Why Choose Mermaid for ERD?**
 
 * Text-Based: Write diagrams as code, making them easy to edit, version, and collaborate on  
 * Version Control Friendly: Store ERD code in Git repositories alongside your database schemas  
@@ -3580,9 +3580,9 @@ Mermaid is a powerful JavaScript-based diagramming tool that uses text-based syn
 * AI Compatibility: Easy for AI tools to generate and modify diagram code  
 * Platform Independent: Runs anywhere JavaScript is supported
 
-## **Basic Mermaid ERD Syntax**
+# **Basic Mermaid ERD Syntax**
 
-### **Core Structure**
+## **Core Structure**
 
 All Mermaid ER diagrams begin with the erDiagram declaration followed by entity definitions and relationships:
 
@@ -3600,7 +3600,7 @@ erDiagram
 
 \`\`\`
 
-### **Defining Entities and Attributes**
+## **Defining Entities and Attributes**
 
 Entities are defined with their attributes listed inside curly braces. Each attribute follows the pattern: data\_type attribute\_name constraints
 
@@ -3627,7 +3627,7 @@ erDiagram
 
 \`\`\`
 
-### **Supported Data Types**
+## **Supported Data Types**
 
 Mermaid doesn't enforce specific data types, but common conventions include:
 
@@ -3637,17 +3637,17 @@ Mermaid doesn't enforce specific data types, but common conventions include:
 * date, datetime for temporal data  
 * boolean for true/false values
 
-### **Primary and Foreign Keys**
+## **Primary and Foreign Keys**
 
 * PK marks an attribute as a primary key  
 * FK marks an attribute as a foreign key  
 * Composite keys require manual documentation in comments
 
-## **Relationship Cardinality Notation**
+# **Relationship Cardinality Notation**
 
 Mermaid uses specific symbols to represent relationship cardinality:
 
-### **Cardinality Symbols**
+## **Cardinality Symbols**
 
 | Symbol | Meaning | Description |  |  |  |  |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -3658,7 +3658,7 @@ Mermaid uses specific symbols to represent relationship cardinality:
 | \` |  | \-- | {\` | One-to-Many (at least one) | One to one or more |  |
 | \`} | \-- |  | \` | Many-to-One (at least one) | One or more to one |  |
 
-### **Reading Relationship Syntax**
+## **Reading Relationship Syntax**
 
 The relationship syntax follows this pattern:
 
@@ -3672,9 +3672,9 @@ Where:
 * CARDINALITY\_2 applies to ENTITY\_2  
 * The relationship label describes the nature of the relationship
 
-## **Complete ERD Examples**
+# **Complete ERD Examples**
 
-### **Simple University Database**
+## **Simple University Database**
 
 markdown
 
@@ -3707,7 +3707,7 @@ erDiagram
 
 \`\`\`
 
-### **E-Commerce System**
+## **E-Commerce System**
 
 markdown
 
@@ -3757,9 +3757,9 @@ erDiagram
 
 \`\`\`
 
-## **Advanced Mermaid ERD Features**
+# **Advanced Mermaid ERD Features**
 
-### **Weak Entity Representation**
+## **Weak Entity Representation**
 
 While Mermaid doesn't have explicit syntax for weak entities, you can represent them using comments and relationship labels:
 
@@ -3786,7 +3786,7 @@ erDiagram
 
 \`\`\`
 
-### **Recursive Relationships**
+## **Recursive Relationships**
 
 Represent self-referencing relationships using the same entity on both sides:
 
@@ -3805,7 +3805,7 @@ erDiagram
 
 \`\`\`
 
-### **Subtype/Supertype Relationships**
+## **Subtype/Supertype Relationships**
 
 Model inheritance relationships using one-to-one relationships:
 
@@ -3838,9 +3838,9 @@ erDiagram
 
 \`\`\`
 
-## **Styling and Configuration**
+# **Styling and Configuration**
 
-### **Basic Styling**
+## **Basic Styling**
 
 Mermaid supports limited styling options through configuration:
 
@@ -3873,7 +3873,7 @@ erDiagram
 
 \`\`\`
 
-### **Themes**
+## **Themes**
 
 Mermaid supports different themes that can be set in the configuration:
 
@@ -3882,9 +3882,9 @@ Mermaid supports different themes that can be set in the configuration:
 * dark  
 * neutral
 
-## **Integration with Documentation**
+# **Integration with Documentation**
 
-### **GitHub/GitLab Markdown**
+## **GitHub/GitLab Markdown**
 
 Mermaid is natively supported in GitHub and GitLab markdown files:
 
@@ -3918,7 +3918,7 @@ erDiagram
 
 \- **\*\*POSTS\*\***: User-generated content
 
-### **VS Code Integration**
+## **VS Code Integration**
 
 Install the Mermaid extension for VS Code to preview diagrams in real-time:
 
@@ -3926,23 +3926,23 @@ Install the Mermaid extension for VS Code to preview diagrams in real-time:
 2. Create a .md file with Mermaid code blocks  
 3. Use the preview pane to see rendered diagrams
 
-## **Best Practices for Mermaid ERD**
+# **Best Practices for Mermaid ERD**
 
-### **Code Organization**
+## **Code Organization**
 
 1. Group Related Entities: Keep entities that have relationships close together in the code  
 2. Consistent Naming: Use consistent naming conventions for entities and attributes  
 3. Descriptive Labels: Use meaningful relationship labels  
 4. Comments: Add comments to explain complex relationships or constraints
 
-### **Readability Tips**
+## **Readability Tips**
 
 * Use line breaks between entity groups  
 * Order entities logically (parents before children)  
 * Keep diagrams focused \- break large schemas into multiple diagrams  
 * Use consistent indentation
 
-### **Example of Well-Organized ERD**
+## **Example of Well-Organized ERD**
 
 markdown
 
@@ -3988,9 +3988,9 @@ erDiagram
 
 \`\`\`
 
-## **Common Patterns and Solutions**
+# **Common Patterns and Solutions**
 
-### **Many-to-Many Relationships**
+## **Many-to-Many Relationships**
 
 Always use junction tables for many-to-many relationships:
 
@@ -4020,7 +4020,7 @@ erDiagram
 
 \`\`\`
 
-### **Self-Referencing Relationships**
+## **Self-Referencing Relationships**
 
 For hierarchical data:
 
@@ -4038,9 +4038,9 @@ erDiagram
 
 \`\`\`
 
-## **Tools and Workflow**
+# **Tools and Workflow**
 
-### **Development Workflow**
+## **Development Workflow**
 
 1. Design: Create initial ERD in Mermaid syntax  
 2. Version Control: Commit to Git repository  
@@ -4048,7 +4048,7 @@ erDiagram
 4. Collaborate: Use code review processes for changes  
 5. Maintain: Update as database schema evolves
 
-### **Supported Platforms**
+## **Supported Platforms**
 
 * GitHub/GitLab: Native Mermaid support in markdown  
 * VS Code: With Mermaid preview extension  
@@ -4056,21 +4056,21 @@ erDiagram
 * Notion: Limited support  
 * Documentation Generators: MkDocs, Docusaurus, etc.
 
-## **Troubleshooting Common Issues**
+# **Troubleshooting Common Issues**
 
-### **Syntax Errors**
+## **Syntax Errors**
 
 * Missing Braces: Ensure all entities have opening and closing braces  
 * Relationship Format: Verify cardinality symbols are correct  
 * Attribute Format: Use proper type name constraint format
 
-### **Rendering Issues**
+## **Rendering Issues**
 
 * Platform Support: Confirm your platform supports Mermaid  
 * Version Compatibility: Some features may require specific Mermaid versions  
 * Theme Conflicts: Check if custom themes affect rendering
 
-## **Conclusion**
+# **Conclusion**
 
 Mermaid provides a powerful, text-based approach to creating Entity-Relationship Diagrams that integrates seamlessly with modern development workflows. By treating diagrams as code, teams can version control their database designs, collaborate effectively, and maintain accurate documentation that evolves with their systems.
 
@@ -4080,7 +4080,7 @@ The simplicity of Mermaid's syntax makes it accessible for developers while prov
 
 # **Chapter: Data Modeling and Database Design**
 
-## **Introduction to Data and Information Systems**
+# **Introduction to Data and Information Systems**
 
 Data is defined as recorded facts and numbers. Information, on the other hand, is knowledge derived from data, presented in a meaningful context, or data processed through operations like summing, ordering, averaging, grouping, or comparing.
 
@@ -4094,7 +4094,7 @@ Business processes are sets of activities that transform inputs into outputs. Fo
 
 Systems analysis and design involve creating and maintaining information systems using methodologies like the Systems Development Life Cycle (SDLC).
 
-## **The Systems Development Life Cycle (SDLC)**
+# **The Systems Development Life Cycle (SDLC)**
 
 The SDLC is a classic methodology for developing information systems, comprising five steps:
 
@@ -4110,7 +4110,7 @@ A cyclical representation of the SDLC
 
 The SDLC applies to the five information system components, with design and implementation tailored to each (e.g., hardware specs and installation, software programs and testing).
 
-## **Database Development Process**
+# **Database Development Process**
 
 Database development is a subset of SDLC, focusing on:
 
@@ -4118,7 +4118,7 @@ Database development is a subset of SDLC, focusing on:
 2. **Component Design**: Create data model, normalize, design tables.  
 3. **Implementation**: Build database, populate with data, test.
 
-## **The Entity-Relationship (E-R) Data Model**
+# **The Entity-Relationship (E-R) Data Model**
 
 Data requirements are documented in a data model, with the E-R model (extended version) being popular. Key elements:
 
@@ -4134,7 +4134,7 @@ E-R diagrams use rectangles for entities, diamonds for relationships, crow's foo
 ![Data Modelling using ERD with Crow Foot Notation - CodeProject][image4]  
 [codeproject.com](https://www.codeproject.com/articles/Data-Modelling-using-ERD-with-Crow-Foot-Notation)
 
-### **Weak Entities and Relationships**
+## **Weak Entities and Relationships**
 
 Weak entities depend on another entity for existence:
 
@@ -4143,15 +4143,15 @@ Weak entities depend on another entity for existence:
 
 Associative entities handle attributes in N:M relationships by linking entities.
 
-### **Subtype Entities**
+## **Subtype Entities**
 
 Subtypes are special cases of supertypes, connected via IS-A relationships. Discriminators determine subtype; can be exclusive or inclusive.
 
-### **Recursive Relationships**
+## **Recursive Relationships**
 
 Entities relating to themselves (unary), treated similarly to binary but with care for cardinality.
 
-## **Transforming E-R Models to Relational Designs**
+# **Transforming E-R Models to Relational Designs**
 
 Transform E-R to relational by creating tables for entities, adding keys, normalizing.
 
@@ -4167,7 +4167,7 @@ Steps:
 [en.wikipedia.org](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)  
 An example of transforming E-R to relational design
 
-### **Normalization Process**
+## **Normalization Process**
 
 Normalization reduces anomalies:
 
@@ -4183,14 +4183,14 @@ Database normalization process steps
 
 Denormalization may be used for performance, accepting some anomalies.
 
-### **Representing Relationships in Relational Model**
+## **Representing Relationships in Relational Model**
 
 * **1:1**: Foreign key in either table.  
 * **1:N**: Foreign key in many-side (child).  
 * **N:M**: Intersection table with composite key.  
 * **Recursive**: Foreign key or intersection for unary.
 
-### **SQL Joins for Relationships**
+## **SQL Joins for Relationships**
 
 Use JOIN for binary/recursive relationships, e.g.:
 
@@ -4199,7 +4199,7 @@ SELECT \* FROM PARENT JOIN CHILD ON PARENT.Key \= CHILD.ForeignKey;
 
 For recursive: Self-join with aliases.
 
-## **Example: Honoria Sanchez Designs Database**
+# **Example: Honoria Sanchez Designs Database**
 
 Using the Honoria Sanchez Designs case:
 

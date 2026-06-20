@@ -7,11 +7,11 @@ date: 2026-06-16
 author: "Nimrod Dvir, PhD"
 ---
 
-## Hands-On DBA Practice with the Grading Database
+# Hands-On DBA Practice with the Grading Database
 
 This section turns the chapter's concepts into practice. The goal is not to become a professional DBA immediately. The goal is to recognize administrative responsibilities and apply them thoughtfully.
 
-### Practice Layer 1: Microsoft Access
+## Practice Layer 1: Microsoft Access
 
 **Task 1: Identify critical tables.**
 
@@ -49,7 +49,7 @@ In Access:
 
 Use **Database Tools > Compact and Repair Database**. This reinforces the idea that file-based databases need maintenance.
 
-### Practice Layer 2: SQLite
+## Practice Layer 2: SQLite
 
 **Enable foreign keys.**
 
@@ -101,7 +101,7 @@ COMMIT;
 PRAGMA journal_mode = WAL;
 ```
 
-### Practice Layer 3: Supabase / PostgreSQL
+## Practice Layer 3: Supabase / PostgreSQL
 
 **Create roles.**
 
@@ -161,7 +161,7 @@ Then grant access to the view rather than the base tables:
 GRANT SELECT ON GradeReport TO analyst;
 ```
 
-### What the Hands-On Work Teaches
+## What the Hands-On Work Teaches
 
 | Platform | What You Practice |
 |---|---|

@@ -1,12 +1,10 @@
-<!-- metadata: date="2026-05-24" -->
-
-# Lab 06: Building the PetVax Relational Database in Access
+﻿# Lab 06: Building the PetVax Relational Database in Access
 
 ![Lab banner](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/lab_jpifze?_a=BAMAAAiu0)
 
 *Take the relational design pattern you practiced on the Grading Database and rebuild it for PetVax: separated subjects, junction tables, enforced relationships, and three payoff queries.*
 
-## Overview
+# Overview
 
 In this lab you take a starter PetVax database that already contains six tables of clinic data and turn it into a real relational design. You will identify primary keys, create five relationships with referential integrity enforced, prove that referential integrity is doing real work by trying to insert bad rows, and then build three saved queries that pay off the relational design — a multi-table billing join, a `LEFT JOIN` summary that surfaces an owner with no pets, and a missing-records anti-join that uses `CROSS JOIN` plus `LEFT JOIN ... IS NULL`.
 
@@ -15,7 +13,7 @@ In this lab you take a starter PetVax database that already contains six tables 
 - Estimated time: ~60–75 minutes.
 - Tool: Microsoft Access (desktop).
 
-## Scenario
+# Scenario
 
 PetVax is a small veterinary clinic. Until now its records have lived in a flat appointment spreadsheet. The owner has asked you to convert that into a real relational database so the clinic can ask harder questions — *who never came back for a vaccination?*, *which owners have no pets on file?*, *which appointments were billed off the standard fee?* — without scrolling through rows.
 
@@ -23,7 +21,7 @@ The starter database `lab-06-petvax-relational-starter.accdb` already contains s
 
 > ⚠️ **Heads-up:** The starter file ships with **no relationships and no saved queries**. That is intentional. Building those is the graded work.
 
-## Required Files and Tools
+# Required Files and Tools
 
 | Item | Detail |
 | --- | --- |
@@ -35,9 +33,9 @@ The starter database `lab-06-petvax-relational-starter.accdb` already contains s
 
 Before you make any changes: download the starter database, open it in Access, and save a working copy as `Lab06-PetVax-Relational-LastName.accdb`. Work in the copy from this point forward.
 
-## Steps
+# Steps
 
-### Step 1 — Open and save a working copy
+## Step 1 — Open and save a working copy
 
 **Do.** Download `lab-06-petvax-relational-starter.accdb` from `assets/`. Open it in Access. Use **File → Save As → Save Database As → Access Database** and save the working copy as `Lab06-PetVax-Relational-LastName.accdb`. Close the starter file. From this point on, work only in your working copy.
 
@@ -45,7 +43,7 @@ In the **Navigation Pane** on the left, look at the list of tables.
 
 **Check 1.** *(Short answer)* How many tables are in the starter database?
 
-### Step 2 — Inspect tables and primary keys
+## Step 2 — Inspect tables and primary keys
 
 **Do.** Open each table in **Design View** (right-click the table name → **Design View**). Look for the small key icon next to one field — that field is the primary key. Note down the primary key for each table. Then close every table before moving on.
 
@@ -67,7 +65,7 @@ In the **Navigation Pane** on the left, look at the list of tables.
 - C. `PET_OWNER`
 - D. `APPOINTMENT`
 
-### Step 3 — Create the five relationships
+## Step 3 — Create the five relationships
 
 :::callout{type="warning" title="⚠️ Close every open table first"}
 Access will not let you edit relationships while a child table is open in Datasheet or Design View. Close every table before opening the Relationships window.
@@ -104,7 +102,7 @@ Deleting an owner should never automatically delete the pets, appointments, and 
 - E. `SERVICE_TYPE`
 - F. `APPOINTMENT_SERVICE`
 
-### Step 4 — Test referential integrity
+## Step 4 — Test referential integrity
 
 Three invalid inserts that should all be rejected. For each one, open the target table in Datasheet View, type the bad row at the bottom (including the primary-key value shown — the PKs are manually entered, not AutoNumber), press Enter, read the error message Access shows, then press **Esc** to cancel the row. Do not leave any of these test rows in the table.
 
@@ -130,7 +128,7 @@ You should see the same error dialog for each test: *"You cannot add or change a
 - C. Spreadsheet formatting
 - D. Aggregation
 
-### Step 5 — Query 1: Appointment billing detail
+## Step 5 — Query 1: Appointment billing detail
 
 This is the PetVax version of the Let's Build's weighted-contribution join. Instead of joining students, deliverables, and grading rules, you join pets, appointments, services, and standard fees.
 
@@ -169,7 +167,7 @@ Switch to **SQL View** to see the SQL Access generated. You should see four `INN
 - C. The number of appointments per pet
 - D. Whether the owner has an email address
 
-### Step 6 — Query 2: Owner pet summary with LEFT JOIN
+## Step 6 — Query 2: Owner pet summary with LEFT JOIN
 
 This is the PetVax version of the Let's Build's attendance summary. The `LEFT JOIN` matters because it keeps every owner in the result — even an owner who has no pets on file.
 
@@ -216,7 +214,7 @@ Run, then save as `qryOwnerPetSummary`.
 
 **Check 12.** *(Short answer)* Which owner has zero pets? (Type the full name.)
 
-### Step 7 — Query 3: Find pets missing a required vaccination (CROSS JOIN + anti-join, stretch)
+## Step 7 — Query 3: Find pets missing a required vaccination (CROSS JOIN + anti-join, stretch)
 
 > **Stretch query — read slowly.** This mirrors the missing-grades query from the Let's Build. It is the most advanced query in the lab. You will build it in **two stages** so each move is easy to inspect.
 
@@ -228,7 +226,7 @@ The three moves from the Let's Build map onto two saved queries:
 2. **Attach what exists with `LEFT JOIN`.** Join those expected pairs to `APPOINTMENT` and `APPOINTMENT_SERVICE` on `PetID` and `ServiceType`. Pets with a matching vaccination row get an `AppointmentServiceID`; pets without one get `NULL`.
 3. **Keep only the empties with `WHERE ... IS NULL`.** That converts the `LEFT JOIN` into an anti-join. *(Moves 2 and 3 are the second saved query.)*
 
-#### Stage A — Build the universe
+### Stage A — Build the universe
 
 **Do.** Open **Create → Query Design** → **Close** the Show Table dialog → switch to **SQL View** and paste:
 
@@ -245,7 +243,7 @@ Run it. You should see **7 rows** — every pet paired with `Vaccination`. Save 
 
 The `FROM PET, SERVICE_TYPE` comma is Access's way of writing a cross join. Standard SQL and SQLite use the explicit keyword `CROSS JOIN` — same result.
 
-#### Stage B — Anti-join against the universe
+### Stage B — Anti-join against the universe
 
 **Do.** Open **Create → Query Design** → **Close** the Show Table dialog → switch to **SQL View** and paste:
 
@@ -278,7 +276,7 @@ Run the query. Save it as `qryMissingRequiredVaccinations`.
 - F. PetID 6 — Luna
 - G. PetID 7 — Maple
 
-### Step 8 — Export the relationship report
+## Step 8 — Export the relationship report
 
 **Do.** Open **Database Tools → Relationships** to bring the layout back into focus. On the ribbon, click **Relationship Report**. Access opens a print preview of the layout. Use **File → Save As → Save Object As → PDF or XPS** (or **External Data → PDF or XPS**) to export it as `Lab06-PetVax-Relationships-LastName.pdf` in the same folder as your `.accdb`.
 
@@ -289,7 +287,7 @@ Run the query. Save it as `qryMissingRequiredVaccinations`.
 - C. It deletes invalid records
 - D. It creates a spreadsheet copy
 
-### Step 9 — Final concept check
+## Step 9 — Final concept check
 
 **Check 16.** *(Multi-select)* Which statements are true about the relational PetVax design you just built? Select all that apply.
 
@@ -300,7 +298,7 @@ Run the query. Save it as `qryMissingRequiredVaccinations`.
 - E. Referential integrity allows child records to point to nonexistent parents.
 - F. The relational design removes the need for joins.
 
-## Submission
+# Submission
 
 Submit both files to the Lab 06 dropbox:
 
@@ -309,7 +307,7 @@ Submit both files to the Lab 06 dropbox:
 
 Your grade = quiz check-question score (20 pts) + Access file rubric (16 pts) + relationship report (4 pts) = **40 points total**.
 
-## Check Your Work
+# Check Your Work
 
 Before you submit, confirm:
 
@@ -330,7 +328,7 @@ Before you submit, confirm:
 | `qryMissingRequiredVaccinations` rows | 5 |
 | Relationship report PDF saved | Yes |
 
-## Optional Extensions
+# Optional Extensions
 
 Not required. Try one of these only if you have time after the main lab is complete and submitted.
 

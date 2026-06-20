@@ -28,7 +28,7 @@ This chapter introduces business intelligence as the application of database tec
 - Explain ETL, data warehouses, and star schemas in plain business language
 - Build a simple dashboard or reporting query that tracks a key business metric
 
-## Chapter Overview
+# Chapter Overview
 
 This chapter introduces **Business Intelligence (BI)** as the organizational capability that transforms operational data into **insight, evaluation, and informed action**. While previous chapters focused on how data is **stored correctly** (normalization), **queried effectively** (advanced SQL), **designed systematically** (ER modeling and SDLC), and **administered reliably** (database administration), this chapter shifts attention to a different question:
 
@@ -57,7 +57,7 @@ Prompt: Flow diagram showing Operational Database → ETL → Data Warehouse →
 
 ---
 
-## Learning Objectives
+# Learning Objectives
 
 By the end of this chapter, students will be able to:
 
@@ -72,9 +72,9 @@ By the end of this chapter, students will be able to:
 
 ---
 
-## 1. Business Intelligence Fundamentals
+# 1. Business Intelligence Fundamentals
 
-### What Is Business Intelligence?
+## What Is Business Intelligence?
 
 **Business Intelligence (BI)** refers to the collection of concepts, architectures, tools, and practices that enable organizations to **analyze data in order to support better decisions**. Unlike operational systems, which focus on recording individual events, BI systems focus on **understanding patterns, trends, and performance**.
 
@@ -126,7 +126,7 @@ Prompt: Side-by-side comparison diagram of Transaction Processing System (TPS) v
 
 ---
 
-### BI in the Data-Information-Knowledge Continuum
+## BI in the Data-Information-Knowledge Continuum
 
 Business Intelligence occupies a central position in the progression from raw data to actionable knowledge.
 
@@ -154,11 +154,11 @@ Prompt: DIKW pyramid with Business Intelligence highlighted between Information 
 
 ---
 
-### Types of BI Systems
+## Types of BI Systems
 
 Business Intelligence is not a single tool but a **family of systems** that vary in complexity and purpose.
 
-#### Reporting Systems
+### Reporting Systems
 
 Reporting systems are the most common and accessible form of BI. They focus on:
 
@@ -178,7 +178,7 @@ These systems typically rely on:
 * Grouping (`GROUP BY`)
 * Time-based comparisons
 
-#### Data Mining and Advanced Analytics
+### Data Mining and Advanced Analytics
 
 More advanced BI systems go beyond reporting to identify **patterns and predictions**, such as:
 
@@ -194,7 +194,7 @@ These approaches may include:
 
 While this course emphasizes **foundational BI**, understanding that BI exists on a spectrum helps clarify how basic summaries can evolve into powerful analytical systems.
 
-#### Self-Service BI
+### Self-Service BI
 
 A growing trend in BI is the democratization of analytics through **self-service tools**. Platforms such as **Microsoft Power BI**, **Tableau**, and **Google Looker** allow business users to:
 
@@ -204,7 +204,7 @@ A growing trend in BI is the democratization of analytics through **self-service
 
 Self-service BI reduces the bottleneck of waiting for IT to produce reports. But it also introduces risks. Without proper data governance, different users may create conflicting metrics or misinterpret data. The balance between **accessibility and consistency** is a central challenge in modern BI environments.
 
-##### 🌍 Real-World Example
+#### 🌍 Real-World Example
 
 A national retail chain with 400 stores uses Microsoft Power BI to give store managers access to daily sales dashboards. Managers no longer wait for IT reports. They filter by product category, date range, or region in real time. When one district manager noticed that a particular product line was underperforming on weekends across multiple stores, she escalated to procurement within hours. The insight came not from a data analyst but from a manager using self-service BI tools connected to the same operational database that records every sale.
 
@@ -214,9 +214,9 @@ Together, these BI fundamentals establish the conceptual foundation for the rest
 
 ---
 
-## 2. Data Warehousing Concepts
+# 2. Data Warehousing Concepts
 
-### Why Operational Databases Are Not Enough
+## Why Operational Databases Are Not Enough
 
 Operational databases are designed to **support day-to-day transactions**, not large-scale analysis. Even when they are well normalized and carefully administered, they are optimized for **accuracy and concurrency**, not for insight generation.
 
@@ -246,7 +246,7 @@ Prompt: Diagram showing operational database overloaded by reporting queries, co
 
 ---
 
-### What Is a Data Warehouse?
+## What Is a Data Warehouse?
 
 A **data warehouse** is a centralized repository designed specifically for **analysis and decision support**. Unlike operational databases, data warehouses are structured to support large queries, historical analysis, and cross-functional reporting.
 
@@ -267,7 +267,7 @@ Classic definitions describe a data warehouse as:
 * Tracking transformation rules
 * Supporting governance and auditing
 
-##### 🌍 Real-World Example
+#### 🌍 Real-World Example
 
 A large hospital system operates dozens of clinical, billing, and patient management applications. Each system records data differently. Patient names are stored in different formats. Diagnoses use different code systems across departments. The hospital's data warehouse integrates all these sources into a single structure. Each night, an ETL job pulls records from every system, standardizes them, and loads the results into the warehouse. By morning, hospital administrators can view dashboards showing patient outcomes, readmission rates, and bed utilization across all facilities. Without the warehouse, these reports would require weeks of manual data assembly.
 
@@ -279,11 +279,11 @@ Prompt: Conceptual architecture of a data warehouse showing multiple source syst
 
 ---
 
-### Data Warehouses vs. Data Marts
+## Data Warehouses vs. Data Marts
 
 Not all organizations build a single, massive warehouse. Two common approaches exist.
 
-#### Enterprise Data Warehouse (EDW)
+### Enterprise Data Warehouse (EDW)
 
 An **Enterprise Data Warehouse**:
 
@@ -303,7 +303,7 @@ Challenges:
 * Longer development time
 * Greater organizational coordination required
 
-#### Data Marts
+### Data Marts
 
 A **data mart** is a smaller, focused analytical store designed for a specific department or function, such as:
 
@@ -346,7 +346,7 @@ Prompt: Comparison diagram showing Enterprise Data Warehouse feeding multiple de
 
 ---
 
-### Data Lakes: A Modern Complement
+## Data Lakes: A Modern Complement
 
 While data warehouses store **structured, pre-processed data**, many organizations also maintain **data lakes** -- repositories that store data in its **raw, unprocessed form** (structured, semi-structured, or unstructured).
 
@@ -361,7 +361,7 @@ Key differences:
 
 Data lakes are increasingly common in modern architectures. They complement rather than replace data warehouses. Organizations often use both: a data lake for flexible exploration and a data warehouse for trusted, governed reporting.
 
-###### Why this matters
+##### Why this matters
 
 Students often ask: "Why not just put everything in one place?" The answer is that different analytical needs require different structures. A warehouse enforces consistency and business rules. A lake preserves raw flexibility. Using both together gives organizations the best of each approach.
 
@@ -369,9 +369,9 @@ These data warehousing concepts provide the structural foundation for the next s
 
 ---
 
-## 3. ETL Processes and Data Integration
+# 3. ETL Processes and Data Integration
 
-### What Is ETL?
+## What Is ETL?
 
 **ETL** stands for **Extract, Transform, Load**. It is the backbone of Business Intelligence systems and the primary mechanism through which operational data becomes trustworthy analytical data.
 
@@ -400,7 +400,7 @@ Prompt: ETL pipeline diagram showing multiple source systems feeding into Extrac
 
 ---
 
-### Common Transformations
+## Common Transformations
 
 The **Transform** stage is where data quality is enforced and business logic is applied. Typical transformations include:
 
@@ -437,7 +437,7 @@ Prompt: Before-and-after table showing raw grades transformed into standardized 
 
 ---
 
-### ETL vs. ELT
+## ETL vs. ELT
 
 Traditional ETL transforms data before loading it into the warehouse. An increasingly common alternative is **ELT (Extract, Load, Transform)**, which reverses the last two steps:
 
@@ -455,7 +455,7 @@ For this course, we use **ETL logic implemented in SQL**, which illustrates both
 
 ---
 
-### ETL as a Trust-Building Process
+## ETL as a Trust-Building Process
 
 ETL is not just a technical pipeline. It is a **trust mechanism**.
 
@@ -479,7 +479,7 @@ Well-designed ETL pipelines:
 
 ETL is where **technical design meets organizational governance**. It ensures that analytical systems do not merely reflect stored data, but instead reflect **agreed-upon interpretations of reality**.
 
-##### 🌍 Real-World Example
+#### 🌍 Real-World Example
 
 A regional bank processes customer transaction data from three separate core banking systems, each acquired through mergers. Field names differ across systems. Date formats differ. Some systems record branch codes using letters; others use numbers. The bank's ETL team spent months designing transformation rules to standardize all three sources into a single data warehouse schema. When regulators ask for a loan portfolio summary, the bank produces a consistent, auditable report within minutes. Before the ETL pipeline existed, that same report took two analysts a week to compile manually.
 
@@ -491,9 +491,9 @@ Prompt: Layered diagram showing business rules embedded in ETL between raw data 
 
 ---
 
-## 4. Online Analytical Processing (OLAP)
+# 4. Online Analytical Processing (OLAP)
 
-### What Makes Analytical Queries Different?
+## What Makes Analytical Queries Different?
 
 Analytical queries are fundamentally different from the transactional queries used in operational systems.
 
@@ -532,7 +532,7 @@ Prompt: Side-by-side comparison showing transactional query vs analytical query 
 
 ---
 
-### Dimensional Modeling Concepts
+## Dimensional Modeling Concepts
 
 OLAP relies on **dimensional modeling**, a design approach that prioritizes clarity and analytical speed over strict normalization.
 
@@ -570,7 +570,7 @@ Prompt: Fact table surrounded by Time, Student, and Deliverable dimensions
 
 ---
 
-### Star Schemas and Analytical Structures
+## Star Schemas and Analytical Structures
 
 The most common dimensional structure is the **star schema**.
 
@@ -586,7 +586,7 @@ This structure is intentionally **denormalized**:
 * Joins between fact and dimension tables are predictable and simple
 * Queries are easier to write and faster to execute
 
-#### Snowflake Schemas
+### Snowflake Schemas
 
 A variation called the **snowflake schema** normalizes dimension tables further, for example, separating deliverable categories from deliverable details. Snowflake schemas save storage but increase query complexity. In most BI environments, star schemas are preferred for their simplicity.
 
@@ -619,7 +619,7 @@ Prompt: Star schema diagram with FACT_GRADES at the center and DIM_STUDENT, DIM_
 
 ---
 
-### OLAP Operations
+## OLAP Operations
 
 OLAP systems support several common analytical operations that allow users to explore data from different angles:
 
@@ -631,15 +631,15 @@ OLAP systems support several common analytical operations that allow users to ex
 
 These operations map directly to SQL constructs you already know: `WHERE` clauses (slice/dice), nested `GROUP BY` levels (drill-down/roll-up), and restructured `SELECT` statements (pivot). OLAP simply provides a conceptual vocabulary for these common analytical patterns.
 
-##### 🌍 Real-World Example
+#### 🌍 Real-World Example
 
 A major grocery chain uses an OLAP cube to track product sales across 600 stores. A regional analyst performing a **slice** filters to just beverage sales. She then **drills down** from weekly store totals to daily aisle-level data after noticing an unexpected dip. She discovers that a promotional display was moved, reducing impulse purchases. She **rolls up** back to the regional view to check whether the dip is isolated or widespread. This entire exploration takes minutes because the OLAP structure is designed exactly for this type of multi-directional analysis.
 
 ---
 
-## 5. Data Visualization and Reporting
+# 5. Data Visualization and Reporting
 
-### From Queries to Insight
+## From Queries to Insight
 
 SQL is a powerful analytical language, but **query results alone are rarely the end goal**. Rows and columns answer questions, yet decision-makers think in **patterns, trends, comparisons, and thresholds**. Visualization bridges this gap by transforming query outputs into forms the human brain can process quickly and reliably.
 
@@ -663,11 +663,11 @@ Prompt: SQL result table transforming into a line chart and bar chart
 
 ---
 
-### Types of BI Outputs
+## Types of BI Outputs
 
 Business Intelligence systems typically deliver insight through three complementary output types.
 
-#### Standard Reports
+### Standard Reports
 
 Standard reports are structured, often scheduled outputs that present data in tabular or lightly visual formats.
 
@@ -688,7 +688,7 @@ GROUP BY d.Type, d.DeliverableNumber;
 
 This query feeds a **bar chart** comparing performance across assignments.
 
-#### Interactive Dashboards
+### Interactive Dashboards
 
 Dashboards combine multiple visualizations into a single interface and allow users to explore data dynamically.
 
@@ -698,11 +698,11 @@ Typical dashboard elements:
 * Linked charts (selecting a bar updates a detail table)
 * Summary metrics displayed prominently at the top
 
-##### 📝 **Note:**
+#### 📝 **Note:**
 
 SQL queries can be saved as **views** and consumed by dashboard tools such as Power BI, Tableau, or Supabase-integrated front ends. Using views ensures consistent logic across all reports.
 
-#### KPIs and Performance Metrics
+### KPIs and Performance Metrics
 
 Key Performance Indicators (KPIs) reduce complexity to **signals** -- single numbers or indicators that tell decision-makers whether things are on track.
 
@@ -722,7 +722,7 @@ FROM STUDENT_GRADE;
 
 KPIs answer *"Are we on track?"* rather than *"What exactly happened?"*
 
-##### 🌍 Real-World Example
+#### 🌍 Real-World Example
 
 A streaming platform tracks three KPIs in real time: daily active users, average watch time per session, and content completion rate. These three numbers appear on a single dashboard visible to executives at all times. When watch time dropped 12% over a two-week period, the product team drilled into the underlying report data, identified a correlation with a recent UI change, and reversed the change within 48 hours. The KPI flagged the problem. The report explained it. A decision followed.
 
@@ -734,7 +734,7 @@ Prompt: Diagram showing reports, dashboards, and KPIs as distinct but related BI
 
 ---
 
-### Choosing the Right Visualization
+## Choosing the Right Visualization
 
 Different questions demand different visual forms. A common mistake in BI is choosing chart types based on aesthetics rather than analytical purpose.
 
@@ -749,42 +749,42 @@ Different questions demand different visual forms. A common mistake in BI is cho
 
 The goal is always **clarity over decoration**. A well-chosen simple chart communicates more effectively than an elaborate but confusing visualization.
 
-###### Common mistake
+##### Common mistake
 
 Using a pie chart to compare more than 4-5 categories makes interpretation nearly impossible. Bar charts are almost always a better choice when comparing counts or values across multiple groups.
 
 ---
 
-### Characteristics of Effective BI Reporting
+## Characteristics of Effective BI Reporting
 
 Not all reports are useful. Effective BI outputs share several critical qualities.
 
-#### Accuracy
+### Accuracy
 
 * Results must reflect **correct logic and clean data**
 * Depends on normalized sources, reliable ETL, and tested queries
 * A visually appealing dashboard built on incorrect logic is worse than no dashboard at all
 
-#### Timeliness
+### Timeliness
 
 * Reports must arrive **when decisions are being made**
 * Late insight is often irrelevant insight
 * Balance freshness with system cost and stability
 * Example: attendance trends updated daily; grade summaries updated after submission deadlines
 
-#### Consistency
+### Consistency
 
 * The same metric must mean the same thing everywhere
 * Definitions should not vary across dashboards, teams, or time periods
 * Using **views** ensures that calculations such as "average grade" are defined once and used identically across all reports
 
-#### Interpretability
+### Interpretability
 
 * Visuals should answer clear questions without requiring explanation
 * Avoid unnecessary complexity, animation, or decorative elements
 * Labels, scales, and context matter
 
-##### 💡 **Tip:**
+#### 💡 **Tip:**
 
 If a stakeholder needs a verbal explanation to understand the chart, the chart needs redesign.
 
@@ -800,11 +800,11 @@ Data visualization and reporting complete the BI pipeline. SQL extracts and shap
 
 ---
 
-## 6. BI Governance and Data Quality
+# 6. BI Governance and Data Quality
 
 Effective BI depends not only on technical infrastructure but also on **governance** -- the organizational policies, roles, and processes that ensure data remains trustworthy and consistently interpreted.
 
-### Why Governance Matters
+## Why Governance Matters
 
 Without governance, BI environments tend to develop problems over time:
 
@@ -813,11 +813,11 @@ Without governance, BI environments tend to develop problems over time:
 * **Data quality decay**: Errors accumulate without systematic detection and correction
 * **Security gaps**: Sensitive data becomes accessible to unauthorized users through poorly controlled dashboards
 
-###### Why this matters
+##### Why this matters
 
 Governance is not a technical problem. It is an organizational one. The best ETL pipeline and the most accurate data warehouse will fail to support decisions if different teams define metrics differently or if no one owns data quality within specific domains.
 
-### Key Governance Practices
+## Key Governance Practices
 
 * **Define metrics centrally**: Maintain a shared glossary of business terms and calculations. When "pass rate" is defined once, all reports use the same formula.
 
@@ -833,27 +833,27 @@ Governance ensures that BI remains a **reliable organizational resource** rather
 
 ---
 
-## Chapter Summary
+# Chapter Summary
 
 Business Intelligence represents a shift in how organizations **use data** -- not merely how they store it. While operational databases focus on accuracy and efficiency in recording transactions, BI systems are designed to **extract meaning, evaluate performance, and support decisions**.
 
-### From Data to Insight
+## From Data to Insight
 
 BI systems transform **raw data into structured insight**. SQL, schemas, and warehouses provide the foundation, but insight emerges only when data is integrated, aggregated, and interpreted in context. A database records *what happened*; BI explains *what it means* and *what to do next*.
 
-### Separation of Analytics from Operations
+## Separation of Analytics from Operations
 
 Operational systems are optimized for fast inserts, updates, and transactional integrity. Analytical systems are optimized for complex queries, historical comparison, and performance evaluation. Data warehouses enforce this separation, ensuring that analytics do not interfere with day-to-day operations.
 
-### ETL as the Trust Layer
+## ETL as the Trust Layer
 
 ETL processes ensure data quality, consistent definitions, and enforced business rules before data enters the analytical environment. Trust in BI outputs depends more on **ETL discipline** than on visualization tools. When ETL is weak, dashboards lose credibility. When ETL is strong, BI becomes a reliable decision platform.
 
-### Dimensional Models Enable Performance Analysis
+## Dimensional Models Enable Performance Analysis
 
 OLAP structures support multi-dimensional analysis, time-based comparison, and aggregation across categories. Star schemas and fact tables are intentionally denormalized to improve query performance and match how managers think about the business. This design trade-off is deliberate and controlled through ETL, not a violation of good practice.
 
-### BI as Decision Support
+## BI as Decision Support
 
 At its best, Business Intelligence turns databases into **decision-support systems**. Managers evaluate performance using KPIs, analysts explore trends and anomalies, and organizations align actions with evidence rather than intuition. BI does not replace human judgment. It **amplifies it** by ensuring that decisions are grounded in reliable, timely, and interpretable data.
 
@@ -868,7 +868,7 @@ flowchart LR
 
 ---
 
-## Key Terms
+# Key Terms
 
 * **Aggregation**: The process of combining multiple data values into a summary measure such as a sum, average, or count.
 * **Business Intelligence (BI)**: The concepts, architectures, tools, and practices that enable organizations to analyze data for decision support.
@@ -906,7 +906,7 @@ flowchart LR
 
 ---
 
-## Review Questions
+# Review Questions
 
 1. What is Business Intelligence, and how does it differ from operational transaction processing?
 2. Explain the DIKW hierarchy. Where does BI fit, and why is that position significant?
@@ -926,7 +926,7 @@ flowchart LR
 
 ---
 
-## Discussion Questions
+# Discussion Questions
 
 1. **BI and Decision-Making**: Think of an organization you are familiar with (a university, employer, or club). What kinds of decisions could be improved with better data analysis? What data would be needed?
 
@@ -942,7 +942,7 @@ flowchart LR
 
 ---
 
-## Let's Build: Business Intelligence with the Grading Database
+# Let's Build: Business Intelligence with the Grading Database
 
 This hands-on section applies Business Intelligence concepts to the **Grading Database**, demonstrating how operational academic data can be transformed into **analytical insight**. You will complete three parallel tutorials:
 
@@ -954,15 +954,15 @@ All three tutorials focus on the same BI objectives using different tools, reinf
 
 ---
 
-## Hands-On BI Tutorial 1: Microsoft Access
+# Hands-On BI Tutorial 1: Microsoft Access
 
-### Why Start with Access?
+## Why Start with Access?
 
 Microsoft Access makes BI concepts tangible through its visual interface. You can see queries, reports, and dashboards take shape without writing raw SQL, making it an ideal starting point for understanding the BI pipeline.
 
 ---
 
-### Step 1: Prepare the Operational Tables
+## Step 1: Prepare the Operational Tables
 
 Ensure the following tables exist in your Access database (from earlier chapters):
 
@@ -973,7 +973,7 @@ Ensure the following tables exist in your Access database (from earlier chapters
 
 ---
 
-### Step 2: Define Relationships
+## Step 2: Define Relationships
 
 Go to **Database Tools → Relationships** and define:
 
@@ -985,11 +985,11 @@ Enable **Referential Integrity** for all relationships. This ensures no orphan g
 
 ---
 
-### Step 3: Create Analytical Queries
+## Step 3: Create Analytical Queries
 
 These queries perform the **Transform** stage of the BI pipeline, reshaping operational data into analytical views.
 
-#### Query 1: Average Score per Student
+### Query 1: Average Score per Student
 
 ```sql
 SELECT 
@@ -1003,7 +1003,7 @@ GROUP BY STUDENT.FirstName, STUDENT.LastName;
 
 **Insight:** Identifies high-performing and struggling students at a glance.
 
-#### Query 2: Performance by Deliverable Type
+### Query 2: Performance by Deliverable Type
 
 ```sql
 SELECT 
@@ -1017,7 +1017,7 @@ GROUP BY DELIVERABLE.Type;
 
 **Insight:** Compares how students perform across quizzes, exams, and projects.
 
-#### Query 3: Attendance vs. Performance
+### Query 3: Attendance vs. Performance
 
 ```sql
 SELECT 
@@ -1037,7 +1037,7 @@ GROUP BY STUDENT.FirstName, STUDENT.LastName;
 
 ---
 
-### Step 4: Build Reports
+## Step 4: Build Reports
 
 Access reports transform query results into formatted, printable outputs.
 
@@ -1050,16 +1050,16 @@ Repeat for each analytical query to build a basic **reporting suite**.
 
 ---
 
-### Step 5: Build Charts and a Dashboard
+## Step 5: Build Charts and a Dashboard
 
-#### Charts
+### Charts
 
 * **Bar chart**: Average score per deliverable type
 * **Line chart**: Performance trends over time (by DueDate)
 
 Use the chart wizard in Access or export data to Excel for richer visualization options.
 
-#### Dashboard Form (Optional)
+### Dashboard Form (Optional)
 
 Create a **Navigation Form** that links:
 
@@ -1071,7 +1071,7 @@ Add combo boxes to filter by student or deliverable type. This simulates a **BI 
 
 ---
 
-### Step 6: Export to External BI Tools (Optional)
+## Step 6: Export to External BI Tools (Optional)
 
 * Export Access queries to **Excel** or **Power BI** using **External Data → Export**
 * In Power BI, add slicers, filters, and trend lines for interactive exploration
@@ -1079,9 +1079,9 @@ Add combo boxes to filter by student or deliverable type. This simulates a **BI 
 
 ---
 
-## Hands-On BI Tutorial 2: SQLite
+# Hands-On BI Tutorial 2: SQLite
 
-### Why SQLite for BI?
+## Why SQLite for BI?
 
 SQLite makes BI logic explicit through SQL. Every transformation, aggregation, and analytical view is written as code. This transparency is valuable for understanding exactly what the BI pipeline does, and for building skills that transfer directly to larger platforms.
 
@@ -1089,7 +1089,7 @@ SQLite makes BI logic explicit through SQL. Every transformation, aggregation, a
 
 ---
 
-### Step 1: Operational Tables (Source Data)
+## Step 1: Operational Tables (Source Data)
 
 Assume the following normalized operational tables already exist from earlier chapters:
 
@@ -1102,11 +1102,11 @@ These tables represent **transactional data**, not analytics-ready data.
 
 ---
 
-### Step 2: ETL -- Create Analytical Views (Transform + Load)
+## Step 2: ETL -- Create Analytical Views (Transform + Load)
 
 Views perform the **Transform** and **Load** steps of the ETL pipeline using SQL. They reshape operational data into a structure optimized for analysis without modifying the source tables.
 
-#### Grade Analytics View
+### Grade Analytics View
 
 ```sql
 CREATE VIEW GradeAnalytics AS
@@ -1128,7 +1128,7 @@ This view joins normalized tables, standardizes naming, and produces a reusable 
 SELECT * FROM GradeAnalytics;
 ```
 
-#### Attendance Analytics View
+### Attendance Analytics View
 
 ```sql
 CREATE VIEW AttendanceAnalytics AS
@@ -1145,11 +1145,11 @@ GROUP BY s.StudentID;
 
 ---
 
-### Step 3: Analytical Queries (BI Questions)
+## Step 3: Analytical Queries (BI Questions)
 
 With views in place, analytical queries become straightforward and expressive.
 
-#### Average Score per Student
+### Average Score per Student
 
 ```sql
 SELECT 
@@ -1162,7 +1162,7 @@ ORDER BY AverageScore DESC;
 
 **Insight:** Identifies high-performing and struggling students.
 
-#### Performance by Deliverable Type
+### Performance by Deliverable Type
 
 ```sql
 SELECT 
@@ -1174,7 +1174,7 @@ GROUP BY DeliverableType;
 
 **Insight:** Reveals which assessment types produce the strongest and weakest performance.
 
-#### Time-Based Analysis (OLAP-Style)
+### Time-Based Analysis (OLAP-Style)
 
 ```sql
 SELECT 
@@ -1187,7 +1187,7 @@ ORDER BY Month;
 
 **Insight:** Detects performance trends across the semester.
 
-#### Pass Rate KPI
+### Pass Rate KPI
 
 ```sql
 SELECT 
@@ -1198,7 +1198,7 @@ FROM GradeAnalytics;
 
 **Insight:** A single number that tells an instructor whether the class is on track.
 
-#### Attendance vs. Performance Correlation
+### Attendance vs. Performance Correlation
 
 ```sql
 SELECT * FROM AttendanceAnalytics
@@ -1209,7 +1209,7 @@ ORDER BY ClassesAttended DESC;
 
 ---
 
-### Step 4: Simulated Star Schema (Optional Advanced Exercise)
+## Step 4: Simulated Star Schema (Optional Advanced Exercise)
 
 For students who want to practice dimensional modeling, create explicit fact and dimension tables:
 
@@ -1247,7 +1247,7 @@ Load data using INSERT...SELECT from operational tables, then run the same analy
 
 ---
 
-### What You Built (SQLite BI Takeaways)
+## What You Built (SQLite BI Takeaways)
 
 * ETL implemented using **SQL views** -- no external tools required
 * Analytical datasets cleanly separated from operational tables
@@ -1256,15 +1256,15 @@ Load data using INSERT...SELECT from operational tables, then run the same analy
 
 ---
 
-## Hands-On BI Tutorial 3: Supabase (PostgreSQL)
+# Hands-On BI Tutorial 3: Supabase (PostgreSQL)
 
-### Why Supabase for BI?
+## Why Supabase for BI?
 
 Supabase runs **real PostgreSQL**, which means your BI queries use the same SQL dialect found in enterprise environments. Supabase also adds cloud-hosted access, role-based security, and API integration -- all of which mirror how BI systems operate in modern organizations.
 
 ---
 
-### Step 1: Project Setup
+## Step 1: Project Setup
 
 1. Log in to **supabase.com**
 2. Create a new project (e.g., *Grading Database BI*)
@@ -1273,11 +1273,11 @@ Supabase runs **real PostgreSQL**, which means your BI queries use the same SQL 
 
 ---
 
-### Step 2: Create Analytical Views
+## Step 2: Create Analytical Views
 
 PostgreSQL views serve the same role as in SQLite -- they encapsulate ETL logic and present analytics-ready data.
 
-#### Student Performance View
+### Student Performance View
 
 ```sql
 CREATE VIEW StudentPerformance AS
@@ -1292,7 +1292,7 @@ JOIN STUDENT_GRADE sg ON s.StudentID = sg.StudentID
 JOIN DELIVERABLE d ON sg.DeliverableID = d.DeliverableID;
 ```
 
-#### Summary View with Averages
+### Summary View with Averages
 
 ```sql
 CREATE VIEW StudentSummary AS
@@ -1307,9 +1307,9 @@ GROUP BY s.FirstName, s.LastName;
 
 ---
 
-### Step 3: Analytical Queries
+## Step 3: Analytical Queries
 
-#### Performance by Deliverable Type
+### Performance by Deliverable Type
 
 ```sql
 SELECT DeliverableType,
@@ -1319,7 +1319,7 @@ GROUP BY DeliverableType
 ORDER BY AvgScore;
 ```
 
-#### Trend Analysis by Month
+### Trend Analysis by Month
 
 ```sql
 SELECT 
@@ -1330,11 +1330,11 @@ GROUP BY TO_CHAR(DueDate, 'YYYY-MM')
 ORDER BY Month;
 ```
 
-##### 📝 **Note:**
+#### 📝 **Note:**
 
 PostgreSQL uses `TO_CHAR()` instead of SQLite's `strftime()` for date formatting. The same analytical logic applies; only the syntax changes between platforms.
 
-#### At-Risk Students
+### At-Risk Students
 
 ```sql
 SELECT StudentName, AvgScore
@@ -1347,7 +1347,7 @@ ORDER BY AvgScore;
 
 ---
 
-### Step 4: Secure Analytics with Row-Level Security
+## Step 4: Secure Analytics with Row-Level Security
 
 In a cloud environment, not everyone should see all data. Supabase supports **Row-Level Security (RLS)** to restrict access.
 
@@ -1360,13 +1360,13 @@ FOR SELECT
 USING (auth.role() = 'authenticated');
 ```
 
-##### 📝 **Note:**
+#### 📝 **Note:**
 
 Security applies to analytics just as it does to operations. Dashboards should respect the same access controls as the underlying data.
 
 ---
 
-### Step 5: Connect to External BI Tools (Optional)
+## Step 5: Connect to External BI Tools (Optional)
 
 Supabase exposes a PostgreSQL connection string that can be used by:
 
@@ -1378,7 +1378,7 @@ This transforms Supabase from a data store into a **BI backend** powering intera
 
 ---
 
-### What You Built (Supabase BI Takeaways)
+## What You Built (Supabase BI Takeaways)
 
 * Analytical views in cloud-hosted PostgreSQL
 * Secure, shared analytics with Row-Level Security
@@ -1387,7 +1387,7 @@ This transforms Supabase from a data store into a **BI backend** powering intera
 
 ---
 
-### Closing Perspective: BI Across Platforms
+## Closing Perspective: BI Across Platforms
 
 | Platform | BI Emphasis |
 |----------|-------------|

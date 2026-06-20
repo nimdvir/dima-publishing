@@ -1,52 +1,13 @@
 # Chapter 14: Power BI — Data Visualization and Business Reporting
 
-<!-- Chapter manuscript draft — created 2026-05-06 -->
-
-*From Data to Dashboard: Communicating Insight to Decision-Makers*
-
 This chapter introduces Microsoft Power BI as the industry-standard tool for turning database output into visual business reports. The chapter covers connecting data sources, building data models, creating calculated columns and measures (DAX), designing interactive dashboards, and presenting findings to a non-technical audience. The chapter ties directly to SQL output and the Grading Database as the source data.
 
-**After reading this chapter, students will be able to:**
+- Connect Power BI to a database source and build a basic data model - Create interactive visuals and dashboards that answer a defined business question - Design a report layout appropriate for a managerial audience
 
-- Connect Power BI to a database source and build a basic data model
-- Create interactive visuals and dashboards that answer a defined business question
-- Design a report layout appropriate for a managerial audience
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-## Chapter Overview
-
-This chapter introduces Microsoft Power BI as a business intelligence and data visualization tool. Building on the data modeling and SQL concepts covered in earlier chapters, students will learn how to connect Power BI to data sources, build interactive reports, and share insights with stakeholders.
-
----
-
-## Learning Objectives
-
-By the end of this chapter, students will be able to:
-
-1. Explain what Power BI is and how it fits into a business intelligence workflow.
-2. Connect Power BI Desktop to common data sources (Excel, SQL databases, CSV).
-3. Build basic visualizations: bar charts, line charts, pie charts, cards, and tables.
-4. Use Power Query to clean and transform data before loading.
-5. Create calculated columns and measures using DAX (Data Analysis Expressions).
-6. Design an interactive report with slicers, filters, and drill-through.
-7. Publish a report to the Power BI Service and share it with others.
-
----
-
-## 14.1 What Is Power BI?
-
-📖 **Definition:** Power BI is a Microsoft business analytics service that lets you connect to hundreds of data sources, simplify data preparation, and produce beautiful reports that can be published and shared across your organization.
-
-Power BI has three main components:
-
-| Component | Description |
-|---|---|
-| **Power BI Desktop** | Free Windows application used to create reports |
-| **Power BI Service** | Cloud-based platform for publishing and sharing reports |
-| **Power BI Mobile** | Mobile apps for viewing reports on iOS and Android |
-
-💡 **Tip:** For this course, we will work primarily in **Power BI Desktop**, which is free to download from Microsoft.
-
----
+# Core Concepts
 
 ## 14.2 Connecting to Data Sources
 
@@ -108,6 +69,9 @@ Once data is loaded, you can build visuals by dragging fields onto the report ca
 
 **DAX** is the formula language used in Power BI to create calculated columns and measures.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Calculated Column vs. Measure
 
 | Type | Evaluated | Stored |
@@ -168,6 +132,9 @@ See the Chapter 14 Term Treasury companion for a complete glossary.
 
 ---
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ## Review Questions
 
 See the Chapter 14 Reflection companion for discussion and review questions.
@@ -181,9 +148,6 @@ See the Chapter 14 Reflection companion for discussion and review questions.
 | 14.1 | Power BI component overview | *(to be added)* |
 | 14.2 | Power Query transformation interface | *(to be added)* |
 | 14.3 | Sample grading dashboard in Power BI | *(to be added)* |
-
-
-<div class="page-break"></div>
 
 100 XP
 
@@ -219,8 +183,6 @@ To recap, the building blocks of Power BI are **semantic models** and **visuals*
 
 In the Power BI service, you can distribute content to your consumers and use reports to create dashboards.
 
-<div class="page-break"></div>
-
 100 XP
 
 Now that you understand how to create a report, let's explore the Power BI service. The Power BI service provides a simple and interactive user experience to take your data analytics to the next level.
@@ -230,6 +192,9 @@ Now that you understand how to create a report, let's explore the Power BI servi
 **Workspaces** are the foundation of the Power BI service. When publishing any report, you must choose a workspace. By default, every user has access to *My workspace*, which is ideal only for testing. When you want to share content with others, **always** create and use a shared workspace.
 
 ![Screenshot of Power BI service workspaces with option to create a new workspace.](https://learn.microsoft.com/en-us/training/modules/get-started-with-power-bi/media/pbi-touring-00.png)
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ## Explore sample reports
 
@@ -263,8 +228,6 @@ In order to support your ever-changing data, you can configure scheduled refresh
 
 ![Screenshot of the semantic models setting tab with Refresh section highlighted showing the different options, including frequency and time.](https://learn.microsoft.com/en-us/training/modules/get-started-with-power-bi/media/pbi-touring_05.png)
 
-<div class="page-break"></div>
-
 ## Summary
 
 100 XP
@@ -278,9 +241,6 @@ The flow and components of Power BI include:
 - **Power BI Mobile** for on-the-go access to the Power BI service content, designed for mobile.
 
 By using Power BI, you can make data-informed decisions across your organization.
-
-
-<div class="page-break"></div>
 
 100 XP
 
@@ -313,6 +273,9 @@ After you've added your server and database names, you'll be prompted to sign in
 Select a sign-in option, enter your username and password, and then select **Connect**.
 
 [![Screenshot of the database authorization details.](https://learn.microsoft.com/en-us/training/modules/get-data/media/3-sql-creds-ssm.png)](https://learn.microsoft.com/en-us/training/modules/get-data/media/3-sql-creds-ssm.png#lightbox)
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### Select data to import
 
@@ -349,6 +312,9 @@ You can also change your data source settings from within Power Query. Select th
 [![Screenshot of the Data source settings button.](https://learn.microsoft.com/en-us/training/modules/get-data/media/3-edit-creds-ssm.png)](https://learn.microsoft.com/en-us/training/modules/get-data/media/3-edit-creds-ssm.png#lightbox)
 
 After you have made the changes, select **Close and Apply** to apply those changes to your data source settings.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### Write an SQL statement
 

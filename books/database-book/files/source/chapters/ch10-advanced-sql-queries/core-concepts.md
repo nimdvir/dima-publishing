@@ -1,101 +1,18 @@
-<!-- Chapter edit: restored normalization-through-SQL workflow from source materials (§10.3.4–10.3.7), updated roadmap, learning objectives, and summary. Technical meaning preserved. -->
----
-title: "Chapter 10: Advanced SQL for Business Analysis"
-chapter: 10
-section: "Core Concepts"
-description: "Takes SQL from basic queries to sophisticated analysis using the full Grading Database. Covers data diagnostics, normalization through SQL, advanced JOINs, conditional functions, aggregation, date queries, weighted grades, window functions, reusable pipelines, safe data modification, and an integrated at-risk student report."
-keywords:
-  - advanced SQL
-  - JOIN patterns
-  - aggregation
-  - window functions
-  - CTE
-  - views
-  - weighted grades
-  - CASE expression
-  - COALESCE
-  - safe UPDATE DELETE
-  - normalization through SQL
-date: 2026-06-16
-author: "Nimrod Dvir, PhD"
----
-
 # Chapter 10: Advanced SQL for Business Analysis
 
-*From Queries to Managerial Insight*
+*Figure 10.1 — Advanced SQL acts as a bridge from clean, normalized storage to reporting and decisions.*
 
-<!-- FIGURE PLACEHOLDER: Chapter 10 infographic previewing the advanced SQL arc (diagnostics → normalization → joins → aggregation → weighted grades → pipelines → at-risk report). Recommend chapter-media. -->
-
-In Chapter 9, we stepped back from the database as a finished product and treated it as a designed information system. We identified entities, clarified relationships, mapped cardinality, examined business rules, and used ER modeling to show how structure supports reliable decision-making.
-
-That design work now becomes the foundation for advanced SQL.
-
-A strong query does not begin with syntax. It begins with a model. Before we can write meaningful SQL, we need to understand where the facts live, how tables connect, which relationships matter, and what business question the query is supposed to answer. The ERD gives us that map. SQL lets us travel through it.
-
-In earlier chapters, SQL helped us retrieve records, filter rows, sort results, join tables, and calculate basic summaries. In this chapter, SQL becomes a tool for deeper business analysis. We will use it to diagnose data problems, build multi-step calculations, detect missing work, calculate weighted grades, rank performance, create reusable reporting views, and support managerial decisions.
-
-The shift is important:
-
-```
-Basic SQL asks: What records match this condition?
-
-Advanced SQL asks: What pattern, risk, trend, exception, or decision does this data reveal?
-```
-
-That is why Chapter 10 follows database design. Once we understand the structure of the system, we can query it professionally. Advanced SQL is not just about writing longer queries. It is about using the database as an analytical instrument — one that turns well-designed data into insight, evidence, and action.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kFlSsAMlYTU?si=qGKLqvzRD9zckvIB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-*Video 10.1 — Chapter overview: advanced SQL for business analysis, from diagnostics to decision-ready reports.*
-
----
-
-## Learning Objectives
-
-After completing this chapter, you will be able to:
-
-1. Explain how advanced SQL extends basic query logic into analysis and decision support.
-2. Diagnose redundancy, inconsistency, and missing data using SQL.
-3. Use SQL to restructure flat data into normalized tables by extracting entities, creating tables from queries, and adding constraints.
-4. Write multi-table queries that reconstruct reports from normalized tables.
-5. Use `INNER JOIN`, `LEFT JOIN`, and `CROSS JOIN` appropriately.
-6. Use `GROUP BY`, `HAVING`, and conditional aggregation to produce performance metrics.
-7. Use `CASE`, `COALESCE()`, and Access-specific functions (`IIf()`, `Nz()`) to create interpretable output.
-8. Write date-aware queries across Access, SQLite, and PostgreSQL patterns.
-9. Calculate weighted grades using policy tables.
-10. Explain how window functions differ from ordinary aggregation.
-11. Use views, CTEs, and subqueries to build reusable query pipelines.
-12. Apply safe workflows for `UPDATE` and `DELETE` statements.
-13. Design an end-to-end query pipeline that turns normalized data into decision-ready reports.
+Chapter 5 introduced SQL as the language of relational databases. Chapter 9 showed how to design databases from requirements. This chapter returns to SQL with a more advanced goal: using queries to diagnose data problems, restructure messy data into clean normalized tables, connect those tables, calculate meaningful metrics, and create reusable reporting logic.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Core Concepts
+# Core Concepts
 
+# Core Concepts
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>
-
-## Chapter Roadmap
-
-| Section | Main Focus                                 | Why It Matters                                                      |
-| ------: | ------------------------------------------ | ------------------------------------------------------------------- |
-|    10.1 | From Basic SQL to Advanced SQL             | Mental shift from retrieval to analysis.                            |
-|    10.2 | Grading Database Refresher                 | Reviews the schema used throughout the chapter.                     |
-|    10.3 | Diagnosing and Restructuring Data          | SQL reveals problems, then fixes them through normalization.        |
-|    10.4 | Advanced JOIN Patterns                     | Joins reconstruct reports and find missing records.                 |
-|    10.5 | Cleaning and Conditional Functions         | Access-specific and portable SQL patterns compared.                 |
-|    10.6 | Analytical Aggregation                     | Metrics using `GROUP BY`, `HAVING`, and conditional counts.         |
-|    10.7 | Date and Time Queries                      | Due dates, deadlines, and time-window analysis.                     |
-|    10.8 | Weighted Grades and Policy Tables          | Final grades calculated from stored rules, not hard-coded formulas. |
-|    10.9 | Window Functions                           | Rankings and running analytics without collapsing rows.             |
-|   10.10 | Reusable Reporting Pipelines               | Views, CTEs, and subqueries manage complexity and reuse.            |
-|   10.11 | Safe Data Modification                     | `UPDATE` and `DELETE` with discipline.                              |
-|   10.12 | Integrated Example: At-Risk Student Report | End-to-end capstone combining multiple techniques.                  |
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 10.1 From Basic SQL to Advanced SQL
 
@@ -133,9 +50,6 @@ ORDER BY AverageScore ASC;
   <p>Advanced SQL begins when you stop asking "What syntax do I need?" and start asking "What decision does this query support?"</p>
 </div>
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 10.2 Grading Database Refresher
 
 The Grading Database is the running case for this chapter. Most queries follow one of three relational pathways.
@@ -155,9 +69,6 @@ The Grading Database is the running case for this chapter. Most queries follow o
 **Grade Interpretation:** `STUDENT_GRADE → GRADE_SCALE`
 
 A normalized database stores facts cleanly. SQL turns those facts into views, summaries, and decisions. The design principles behind this schema were covered in Chapter 9.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 10.3 Diagnosing and Restructuring Data with SQL
 
@@ -460,9 +371,6 @@ ORDER BY s.LastName, d.DueDate;
 | Need expected combinations              | `CROSS JOIN` + `LEFT JOIN` |
 | Need to diagnose missing parent records | `LEFT JOIN` + `IS NULL`    |
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 10.5 Cleaning and Conditional Functions
 
 Real data is rarely clean. Access uses `Nz()` and `IIf()`; other SQL systems use `COALESCE()` and `CASE`. This section treats Access as a gateway: learn the idea in Access, then recognize the portable equivalent.
@@ -570,9 +478,6 @@ ORDER BY AttendanceRate ASC;
 | `COUNT(Score)`              | Counts rows where `Score` is not `NULL`.            |
 | `COUNT(DISTINCT StudentID)` | Counts unique student IDs.                          |
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 10.7 Date and Time Queries
 
 Date syntax varies across platforms, so learn the pattern and look up the specific function.
@@ -648,9 +553,6 @@ JOIN GRADE_SCALE AS gs
   <p><strong>❌ Avoid: Averaging averages</strong></p>
   <p>Do not average category averages unless every category has the same weight. Use a weight table.</p>
 </div>
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 10.9 Window Functions
 
@@ -765,9 +667,6 @@ WHERE EXISTS (
   <p>Reusable SQL logic is part of database design. Good queries become analytical infrastructure.</p>
 </div>
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 10.11 Safe Data Modification
 
 Advanced SQL includes modifying data. That power requires discipline.
@@ -798,6 +697,9 @@ FROM STUDENT WHERE StudentID = 101;
   <p><code>UPDATE STUDENT SET Email = 'unknown@albany.edu';</code> changes <em>every</em> student. <code>DELETE FROM STUDENT_GRADE;</code> removes <em>every</em> grade. SQL does what you ask, not what you mean.</p>
 </div>
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### Transactions as a Safety Preview
 
 ```sql
@@ -808,9 +710,6 @@ UPDATE STUDENT_GRADE SET Score = 88 WHERE GradeID = 42;
 ```
 
 Transactions are covered more fully in the database administration chapter.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 10.12 Integrated Example: At-Risk Student Report
 
@@ -866,9 +765,6 @@ ORDER BY RiskCategory, AverageScore ASC;
   <p><strong>🔑 Key Takeaway: SQL as a decision pipeline</strong></p>
   <p>Advanced SQL is not a single clever trick. It is a readable pipeline of smaller logical steps that transforms normalized data into actionable reports.</p>
 </div>
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Chapter Summary
 

@@ -8,7 +8,7 @@
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-tt" alt="Term Treasury section icon" width="220">
 </p>
 
-## Terms and Concepts
+# Terms and Concepts
 
 | Term / Concept | Definition | Business Significance | Examples |
 |---|---|---|---|
@@ -36,7 +36,7 @@
 | Tuple | The relational term for a row or record; one occurrence or instance of a subject. | Recognizing formal terminology helps when reading database documentation and theory. | One row in `STUDENT` (Alice Johnson) is one tuple. |
 | Update Anomaly | A single fact stored in multiple rows must be changed in every instance to avoid conflicting data. | Partial updates create contradictions; relational design eliminates the problem by storing facts once. | Alice's email appears in 3 flat-table rows; updating only 2 creates conflicting addresses. |
 
-## Acronyms and Abbreviations
+# Acronyms and Abbreviations
 
 | Acronym | Full Form |
 |---------|-----------|

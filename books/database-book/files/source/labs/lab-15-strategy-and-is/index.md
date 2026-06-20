@@ -19,21 +19,21 @@ author: "Nimrod Dvir"
 
 *Converted draft migrated from the centralized section-based lab sequence.*
 
-## Overview
+# Overview
 
 This file preserves the current section-based lab handout inside the new numbered lab structure. It is a migration draft so the material is now organized by lab folder while the older section hub remains available as reference.
 
-## Source Links
+# Source Links
 
 - [Centralized section lab](../../../Labs/sections/part-04-from-data-to-strategy-and-integration/ch15-business-strategy-is/lab.md)
 
-## Migration Notes
+# Migration Notes
 
 - Source chapter lab: ch15-business-strategy-is
 - Migration date: 2026-05-22
 - Status: content moved into the numbered lab sequence; a later pass can rebuild this into the full SAM-style format if needed.
 
-## Migrated Section Draft
+# Migrated Section Draft
 
 
 

@@ -8,6 +8,8 @@ description: >
   media for a chapter, picking up where you left off, or running the pipeline on a single
   section. Replaces the old three-stage split (figure-suggestion → image-placement →
   image-link-optimizer). For single-stage-only work the individual skills remain available.
+  Use `image-prompt` when the needed starting point is ready-to-paste Gemini prompt blocks,
+  in-text figure placements, a Figures Index, or a CSV image tracker.
 argument-hint: Chapter (chNN), file path, or section heading. Mode is chosen from the interactive menu (e.g., "ch05" or "ch05/main/...md @ ### SQL Joins").
 ---
 
@@ -15,10 +17,12 @@ argument-hint: Chapter (chNN), file path, or section heading. Mode is chosen fro
 
 End-to-end media workflow for the BITM330 textbook. This skill replaces the old
 three-stage image pipeline (`figure-suggestion` → `image-placement` → `image-link-optimizer`)
-with one controlled, plan-first workflow:
+with one controlled, plan-first workflow. The `image-prompt` skill can feed production-ready
+Gemini prompt blocks, visible figure placements, a Figures Index, and a CSV tracker into
+this pipeline when prompt specifications are needed before placement:
 
 ```text
-plan → suggest → place → optimize/upload → rewrite → report
+image-prompt (prompt specs) → plan → suggest/place → optimize/upload → rewrite → report
 ```
 
 **Core principle: plan first, edit only after approval.** The only exception is a
@@ -26,7 +30,7 @@ pure read-only inventory or dry run. This prevents Cloudinary from becoming a ju
 drawer with a textbook attached.
 
 For deep implementation detail on any single stage, the individual skills
-(`figure-suggestion`, `image-placement`, `image-link-optimizer`) may be used as
+(`image-prompt`, `figure-suggestion`, `image-placement`, `image-link-optimizer`) may be used as
 implementation references. This skill is the canonical workflow; when they
 conflict, this skill takes precedence.
 
@@ -43,20 +47,22 @@ What would you like to do?
 
 1. Full pipeline — suggest → place → optimize (smart-start picks the stage)
 2. Dry run — inventory only, no edits, show what would happen
-3. Suggest only — add figure suggestion comments
-4. Place only — resolve suggestions into real local images
-5. Optimize only — upload to Cloudinary and rewrite links
-6. Scan for new images — check .images/<chapter>/ for unplaced images
-7. Section scope — run on a specific section instead of the whole chapter
+3. Prompt/spec only — generate Gemini prompt blocks, placements, Figures Index, and CSV tracker (`image-prompt`)
+4. Suggest only — add figure suggestion comments
+5. Place only — resolve suggestions or prompt blocks into real local images
+6. Optimize only — upload to Cloudinary and rewrite links
+7. Scan for new images — check .images/<chapter>/ for unplaced images
+8. Section scope — run on a specific section instead of the whole chapter
 ```
 
 Wait for the user to respond with a number. Then proceed:
 
 - **1 (Full pipeline):** run smart-start detection, then execute stages in sequence.
 - **2 (Dry run):** run Phase 0 inventory only, print the full plan, stop. For a detailed CSV inventory or HTML gallery, use `chapter-media-inventory`.
-- **3–5:** run only that mode. Still present a Phase 0 plan for approval.
-- **6 (Scan for new images):** run New Image Discovery (delegates to `chapter-media-inventory` for the folder scan), then return to the menu.
-- **7 (Section scope):** ask which section heading, set scope, return to menu.
+- **3 (Prompt/spec only):** delegate to `image-prompt`, then return to this menu if the user wants placement or optimization next.
+- **4–6:** run only that mode. Still present a Phase 0 plan for approval.
+- **7 (Scan for new images):** run a deeper manual New Image Discovery scan (Phase 0 already auto-discovers unused candidates via the CSV — use this for a full filesystem walk with thumbnails and content inspection). Delegates to `chapter-media-inventory` for the folder scan, then returns to the menu.
+- **8 (Section scope):** ask which section heading, set scope, return to menu.
 
 If the request is ambiguous, default to dry run.
 
@@ -69,12 +75,14 @@ skip the interactive menu and proceed directly to Phase 0 for that mode.
 
 Scan the target and auto-detect the starting stage:
 
-| What exists in the target?                                                      | Start at                      |
-| ------------------------------------------------------------------------------- | ----------------------------- |
-| No `<!-- 🎨 Figure Suggestion: ... -->` comments, no local `![…](…)` images, no Cloudinary URLs | Suggest                       |
-| `<!-- 🎨 Figure Suggestion: ... -->` comments exist, but no local images placed yet | Place                         |
-| Local `![…](relative/path)` images exist (not yet on Cloudinary)                | Optimize                      |
-| All images already use Cloudinary `res.cloudinary.com/dkndq6lyz` URLs           | Done — report, return to menu |
+| What exists in the target?                                                                                                 | Start at                      |
+| -------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| No prompt blocks, no `<!-- 🎨 Figure Suggestion: ... -->` comments, no local images, and user asks for visual prompt specs | Prompt/spec (`image-prompt`)  |
+| Visible `🎨 **Image Generation Prompt**` blocks exist, but no local images placed yet                                      | Place                         |
+| No `<!-- 🎨 Figure Suggestion: ... -->` comments, no local `![…](…)` images, no Cloudinary URLs                            | Suggest                       |
+| `<!-- 🎨 Figure Suggestion: ... -->` comments exist, but no local images placed yet                                        | Place                         |
+| Local `![…](relative/path)` images exist (not yet on Cloudinary)                                                           | Optimize                      |
+| All images already use Cloudinary `res.cloudinary.com/dkndq6lyz` URLs                                                      | Done — report, return to menu |
 
 Report the detected stage and ask: _"Start at this stage? (yes / no, pick a different one)"_
 
@@ -88,11 +96,13 @@ chapter. **Never auto-place — always ask first.**
 ### Workflow
 
 1. Resolve the chapter image folder: `.images/<Chapter Image Folder>/` (fuzzy match).
-2. List every image file (`.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`) in the folder,
+2. **Fast lookup first:** grep `media-master.csv` for the chapter key to see all files,
+   their statuses, and paths. This instantly surfaces unused candidates.
+3. List every image file (`.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`) in the folder,
    excluding files already inside `chNN-used/`, `optimized/`, `from-chapter/`, or
-   any `*-used/` subfolder.
-3. Cross-reference against the chapter file — which are already placed?
-4. Present unplaced images:
+   any `*-used/` subfolder. Use the CSV to skip folders already classified as `used`.
+4. Cross-reference against the chapter file — which are already placed?
+5. Present unplaced images:
 
    ```
    ## Unplaced Images in .images/<folder>/
@@ -113,10 +123,10 @@ chapter. **Never auto-place — always ask first.**
    e. Also scan later chapters for unused images that might fit
    ```
 
-5. If (a): ask which numbers, add `<!-- 🎨 Figure Suggestion: ... -->` comments for each in the
+6. If (a): ask which numbers, add `<!-- 🎨 Figure Suggestion: ... -->` comments for each in the
    most relevant section. Use filename and visual assessment for the description.
-6. If (d) or (e): run the scan on requested folders, append to list, repeat question.
-7. After acting, return to the main menu.
+7. If (d) or (e): run the scan on requested folders, append to list, repeat question.
+8. After acting, return to the main menu.
 
 This step only adds `<!-- 🎨 Figure Suggestion: ... -->` comments. It does not place, generate,
 optimize, or upload images. For a read-only inventory with CSV export or an HTML
@@ -150,6 +160,36 @@ The skill supports two source paths:
 If the user gives a platform `index.md`, use it directly. If the user gives only
 `chNN`, prefer the platform source when working inside `dima-publishing`; otherwise
 default to the latest legacy draft file.
+
+---
+
+## Media Master CSV — Fast Image Lookup
+
+A machine-readable inventory of every file in `.images/` is auto-maintained at:
+
+```text
+G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\_inventory\media-master.csv
+```
+
+**Schema:** `chapter,filename,type,status,relative_path,extension,size_bytes,size_display`
+
+**Use this CSV for:**
+
+- **Cross-chapter image search** — grep for a slug or keyword across all chapters instantly
+- **Status check** — is an image `used`, `unused`, `archive`, or `source`?
+- **Folder inventory** — which files live in a chapter's image folder without walking the filesystem
+- **Size awareness** — flag oversized images before optimization
+
+**Regeneration:** The CSV is auto-refreshed by a file watcher (`scripts/watch-media-rebuild.ps1`)
+whenever files change in `.images/`. To force a one-shot rebuild:
+
+```powershell
+pwsh -File "G:\My Drive\0-Projects\!-important\BITM330-book-drive\scripts\watch-media-rebuild.ps1" -Once
+```
+
+**Usage in this skill:** When Phase 0 or New Image Discovery needs to scan for images,
+read the CSV (or grep it) before walking the filesystem. The CSV gives instant counts
+and status; the filesystem walk is only needed for thumbnails or content inspection.
 
 ---
 
@@ -224,7 +264,9 @@ Avoid prompt language, file names, style descriptions, or color palette referenc
 ## Phase 0 — Inventory & Plan (Mandatory, Read-Only)
 
 Always start here unless the user explicitly approves a previously-shown plan.
-This phase is read-only.
+This phase is read-only. **Now includes automatic unused-image candidate discovery** —
+the CSV is searched by default so you always see what unused images could be placed,
+even in dry-run mode.
 
 ### Inventory
 
@@ -234,8 +276,22 @@ This phase is read-only.
    `![…](…)` images, existing HTML `<img>` tags, existing Cloudinary URLs,
    existing figures index file, existing figure numbers, bare Windows paths,
    broken references.
-4. Scan the image folder for image files, animation files, notes, and reports.
-5. If full pipeline mode, determine smart-start stage.
+4. **Fast lookup:** grep `media-master.csv` for the chapter key (e.g., `ch05`) to get
+   instant file counts, status breakdown (used/unused/archive/source), and file sizes.
+   This replaces a raw filesystem walk for counting.
+5. **Unused-candidate discovery (default, always):** grep `media-master.csv` for:
+   - **Own chapter unused:** `"<chNN>"` rows with `unused` status — images in this
+     chapter's folder not yet placed
+   - **Cross-chapter unused:** `unused` rows from earlier chapters (`ch01`..`ch<NN-1>`)
+     whose filenames or paths contain keywords from the current chapter's section
+     headings (e.g., `sql`, `erd`, `normalization`, `index`)
+   - Present the top candidates (up to 10) ranked by filename relevance to the
+     chapter's topics. Skip images already in `*-used/` or `optimized/` folders.
+     This step is read-only and runs automatically — it does not place or suggest
+     anything. It feeds the Unused Image Candidates table in the Plan Output.
+6. Scan the image folder for image files, animation files, notes, and reports
+   (needed for thumbnails and content inspection — the CSV handles counts).
+7. If full pipeline mode, determine smart-start stage.
 
 ### Plan Output
 
@@ -256,11 +312,22 @@ Cloudinary folder: Database-book-BITM330/<folder>/
 - Figures index: [present / missing] at `.images/<chapter>/figures-index.md`
 - Media ledger: [present / missing]
 
+### Unused Image Candidates (auto-discovered from media-master.csv)
+
+| # | Filename | Source Chapter | Path | Why It Fits |
+|---|----------|---------------|------|-------------|
+| 1 | `erd-example.png` | ch03 | `ch03-what-is-data/ch03-unused/` | Section "Entity Relationships" |
+| 2 | `sql-join-types.png` | ch05 | `ch05-sql/ch05-unused/` | Section "SQL JOINs" |
+| … | … | … | … | … |
+
+_No unused candidates found_ (if none).
+
 ### Proposed Actions
 
 | Action | Count | Notes |
 |---|---:|---|
 | Add suggestions | X | sub-sections without visuals |
+| Place unused candidates | X | X from own chapter, X from earlier chapters |
 | Place images | X | X matches found, X to generate |
 | Optimize | X | X cache hits, X new uploads |
 | Rewrite links | X | local → Cloudinary |
@@ -285,6 +352,11 @@ Add `<!-- 🎨 Figure Suggestion: ... -->` HTML comments where sections need vis
 
 _Reference: `figure-suggestion/SKILL.md` for canonical comment format, chapter-wide
 image-ideas file, and legacy-form recognition._
+
+If the user needs publication-ready filenames, captions, Gemini prompts, a Figures Index,
+or a CSV tracker rather than hidden suggestion comments, use `image-prompt` instead of this
+phase. `image-prompt` produces visible prompt blocks and production handoff artifacts;
+`figure-suggestion` produces hidden planning comments.
 
 ### Canonical Comment Format
 
@@ -312,12 +384,18 @@ Turn figure suggestions into real local figures with captions and sequential num
 _Reference: `image-placement/SKILL.md` for scan order, Gemini prompt format, slide-deck
 handling, and the figures index format._
 
+This phase may consume either hidden `figure-suggestion` comments or visible prompt blocks
+created by `image-prompt`. When consuming `image-prompt` output, preserve the prompt text
+for the Generation Gate and use its filename/title/caption as the starting proposal.
+
 ### Scan Order for Image Candidates
 
 For each suggestion, scan and stop at the first good fit (judge both fit and quality):
 
 1. **Own chapter's image folder** — `.images/<this chapter>/`
+   _(Tip: grep `media-master.csv` for `<chNN>` to see all files in this chapter instantly.)_
 2. **Earlier chapters** — unused images (not in `*-used/`) in previous chapters' folders
+   _(Tip: grep the CSV for `unused` status in earlier chapters — `ch01`..`ch<NN-1>` — to find candidates without walking every folder.)_
 3. **Later chapters** — light pass for obvious unused fits
 
 ### Actions Per Suggestion
@@ -604,6 +682,7 @@ These companion files define formats and rules referenced by this skill:
 
 The individual stage skills remain available for single-stage work:
 
+- `image-prompt` — Prompt/spec stage: create Gemini prompt blocks, placements, Figures Index, and CSV tracker
 - `figure-suggestion` — Stage 1: insert `<!-- 🎨 Figure Suggestion: ... -->` comments
 - `image-placement` — Stage 2: place local figures with captions and figures index
 - `image-link-optimizer` — Stage 3: optimize, upload, rewrite, maintain ledger

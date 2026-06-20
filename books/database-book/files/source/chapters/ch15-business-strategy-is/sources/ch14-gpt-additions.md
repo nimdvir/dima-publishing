@@ -16,7 +16,7 @@ A simple example comes from retail. Suppose a company collects sales data from i
 
 ---
 
-# Star Schema and Multidimensional Databases
+## Star Schema and Multidimensional Databases
 
 When organizations want to analyze performance, they often reorganize data into a form designed for **questions**, not just transactions. One of the most widely used analytical designs is the **star schema**. In a star schema, a central **fact table** stores measurable events — such as sales amount, quantity sold, attendance, or score — while surrounding **dimension tables** store descriptive context such as customer, product, date, location, or instructor. This structure makes analytical queries easier to write, easier to understand, and more efficient for reporting and business intelligence (Adamson, 2010).
 
@@ -30,7 +30,7 @@ For students, the key distinction is this: a **transactional relational database
 
 ---
 
-# NoSQL — and What the Future of Databases Likely Looks Like
+## NoSQL — and What the Future of Databases Likely Looks Like
 
 Traditional relational databases remain essential because they are excellent for structured data, clear relationships, consistency, and transaction accuracy. However, not every business problem fits neatly into fixed tables. That is where **NoSQL** databases become useful. NoSQL systems are designed to handle flexible, semi-structured, or unstructured data more easily, and they are often built to scale across many machines. Common NoSQL models include **document**, **key-value**, **column-family**, and **graph** databases (Sadalage & Fowler, 2013; MongoDB, n.d.-a).
 
@@ -44,7 +44,7 @@ For students, the major lesson is reassuring rather than alarming: the future do
 
 ---
 
-# Using Databases for Business Strategy
+## Using Databases for Business Strategy
 
 The most important strategic lesson is that databases are not just back-end storage systems. They are part of how organizations **create value, measure performance, coordinate activity, and make decisions**. Strategy is not only about vision or ambition; it is also about having systems that provide reliable feedback. Porter (1996) argues that strategy involves making clear choices and trade-offs, not simply improving operational effectiveness. Databases matter because they provide the information infrastructure needed to evaluate those choices and sustain them over time.
 

@@ -1,6 +1,6 @@
 <!-- Let's Build 09 created 2026-06-16: refactored hands-on visual and code-based database design work into a guided Let's Build companion using the Grading Database. Companion lab: Lab 09 — Designing a Veterinary Clinic Database. -->
 
-## Let's Build
+# Let's Build
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
@@ -10,11 +10,11 @@
 Chapter 9 explained that database design is the bridge between business requirements and technical implementation. In this Let's Build (LB) you turn that thinking into action: you take the Grading Database (GDB) business rules, model them visually in Lucidchart, recreate the design as code using Mermaid, and translate the resulting diagram into executable SQL CREATE TABLE statements. The hands-on design work you do here is the source material for <strong>Lab 09 — Designing a Veterinary Clinic Database</strong>.
 </p>
 
-### Purpose
+## Purpose
 
 Move from reading about conceptual, logical, and physical database design to building real, implementable design artifacts. By the end, you should be able to translate any set of business rules into a visually clean Entity-Relationship Diagram (ERD), represent that ERD using code, and write DDL constraints that guarantee referential integrity in a working database.
 
-### What You Will Practice
+## What You Will Practice
 
 - Identifying core entities, attributes, and relationships from business requirements.
 - Drawing a visual Crow's Foot ERD in Lucidchart with correct cardinality and optionality.
@@ -22,7 +22,7 @@ Move from reading about conceptual, logical, and physical database design to bui
 - Translating ERD relationships into SQL foreign keys and table-level constraints.
 - Choosing referential integrity actions (`ON DELETE RESTRICT` vs. `ON DELETE CASCADE`).
 
-### Before You Begin
+## Before You Begin
 
 You need:
 - A web browser to access **lucidchart.com** (free account).
@@ -33,7 +33,7 @@ You need:
 
 ---
 
-### Task 1: Identify Business Rules and Entities
+## Task 1: Identify Business Rules and Entities
 
 Before you draw any lines, you must extract the core facts and rules of the business domain. The Grading Database case study is built on the following requirements:
 
@@ -51,7 +51,7 @@ Before you draw any lines, you must extract the core facts and rules of the busi
 
 ---
 
-### Task 2: Design the ERD in Lucidchart
+## Task 2: Design the ERD in Lucidchart
 
 This task translates the business rules into a visual blueprint using Lucidchart, a drag-and-drop tool widely used in industry.
 
@@ -76,7 +76,7 @@ This task translates the business rules into a visual blueprint using Lucidchart
 
 ---
 
-### Task 3: Code the ERD in Mermaid
+## Task 3: Code the ERD in Mermaid
 
 Visual diagrams are excellent for presentations, but modern developers use **diagram-as-code** to store structures in version control. You will write a Mermaid text file that renders into an ERD.
 
@@ -165,7 +165,7 @@ erDiagram
 
 ---
 
-### Task 4: Translate the Blueprint to CREATE TABLE Statements
+## Task 4: Translate the Blueprint to CREATE TABLE Statements
 
 An ER diagram is a blueprint. The final step is translating that blueprint into SQL DDL commands that set up the database tables.
 
@@ -207,7 +207,7 @@ CREATE TABLE STUDENT_GRADE (
 
 ---
 
-### Check Your Work
+## Check Your Work
 
 Use this checklist to verify that your design artifacts are correct before moving on:
 
@@ -220,13 +220,13 @@ Use this checklist to verify that your design artifacts are correct before movin
 
 ---
 
-### What This Shows
+## What This Shows
 
 Designing a database is a separate discipline from querying it. The work you completed shows:
 1. **Design First, Build Second**: Setting up ERDs prevents layout mistakes (such as duplicate fields or wrong foreign keys) before you write any SQL.
 2. **Tool Specialization**: Lucidchart helps you discover and collaborate on a design visually; Mermaid helps you document and track changes in code.
 
-#### Lucidchart vs. Mermaid at a Glance
+### Lucidchart vs. Mermaid at a Glance
 
 | Dimension | Lucidchart | Mermaid |
 |---|---|---|
@@ -237,7 +237,7 @@ Designing a database is a separate discipline from querying it. The work you com
 
 ---
 
-### Common Mistakes
+## Common Mistakes
 
 - **Confusing attributes with entities**: Adding multiple columns for phone numbers (`Phone1`, `Phone2`) inside the `STUDENT` table instead of creating a separate related table `STUDENT_PHONE` (violating 1NF).
 - **Misplacing the Foreign Key**: Putting the foreign key on the "one" side of a relationship (e.g., putting `GradeID` in the `STUDENT` table), which limits a student to a single grade.
@@ -246,7 +246,7 @@ Designing a database is a separate discipline from querying it. The work you com
 
 ---
 
-### Submit or Save
+## Submit or Save
 
 Save your files using these names:
 - Lucidchart exported file: `LB09_Lucidchart_ERD_<YourName>.pdf`
@@ -257,6 +257,6 @@ There is no LMS submission for this Let's Build. The hands-on work you practiced
 
 ---
 
-### Peek Ahead — Chapter 10
+## Peek Ahead — Chapter 10
 
 In Chapter 10, you will return to writing SQL queries. Now that your database has a clean, normalized, multi-table structure, you will learn to write advanced SQL queries — using window functions, common table expressions (CTEs), and CASE expressions — that rely on exactly this type of design to generate complex reports and business diagnostics.

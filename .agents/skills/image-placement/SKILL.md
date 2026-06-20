@@ -1,12 +1,13 @@
 ---
 name: image-placement
 description: >
-  Stage 2 of the BITM330 image pipeline. Turn figure suggestions into real local figures:
-  scan the chapter's own image folder first, then earlier chapters for unused good-fit
-  images, then later chapters; place matches with captions and sequential figure numbers;
-  generate missing figures with Gemini prompts (with a mandatory Generation Gate for human review
-  before API calls); save generated images into the chapter image folder;
-  maintain a figures index file at .images/<chapter>/figures-index.md. Use after `figure-suggestion`, before `image-link-optimizer`.
+  Stage 2 of the BITM330 image pipeline. Turn figure suggestions or `image-prompt` prompt
+  blocks into real local figures: scan the chapter's own image folder first, then earlier
+  chapters for unused good-fit images, then later chapters; place matches with captions and
+  sequential figure numbers; generate missing figures with Gemini prompts (with a mandatory
+  Generation Gate for human review before API calls); save generated images into the chapter
+  image folder; maintain a figures index file at .images/<chapter>/figures-index.md.
+  Use after `figure-suggestion` or `image-prompt`, before `image-link-optimizer`.
   Always plans first and asks before editing.
 argument-hint: Markdown file, `chNN`, or chapter folder, plus optional image folder (e.g., "ch05 reflection with .images/Ch5-SQL").
 ---
@@ -15,9 +16,9 @@ argument-hint: Markdown file, `chNN`, or chapter folder, plus optional image fol
 
 **Book:** *Using Data to Drive Business Performance: Databases and Management Information Systems*
 
-**Pipeline stage 2 of 3:** `figure-suggestion` → `image-placement` → `image-link-optimizer`.
+**Pipeline stage 2 of 3:** `figure-suggestion` or `image-prompt` → `image-placement` → `image-link-optimizer`.
 
-Take the figure suggestions left by stage 1 and turn them into real, numbered figures in one Markdown target file. Place existing images where they fit, generate the ones that are missing, and keep a figures index file in the chapter's image folder. Always plan first; edit only after explicit user approval.
+Take the figure suggestions left by stage 1 or the visible Gemini prompt blocks produced by `image-prompt`, and turn them into real, numbered figures in one Markdown target file. Place existing images where they fit, generate the ones that are missing, and keep a figures index file in the chapter's image folder. Always plan first; edit only after explicit user approval.
 
 The target may be a chapter main file or a named companion segment (Let's Build, Reflection, Terms, RAT, Lab).
 
@@ -28,6 +29,7 @@ The target may be a chapter main file or a named companion segment (Let's Build,
 This skill **does**:
 
 - scan image folders and place existing images that fit the suggestions;
+- consume `image-prompt` blocks (`🎨 **Image Generation Prompt**`) as ready-made filename, title, caption, and Gemini prompt proposals;
 - reuse good-quality unused images from **earlier** chapters when they fit;
   generate missing figures with Gemini — produces Gemini prompts, pauses for human review at the Generation Gate, then calls the Gemini API to create images saved into the chapter image folder;
 - replace `<!-- 🎨 Figure Suggestion: [description] -->` HTML comments (and deprecated `<!-- FIGURE SUGGESTION -->` + code block pairs, `#### 🎨 Figure Suggestion` blocks, and `*Figure suggestion: …*` lines) with real local figure blocks;
@@ -35,7 +37,7 @@ This skill **does**:
 
 This skill **does NOT**:
 
-- invent new figure *ideas* from scratch → that is `figure-suggestion`;
+- invent new figure *ideas* from scratch → that is `figure-suggestion` or `image-prompt`;
 - optimize images, upload to Cloudinary, or rewrite links to remote URLs → `image-link-optimizer`;
 - ever edit `.images/book-media.md` → owned by `image-link-optimizer`;
 - restructure or rewrite prose → `chapter-editor` or the relevant companion-file skill.
@@ -79,9 +81,10 @@ Before producing the plan, gather:
 1. **Target sub-sections** — every `##` and `###` heading, in order.
 2. **Existing figures** — every `![…](…)` image link and its caption line.
 3. **Figure suggestions** — every `<!-- 🎨 Figure Suggestion: [description] -->` comment (canonical), every deprecated `<!-- FIGURE SUGGESTION -->` + code block pair, every deprecated `#### 🎨 Figure Suggestion` heading block, every legacy `*Figure suggestion: …*` italic line, and any `<!-- Figure: … -->` or `// Figure: …` comment.
-4. **Image candidates** — see the scan order below.
-5. **Slide-deck renders** — files matching `*-slide-*.png` or any sequential `*-image-NNN.*` set with more than 20 files. Flag for the slide-deck question in Phase 2.
-6. **Existing figure numbers** — the highest figure number already present, if any.
+4. **Image-prompt blocks** — every visible `🎨 **Image Generation Prompt**` block, including `Filename`, `Title`, `Caption`, and `Gemini Prompt` fields. Treat these as placement/generation proposals, not as reader-facing final content.
+5. **Image candidates** — see the scan order below.
+6. **Slide-deck renders** — files matching `*-slide-*.png` or any sequential `*-image-NNN.*` set with more than 20 files. Flag for the slide-deck question in Phase 2.
+7. **Existing figure numbers** — the highest figure number already present, if any.
 
 Do not edit anything in Phase 1.
 
@@ -111,6 +114,7 @@ Counts only:
 - Image folders scanned: own / earlier / later
 - Sub-sections: X
 - Figure suggestions: X
+- Image-prompt blocks: X
 - Existing placed figures: X
 - Candidate images found (own / earlier / later): X / X / X
 - Slide-deck renders detected: X (pattern)
@@ -139,6 +143,10 @@ Every suggestion gets a row. Anchor by section heading + suggestion snippet, not
 | 5.3 | `### Supabase` | 🎨 dashboard map | **TO GENERATE** `figure-5.3-supabase-map.png` | Generate + insert | Areas of the Supabase dashboard |
 
 `Action` values: `Insert`, `Insert (reuse)`, `Generate + insert`, `Pending — needs generation`, `Skip (duplicate)`, `Skip (decorative)`.
+
+For rows sourced from `image-prompt`, use the prompt block's `Filename`, `Title`,
+`Caption`, and `Gemini Prompt` as the initial proposal. You may revise them only to
+resolve numbering, path, accessibility, or chapter-style conflicts.
 
 ### 6. Generated Figures Subtable
 List every `Generate + insert` and `Pending` row with proposed filename, target folder, and a Gemini prompt. Images are generated with **Gemini** (Gemini 2.5 Pro or the current Imagen-capable model). Prompts follow the format below.
@@ -182,7 +190,7 @@ Then ask:
 For each approved row, in document order:
 
 1. **Find the anchor** by matching the section heading and the suggestion snippet. Never rely on line numbers — they shift after the first edit.
-2. **Replace the suggestion** with the figure block. For an `<!-- 🎨 Figure Suggestion: ... -->` comment, replace it; for a deprecated `<!-- FIGURE SUGGESTION -->` + code block pair, replace the pair; for a `#### 🎨 Figure Suggestion` block or legacy italic line, replace that line.
+2. **Replace the suggestion or prompt block** with the figure block. For an `<!-- 🎨 Figure Suggestion: ... -->` comment, replace it; for a deprecated `<!-- FIGURE SUGGESTION -->` + code block pair, replace the pair; for a `#### 🎨 Figure Suggestion` block or legacy italic line, replace that line. For an `image-prompt` block, replace the visible prompt block and its placeholder image/caption with the final local figure block after the image file exists.
 3. **Insert a standard figure block** using the format in [figure-markdown-standards.md](figure-markdown-standards.md):
 
    ```markdown

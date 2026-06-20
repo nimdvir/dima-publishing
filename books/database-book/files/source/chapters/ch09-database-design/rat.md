@@ -41,9 +41,6 @@ This RAT checks whether students completed the Chapter 9 reading and can reason 
 
 ---
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Remember Questions
 
 **1. What is a data anomaly?**
@@ -129,9 +126,6 @@ B. Candidate key
 C. Surrogate key
 
 D. Foreign key
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Understand Questions
 
@@ -219,9 +213,6 @@ C. Because platform-independent designs never require foreign keys
 
 D. Because conceptual design already handles all platform-specific decisions
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## Apply Questions
 
 **17. An instructor wants to add a new deliverable "Project 1" to the Grading Database before any student has submitted work. In the `GRADE_FLAT` table, why is this problematic, and which table in the normalized design solves it?**
@@ -307,9 +298,6 @@ B. `UNIQUE (Score)`
 C. `CHECK (Score BETWEEN 0 AND 100)`
 
 D. `DEFAULT Score = 50`
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Analyze Questions
 
@@ -398,9 +386,6 @@ B. Lucidchart is visual and drag-and-drop; Mermaid is text-based and version-con
 C. Lucidchart generates SQL automatically; Mermaid cannot
 
 D. Lucidchart only supports Chen notation; Mermaid only supports Crow's Foot
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Evaluate Questions
 
@@ -493,7 +478,7 @@ D. Whether the original database was built using Mermaid diagrams
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
 ### Remember Questions
 

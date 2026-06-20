@@ -1,6 +1,4 @@
-<!-- metadata: date="2026-06-03" -->
-
-
+﻿
 # Lab 01: PetVax Project Introduction
 
 <p align="center">
@@ -15,7 +13,7 @@
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_800/bitm330book/00-general/labs/petvax-vet-at-desk" alt="A veterinarian in a white lab coat sits at a desk in a clean, well-lit clinic office." width="600">
 </p>
 
-## Overview
+# Overview
 
 This first lab introduces the **PetVax Veterinary Clinic Database**, the applied project you will return to throughout the course. Chapter 1 is an orientation chapter, so you are not building tables, writing SQL, or designing a schema yet. Instead, you will get to know what the project models, why it matters, and how the lab sequence will grow.
 
@@ -23,7 +21,7 @@ This lab connects to Chapter 1 and to the Let's Build work you did with the Grad
 
 **Estimated time:** about 30 minutes.
 
-## How This Lab Works
+# How This Lab Works
 
 Most labs in this course have **two graded parts**:
 
@@ -34,11 +32,11 @@ Your final lab grade combines the quiz score and the AI-graded file.
 
 **Lab 01 is the exception.** Because this chapter is orientation only, there is **no file to submit**. You complete the quiz below, and that is your full deliverable. Starting with the next lab, you will also upload a project file, so this lab is your chance to learn how the model works before the stakes go up.
 
-## Background: The PetVax Project
+# Background: The PetVax Project
 
 Read this background, then answer the quiz that follows.
 
-### What the Vet Clinic Database Models
+## What the Vet Clinic Database Models
 
 <p align="center">
   <video controls width="720" style="max-width:100%">
@@ -57,7 +55,7 @@ The **PetVax Veterinary Clinic Database** represents a small but realistic opera
 
 Unlike the Grading Database, which is the book's central guided instructional case, the Vet Clinic Database is the **applied lab environment**. Its purpose is to help you transfer what you learn in the chapter to a different business domain.
 
-### Why This Project Matters
+## Why This Project Matters
 
 The Vet Clinic Database captures many of the same structural problems that appear in real organizations:
 
@@ -73,16 +71,16 @@ Students often begin with a messy spreadsheet-style view of clinic activity and 
 insert this image plus caption "G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch01-welcome-to-the-textbook\ch01-unused\lab-1.png"
 -->
 
-### How the Project Evolves
+## How the Project Evolves
 
 The lab sequence grows in sophistication over time. Early labs focus on understanding the clinic as an information system and recognizing what counts as data. Later labs move into tables, keys, SQL, normalization, integrity, performance, business intelligence, and strategic interpretation.
 
-### The Difference Between the Two Projects
+## The Difference Between the Two Projects
 
 - The **Grading Database** is the guided, recurring instructional case used throughout the main chapter sequence. You are usually shown the logic first, then asked to practice it.
 - The **PetVax Veterinary Clinic Database** is the applied lab case used to test transfer. You are more often asked to recognize where that same logic applies in a different operational setting.
 
-### Professional Roles You Begin to Practice
+## Professional Roles You Begin to Practice
 
 | Role                  | What You Begin to Practice                                                        |
 | --------------------- | --------------------------------------------------------------------------------- |
@@ -100,11 +98,11 @@ insert this image plus caption
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Quiz
+## Lab Quiz
 
 Answer all questions. This quiz is your complete deliverable for Lab 01. There is no file to upload.
 
-### Question 1 — System Purpose (Multiple Choice)
+## Question 1 — System Purpose (Multiple Choice)
 
 In business terms, what is the PetVax Veterinary Clinic Database mainly meant to do?
 
@@ -113,7 +111,7 @@ In business terms, what is the PetVax Veterinary Clinic Database mainly meant to
 - C. Store marketing images for the clinic's website.
 - D. Track the personal social media accounts of pet owners.
 
-### Question 2 — Operational Data Inventory (Select All That Apply)
+## Question 2 — Operational Data Inventory (Select All That Apply)
 
 Which of the following are pieces of data a veterinary clinic would realistically need to track? Select all that apply.
 
@@ -124,7 +122,7 @@ Which of the following are pieces of data a veterinary clinic would realisticall
 - E. Invoice amounts and payment status
 - F. The clinic's favorite color
 
-### Question 3 — Business Question Fit (Multiple Choice)
+## Question 3 — Business Question Fit (Multiple Choice)
 
 Which question is the kind of **operational or managerial** question the finished PetVax database should be able to answer?
 
@@ -133,7 +131,7 @@ Which question is the kind of **operational or managerial** question the finishe
 - C. What is the best restaurant near the clinic?
 - D. Which celebrity owns a pet like mine?
 
-### Question 4 — Entity Preview (Matching)
+## Question 4 — Entity Preview (Matching)
 
 Match each PetVax entity to the kind of data it stores. Record your answers as pairs (for example, 1-C).
 
@@ -145,7 +143,7 @@ Match each PetVax entity to the kind of data it stores. Record your answers as p
 | 4   | Treatment | D      | An animal that receives care at the clinic               |
 | 5   | Invoice   | E      | A specific service or procedure performed during a visit |
 
-### Question 5 — Spreadsheet vs. Database (Multiple Choice)
+## Question 5 — Spreadsheet vs. Database (Multiple Choice)
 
 Why should a veterinary clinic avoid keeping all of its records in one large spreadsheet?
 
@@ -154,7 +152,7 @@ Why should a veterinary clinic avoid keeping all of its records in one large spr
 - C. Spreadsheets cannot store any numbers.
 - D. A database is always cheaper than any spreadsheet.
 
-### Question 6 — One Owner, Many Pets (Multiple Choice)
+## Question 6 — One Owner, Many Pets (Multiple Choice)
 
 The PetVax project notes that one owner may have multiple pets and one pet may have many visits. What does this pattern tell you about the data?
 
@@ -163,7 +161,7 @@ The PetVax project notes that one owner may have multiple pets and one pet may h
 - C. Every owner must have exactly one pet.
 - D. Pets and owners should never be linked.
 
-### Question 7 — Two Projects, One Goal (Multiple Choice)
+## Question 7 — Two Projects, One Goal (Multiple Choice)
 
 What is the main difference between the Grading Database and the PetVax project in this course?
 
@@ -172,7 +170,7 @@ What is the main difference between the Grading Database and the PetVax project 
 - C. PetVax is used for grading exams; the Grading Database is about pets.
 - D. Only the Grading Database uses real tables.
 
-### Question 8 — Professional Roles (Multiple Choice)
+## Question 8 — Professional Roles (Multiple Choice)
 
 When you ask "what questions should this data eventually answer?", which professional role are you practicing?
 
@@ -181,7 +179,7 @@ When you ask "what questions should this data eventually answer?", which profess
 - C. Communicator
 - D. Database designer
 
-### Question 9 — Tool Readiness (Multiple Choice)
+## Question 9 — Tool Readiness (Multiple Choice)
 
 Which list best matches the kinds of tools you will use as the PetVax labs become more technical?
 
@@ -190,7 +188,7 @@ Which list best matches the kinds of tools you will use as the PetVax labs becom
 - C. Video editing and photo retouching software
 - D. None; the labs require no tools at all
 
-### Question 10 — Lab 01 Deliverable (Multiple Choice)
+## Question 10 — Lab 01 Deliverable (Multiple Choice)
 
 What do you submit for Lab 01?
 

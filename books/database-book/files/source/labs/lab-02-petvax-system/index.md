@@ -1,6 +1,4 @@
-<!-- metadata: date="2026-06-03" -->
-
-<!-- markdownlint-disable MD013 MD024 MD036 -->
+﻿<!-- markdownlint-disable MD013 MD024 MD036 -->
 
 # Lab 02 Questions — Managing PetVax as a Business System
 
@@ -13,7 +11,7 @@
 
 ---
 
-## Lab Purpose
+# Lab Purpose
 
 In Chapter 2, you learned that data becomes valuable only when it helps people understand performance and make decisions. You also learned the major foundations of information systems: business performance, KPIs, DIKW, R.E.A.D., data quality, information behavior, the Input-Process-Output model, information systems versus information technology, the five-component framework, MIS, BITM, strategic alignment, and governance.
 
@@ -29,15 +27,15 @@ For now, your job is to look at messy operational notes and ask:
 
 ---
 
-## How This Lab Is Graded
+# How This Lab Is Graded
 
 This lab has **two graded parts**. You must complete both.
 
-### Part 1 — Brightspace quiz (auto-graded)
+## Part 1 — Brightspace quiz (auto-graded)
 
 You answer 16 questions inside the Brightspace quiz for this lab. Brightspace grades these automatically. Every answer is exact: a specific choice, match, order, or value. Many answers come directly from the work you do while building your Logic Map, so **do the work first, then answer**. Your quiz answers should match what you wrote in your file.
 
-### Part 2 — Logic Map file (AI-checked)
+## Part 2 — Logic Map file (AI-checked)
 
 You upload your completed **PetVax Performance Logic Map** to the separate file-submission assignment. An AI grader checks that the file is **complete** and that you carried **one consistent PetVax problem** through the whole map. The file is not re-scored for writing quality. It is proof that you actually did the work behind your quiz answers.
 
@@ -45,7 +43,7 @@ You upload your completed **PetVax Performance Logic Map** to the separate file-
 
 ---
 
-## PetVax Scenario
+# PetVax Scenario
 
 *See Exhibit A below for Dr. Dima's Tuesday notebook.*
 
@@ -65,7 +63,7 @@ Your task is to use the notebook excerpt below as evidence and build one logic m
 
 ---
 
-## Required Files and Tools
+# Required Files and Tools
 
 - **Starter exhibit:** `assets/dr-dima-tuesday-notebook.png` (provided in this lab folder).
 - **Tool:** a word processor (Google Docs, Microsoft Word, or any editor that can export PDF).
@@ -73,11 +71,11 @@ Your task is to use the notebook excerpt below as evidence and build one logic m
 
 ---
 
-## Exhibit A — Dr. Dima’s Tuesday Notebook
+# Exhibit A — Dr. Dima’s Tuesday Notebook
 
 ![Photo of Dr. Dima's handwritten Tuesday notebook with pet visits, payments, reminders, and unresolved follow-up notes](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_900/bitm330book/00-general/labs/dr-dima-tuesday-notebook)
 
-### Working Transcription
+## Working Transcription
 
 Some handwriting is ambiguous. Use this transcription as the official version for the lab.
 
@@ -106,7 +104,7 @@ Charlie *(other one)* — lab — **pending**
 
 ---
 
-## Your Final File
+# Your Final File
 
 Create a Google Doc, Word document, or PDF titled:
 
@@ -146,14 +144,14 @@ In your file, complete the row:
 
 Use one line or phrase from Exhibit A that you will build your logic map around. Examples: `vacc reminder calls — did 5? lost track`, `Buddy — recheck 6 wks (no date set)`, `outcome: ? follow w/ owner`, or `cash drawer ~$600–650`.
 
-## Quiz Question 1
+# Quiz Question 1
 
 **Question type:** Short answer  
 **Points:** 1
 
 What date appears at the top of Dr. Dima’s notebook?
 
-## Quiz Question 2
+# Quiz Question 2
 
 **Question type:** Multiple choice  
 **Points:** 1
@@ -165,7 +163,7 @@ B. Misty
 C. Bandit  
 D. Mango
 
-## Quiz Question 3
+# Quiz Question 3
 
 **Question type:** Multiple choice  
 **Points:** 1
@@ -177,7 +175,7 @@ B. $500–$550
 C. $600–$650  
 D. $700–$750
 
-## Quiz Question 4
+# Quiz Question 4
 
 **Question type:** Multiple choice  
 **Points:** 1
@@ -212,7 +210,7 @@ In your file, complete the row:
 
 `PetVax performance problem`
 
-## Quiz Question 5
+# Quiz Question 5
 
 **Question type:** Multi-select  
 **Points:** 2
@@ -251,7 +249,7 @@ In your file, complete the row:
 
 `KPI`
 
-## Quiz Question 6
+# Quiz Question 6
 
 **Question type:** Matching  
 **Points:** 2
@@ -265,7 +263,7 @@ Match each PetVax problem to the most appropriate KPI.
 | Daily revenue totals are uncertain | Daily revenue reconciliation accuracy |
 | Emergency outcome is unknown | Emergency follow-up completion rate |
 
-## Quiz Question 7
+# Quiz Question 7
 
 **Question type:** Multiple choice  
 **Points:** 1
@@ -297,7 +295,7 @@ In your file, complete these rows:
 - `Knowledge: pattern or explanation`
 - `Wisdom: decision or action`
 
-## Quiz Question 8
+# Quiz Question 8
 
 **Question type:** Ordering  
 **Points:** 3
@@ -309,7 +307,7 @@ B. Buddy needs a recheck in 6 weeks, but no date was set.
 C. Missing follow-up dates increase the chance that care tasks are forgotten.  
 D. Several visit notes include follow-up actions without clear dates or outcomes.
 
-## Quiz Question 9
+# Quiz Question 9
 
 **Question type:** Matching  
 **Points:** 3
@@ -343,7 +341,7 @@ Examples:
 - emergency referral process;
 - end-of-day cash reconciliation process.
 
-## Quiz Question 10
+# Quiz Question 10
 
 **Question type:** Multiple choice  
 **Points:** 1
@@ -372,7 +370,7 @@ In your file, complete the row:
 
 `Data-quality risk`
 
-## Quiz Question 11
+# Quiz Question 11
 
 **Question type:** Matching  
 **Points:** 3
@@ -404,7 +402,7 @@ Examples:
 - A technician reviews pending lab notes and updates the owner.
 - The person handling cash compares receipts with the cash drawer total.
 
-## Quiz Question 12
+# Quiz Question 12
 
 **Question type:** Multiple choice  
 **Points:** 1
@@ -431,7 +429,7 @@ In your file, complete the row:
 
 `R.E.A.D. stage most involved`
 
-## Quiz Question 13
+# Quiz Question 13
 
 **Question type:** Matching  
 **Points:** 2
@@ -463,7 +461,7 @@ Examples:
 - **Processes:** reminder calls and follow-ups are not consistently tracked.
 - **People:** staff rely on memory and handwritten notes.
 
-## Quiz Question 14
+# Quiz Question 14
 
 **Question type:** Multi-select  
 **Points:** 1
@@ -487,7 +485,7 @@ Chapter 2 also connects information systems to management.
 - **Strategic alignment** asks whether systems support what the organization is trying to do.
 - **Governance** asks who owns decisions, data, access, risk, and accountability.
 
-## Quiz Question 15
+# Quiz Question 15
 
 **Question type:** Matching  
 **Points:** 2
@@ -513,7 +511,7 @@ In your file, complete the row:
 
 Your answer should explain why the PetVax case is more than software or recordkeeping. A strong answer mentions people, processes, data, technology, and decisions.
 
-## Quiz Question 16
+# Quiz Question 16
 
 **Question type:** Multi-select  
 **Points:** 1
@@ -545,7 +543,7 @@ Complete **both** parts in Brightspace.
 
 ---
 
-## Optional Extension
+# Optional Extension
 
 These are not required.
 
@@ -555,7 +553,7 @@ These are not required.
 4. Explain what evidence would show that PetVax’s decision improved performance.
 ---
 
-## Hint — What Good Notes Look Like
+# Hint — What Good Notes Look Like
 
 The example below shows how completed performance notes can connect one problem to a KPI, DIKW chain, and business process. Your layout does not need to match this exactly — any clear, consistent structure works.
 

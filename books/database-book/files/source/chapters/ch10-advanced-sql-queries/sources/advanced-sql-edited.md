@@ -2,7 +2,7 @@
 
 # Advanced SQL With the Grading Database
 
-## Introduction: From Writing Queries to Designing Intelligence
+# Introduction: From Writing Queries to Designing Intelligence
 
 !(banner)[![C:\Users\nd115232\Documents\GitHub\BITM330-Book\images\Advanced SQL Queries\banner.png](C:\Users\nd115232\Documents\GitHub\BITM330-Book\images\Advanced SQL Queries\banner.png)]
 
@@ -32,7 +32,7 @@ Throughout the chapter, every concept maps to a real grading workflow. You will 
 
 [[Figure: Chapter roadmap showing the six-part arc from Normalization → Fundamentals → JOINs → Analytics → Reusable Artifacts → Advanced Mechanics, with the Grading Database icon at the center connecting all parts.]]
 
-### Tools You Will Use
+## Tools You Will Use
 
 One of the most important ideas in this chapter is that **SQL logic is portable**. While tools and interfaces differ, the underlying language remains the same. The SQL in this chapter works across multiple platforms, with notes where dialects differ:
 
@@ -42,7 +42,7 @@ One of the most important ideas in this chapter is that **SQL logic is portable*
 
 Although these tools look different, the SQL you write is fundamentally the same. Learning SQL once allows you to work across platforms, systems, and organizations.
 
-### What Makes SQL "Advanced"
+## What Makes SQL "Advanced"
 
 Advanced SQL is not a separate language. It is the same `SELECT`, `FROM`, `WHERE` you already know — applied to harder problems. What changes is how you use them together. You are moving from *retrieving data* to *transforming, protecting, and optimizing* data. That shift requires:
 
@@ -66,11 +66,11 @@ Up to this point, normalization has been discussed primarily as a **design princ
 
 ---
 
-## 1. Diagnosing Redundancy and Anomalies Using Queries
+# 1. Diagnosing Redundancy and Anomalies Using Queries
 
 Before restructuring anything, you need to see the problems. SQL is an excellent diagnostic tool — it can reveal duplication, inconsistency, and structural weaknesses that are invisible in a visual table editor. Before drawing entity–relationship diagrams or enforcing foreign keys, experienced analysts begin with **diagnostic queries**. If the data shows duplication, inconsistency, or ambiguity, the design is already broken — regardless of how clean the schema looks on paper.
 
-### The Problem: Flat-Table Thinking
+## The Problem: Flat-Table Thinking
 
 Imagine you inherited a single `GRADES_FLAT` table that stores everything about students, assignments, and scores in one place:
 
@@ -88,7 +88,7 @@ Imagine you inherited a single `GRADES_FLAT` table that stores everything about 
 
 Alice's name, email, and birthday appear three times. Quiz 1's due date and topic appear twice. This is not a table — it is a report masquerading as a database. Every repeated value is a place where errors can creep in.
 
-### Detecting Duplication
+## Detecting Duplication
 
 **Syntax — Counting how many times each student's details are repeated:**
 
@@ -112,7 +112,7 @@ HAVING COUNT(*) > 1;
 
 If Alice has grades for 6 deliverables, her name and email are stored 6 times. That is 5 unnecessary copies of the same information. In a properly normalized STUDENT table, a similar query should return **zero rows**.
 
-### Detecting Conflicting Values
+## Detecting Conflicting Values
 
 Duplication is bad. Duplication *with conflicts* is worse. What if Alice's email was entered differently in different rows?
 
@@ -128,7 +128,7 @@ HAVING COUNT(DISTINCT Email) > 1;
 
 If this query returns any rows, you have a data quality problem: the same student is recorded with different email addresses. A single student should have exactly one email. Multiple values indicate update anomalies or data entry errors. This problem disappears once email is stored **once** in a normalized STUDENT table.
 
-### Detecting Spelling Inconsistencies
+## Detecting Spelling Inconsistencies
 
 **Syntax — Finding students whose names appear in different forms:**
 
@@ -145,7 +145,7 @@ HAVING COUNT(DISTINCT FirstName) > 1;
 
 This query might reveal that StudentID 4 appears as both "David" and "Dave" — a common data entry inconsistency that causes incorrect aggregations. Without normalization, these two entries look like different students.
 
-### Detecting Missing or Inconsistent Deliverable Definitions
+## Detecting Missing or Inconsistent Deliverable Definitions
 
 Assignment-level metadata should be stable, not repeated per student.
 
@@ -163,7 +163,7 @@ HAVING COUNT(DISTINCT DueDate) > 1
 
 If Quiz 1 has two different due dates in different rows, you have conflicting data. This is an **update anomaly** — someone corrected the due date in some rows but not others. SQL highlights the problem immediately, without theoretical analysis.
 
-### The Three Anomalies
+## The Three Anomalies
 
 These diagnostic queries reveal three categories of problems that plague flat tables:
 
@@ -183,7 +183,7 @@ The cure for all three is **normalization**: separating each entity into its own
 
 ---
 
-## 2. Extracting Entities From a Flat Table
+# 2. Extracting Entities From a Flat Table
 
 Once you have diagnosed the problems, the next step is to extract distinct entities from the flat table. This is normalization in practice — not as a theory exercise, but as a series of SQL operations.
 
@@ -195,7 +195,7 @@ The key insight: every group of columns that repeats together represents a separ
 
 `DISTINCT` and `GROUP BY` are the workhorses of entity extraction.
 
-### Extracting Students
+## Extracting Students
 
 **Syntax — Using `SELECT DISTINCT` to extract unique student records:**
 
@@ -221,7 +221,7 @@ This query returns each student exactly once, regardless of how many grades they
 
 Five students, each appearing exactly once. This is what belongs in a STUDENT table.
 
-### Extracting Deliverables
+## Extracting Deliverables
 
 **Syntax — Using `GROUP BY` to extract unique deliverable definitions:**
 
@@ -255,11 +255,11 @@ Six unique deliverables, extracted from the flat table. Each will become a row i
 
 ---
 
-## 3. Creating New Tables From Queries
+# 3. Creating New Tables From Queries
 
 Extracting entities with `SELECT DISTINCT` is only the first step. To make the normalization permanent, you need to create new tables that store the extracted data. SQL provides several ways to do this, and the syntax varies by platform.
 
-### Approach 1: CREATE TABLE AS SELECT (PostgreSQL, SQLite)
+## Approach 1: CREATE TABLE AS SELECT (PostgreSQL, SQLite)
 
 **Syntax:**
 
@@ -312,7 +312,7 @@ FROM GRADES_FLAT;
 
 This table contains only **relationships and outcomes** — not descriptive data. It is the transactional core of the grading system.
 
-### Approach 2: SELECT INTO (SQL Server, Some Dialects)
+## Approach 2: SELECT INTO (SQL Server, Some Dialects)
 
 **Syntax:**
 
@@ -332,17 +332,17 @@ FROM GRADES_FLAT;
 
 This achieves the same result but uses different syntax. Microsoft Access also uses `SELECT ... INTO` for creating new tables from queries.
 
-### Why "Create-From-Query" Is a Bridge, Not the Final Architecture
+## Why "Create-From-Query" Is a Bridge, Not the Final Architecture
 
 `CREATE TABLE AS SELECT` is a pragmatic normalization tool. It gets data into separate tables quickly. But it does not automatically create primary keys, foreign keys, or constraints. Those must be added separately (Section 5). Think of this step as framing the house — the walls go up fast, but you still need wiring, plumbing, and inspection.
 
 ---
 
-## 4. Migrating Data Into the New Tables
+# 4. Migrating Data Into the New Tables
 
 When tables already exist with the correct structure but are empty, you populate them using `INSERT INTO … SELECT` — the workhorse of data migration. Unlike `INSERT INTO … VALUES`, which inserts one row at a time, `INSERT INTO … SELECT` moves **sets of rows** produced by a query.
 
-### Syntax
+## Syntax
 
 ```sql
 INSERT INTO target_table (column1, column2, ...)
@@ -353,7 +353,7 @@ WHERE conditions;
 
 This pattern is ideal for extracting unique entities from a flat table, cleaning data before constraints are enforced, and migrating data in controlled stages.
 
-### Grading Database Example — Populating the STUDENT Table
+## Grading Database Example — Populating the STUDENT Table
 
 If you created the STUDENT table with `CREATE TABLE` (defining columns, types, and constraints explicitly) rather than `CREATE TABLE AS SELECT`:
 
@@ -365,7 +365,7 @@ FROM GRADES_FLAT;
 
 At this stage, constraints such as `PRIMARY KEY` and `UNIQUE` should already exist on the STUDENT table. If duplicates remain, the insertion will fail — which is exactly what you want.
 
-### Grading Database Example — Populating the DELIVERABLE Table
+## Grading Database Example — Populating the DELIVERABLE Table
 
 ```sql
 INSERT INTO DELIVERABLE (Type, DeliverableNumber, DueDate)
@@ -375,7 +375,7 @@ FROM GRADES_FLAT;
 
 Each deliverable is defined once. Due dates become consistent by design. Changes to a deliverable affect all students automatically.
 
-### Grading Database Example — Populating STUDENT_GRADE (the Junction Table)
+## Grading Database Example — Populating STUDENT_GRADE (the Junction Table)
 
 The junction table connects students to deliverables and stores scores. It requires a mapping from the flat table's deliverable columns to the new `DeliverableID`:
 
@@ -390,7 +390,7 @@ JOIN DELIVERABLE d
 
 This query joins the flat table to the new DELIVERABLE table — matching on `Type` and `DeliverableNumber` to find the correct `DeliverableID` — then inserts the student-deliverable-score triples into `STUDENT_GRADE`.
 
-### De-Duplication Strategies
+## De-Duplication Strategies
 
 During migration, you may encounter rows that should not exist:
 
@@ -420,7 +420,7 @@ WHERE StudentID IS NOT NULL
 
 For the grading database, `StudentID` is treated as a natural key (the university-assigned ID). `DeliverableID` and `GradeID` are surrogate keys generated during migration.
 
-### Verifying Migration Before Proceeding
+## Verifying Migration Before Proceeding
 
 A critical sequencing principle: **clean first, constrain second.** Before adding foreign keys, `NOT NULL` constraints, or `CHECK` constraints, verify that the migration is correct.
 
@@ -458,7 +458,7 @@ If results match the original flat table output, normalization preserved correct
 
 ---
 
-## 5. Adding Constraints and Referential Integrity After Migration
+# 5. Adding Constraints and Referential Integrity After Migration
 
 You may wonder: why not add primary keys and foreign keys when creating the tables? In practice, constraints are often added *after* data migration for a practical reason — if the data is messy, constraint violations will block the migration entirely. It is easier to:
 
@@ -468,7 +468,7 @@ You may wonder: why not add primary keys and foreign keys when creating the tabl
 
 Think of it as moving furniture into a room, arranging it, and *then* bolting the shelves to the wall.
 
-### Adding Primary Keys
+## Adding Primary Keys
 
 **Syntax:**
 
@@ -492,7 +492,7 @@ ADD CONSTRAINT pk_student_grade PRIMARY KEY (GradeID);
 
 > **SQLite note:** SQLite does not support adding a `PRIMARY KEY` with `ALTER TABLE` after creation. You must define the primary key in the original `CREATE TABLE` statement or recreate the table.
 
-### Adding Foreign Keys
+## Adding Foreign Keys
 
 **Syntax:**
 
@@ -516,7 +516,7 @@ FOREIGN KEY (DeliverableID) REFERENCES DELIVERABLE(DeliverableID);
 
 These constraints guarantee that every grade record points to a real student and a real deliverable. Attempting to insert a grade for a nonexistent student will fail — the database enforces integrity automatically.
 
-### Adding Validation Constraints
+## Adding Validation Constraints
 
 ```sql
 -- Ensure scores are within a valid range (0-100)
@@ -532,7 +532,7 @@ ALTER TABLE STUDENT
 ALTER COLUMN FirstName SET NOT NULL;
 ```
 
-### Why Constraints Come After Cleanup
+## Why Constraints Come After Cleanup
 
 If you define `CHECK (Score >= 0 AND Score <= 100)` before migrating data, and the flat table contains a score of 105 (perhaps a bonus), the migration will fail. By adding constraints after loading data, you can:
 
@@ -545,7 +545,7 @@ This is not cutting corners — it is sound engineering practice.
 
 ---
 
-## 6. Dropping the Old Table and Working With the New Schema
+# 6. Dropping the Old Table and Working With the New Schema
 
 Once the new schema is verified, the original flat table becomes unnecessary and risky.
 
@@ -557,11 +557,11 @@ From this point forward, all queries operate on the **normalized relational desi
 
 ---
 
-## 7. Refactoring the Gradebook Into a Relational Core
+# 7. Refactoring the Gradebook Into a Relational Core
 
 After normalization, your grading database has a clean "relational spine" — a set of well-defined, connected tables that support reliable querying and reporting.
 
-### The Final Schema
+## The Final Schema
 
 [[Table: The seven tables of the normalized grading database with their purposes and primary keys.]]
 
@@ -575,7 +575,7 @@ After normalization, your grading database has a clean "relational spine" — a 
 | **ATTENDANCE**    | Whether each student attended each session                          | AttendanceID  |
 | **GRADE_SCALE**   | Letter grade thresholds — maps numbers to letters                  | LetterGrade   |
 
-### Key Relationships
+## Key Relationships
 
 ```
 STUDENT ──(1:M)──> STUDENT_GRADE <──(M:1)── DELIVERABLE
@@ -584,7 +584,7 @@ DELIVERABLE ──(M:1)──> ASSIGNMENT (by Type)
 STUDENT_GRADE.Score ──(maps to)──> GRADE_SCALE
 ```
 
-### When to Extend the Schema
+## When to Extend the Schema
 
 The seven-table schema covers a single course. In a real institution, you might add:
 
@@ -605,11 +605,11 @@ If you completed the previous SQL chapter, this section is a quick refresher. If
 
 ---
 
-## 8. SELECT as a Reporting Language
+# 8. SELECT as a Reporting Language
 
 `SELECT` is not just a data retrieval command — it is a reporting language. Every business report, dashboard metric, and KPI starts as a `SELECT` statement.
 
-### Syntax
+## Syntax
 
 ```sql
 SELECT column1, column2, expression AS alias
@@ -619,7 +619,7 @@ ORDER BY column ASC | DESC
 LIMIT n;
 ```
 
-### Grading Database Examples
+## Grading Database Examples
 
 **Selecting specific columns with aliases:**
 
@@ -661,17 +661,17 @@ ORDER BY d.DueDate DESC;
 
 > **PostgreSQL note:** Use `CURRENT_DATE` instead of `DATE('now')` in PostgreSQL/Supabase.
 
-### Why SELECT Matters for Business
+## Why SELECT Matters for Business
 
 Every time a manager asks "How are we doing?" or "Show me the numbers," the answer is a `SELECT` statement. Learning to write clear, well-aliased, well-ordered queries is the single most valuable SQL skill for business professionals. The remainder of this chapter builds on this foundation.
 
 ---
 
-## 9. Data Cleaning Patterns in SQL
+# 9. Data Cleaning Patterns in SQL
 
 Real-world data does not arrive clean. Before you analyze it, you often need to trim whitespace, standardize text, handle missing values, and validate formats. SQL provides tools for all of these.
 
-### Trimming Whitespace
+## Trimming Whitespace
 
 ```sql
 SELECT TRIM(FirstName) AS FirstName,
@@ -681,7 +681,7 @@ FROM STUDENT;
 
 Leading and trailing spaces are invisible in most displays but wreak havoc on `JOIN` conditions and `GROUP BY` operations. A `FirstName` of `'Alice'` does not match `'Alice '`.
 
-### Standardizing Case
+## Standardizing Case
 
 ```sql
 UPDATE STUDENT
@@ -690,7 +690,7 @@ SET Email = LOWER(TRIM(Email));
 
 This ensures all email comparisons work correctly, regardless of how the data was originally entered.
 
-### Replacing Missing Values
+## Replacing Missing Values
 
 **Syntax — `COALESCE` returns the first non-NULL value:**
 
@@ -715,7 +715,7 @@ ORDER BY s.LastName, d.Type, d.DeliverableNumber;
 
 This produces a complete grid of every student and every deliverable, with "Not Graded" displayed wherever a score is missing.
 
-### Validating Patterns
+## Validating Patterns
 
 **Grading Database Example — Finding non-standard emails:**
 
@@ -727,7 +727,7 @@ WHERE Email NOT LIKE '%@%.%';
 
 This finds any email that does not contain an `@` symbol followed by a dot — a simple validation that catches obvious data entry errors.
 
-### Casting Types
+## Casting Types
 
 **Grading Database Example — Ensuring scores are treated as decimals:**
 
@@ -745,17 +745,17 @@ This is important when computing averages — integer division (`88 / 3 = 29` in
 
 ---
 
-## 10. JOIN Mastery Using the Gradebook
+# 10. JOIN Mastery Using the Gradebook
 
 JOINs are the defining feature of relational databases. They connect separate tables at query time, producing combined results without duplicating stored data. This section deepens your understanding with realistic, multi-table grading scenarios.
 
-### INNER JOIN vs. LEFT JOIN: When Each Matters
+## INNER JOIN vs. LEFT JOIN: When Each Matters
 
 **INNER JOIN** returns only rows with matches in both tables. Use it when you want *complete* records — students who have grades, deliverables that have been submitted.
 
 **LEFT JOIN** returns all rows from the left table, with `NULL` for unmatched rows on the right. Use it when you want to find *what is missing* — students without grades, deliverables without submissions.
 
-### Grading Database Example — Complete Gradebook (INNER JOIN)
+## Grading Database Example — Complete Gradebook (INNER JOIN)
 
 ```sql
 SELECT s.FirstName, s.LastName,
@@ -769,7 +769,7 @@ ORDER BY s.LastName, d.Type, d.DeliverableNumber;
 
 This three-table join produces the complete gradebook: every student, every deliverable they submitted, and their score. Students without any grades do not appear. Deliverables with zero submissions do not appear.
 
-### Grading Database Example — Students With Missing Grades (LEFT JOIN)
+## Grading Database Example — Students With Missing Grades (LEFT JOIN)
 
 ```sql
 SELECT s.FirstName, s.LastName,
@@ -785,7 +785,7 @@ ORDER BY s.LastName, d.Type, d.DeliverableNumber;
 
 This query generates every possible student-deliverable pair (using `CROSS JOIN`), then checks which pairs have no grade recorded. The `WHERE sg.GradeID IS NULL` filter isolates missing submissions. This is one of the most practically useful queries in any grading system.
 
-### Grading Database Example — Deliverables Without Any Submissions
+## Grading Database Example — Deliverables Without Any Submissions
 
 ```sql
 SELECT d.Type, d.DeliverableNumber, d.DueDate
@@ -796,7 +796,7 @@ WHERE sg.GradeID IS NULL;
 
 If a deliverable has been created but no student has been graded on it, this query catches it — indicating a data entry lag or a deliverable that has not yet been collected.
 
-### Multi-Join Logic: The Student-Grade-Deliverable Pathway
+## Multi-Join Logic: The Student-Grade-Deliverable Pathway
 
 The most common multi-join pattern in the grading database follows the chain:
 
@@ -824,15 +824,15 @@ ORDER BY s.LastName, d.Type, d.DeliverableNumber;
 
 This four-table join adds the maximum possible points from the ASSIGNMENT table, giving context to each score. A score of 85 means something different if the maximum is 100 vs. 50.
 
-### Self-Joins (Conceptual)
+## Self-Joins (Conceptual)
 
 Self-joins compare rows within the same table — for example, comparing each student's performance to the class average, or ranking students relative to peers. While less common in the grading database, the concept underpins peer comparison logic used in more advanced analytics.
 
 ---
 
-## 11. Many-to-Many Thinking and Intersection Tables
+# 11. Many-to-Many Thinking and Intersection Tables
 
-### Why STUDENT_GRADE Exists
+## Why STUDENT_GRADE Exists
 
 A student can have many grades. A deliverable can be submitted by many students. This is a **many-to-many relationship** — and it cannot be represented directly in a relational database. The solution is an **intersection table** (also called a junction table or associative entity).
 
@@ -847,7 +847,7 @@ A student can have many grades. A deliverable can be submitted by many students.
 | DeliverableID | Foreign key → DELIVERABLE |
 | Score         | The grade earned           |
 
-### Preventing Duplicate Submissions
+## Preventing Duplicate Submissions
 
 What happens if someone accidentally enters Alice's Quiz 1 score twice? You need a constraint that enforces: **one score per student per deliverable**.
 
@@ -873,7 +873,7 @@ VALUES (32, 1, 1, 97);
 
 The second insert violates the `UNIQUE` constraint because Alice (StudentID 1) already has a score for Deliverable 1.
 
-### When to Allow Revisions
+## When to Allow Revisions
 
 Some grading policies allow students to resubmit. In that case, you might:
 
@@ -893,9 +893,9 @@ This shift reflects how SQL is used in real organizations: not just to fetch row
 
 ---
 
-## 12. Aggregations and GROUP BY for Performance Metrics
+# 12. Aggregations and GROUP BY for Performance Metrics
 
-### Average Score Per Student
+## Average Score Per Student
 
 ```sql
 SELECT s.FirstName || ' ' || s.LastName AS StudentName,
@@ -909,7 +909,7 @@ ORDER BY AverageScore DESC;
 
 This produces a rank-ordered list of students by performance. Adding `COUNT` shows how many assignments each student has completed — useful for spotting students with missing work.
 
-### Average Score Per Deliverable
+## Average Score Per Deliverable
 
 ```sql
 SELECT d.Type, d.DeliverableNumber, d.Topic,
@@ -925,7 +925,7 @@ ORDER BY ClassAverage ASC;
 
 The `Spread` (difference between highest and lowest scores) reveals how much variability exists on each assignment. A large spread might indicate inconsistent preparation among students.
 
-### Average Score Per Assignment Type
+## Average Score Per Assignment Type
 
 ```sql
 SELECT d.Type,
@@ -939,7 +939,7 @@ ORDER BY TypeAverage ASC;
 
 Are students performing worse on exams than quizzes? This query answers that question instantly.
 
-### DISTINCT and COUNT(DISTINCT)
+## DISTINCT and COUNT(DISTINCT)
 
 Use `COUNT(DISTINCT)` to avoid double-counting when data may contain repeated references.
 
@@ -950,7 +950,7 @@ SELECT COUNT(DISTINCT StudentID) AS ActiveStudents
 FROM STUDENT_GRADE;
 ```
 
-### Score Distributions Using Count-by-Band
+## Score Distributions Using Count-by-Band
 
 ```sql
 SELECT
@@ -971,7 +971,7 @@ ORDER BY ScoreBand DESC;
 
 This creates a histogram of score distributions across all assignments — a quick visual of overall class performance.
 
-### HAVING for Thresholds
+## HAVING for Thresholds
 
 **Grading Database Example — At-risk students (average below 75):**
 
@@ -996,7 +996,7 @@ GROUP BY d.DeliverableID, d.Type, d.DeliverableNumber, d.Topic
 HAVING AVG(sg.Score) > 95;
 ```
 
-### Nested Aggregation with Subqueries
+## Nested Aggregation with Subqueries
 
 **Grading Database Example — Students whose average is above the class average (aggregating aggregates):**
 
@@ -1010,7 +1010,7 @@ HAVING AVG(sg.Score) > (
 );
 ```
 
-### Percentages and Ratios
+## Percentages and Ratios
 
 **Grading Database Example — Attendance rate per student:**
 
@@ -1025,11 +1025,11 @@ Multiplying by `1.0` forces decimal division, preventing integer truncation.
 
 ---
 
-## 13. CASE Expressions for Grading Logic
+# 13. CASE Expressions for Grading Logic
 
 The `CASE` expression allows SQL to translate raw values into meaningful classifications. It converts numeric scores into letter grades, flags risk levels, and embeds grading policy directly in the query layer.
 
-### Mapping Scores to Letter Grades
+## Mapping Scores to Letter Grades
 
 **Syntax:**
 
@@ -1071,7 +1071,7 @@ ORDER BY s.LastName, d.Type, d.DeliverableNumber;
 
 This query applies the grading rubric uniformly across all records. If the grading policy changes, updating one query updates every report that relies on it.
 
-### Using the GRADE_SCALE Table Instead
+## Using the GRADE_SCALE Table Instead
 
 Embedding grading thresholds directly in `CASE` works, but it is fragile — if the grading scale changes, you must update every query. A better approach uses the GRADE_SCALE table:
 
@@ -1088,7 +1088,7 @@ JOIN GRADE_SCALE gs
 
 The grading policy lives in data, not in code. Changing the scale requires updating one table, not rewriting queries.
 
-### Conditional Flags for Reporting
+## Conditional Flags for Reporting
 
 ```sql
 SELECT s.FirstName, s.LastName,
@@ -1106,7 +1106,7 @@ ORDER BY s.LastName, d.Type;
 
 Each row now carries two flags — submission status and performance level — making the output immediately actionable for an instructor.
 
-### Flagging At-Risk Students with CASE in Aggregation
+## Flagging At-Risk Students with CASE in Aggregation
 
 ```sql
 SELECT s.FirstName, s.LastName,
@@ -1124,7 +1124,7 @@ ORDER BY AvgScore ASC;
 
 Here, `CASE` is used inside an aggregate context to classify students based on overall performance — not individual scores.
 
-### CASE Inside Aggregate Functions (Conditional Counting)
+## CASE Inside Aggregate Functions (Conditional Counting)
 
 **Grading Database Example — Counting passing vs. failing grades per deliverable:**
 
@@ -1155,11 +1155,11 @@ GROUP BY StudentID;
 
 ---
 
-## 14. Expressions for Business Reporting
+# 14. Expressions for Business Reporting
 
 SQL expressions allow you to compute new values directly inside queries. These expressions turn raw data into **business-ready outputs** without requiring export to spreadsheets or external tools.
 
-### Arithmetic Expressions
+## Arithmetic Expressions
 
 Used for bonuses, scaling, and weighted calculations.
 
@@ -1173,7 +1173,7 @@ FROM STUDENT_GRADE;
 
 This does not change the stored data — it calculates `BonusScore` only in the query results.
 
-### String Expressions
+## String Expressions
 
 Used to create readable labels and identifiers.
 
@@ -1186,7 +1186,7 @@ FROM STUDENT;
 
 > **Note:** In SQL Server, use `+` instead of `||` for concatenation. In MySQL, use the `CONCAT()` function.
 
-### Date and Time Expressions
+## Date and Time Expressions
 
 Used for age calculations, deadlines, and time-based analysis.
 
@@ -1200,7 +1200,7 @@ FROM STUDENT;
 
 Date function syntax varies significantly between database systems — always check your platform's documentation.
 
-### Aggregate Expressions Inside Reports
+## Aggregate Expressions Inside Reports
 
 Aggregates summarize performance and trends across an entire column.
 
@@ -1217,11 +1217,11 @@ These aggregates are often combined with `GROUP BY` and `CASE` to produce manage
 
 ---
 
-## 15. Time-Aware Queries
+# 15. Time-Aware Queries
 
 Dates drive much of academic and business logic: due dates, attendance windows, late penalties, and trends over time. SQL provides functions to work with dates, though the syntax varies across platforms.
 
-### Upcoming Due Dates
+## Upcoming Due Dates
 
 **Grading Database Example — Deliverables due in the next 14 days:**
 
@@ -1239,7 +1239,7 @@ WHERE DueDate BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '14 days'
 ORDER BY DueDate;
 ```
 
-### Overdue Deliverables Without Submissions
+## Overdue Deliverables Without Submissions
 
 ```sql
 SELECT d.Type, d.DeliverableNumber, d.DueDate,
@@ -1256,7 +1256,7 @@ ORDER BY d.DueDate, s.LastName;
 
 This query identifies students who have not submitted assignments that are past due — a critical early-warning report.
 
-### Attendance Trends by Week
+## Attendance Trends by Week
 
 ```sql
 SELECT sc.Week,
@@ -1276,7 +1276,7 @@ ORDER BY sc.Week;
 
 This weekly attendance report shows whether engagement is rising, falling, or stable over the semester. A declining trend might prompt the instructor to adjust the class format.
 
-### Date Functions Reference
+## Date Functions Reference
 
 [[Table: Common date operations with syntax for both SQLite and PostgreSQL.]]
 
@@ -1289,11 +1289,11 @@ This weekly attendance report shows whether engagement is rising, falling, or st
 
 ---
 
-## 16. Weighted Grades and Policy Tables
+# 16. Weighted Grades and Policy Tables
 
 In most courses, not all assignments carry equal weight. Quizzes might be worth 20% of the final grade, exams 40%, and the project 40%. Computing weighted grades requires joining scores to weight definitions and performing careful arithmetic.
 
-### The ASSIGNMENT Table as a Weight Source
+## The ASSIGNMENT Table as a Weight Source
 
 [[Table: ASSIGNMENT table showing category metadata used for weight calculations.]]
 
@@ -1305,7 +1305,7 @@ In most courses, not all assignments carry equal weight. Quizzes might be worth 
 
 Total points across all categories: 80 + 100 + 50 = 230.
 
-### Computing Weighted Averages
+## Computing Weighted Averages
 
 **Grading Database Example — Weighted average for each student:**
 
@@ -1325,7 +1325,7 @@ ORDER BY WeightedAverage DESC;
 
 This query joins each score to its deliverable and assignment category, scales each score by its category's point weight, and divides by total points to produce a weighted average.
 
-### Simpler Approach Using Percentages
+## Simpler Approach Using Percentages
 
 If you define weights as fractions that sum to 1.0, the calculation is cleaner. Create a weight table:
 
@@ -1371,7 +1371,7 @@ ORDER BY WeightedFinalGrade DESC;
 
 This CTE-based approach first computes each student's average within each category, then multiplies by the category weight and sums to produce the final grade.
 
-### Auditing Grade Policy Changes
+## Auditing Grade Policy Changes
 
 If weights change during the semester, earlier calculations must be reproducible. Consider adding an `EffectiveDate` column to `GRADE_WEIGHT`:
 
@@ -1384,13 +1384,13 @@ This creates a historical record of policy changes — essential for transparenc
 
 ---
 
-## 17. Window Functions: Analytics Without Collapsing Rows
+# 17. Window Functions: Analytics Without Collapsing Rows
 
 Window functions are among the most powerful features in modern SQL. They solve a specific problem: performing **analysis alongside detail**, without grouping rows away.
 
 Standard aggregation with `GROUP BY` collapses rows into summary groups — you get the average, but you lose the individual records. Window functions calculate aggregates, rankings, and running totals while **preserving every row**.
 
-### Basic Window Function Syntax
+## Basic Window Function Syntax
 
 ```sql
 AGGREGATE_FUNCTION(column) OVER (
@@ -1403,7 +1403,7 @@ AGGREGATE_FUNCTION(column) OVER (
 * `PARTITION BY` optionally divides rows into groups (like `GROUP BY`, but without collapsing).
 * `ORDER BY` defines the sequence within each partition.
 
-### Ranking Students by Average Score
+## Ranking Students by Average Score
 
 ```sql
 SELECT s.StudentID,
@@ -1418,7 +1418,7 @@ GROUP BY s.StudentID, s.FirstName, s.LastName;
 
 `RANK()` assigns a position based on the ordering. Tied scores receive the same rank, with a gap after (1, 2, 2, 4). `DENSE_RANK()` eliminates the gap (1, 2, 2, 3). `ROW_NUMBER()` assigns unique positions regardless of ties.
 
-### Cumulative Score by Student
+## Cumulative Score by Student
 
 ```sql
 SELECT StudentID,
@@ -1433,7 +1433,7 @@ FROM STUDENT_GRADE;
 
 Each row shows the individual score *and* a running total of all scores up to that point. `PARTITION BY StudentID` resets the running total for each student.
 
-### Moving Average of Scores
+## Moving Average of Scores
 
 ```sql
 SELECT StudentID,
@@ -1461,9 +1461,9 @@ Writing a great query once is useful. Writing it so that it can be reused reliab
 
 ---
 
-## 18. Views as Saved Reports
+# 18. Views as Saved Reports
 
-### Why Views Improve Consistency
+## Why Views Improve Consistency
 
 A view is a named, saved query that behaves like a virtual table. Every time you query a view, the underlying SQL runs fresh against current data. Views are valuable because they:
 
@@ -1471,7 +1471,7 @@ A view is a named, saved query that behaves like a virtual table. Every time you
 * **Hide complexity** — end users see a simple table, not a multi-join query
 * **Support governance** — views can restrict what data users see, acting as security layers
 
-### Syntax
+## Syntax
 
 ```sql
 CREATE VIEW view_name AS
@@ -1486,7 +1486,7 @@ Once created, views can be queried like tables:
 SELECT * FROM view_name;
 ```
 
-### Grading Database Example — HighPerformers View
+## Grading Database Example — HighPerformers View
 
 ```sql
 CREATE VIEW HighPerformers AS
@@ -1498,7 +1498,7 @@ WHERE sg.Score >= 90;
 
 This view standardizes the definition of "high performance" across reports and dashboards.
 
-### Grading Database Example — StudentDeliverables View
+## Grading Database Example — StudentDeliverables View
 
 ```sql
 CREATE VIEW StudentDeliverables AS
@@ -1514,7 +1514,7 @@ JOIN DELIVERABLE d ON sg.DeliverableID = d.DeliverableID;
 
 Now anyone can query `SELECT * FROM StudentDeliverables WHERE StudentName = 'Alice Johnson';` without knowing anything about joins. This view combines three tables into a single reporting interface without duplicating logic.
 
-### Grading Database Example — GradebookSummary View
+## Grading Database Example — GradebookSummary View
 
 ```sql
 CREATE VIEW GradebookSummary AS
@@ -1536,7 +1536,7 @@ GROUP BY s.StudentID, s.FirstName, s.LastName;
 
 This view produces a student summary report — name, average, submission count, and letter grade — as a single queryable table. An instructor, student advisor, or dashboard can all use it.
 
-### Grading Database Example — DeliverableAverages View
+## Grading Database Example — DeliverableAverages View
 
 ```sql
 CREATE VIEW DeliverableAverages AS
@@ -1550,7 +1550,7 @@ JOIN STUDENT_GRADE sg ON d.DeliverableID = sg.DeliverableID
 GROUP BY d.DeliverableID, d.Type, d.DeliverableNumber, d.Topic;
 ```
 
-### Grading Database Example — UpcomingDeliverables View
+## Grading Database Example — UpcomingDeliverables View
 
 ```sql
 CREATE VIEW UpcomingDeliverables AS
@@ -1563,13 +1563,13 @@ This view always reflects the current date, making it suitable for dashboards an
 
 ---
 
-## 19. CTEs for Readable Multi-Step Logic
+# 19. CTEs for Readable Multi-Step Logic
 
-### Why CTEs Exist
+## Why CTEs Exist
 
 Complex reports often require multiple calculation stages. You *could* nest subqueries three levels deep — but the result is nearly impossible to read, debug, or modify. CTEs (Common Table Expressions) provide a structured alternative: named stages that execute in order, each building on the previous one.
 
-### Syntax
+## Syntax
 
 ```sql
 WITH stage_name AS (
@@ -1583,7 +1583,7 @@ SELECT ...
 FROM next_stage;
 ```
 
-### Grading Database Example — Three-Stage Student Report
+## Grading Database Example — Three-Stage Student Report
 
 **Stage 1: Compute student averages.**
 **Stage 2: Assign letter grades.**
@@ -1633,7 +1633,7 @@ Each CTE is a named step that reads like a plan:
 
 The final `SELECT` joins back to STUDENT for names and produces a clean, actionable report.
 
-### When CTEs Are Preferable to Subqueries
+## When CTEs Are Preferable to Subqueries
 
 [[Table: Comparison of CTEs and subqueries across readability, reuse, debugging, and performance.]]
 
@@ -1650,11 +1650,11 @@ The final `SELECT` joins back to STUDENT for names and produces a clean, actiona
 
 ---
 
-## 20. Subqueries: Filtering, Derived Tables, and "Above Average" Logic
+# 20. Subqueries: Filtering, Derived Tables, and "Above Average" Logic
 
 Subqueries are queries nested inside other queries. They are compact and powerful for single-step comparisons. Conceptually, subqueries support **relational thinking**: instead of asking one question at a time, you ask a question *about the results of another question*.
 
-### Subquery in WHERE — Filtering by Computed Value
+## Subquery in WHERE — Filtering by Computed Value
 
 **Grading Database Example — Students scoring above the class average:**
 
@@ -1669,7 +1669,7 @@ WHERE sg.Score > (
 
 The inner query computes the overall average. The outer query returns only scores that exceed it.
 
-### IN and EXISTS Patterns
+## IN and EXISTS Patterns
 
 **Grading Database Example — Students who submitted the midterm (using IN):**
 
@@ -1699,14 +1699,14 @@ WHERE EXISTS (
 
 `EXISTS` is often faster than `IN` for large datasets because the database can stop searching as soon as it finds one match.
 
-### Correlated vs. Non-Correlated Subqueries
+## Correlated vs. Non-Correlated Subqueries
 
 * **Non-correlated subquery** runs once, independently of the outer query. The `AVG(Score)` example above is non-correlated — the average is the same regardless of which outer row is being evaluated.
 * **Correlated subquery** references columns from the outer query and runs once per outer row. The `EXISTS` example above is correlated — it checks each student's grades individually.
 
 **Performance intuition:** Non-correlated subqueries are generally fast. Correlated subqueries can be slow on large datasets because they run once per row. If performance is a concern, consider rewriting correlated subqueries as JOINs.
 
-### Subquery in FROM — Derived Tables
+## Subquery in FROM — Derived Tables
 
 **Grading Database Example — Average score per type, then filtered:**
 
@@ -1724,7 +1724,7 @@ WHERE AvgScore < 85;
 
 The inner query creates a temporary "table" of type averages. The outer query filters it. This is equivalent to a CTE but written inline.
 
-### Subquery in SELECT — Scalar Comparison
+## Subquery in SELECT — Scalar Comparison
 
 **Grading Database Example — Each student's score alongside the class average:**
 
@@ -1742,18 +1742,18 @@ Each row shows an individual score, the class average, and the gap between them.
 
 ---
 
-## 21. Combining Results with UNION
+# 21. Combining Results with UNION
 
 `UNION` combines the results of two or more `SELECT` statements into a single result set.
 
-### UNION vs. UNION ALL
+## UNION vs. UNION ALL
 
 * `UNION` removes duplicate rows automatically.
 * `UNION ALL` keeps all rows, including duplicates (faster when duplicates are acceptable).
 
 Rules: each `SELECT` must return the same number of columns with compatible data types.
 
-### Grading Database Example — Students with Any Engagement
+## Grading Database Example — Students with Any Engagement
 
 ```sql
 SELECT StudentID FROM STUDENT_GRADE
@@ -1763,7 +1763,7 @@ SELECT StudentID FROM ATTENDANCE;
 
 This returns a unique list of students who either submitted work or attended class.
 
-### Grading Database Example — Labeling Engagement Sources
+## Grading Database Example — Labeling Engagement Sources
 
 ```sql
 SELECT s.FirstName || ' ' || s.LastName AS StudentName, 'Grade' AS Source
@@ -1775,7 +1775,7 @@ FROM STUDENT s
 JOIN ATTENDANCE a ON s.StudentID = a.StudentID;
 ```
 
-### Grading Database Example — Measuring Engagement Intensity
+## Grading Database Example — Measuring Engagement Intensity
 
 ```sql
 SELECT StudentID, COUNT(*) AS EngagementCount
@@ -1791,11 +1791,11 @@ GROUP BY StudentID;
 
 ---
 
-## 22. Updating and Deleting Data
+# 22. Updating and Deleting Data
 
 Advanced SQL includes **responsible data modification**. In operational databases, careless updates can corrupt entire systems.
 
-### UPDATE
+## UPDATE
 
 ```sql
 UPDATE STUDENT
@@ -1805,7 +1805,7 @@ WHERE StudentID = 1;
 
 > **Warning:** Always include a `WHERE` clause. An `UPDATE` without `WHERE` changes every row in the table. This is one of the most common and dangerous SQL mistakes.
 
-### DELETE
+## DELETE
 
 ```sql
 DELETE FROM ATTENDANCE
@@ -1816,7 +1816,7 @@ WHERE AttendanceID = 2;
 
 ---
 
-## Choosing the Right Abstraction: Views, CTEs, or Subqueries
+# Choosing the Right Abstraction: Views, CTEs, or Subqueries
 
 These three tools serve overlapping but distinct purposes:
 
@@ -1842,13 +1842,13 @@ The queries you have written so far work correctly — they return the right ans
 
 ---
 
-## 23. Indexes for Speed
+# 23. Indexes for Speed
 
-### What Indexes Do
+## What Indexes Do
 
 An index is a data structure that helps the database find rows faster. Without an index, the database must scan every row in a table to find matches — this is called a **full table scan**. With an index, the database can jump directly to the relevant rows, like using the index at the back of a textbook instead of reading every page.
 
-### What Indexes Cost
+## What Indexes Cost
 
 Indexes are not free. They:
 
@@ -1858,14 +1858,14 @@ Indexes are not free. They:
 
 The trade-off: indexes speed up reads and slow down writes. For tables that are queried far more often than they are updated (like a gradebook), indexes are almost always worth it.
 
-### Syntax
+## Syntax
 
 ```sql
 CREATE INDEX index_name
 ON table_name (column1, column2, ...);
 ```
 
-### Where Indexes Matter in the Grading Database
+## Where Indexes Matter in the Grading Database
 
 **Indexing foreign keys in STUDENT_GRADE:**
 
@@ -1895,7 +1895,7 @@ ON STUDENT_GRADE (StudentID, DeliverableID);
 
 A composite index on both foreign keys is especially effective for queries that filter or join on both columns simultaneously.
 
-### Reading Query Plans (Conceptual)
+## Reading Query Plans (Conceptual)
 
 Most database systems provide a way to see *how* a query is executed:
 
@@ -1912,15 +1912,15 @@ The output shows whether the database is using an index or a full table scan. If
 
 ---
 
-## 24. Transactions for Safety
+# 24. Transactions for Safety
 
-### Why Grading Updates Should Be Atomic
+## Why Grading Updates Should Be Atomic
 
 Imagine you are applying a late penalty to all students who submitted Homework 1 after the due date. You need to identify late submissions, reduce their scores, and confirm the changes are correct. What if the database crashes between updating half the scores and the other half? You would have an inconsistent state — some students penalized, others not.
 
 A **transaction** solves this by grouping multiple operations into a single, atomic unit: either all changes succeed, or none do.
 
-### Syntax
+## Syntax
 
 ```sql
 BEGIN TRANSACTION;
@@ -1932,7 +1932,7 @@ COMMIT;   -- Apply all changes
 ROLLBACK; -- Undo all changes
 ```
 
-### Grading Database Example — Safe Bulk Grade Update
+## Grading Database Example — Safe Bulk Grade Update
 
 ```sql
 BEGIN TRANSACTION;
@@ -1961,7 +1961,7 @@ COMMIT;
 -- ROLLBACK;
 ```
 
-### Grading Database Example — Grade Recalculation (Curving)
+## Grading Database Example — Grade Recalculation (Curving)
 
 ```sql
 BEGIN TRANSACTION;
@@ -1985,7 +1985,7 @@ WHERE Score > 100;
 COMMIT;
 ```
 
-### Transaction Properties: ACID
+## Transaction Properties: ACID
 
 [[Table: The four ACID properties of database transactions.]]
 
@@ -1998,13 +1998,13 @@ COMMIT;
 
 ---
 
-## 25. Triggers for Automation
+# 25. Triggers for Automation
 
-### What Triggers Do
+## What Triggers Do
 
 A **trigger** is a stored procedure that runs automatically in response to a data change — an `INSERT`, `UPDATE`, or `DELETE` on a specified table. Triggers enforce business rules without relying on the application or user to remember them.
 
-### Syntax (SQLite)
+## Syntax (SQLite)
 
 ```sql
 CREATE TRIGGER trigger_name
@@ -2014,7 +2014,7 @@ BEGIN
 END;
 ```
 
-### Syntax (PostgreSQL)
+## Syntax (PostgreSQL)
 
 PostgreSQL triggers require a separate function:
 
@@ -2033,7 +2033,7 @@ FOR EACH ROW
 EXECUTE FUNCTION function_name();
 ```
 
-### Grading Database Example — Preventing Invalid Scores
+## Grading Database Example — Preventing Invalid Scores
 
 ```sql
 CREATE TRIGGER validate_score
@@ -2058,7 +2058,7 @@ INSERT INTO STUDENT_GRADE (GradeID, StudentID, DeliverableID, Score)
 VALUES (32, 1, 2, 150);
 ```
 
-### Grading Database Example — Audit Log on Grade Changes
+## Grading Database Example — Audit Log on Grade Changes
 
 Create an audit table to track every grade modification:
 
@@ -2088,7 +2088,7 @@ END;
 
 Now every grade change is recorded automatically. This is invaluable for resolving student disputes, auditing grading practices, and maintaining transparency in academic record-keeping.
 
-### Caution: Triggers Are Powerful and Easy to Misuse
+## Caution: Triggers Are Powerful and Easy to Misuse
 
 Triggers run invisibly. When someone inserts or updates a row, they may not know that a trigger is also executing. This creates risks:
 
@@ -2100,9 +2100,9 @@ Triggers run invisibly. When someone inserts or updates a row, they may not know
 
 ---
 
-## 26. Data Quality and Governance in SQL
+# 26. Data Quality and Governance in SQL
 
-### Constraints as Governance
+## Constraints as Governance
 
 Constraints are not just technical guardrails — they are **governance policies encoded in the database**. Every constraint expresses a business rule:
 
@@ -2116,7 +2116,7 @@ Constraints are not just technical guardrails — they are **governance policies
 | UNIQUE      | No duplicates allowed.                         | Each student has a unique email.     |
 | CHECK       | Values must fall within a valid range.         | Scores must be between 0 and 100.    |
 
-### Simple Audit Queries for Integrity
+## Simple Audit Queries for Integrity
 
 Even with constraints, it is good practice to run periodic integrity checks:
 
@@ -2149,7 +2149,7 @@ HAVING COUNT(*) > 1;
 
 If the `UNIQUE` constraint on `(StudentID, DeliverableID)` is in place, this should always return zero rows. Running it periodically confirms that the constraint is doing its job.
 
-### Designing for Reproducibility and Transparency
+## Designing for Reproducibility and Transparency
 
 In grading contexts — and in any business where decisions affect people — data systems must be:
 
@@ -2165,7 +2165,7 @@ SQL supports all three: views make logic reusable and inspectable, transactions 
 
 Throughout this chapter, you moved from diagnosing problems in flat data to building a production-ready, normalized database with reusable reporting pipelines and automated safeguards. That progression — from messy to structured, from ad hoc to engineered — is the arc of every real-world data project.
 
-### What You Built
+## What You Built
 
 * A **normalized schema** where each entity lives in its own table, connected through keys and constraints.
 * **Reporting queries** that answer real questions: Who is struggling? Which assignments are hardest? Are grades distributed fairly?
@@ -2173,7 +2173,7 @@ Throughout this chapter, you moved from diagnosing problems in flat data to buil
 * **Safety mechanisms** — transactions, triggers, and constraints — that protect data from corruption and error.
 * **Analytical tools** — window functions, conditional aggregation, and weighted calculations — that produce managerial insights directly from the database.
 
-### SQL Outputs as Managerial Artifacts
+## SQL Outputs as Managerial Artifacts
 
 The queries in this chapter are not academic exercises. They produce the same kinds of outputs that drive business decisions:
 
@@ -2181,15 +2181,15 @@ The queries in this chapter are not academic exercises. They produce the same ki
 * **KPIs**: Weighted averages, attendance rates, and pass/fail ratios are Key Performance Indicators.
 * **Interventions**: At-risk student reports trigger real actions — tutoring referrals, advising meetings, deadline extensions.
 
-### SQL as the Unifying Language of Data Systems
+## SQL as the Unifying Language of Data Systems
 
 One of SQL's most powerful properties is its **portability**. The same logical query runs in SQLite, PostgreSQL, SQL Server, and cloud platforms like Supabase. While syntax details may vary, the **relational thinking** remains constant. This makes SQL a durable skill that transfers across tools, jobs, and industries. Whether data lives in a local file, an enterprise warehouse, or a cloud-hosted service, SQL provides a shared language for asking questions, enforcing rules, and generating insight.
 
-### Why Strong SQL Makes Later Work Easier
+## Why Strong SQL Makes Later Work Easier
 
 Every analytics and business intelligence tool — Tableau, Power BI, Looker, Python/Pandas — ultimately relies on SQL to extract data. A well-normalized schema with clear views makes downstream analytics faster, more reliable, and more trustworthy. Bad data structure does not get better when you layer a visualization tool on top.
 
-### What Comes Next
+## What Comes Next
 
 This chapter focused on the most essential advanced SQL skills. Several additional topics extend this foundation:
 
@@ -2201,7 +2201,7 @@ These topics build on the same relational thinking and SQL fluency you have deve
 
 ---
 
-## Summary
+# Summary
 
 [[Table: Chapter summary showing each part, its topic, and the key skills covered.]]
 
@@ -2216,7 +2216,7 @@ These topics build on the same relational thinking and SQL fluency you have deve
 
 ---
 
-## Key Terms
+# Key Terms
 
 [[Table: Glossary of key terms introduced in this chapter.]]
 

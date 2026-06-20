@@ -28,7 +28,7 @@
 | **Specialization / Generalization** | Modeling "is-a" relationships where subtypes inherit attributes from a shared supertype (specialization = top-down; generalization = bottom-up). | Handles real-world complexity where entities share common attributes but also have type-specific ones. | `PERSON` supertype with `STUDENT` and `INSTRUCTOR` subtypes; disjoint vs. overlapping constraints. |
 | **Weak Entity** | An entity that cannot be uniquely identified by its own attributes alone; its identity depends on an owner (strong) entity. | Models entities whose existence and identity are tied to a parent, enforced through composite primary keys. | `SECTION(CourseID, SectionNumber)` depends on `COURSE(CourseID)`; `SectionNumber` alone is not unique. |
 
-## Acronyms and Abbreviations
+# Acronyms and Abbreviations
 
 | Abbreviation | Full Form | Brief Meaning | Where It Appears |
 |---|---|---|---|

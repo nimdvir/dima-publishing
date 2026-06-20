@@ -10,7 +10,7 @@
 
 # Chapter X
 
-# Engineering Data Intelligence with Advanced SQL
+## Engineering Data Intelligence with Advanced SQL
 
 ## From Querying Tables to Designing Reliable Systems
 
@@ -37,7 +37,7 @@ After completing this chapter, students should be able to:
 
 ---
 
-# 1. From Querying Data to Engineering Data Systems
+## 1. From Querying Data to Engineering Data Systems
 
 SQL has two fundamentally different uses.
 
@@ -47,7 +47,7 @@ SQL has two fundamentally different uses.
 | Static tables      | Data pipelines          |
 | Individual queries | Repeatable architecture |
 
-### Engineering Mindset
+## Engineering Mindset
 
 A strong SQL engineer must think in terms of:
 
@@ -57,7 +57,7 @@ A strong SQL engineer must think in terms of:
 
 ---
 
-# 2. Diagnosing Poor Data Design
+## 2. Diagnosing Poor Data Design
 
 Consider a flat table storing grades.
 
@@ -100,13 +100,13 @@ If SQL can detect inconsistency, **the schema allowed it**.
 
 ---
 
-# 3. SQL-Driven Normalization
+## 3. SQL-Driven Normalization
 
 Normalization decomposes data into **independent entities**.
 
 ## Entity Extraction
 
-### Students
+## Students
 
 ```sql id="dtga22"
 CREATE TABLE STUDENT AS
@@ -117,7 +117,7 @@ SELECT DISTINCT
 FROM GRADES_FLAT;
 ```
 
-### Deliverables
+## Deliverables
 
 ```sql id="c9b8se"
 CREATE TABLE DELIVERABLE AS
@@ -130,7 +130,7 @@ GROUP BY Quiz;
 
 ---
 
-# 4. The Relational Spine
+## 4. The Relational Spine
 
 Normalized schemas revolve around a **junction table**.
 
@@ -164,7 +164,7 @@ This structure eliminates redundancy while preserving relationships.
 
 ---
 
-# 5. Reassembling Data with JOINs
+## 5. Reassembling Data with JOINs
 
 Once normalized, SQL recombines data as needed.
 
@@ -184,11 +184,11 @@ The relational model allows us to **reconstruct views of reality dynamically**.
 
 ---
 
-# 6. Encoding Business Rules in the Schema
+## 6. Encoding Business Rules in the Schema
 
 Business policies must be enforced at the database level.
 
-### Example rule
+## Example rule
 
 > One score per student per deliverable.
 
@@ -206,7 +206,7 @@ Benefits:
 
 ---
 
-# 7. Translating Raw Scores into Managerial Metrics
+## 7. Translating Raw Scores into Managerial Metrics
 
 SQL converts operational data into **decision intelligence**.
 
@@ -239,11 +239,11 @@ GROUP BY StudentID;
 
 ---
 
-# 8. Time-Aware SQL
+## 8. Time-Aware SQL
 
 Databases can model **dynamic business logic**.
 
-### Upcoming Deliverables
+## Upcoming Deliverables
 
 ```sql id="itma7c"
 SELECT *
@@ -254,7 +254,7 @@ AND CURRENT_DATE + INTERVAL '14 days';
 
 ---
 
-# 9. Weighted Grade Calculations
+## 9. Weighted Grade Calculations
 
 Grades often involve weighted categories.
 
@@ -280,7 +280,7 @@ GROUP BY s.StudentID;
 
 ---
 
-# 10. Analytics with Window Functions
+## 10. Analytics with Window Functions
 
 Traditional aggregation collapses rows.
 
@@ -303,7 +303,7 @@ Applications:
 
 ---
 
-# 11. Designing Readable Pipelines with CTEs
+## 11. Designing Readable Pipelines with CTEs
 
 Complex queries should be structured as **data pipelines**.
 
@@ -335,7 +335,7 @@ Benefits:
 
 ---
 
-# 12. Creating Single Sources of Truth
+## 12. Creating Single Sources of Truth
 
 Different stakeholders must rely on consistent definitions.
 
@@ -355,7 +355,7 @@ Views ensure:
 
 ---
 
-# 13. Indexes and Performance
+## 13. Indexes and Performance
 
 Without indexes:
 
@@ -384,7 +384,7 @@ Trade-off:
 
 ---
 
-# 14. Transactions and Data Reliability
+## 14. Transactions and Data Reliability
 
 Database systems guarantee **ACID properties**.
 
@@ -403,7 +403,7 @@ If an error occurs:
 ROLLBACK;
 ```
 
-### ACID Principles
+## ACID Principles
 
 | Property    | Meaning                         |
 | ----------- | ------------------------------- |
@@ -414,15 +414,15 @@ ROLLBACK;
 
 ---
 
-# 15. Self-Defending Data Architecture
+## 15. Self-Defending Data Architecture
 
 Databases should actively protect themselves.
 
-### Constraints
+## Constraints
 
 Prevent invalid states.
 
-### Triggers
+## Triggers
 
 Automate auditing and rule enforcement.
 
@@ -440,7 +440,7 @@ Triggers enable:
 
 ---
 
-# 16. The SQL Intelligence Pipeline
+## 16. The SQL Intelligence Pipeline
 
 Data engineering evolves through stages.
 
@@ -461,7 +461,7 @@ Strong SQL design turns **raw data into trusted intelligence systems**.
 
 ---
 
-# Exercises
+## Exercises
 
 ## Conceptual Questions
 
@@ -473,11 +473,11 @@ Strong SQL design turns **raw data into trusted intelligence systems**.
 
 ## SQL Practice
 
-### 1 — Detect duplicates
+## 1 — Detect duplicates
 
 Write a query identifying students with multiple email addresses.
 
-### 2 — Normalize a table
+## 2 — Normalize a table
 
 Split the following table:
 
@@ -487,7 +487,7 @@ Split the following table:
 
 into three tables.
 
-### 3 — Window analytics
+## 3 — Window analytics
 
 Compute:
 
@@ -496,7 +496,7 @@ Compute:
 
 ---
 
-# Summary
+## Summary
 
 Advanced SQL is not just about querying data.
 

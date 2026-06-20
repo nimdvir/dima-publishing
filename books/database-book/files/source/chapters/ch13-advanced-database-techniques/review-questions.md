@@ -1,23 +1,3 @@
----
-title: "Chapter 13: Review and Reflection"
-chapter: 13
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions to help students consolidate Chapter 13 concepts on database hardening and connect them to practice and personal growth."
-keywords:
-  - review questions
-  - reflection questions
-  - BITM330
-  - database hardening
-  - indexes
-  - transactions
-  - constraints
-  - triggers
-  - security
-  - chapter 13
-date: 2026-06-16
-author: "Nimrod Dvir, PhD"
----
-
 # Chapter 13: Review and Reflection
 
 <p align="center">
@@ -26,7 +6,7 @@ author: "Nimrod Dvir, PhD"
 
 *Consolidating what you learned about hardening databases for performance, integrity, auditability, and security.*
 
-## Review Questions
+# Review Questions
 
 *These questions help you check your understanding of the chapter's main concepts, terms, and techniques. Answers should draw directly from the chapter content.*
 
@@ -50,7 +30,7 @@ author: "Nimrod Dvir, PhD"
 
 **10. Compare how triggers, stored procedures, and Access macros differ in when and how they execute database logic.**
 
-## Reflection Questions
+# Reflection Questions
 
 *These questions ask you to interpret, compare, evaluate, and apply the chapter's ideas. There is rarely one right answer — but your reasoning should be grounded in the chapter's concepts and the Grading Database context.*
 
@@ -68,7 +48,7 @@ author: "Nimrod Dvir, PhD"
 
 **7. The chapter compares Access, SQLite, and PostgreSQL/Supabase for implementing advanced techniques. Which platform would you recommend for a small departmental grading system with five instructors? What changes if the system must support five thousand students across multiple campuses?**
 
-## Personal Reflection Questions
+# Personal Reflection Questions
 
 *These questions invite you to connect the chapter's ideas to your own development as a data professional. There are no right or wrong answers — honest reflection is the goal.*
 
@@ -87,9 +67,9 @@ author: "Nimrod Dvir, PhD"
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: What does it mean to harden a database, and what four qualities does hardening protect?**
 **Suggested Answer:** Database hardening means strengthening a database so it can operate safely under realistic conditions — not changing its business purpose, but reinforcing the system around it. The four protected qualities are: **performance** (queries stay fast as data grows), **integrity** (data remains valid and internally consistent), **auditability** (important changes can be traced), and **security** (users can access only what they are authorized to access).
@@ -121,7 +101,7 @@ author: "Nimrod Dvir, PhD"
 **Question 10: Compare how triggers, stored procedures, and Access macros differ in when and how they execute database logic.**
 **Suggested Answer:** Triggers execute automatically in response to data events (`INSERT`, `UPDATE`, `DELETE`) and cannot be called directly by users. Stored procedures are called explicitly by users or applications and can package multi-step operations into a single reusable call. Access macros are event-driven automation at the interface level — they run in response to form events, button clicks, or data changes — and data macros run at the table level similar to triggers. Triggers are automatic, stored procedures are on-demand, and macros are interface-driven.
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: The chapter argues that advanced database techniques protect performance, integrity, auditability, and security. Which of these four qualities do you think is most likely to be neglected in a small departmental database? Why?**
 **Suggested Answer:** Auditability is often the most neglected in small systems. Performance problems become visible when queries slow down; integrity problems surface when bad data appears; security may get attention if sensitive data is involved. But auditability — recording who changed what and when — rarely causes immediate visible problems. Its absence is only felt later, during a dispute or audit, when it is too late to reconstruct the missing history. Small teams often assume trust eliminates the need for audit trails, but trust and accountability are complementary, not opposing, ideas.
@@ -144,7 +124,7 @@ author: "Nimrod Dvir, PhD"
 **Question 7: The chapter compares Access, SQLite, and PostgreSQL/Supabase for implementing advanced techniques. Which platform would you recommend for a small departmental grading system with five instructors? What changes if the system must support five thousand students across multiple campuses?**
 **Suggested Answer:** For five instructors in one department, Microsoft Access is a reasonable choice — it provides forms, reports, macros, and a visual interface that non-technical users can navigate. The scale is small enough that Access's concurrency and security limitations are manageable. For five thousand students across multiple campuses, Access is no longer appropriate. The system needs a server-based DBMS such as PostgreSQL (possibly via Supabase for cloud hosting) to handle concurrent users, enforce row-level security so students see only their own records, support automated backups, and scale to the data volume that thousands of students generate over multiple semesters. The platform choice follows the requirements, not habit.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: This chapter shifts the focus from writing correct queries to building reliable systems. Which of the hardening techniques — indexes, transactions, constraints, triggers, security, or analytics patterns — feels most unfamiliar to you? What would help you get more comfortable with it?**
 **Suggested Answer:** Answers will vary. A student might identify triggers as most unfamiliar because they run automatically and invisibly, making them harder to test and debug than explicit queries. Getting comfortable could involve building a small audit trigger on a practice table, testing it with different types of changes, and verifying the audit output. The key is hands-on practice — triggers make more sense after you see one work.

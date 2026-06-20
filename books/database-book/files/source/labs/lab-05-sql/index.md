@@ -1,6 +1,4 @@
-<!-- metadata: date="2026-06-03" -->
-
-<!-- markdownlint-disable MD013 MD024 MD028 MD033 MD034 MD036 -->
+﻿<!-- markdownlint-disable MD013 MD024 MD028 MD033 MD034 MD036 -->
 
 # Lab 05: Querying the PetVax Database with SQL
 
@@ -10,7 +8,7 @@
 
 <p align="center"><em>Take the SQL moves you practiced on the Grading Database and run them against the same PetVax clinic data you built in Access, now stored in SQLite.</em></p>
 
-## Overview
+# Overview
 
 This lab is a guided SQLite workflow.
 
@@ -32,7 +30,7 @@ This lab has **two graded parts**. You must complete both:
 
 > 💡 **Note:** This lab uses **one table at a time**. You will query `PETVAX_APPOINTMENTS` and `SERVICE_RATES` separately. Combining two tables in one query (a `JOIN`) is the focus of Chapter 6, so it is intentionally left out here.
 
-## Scenario
+# Scenario
 
 PetVax is the same single-location veterinary clinic from Lab 04. The clinic moved its appointments out of Access and into a SQLite database. The owner hands you a starter script that creates two tables — `PETVAX_APPOINTMENTS` (April 2026 appointments) and `SERVICE_RATES` (the standard fee for each service) — and loads 24 starter rows. Your job is to load the script, add two new appointments, answer questions about the data, and produce a clean `.sql` file the owner can rerun whenever she wants.
 
@@ -40,7 +38,7 @@ PetVax is the same single-location veterinary clinic from Lab 04. The clinic mov
 
 > 🛑 **Run statements in order.** A few check answers depend on rows you insert in Step 8. Running a later query before its step will give you the wrong answer.
 
-## Required Files and Tools
+# Required Files and Tools
 
 | Item | Detail |
 | --- | --- |
@@ -63,7 +61,7 @@ From here on, write every statement into that one script and keep it saved. The 
 
 ---
 
-## Step 1 — Load the starter database
+# Step 1 — Load the starter database
 
 **Do.** Open `petvax-lab05-setup-2026-06-03.sql` from `assets/`. Copy its entire contents into your SQL editor *below* your comment header and run it. The script drops any old tables, creates `PETVAX_APPOINTMENTS` and `SERVICE_RATES`, and inserts the starter data. Confirm the load:
 
@@ -82,7 +80,7 @@ How many rows are in `PETVAX_APPOINTMENTS` immediately after running the setup s
 
 ---
 
-## Step 2 — Identify the primary key
+# Step 2 — Identify the primary key
 
 **Do.** Read the `CREATE TABLE PETVAX_APPOINTMENTS` statement at the top of the setup script and find the column declared as `PRIMARY KEY`.
 
@@ -103,7 +101,7 @@ Which column is the primary key of `PETVAX_APPOINTMENTS`?
 
 ---
 
-## Step 3 — Filter the no-shows
+# Step 3 — Filter the no-shows
 
 **Do.** Write a query that returns every appointment whose status is `No-show`. Show `AppointmentID`, `PetName`, `AppointmentDate`, and `ServiceType`. Sort by `AppointmentDate`. Label the query `-- Check 3: No-show appointments`.
 
@@ -124,7 +122,7 @@ How many starter rows have `AppointmentStatus = 'No-show'`?
 
 ---
 
-## Step 4 — Find vaccine-due appointments
+# Step 4 — Find vaccine-due appointments
 
 **Do.** Write a query that lists every appointment where `VaccineDue = 'Yes'`. Show `PetName`, `OwnerName`, `ServiceType`, and `AppointmentDate`. Label it `-- Check 4: Vaccine-due appointments`.
 
@@ -138,7 +136,7 @@ How many starter rows have `VaccineDue = 'Yes'`?
 
 ---
 
-## Step 5 — Find appointments that did not get a reminder
+# Step 5 — Find appointments that did not get a reminder
 
 **Do.** Write a query that lists every appointment where `ReminderSent = 'No'`. Show `PetName`, `AppointmentDate`, `AppointmentStatus`, and `ReminderSent`. Label it `-- Check 5: Reminder not sent`.
 
@@ -152,7 +150,7 @@ How many starter rows have `ReminderSent = 'No'`?
 
 ---
 
-## Step 6 — List the distinct service types
+# Step 6 — List the distinct service types
 
 **Do.** Use `DISTINCT` to list each unique `ServiceType` that appears in the starter data.
 
@@ -171,7 +169,7 @@ How many distinct service types appear in the starter data (before any inserts)?
 
 ---
 
-## Step 7 — Find the highest single payment
+# Step 7 — Find the highest single payment
 
 **Do.** Sort the appointments by `PaymentAmount` from high to low and look at the top row. Use `AppointmentID` as a second sort field so the result stays predictable if two appointments tie.
 
@@ -192,7 +190,7 @@ Which pet has the highest single `PaymentAmount` in the starter data?
 
 ---
 
-## Step 8 — Add two new appointments
+# Step 8 — Add two new appointments
 
 **Do.** Write two `INSERT` statements. The first records Maple's vaccination (the same appointment you added through the Access form in Lab 04). The second records a new General Checkup for Biscuit, whose owner email is missing on file.
 
@@ -233,7 +231,7 @@ How many rows are in `PETVAX_APPOINTMENTS` after running both inserts?
 
 ---
 
-## Step 9 — Find appointments with a missing owner email
+# Step 9 — Find appointments with a missing owner email
 
 **Do.** Write a query that returns every appointment whose `OwnerEmail` is `NULL`.
 
@@ -255,7 +253,7 @@ How many appointments have `OwnerEmail IS NULL` after both inserts?
 
 ---
 
-## Step 10 — Filter on a numeric threshold
+# Step 10 — Filter on a numeric threshold
 
 **Do.** Write a query that returns every appointment whose `PaymentAmount` is at least 100. Show `PetName`, `ServiceType`, and `PaymentAmount`. Sort by `PaymentAmount` descending. Label it `-- Check 10: Payments of 100 or more`.
 
@@ -276,7 +274,7 @@ How many rows have `PaymentAmount >= 100` after both inserts?
 
 ---
 
-## Step 11 — Count appointments per service
+# Step 11 — Count appointments per service
 
 **Do.** Group the appointments by `ServiceType` and count how many appointments fall in each group. Sort from most to fewest.
 
@@ -302,7 +300,7 @@ After both inserts, which `ServiceType` has the **most** appointments?
 
 ---
 
-## Step 12 — Average payment by service, then filter the groups
+# Step 12 — Average payment by service, then filter the groups
 
 **Do.** Group the appointments by `ServiceType`, compute the average `PaymentAmount`, then add a `HAVING` clause to keep only the services whose average is at least 100.
 
@@ -332,7 +330,7 @@ Which service categories appear in the `HAVING` result? Select **all** that appl
 
 ---
 
-## Step 13 — Build a CASE calculated field and count the tiers
+# Step 13 — Build a CASE calculated field and count the tiers
 
 **Do.** Use a `CASE` expression to label every appointment by payment tier, then group by the label to count how many fall in each tier.
 
@@ -359,7 +357,7 @@ After both inserts, how many appointments fall in the **Low** tier (`PaymentAmou
 
 ---
 
-## Step 14 — Query the service-rate table on its own
+# Step 14 — Query the service-rate table on its own
 
 **Do.** The second table, `SERVICE_RATES`, holds the clinic's standard fee for each service. Query it directly to find the most expensive standard service.
 
@@ -386,7 +384,7 @@ Which service has the **highest** `StandardFee` in `SERVICE_RATES`?
 
 ---
 
-## Step 15 — (Optional) Practice a safe update
+# Step 15 — (Optional) Practice a safe update
 
 > ⚠️ **Optional, not graded.** If you include this block in your submitted `.sql` file, leave the `UPDATE` statement commented out unless your instructor tells you to run it. The required quiz answers are based on the database state **before** this optional update.
 
@@ -407,7 +405,7 @@ WHERE AppointmentID = 1011;
 
 ---
 
-## Step 16 — Save and submit
+# Step 16 — Save and submit
 
 **Do.** Make sure your `.sql` file contains, in order:
 
@@ -425,14 +423,14 @@ Save the file as `Lab05-PetVax-SQL-LastName.sql` (replace `LastName` with your r
 > - Queries for Checks 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, and 14
 > - Each required query labeled with a `-- Check N:` comment
 
-## Submission
+# Submission
 
 - Save the file as `Lab05-PetVax-SQL-LastName.sql` (use your real last name, no spaces).
 - Upload the `.sql` (and optional `.db`) to the Lab 05 file-submission assignment.
 - Answer the auto-graded quiz questions in the Brightspace quiz for this lab.
 - **Grading:** quiz checks (26 pts) + AI-graded review of your `.sql` (14 pts) = **40 pts**.
 
-## Optional Extensions
+# Optional Extensions
 
 These are not required and are not graded.
 

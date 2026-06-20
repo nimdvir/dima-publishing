@@ -1,40 +1,50 @@
-# Chapter 14 Reflection Questions — Power BI
+# Chapter 14: Review and Reflection
 
-![Reflection GIF](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0)
+# Review Questions
 
-<!-- Companion: Discussion and review questions — 2026-05-06 -->
+1. Explain the role of 14.2 connecting to data sources in this chapter.
 
-## Review Questions
+2. Explain the role of steps to connect in this chapter.
 
-1. What are the three main components of Power BI and what is the purpose of each?
-2. What is the difference between a **calculated column** and a **measure** in DAX? When would you use each?
-3. Describe three data transformations you might perform in Power Query before loading data into a report.
-4. What is **filter context** in DAX and why does it matter when writing measures?
-5. What is the difference between a **report** and a **dashboard** in the Power BI Service?
-6. List three chart types available in Power BI and describe the type of data each is best suited for.
-7. What steps are required to publish a Power BI Desktop report to the Power BI Service?
+3. Explain the role of 14.3 power query: transforming data in this chapter.
 
----
+4. Explain the role of 14.4 building visualizations in this chapter.
 
-## Discussion Questions
+5. Explain the role of core visual types in this chapter.
 
-1. **Data Storytelling:** A manager asks you to build a dashboard to track student performance across all courses in the department. What questions would you ask before building the report? What visuals would you include?
+6. Explain the role of 14.5 dax: data analysis expressions in this chapter.
 
-2. **Tool Selection:** You have access to both Excel (with charts) and Power BI. When would you choose Power BI over an Excel chart? What are the tradeoffs?
+7. Explain the role of calculated column vs. measure in this chapter.
 
-3. **Ethics of Dashboards:** Could a Power BI dashboard be misleading even if the underlying data is accurate? Give an example and explain how a dashboard designer can mitigate this risk.
+8. Explain the role of 14.6 interactive reports: slicers and filters in this chapter.
 
-4. **Integration with SQL:** How does understanding SQL and the relational model (Chapters 5–6) help you build better Power BI reports? Give a specific example.
+# Reflection Questions
 
-5. **Organizational Impact:** Imagine you are a new analyst at a company that currently sends PDF reports by email each week. You propose replacing this process with a live Power BI dashboard. What benefits and challenges would you anticipate?
+9. Which idea from this chapter is most useful for the Grading Database project?
 
----
+10. What would you ask for help with before applying this chapter in practice?
 
-## Scenario-Based Question
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-A regional sales manager receives a weekly Excel file showing sales by product and region. She spends two hours every Monday reformatting it into a PowerPoint for the executive meeting.
+# Answer Key
 
-- How could Power BI solve this problem?
-- What data source(s) would you connect?
-- What visuals would you include on the executive dashboard?
-- What questions would the executives most likely want to answer?
+1. A strong answer defines 14.2 connecting to data sources, explains why it matters, and connects it to trustworthy data work or business performance.
+
+2. A strong answer defines steps to connect, explains why it matters, and connects it to trustworthy data work or business performance.
+
+3. A strong answer defines 14.3 power query: transforming data, explains why it matters, and connects it to trustworthy data work or business performance.
+
+4. A strong answer defines 14.4 building visualizations, explains why it matters, and connects it to trustworthy data work or business performance.
+
+5. A strong answer defines core visual types, explains why it matters, and connects it to trustworthy data work or business performance.
+
+6. A strong answer defines 14.5 dax: data analysis expressions, explains why it matters, and connects it to trustworthy data work or business performance.
+
+7. A strong answer defines calculated column vs. measure, explains why it matters, and connects it to trustworthy data work or business performance.
+
+8. A strong answer defines 14.6 interactive reports: slicers and filters, explains why it matters, and connects it to trustworthy data work or business performance.
+
+9. Strong responses connect one chapter idea to a concrete course project decision.
+
+10. Strong responses identify a specific uncertainty and explain what evidence or practice would resolve it.

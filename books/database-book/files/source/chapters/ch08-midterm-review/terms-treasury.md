@@ -4,9 +4,9 @@
 
 ---
 
-## Essential Vocabulary
+# Essential Vocabulary
 
-### A
+## A
 
 - **Access (Microsoft Access)** — A desktop relational DBMS with a visual interface for building tables, queries, forms, and reports; one of three platforms used in the course alongside SQLite and Supabase.
 - **ACID Properties** — Atomicity, Consistency, Isolation, Durability; four guarantees that define reliable transaction processing.
@@ -17,14 +17,14 @@
 - **Attribute** — A property or characteristic of an entity; becomes a column in a relational table.
 - **Audit Trail** — A record of changes to data (who, when, what changed) used for accountability and compliance.
 
-### B
+## B
 
 - **BETWEEN** — A SQL operator that filters values within an inclusive range (e.g., `Score BETWEEN 60 AND 100`).
 - **Bloom's Taxonomy** — A hierarchy of cognitive skills (Remember, Understand, Apply, Analyze, Evaluate, Create) used to frame learning outcomes.
 - **Boolean Logic** — Logic using AND, OR, and NOT operators to combine conditions in SQL WHERE clauses.
 - **Business Rule** — A policy or constraint governing how data is structured and enforced in a database.
 
-### C
+## C
 
 - **Candidate Key** — A minimal set of attributes that uniquely identifies each row; one is chosen as the primary key.
 - **Cardinality** — The number of rows in a table, or the type of relationship between entities (1:1, 1:N, M:N).
@@ -37,7 +37,7 @@
 - **CROSS JOIN** — A join that returns every combination of rows from two tables (Cartesian product).
 - **CTE (Common Table Expression)** — A temporary named result set defined with `WITH` that simplifies complex queries.
 
-### D
+## D
 
 - **Data** — Raw, unprocessed facts without context.
 - **Data Definition Language (DDL)** — SQL commands that define database structure: CREATE, ALTER, DROP.
@@ -53,13 +53,13 @@
 - **DIKW Hierarchy** — Data → Information → Knowledge → Wisdom; a framework for understanding how raw facts become actionable insight.
 - **DISTINCT** — A SQL keyword that eliminates duplicate rows from query results.
 
-### E
+## E
 
 - **Entity** — A distinguishable real-world object or concept about which data is stored; becomes a table in a relational database.
 - **Entity-Relationship (ER) Model** — A conceptual data model using entities, attributes, and relationships to represent database structure.
 - **ERD (Entity-Relationship Diagram)** — A visual diagram depicting entities, their attributes, and the relationships between them.
 
-### F
+## F
 
 - **Field** — A single data item within a record; synonymous with column in relational databases.
 - **Five-Component Framework** — Hardware, Software, Data, Procedures, People; the five components of every information system.
@@ -68,16 +68,16 @@
 - **Full Outer Join** — A join that returns all rows from both tables, with NULLs where no match exists.
 - **Functional Dependency** — A relationship where one attribute uniquely determines another (e.g., StudentID → StudentName).
 
-### G
+## G
 
 - **GIGO (Garbage In, Garbage Out)** — The principle that poor-quality input produces poor-quality output.
 - **GROUP BY** — A SQL clause that groups rows sharing common values for use with aggregate functions.
 
-### H
+## H
 
 - **HAVING** — A SQL clause that filters groups created by GROUP BY, as opposed to WHERE which filters individual rows.
 
-### I
+## I
 
 - **IN** — A SQL operator that tests whether a value matches any value in a list or subquery.
 - **Index** — A data structure that speeds up data retrieval at the cost of additional write overhead.
@@ -87,30 +87,30 @@
 - **INSERT** — A DML statement that adds new rows to a table.
 - **Intersection Table (Junction Table)** — A table created to resolve a many-to-many relationship, containing foreign keys from both parent tables.
 
-### J
+## J
 
 - **JOIN** — A SQL operation that combines rows from two or more tables based on a related column.
 - **Junction Table** — See Intersection Table.
 
-### K
+## K
 
 - **Key** — An attribute or set of attributes used to uniquely identify rows or establish relationships between tables.
 - **Knowledge** — Information that has been interpreted, understood, and contextualized for decision-making.
 
-### L
+## L
 
 - **LEFT JOIN (LEFT OUTER JOIN)** — A join that returns all rows from the left table and matching rows from the right table; unmatched rows show NULLs.
 - **LIKE** — A SQL operator used for pattern matching with wildcards (% for any characters, _ for one character).
 - **Logical View** — The way users and applications see data, independent of physical storage.
 
-### M
+## M
 
 - **Management Information System (MIS)** — A system that provides managers with reports and tools for decision-making.
 - **Many-to-Many (M:N) Relationship** — A relationship where multiple instances of one entity relate to multiple instances of another; resolved via a junction table.
 - **Metadata** — Data about data; describes the structure, meaning, and context of stored information.
 - **Modification Anomaly** — A collective term for insertion, update, and deletion anomalies caused by unnormalized data.
 
-### N
+## N
 
 - **Natural Key** — A key derived from real-world data (e.g., SSN, email) as opposed to a surrogate key.
 - **NOIR Measurement Levels** — Nominal, Ordinal, Interval, Ratio; four levels describing the nature of data values.
@@ -119,23 +119,23 @@
 - **NOT NULL** — A constraint requiring that a column always contains a value.
 - **NULL** — A marker representing missing, unknown, or inapplicable data; not the same as zero or empty string.
 
-### O
+## O
 
 - **One-to-Many (1:N) Relationship** — A relationship where one instance of an entity relates to many instances of another; the most common relationship type.
 - **One-to-One (1:1) Relationship** — A relationship where one instance of an entity relates to exactly one instance of another.
 - **ORDER BY** — A SQL clause that sorts query results by one or more columns (ASC or DESC).
 
-### P
+## P
 
 - **Partial Dependency** — When a non-key attribute depends on only part of a composite primary key; violates 2NF.
 - **Physical View** — How data is actually stored on disk, managed by the DBMS.
 - **Primary Key (PK)** — The column or set of columns that uniquely identifies each row in a table; cannot contain NULLs.
 
-### Q
+## Q
 
 - **Query** — A request for data from a database, typically written in SQL.
 
-### R
+## R
 
 - **R.E.A.D. Framework** — Representation, Evaluation, Action/Decision, Deployment; a model for understanding how data becomes actionable insight.
 - **Record** — A single row in a table, representing one instance of an entity.
@@ -147,7 +147,7 @@
 - **RIGHT JOIN (RIGHT OUTER JOIN)** — A join that returns all rows from the right table and matching rows from the left table.
 - **Row** — A single record or tuple in a relational table.
 
-### S
+## S
 
 - **Schema** — The overall structure of a database, including tables, columns, data types, keys, and constraints.
 - **SELECT** — A DML statement that retrieves data from one or more tables.
@@ -156,7 +156,7 @@
 - **Subquery** — A query nested inside another query, used in WHERE, FROM, or SELECT clauses.
 - **Surrogate Key** — A system-generated artificial identifier (e.g., auto-increment integer) used as a primary key.
 
-### T
+## T
 
 - **Table** — A structured collection of related data organized in rows and columns; the fundamental unit of a relational database.
 - **Transaction** — A logical unit of work that groups database operations into an all-or-nothing action.
@@ -164,16 +164,16 @@
 - **Trigger** — A block of database logic that executes automatically in response to a data event (INSERT, UPDATE, DELETE).
 - **Tuple** — A single row in a relation (table); synonymous with record.
 
-### U
+## U
 
 - **UNION** — A SQL operator that combines results from two or more SELECT statements, removing duplicates (UNION ALL keeps duplicates).
 - **UPDATE** — A DML statement that modifies existing data in a table.
 
-### V
+## V
 
 - **View** — A saved SQL query that acts as a virtual table; does not store data but presents a filtered or joined perspective.
 
-### W
+## W
 
 - **WHERE Clause** — A SQL clause that filters rows based on specified conditions.
 - **Wildcard** — A character used in pattern matching: `%` (any sequence of characters) and `_` (any single character) in SQL LIKE.
@@ -182,7 +182,7 @@
 
 ---
 
-## Acronyms
+# Acronyms
 
 | Acronym | Full Meaning |
 |---------|-------------|
@@ -211,9 +211,9 @@
 
 ---
 
-## Key Concepts
+# Key Concepts
 
-### Foundational Ideas
+## Foundational Ideas
 
 1. **Information Systems & MIS (Ch 1–2)** — Every information system comprises five components: Hardware, Software, Data, Procedures, and People. MIS focuses on providing managers with information for decision-making. BITM extends this with emphasis on data management, SQL, and database design.
 
@@ -229,7 +229,7 @@
 
 7. **Midterm Review (Ch 8)** — The midterm synthesizes Chapters 2–7 into two assessments: a test checking your ability to query and interpret an existing quiz database, and a project checking your ability to design, populate, and query a grading database from scratch. Together they confirm you can move from data to tables to relationships to queries to decisions as one connected system.
 
-### Concept Overview
+## Concept Overview
 
 1. **Three-Platform Approach** — The course uses Access (visual, beginner-friendly), SQLite (lightweight, standards-compliant), and Supabase/PostgreSQL (cloud-scale, enterprise-grade) to demonstrate that core database concepts are platform-independent.
 
@@ -245,7 +245,7 @@
 
 7. **Referential Integrity** — FK values must match existing PK values. Enforcement options: RESTRICT (block), CASCADE (propagate), SET NULL (nullify). Prevents orphaned records.
 
-### Application in Practice
+## Application in Practice
 
 1. **Building Queries Incrementally** — Start with simple SELECT, add WHERE filters, JOIN related tables, GROUP BY for summaries, HAVING for group filters, ORDER BY for sorting. Each clause adds one layer of logic.
 
@@ -257,7 +257,7 @@
 
 5. **Window Functions for Analytics** — Use RANK(), ROW_NUMBER(), and running AVG() with OVER(PARTITION BY ... ORDER BY ...) to calculate rankings and cumulative metrics without collapsing row-level detail.
 
-### Real-World Examples
+## Real-World Examples
 
 1. **Grading System** — Students, deliverables, grades, attendance, and schedules modeled across seven related tables. Demonstrates entity identification, relationship types, normalization, and SQL query patterns.
 

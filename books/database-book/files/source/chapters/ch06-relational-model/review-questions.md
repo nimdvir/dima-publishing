@@ -1,28 +1,10 @@
-<!-- markdownlint-disable MD025 MD041 MD003 MD022 MD007 MD032 -->
----
-title: "Chapter 6: Review and Reflection"
-chapter: 6
-section: "Review and Reflection"
-description: "Provides review, reflection, and personal reflection questions that help students consolidate Chapter 6 concepts and connect the relational model to design practice, database integrity, and their own developing judgment."
-keywords:
-  - review questions
-  - reflection questions
-  - relational model
-  - referential integrity
-  - functional dependency
-  - ASSIGNMENT_TYPE
-  - Chapter 6
-date: 2026-03-22
-author: "Nimrod Dvir, PhD"
----
-
 # Chapter 6: Review and Reflection
 
 ![Reflection GIF](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0)
 
 *Pause, review, and think more deeply about how relational structure turns scattered grading facts into a coherent system.*
 
-## Review Questions
+# Review Questions
 
 *These questions help you review the chapter's main ideas, terms, frameworks, and examples.*
 
@@ -35,7 +17,7 @@ author: "Nimrod Dvir, PhD"
 7. Why can surrogate primary keys and business-rule uniqueness constraints exist at the same time?
 8. How does the chapter use functional dependency to preview normalization in Chapter 7?
 
-## Reflection Questions
+# Reflection Questions
 
 *These questions encourage you to interpret the chapter, connect ideas, and think critically about how they apply in practice.*
 
@@ -46,7 +28,7 @@ author: "Nimrod Dvir, PhD"
 5. When might a natural key be a good design choice, and when is a surrogate key safer?
 6. Why do JOINs become necessary in a relational design rather than feeling like an optional advanced technique?
 
-## Personal Reflection Questions
+# Personal Reflection Questions
 
 *These questions help you connect the chapter to your own habits, goals, strengths, and developing professional skills.*
 
@@ -57,9 +39,12 @@ author: "Nimrod Dvir, PhD"
 5. How might this chapter change the way you design a spreadsheet, form, or tracking system in the future?
 6. What habit do you want to build so you notice structural problems in data earlier instead of after errors appear?
 
-## Answer Key
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-### Review
+# Answer Key
+
+## Review
 
 **Question 1: Why does the chapter argue that a flat grading table becomes unreliable as requirements grow?**
 Suggested Answer: The chapter argues that a flat table becomes unreliable because it mixes several subjects at once, including student identity, assignment-type rules, deliverable details, and score outcomes. As those facts repeat across rows, the design creates data redundancy and leads to update, insertion, and deletion anomalies.
@@ -85,7 +70,7 @@ Suggested Answer: A surrogate primary key gives a table a stable system-generate
 **Question 8: How does the chapter use functional dependency to preview normalization in Chapter 7?**
 Suggested Answer: The chapter uses functional dependency to show that some attributes belong together because they share the same determinant. In this schema, `AssignmentType` determines `Quantity`, `PointsPerType`, and `Weight`, so those values belong in `ASSIGNMENT_TYPE`. Chapter 7 formalizes that logic as normalization.
 
-### Reflection
+## Reflection
 
 **Question 1: Why is `ASSIGNMENT_TYPE` a stronger teaching choice than naming the category-rules table `WEIGHT`?**
 Suggested Answer: `ASSIGNMENT_TYPE` is a stronger teaching choice because the table stores more than weight alone. It also stores quantity and points per type, so the name reflects the full business role of the table rather than one attribute inside it. That makes the schema easier to explain and less misleading.
@@ -105,7 +90,7 @@ Suggested Answer: A natural key is a good choice when the value is stable, meani
 **Question 6: Why do JOINs become necessary in a relational design rather than feeling like an optional advanced technique?**
 Suggested Answer: JOINs become necessary because relational design deliberately stores subjects separately instead of duplicating a report-ready view in one table. Once students, deliverables, category rules, and score rows are stored separately, joins are the normal way to reconstruct the exact view needed for a question.
 
-### Personal Reflection
+## Personal Reflection
 
 **Question 1: Where have you seen duplicated data create confusion or inconsistency in your own work, school, or daily life?**
 Suggested Answer: A strong personal reflection might describe repeated contact lists, duplicated schedule spreadsheets, or copied grade trackers that drift out of sync over time. The key idea is to connect the chapter's data redundancy problem to a real situation where the same fact had to be updated in more than one place.

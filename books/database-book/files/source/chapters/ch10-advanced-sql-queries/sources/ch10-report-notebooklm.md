@@ -20,11 +20,11 @@ The roadmap for this chapter follows a deliberate arc: we begin with **Post-hoc 
 
 Advanced SQL work rarely begins with a blank slate. Most often, you inherit a "flat" spreadsheet export or a legacy file where every fact is crammed into a single table. **Post-hoc normalization** is the process of using SQL to refactor this data into a sound relational design without data loss. It is a form of structural renovation: you must diagnose the flaws before you can rebuild the system.
 
-### **2.1. Diagnostic Querying for Structural Flaws**
+## **2.1. Diagnostic Querying for Structural Flaws**
 
 The core obstacle in legacy data is **Flat-Table Thinking**, where reports masquerade as databases. SQL acts as a diagnostic lens to reveal the redundancy and anomalies that hide in plain sight.
 
-#### **The Three Anomalies**
+### **The Three Anomalies**
 
 Redundancy leads to three categories of structural failure that compromise data integrity:
 
@@ -34,7 +34,7 @@ Redundancy leads to three categories of structural failure that compromise data 
 | **Insertion Anomaly** | The inability to record a fact without unrelated data. | Being unable to add a new student to the system until they have received at least one grade. |
 | **Deletion Anomaly** | Deleting a record destroys unrelated facts that should be preserved. | Deleting a student’s only grade record accidentally wipes their name and contact info from the database. |
 
-#### **SQL Diagnostic Patterns**
+### **SQL Diagnostic Patterns**
 
 To identify these issues, we use specific diagnostic queries. If these queries return results, your design is already broken.
 
@@ -42,7 +42,7 @@ To identify these issues, we use specific diagnostic queries. If these queries r
 * **Detecting Conflicting Values (The Multi-Email Crisis):**  
 * **Detecting Spelling Inconsistencies:** *(PostgreSQL uses STRING\_AGG; SQLite uses GROUP\_CONCAT)*
 
-### **2.2. Entity Extraction and Table Creation**
+## **2.2. Entity Extraction and Table Creation**
 
 Once diagnosed, we extract distinct entities. Every group of columns that repeats together (e.g., StudentID, Name, Email) represents a separate entity.
 
@@ -53,7 +53,7 @@ We use `SELECT DISTINCT` to extract unique records. For deliverables, we use `GR
 * **PostgreSQL/SQLite:** `CREATE TABLE STUDENT AS SELECT DISTINCT StudentID, FirstName, Email FROM GRADES_FLAT;`  
 * **SQL Server:** `SELECT DISTINCT StudentID, FirstName, Email INTO STUDENT FROM GRADES_FLAT;`
 
-### **2.3. Data Migration and Hardening**
+## **2.3. Data Migration and Hardening**
 
 The `INSERT INTO ... SELECT` pattern is the workhorse of migration, allowing us to move sets of rows into structured tables.
 
@@ -72,7 +72,7 @@ By establishing this "relational spine," we ensure that each fact is stored exac
 
 The `SELECT` statement is the primary reporting language for business Key Performance Indicators (KPIs). However, for reports to be credible, the data must be cleaned within the query layer to avoid fragmented results.
 
-### **3.1. Data Cleaning Patterns**
+## **3.1. Data Cleaning Patterns**
 
 Ignoring these steps introduces significant business risk, ranging from broken joins to incorrect mathematical averages.
 
@@ -88,12 +88,12 @@ Ignoring these steps introduces significant business risk, ranging from broken j
 
 JOINs are the defining feature of relational intelligence. They allow us to connect disparate tables at query time, producing comprehensive insights without storage duplication.
 
-### **4.1. INNER vs. LEFT JOIN Scenarios**
+## **4.1. INNER vs. LEFT JOIN Scenarios**
 
 * **INNER JOIN:** Use for **complete records**. E.g., "Show me students who have actually submitted work."  
 * **LEFT JOIN:** Use for **gap analysis**. By joining `STUDENT` to `STUDENT_GRADE` and filtering for `WHERE GradeID IS NULL`, we isolate missing submissions.
 
-### **4.2. The Intersection Table (STUDENT\_GRADE)**
+## **4.2. The Intersection Table (STUDENT\_GRADE)**
 
 To resolve the many-to-many relationship between students and deliverables, we use an **Intersection Table**.
 
@@ -105,11 +105,11 @@ To resolve the many-to-many relationship between students and deliverables, we u
 
 Advanced SQL transforms raw data into "actionable intelligence." By encoding institutional policy directly into the database, we move from simple counting to strategic analysis.
 
-### **5.1. Performance Metrics and Aggregations**
+## **5.1. Performance Metrics and Aggregations**
 
 Standard aggregations like `AVG(Score)` provide the baseline. However, the `HAVING` clause serves as a performance threshold. Filtering for `HAVING AVG(Score) < 75` creates an automated "At-Risk" report for faculty intervention.
 
-### **5.2. CASE Expressions: Encoding Policy**
+## **5.2. CASE Expressions: Encoding Policy**
 
 The `CASE` expression translates raw numbers into business classifications. **Pattern: CASE Inside Aggregations**
 
@@ -121,13 +121,13 @@ GROUP BY DeliverableID;
 
 This pattern allows an analyst to generate high-level KPI reports in a single pass.
 
-### **5.3. Time-Awareness and Weighted Grades**
+## **5.3. Time-Awareness and Weighted Grades**
 
 Calculating **Weighted Grades** requires applying category-specific weights (e.g., Quizzes \= 20%, Exams \= 40%, Project \= 40%).
 
 **Arithmetic Logic:** We calculate the average per category and then apply the fractional weight: `FinalGrade = (QuizAvg * 0.20) + (ExamAvg * 0.40) + (ProjectAvg * 0.40)` In SQL, we join the `STUDENT_GRADE` table to the `ASSIGNMENT` table where these weights are stored to ensure the calculation is always driven by the current syllabus policy.
 
-### **5.4. Window Functions: The Analytical Engine**
+## **5.4. Window Functions: The Analytical Engine**
 
 Window functions (e.g., `RANK()`, `SUM() OVER`) are distinct because they **preserve row detail**.
 
@@ -140,7 +140,7 @@ Window functions (e.g., `RANK()`, `SUM() OVER`) are distinct because they **pres
 
 To ensure consistency and hide complexity, advanced practitioners build **layered analytical systems**.
 
-### **6.1. Decision Guide for SQL Artifacts**
+## **6.1. Decision Guide for SQL Artifacts**
 
 | Tool | Best For | Scope |
 | :---- | :---- | :---- |
@@ -171,19 +171,19 @@ JOIN STUDENT s ON s.StudentID \= g.StudentID;
 
 Production-ready SQL requires more than correct logic; it requires the discipline of speed, safety, and transparency.
 
-### **7.1. Indexes and Performance**
+## **7.1. Indexes and Performance**
 
 Indexes speed up data retrieval (Read Speed) but increase "Write Overhead." In our grading database, we prioritize indexing **Foreign Keys** (`StudentID`, `DeliverableID`) and the `DueDate`, as these are the primary targets for JOINs and time-based filtering.
 
-### **7.2. Transactions and ACID Safety**
+## **7.2. Transactions and ACID Safety**
 
 Updates must be **Atomic**. When "curving" grades or applying late penalties to a hundred students, we use transactions: `BEGIN TRANSACTION; ... COMMIT;` This ensures that if a system failure occurs mid-update, the database does not leave half the class in an inconsistent state.
 
-### **7.3. Triggers and Audit Logging**
+## **7.3. Triggers and Audit Logging**
 
 Triggers allow the database to self-enforce rules (e.g., preventing scores \> 100). More importantly, they create **Audit Trails**, automatically logging every time a grade is changed, by whom, and when. This ensures institutional transparency and accountability.
 
-### **7.4. Data Governance**
+## **7.4. Data Governance**
 
 Reframing SQL constraints (`PRIMARY KEY`, `FOREIGN KEY`, `NOT NULL`, `CHECK`) as **encoded governance policies** provides a structural guarantee that the data remains reproducible and auditable.
 
@@ -193,7 +193,7 @@ Reframing SQL constraints (`PRIMARY KEY`, `FOREIGN KEY`, `NOT NULL`, `CHECK`) as
 
 By constructing a normalized, automated, and analytical engine, we have moved from simple retrieval to engineering intelligence. SQL serves as the **unifying language** that bridges messy raw storage with sophisticated Business Intelligence tools like Tableau or Power BI. It is the durable competency that allows a professional to transform raw data into a relational spine of organizational truth.
 
-### **Key Terms Glossary**
+## **Key Terms Glossary**
 
 | Term | Definition |
 | :---- | :---- |

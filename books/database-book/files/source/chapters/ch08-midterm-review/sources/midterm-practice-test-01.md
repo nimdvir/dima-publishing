@@ -4,7 +4,7 @@ Download the blank database from here:
 
 [Practice Test #1](https://brightspace.albany.edu/content/enforced/1373238-2249-BITM-330-1002/Test%20practice.accdb)
 
-### Schema
+## Schema
 
 1. **STUDENT**  
    (**StudentID**, FirstName, LastName, Gender, Browser)
@@ -25,7 +25,7 @@ Create the relationships and answer the following questions.
 
 ---
 
-### Questions
+## Questions
 
 1. Replace all the empty values in the **MAJOR** table (recorded as `-99`) with `ISBA`. What is the SQL code to run this query?
 

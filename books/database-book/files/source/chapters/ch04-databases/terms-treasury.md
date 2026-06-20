@@ -38,7 +38,7 @@
 | **UNIQUE Constraint** | A rule that prevents duplicate values in a field or combination of fields. | Protects identifiers, emails, and other values that should appear only once — preventing duplicate records and lookup failures. | Requiring each student email to be unique in the `STUDENT` table. |
 | **Update Anomaly** | A flat-table problem where changing one fact requires editing it in many rows, and missing even one copy creates inconsistency. | Turns routine changes — a new email, a corrected name — into error-prone multi-step operations that undermine trust in the data. | Updating a student's email address in every grade row instead of once in a `STUDENT` table. |
 
-## Acronyms and Abbreviations
+# Acronyms and Abbreviations
 
 | Abbreviation | Full Form | Brief Meaning | Where It Appears |
 |---|---|---|---|

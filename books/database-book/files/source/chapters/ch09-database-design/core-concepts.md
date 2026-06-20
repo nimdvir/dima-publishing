@@ -1,104 +1,26 @@
-<!-- Chapter edit: improved structure, readability, callouts, and build hygiene. Technical meaning preserved. Integrated source materials for weak entities, subtypes, Lucidchart/Mermaid workflows, and modeling mistakes. Added Crow's Foot notation image and explanation. Added Requirements-to-Structure translation figure. -->
----
-title: "Chapter 9: Database Design and ER Modeling"
-chapter: 9
-section: "Core Concepts"
-description: "Introduces database design as the process of translating business requirements into reliable relational structures using the SDLC, ER modeling, Crow's Foot notation, normalization, and ERD-to-table mapping."
-keywords:
-  - database design
-  - entity-relationship modeling
-  - ERD
-  - Crow's Foot notation
-  - SDLC
-  - normalization
-  - logical design
-  - physical design
-  - Mermaid
-  - Lucidchart
-date: 2026-06-16
-author: "Nimrod Dvir, PhD"
----
-
 # Chapter 9: Database Design and ER Modeling
-
-*From Business Requirements to Reliable Information Systems*
-
-![Infographic of the database design journey from requirements to physical tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch09-database-design/ch09-ch09-infographic)
 
 *Figure 9.1 — The database design lifecycle translates business requirements into physical tables.*
 
 Up to this point, we have built database objects, worked with tables, created relationships, normalized data, and written SQL queries to retrieve and analyze information. That sequence matters because it gave us practical experience with what databases can do. But there is an important shift we need to make now.
 
-An ERD should not be treated only as something we draw after the database already exists. That would make design feel retrospective: we built the database, queried it, and then documented what happened. Documentation is useful, but database design is more powerful than that.
-
-In this chapter, we treat the Entity Relationship Diagram as a design artifact. Before building tables or writing advanced queries, we step back and ask: What problem is this system supposed to solve? What entities does the organization need to track? How are those entities related? What rules should the database enforce? What structure will make reliable analysis possible later?
-
-This is the stronger design sequence:
-
-```
-We understand the design problem.
-We model the system.
-Then we query it professionally.
-```
-
-That sequence reflects the larger identity of this book. Databases are not just tools for storing records or running queries. They are information systems designed to support business performance, organizational accountability, and better decision-making. Chapter 9 therefore moves us from using databases to thinking like database designers.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Q0LRaJ1wl_I?si=SblKwSOmrUHpXiu5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-*Video 9.1 — Brief chapter overview: what database design is and why it matters.*
-
----
-
-## Learning Objectives
-
-After completing this chapter, you will be able to:
-
-1. Explain why database design should precede implementation.
-2. Describe how poor design creates insertion, update, and deletion anomalies.
-3. Explain where database design fits within the System Development Life Cycle (SDLC).
-4. Translate business requirements into entities, attributes, relationships, and business rules.
-5. Distinguish among conceptual, logical, and physical database design.
-6. Interpret and create entity-relationship diagrams (ERDs).
-7. Use Crow's Foot notation to represent cardinality and optionality.
-8. Identify one-to-one, one-to-many, and many-to-many relationships.
-9. Explain weak entities, associative entities, recursive relationships, and specialization/generalization.
-10. Apply normalization as a design-quality check.
-11. Translate ER diagrams into relational table structures using a mapping algorithm.
-12. Compare Lucidchart and Mermaid as tools for documenting ERDs.
-13. Evaluate common database modeling mistakes before implementation.
-
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Core Concepts
+# Core Concepts
 
+## Supplementary Video
+
+### Supplementary Video 1
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BTm-v0fpS50" title="Chapter 9 supplementary video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[Watch supplementary video 1](https://www.youtube.com/watch?v=BTm-v0fpS50)
+
+# Core Concepts
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BTm-v0fpS50?si=-sws6HbLce83sa77" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-*Video 9.2 — Detailed walkthrough of database design concepts, ER modeling, and the design lifecycle.*
-
-## Chapter Roadmap
-
-| Section | Main Question                                | Core Idea                                                                 |
-| ------- | -------------------------------------------- | ------------------------------------------------------------------------- |
-| 9.1     | Why does design matter?                      | Good queries require good structure.                                      |
-| 9.2     | What goes wrong with poor design?            | Anomalies are symptoms of bad structure.                                  |
-| 9.3     | Where does design fit in system development? | Database design belongs inside the SDLC.                                  |
-| 9.4     | How do requirements become structure?        | Business rules become entities, attributes, and relationships.            |
-| 9.5     | What is ER modeling?                         | ERDs visually model data before implementation.                           |
-| 9.6     | How do we read relationship notation?        | Crow's Foot notation shows cardinality and optionality.                   |
-| 9.7     | What relationship types matter most?         | 1:1, 1:N, and M:N relationships shape table design.                       |
-| 9.8     | How do we handle advanced patterns?          | Weak, associative, recursive, and subtype structures extend the ER model. |
-| 9.9     | How does normalization support design?       | Normal forms help test whether structure is reliable.                     |
-| 9.10    | How do diagrams become tables?               | The mapping algorithm converts ERDs into schemas.                         |
-| 9.11    | What tools help document design?             | Lucidchart is visual; Mermaid is ERD-as-code.                             |
-| 9.12    | What mistakes should designers avoid?        | Most database failures are predictable.                                   |
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 9.1 From Querying Data to Designing Systems
 
@@ -152,9 +74,6 @@ Database design translates business language into data structure.
 | "Grades are interpreted using a grading scale."    | `GRADE_SCALE` stores letter-grade thresholds.                            |
 
 Design makes these rules visible before implementation. SQL enforces them later.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 9.2 The Cost of Poor Design: Data Anomalies
 
@@ -250,9 +169,6 @@ Anomalies damage trust. They make reports unreliable, audits harder, and busines
   <p>Database design aims to make these failures structurally difficult or impossible. A good schema does not depend on users remembering to "be careful." It makes correctness easier by design.</p>
 </div>
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.3 Database Design in the System Development Life Cycle
 
 ### 9.3.1 What Is the SDLC?
@@ -278,6 +194,9 @@ A database is not separate from this process. It supports workflows, reports, in
 | Deployment            | Move the database into active use                         | Load real roster data and begin grade entry                                     |
 | Maintenance           | Adapt to new requirements                                 | Add late penalties, multiple sections, or revised grading weights               |
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 9.3.3 Conceptual, Logical, and Physical Design
 
 Database design often happens at three levels.
@@ -294,9 +213,6 @@ The levels should not be collapsed too early. If you begin by choosing Access fi
   <p><strong>🔑 Key Takeaway: Design before implementation</strong></p>
   <p>The model should guide the tool, not the other way around.</p>
 </div>
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 9.4 From Requirements to Structure
 
@@ -411,9 +327,6 @@ Examples:
 
 The designer's job is to discover these rules before implementation.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.5 Entity-Relationship Modeling
 
 ### 9.5.1 What ER Modeling Is
@@ -465,6 +378,9 @@ This three-column layout ensures that developers, database administrators, and b
 | UK          | Email      | string    |
 |             | Birthday   | date      |
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 9.5.4 Key Hierarchy
 
 Keys identify records and support relationships.
@@ -513,9 +429,6 @@ CREATE TABLE STUDENT_GRADE (
 ```
 
 The ERD explains the structure. SQL implements it.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 9.6 Crow's Foot Notation
 
@@ -601,9 +514,6 @@ Entity-Relationship modeling has evolved since its introduction by Peter Chen in
 * **Traditional Chen ER Notation**: Chen's original style represents entities as rectangles, attributes as ovals connected to entities, and relationships as diamonds with lines connecting the participating entities. Cardinality ratios (such as `1` or `N`) are written inside or near the diamonds. Minimum cardinality is expressed by single lines (optional) or double lines (total/mandatory). While conceptually clear, Chen's notation can quickly become visually crowded in large systems because every attribute is shown as a separate oval node.
 * **Information Engineering (IE) Crow's Foot Notation**: Formalized by James Martin in 1990, the Crow's Foot model is much more popular in modern database design. It simplifies diagrams by nesting all attributes inside the entity rectangles, representing columns of a table. Relationships are shown as direct lines between the rectangles, using visual end symbols (crow's feet, circles, and hash marks) to express minimum and maximum cardinality. This approach keeps the diagram clean, organized, and closely aligned with the actual tables that will be built.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.7 Understanding Relationship Types
 
 ![Diagram comparing one-to-one, one-to-many, and many-to-many relationship cardinality patterns](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch09-database-design/ch09-ch09-relationship-types)
@@ -652,6 +562,9 @@ CREATE TABLE STUDENT_CREDENTIALS (
 
 Here `StudentID` is both the primary key and a foreign key, enforcing one credential row per student.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 9.7.2 One-to-Many Relationships
 
 A **one-to-many (1:N)** relationship exists when one row in one table can be associated with many rows in another table, but each row on the many side belongs to one row on the one side.
@@ -680,9 +593,6 @@ STUDENT ||--o{ STUDENT_GRADE
 ```
 
 `StudentID` belongs in `STUDENT_GRADE`, not because a student "contains" grades, but because each grade needs to identify which student it belongs to.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ### 9.7.3 Many-to-Many Relationships
 
@@ -731,9 +641,6 @@ The `Score` belongs in the junction table because the score is not a fact about 
 | `GRADE_SCALE` to final grade interpretation | Lookup | Score range comparison                | Converts numeric results to letters     |
 
 These relationships support analysis. For example, to report a student's grade history, SQL joins `STUDENT`, `STUDENT_GRADE`, and `DELIVERABLE`. To analyze attendance, SQL joins `STUDENT`, `ATTENDANCE`, and `SCHEDULE`. The schema makes those questions possible.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 9.8 Advanced ER Modeling Concepts
 
@@ -836,6 +743,9 @@ LEFT JOIN EMPLOYEE AS m
 
 The table joins to itself. The aliases `e` and `m` allow SQL to treat the same table as two roles: employee and manager.
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 9.8.4 Specialization and Generalization
 
 Specialization and generalization model "is-a" relationships, establishing a hierarchy between a generic entity (the **supertype**) and more specific entities (the **subtypes**). All subtypes automatically inherit the primary key and all attributes of the supertype.
@@ -869,9 +779,6 @@ There are three common strategies to translate these hierarchies into physical t
 | Single table with type column | One table stores all fields (shared and subtype-specific) plus a discriminator column.              | Simple queries, high read performance.                                  | Waste of space (many NULLs); weaker check constraints.                |
 
 Most normalized relational designs prefer the **superclass + subclass** approach when subtypes have meaningful differences. In this approach, the subclass table's primary key is also a foreign key referencing the superclass table.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## 9.9 Normalization as a Design-Quality Check
 
@@ -937,9 +844,6 @@ Denormalization should come after a clean design exists. It is an optimization d
   <p>Normalize for correctness. Denormalize only with a documented reason, refresh process, and accountability rule.</p>
 </div>
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.10 From ER Diagrams to Relational Tables
 
 The mapping algorithm translates an ERD into a relational schema. It turns a visual design into tables, columns, keys, and constraints.
@@ -1001,6 +905,9 @@ CREATE TABLE SECTION (
     FOREIGN KEY (CourseID) REFERENCES COURSE(CourseID)
 );
 ```
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### 9.10.3 Step 3: Map 1:N Relationships
 
@@ -1076,9 +983,6 @@ Both enforce one score per student per deliverable.
 | Derived        | Do not store unless justified              | Age computed from birthday                             |
 | Optional       | Allow `NULL` only if business rule permits | `MiddleName` may be nullable                           |
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ### 9.10.6 SQL Column Property and Constraint Specifications
 
 When mapping a logical database design to physical tables in SQL, specifying column properties and structural constraints is essential to enforce data integrity directly inside the database system. Rather than relying on frontend applications to check for valid inputs, a professional database design uses SQL's native constraints to prevent invalid data from ever being written.
@@ -1093,9 +997,6 @@ The primary SQL column constraints used in physical design include:
 *   **CHECK:** Restricts the range, format, or set of allowable values for a column using a logical expression. For instance, a check constraint can ensure a student's score is within valid grading boundaries (e.g., `Score REAL CHECK (Score BETWEEN 0.0 AND 100.0)`).
 
 By systematically applying these constraints during logical-to-physical mapping, the database becomes self-validating, structurally preventing anomalies and guaranteeing referential integrity.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ### 9.10.7 Worked Example: From Requirements to Schema
 
@@ -1176,6 +1077,9 @@ CREATE TABLE ORDER_LINE (
   <p>Requirements → entities → attributes → relationships → ERD → SQL. This path works for a coffee shop, a grading system, or any business domain.</p>
 </div>
 
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
 ### 9.10.8 Complete Grading Database ERD in Mermaid
 
 The following Mermaid diagram documents the core Grading Database design.
@@ -1251,9 +1155,6 @@ erDiagram
 
 This diagram is intentionally more than decoration. It is a design artifact. It communicates which entities exist, what their keys are, where foreign keys belong, and how the system supports grade, attendance, and final-grade reporting.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.11 Visual Schema Design Tools
 
 Visual schema design means using diagrams to reason about database structure and communicate business rules before writing a single line of SQL. Two especially powerful tools for this purpose are **Lucidchart** and **Mermaid**.
@@ -1313,9 +1214,6 @@ This hybrid workflow allows you to quickly draft a schema using text, import it 
   <p>Use visual tools like Lucidchart to brainstorm and collaborate. Use text-based tools like Mermaid to document and version-control your schemas in markdown. A skilled database designer is comfortable moving between both worlds.</p>
 </div>
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.12 Common Database Modeling Mistakes
 
 ![Split comparison showing disorganized coding-first workflow vs structured design-first workflow](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch09-database-design/ch09-ch09-bad-vs-good-design)
@@ -1355,6 +1253,9 @@ STUDENT(StudentID, Name)
 DELIVERABLE(DeliverableID, ...)
 STUDENT_GRADE(StudentID, DeliverableID, Score)
 ```
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
 ### 9.12.4 Putting Foreign Keys on the Wrong Side
 
@@ -1434,9 +1335,6 @@ In an attempt to avoid joins and keep queries simple, some designers overload a 
 *   **Example:** A `CUSTOMER_ORDER` table that stores Customer ID, Customer Name, Customer Email, Order ID, Order Date, Item ID, Item Name, Quantity, and Unit Price in every single row.
 *   **The Consequence:** This violates 2NF and 3NF, creating the exact insertion, update, and deletion anomalies detailed in Section 9.2. A well-designed database separates these subjects into `CUSTOMER`, `ORDER`, `MENU_ITEM`, and `ORDER_LINE` tables, and joins them using foreign keys when a report is needed.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.13 Design vs. Implementation
 
 ### 9.13.1 Logical Design Is Platform-Independent
@@ -1473,9 +1371,6 @@ A good logical design can move across platforms. A design that only works becaus
 
 Example: A grading database may begin in Access for teaching. Later, it may move to PostgreSQL for a web application. If the logical design is sound, the migration mainly involves syntax and tooling. If the design is weak, migration exposes every hidden problem.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
 ## 9.14 Strengths and Limits of ER Modeling
 
 ER modeling is useful because it makes structure visible, supports communication between technical and non-technical stakeholders, reveals missing or ambiguous relationships, supports normalization, helps prevent costly redesign, and creates a blueprint for SQL implementation.
@@ -1500,9 +1395,6 @@ Other modeling approaches complement ER diagrams:
 | NoSQL modeling       | Document, key-value, graph, or column-family systems |
 
 The ER model remains especially valuable for relational database design, but it is one tool in a broader design toolkit.
-
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
 
 ## Chapter Summary
 

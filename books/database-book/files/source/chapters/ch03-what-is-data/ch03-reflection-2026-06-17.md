@@ -93,12 +93,13 @@ author: "Nimrod Dvir"
 
 **8. As you think about your future career, why might understanding data fundamentals matter even if you never write a line of SQL or build a database?**
 
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Answer Key
+# Answer Key
 
-### Review Questions
+## Review Questions
 
 **Question 1: How does Chapter 3 define data, and why does the chapter argue that recorded values become useful only when they are placed in context?**
 **Suggested Answer:** Chapter 3 defines data as a collection of values, symbols, measures, or observations that represent something about the world. The chapter argues that a value such as `92`, `Quiz`, or `2026-03-19` means little in isolation. It becomes useful only when people know what field it belongs to, how it relates to other values, and what question it helps answer. Context — field meaning, format, relationships, and business purpose — is what turns isolated data into interpretable information.
@@ -127,7 +128,7 @@ author: "Nimrod Dvir"
 **Question 9: What is a schema, and how does the compact notation `TABLE_NAME(Attribute1, Attribute2, ...)` help separate the structure of data from the data itself? Why does the chapter call a schema "the blueprint for data"?**
 **Suggested Answer:** A schema is a formal description of how data is organized — the names of tables and their attributes, plus any rules or relationships. The compact notation shows the structure (table name and attribute names) without showing any actual rows, which separates the pattern from the records that follow it. The chapter calls a schema "the blueprint for data" because, like an architect's blueprint, it describes what should be built — the plan exists before the construction, and many buildings (or in this case, many rows of data) can follow the same plan.
 
-### Reflection Questions
+## Reflection Questions
 
 **Question 1: Chapter 3 opens by arguing that data fundamentals are a business issue, not just a technical one. Why would two departments report different revenue for the same quarter even when both used the same source data?**
 **Suggested Answer:** Two departments can report different revenue from the same source data because they apply different definitions — one may define "customer" to include prospects while the other counts only active accounts, or one may calculate revenue as gross while the other uses net of returns. When departments use the same field names but interpret them differently, SQL queries and dashboards produce different numbers even when every value was entered correctly. The problem is not a technical error. It is a data-fundamentals problem: the lack of a shared definition, a data dictionary, or governance over what key terms mean.
@@ -153,7 +154,7 @@ author: "Nimrod Dvir"
 **Question 8: The chapter distinguishes NULL, zero, an empty string, and a blank space as four different stored conditions. Why would confusing these cause wrong results in a report or dashboard?**
 **Suggested Answer:** Confusing these conditions causes wrong results because each means something different to calculations. A NULL score (grade not yet entered) excluded from an average inflates the result by ignoring students whose work is pending. A zero score (student earned zero points) correctly lowers the average. An empty string and a blank space look the same visually but behave differently in filters, counts, and joins — one is a valid text value, the other may or may not be. If a report treats all four as "missing," it cannot distinguish between "not submitted," "earned zero," and "not yet graded." The business consequence is a report that says average grades are higher than they really are because the lowest and missing values were silently dropped.
 
-### Personal Reflection Questions
+## Personal Reflection Questions
 
 **Question 1: When you work with numbers, labels, or dates in school or at work, how often do you stop to ask what the values actually mean before analyzing them? What would change if you asked more often?**
 **Suggested Answer:** Answers will vary. A strong response acknowledges that most people jump to calculations and charts before verifying what each column represents, what the units are, and whether the values are current. Asking more often would catch mismatched definitions before they become wrong conclusions — fewer errors, less rework, and more confidence in the results.
