@@ -31,14 +31,15 @@ export function uniqueId(base: string, counts: Map<string, number>): string {
 export function extractHeadingToc(content: string): HeadingTocItem[] {
   const counts = new Map<string, number>();
   const headings: HeadingTocItem[] = [];
-  let activeFence: "`" | "~" | null = null;
+  let activeFence: { char: "`" | "~"; length: number } | null = null;
 
   for (const line of content.split(/\r?\n/)) {
     const fenceMatch = line.match(/^\s*(`{3,}|~{3,})/);
     if (fenceMatch) {
-      const fenceChar = fenceMatch[1][0] as "`" | "~";
-      if (!activeFence) activeFence = fenceChar;
-      else if (activeFence === fenceChar) activeFence = null;
+      const fence = fenceMatch[1];
+      const fenceChar = fence[0] as "`" | "~";
+      if (!activeFence) activeFence = { char: fenceChar, length: fence.length };
+      else if (activeFence.char === fenceChar && fence.length >= activeFence.length) activeFence = null;
       continue;
     }
 
