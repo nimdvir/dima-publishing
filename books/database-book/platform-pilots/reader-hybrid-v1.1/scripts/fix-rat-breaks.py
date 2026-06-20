@@ -1,9 +1,11 @@
 """Fix RAT files: remove all page breaks, add exactly ONE before Answer Key."""
-import re, glob, os
+import os
+import re
+from pathlib import Path
 
-repo = r'c:\Users\nd115232\Documents\GitHub\dima-publishing\books\database-book\files\source\chapters'
+repo = Path(__file__).resolve().parents[3] / 'files' / 'source' / 'chapters'
 
-for f in glob.glob(os.path.join(repo, 'ch*', 'rat.md')):
+for f in repo.glob('ch*/rat.md'):
     with open(f, 'r', encoding='utf-8') as fh:
         content = fh.read()
     

@@ -159,6 +159,7 @@ function scrollToHeadingId(id: string): boolean {
 export default function App() {
   const [scope, setScope] = useState<ReaderScope>("welcome");
   const [demoUser, setDemoUser] = useState<DemoUser | null>(null);
+  const [authLoading, setAuthLoading] = useState(() => !!supabase);
 
   // Book reader state
   const [activeChapterId, setActiveChapterId] = useState<string>("ch01");
@@ -179,25 +180,35 @@ export default function App() {
 
   // On app load, check existing Supabase session (real authority) and hydrate display state.
   useEffect(() => {
-    async function checkSession() {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+    if (!supabase) {
+      setAuthLoading(false);
+      return;
+    }
+    const client = supabase;
 
-      if (session?.user?.email) {
-        try {
-          const access = await getMyAccess();
-          if (access.has_access) {
-            setDemoUser({
-              netId: session.user.email,
-              studentId: "",
-              accessStatus: "active",
-              createdAt: new Date().toISOString(),
-            });
+    async function checkSession() {
+      try {
+        const {
+          data: { session },
+        } = await client.auth.getSession();
+
+        if (session?.user?.email) {
+          try {
+            const access = await getMyAccess();
+            if (access.has_access) {
+              setDemoUser({
+                netId: session.user.email,
+                studentId: "",
+                accessStatus: "active",
+                createdAt: new Date().toISOString(),
+              });
+            }
+          } catch {
+            // Access check failed — user has session but no access. Don't hydrate.
           }
-        } catch {
-          // Access check failed — user has session but no access. Don't hydrate.
         }
+      } finally {
+        setAuthLoading(false);
       }
     }
 
@@ -206,7 +217,7 @@ export default function App() {
     // Listen for auth state changes (cross-tab signout, etc.)
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
+    } = client.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_OUT") {
         setDemoUser(null);
         localStorage.removeItem(LS_DEMO_USER);
@@ -226,6 +237,8 @@ export default function App() {
           /* access check failed — leave unauthenticated */
         }
       }
+
+      setAuthLoading(false);
     });
 
     return () => {
@@ -249,11 +262,11 @@ export default function App() {
 
   // Redirect unauthorized users away from Book/Labs (handles direct URL navigation).
   useEffect(() => {
-    if ((scope === "book" || scope === "labs") && !demoUser) {
+    if (!authLoading && (scope === "book" || scope === "labs") && !demoUser) {
       setScope("login");
       writeRoute("login");
     }
-  }, [scope, demoUser]);
+  }, [scope, demoUser, authLoading]);
 
   // Parse route on load. Query-string URLs remain supported for older links.
   useEffect(() => {
@@ -272,7 +285,7 @@ export default function App() {
   // Navigate to a scope — gate Book and Labs behind auth.
   const navigateScope = useCallback((newScope: ReaderScope) => {
     // Require login for protected scopes.
-    if ((newScope === "book" || newScope === "labs") && !demoUser) {
+    if ((newScope === "book" || newScope === "labs") && !demoUser && !authLoading) {
       setScope("login");
       writeRoute("login");
       return;
@@ -303,7 +316,7 @@ export default function App() {
       }
     }
     writeRoute(newScope);
-  }, [demoUser]);
+  }, [demoUser, authLoading]);
 
   // Navigate to a specific page
   const navigateToPage = useCallback((page: BookPage) => {
@@ -374,7 +387,9 @@ export default function App() {
   }, []);
 
   const handleSignOut = useCallback(async () => {
-    await supabase.auth.signOut();
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
     setDemoUser(null);
     localStorage.removeItem(LS_DEMO_USER);
   }, []);
@@ -511,7 +526,7 @@ export default function App() {
           onCancel={() => navigateScope("welcome")}
         />
       )}
-      {scope === "book" && !demoUser && (
+      {scope === "book" && !demoUser && !authLoading && (
         <div className="demo-login-page">
           <div className="login-card">
             <h2>Access required</h2>
@@ -547,7 +562,7 @@ export default function App() {
           showEntryCover={showReaderEntryCover}
         />
       )}
-      {scope === "labs" && !demoUser && (
+      {scope === "labs" && !demoUser && !authLoading && (
         <div className="demo-login-page">
           <div className="login-card">
             <h2>Access required</h2>

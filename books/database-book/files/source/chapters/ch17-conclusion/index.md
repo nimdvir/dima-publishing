@@ -1,6 +1,6 @@
 # Chapter 17: Designing Systems That Matter
 
-<!-- Draft Status: Edited 2026-05-08 --> # Chapter 17: Designing Systems That Matter
+<!-- Draft Status: Edited 2026-05-08 -->
 
 This chapter synthesizes the entire course and shifts focus from competency to responsibility. The chapter addresses the ethical dimensions of data systems, the manager's role in system design decisions, and the habits of mind required for lifelong learning in a data-driven world. The chapter sends students forward with clarity about what they know, what it means, and how to keep growing.
 

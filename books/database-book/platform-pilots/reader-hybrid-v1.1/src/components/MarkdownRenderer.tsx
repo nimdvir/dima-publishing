@@ -74,12 +74,12 @@ export default function MarkdownRenderer({
           h2: ({ children, ...props }: any) => {
             const text = textFromChildren(children);
             const id = uniqueId(slugifyHeading(text), headingCounts);
-            return <h2 id={id} {...props}>{children}</h2>;
+            return <h2 {...props} id={id}>{children}</h2>;
           },
           h3: ({ children, ...props }: any) => {
             const text = textFromChildren(children);
             const id = uniqueId(slugifyHeading(text), headingCounts);
-            return <h3 id={id} {...props}>{children}</h3>;
+            return <h3 {...props} id={id}>{children}</h3>;
           },
           // Custom iframe handler: only allow YouTube / youtube-nocookie
           iframe: ({ src, ...props }: any) => {

@@ -1,4 +1,4 @@
-import { supabase } from './supabaseClient';
+import { supabase, supabaseConfigError } from './supabaseClient';
 
 export type TrialActivationResult = {
   allowed: boolean;
@@ -20,26 +20,48 @@ export type AccessStatus = {
   expires_at: string | null;
 };
 
-export async function activateStudentTrial(): Promise<TrialActivationResult> {
-  const { data, error } = await supabase.rpc('activate_student_trial').single();
+
+
+function requireSupabase() {
+  if (!supabase) {
+    throw new Error(supabaseConfigError ?? 'Supabase is not configured.');
+  }
+
+  return supabase;
+}
+
+export async function activateStudentTrial() {
+  const client = requireSupabase();
+  const { data, error } = await client
+    .rpc('activate_student_trial')
+    .single();
 
   if (error) {
     throw error;
   }
-  if (!data) {
-    throw new Error('activate_student_trial returned no data');
-  }
+
+
+
+
+  if (!data) {
+    throw new Error('activate_student_trial returned no data.');
+  }
 
   return data as TrialActivationResult;
 }
 
 export async function getMyAccess() {
-  const { data, error } = await supabase
+  const client = requireSupabase();
+  const { data, error } = await client
     .rpc('get_my_access')
     .single();
 
   if (error) {
     throw error;
+  }
+
+  if (!data) {
+    throw new Error('get_my_access returned no data.');
   }
 
   return data as AccessStatus;
@@ -53,6 +75,10 @@ export async function logReaderEvent(input: {
   path?: string;
   metadata?: Record<string, unknown>;
 }) {
+  if (!supabase) {
+    return;
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -61,7 +87,7 @@ export async function logReaderEvent(input: {
     return;
   }
 
-  await supabase.from('reader_events').insert({
+  const { error } = await supabase.from('reader_events').insert({
     user_id: user.id,
     email: user.email,
     event_type: input.eventType,
@@ -71,4 +97,8 @@ export async function logReaderEvent(input: {
     path: input.path ?? window.location.pathname,
     metadata: input.metadata ?? {},
   });
+
+  if (error && import.meta.env.DEV) {
+    console.warn('Failed to log reader event:', error);
+  }
 }
