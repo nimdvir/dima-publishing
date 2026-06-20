@@ -69,8 +69,8 @@ export default function MarkdownRenderer({
           h1: ({ children, ...props }: any) => {
             const text = textFromChildren(children);
             const id = uniqueId(slugifyHeading(text), headingCounts);
-            return <h1 id={id} {...props}>{children}</h1>;
-          },
+            return <h1 {...props} id={id}>{children}</h1>;
+          }
           h2: ({ children, ...props }: any) => {
             const text = textFromChildren(children);
             const id = uniqueId(slugifyHeading(text), headingCounts);
