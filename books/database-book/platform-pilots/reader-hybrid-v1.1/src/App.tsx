@@ -248,6 +248,14 @@ export default function App() {
     if (routeLabId) setActiveLabId(routeLabId);
   }, []);
 
+  // Redirect unauthorized users away from Book/Labs (handles direct URL navigation).
+  useEffect(() => {
+    if ((scope === "book" || scope === "labs") && !demoUser) {
+      setScope("login");
+      writeRoute("login");
+    }
+  }, [scope, demoUser]);
+
   // Parse route on load. Query-string URLs remain supported for older links.
   useEffect(() => {
     applyRouteState(parseLocationParams());
@@ -262,8 +270,15 @@ export default function App() {
     return () => window.removeEventListener("popstate", handler);
   }, [applyRouteState]);
 
-  // Navigate to a scope
+  // Navigate to a scope — gate Book and Labs behind auth.
   const navigateScope = useCallback((newScope: ReaderScope) => {
+    // Require login for protected scopes.
+    if ((newScope === "book" || newScope === "labs") && !demoUser) {
+      setScope("login");
+      writeRoute("login");
+      return;
+    }
+
     setScope(newScope);
     setSidebarOpen(false);
     if (newScope === "book") {
@@ -289,7 +304,7 @@ export default function App() {
       }
     }
     writeRoute(newScope);
-  }, []);
+  }, [demoUser]);
 
   // Navigate to a specific page
   const navigateToPage = useCallback((page: BookPage) => {
@@ -501,7 +516,28 @@ export default function App() {
           onCancel={() => navigateScope("welcome")}
         />
       )}
-      {scope === "book" && currentPage && (
+      {scope === "book" && !demoUser && (
+        <div className="demo-login-page">
+          <div className="login-card">
+            <h2>Access required</h2>
+            <p className="login-desc">
+              Sign in with your university email to read the book.
+            </p>
+            <div className="login-actions">
+              <button
+                className="cta-btn cta-primary"
+                onClick={() => {
+                  setScope("login");
+                  writeRoute("login");
+                }}
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {scope === "book" && demoUser && currentPage && (
         <ChapterReader
           page={currentPage}
           allPages={currentSectionPages}
@@ -516,7 +552,28 @@ export default function App() {
           showEntryCover={showReaderEntryCover}
         />
       )}
-      {scope === "labs" && activeLab && (
+      {scope === "labs" && !demoUser && (
+        <div className="demo-login-page">
+          <div className="login-card">
+            <h2>Access required</h2>
+            <p className="login-desc">
+              Sign in with your university email to access the labs.
+            </p>
+            <div className="login-actions">
+              <button
+                className="cta-btn cta-primary"
+                onClick={() => {
+                  setScope("login");
+                  writeRoute("login");
+                }}
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {scope === "labs" && demoUser && activeLab && (
         <LabsView
           labs={BOOK_LABS}
           activeLab={activeLab}
