@@ -11,7 +11,11 @@ import HomePage from "./components/HomePage";
 import DemoLogin from "./components/DemoLogin";
 import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
+import SupabaseAccessTest from "./components/SupabaseAccessTest";
+import { supabase } from "./lib/supabaseClient";
+import { getMyAccess } from "./lib/courseAccess";
 
+// Optional display convenience only — Supabase Auth session is the real authority.
 const LS_DEMO_USER = "reader-hybrid-v1.1:demoUser";
 
 
@@ -174,16 +178,60 @@ export default function App() {
   // Heading id to scroll to once the destination page has rendered (roadmap links).
   const pendingScrollIdRef = useRef<string | null>(null);
 
-  // Hydrate demo user from localStorage
+  // On app load, check existing Supabase session (real authority) and hydrate display state.
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(LS_DEMO_USER);
-      if (stored) {
-        setDemoUser(JSON.parse(stored));
+    async function checkSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (session?.user?.email) {
+        try {
+          const access = await getMyAccess();
+          if (access.has_access) {
+            setDemoUser({
+              netId: session.user.email,
+              studentId: "",
+              accessStatus: "active",
+              createdAt: new Date().toISOString(),
+            });
+          }
+        } catch {
+          // Access check failed — user has session but no access. Don't hydrate.
+        }
       }
-    } catch {
-      /* ignore */
     }
+
+    checkSession();
+
+    // Listen for auth state changes (cross-tab signout, etc.)
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "SIGNED_OUT") {
+        setDemoUser(null);
+        localStorage.removeItem(LS_DEMO_USER);
+      } else if (event === "SIGNED_IN" && session?.user?.email) {
+        try {
+          const access = await getMyAccess();
+          if (access.has_access) {
+            const user: DemoUser = {
+              netId: session.user.email,
+              studentId: "",
+              accessStatus: "active",
+              createdAt: new Date().toISOString(),
+            };
+            setDemoUser(user);
+          }
+        } catch {
+          /* access check failed — leave unauthenticated */
+        }
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const applyRouteState = useCallback((route: RouteState) => {
@@ -298,19 +346,21 @@ export default function App() {
     [activeChapterId, navigateToPage],
   );
 
-  // Demo login
-  const handleDemoLogin = useCallback((netId: string, studentId: string) => {
+  // Supabase-powered login — email passed from DemoLogin after successful auth+access check.
+  const handleDemoLogin = useCallback((email: string) => {
     const user: DemoUser = {
-      netId,
-      studentId,
-      accessStatus: "trial",
+      netId: email,
+      studentId: "",
+      accessStatus: "active",
       createdAt: new Date().toISOString(),
     };
     setDemoUser(user);
+    // Optional display convenience only — Supabase session is the real authority.
     localStorage.setItem(LS_DEMO_USER, JSON.stringify(user));
   }, []);
 
-  const handleSignOut = useCallback(() => {
+  const handleSignOut = useCallback(async () => {
+    await supabase.auth.signOut();
     setDemoUser(null);
     localStorage.removeItem(LS_DEMO_USER);
   }, []);
@@ -388,6 +438,10 @@ export default function App() {
     () => BOOK_LABS.find((l) => l.id === activeLabId) || BOOK_LABS[0],
     [activeLabId],
   );
+
+  if (new URLSearchParams(window.location.search).get('authTest') === '1') {
+    return <SupabaseAccessTest />;
+  }
 
   return (
     <Layout
