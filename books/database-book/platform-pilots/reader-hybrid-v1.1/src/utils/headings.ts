@@ -37,7 +37,8 @@ export function extractHeadingToc(content: string): HeadingTocItem[] {
     const fenceMatch = line.match(/^\s*(`{3,}|~{3,})/);
     if (fenceMatch) {
       const fenceChar = fenceMatch[1][0] as "`" | "~";
-      activeFence = activeFence === fenceChar ? null : fenceChar;
+      if (!activeFence) activeFence = fenceChar;
+      else if (activeFence === fenceChar) activeFence = null;
       continue;
     }
 
