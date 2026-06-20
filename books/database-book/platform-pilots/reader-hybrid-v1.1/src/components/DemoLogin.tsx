@@ -224,6 +224,10 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
             </p>
           </div>
         )}
+
+        <p className="login-disclaimer">
+          Account authentication is not connected yet. Preview access is stored locally in this browser.
+        </p>
       </div>
     </div>
   );

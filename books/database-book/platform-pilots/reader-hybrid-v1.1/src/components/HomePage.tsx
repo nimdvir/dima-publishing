@@ -1,4 +1,4 @@
-import { BookOpen, LogIn, Database, Layers, BarChart3, Video, ListTree, ArrowDown, ClipboardCheck } from 'lucide-react';
+import { BookOpen, LogIn, Database, Layers, BarChart3, Video, ListTree, ArrowDown } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import AnimatedBookCover from './AnimatedBookCover';
 import { COURSE_OUTLINE } from '../content/courseOutline';
@@ -18,11 +18,6 @@ const FEATURE_CARDS = [
     icon: Layers,
     title: 'Design and Query Data',
     description: 'Move from records to tables, relationships, SQL, and reliable database structures.',
-  },
-  {
-    icon: ClipboardCheck,
-    title: 'Practice With Labs',
-    description: 'Apply each chapter through guided practice and the PetVax Veterinary Clinic labs.',
   },
   {
     icon: BarChart3,
