@@ -69,6 +69,15 @@ export interface BookLab {
   sourceType: SourceType;
 }
 
+export interface BookAppendix {
+  id: string;         // e.g. "appendix-a"
+  slug: string;       // e.g. "appendix-a-terms-treasury"
+  title: string;      // e.g. "Appendix A: Compiled Terms Treasury"
+  content: string;    // raw Markdown
+  sourceFile: string;
+  sourceType: SourceType;
+}
+
 // ── AI Assistant ──
 export interface ChatMessage {
   id: string;

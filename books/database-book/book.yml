@@ -87,6 +87,24 @@ chapters:
     order: 17
     title: "Designing Systems That Matter (Conclusion)"
 
+# Appendices — end-of-book reference materials
+appendices:
+  - id: appendix-a
+    slug: appendix-a-terms-treasury
+    title: "Appendix A: Compiled Terms Treasury"
+    folderName: appendices
+    sourceFile: appendix-a-terms-treasury-2026-06-21.md
+  - id: appendix-b
+    slug: appendix-b-access-tutorials
+    title: "Appendix B: Microsoft Access Tutorials"
+    folderName: appendices
+    sourceFile: appendix-b-access-tutorials-2026-06-21.md
+  - id: appendix-c
+    slug: appendix-c-sql-reference
+    title: "Appendix C: SQL Quick Reference"
+    folderName: appendices
+    sourceFile: appendix-c-sql-reference-2026-06-21.md
+
 # Cloudinary
 cloudinary_root: Database-book-BITM330
 

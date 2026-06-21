@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ReaderScope, BookChapter, BookLab, BookPage } from "../types";
 import { FLAT_READER_PAGES } from "../generated/bookData";
 import {
@@ -15,8 +15,11 @@ import {
   Sparkles,
   Award,
   Lock,
+  CheckCircle,
+  Circle,
 } from "lucide-react";
 import { isChapterGated } from "../lib/freePreview";
+import { getAllProgress, type ChapterProgress } from "../lib/readingProgress";
 /** Icons for each reader area (keyed by section title). */
 const SECTION_ICONS: Record<string, React.ReactNode> = {
   Preface: <BookOpen size={14} />,
@@ -86,6 +89,18 @@ export default function Sidebar({
   const [expandedChapters, setExpandedChapters] = useState<Set<string>>(
     new Set([activeChapterId]),
   );
+  const [chapterProgress, setChapterProgress] = useState<ChapterProgress[]>([]);
+
+  // Load reading progress when authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setChapterProgress([]);
+      return;
+    }
+    getAllProgress()
+      .then(setChapterProgress)
+      .catch(() => setChapterProgress([]));
+  }, [isAuthenticated]);
 
   const toggleChapter = (chId: string) => {
     setExpandedChapters((prev) => {
@@ -94,6 +109,12 @@ export default function Sidebar({
       else next.add(chId);
       return next;
     });
+  };
+
+  // Lookup progress status for a chapter
+  const getChapterStatus = (chId: string): string | null => {
+    const p = chapterProgress.find((cp) => cp.chapter_id === chId);
+    return p?.status ?? null;
   };
 
   return (
@@ -137,6 +158,7 @@ export default function Sidebar({
           {chapters.map((ch) => {
             const isGated = isChapterGated(ch.id);
             const showLock = isGated && !isAuthenticated;
+            const chStatus = getChapterStatus(ch.id);
             return (
               <div key={ch.id} className="sidebar-chapter">
                 <button
@@ -163,6 +185,16 @@ export default function Sidebar({
                   {showLock && (
                     <span className="chapter-lock-icon">
                       <Lock size={12} />
+                    </span>
+                  )}
+                  {!showLock && chStatus === "completed" && (
+                    <span className="chapter-progress-icon" title="Completed">
+                      <CheckCircle size={12} />
+                    </span>
+                  )}
+                  {!showLock && chStatus === "in_progress" && (
+                    <span className="chapter-progress-icon" title="In progress">
+                      <Circle size={12} />
                     </span>
                   )}
                 </button>

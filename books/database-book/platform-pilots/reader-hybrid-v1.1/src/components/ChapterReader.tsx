@@ -1,7 +1,8 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import type { BookPage } from "../types";
 import { extractHeadingToc } from "../utils/headings";
+import { trackPageView, markPageCompleted } from "../lib/readingProgress";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OnThisPage, { OnThisPageMobile } from "./OnThisPage";
 import BottomNavigation from "./BottomNavigation";
@@ -39,6 +40,22 @@ export default function ChapterReader({
     [page.content],
   );
   const reducedMotion = useReducedMotion();
+
+  // Track reading progress on every page view
+  useEffect(() => {
+    trackPageView({
+      chapterId: page.chapterId,
+      sectionId: page.sectionId,
+      pageId: page.id,
+    });
+  }, [page.id, page.chapterId, page.sectionId]);
+
+  // Mark page as completed when user navigates past it
+  useEffect(() => {
+    if (prevPage?.id) {
+      markPageCompleted(prevPage.id);
+    }
+  }, [page.id, prevPage?.id]);
 
   // Roadmap and other in-content "#anchor" links must jump across reader pages,
   // so intercept them and route through the chapter-aware handler.
