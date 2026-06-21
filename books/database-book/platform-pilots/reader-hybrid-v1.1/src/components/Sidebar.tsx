@@ -14,7 +14,9 @@ import {
   HelpCircle,
   Sparkles,
   Award,
+  Lock,
 } from "lucide-react";
+import { isChapterGated } from "../lib/freePreview";
 /** Icons for each reader area (keyed by section title). */
 const SECTION_ICONS: Record<string, React.ReactNode> = {
   Preface: <BookOpen size={14} />,
@@ -61,6 +63,8 @@ interface SidebarProps {
   activeLabId: string;
   onSelectLab: (lab: BookLab) => void;
   onClose: () => void;
+  isAuthenticated?: boolean;
+  onOpenLogin?: () => void;
 }
 
 export default function Sidebar({
@@ -76,6 +80,8 @@ export default function Sidebar({
   activeLabId,
   onSelectLab,
   onClose,
+  isAuthenticated = false,
+  onOpenLogin,
 }: SidebarProps) {
   const [expandedChapters, setExpandedChapters] = useState<Set<string>>(
     new Set([activeChapterId]),
@@ -128,79 +134,93 @@ export default function Sidebar({
       {/* Book scope: chapters and sections */}
       {scope === "book" && (
         <div className="sidebar-chapters">
-          {chapters.map((ch) => (
-            <div key={ch.id} className="sidebar-chapter">
-              <button
-                className={`chapter-toggle ${activeChapterId === ch.id ? "active" : ""}`}
-                onClick={() => toggleChapter(ch.id)}
-              >
-                <span className="chapter-caret">
-                  {expandedChapters.has(ch.id) ? (
-                    <ChevronDown size={14} />
-                  ) : (
-                    <ChevronRight size={14} />
+          {chapters.map((ch) => {
+            const isGated = isChapterGated(ch.id);
+            const showLock = isGated && !isAuthenticated;
+            return (
+              <div key={ch.id} className="sidebar-chapter">
+                <button
+                  className={`chapter-toggle ${activeChapterId === ch.id ? "active" : ""} ${showLock ? "chapter-locked" : ""}`}
+                  onClick={() =>
+                    showLock ? onOpenLogin?.() : toggleChapter(ch.id)
+                  }
+                  title={
+                    showLock ? "Sign in to access this chapter" : undefined
+                  }
+                >
+                  <span className="chapter-caret">
+                    {expandedChapters.has(ch.id) ? (
+                      <ChevronDown size={14} />
+                    ) : (
+                      <ChevronRight size={14} />
+                    )}
+                  </span>
+                  <span className="chapter-label">
+                    {ch.id === "ch00"
+                      ? ch.title
+                      : `${ch.id.toUpperCase()}: ${ch.title}`}
+                  </span>
+                  {showLock && (
+                    <span className="chapter-lock-icon">
+                      <Lock size={12} />
+                    </span>
                   )}
-                </span>
-                <span className="chapter-label">
-                  {ch.id === "ch00"
-                    ? ch.title
-                    : `${ch.id.toUpperCase()}: ${ch.title}`}
-                </span>
-              </button>
-              {expandedChapters.has(ch.id) && (
-                <div className="chapter-sections">
-                  {ch.sections.map((sec) => {
-                    const sectionPages = FLAT_READER_PAGES.filter(
-                      (p) => p.sectionId === sec.id,
-                    );
-                    return (
-                      <div key={sec.id} className="sidebar-section">
-                        <button
-                          className={`section-link ${activeSectionId === sec.id ? "active" : ""}`}
-                          onClick={() => onSelectSection(sec.id)}
-                        >
-                          <span className="section-icon">
-                            {SECTION_ICONS[sec.title] || null}
-                          </span>
-                          <span className="section-text">
-                            <span className="section-title">
-                              {SECTION_LABELS[sec.title] || sec.title}
+                </button>
+                {expandedChapters.has(ch.id) && (
+                  <div className="chapter-sections">
+                    {ch.sections.map((sec) => {
+                      const sectionPages = FLAT_READER_PAGES.filter(
+                        (p) => p.sectionId === sec.id,
+                      );
+                      return (
+                        <div key={sec.id} className="sidebar-section">
+                          <button
+                            className={`section-link ${activeSectionId === sec.id ? "active" : ""}`}
+                            onClick={() => onSelectSection(sec.id)}
+                          >
+                            <span className="section-icon">
+                              {SECTION_ICONS[sec.title] || null}
                             </span>
-                            {SECTION_SUBTITLES[sec.title] && (
-                              <span className="section-subtitle">
-                                {SECTION_SUBTITLES[sec.title]}
+                            <span className="section-text">
+                              <span className="section-title">
+                                {SECTION_LABELS[sec.title] || sec.title}
                               </span>
+                              {SECTION_SUBTITLES[sec.title] && (
+                                <span className="section-subtitle">
+                                  {SECTION_SUBTITLES[sec.title]}
+                                </span>
+                              )}
+                            </span>
+                            {!sec.exists && (
+                              <span className="badge-placeholder">missing</span>
                             )}
-                          </span>
-                          {!sec.exists && (
-                            <span className="badge-placeholder">missing</span>
+                          </button>
+                          {sectionPages.length > 1 && (
+                            <div className="section-pages">
+                              {sectionPages.map((p) => (
+                                <button
+                                  key={p.id}
+                                  className={`page-link ${p.id === activePageId ? "active" : ""}`}
+                                  onClick={() => onSelectPage(p)}
+                                >
+                                  <span className="page-link-num">
+                                    {p.pageNumber}
+                                  </span>
+                                  <span className="page-link-title">
+                                    {p.navTitle || p.title}
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
                           )}
-                        </button>
-                        {sectionPages.length > 1 && (
-                          <div className="section-pages">
-                            {sectionPages.map((p) => (
-                              <button
-                                key={p.id}
-                                className={`page-link ${p.id === activePageId ? "active" : ""}`}
-                                onClick={() => onSelectPage(p)}
-                              >
-                                <span className="page-link-num">
-                                  {p.pageNumber}
-                                </span>
-                                <span className="page-link-title">
-                                  {p.navTitle || p.title}
-                                </span>
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          ))}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -222,7 +242,6 @@ export default function Sidebar({
           ))}
         </div>
       )}
-
     </div>
   );
 }

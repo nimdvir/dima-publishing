@@ -13,10 +13,10 @@ import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
 import { supabase } from "./lib/supabaseClient";
 import { getMyAccess } from "./lib/courseAccess";
+import { isChapterGated } from "./lib/freePreview";
 
 // Optional display convenience only — Supabase Auth session is the real authority.
 const LS_DEMO_USER = "reader-hybrid-v1.1:demoUser";
-
 
 const VALID_SCOPES = new Set(["welcome", "book", "labs", "login"]);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map((c) => c.id));
@@ -260,13 +260,26 @@ export default function App() {
     if (routeLabId) setActiveLabId(routeLabId);
   }, []);
 
-  // Redirect unauthorized users away from Book/Labs (handles direct URL navigation).
+  // Redirect unauthorized users only when viewing labs or gated chapters.
+  // Front matter and Ch01-Ch04 remain readable without login.
   useEffect(() => {
-    if (!authLoading && (scope === "book" || scope === "labs") && !demoUser) {
-      setScope("login");
-      writeRoute("login");
+    if (!authLoading && !demoUser) {
+      if (scope === "labs") {
+        setScope("login");
+        writeRoute("login");
+        return;
+      }
+      if (
+        scope === "book" &&
+        activeChapterId &&
+        isChapterGated(activeChapterId)
+      ) {
+        setScope("login");
+        writeRoute("login");
+        return;
+      }
     }
-  }, [scope, demoUser, authLoading]);
+  }, [scope, demoUser, authLoading, activeChapterId]);
 
   // Parse route on load. Query-string URLs remain supported for older links.
   useEffect(() => {
@@ -282,41 +295,44 @@ export default function App() {
     return () => window.removeEventListener("popstate", handler);
   }, [applyRouteState]);
 
-  // Navigate to a scope — gate Book and Labs behind auth.
-  const navigateScope = useCallback((newScope: ReaderScope) => {
-    // Require login for protected scopes.
-    if ((newScope === "book" || newScope === "labs") && !demoUser && !authLoading) {
-      setScope("login");
-      writeRoute("login");
-      return;
-    }
+  // Navigate to a scope — allow the free preview, gate labs and Ch05+.
+  const navigateScope = useCallback(
+    (newScope: ReaderScope) => {
+      // Labs always require login.
+      if (newScope === "labs" && !demoUser && !authLoading) {
+        setScope("login");
+        writeRoute("login");
+        return;
+      }
 
-    setScope(newScope);
-    setSidebarOpen(false);
-    if (newScope === "book") {
-      const firstPage = FLAT_READER_PAGES[0];
-      if (firstPage) {
-        setActiveChapterId(firstPage.chapterId);
-        setActiveSectionId(firstPage.sectionId);
-        setActivePageIndex(0);
-        writeRoute("book", {
-          chapter: firstPage.chapterId,
-          section: firstPage.sectionSlug,
-          page: 1,
-        });
-        return;
+      setScope(newScope);
+      setSidebarOpen(false);
+      if (newScope === "book") {
+        const firstPage = FLAT_READER_PAGES[0];
+        if (firstPage) {
+          setActiveChapterId(firstPage.chapterId);
+          setActiveSectionId(firstPage.sectionId);
+          setActivePageIndex(0);
+          writeRoute("book", {
+            chapter: firstPage.chapterId,
+            section: firstPage.sectionSlug,
+            page: 1,
+          });
+          return;
+        }
       }
-    }
-    if (newScope === "labs") {
-      const firstLab = BOOK_LABS[0];
-      if (firstLab) {
-        setActiveLabId(firstLab.id);
-        writeRoute("labs", { lab: firstLab.id });
-        return;
+      if (newScope === "labs") {
+        const firstLab = BOOK_LABS[0];
+        if (firstLab) {
+          setActiveLabId(firstLab.id);
+          writeRoute("labs", { lab: firstLab.id });
+          return;
+        }
       }
-    }
-    writeRoute(newScope);
-  }, [demoUser, authLoading]);
+      writeRoute(newScope);
+    },
+    [demoUser, authLoading],
+  );
 
   // Navigate to a specific page
   const navigateToPage = useCallback((page: BookPage) => {
@@ -478,7 +494,11 @@ export default function App() {
       onNavigateScope={navigateScope}
       chapters={BOOK_CHAPTERS}
       progress={progress}
-
+      isAuthenticated={!!demoUser}
+      onOpenLogin={() => {
+        setScope("login");
+        writeRoute("login");
+      }}
       activeChapterId={activeChapterId}
       activeSectionId={activeSectionId}
       activePageId={currentPage?.id || ""}
@@ -526,42 +546,49 @@ export default function App() {
           onCancel={() => navigateScope("welcome")}
         />
       )}
-      {scope === "book" && !demoUser && !authLoading && (
-        <div className="demo-login-page">
-          <div className="login-card">
-            <h2>Access required</h2>
-            <p className="login-desc">
-              Sign in with your university email to read the book.
-            </p>
-            <div className="login-actions">
-              <button
-                className="cta-btn cta-primary"
-                onClick={() => {
-                  setScope("login");
-                  writeRoute("login");
-                }}
-              >
-                Sign in
-              </button>
+      {scope === "book" &&
+        !demoUser &&
+        !authLoading &&
+        activeChapterId &&
+        isChapterGated(activeChapterId) && (
+          <div className="demo-login-page">
+            <div className="login-card">
+              <h2>Access required</h2>
+              <p className="login-desc">
+                Sign in with your university email to read chapters beyond
+                Chapter 4.
+              </p>
+              <div className="login-actions">
+                <button
+                  className="cta-btn cta-primary"
+                  onClick={() => {
+                    setScope("login");
+                    writeRoute("login");
+                  }}
+                >
+                  Sign in
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      {scope === "book" && demoUser && currentPage && (
-        <ChapterReader
-          page={currentPage}
-          allPages={currentSectionPages}
-          onNavigate={navigateToPage}
-          onHashNavigate={navigateToHeading}
-          hasPrev={hasPrev}
-          hasNext={hasNext}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          onPrev={goPrev}
-          onNext={goNext}
-          showEntryCover={showReaderEntryCover}
-        />
-      )}
+        )}
+      {scope === "book" &&
+        currentPage &&
+        (demoUser || (activeChapterId && !isChapterGated(activeChapterId))) && (
+          <ChapterReader
+            page={currentPage}
+            allPages={currentSectionPages}
+            onNavigate={navigateToPage}
+            onHashNavigate={navigateToHeading}
+            hasPrev={hasPrev}
+            hasNext={hasNext}
+            prevPage={prevPage}
+            nextPage={nextPage}
+            onPrev={goPrev}
+            onNext={goNext}
+            showEntryCover={showReaderEntryCover}
+          />
+        )}
       {scope === "labs" && !demoUser && !authLoading && (
         <div className="demo-login-page">
           <div className="login-card">

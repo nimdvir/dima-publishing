@@ -23,6 +23,8 @@ interface LayoutProps {
   onSelectLab: (lab: BookLab) => void;
   progress: number;
   children: ReactNode;
+  isAuthenticated?: boolean;
+  onOpenLogin?: () => void;
 }
 
 const SCOPE_LABELS: Record<ReaderScope, string> = {
@@ -50,6 +52,8 @@ export default function Layout({
   onSelectLab,
   progress,
   children,
+  isAuthenticated = false,
+  onOpenLogin,
 }: LayoutProps) {
   return (
     <div className="app-shell">
@@ -133,6 +137,8 @@ export default function Layout({
             activeLabId={activeLabId}
             onSelectLab={onSelectLab}
             onClose={() => {}}
+            isAuthenticated={isAuthenticated}
+            onOpenLogin={onOpenLogin}
           />
         </aside>
 
@@ -151,6 +157,8 @@ export default function Layout({
             activeLabId={activeLabId}
             onSelectLab={onSelectLab}
             onClose={() => onToggleSidebar()}
+            isAuthenticated={isAuthenticated}
+            onOpenLogin={onOpenLogin}
           />
         </MobileNav>
 
@@ -177,9 +185,7 @@ export default function Layout({
       </footer>
 
       {/* Feedback — floating report button */}
-      {scope !== "welcome" && scope !== "login" && (
-        <FeedbackLink />
-      )}
+      {scope !== "welcome" && scope !== "login" && <FeedbackLink />}
     </div>
   );
 }
