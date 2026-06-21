@@ -1,4 +1,6 @@
-﻿# Lab 10: Advanced SQL for PetVax Business Analysis
+﻿<!-- metadata: date="2026-06-21" -->
+
+# Lab 10: Advanced SQL for PetVax Business Analysis
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-lb" alt="Lab section icon" width="220">

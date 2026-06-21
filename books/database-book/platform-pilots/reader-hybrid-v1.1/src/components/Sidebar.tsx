@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import type { ReaderScope, BookChapter, BookLab, BookPage } from "../types";
+import type {
+  ReaderScope,
+  BookChapter,
+  BookLab,
+  BookPage,
+  BookAppendix,
+} from "../types";
 import { FLAT_READER_PAGES } from "../generated/bookData";
 import {
   BookOpen,
@@ -17,6 +23,7 @@ import {
   Lock,
   CheckCircle,
   Circle,
+  Library,
 } from "lucide-react";
 import { isChapterGated } from "../lib/freePreview";
 import { getAllProgress, type ChapterProgress } from "../lib/readingProgress";
@@ -65,6 +72,9 @@ interface SidebarProps {
   labs: BookLab[];
   activeLabId: string;
   onSelectLab: (lab: BookLab) => void;
+  appendices: BookAppendix[];
+  activeAppendixId: string;
+  onSelectAppendix: (appendix: BookAppendix) => void;
   onClose: () => void;
   isAuthenticated?: boolean;
   onOpenLogin?: () => void;
@@ -82,6 +92,9 @@ export default function Sidebar({
   labs,
   activeLabId,
   onSelectLab,
+  appendices,
+  activeAppendixId,
+  onSelectAppendix,
   onClose,
   isAuthenticated = false,
   onOpenLogin,
@@ -141,6 +154,12 @@ export default function Sidebar({
           onClick={() => onNavigateScope("labs")}
         >
           <FlaskConical size={16} className="scope-icon" /> Labs
+        </button>
+        <button
+          className={`scope-link ${scope === "appendices" ? "active" : ""}`}
+          onClick={() => onNavigateScope("appendices")}
+        >
+          <Library size={16} className="scope-icon" /> Appendices
         </button>
         <button
           className={`scope-link ${scope === "login" ? "active" : ""}`}
@@ -270,6 +289,26 @@ export default function Sidebar({
               {!lab.exists && (
                 <span className="badge-placeholder">missing</span>
               )}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Appendices scope: appendix list */}
+      {scope === "appendices" && (
+        <div className="sidebar-labs">
+          {appendices.map((app) => (
+            <button
+              key={app.id}
+              className={`lab-link ${activeAppendixId === app.id ? "active" : ""}`}
+              onClick={() => onSelectAppendix(app)}
+            >
+              <span className="lab-num">
+                {app.id.replace("appendix-", "App ").toUpperCase()}
+              </span>
+              <span className="lab-title">
+                {app.title.replace(/^Appendix [A-C]: /, "")}
+              </span>
             </button>
           ))}
         </div>

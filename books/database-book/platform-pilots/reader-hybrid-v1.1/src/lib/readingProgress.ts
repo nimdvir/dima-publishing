@@ -100,16 +100,14 @@ export async function markChapterCompleted(chapterId: string): Promise<void> {
   } = await supabase.auth.getUser();
   if (!user) return;
 
-  await supabase
-    .from("progress")
-    .upsert(
-      {
-        user_id: user.id,
-        chapter_id: chapterId,
-        status: "completed",
-      },
-      { onConflict: "user_id, chapter_id" },
-    );
+  await supabase.from("progress").upsert(
+    {
+      user_id: user.id,
+      chapter_id: chapterId,
+      status: "completed",
+    },
+    { onConflict: "user_id, chapter_id" },
+  );
 }
 
 /**

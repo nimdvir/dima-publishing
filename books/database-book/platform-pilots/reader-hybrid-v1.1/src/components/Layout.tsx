@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ReaderScope, DemoUser, BookChapter, BookLab } from "../types";
+import type { ReaderScope, DemoUser, BookChapter, BookLab, BookAppendix } from "../types";
 import Sidebar from "./Sidebar";
 import MobileNav from "./MobileNav";
 import { FeedbackLink } from "./FeedbackLink";
@@ -21,6 +21,9 @@ interface LayoutProps {
   labs: BookLab[];
   activeLabId: string;
   onSelectLab: (lab: BookLab) => void;
+  appendices: BookAppendix[];
+  activeAppendixId: string;
+  onSelectAppendix: (appendix: BookAppendix) => void;
   progress: number;
   children: ReactNode;
   isAuthenticated?: boolean;
@@ -31,6 +34,7 @@ const SCOPE_LABELS: Record<ReaderScope, string> = {
   welcome: "Home",
   book: "Reader",
   labs: "Labs",
+  appendices: "Appendices",
   login: "Sign in",
 };
 
@@ -50,6 +54,9 @@ export default function Layout({
   labs,
   activeLabId,
   onSelectLab,
+  appendices,
+  activeAppendixId,
+  onSelectAppendix,
   progress,
   children,
   isAuthenticated = false,
@@ -136,6 +143,9 @@ export default function Layout({
             labs={labs}
             activeLabId={activeLabId}
             onSelectLab={onSelectLab}
+            appendices={appendices}
+            activeAppendixId={activeAppendixId}
+            onSelectAppendix={onSelectAppendix}
             onClose={() => {}}
             isAuthenticated={isAuthenticated}
             onOpenLogin={onOpenLogin}
@@ -156,6 +166,9 @@ export default function Layout({
             labs={labs}
             activeLabId={activeLabId}
             onSelectLab={onSelectLab}
+            appendices={appendices}
+            activeAppendixId={activeAppendixId}
+            onSelectAppendix={onSelectAppendix}
             onClose={() => onToggleSidebar()}
             isAuthenticated={isAuthenticated}
             onOpenLogin={onOpenLogin}

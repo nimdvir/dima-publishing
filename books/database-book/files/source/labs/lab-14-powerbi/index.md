@@ -1,166 +1,175 @@
-﻿---
-title: "Lab 14: Power BI"
-chapter: 14
-section: "Lab Questions"
-description: "Migrated draft for the Power BI lab based on the centralized chapter 14 section lab."
-keywords:
-  - lab 14
-  - PetVax
-  - Power BI
-  - dashboards
-  - visualization
-date: 2026-05-22
-author: "Nimrod Dvir"
----
+<!-- metadata: date="2026-06-21" -->
 
-# Lab 14: Power BI
+# Lab 14: Building a PetVax Power BI Dashboard
 
-![Lab banner](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/lab_jpifze?_a=BAMAAAiu0)
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-lb" alt="Lab section icon" width="220">
+</p>
 
-*Converted draft migrated from the centralized section-based lab sequence.*
+<p align="center"><em>Connect Power BI to PetVax data, build a multi-page interactive report, and present your findings — the same workflow you practiced on the Grading Database, now for a real veterinary business.</em></p>
 
 # Overview
 
-This file preserves the current section-based lab handout inside the new numbered lab structure. It is a migration draft so the material is now organized by lab folder while the older section hub remains available as reference.
+Chapter 14 introduced Microsoft Power BI as the bridge from database queries to business presentations. In the Let's Build, you connected Power BI to the Grading Database, built a data model, created DAX measures, and designed an interactive report. In this lab, you do the same for PetVax.
 
-# Source Links
+**This lab has two graded parts:**
 
-- [Centralized section lab](../../../Labs/sections/part-03-building-and-managing-systems/ch14-powerbi/lab.md)
+1. **Quiz part** — auto-gradable check questions.
+2. **File submission part** — a Power BI `.pbix` file plus exported screenshots.
 
-# Migration Notes
+**Estimated time:** 60–80 minutes.
 
-- Source chapter lab: ch14-powerbi
-- Migration date: 2026-05-22
-- Status: content moved into the numbered lab sequence; a later pass can rebuild this into the full SAM-style format if needed.
+**Tools required:** Power BI Desktop (free download from Microsoft).
 
-# Migrated Section Draft
+> ⚠️ **Missing-file rule:** If the `.pbix` file is missing, you receive zero for the file-submission part.
 
-<!-- Companion: Lab assignment — 2026-05-06 -->
+# Scenario
 
-## Lab Overview
+The PetVax practice manager attends a veterinary conference and sees a competitor presenting an interactive dashboard that shows appointments, revenue, and patient trends at a glance. She returns to the clinic and asks you: "Can we have something like that?"
 
-**Lab Title:** Grading Dashboard in Power BI  
-**Chapter:** 14 — Power BI: Data Visualization and Business Reporting  
-**Estimated Time:** 60–90 minutes  
-**Tools Required:** Power BI Desktop (free), GRADECENTER data export (Excel or SQL)
+You have the PetVax database. You have Power BI. Your job is to build a two-page interactive report that answers the clinic's most important business questions.
 
----
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-## Learning Objectives
+# Part 1: Connect and Prepare Data
 
-By completing this lab, you will:
+1. Open Power BI Desktop. Click **Get Data → SQLite** (or import CSV exports of the PetVax tables if SQLite connection is unavailable).
+2. Load the following PetVax tables: OWNER, PET, VET, VISIT, TREATMENT, VISIT_TREATMENT.
+3. In **Power Query Editor**, verify:
+   - All primary key columns are present
+   - Date columns are set to Date type
+   - Currency columns (ChargeAmount) are set to Decimal/Fixed Decimal
+   - No columns contain errors or nulls where they should not
 
-- Connect Power BI to a data source
-- Clean and transform data with Power Query
-- Build a multi-page interactive report
-- Create at least one DAX measure
-- Use slicers to enable interactive filtering
+> **Check Question 1:** How many tables did you load into Power BI from PetVax? (Multiple choice.)
 
----
+# Part 2: Build the Data Model
 
-## Lab Data
+In the **Model** view, create relationships between the PetVax tables:
 
-Use the provided **GRADECENTER Excel export** (`gradecenter-export.xlsx`) available on the course LMS, or connect directly to the SQLite/SQL Server GRADECENTER database if available.
+- OWNER[OwnerID] → PET[OwnerID]
+- PET[PetID] → VISIT[PetID]
+- VET[VetID] → VISIT[VetID]
+- VISIT[VisitID] → VISIT_TREATMENT[VisitID]
+- TREATMENT[TreatmentID] → VISIT_TREATMENT[TreatmentID]
 
-Tables to use: `Students`, `Courses`, `Enrollments`, `Grades`
+Verify all relationships show correct cardinality (one-to-many) and cross-filter direction.
 
----
+> **Check Question 2:** How many relationships did you create in the PetVax data model? (Multiple choice: A. 3 B. 4 C. 5 D. 6)
 
-## Part 1: Connect and Prepare (15 min)
+# Part 3: Create DAX Measures
 
-1. Open Power BI Desktop. Click **Get Data → Excel** and load `gradecenter-export.xlsx`.
-2. Open **Power Query Editor**:
-   - Remove any rows in `Grades` where `Score` is blank or null.
-   - Confirm all data types are correct (`Score` = Decimal, `StudentID` = Whole Number).
-3. Click **Close & Apply**.
-4. Go to **Model View** and verify that all relationships are correct.
+Write the following DAX measures in your PetVax report:
 
-**Checkpoint:** Take a screenshot of your data model relationships.
+| Measure Name | DAX Formula | What It Calculates |
+|-------------|-------------|-------------------|
+| Total Visits | `TotalVisits = COUNT(VISIT[VisitID])` | Total number of clinic visits |
+| Total Revenue | `TotalRevenue = SUM(VISIT_TREATMENT[ChargeAmount])` | Sum of all treatment charges |
+| Avg Revenue Per Visit | `AvgRevenuePerVisit = DIVIDE([TotalRevenue], [TotalVisits], 0)` | Average billing per appointment |
+| Unique Pets | `UniquePets = DISTINCTCOUNT(PET[PetID])` | Number of unique pets seen |
+| Visits Per Vet | `VisitsPerVet = DIVIDE([TotalVisits], DISTINCTCOUNT(VET[VetID]), 0)` | Average caseload per veterinarian |
 
----
+> **Check Question 3:** If TotalRevenue = $45,000 and TotalVisits = 300, what is AvgRevenuePerVisit? (Short answer — enter the exact number.)
 
-## Part 2: Create Measures (15 min)
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-In the `Grades` table, create the following DAX measures:
+# Part 4: Design the Dashboard (Page 1 — Operations)
 
-```dax
-Average Score = AVERAGE(Grades[Score])
+Page 1 should focus on daily operations. Include:
 
-Total Students = DISTINCTCOUNT(Enrollments[StudentID])
+1. **Card visual:** Today's visit count (Title: "Visits Today")
+2. **Card visual:** Today's revenue (Title: "Revenue Today")
+3. **Bar chart:** Visits by veterinarian (Axis: VetName, Values: TotalVisits)
+4. **Slicer:** Date range filter
+5. **Table:** Upcoming appointments (Columns: PetName, OwnerName, VisitDate, VisitTime, VetName)
 
-Pass Rate = 
-DIVIDE(
-    COUNTROWS(FILTER(Grades, Grades[Score] >= 60)),
-    COUNTROWS(Grades),
-    0
-)
-```
+Add a descriptive title at the top of the page: "PetVax Daily Operations."
 
----
+> **Check Question 4:** In your bar chart of visits by veterinarian, which vet has the most visits? (Multiple choice — vet names will depend on your data.)
 
-## Part 3: Report Page 1 — Course Overview (20 min)
+# Part 5: Design the Dashboard (Page 2 — Trends)
 
-Build a report page titled **"Course Overview"**:
+Page 2 should focus on trends over time. Include:
 
-| Visual | Configuration |
-|---|---|
-| Card | Value: `Average Score` |
-| Card | Value: `Pass Rate` (format as %) |
-| Bar Chart | X-axis: `CourseName`, Y-axis: `Average Score` |
-| Slicer | Field: `Semester` |
+1. **Line chart:** Visits over time (Axis: VisitDate, Values: TotalVisits)
+2. **Line chart:** Revenue over time (Axis: VisitDate, Values: TotalRevenue)
+3. **Pie chart:** Visits by species (Legend: Species, Values: TotalVisits)
+4. **Stacked bar chart:** Revenue by treatment type (Axis: TreatmentName, Values: TotalRevenue)
 
-Format the page with a dark or professional theme. Add a text box title at the top.
+Add a page title: "PetVax Trends & Analysis."
 
-**Checkpoint:** Screenshot of completed Page 1.
+> **Check Question 5:** In your species pie chart, which species accounts for the largest share of visits? (Multiple choice: A. Dog B. Cat C. Bird D. Other)
 
----
+# Lab Quiz
 
-## Part 4: Report Page 2 — Student Detail (15 min)
+## Question 1 — Table Count (Multiple Choice)
 
-Build a second report page titled **"Student Detail"**:
+How many PetVax tables did you load into Power BI?
 
-| Visual | Configuration |
-|---|---|
-| Table | Columns: StudentName, CourseName, Score, LetterGrade |
-| Slicer | Field: `CourseName` |
-| Card | Value: `Total Students` |
+- A. 4
+- B. 5
+- C. 6
+- D. 7
 
----
+## Question 2 — Relationship Count (Multiple Choice)
 
-## Part 5: Publish (Optional — 5 min)
+How many relationships did you create in the data model?
 
-1. Save your file as `ch14-lab-yourname.pbix`.
-2. If you have a Microsoft account: **Publish → My Workspace**.
-3. Share the report URL with your instructor.
+- A. 3
+- B. 4
+- C. 5
+- D. 6
 
----
+## Question 3 — Avg Revenue (Short Answer)
 
-## Deliverables
+If TotalRevenue = $45,000 and TotalVisits = 300, what is AvgRevenuePerVisit? Enter the exact number (no dollar sign).
 
-Submit the following via the course LMS:
+## Question 4 — Top Vet (Multiple Choice)
 
-- [ ] `ch14-lab-yourname.pbix` file
-- [ ] Screenshot: data model relationships
-- [ ] Screenshot: Course Overview page
-- [ ] Screenshot: Student Detail page
-- [ ] (Optional) Power BI Service URL
+In your bar chart, which veterinarian handled the most visits?
 
----
+- A. Dr. Chen
+- B. Dr. Singh
+- C. Dr. Lopez
+- D. Cannot determine — depends on the data loaded
 
-## Grading Rubric
+## Question 5 — Top Species (Multiple Choice)
 
-| Criteria | Points |
-|---|---|
-| Data loaded and cleaned correctly | 20 |
-| All three DAX measures created correctly | 20 |
-| Page 1 contains required visuals + slicer | 25 |
-| Page 2 contains required visuals + slicer | 25 |
-| Professional formatting and titles | 10 |
-| **Total** | **100** |
+Which species had the most visits in your pie chart?
 
----
+- A. Dog
+- B. Cat
+- C. Bird
+- D. Cannot determine — depends on the data loaded
 
-## Reflection Prompt (written response, 2–3 sentences)
+## Question 6 — DAX Function (Multiple Choice)
 
-After building this dashboard, describe one business decision a school administrator could make using it. What data would drive that decision?
+Which DAX function did you use to count unique pets?
 
+- A. COUNT
+- B. COUNTA
+- C. DISTINCTCOUNT
+- D. COUNTROWS
+
+# Submission
+
+Submit two items:
+
+1. **Power BI file:** `lab-14-petvax-dashboard-YourName.pbix`
+2. **Screenshot export:** `lab-14-petvax-screenshots-YourName.pdf` — showing both dashboard pages with all visuals visible
+
+The AI grader will verify: the .pbix file opens, relationships exist, DAX measures are present, both pages contain the required visuals, and your quiz answers are consistent with your report.
+
+> ⚠️ If the .pbix file is missing, you receive zero for the file-submission part.
+
+# Lab 14 Completion Checklist
+
+- [ ] Part 1: 6 PetVax tables loaded, data types verified in Power Query
+- [ ] Part 2: 5 relationships created with correct cardinality
+- [ ] Part 3: 5 DAX measures defined and working
+- [ ] Part 4: Page 1 has 2 cards, 1 bar chart, 1 slicer, 1 table
+- [ ] Part 5: Page 2 has 2 line charts, 1 pie chart, 1 stacked bar chart
+- [ ] Both pages have descriptive titles
+- [ ] Screenshots exported and .pbix saved

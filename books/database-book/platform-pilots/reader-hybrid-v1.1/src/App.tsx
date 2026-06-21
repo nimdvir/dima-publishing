@@ -1,9 +1,10 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
-import type { ReaderScope, DemoUser, BookPage, BookLab } from "./types";
+import type { ReaderScope, DemoUser, BookPage, BookLab, BookAppendix } from "./types";
 import {
   BOOK_CHAPTERS,
   FLAT_READER_PAGES,
   BOOK_LABS,
+  BOOK_APPENDICES,
 } from "./generated/bookData";
 import { extractHeadingToc } from "./utils/headings";
 import Layout from "./components/Layout";
@@ -11,6 +12,7 @@ import HomePage from "./components/HomePage";
 import DemoLogin from "./components/DemoLogin";
 import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
+import AppendicesView from "./components/AppendicesView";
 import { supabase } from "./lib/supabaseClient";
 import { getMyAccess } from "./lib/courseAccess";
 import { isChapterGated } from "./lib/freePreview";
@@ -18,7 +20,7 @@ import { isChapterGated } from "./lib/freePreview";
 // Optional display convenience only — Supabase Auth session is the real authority.
 const LS_DEMO_USER = "reader-hybrid-v1.1:demoUser";
 
-const VALID_SCOPES = new Set(["welcome", "book", "labs", "login"]);
+const VALID_SCOPES = new Set(["welcome", "book", "labs", "appendices", "login"]);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map((c) => c.id));
 
 /** Pre-built lookup: pageId → index in FLAT_READER_PAGES (avoids repeated findIndex). */
@@ -32,6 +34,7 @@ type RouteState = {
   section?: string;
   page?: number;
   lab?: string;
+  appendix?: string;
 };
 
 function parsePositiveInt(value: string | undefined): number | undefined {
@@ -74,6 +77,12 @@ function parsePathParams(): RouteState {
     return {
       scope: "labs",
       lab: chapter,
+    };
+  }
+  if (route === "appendices") {
+    return {
+      scope: "appendices",
+      appendix: chapter,
     };
   }
 
@@ -120,7 +129,7 @@ function resolveLabId(routeLab: string | undefined): string | undefined {
 
 function buildRoutePath(
   scope: ReaderScope,
-  opts?: { chapter?: string; section?: string; page?: number; lab?: string },
+  opts?: { chapter?: string; section?: string; page?: number; lab?: string; appendix?: string },
 ) {
   if (scope === "book" && opts?.chapter && opts?.section) {
     const page = opts.page && opts.page > 0 ? opts.page : 1;
@@ -130,6 +139,9 @@ function buildRoutePath(
   if (scope === "labs" && opts?.lab)
     return `/labs/${encodeURIComponent(opts.lab)}`;
   if (scope === "labs") return "/labs";
+  if (scope === "appendices" && opts?.appendix)
+    return `/appendices/${encodeURIComponent(opts.appendix)}`;
+  if (scope === "appendices") return "/appendices";
   if (scope === "login") return "/login";
   return "/";
 }
@@ -170,6 +182,11 @@ export default function App() {
   // Labs state
   const [activeLabId, setActiveLabId] = useState<string>(
     BOOK_LABS[0]?.id || "lab-01",
+  );
+
+  // Appendices state
+  const [activeAppendixId, setActiveAppendixId] = useState<string>(
+    BOOK_APPENDICES[0]?.id || "appendix-a",
   );
 
   // Mobile sidebar
@@ -258,13 +275,18 @@ export default function App() {
 
     const routeLabId = resolveLabId(route.lab);
     if (routeLabId) setActiveLabId(routeLabId);
+
+    const routeAppendixId = BOOK_APPENDICES.find(
+      (a) => a.id === route.appendix || a.slug === route.appendix,
+    )?.id;
+    if (routeAppendixId) setActiveAppendixId(routeAppendixId);
   }, []);
 
-  // Redirect unauthorized users only when viewing labs or gated chapters.
+  // Redirect unauthorized users only when viewing labs, appendices, or gated chapters.
   // Front matter and Ch01-Ch04 remain readable without login.
   useEffect(() => {
     if (!authLoading && !demoUser) {
-      if (scope === "labs") {
+      if (scope === "labs" || scope === "appendices") {
         setScope("login");
         writeRoute("login");
         return;
@@ -299,7 +321,7 @@ export default function App() {
   const navigateScope = useCallback(
     (newScope: ReaderScope) => {
       // Labs always require login.
-      if (newScope === "labs" && !demoUser && !authLoading) {
+      if ((newScope === "labs" || newScope === "appendices") && !demoUser && !authLoading) {
         setScope("login");
         writeRoute("login");
         return;
@@ -329,6 +351,14 @@ export default function App() {
           return;
         }
       }
+      if (newScope === "appendices") {
+        const firstAppendix = BOOK_APPENDICES[0];
+        if (firstAppendix) {
+          setActiveAppendixId(firstAppendix.id);
+          writeRoute("appendices", { appendix: firstAppendix.id });
+          return;
+        }
+      }
       writeRoute(newScope);
     },
     [demoUser, authLoading],
@@ -352,6 +382,13 @@ export default function App() {
     setScope("labs");
     setActiveLabId(lab.id);
     writeRoute("labs", { lab: lab.id });
+  }, []);
+
+  // Navigate to an appendix
+  const navigateToAppendix = useCallback((appendix: BookAppendix) => {
+    setScope("appendices");
+    setActiveAppendixId(appendix.id);
+    writeRoute("appendices", { appendix: appendix.id });
   }, []);
 
   // Navigate to an in-book heading anchor (e.g. a Chapter Roadmap row). Resolves the
@@ -484,6 +521,11 @@ export default function App() {
     [activeLabId],
   );
 
+  const activeAppendix = useMemo(
+    () => BOOK_APPENDICES.find((a) => a.id === activeAppendixId) || BOOK_APPENDICES[0],
+    [activeAppendixId],
+  );
+
   return (
     <Layout
       scope={scope}
@@ -531,6 +573,12 @@ export default function App() {
       activeLabId={activeLabId}
       onSelectLab={(lab) => {
         navigateToLab(lab);
+        setSidebarOpen(false);
+      }}
+      appendices={BOOK_APPENDICES}
+      activeAppendixId={activeAppendixId}
+      onSelectAppendix={(appendix) => {
+        navigateToAppendix(appendix);
         setSidebarOpen(false);
       }}
     >
@@ -615,6 +663,13 @@ export default function App() {
           labs={BOOK_LABS}
           activeLab={activeLab}
           onSelectLab={navigateToLab}
+        />
+      )}
+      {scope === "appendices" && demoUser && activeAppendix && (
+        <AppendicesView
+          appendices={BOOK_APPENDICES}
+          activeAppendix={activeAppendix}
+          onSelectAppendix={navigateToAppendix}
         />
       )}
     </Layout>
