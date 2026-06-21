@@ -10,19 +10,19 @@ This chapter is your **orientation to the book and the Journey from Data to Deci
 
 [Watch the Chapter 1 overview video](https://www.youtube.com/watch?v=kpUTXxPuEuU)
 
-# Chapter Roadmap
+## Chapter Roadmap
 
-| Topic | Why It Matters |
-| --- | --- |
-| [Core Concepts: The Data-to-Decisions Journey](#core-concepts-the-data-to-decisions-journey) | Key topic in this chapter's Core Concepts reading. |
-| [Why This Book Exists](#why-this-book-exists) | Key topic in this chapter's Core Concepts reading. |
-| [The Big Idea: From Data to Decisions](#the-big-idea-from-data-to-decisions) | Key topic in this chapter's Core Concepts reading. |
+| Topic                                                                                           | Why It Matters                                     |
+| ----------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [Core Concepts: The Data-to-Decisions Journey](#core-concepts-the-data-to-decisions-journey)    | Key topic in this chapter's Core Concepts reading. |
+| [Why This Book Exists](#why-this-book-exists)                                                   | Key topic in this chapter's Core Concepts reading. |
+| [The Big Idea: From Data to Decisions](#the-big-idea-from-data-to-decisions)                    | Key topic in this chapter's Core Concepts reading. |
 | [Why Databases Matter for Business Performance](#why-databases-matter-for-business-performance) | Key topic in this chapter's Core Concepts reading. |
-| [What Makes This Book Different](#what-makes-this-book-different) | Key topic in this chapter's Core Concepts reading. |
-| [How the Book Is Organized](#how-the-book-is-organized) | Key topic in this chapter's Core Concepts reading. |
-| [The Book Flow: From Foundations to Strategy](#the-book-flow-from-foundations-to-strategy) | Key topic in this chapter's Core Concepts reading. |
-| [The Six-Part Journey](#the-six-part-journey) | Key topic in this chapter's Core Concepts reading. |
-| [Five Core Competencies](#five-core-competencies) | Key topic in this chapter's Core Concepts reading. |
-| [Why the Book Is Sequenced This Way](#why-the-book-is-sequenced-this-way) | Key topic in this chapter's Core Concepts reading. |
+| [What Makes This Book Different](#what-makes-this-book-different)                               | Key topic in this chapter's Core Concepts reading. |
+| [How the Book Is Organized](#how-the-book-is-organized)                                         | Key topic in this chapter's Core Concepts reading. |
+| [The Book Flow: From Foundations to Strategy](#the-book-flow-from-foundations-to-strategy)      | Key topic in this chapter's Core Concepts reading. |
+| [The Six-Part Journey](#the-six-part-journey)                                                   | Key topic in this chapter's Core Concepts reading. |
+| [Five Core Competencies](#five-core-competencies)                                               | Key topic in this chapter's Core Concepts reading. |
+| [Why the Book Is Sequenced This Way](#why-the-book-is-sequenced-this-way)                       | Key topic in this chapter's Core Concepts reading. |
 
 ---

@@ -6,12 +6,14 @@ description: >
   the controlling editorial quality gate: edits the main chapter, reviews the working
   bundle, checks structure, resolves author comments, audits media, and produces handoffs.
   Scans the chapter's .edits/ folder for pending edits and documents completed work back
-  to .edits/. Media production, companion-file creation, and platform sync are handled by
-  specialized skills (chapter-media, lets-build-creator, term-creator, reflection,
-  rat-creator, chapter-sync). Use for main chapter editing, working-bundle review,
-  Chapter 1 orientation restructuring, author-comment resolution, repetition control,
-  legacy callout conversion, and final pre-production quality checks.
-argument-hint: Chapter number, main file path, or working bundle path (e.g., "ch01", "chapter-drafts/ch01-introduction-to-course/main/ch01-main-2026-06-05.md", "chapter-drafts/ch01-introduction-to-course/working/ch01-working-bundle.md")
+  to .edits/. Media production, companion-file creation, Drive-to-repo import, final
+  readiness, and deployment are handled by specialized skills (chapter-media,
+  lets-build-creator, term-creator, reflection, rat-creator, chapter-source-import,
+  chapter-final-check, book-deploy). Use for main chapter editing, Drive-side chapter
+  index editing, working-bundle review, Chapter 1 orientation restructuring,
+  author-comment resolution, repetition control, legacy callout conversion, and final
+  pre-production quality checks.
+argument-hint: Chapter number, main file path, index file path, or working bundle path (e.g., "ch01", "chapter-drafts/ch01-introduction-to-course/main/ch01-main-2026-06-05.md", "chapter-drafts/ch01-introduction-to-course/index/ch01-index-2026-06-20.md", "chapter-drafts/ch01-introduction-to-course/working/ch01-working-bundle.md")
 ---
 
 # BITM330 Chapter Editor
@@ -27,10 +29,10 @@ Style rules (voice, simple-word substitutions, em-dash bans, AI-phrasing bans, f
 ## Non-Negotiable Principles
 
 1. **Never overwrite a prior dated file.** The previous dated file is version history. Create a new dated output file unless the user explicitly asks for an in-place same-day minor revision (see Stage 5).
-2. **Edit the main chapter only by default.** Let's Build, Terms Treasury, Review and Reflection, RAT / Quiz, and Lab are companion files — edit them only when the user explicitly asks.
+2. **Edit the main chapter only by default.** Drive-side chapter index drafts are edited only when the user explicitly asks or supplies an index file path. Let's Build, Terms Treasury, Review and Reflection, RAT / Quiz, and Lab are companion files — edit them only when the user explicitly asks.
 3. **Author comments are the highest-priority input.** Resolve or escalate every author comment. Never leave an unresolved author comment in student-facing prose.
-4. **The editor controls coherence.** Specialized skills handle media, callouts, companions, and sync. One final editorial pass must preserve chapter logic and the student experience.
-5. **Do not silently expand scope.** Flag handoffs instead of doing media upload, companion rewriting, platform sync, or folder cleanup inside this skill.
+4. **The editor controls coherence.** Specialized skills handle media, callouts, companions, Drive-to-repo import, final readiness, and deployment. One final editorial pass must preserve chapter logic and the student experience.
+5. **Do not silently expand scope.** Flag handoffs instead of doing media upload, companion rewriting, Drive-to-repo import, platform publishing, deployment, or folder cleanup inside this skill.
 
 ---
 
@@ -41,7 +43,7 @@ Follow these sources in this order:
 1. The user's explicit request.
 2. The selected file or supplied file path.
 3. `.github/copilot-instructions.md` for repository-wide editorial rules.
-4. The latest `outline-*.md` in `books/database-book/plans/outline/` for chapter scope.
+4. The latest `outline-*.md` in `books/database-book/files/source/outline/` for chapter scope; fall back to `books/database-book/plans/outline/` only if no source outline is available.
 5. The current chapter's `.edits/` notes.
 6. Specialized skills for delegated tasks:
    - `call-out` for callout syntax, class names, emoji labels, density rules, and conversion.
@@ -51,7 +53,9 @@ Follow these sources in this order:
    - `reflection` for Review and Reflection work.
    - `rat-creator` for RAT / Quiz work.
    - `lab-creation` or `autograded-lab` for Lab work.
-   - `chapter-sync` for platform publishing sync.
+   - `chapter-source-import` for approved Drive-to-repo imports into stable repo source files, including `import-index-approved` for Drive-side index drafts.
+   - `chapter-final-check` for final package/readiness verification.
+   - `book-deploy` for approved reader build and deployment after source import and readiness checks.
    - `edits` for moved content and chapter edit notes.
    - `chapter-tracker` for tracker updates.
 
@@ -78,11 +82,31 @@ Applies when editing or reviewing `chapter-drafts/chNN-<slug>/working/chNN-worki
 - If the bundle is auto-assembled (it names its source files), treat the **source component files as canonical**.
 - See the Working Bundle section below for the two editing modes and the propagation rules.
 
-### 3. Platform Source Mode
+### 3. Chapter Index Mode
+
+Applies when editing `chapter-drafts/chNN-<slug>/index/chNN-index-YYYY-MM-DD.md`.
+
+The chapter index is a student-facing chapter landing page and roadmap. It introduces the chapter, embeds or links the overview video, and points students into the Core Concepts reading. It is not the full Core Concepts chapter and not a companion assignment file.
+
+- Edit index files only when the user explicitly asks to revise a chapter index or provides an index file path.
+- Save as a new dated file in the same `index/` folder unless the user explicitly requests a same-day in-place minor revision.
+- Preserve prior dated index files.
+- Keep the index concise; do not duplicate the full main/Core Concepts chapter.
+- Do not include full Let's Build, Terms Treasury, Review and Reflection, RAT / Quiz, or Lab bodies.
+- Check that there is exactly one H1.
+- Use `## Chapter Video`, `## What You Will Learn`, and `## Chapter Roadmap` where appropriate.
+- Clean malformed objective lists into real Markdown lists.
+- Preserve valid iframe embeds and plain video links.
+- Ensure roadmap links match headings in the current main/Core Concepts file.
+- Show lab or companion links only when intentionally visible.
+- Approved Drive-side index drafts are imported to repo `index.md` through `chapter-source-import import-index-approved`; do not update repo `index.md` directly unless explicitly approved.
+
+### 4. Platform Source Mode
 
 Applies when editing `books/database-book/files/source/chapters/.../index.md` in the dima-publishing repo.
 
-- Stop before editing. Ask whether the platform file should be updated directly or regenerated from the latest source-sync file.
+- Stop before editing. Ask whether the platform file should be updated directly or imported from an approved Drive source through `chapter-source-import`.
+- Do not update repo `index.md` directly unless explicitly approved. If the source is a Drive-side chapter index draft, route through `chapter-source-import import-index-approved`.
 - Do not create a dated `chNN-main-YYYY-MM-DD.md` in the platform source folder.
 
 If the mode is unknown, ask before editing.
@@ -144,6 +168,7 @@ When working in a bundle, the editor may update the Bundle Notes, the Embedded S
 | Part | Source file | Status |
 |---|---|---|
 | Main | `main/chNN-main-YYYY-MM-DD.md` | current |
+| Index | `index/chNN-index-YYYY-MM-DD.md` | current / review pending / missing |
 | Let's Build | `lets-build/chNN-lets-build-YYYY-MM-DD.md` | current / review pending / missing |
 | Terms Treasury | `terms/chNN-terms-YYYY-MM-DD.md` | current / review pending / missing |
 | Review and Reflection | `reflection/chNN-reflection-YYYY-MM-DD.md` | current / review pending / missing |
@@ -186,7 +211,7 @@ When working in a bundle, the editor may update the Bundle Notes, the Embedded S
 - Standalone callout creation, conversion, or auditing → use `call-out`.
 - Bulk media production (broad image discovery, image generation, batch optimization, bulk Cloudinary upload, media ledger updates, or link rewriting across the full chapter) → use `chapter-media`.
 - Creating a brand-new companion file from scratch (no existing dated file to edit) → use the matching companion skill: `lets-build-creator`, `reflection`, `term-creator`, or `rat-creator`.
-- Platform publishing sync → use `chapter-sync`.
+- Drive-to-repo import, source reconciliation, or publishing handoff → use `chapter-source-import`, `chapter-final-check`, and `book-deploy` as appropriate.
 
 The chapter editor may convert callouts encountered during a chapter edit, but standalone callout creation, callout audits, or callout-system maintenance should use `call-out`.
 
@@ -197,6 +222,7 @@ The chapter editor may convert callouts encountered during a chapter edit, but s
 | File type | Edit? |
 |---|---|
 | Main manuscript | Yes |
+| Chapter index draft | Yes, when explicitly requested or when an index path is supplied |
 | Working bundle | Review; edit allowed sections or as requested (see Working Bundle) |
 | Let's Build | Only if user explicitly asks |
 | Reflection | Only if user explicitly asks |
@@ -205,6 +231,7 @@ The chapter editor may convert callouts encountered during a chapter edit, but s
 | Lab | Only if user explicitly asks |
 | `.edits/` files | Read-only scan + update (see .edits Integration) |
 | Images / media | Visual pedagogy + targeted cleanup (see Images and Media) |
+| Repo `index.md` / stable source files | Only with explicit approval; prefer `chapter-source-import` for imports |
 | Sources, archives, backups | Never |
 
 The chapter editor focuses on the main manuscript. Companion files (Let's Build, Reflection, Terms, RAT) are edited only when the user explicitly requests it — otherwise, recommend the matching companion-file skill as a handoff. When a companion section is missing (no canonical dated file), flag it in the report and recommend the matching companion-file skill to create it.
@@ -652,21 +679,32 @@ Visual coverage is evaluated, not enforced. See **Images and Media** for the ful
 
 ## Page Breaks
 
-Insert a page break with this exact marker, placed **after** a complete block, not before the next heading:
+Insert a page break with this exact marker, placed **after** a complete block so the next major section starts on a new page. Do not put the marker at the top of a section.
 
 ```html
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 ```
 
-Break by instructional unit, not by line count.
+Break by major instructional unit, not by image placement or small subsection boundaries.
 
-- **Default.** Start each major `##` section on a new page when the previous section is substantial (multiple paragraphs, figures, tables, callouts, or a clear conceptual shift). Skip the break if the previous section is a very short bridge paragraph.
-- **Every one or two sections.** Insert a page break roughly every one or two `##` sections, depending on flow and context. Do not let several substantial sections run together on one page.
-- **Long `##` sections.** Insert an internal break after one of: 2–3 related `###` subsections; roughly 900–1,200 words; 2 major figures; 1 major table plus 1 figure; or a dense callout/table/figure cluster — whichever comes first. Use judgment for rhythm, not mechanical spacing.
+- **Default.** Insert page breaks before major `##` sections in Core Concepts by placing the marker at the end of the preceding section.
+- **Opening and summary.** Add one page break after the opening/objectives and usually one before `## Chapter Summary`.
+- **Ordinary `###` subsections.** Do not add page breaks before ordinary `###` subsections unless the parent section is unusually long or the subsection begins a genuinely new concept.
+- **Images and callouts.** Do not add a page break just because an image, table, or callout appears. Use page breaks for pacing, not decoration.
+- **Printable chunk size.** Keep each printable chunk around 700–1,100 words when practical.
 - **Keep-together (never split across a page).** A heading and its opening paragraph; an image and its caption; a table and its explanation; a callout block; a code or SQL example; a numbered learning-objective list; a summary figure and its summary paragraph.
-- **Short sections.** Do not add a break after a short section unless the next section is a major conceptual shift or the layout would otherwise feel crowded.
-- **Practical standard.** For content-heavy chapters, most major `##` sections should begin on a fresh page; for lighter chapters, use page breaks more sparingly. Page breaks are important — favor them over crowded pages.
+
+Recommended page-break counts:
+
+| Chapter length | Recommended page breaks |
+|---:|---:|
+| 3,000–4,000 words | 4–5 |
+| 4,000–6,000 words | 5–7 |
+| 6,000–8,000 words | 8–10 |
+| 8,000–10,000 words | 10–12 |
+
+For example, a 7,283-word Core Concepts chapter should usually have about 8–10 page breaks, with about 9 as a practical target. That usually means one after the opening/objectives, one before each major Core Concepts `##` transition, one before `## Chapter Summary`, and one before `## References` if references are included.
 
 The post-main sections (Let's Build, Review and Reflection, Term Treasury, and the Readiness Assessment Test) live in separate companion files, and labs are a separate section at the end of the book — so page-break planning applies within the main chapter file only.
 
@@ -682,11 +720,11 @@ Cuts that require asking first: full sections, major examples, required outline 
 
 ## Outline & Cross-References
 
-Compare the chapter against the latest `outline-*.md` in `books/database-book/plans/outline/`.
+Compare the chapter against the latest `outline-*.md` in `books/database-book/files/source/outline/`. Use `books/database-book/plans/outline/` only as a fallback when no source outline is available.
 
 ### Step 1 — Locate the outline
 
-Read the most recently dated `outline-YYYY-MM-DD.md` in `books/database-book/plans/outline/`. Find the section for the chapter being edited.
+Read the most recently dated `outline-YYYY-MM-DD.md` in `books/database-book/files/source/outline/`. If that folder has no dated outline, fall back to `books/database-book/plans/outline/`. Find the section for the chapter being edited.
 
 ### Step 2 — Extract the expected topic list
 
@@ -752,20 +790,24 @@ When content needs to move to another chapter, or you find tasks the author stil
 - **Tracker updates** → delegate to the `chapter-tracker` skill after the edit is saved.
 - **Stale companion files flagged in the freshness check** → suggest the matching companion-file skill: `lets-build-creator`, `term-creator`, `reflection`, or `rat-creator`.
 - **Media issues flagged in the audit** → suggest `chapter-media`.
-- **Platform publishing sync** → suggest `chapter-sync` (incremental; only newer files copied). See Production Sync below. Never run it without explicit user approval.
+- **Approved Drive draft import** → suggest `chapter-source-import` after the edited Drive file is approved.
+- **Approved Drive index import** → suggest `chapter-source-import import-index-approved`.
+- **Final readiness verification** → suggest `chapter-final-check`.
+- **Reader build or deployment** → suggest `book-deploy`, only after source import and readiness checks and only with explicit approval.
 
 Do not duplicate those workflows here.
 
 ---
 
-## Production Sync
+## Import, Readiness, and Deploy Handoff
 
-After a build-ready edit pass, **offer** to publish the chapter to the platform with `chapter-sync`. Do not run it automatically.
+After a build-ready edit pass, **offer** the next appropriate handoff. Do not run import, readiness, build, deploy, commit, push, or publishing commands automatically.
 
-- **Hard rule:** do not run `chapter-sync` without explicit user approval.
-- **Incremental by design.** `chapter-sync` compares dated filenames per section (legacy source vs. production destination) and copies only files whose source date is newer. Files already current are skipped; only the affected `index.md` is regenerated. It does not recreate every file each run.
-- **Keep diffs minimal.** Re-date only the sections you actually changed. Leaving unchanged sections at their existing dates keeps the sync small and avoids needless file churn.
-- **What to report.** Tell the user which sections changed and would sync, and that the sync is incremental and reversible at the section level.
+- **Drive-to-repo import.** Use `chapter-source-import` to reconcile approved Drive drafts into stable repo source files.
+- **Index import.** Use `chapter-source-import import-index-approved` for approved Drive-side chapter index drafts that should update repo `index.md`.
+- **Readiness.** Use `chapter-final-check` after source import when the chapter package needs final verification.
+- **Build/deploy.** Use `book-deploy` only after source import and readiness checks, and only with explicit approval.
+- **Legacy note.** `chapter-sync` is an older dated-file sync route. Do not recommend it as the default post-edit handoff unless the user explicitly asks for that legacy workflow.
 
 ---
 
@@ -811,12 +853,21 @@ Check:
 - No malformed Markdown image syntax remains.
 - No accidental absolute links to local files remain.
 - Callouts follow the canonical `call-out` format.
-- Page-break markers use the approved format.
+- Page-break markers use the approved format and match the length-based pacing guidance.
 - The main chapter does not contain full Let's Build, Reflection, Terms, or RAT content unless explicitly intended.
 - Cross-chapter references are plausible (chapter numbers match the current outline; no stale references from before a chapter renumbering).
 - The chapter has a coherent closing summary.
 
 If any item cannot be fixed confidently, list it under **Unresolved decisions** rather than leaving it hidden in the chapter body.
+
+For Chapter Index Mode, also verify:
+
+- The title is accurate and there is exactly one H1.
+- The chapter video embed and plain link are present or intentionally absent.
+- `## What You Will Learn` is a clean list if objectives are included.
+- `## Chapter Roadmap` links match headings in the current main/Core Concepts file.
+- Lab or companion links are intentionally visible or intentionally omitted.
+- No full companion body or full Core Concepts content has been copied into the index.
 
 ---
 
@@ -846,11 +897,28 @@ Do not leave student-facing editing notes.
 
 #### Platform Source Exception
 
-If the target file is a platform-facing `index.md` under `books/database-book/files/source/chapters/`, do not create a dated `chNN-main-YYYY-MM-DD.md` file. Stop and ask the user whether the platform `index.md` should be updated directly or regenerated from the latest source-sync file.
+If the target file is a platform-facing `index.md` under `books/database-book/files/source/chapters/`, do not create a dated `chNN-main-YYYY-MM-DD.md` file. Stop and ask whether the platform `index.md` should be updated directly or imported from an approved Drive-side index draft through `chapter-source-import import-index-approved`.
+
+#### Chapter Index Dated-Output Workflow
+
+For Chapter Index Mode:
+
+1. Source = the most recent dated file in the chapter's `index/` folder, unless the user named another.
+2. Create a new file in the same folder using today's date:
+
+   ```
+   chapter-drafts/chNN-<slug>/index/chNN-index-<YYYY-MM-DD>.md
+   ```
+
+   No `-edited`, `-rewrite`, `-v2`, or informal suffixes. Date alone marks the version.
+3. If today's-date file exists: minor follow-up → edit in place only if explicitly requested; major same-day re-edit → append `-1`, `-2`, etc.
+4. Copy the full source into the new file, then apply all edits there. Leave the prior dated file untouched.
+5. Preserve valid iframe embeds, plain video links, and intentionally visible companion/lab links.
+6. Note in the report whether the index should later be imported with `chapter-source-import import-index-approved`.
 
 #### Standard Dated-Output Workflow
 
-For all other target files:
+For Production Main Mode:
 
 1. Source = the most recent dated file in the chapter's `main/` folder, unless the user named another.
 2. Create a new file in the same folder using today's date:
@@ -897,7 +965,7 @@ The offer is conditional — only make it when media follow-up work is needed. D
 ```markdown
 ### Revision Report
 
-1. **File mode** — Production Main, Working Bundle, or Platform Source; note the file edited and (for bundles) whether edits were propagated to source and reassembled.
+1. **File mode** — Production Main, Chapter Index, Working Bundle, or Platform Source; note the file edited and (for bundles) whether edits were propagated to source and reassembled.
 2. **Structural changes** — sections moved, merged, or reorganized.
 3. **Readability and flow** — key sentence/paragraph improvements.
 4. **Redundancies removed** — repeated ideas consolidated.
@@ -922,13 +990,14 @@ The offer is conditional — only make it when media follow-up work is needed. D
    - Kept as HTML comments: Z (with reason)
 9. **Visuals and media** — alt text, captions, raw paths flagged; `RECOMMEND REMOVE` comments listed; suggest `chapter-media` if needed.
 10. **Build hygiene** — Markdown/format issues fixed; build-readiness checklist items passed/flagged.
-11. **Companion sync impact** — note any change in the main that makes a companion (Let's Build, Terms Treasury, Review and Reflection, RAT / Quiz, Lab) stale, and which companion skill to run.
-12. **Unresolved decisions** — verbatim list of author comments and structural questions requiring author input.
-13. **Handoffs suggested** — `call-out`, `edits`, `chapter-tracker`, `chapter-media`, `chapter-sync`, companion-file skill (`lets-build-creator`, `reflection`, `term-creator`, `rat-creator`, `lab-creation`), or none.
-14. **.edits scan** — pending edits found (N), processed (X), deferred (Y); new edits documented to `.edits/` (Z).
-15. **Companion freshness check** — included only if the user approved the read-only check (table of statuses per companion section).
-16. **Production sync offer** — if the edit is build-ready, offer to run `chapter-sync` to publish, and note that it is incremental and requires explicit approval before running.
-17. **Media pipeline offer** — state whether media follow-up is recommended, why, and whether the user was offered `chapter-media`.
+11. **Index checks** — include when in Chapter Index Mode: title checked; video checked; roadmap links checked; objective/list formatting checked; links to Core Concepts headings checked; unresolved navigation or lab visibility questions.
+12. **Companion sync impact** — note any change in the main that makes a companion (Let's Build, Terms Treasury, Review and Reflection, RAT / Quiz, Lab) stale, and which companion skill to run.
+13. **Unresolved decisions** — verbatim list of author comments and structural questions requiring author input.
+14. **Handoffs suggested** — `call-out`, `edits`, `chapter-tracker`, `chapter-media`, `chapter-source-import`, `chapter-source-import import-index-approved`, `chapter-final-check`, `book-deploy`, companion-file skill (`lets-build-creator`, `reflection`, `term-creator`, `rat-creator`, `lab-creation`), or none.
+15. **.edits scan** — pending edits found (N), processed (X), deferred (Y); new edits documented to `.edits/` (Z).
+16. **Companion freshness check** — included only if the user approved the read-only check (table of statuses per companion section).
+17. **Import/readiness/deploy handoff** — if the edit is build-ready, state whether the next step is `chapter-source-import`, `chapter-source-import import-index-approved`, `chapter-final-check`, or `book-deploy`; note that each requires explicit approval before running.
+18. **Media pipeline offer** — state whether media follow-up is recommended, why, and whether the user was offered `chapter-media`.
 ```
 
 Keep the report compact. The Author Comments tally is required even when N = 0.

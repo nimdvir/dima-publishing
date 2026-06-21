@@ -1,28 +1,30 @@
-<!-- Let's Build for Chapter 3: built with the Grading Database (GD) in Google Sheets. Companion to Lab 03 (PetVax). Revised 2026-06-02. -->
+<!-- metadata: date="2026-06-21" -->
+<!-- Let's Build for Chapter 3: built with the Grading Database (GD) in Google Sheets. Companion to Lab 03 (PetVax). Revised 2026-06-21. -->
 
-# Let's Build
+## Let's Build
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/Lets-build_fqsqux" alt="Let's Build" />
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
 
-Chapter 3 explained what data is, how it becomes meaningful, and why fields, types, metadata, and quality matter before any database tool enters the picture. In this Let's Build (LB), you will turn those ideas into something you can see and touch. You will build a small Google Sheets workbook based on the Grading Database (GD), then deliberately stress it until its spreadsheet limits become visible. There is no submission required for this LB; it is the rehearsal for **Lab 03 — Transferring Data Fundamentals to PetVax**, where you will apply the same moves to a messy veterinary clinic record and submit your workbook for a grade.
+Chapter 3 explained what data is, how it becomes meaningful, and why fields, tables, schemas, data types, metadata, and quality matter before any database tool enters the picture. In this Let's Build (LB), you will turn those ideas into something you can see and touch. You will build a small Google Sheets workbook based on the Grading Database (GD), then deliberately stress it until its spreadsheet limits become visible. There is no submission required for this LB. It is the rehearsal for **Lab 03: Transferring Data Fundamentals to PetVax**, where you will apply the same moves to a messy veterinary clinic record and submit your workbook for a grade.
 
 ![Grading Database fields flowing from data cards into a simple table and small database tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-grading-database-preview)
 
 *Figure 3.1 — The Grading Database starts as a simple gradebook, but the same fields will later support a more reliable database structure.*
 
-## Purpose
+### Purpose
 
-The point of this build is not to create a database — that begins in Chapter 4. The point is to feel how data behaves inside a spreadsheet: how fields and records work, how types and metadata give values meaning, how filters and pivots produce information, and where the structure begins to crack when data is repeated, shared, and updated. By the end, you should be able to explain in your own words why organizations eventually move from spreadsheets and flat files toward databases.
+The point of this build is not to create a database. That begins in Chapter 4. The point is to feel how data behaves inside a spreadsheet: how fields and records work, how a schema gives a table shape, how types and metadata give values meaning, how filters and pivots produce information, and where the structure begins to crack when data is repeated, shared, and updated. By the end, you should be able to explain in your own words why organizations eventually move from spreadsheets and flat files toward databases.
 
 ![Grading Database fields organized as a simple structured table before becoming separate database tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-lb-grading-database-small-system)
 
 *Figure 3.2 — This build keeps the Grading Database small enough to inspect while previewing why structured tables matter.*
 
-## What You Will Practice
+### What You Will Practice
 
 * fields, records, and table discipline
+* simple schema notation for the Grading Database
 * identifying data types and measurement levels
 * writing a small data dictionary (metadata in practice)
 * distinguishing missing values: `NULL`, `0`, `""`, and `" "`
@@ -36,7 +38,22 @@ The point of this build is not to create a database — that begins in Chapter 4
 
 *Figure 3.3 — Different field types support different analytical behaviors: grouping, aggregation, trends, and status filters.*
 
-## Before You Begin
+## How This Connects to Lab 03
+
+This LB uses the Grading Database because the data is small and familiar. Lab 03 uses PetVax because it is messier and more realistic. The transfer is intentional:
+
+| In this Let's Build                 | In Lab 03                                           |
+| ----------------------------------- | --------------------------------------------------- |
+| `GRADEBOOK` flat grade records      | `APPOINTMENTS_FLAT` appointment records             |
+| `GRADE_WEIGHT` lookup values        | `BREED_REFERENCE` lookup values                     |
+| `DATA_DICTIONARY` field meanings    | PetVax field meanings and workbook evidence         |
+| `VLOOKUP` from grade type to weight | `VLOOKUP` or `XLOOKUP` from breed to reference data |
+| Pivot summaries of scores           | Pivot summaries of animal type and weight           |
+| Repeated student data               | Repeated owner, pet, and appointment data           |
+
+If you understand what breaks in this small gradebook, Lab 03 will ask you to recognize the same pattern in a clinic spreadsheet.
+
+### Before You Begin
 
 You need a Google account and a blank Google Sheets workbook. Plan about 60 minutes. You will create three tabs in one workbook: `GRADEBOOK`, `GRADE_WEIGHT`, and `DATA_DICTIONARY`. Keep your workbook open as you read — every section asks you to do something small, then check what you see.
 
@@ -49,6 +66,18 @@ Open Google Sheets and create a blank workbook. Name it:
 Add three sheet tabs in this order: `GRADEBOOK`, `GRADE_WEIGHT`, `DATA_DICTIONARY`.
 
 **Why three tabs and not one.** Chapter 3 stresses that themes of data should stay apart even before a database is involved. Grades, grading rules, and field definitions are three different themes, so each gets its own sheet.
+
+The three tabs can also be described with simple schema notation:
+
+```text
+GRADEBOOK(RecordID, StudentID, FirstName, LastName, Email, Birthday, DeliverableType, DeliverableNumber, DueDate, Topic, Score)
+
+GRADE_WEIGHT(DeliverableType, ItemCount, CategoryWeight, WeightPerItem)
+
+DATA_DICTIONARY(FieldName, Sheet, Meaning, IntendedKind, WhyItMatters)
+```
+
+These are spreadsheet tabs, not database tables yet. Still, writing the structure first helps you see the pattern before you enter records.
 
 ## Define the Structure Before Entering Data
 
@@ -76,23 +105,23 @@ In row 1 of `GRADE_WEIGHT`, enter (column A through D):
 
 Metadata is "data about data." It tells the next person (and your future self) what each field means and how it should behave. In the `DATA_DICTIONARY` tab, add these headers in row 1: `FieldName`, `Sheet`, `Meaning`, `IntendedKind`, `WhyItMatters`. Then enter the rows below.
 
-| FieldName           | Sheet         | Meaning                          | IntendedKind     | WhyItMatters                                          |
-| ------------------- | ------------- | -------------------------------- | ---------------- | ----------------------------------------------------- |
-| `RecordID`          | GRADEBOOK     | Identifies one grade record      | Identifier       | Distinguishes one row from another                    |
-| `StudentID`         | GRADEBOOK     | Identifies one student           | Identifier       | Looks numeric but should never be averaged            |
-| `FirstName`         | GRADEBOOK     | Student first name               | Text             | Descriptive label                                     |
-| `LastName`          | GRADEBOOK     | Student last name                | Text             | Descriptive label                                     |
-| `Email`             | GRADEBOOK     | Student email address            | Text             | Contact value; should be consistent across rows       |
-| `Birthday`          | GRADEBOOK     | Student birth date               | Date             | Must be a real date so it sorts and filters correctly |
-| `DeliverableType`   | GRADEBOOK     | Category of graded work          | Categorical text | Used for grouping and lookups                         |
-| `DeliverableNumber` | GRADEBOOK     | Sequence within a category       | Whole number     | Distinguishes Quiz 1 from Quiz 2                      |
-| `DueDate`           | GRADEBOOK     | Original deadline                | Date             | Supports date math and turnaround analysis            |
-| `Topic`             | GRADEBOOK     | Topic of the deliverable         | Text             | Adds business context                                 |
-| `Score`             | GRADEBOOK     | Points earned, 0 to 100          | Numeric (ratio)  | Can be summed, averaged, and compared                 |
-| `DeliverableType`   | GRADE_WEIGHT  | Matching category key            | Categorical text | Join key for `VLOOKUP`                                |
-| `ItemCount`         | GRADE_WEIGHT  | Count of items in the category   | Whole number     | Supports per-item math                                |
-| `CategoryWeight`    | GRADE_WEIGHT  | Total course weight for category | Numeric          | Drives grade weighting                                |
-| `WeightPerItem`     | GRADE_WEIGHT  | Weight of one item               | Numeric          | Used in weighted-contribution formula                 |
+| FieldName           | Sheet        | Meaning                          | IntendedKind     | WhyItMatters                                          |
+| ------------------- | ------------ | -------------------------------- | ---------------- | ----------------------------------------------------- |
+| `RecordID`          | GRADEBOOK    | Identifies one grade record      | Identifier       | Distinguishes one row from another                    |
+| `StudentID`         | GRADEBOOK    | Identifies one student           | Identifier       | Looks numeric but should never be averaged            |
+| `FirstName`         | GRADEBOOK    | Student first name               | Text             | Descriptive label                                     |
+| `LastName`          | GRADEBOOK    | Student last name                | Text             | Descriptive label                                     |
+| `Email`             | GRADEBOOK    | Student email address            | Text             | Contact value; should be consistent across rows       |
+| `Birthday`          | GRADEBOOK    | Student birth date               | Date             | Must be a real date so it sorts and filters correctly |
+| `DeliverableType`   | GRADEBOOK    | Category of graded work          | Categorical text | Used for grouping and lookups                         |
+| `DeliverableNumber` | GRADEBOOK    | Sequence within a category       | Whole number     | Distinguishes Quiz 1 from Quiz 2                      |
+| `DueDate`           | GRADEBOOK    | Original deadline                | Date             | Supports date math and turnaround analysis            |
+| `Topic`             | GRADEBOOK    | Topic of the deliverable         | Text             | Adds business context                                 |
+| `Score`             | GRADEBOOK    | Points earned, 0 to 100          | Numeric (ratio)  | Can be summed, averaged, and compared                 |
+| `DeliverableType`   | GRADE_WEIGHT | Matching category key            | Categorical text | Join key for `VLOOKUP`                                |
+| `ItemCount`         | GRADE_WEIGHT | Count of items in the category   | Whole number     | Supports per-item math                                |
+| `CategoryWeight`    | GRADE_WEIGHT | Total course weight for category | Numeric          | Drives grade weighting                                |
+| `WeightPerItem`     | GRADE_WEIGHT | Weight of one item               | Numeric          | Used in weighted-contribution formula                 |
 
 **Why this small artifact matters.** Without a dictionary, anyone using the workbook has to guess. With one, you have written down the shared meaning the chapter calls metadata. This same idea, scaled up, is what data governance teams maintain for real systems.
 
@@ -110,13 +139,13 @@ The chapter introduced four measurement levels — **nominal**, **ordinal**, **i
 
 **Quick classify.** Label each field as Nominal, Ordinal, Interval, or Ratio.
 
-| Field                            | Your answer | Model answer | Why                                                            |
-| -------------------------------- | ----------- | ------------ | -------------------------------------------------------------- |
-| `StudentID`                      | ?           | Nominal      | An identifier with no order or amount                          |
-| `DeliverableType`                | ?           | Nominal      | Category labels with no inherent order                         |
-| `SatisfactionRating (1–5)`       | ?           | Ordinal      | Ordered ranks, but the gap between 1 and 2 is not equal to 4–5 |
-| `DueDate`                        | ?           | Interval     | Ordered, equal calendar intervals, but no true zero            |
-| `Score` (0–100)                  | ?           | Ratio        | Ordered, equal intervals, and a meaningful zero                |
+| Field                      | Your answer | Model answer | Why                                                            |
+| -------------------------- | ----------- | ------------ | -------------------------------------------------------------- |
+| `StudentID`                | ?           | Nominal      | An identifier with no order or amount                          |
+| `DeliverableType`          | ?           | Nominal      | Category labels with no inherent order                         |
+| `SatisfactionRating (1–5)` | ?           | Ordinal      | Ordered ranks, but the gap between 1 and 2 is not equal to 4–5 |
+| `DueDate`                  | ?           | Interval     | Ordered, equal calendar intervals, but no true zero            |
+| `Score` (0–100)            | ?           | Ratio        | Ordered, equal intervals, and a meaningful zero                |
 
 **Why this matters.** A spreadsheet will happily average an identifier and produce a number. The number is meaningless. Knowing the measurement level is what tells you which operations are honest.
 
@@ -132,15 +161,15 @@ The chapter introduced four measurement levels — **nominal**, **ordinal**, **i
 
 Starting in row 2 of `GRADEBOOK`, enter these seven records:
 
-| RecordID | StudentID | FirstName | LastName | Email                   | Birthday   | DeliverableType | DeliverableNumber | DueDate    | Topic           | Score |
-| -------: | --------: | --------- | -------- | ----------------------- | ---------- | --------------- | ----------------: | ---------- | --------------- | ----: |
-|        1 |      1001 | Alice     | Johnson  | alice@university.edu    | 2004-05-14 | Quiz            |                 1 | 2026-09-08 | Database Basics |    92 |
-|        2 |      1002 | Brian     | Lee      | brian@university.edu    | 2003-11-22 | Quiz            |                 1 | 2026-09-08 | Database Basics |    84 |
-|        3 |      1003 | Carla     | Mendez   | carla@university.edu    | 2004-02-09 | Homework        |                 1 | 2026-09-10 | Entity Design   |    95 |
-|        4 |      1001 | Alice     | Johnson  | alice@university.edu    | 2004-05-14 | Quiz            |                 2 | 2026-09-15 | SQL Basics      |    88 |
-|        5 |      1002 | Brian     | Lee      | brian@university.edu    | 2003-11-22 | Quiz            |                 2 | 2026-09-15 | SQL Basics      |    77 |
-|        6 |      1003 | Carla     | Mendez   | carla@university.edu    | 2004-02-09 | Exam            |                 1 | 2026-10-01 | Midterm         |    91 |
-|        7 |      1004 | Daniel    | Kim      | daniel@university.edu   | 2004-08-17 | Project         |                 1 | 2026-11-05 | Final Project   |    89 |
+| RecordID | StudentID | FirstName | LastName | Email                 | Birthday   | DeliverableType | DeliverableNumber | DueDate    | Topic           | Score |
+| -------: | --------: | --------- | -------- | --------------------- | ---------- | --------------- | ----------------: | ---------- | --------------- | ----: |
+|        1 |      1001 | Alice     | Johnson  | alice@university.edu  | 2004-05-14 | Quiz            |                 1 | 2026-09-08 | Database Basics |    92 |
+|        2 |      1002 | Brian     | Lee      | brian@university.edu  | 2003-11-22 | Quiz            |                 1 | 2026-09-08 | Database Basics |    84 |
+|        3 |      1003 | Carla     | Mendez   | carla@university.edu  | 2004-02-09 | Homework        |                 1 | 2026-09-10 | Entity Design   |    95 |
+|        4 |      1001 | Alice     | Johnson  | alice@university.edu  | 2004-05-14 | Quiz            |                 2 | 2026-09-15 | SQL Basics      |    88 |
+|        5 |      1002 | Brian     | Lee      | brian@university.edu  | 2003-11-22 | Quiz            |                 2 | 2026-09-15 | SQL Basics      |    77 |
+|        6 |      1003 | Carla     | Mendez   | carla@university.edu  | 2004-02-09 | Exam            |                 1 | 2026-10-01 | Midterm         |    91 |
+|        7 |      1004 | Daniel    | Kim      | daniel@university.edu | 2004-08-17 | Project         |                 1 | 2026-11-05 | Final Project   |    89 |
 
 ![Common business and classroom fields grouped by qualitative quantitative categorical and numerical types](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch03-what-is-data/ch03-lb-common-data-fields)
 
@@ -190,12 +219,12 @@ Add two validation rules to `GRADEBOOK`:
 
 The chapter showed that `0`, `""`, `" "`, and `NULL` are four different things even when a cell looks empty. Try each one on a temporary 8th row, then delete the row before moving on.
 
-| Cell action                    | What you stored | What it means                          |
-| ------------------------------ | --------------- | -------------------------------------- |
-| Leave `Score` blank            | `NULL`          | No value was entered                   |
-| Type `0` in `Score`            | Real zero       | Earned zero points                     |
-| Type a single space in `Topic` | `" "`           | A stored space; still text             |
-| Press Delete on `Topic`        | `""`            | Empty text                             |
+| Cell action                    | What you stored | What it means              |
+| ------------------------------ | --------------- | -------------------------- |
+| Leave `Score` blank            | `NULL`          | No value was entered       |
+| Type `0` in `Score`            | Real zero       | Earned zero points         |
+| Type a single space in `Topic` | `" "`           | A stored space; still text |
+| Press Delete on `Topic`        | `""`            | Empty text                 |
 
 **Try it.** Filter `Score` for "is empty." Does the cell containing `0` appear? It should not, because `0` is a real number, not a missing value. That is the conceptual difference that will matter once you start writing SQL with `IS NULL`.
 
@@ -223,7 +252,7 @@ and somewhere below it:
 
 The `FILTER` formula returns the same single low-score row; `SORT` returns the same 7 rows in descending order by column 11 (`Score`).
 
-**Why these feel almost like queries but aren't.** Both formulas hard-code the range `A2:K8`. Add row 9 later and the formulas will silently ignore it unless you update them by hand. A database query refers to the table by name, not by row range, which is why it keeps working as data grows.
+**Why these feel almost like queries but are not.** Both formulas hard-code the range `A2:K8`. Add another record later and the formulas will silently ignore it unless you update them by hand. A database query refers to the table by name, not by row range, which is why it keeps working as data grows.
 
 ## Simulate a Relationship with VLOOKUP
 
@@ -299,7 +328,7 @@ This is the most important section. Make each change and write down what you obs
 | -------: | --------: | --------- | -------- | -------------------- | ---------- | --------------- | ----------------: | ---------- | ------------------- | ----: |
 |        8 |      1001 | Alice     | Johnson  | alice@university.edu | 2004-05-14 | Homework        |                 2 | 2026-09-20 | Normalization Intro |    93 |
 
-Check: did your `=FILTER(...)` formula include row 8? (No — it still uses `A2:K8`.) Did your pivot tables include it? (Only if you refresh or extend the source range.) Did `VLOOKUP` copy down to L8, M8, N8 automatically? (No — you must copy the formulas down.) This is the **completeness** dimension of data quality starting to slip.
+Check: did your `=FILTER(...)` formula include the new `RecordID` 8 row? No. It still uses `A2:K8`, which covered only the original seven records. Did your pivot tables include the new row? Only if you refresh or extend the source range. Did `VLOOKUP` copy down to the new row automatically? No. You must copy the formulas down. This is the **completeness** dimension of data quality starting to slip.
 
 **Change one Alice email.** On one Alice row only, change `alice@university.edu` to `alice.johnson@university.edu`. Leave her other rows alone. You now have one student stored with two different emails. That is the **consistency** and **uniqueness** dimensions failing at the same time, and the spreadsheet did nothing to stop you.
 
@@ -327,19 +356,19 @@ The previous section showed *symptoms*. This section names the underlying *probl
 
 **Each problem, each fix.**
 
-| Problem               | What you saw in the workbook                                | Root cause                                       | Chapter 4 fix                                  |
-| --------------------- | ----------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| Data redundancy       | Alice's identity stored three times                         | Students and grades share one table              | Separate `Students` and `Grades` tables        |
-| Update anomaly        | Two different emails for the same Alice                     | Many copies of one fact                          | One row per student; grades reference the student |
-| Insertion anomaly     | No clean place for Emma Park                                | Identity only exists alongside a grade           | Independent `Students` table                   |
-| Deletion anomaly      | Removing Daniel's grade removed Daniel                      | Identity only exists alongside a grade           | Independent `Students` table                   |
-| Query fragility       | Hard-coded ranges, case drift, `#N/A` lookups               | No enforced types, keys, or table names          | Typed columns, enforced relationships, queries by table name |
+| Problem           | What you saw in the workbook                  | Root cause                              | Chapter 4 fix                                                |
+| ----------------- | --------------------------------------------- | --------------------------------------- | ------------------------------------------------------------ |
+| Data redundancy   | Alice's identity stored three times           | Students and grades share one table     | Separate `Students` and `Grades` tables                      |
+| Update anomaly    | Two different emails for the same Alice       | Many copies of one fact                 | One row per student; grades reference the student            |
+| Insertion anomaly | No clean place for Emma Park                  | Identity only exists alongside a grade  | Independent `Students` table                                 |
+| Deletion anomaly  | Removing Daniel's grade removed Daniel        | Identity only exists alongside a grade  | Independent `Students` table                                 |
+| Query fragility   | Hard-coded ranges, case drift, `#N/A` lookups | No enforced types, keys, or table names | Typed columns, enforced relationships, queries by table name |
 
-A spreadsheet lets these problems happen. A database is designed to prevent them. That is the move you will make in Chapter 4.
+A spreadsheet lets these problems happen. A database is designed to prevent them. Lab 03 asks you to diagnose the same pattern in PetVax before Chapter 4 shows the database fix.
 
 ## Lifecycle Thinking in One Minute
 
-The chapter introduced the data lifecycle — collection, storage, cleaning, integration, use, retention, archiving, anonymization, and deletion. Your small workbook already shows why this matters.
+The chapter introduced the data lifecycle: collection, storage, cleaning, integration, use, retention, archiving, anonymization, and deletion. Your small workbook already shows why this matters.
 
 **Try it.** Ask yourself three questions about your `GRADEBOOK`:
 
@@ -347,39 +376,40 @@ The chapter introduced the data lifecycle — collection, storage, cleaning, int
 2. **Anonymization:** If you were asked to share your workbook with a colleague to demonstrate spreadsheet fragility, which columns would you strip first to protect student privacy?
 3. **Deletion:** When you deleted Daniel's row during the deletion-anomaly exercise, you accidentally removed the only record that Daniel and the Project category existed. What did you lose that you did not intend to lose?
 
-**Write one sentence** for each question. The point is not to produce a policy document. The point is to notice that everyday data decisions — what to keep, what to share, when to delete — are lifecycle and ethics decisions, not just technical ones. When organizations skip these questions, they end up with data that is either too valuable to delete or too risky to keep, and nobody knows who owns the decision.
+**Write one sentence** for each question. The point is not to produce a policy document. The point is to notice that everyday data decisions, such as what to keep, what to share, and when to delete, are lifecycle and ethics decisions, not just technical ones. When organizations skip these questions, they end up with data that is either too valuable to delete or too risky to keep, and nobody knows who owns the decision.
 
 ## Check Your Work
 
 Before moving on, confirm each of these. If any answer is off, retrace the section that produced it.
 
-| Check                                                            | Expected value                                |
-| ---------------------------------------------------------------- | --------------------------------------------- |
-| Number of records in `GRADEBOOK` (after adding row 8)            | 8                                             |
-| Number of unique `StudentID` values                              | 4                                             |
-| Result of filtering `Score < 80`                                 | 1 row (Brian, Quiz 2, 77)                     |
-| `WeightedContribution` for RecordID 6 (Carla, Exam)              | 18.20                                         |
-| Average Quiz score from the pivot (original 7 rows)              | 85.25                                         |
-| Count of records for StudentID 1001 (after adding row 8)         | 3                                             |
-| Dropdown values available for `DeliverableType`                  | Quiz, Homework, Exam, Project                 |
+| Check                                                           | Expected value                |
+| --------------------------------------------------------------- | ----------------------------- |
+| Number of records in `GRADEBOOK` (after adding `RecordID` 8)    | 8                             |
+| Number of unique `StudentID` values                             | 4                             |
+| Result of filtering `Score < 80`                                | 1 row (Brian, Quiz 2, 77)     |
+| `WeightedContribution` for RecordID 6 (Carla, Exam)             | 18.20                         |
+| Average Quiz score from the pivot (original 7 rows)             | 85.25                         |
+| Count of records for StudentID 1001 (after adding `RecordID` 8) | 3                             |
+| Dropdown values available for `DeliverableType`                 | Quiz, Homework, Exam, Project |
 
 ## What This Shows
 
 Each Chapter 3 idea appeared somewhere concrete in this build:
 
-| Chapter 3 idea                  | Where it appeared in this LB                                       |
-| ------------------------------- | ------------------------------------------------------------------ |
-| Data and context                | Raw values became meaningful only after headers and a dictionary    |
-| Fields and records              | One row in `GRADEBOOK` = one grade for one student                  |
-| Data types and measurement level| Quick-classify mini-check; date and number formatting               |
-| Metadata                        | `DATA_DICTIONARY` tab and dropdown rules                            |
-| Missing values                  | `NULL`, `0`, `""`, and `" "` exercise                               |
-| Spreadsheet queries             | Filters, sorts, `=FILTER`, `=SORT`                                  |
-| Simulated relationships         | `VLOOKUP` from `GRADEBOOK` to `GRADE_WEIGHT`                        |
-| Pivot summaries                 | Average score and record count pivots                               |
-| Data quality dimensions         | Completeness, consistency, uniqueness, validity, accuracy           |
-| Spreadsheet fragility           | Ranges, casing, repeated data, easy overwrites                      |
-| Data lifecycle and stewardship  | Retention, anonymization, and deletion questions about your workbook |
+| Chapter 3 idea                   | Where it appeared in this LB                                         |
+| -------------------------------- | -------------------------------------------------------------------- |
+| Data and context                 | Raw values became meaningful only after headers and a dictionary     |
+| Fields and records               | One row in `GRADEBOOK` = one grade for one student                   |
+| Schema                           | `GRADEBOOK(...)`, `GRADE_WEIGHT(...)`, and `DATA_DICTIONARY(...)`    |
+| Data types and measurement level | Quick-classify mini-check; date and number formatting                |
+| Metadata                         | `DATA_DICTIONARY` tab and dropdown rules                             |
+| Missing values                   | `NULL`, `0`, `""`, and `" "` exercise                                |
+| Spreadsheet queries              | Filters, sorts, `=FILTER`, `=SORT`                                   |
+| Simulated relationships          | `VLOOKUP` from `GRADEBOOK` to `GRADE_WEIGHT`                         |
+| Pivot summaries                  | Average score and record count pivots                                |
+| Data quality dimensions          | Completeness, consistency, uniqueness, validity, accuracy            |
+| Spreadsheet fragility            | Ranges, casing, repeated data, easy overwrites                       |
+| Data lifecycle and stewardship   | Retention, anonymization, and deletion questions about your workbook |
 
 A spreadsheet helped you **see** the data. A database is designed to **manage** the data more reliably over time. That gap is the bridge into Chapter 4.
 
@@ -393,37 +423,76 @@ A spreadsheet helped you **see** the data. A database is designed to **manage** 
 * Treating a blank cell, `0`, and `""` as the same thing in formulas and filters.
 * Storing student identity on every grade row, so one student ends up with two emails after a single edit.
 
-## Submit or Save
+### Submit or Save
 
-There is no submission for this LB. Save your workbook as **`LB03 — Grading Data Fundamentals — Your Name`** in your course Drive folder. You will reuse these same moves in **Lab 03 — Transferring Data Fundamentals to PetVax**, where you will rebuild this structure for a messy veterinary clinic record and submit the workbook for a grade.
+There is no submission for this LB. Save your workbook as **`LB03 - Grading Data Fundamentals - Your Name`** in your course Drive folder. You will reuse these same moves in **Lab 03: Transferring Data Fundamentals to PetVax**, where you will rebuild this structure for a messy veterinary clinic record and submit the workbook for a grade.
 
-## Peek Ahead — Chapter 4
+---
+
+## Practice Exercises
+
+The following exercises ask you to apply Chapter 3 concepts by designing and evaluating a grade-tracking table. Answer each question in your workbook or submission document.
+
+### Exercise 5: Design and Populate One Grade-Tracking Table
+
+Design **one table** to store the grades for at least **two students** (yourself and one fictional student). The table should include, at minimum:
+
+- Student Name
+- Student Number
+- Email Address
+- Grades for Assignments (up to the due date of this exercise)
+
+**Instructions:**
+
+- Add **at least two more columns** to the table that you think are necessary (e.g., feedback, assignment weight).
+- Create the table directly in your workbook or in Excel, and copy it into your submission.
+- Include all grades for completed assignments and any in-progress assignments.
+
+### Exercise 6: List the Columns and Their Data Types
+
+List all the columns in your table from Exercise 5 and provide their corresponding data types. Use a table like the one below:
+
+| Column Name | Data Type | Description |
+|---|---|---|
+| Student Name | Text | Stores the full name of the student |
+| Student Number | Number (Integer) | Unique identifier for each student |
+| Email | Text | Stores the student's email address |
+
+**Make sure to include all the columns in the table you designed in the previous exercise.**
+
+### Exercise 7: Identify Issues with the Table Design
+
+List at least **three potential issues** with the table design from Exercise 5 and explain how they could impact data management or analysis. For each issue, describe the problem and suggest a potential solution. Consider what you learned in this chapter about fields, records, table rules, data types, redundancy, and the limits of flat files.
+
+---
+
+### Peek Ahead — Chapter 4
 
 In Chapter 4, you will move from a spreadsheet to **Microsoft Access**, and the four problems you just named will each get a structural fix:
 
 * **Data redundancy** disappears once student identity lives in its own `Students` table and grades reference the student by `StudentID` instead of repeating name, email, and birthday on every row.
 * **Update anomalies** stop because an email lives in exactly one place; changing it once changes it everywhere it is shown.
 * **Insertion anomalies** stop because a new student can be added to `Students` without needing a grade, and a new deliverable category can be added without needing a student.
-* **Deletion anomalies** stop because removing a grade no longer removes the student or the category — they exist in their own tables.
+* **Deletion anomalies** stop because removing a grade no longer removes the student or the category. They exist in their own tables.
 * **Query fragility** is replaced by typed columns, validation rules the system actually enforces, and queries that refer to tables by name rather than to fragile cell ranges.
 
 Every place this LB felt fragile is a place Chapter 4 will show how a database is designed to be sturdy.
 
 # Figures Index
 
-| Figure | Section | Caption | Source file |
-|---|---|---|---|
-| Figure 3.1 | Let's Build | The Grading Database starts as a simple gradebook, but the same fields will later support a more reliable database structure. | `ch03-lb-grading-database-preview.png` |
-| Figure 3.2 | Purpose | This build keeps the Grading Database small enough to inspect while previewing why structured tables matter. | `ch03-lb-grading-database-small-system.png` |
-| Figure 3.3 | What You Will Practice | Different field types support different analytical behaviors: grouping, aggregation, trends, and status filters. | `ch03-lb-data-types-dashboard-outcomes.png` |
-| Figure 3.4 | Define the Structure Before Entering Data | The data hierarchy reminds you that a spreadsheet table is one level in a larger data structure. | `ch03-lb-data-hierarchy.png` |
-| Figure 3.5 | Define the Structure Before Entering Data | A field such as Score only becomes useful when it sits inside a record, table, and larger data system. | `ch03-lb-data-hierarchy-detail.png` |
-| Figure 3.6 | Build the Data Dictionary | A data dictionary turns field names into shared rules that another person can follow. | `ch03-lb-metadata-data-dictionary.png` |
-| Figure 3.7 | Classify Your Fields by Measurement Level | The measurement level tells you whether a field can be counted, ordered, compared by distance, or used in full arithmetic. | `ch03-lb-measurement-level-ladder.png` |
-| Figure 3.8 | Classify Your Fields by Measurement Level | Valid operations depend on the meaning of the field, not just on whether the value looks like a number. | `ch03-lb-measurement-level-operations.png` |
-| Figure 3.9 | Classify Your Fields by Measurement Level | Moving from nominal to ratio data expands the calculations you can use, but only when the field meaning supports them. | `ch03-lb-nominal-ratio-operations.png` |
-| Figure 3.10 | Enter the Sample Data | The same gradebook includes labels, categories, dates, identifiers, and measurements that each need different handling. | `ch03-lb-common-data-fields.png` |
-| Figure 3.11 | Enter the Sample Data | Classifying fields helps you decide which spreadsheet operation is meaningful and which would be misleading. | `ch03-lb-classifying-business-data.png` |
-| Figure 3.12 | Add Metadata, Validation, and Formatting | This example extends the gradebook idea to show how each data type supports a different analytical behavior. | `ch03-lb-data-types-analytical-uses.png` |
-| Figure 3.13 | Add Metadata, Validation, and Formatting | The LB uses structured data, but real organizations often also manage semi-structured and unstructured data. | `ch03-lb-data-structure-types.png` |
+| Figure      | Section                                           | Caption                                                                                                                                 | Source file                                  |
+| ----------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| Figure 3.1  | Let's Build                                       | The Grading Database starts as a simple gradebook, but the same fields will later support a more reliable database structure.           | `ch03-lb-grading-database-preview.png`       |
+| Figure 3.2  | Purpose                                           | This build keeps the Grading Database small enough to inspect while previewing why structured tables matter.                            | `ch03-lb-grading-database-small-system.png`  |
+| Figure 3.3  | What You Will Practice                            | Different field types support different analytical behaviors: grouping, aggregation, trends, and status filters.                        | `ch03-lb-data-types-dashboard-outcomes.png`  |
+| Figure 3.4  | Define the Structure Before Entering Data         | The data hierarchy reminds you that a spreadsheet table is one level in a larger data structure.                                        | `ch03-lb-data-hierarchy.png`                 |
+| Figure 3.5  | Define the Structure Before Entering Data         | A field such as Score only becomes useful when it sits inside a record, table, and larger data system.                                  | `ch03-lb-data-hierarchy-detail.png`          |
+| Figure 3.6  | Build the Data Dictionary                         | A data dictionary turns field names into shared rules that another person can follow.                                                   | `ch03-lb-metadata-data-dictionary.png`       |
+| Figure 3.7  | Classify Your Fields by Measurement Level         | The measurement level tells you whether a field can be counted, ordered, compared by distance, or used in full arithmetic.              | `ch03-lb-measurement-level-ladder.png`       |
+| Figure 3.8  | Classify Your Fields by Measurement Level         | Valid operations depend on the meaning of the field, not just on whether the value looks like a number.                                 | `ch03-lb-measurement-level-operations.png`   |
+| Figure 3.9  | Classify Your Fields by Measurement Level         | Moving from nominal to ratio data expands the calculations you can use, but only when the field meaning supports them.                  | `ch03-lb-nominal-ratio-operations.png`       |
+| Figure 3.10 | Enter the Sample Data                             | The same gradebook includes labels, categories, dates, identifiers, and measurements that each need different handling.                 | `ch03-lb-common-data-fields.png`             |
+| Figure 3.11 | Enter the Sample Data                             | Classifying fields helps you decide which spreadsheet operation is meaningful and which would be misleading.                            | `ch03-lb-classifying-business-data.png`      |
+| Figure 3.12 | Add Metadata, Validation, and Formatting          | This example extends the gradebook idea to show how each data type supports a different analytical behavior.                            | `ch03-lb-data-types-analytical-uses.png`     |
+| Figure 3.13 | Add Metadata, Validation, and Formatting          | The LB uses structured data, but real organizations often also manage semi-structured and unstructured data.                            | `ch03-lb-data-structure-types.png`           |
 | Figure 3.14 | Why a Flat File Breaks — Redundancy and Anomalies | Spreadsheets are useful for quick individual work, while databases become stronger when shared structure, validation, and reuse matter. | `ch03-lb-spreadsheet-database-strengths.png` |

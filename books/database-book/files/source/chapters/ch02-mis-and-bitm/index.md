@@ -1,8 +1,33 @@
 # Chapter 2: Foundations of Information Systems
 
-This chapter establishes the conceptual foundations that connect business performance to information systems. As introduced in Chapter 1, this book follows a clear path: data becomes tables, tables form relationships, relationships enable queries, queries support analytics, and analytics inform decisions. Chapter 2 explains why that path matters. It shows how information systems turn raw observations into business decisions. Along the way, it introduces two simple frameworks: the **DIKW hierarchy** (data, information, knowledge, wisdom) and the **R.E.A.D. framework** (representation and retrieval, expression and experience, association and acquisition, decision-making and deployment). DIKW describes how meaning develops — what was recorded, what happened, why it is happening, and what should be done. R.E.A.D. describes the organizational and technical work required to move through those stages in practice. The chapter also separates **information technology** (the tools) from the broader **information system** (the tools plus people, data, and processes). Finally, it explains why **data quality** and **strategic alignment** are managerial concerns, not just technical ones.
+*How Data Drives Business Performance*
 
-- define data, information, knowledge, and wisdom; - explain how raw data becomes useful for business decisions; - describe business performance and explain why it is multidimensional; - explain how KPIs translate goals into measurable signals; - define information systems and distinguish them from information technology; - describe the five components of an information system; - explain how MIS and BITM connect systems, management, and strategy.
+As introduced in Chapter 1, this book follows a clear path: data becomes tables, tables form relationships, relationships enable queries, queries support analytics, and analytics inform decisions.
+
+Chapter 2 explains why that path matters. This chapter outlines the fundamental role of **information systems** in converting raw observations into **strategic business decisions**. By utilizing frameworks like **DIKW** and **R.E.A.D.**, the author illustrates how data evolves into actionable **wisdom** through structured retrieval, analysis, and human interpretation. The source distinguishes between **information technology**, which comprises the technical tools, and the broader **information system** that integrates people and organizational processes. Furthermore, it emphasizes that **data quality** and **strategic alignment** are essential for measuring **business performance** and reducing managerial uncertainty. Ultimately, the material serves as a conceptual groundwork for understanding how **management** leverages organized data to drive **efficiency** and organizational value.
+
+Before we move deeper into databases, SQL, and analytics, we need a foundation. Specifically, ask yourself whether you can answer these questions:
+
+- **What is data?**
+- **What is a business?**
+- **What is business performance?**
+- **How can data improve business performance?**
+- **What is an information system?**
+- **What is information technology?**
+- **What are Management Information Systems (MIS)?**
+- **What is Business Information Technology Management (BITM)?**
+
+Those questions are the foundation of this chapter.
+
+**After reading this chapter, you will be able to:**
+
+- define data, information, knowledge, and wisdom;
+- explain how raw data becomes useful for business decisions;
+- describe business performance and explain why it is multidimensional;
+- explain how KPIs translate goals into measurable signals;
+- define information systems and distinguish them from information technology;
+- describe the five components of an information system;
+- explain how MIS and BITM connect systems, management, and strategy.
 
 ## Chapter Video
 

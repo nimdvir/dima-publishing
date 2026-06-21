@@ -1,23 +1,26 @@
-﻿<!-- markdownlint-disable MD013 MD024 MD036 -->
+<!-- metadata: date="2026-06-21" -->
+<!-- markdownlint-disable MD013 MD024 MD036 -->
 
 # Lab 03 Questions
 
 ![Lab banner](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/lab_jpifze?_a=BAMAAAiu0)
 
-# PetVax Spreadsheet Fundamentals: When a Flat File Starts to Break
+## PetVax Spreadsheet Fundamentals: When a Flat File Starts to Break
 
 **Chapter:** Chapter 3 — Understanding Data Fundamentals  
 **Project:** PetVax veterinary clinic  
 **Platform:** Brightspace auto-graded quiz + Google Sheets or Excel workbook  
 **Estimated time:** about 60 minutes  
-**Starter file:** `assets/lab-03-petvax-spreadsheet-starter-2026-05-24.xlsx`  
+**Starter file:** [PetVax Lab 03 Starter Spreadsheet](https://docs.google.com/spreadsheets/d/1vYk3Z9DGVshEx0pgsHvbpkT4YfQ9j3ig/edit?usp=sharing) (Google Sheets — **File → Make a copy**, or **File → Download → Microsoft Excel**)  
 **Submission artifact:** completed spreadsheet workbook  
 
 ---
 
-# What This Lab Is
+## What This Lab Is
 
 This lab is a guided spreadsheet workflow.
+
+This lab builds directly on the Chapter 3 Let's Build. In the Let's Build, you used the Grading Database to see how fields, records, schemas, data dictionaries, lookups, filters, pivots, and anomalies work in a small gradebook. In this lab, you transfer the same ideas to PetVax, where the data is messier and the consequences are easier to see.
 
 The quiz questions are not just a test. They are checkpoints that guide you through the spreadsheet work. Every quiz answer is exact, so Brightspace can grade it automatically. At the end, you upload your completed spreadsheet file so an AI grader can confirm you actually did the steps behind your answers.
 
@@ -25,7 +28,7 @@ The main goal is to experience the central Chapter 3 lesson:
 
 > A spreadsheet is useful for entering, viewing, filtering, and summarizing data, but flat files become fragile when data is repeated, updated, connected, and reused.
 
-![Figure 3.11 - Spreadsheet Strengths vs. Database Capabilities](../../../../.images/Ch4%20Databases/optimized/ch04-to-add-spreadsheet-vs-database-strengths.png)
+![Figure 3.11 - Spreadsheet Strengths vs. Database Capabilities](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-spreadsheets-vs-databases)
 *Figure 3.11: Spreadsheet Strengths vs. Database Capabilities. Contrasts the flexible, personal calculation grid of Excel/Sheets with the structured, concurrent, and governed storage of database systems.*
 
 You will use a PetVax appointment spreadsheet to practice:
@@ -44,17 +47,31 @@ You will use a PetVax appointment spreadsheet to practice:
 
 You are not building an Access database yet. That begins in Chapter 4. This lab shows why Chapter 4 is needed.
 
+### Transfer From Let's Build to Lab 03
+
+Use this map as you work. The PetVax workbook uses different business data, but the structure of the work is the same as the Grading Database rehearsal.
+
+| Chapter 3 Let's Build                       | Lab 03 PetVax transfer                                      |
+| ------------------------------------------- | ----------------------------------------------------------- |
+| `GRADEBOOK` stores grade records            | `APPOINTMENTS_FLAT` stores appointment records              |
+| `GRADE_WEIGHT` supplies lookup values       | `BREED_REFERENCE` supplies lookup values                    |
+| `DATA_DICTIONARY` defines fields            | `DATA_DICTIONARY` explains PetVax field meaning             |
+| `VLOOKUP` simulates a relationship          | `VLOOKUP` or `XLOOKUP` pulls breed reference data           |
+| Filters and `FILTER` act like early queries | Filters and `FILTER` expose appointment subsets             |
+| Pivot tables summarize grade patterns       | Pivot summaries show animal type and weight patterns        |
+| Repeated student facts create anomalies     | Repeated owner, pet, and appointment facts create anomalies |
+
 ---
 
-# How This Lab Is Graded
+## How This Lab Is Graded
 
 This lab has **two graded parts**. You must complete both.
 
-## Part 1 — Brightspace quiz (auto-graded)
+### Part 1 — Brightspace quiz (auto-graded)
 
-You answer 24 questions inside the Brightspace quiz for this lab. Brightspace grades these automatically. Every answer is exact: a specific choice, match, order, or value. Many answers come directly from the spreadsheet work you do, so **do the work first, then answer**. Your quiz answers should match what your workbook shows.
+You answer 27 questions inside the Brightspace quiz for this lab. Brightspace grades these automatically. Every answer is exact: a specific choice, match, order, or value. Many answers come directly from the spreadsheet work you do, so **do the work first, then answer**. Your quiz answers should match what your workbook shows.
 
-## Part 2 — Spreadsheet file (AI-checked)
+### Part 2 — Spreadsheet file (AI-checked)
 
 You upload your completed workbook to the separate file-submission assignment. An AI grader checks that the file is **complete** and that your work is **authentic** — that the required artifacts are present and that the values in the file match the quiz answers you gave. The file is not re-scored question by question. It is proof that you actually did the work.
 
@@ -62,7 +79,7 @@ You upload your completed workbook to the separate file-submission assignment. A
 
 ---
 
-# What You Will Submit
+## What You Will Submit
 
 Submit your completed spreadsheet file.
 
@@ -70,7 +87,7 @@ Use this filename:
 
 `Lab03-PetVax-Spreadsheet-LastName.xlsx`
 
-(Replace `LastName` with your own last name. Do not include spaces or em-dashes — they break some LMS uploads.)
+(Replace `LastName` with your own last name. Do not include spaces or em dashes because they break some LMS uploads.)
 
 Your file should show that you completed the steps, including:
 
@@ -85,23 +102,23 @@ Your file should show that you completed the steps, including:
 
 ---
 
-# Workbook Overview
+## Workbook Overview
 
 Open the starter workbook. It contains these sheets:
 
-| Sheet | Purpose |
-|---|---|
-| `APPOINTMENTS_FLAT` | Main flat-file appointment log |
-| `BREED_REFERENCE` | Breed lookup table with animal type and healthy weight information |
-| `DATA_DICTIONARY` | Field definitions and intended meaning |
-| `QUERY_AREA` | Space for a formula-based query |
-| `PIVOT_SUMMARY` | Space for a pivot table or pivot-style summary |
+| Sheet               | Purpose                                                            |
+| ------------------- | ------------------------------------------------------------------ |
+| `APPOINTMENTS_FLAT` | Main flat-file appointment log                                     |
+| `BREED_REFERENCE`   | Breed lookup table with animal type and healthy weight information |
+| `DATA_DICTIONARY`   | Field definitions and intended meaning                             |
+| `QUERY_AREA`        | Space for a formula-based query                                    |
+| `PIVOT_SUMMARY`     | Space for a pivot table or pivot-style summary                     |
 
 Start in `APPOINTMENTS_FLAT`.
 
 ---
 
-# Step 1 — Inspect the Flat File
+## Step 1 — Inspect the Flat File
 
 In `APPOINTMENTS_FLAT`, each row is one appointment record.
 
@@ -118,14 +135,14 @@ The sheet includes appointment details such as:
 - reminder status;
 - payment amount.
 
-This is a flat file because appointment, pet, owner, breed, service, and payment information all live in one sheet.
+This is a flat file because appointment, pet, owner, breed, service, and payment information all live in one sheet. In the Let's Build, `GRADEBOOK` mixed student, deliverable, and grade facts in a similar way. Here, PetVax gives you a second context for the same structural problem.
 
-![Figure 3.3 - The Data Hierarchy](../../../../.images/Ch4%20Databases/optimized/ch04-to-add-data-hierarchy.png)
+![Figure 3.3 - The Data Hierarchy](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-di-hierarchy)
 *Figure 3.3: The Data Hierarchy. Shows how individual data characters (bytes) form fields (columns), which group into records (rows) to build the flat tables checked in Step 1.*
 
 > 🔍 **Filtering and sorting rule.** You may apply a filter when a step asks you to. **Clear the filter before moving to the next step.** Do **not** permanently sort the sheet, because later steps refer to rows by their original `AppointmentID`.
 
-# Quiz Question 1
+### Quiz Question 1
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -137,10 +154,10 @@ Do not count the header row.
 
 ---
 
-![Figure 3.8 - Data Types and Analytical Uses](../../../../.images/Ch4%20Databases/optimized/ch04-to-add-data-types-analytical-uses.png)
+![Figure 3.8 - Data Types and Analytical Uses](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-data-types-analytical)
 *Figure 3.8: Data Types and Measurement Scales. Connects nominal labels, ordinal ranks, interval values, and ratio scales with their valid statistical and analytical operations.*
 
-# Quiz Question 2
+### Quiz Question 2
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -155,7 +172,7 @@ D. `PetName`
 
 ---
 
-# Quiz Question 3
+### Quiz Question 3
 
 **Brightspace question type:** Multi-Select  
 **Auto-graded:** Yes  
@@ -171,21 +188,70 @@ E. Pumpkin
 
 ---
 
-# Step 2 — Add Lookup Columns
+### Data Types and Measurement Scales
+
+Chapter 3 introduced four measurement scales that classify every column in a dataset: **nominal**, **ordinal**, **interval**, and **ratio**. The scale determines what you can meaningfully do with the data — count, rank, average, or multiply. The `APPOINTMENTS_FLAT` columns give you real examples of each.
+
+### Quiz Question 2a — Identifying Nominal Data
+
+**Brightspace question type:** Multiple Choice  
+**Auto-graded:** Yes  
+**Points:** 1
+
+Which column in `APPOINTMENTS_FLAT` contains **nominal** data — values that name or label categories without any natural order?
+
+A. `WeightKg`  
+B. `PaymentAmount`  
+C. `ServiceType`  
+D. `AppointmentTime`  
+
+---
+
+### Quiz Question 2b — Identifying Ratio Data
+
+**Brightspace question type:** Multiple Choice  
+**Auto-graded:** Yes  
+**Points:** 1
+
+`WeightKg` is ratio data. What makes it **ratio** rather than just interval?
+
+A. Weight can be measured in different units  
+B. Zero kilograms means the complete absence of weight (a true zero), so we can say "20 kg is twice as heavy as 10 kg"  
+C. Weight values can be sorted from lightest to heaviest  
+D. Weight is always a decimal number  
+
+---
+
+### Quiz Question 2c — Why Measurement Scales Matter
+
+**Brightspace question type:** Multiple Choice  
+**Auto-graded:** Yes  
+**Points:** 1
+
+A column of `AppointmentStatus` values — "Scheduled", "Completed", "No-show", "Cancelled" — is nominal data. What is the most important analytical limitation this creates?
+
+A. You cannot count how many appointments have each status  
+B. You cannot calculate a meaningful average status  
+C. You cannot filter by status  
+D. You cannot sort the status values alphabetically  
+
+---
+
+## Step 2 — Add Lookup Columns
 
 The flat file stores `BreedName`, but it does not directly store the animal type, average healthy breed weight, or overweight threshold. Those values are in `BREED_REFERENCE`.
 
 In `APPOINTMENTS_FLAT`, use either `XLOOKUP` or `VLOOKUP` to fill these columns:
 
-| Column | Field |
-|---|---|
-| N | `AnimalType` |
-| O | `AvgHealthyWeightKg` |
-| P | `OverweightThresholdKg` |
-| Q | `WeightStatus` |
-| R | `PetOwnerKey` |
+| Column | Field                   |
+| ------ | ----------------------- |
+| N      | `AnimalType`            |
+| O      | `AvgHealthyWeightKg`    |
+| P      | `OverweightThresholdKg` |
+| Q      | `WeightStatus`          |
+| R      | `PetOwnerKey`           |
 
-# Suggested `XLOOKUP` formulas
+### Suggested `XLOOKUP` formulas
 
 In `N2`:
 
@@ -219,7 +285,7 @@ In `R2`:
 
 Copy these formulas down through all existing appointment rows.
 
-# Alternative `VLOOKUP` formulas
+### Alternative `VLOOKUP` formulas
 
 In `N2`:
 
@@ -243,7 +309,7 @@ Use the same formulas for `Q2` and `R2` as above.
 
 ---
 
-# Quiz Question 4
+### Quiz Question 4
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -258,7 +324,7 @@ D. It turns the spreadsheet into Access
 
 ---
 
-# Quiz Question 5
+### Quiz Question 5
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -270,7 +336,7 @@ After filling the lookup and weight-status formulas through the starter records,
 
 ---
 
-# Step 3 — Filter the Flat File
+## Step 3 — Filter the Flat File
 
 Use filters in `APPOINTMENTS_FLAT`.
 
@@ -278,7 +344,7 @@ Filter `AppointmentStatus` to show only:
 
 `No-show`
 
-# Quiz Question 6
+### Quiz Question 6
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -294,7 +360,7 @@ Filter `ReminderSent` to show only:
 
 `FALSE`
 
-# Quiz Question 7
+### Quiz Question 7
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -304,7 +370,7 @@ Before any modifications, how many records have `ReminderSent = FALSE`?
 
 ---
 
-# Step 4 — Create a Formula-Based Query
+## Step 4 — Create a Formula-Based Query
 
 Go to `QUERY_AREA`.
 
@@ -316,7 +382,7 @@ In cell `A5`, enter this formula:
 
 This is intentionally a fixed-range formula. It only looks at rows 2 through 25.
 
-# Quiz Question 8
+### Quiz Question 8
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -326,7 +392,7 @@ How many records does the fixed-range `FILTER` formula return before you add new
 
 ---
 
-# Step 5 — Create a Pivot Summary
+## Step 5 — Create a Pivot Summary
 
 Go to `PIVOT_SUMMARY`.
 
@@ -334,17 +400,17 @@ Create a pivot table or pivot-style summary using `APPOINTMENTS_FLAT`.
 
 Use:
 
-| Pivot Area | Field |
-|---|---|
-| Rows | `AnimalType` |
-| Values | `AppointmentID`, summarized by count |
-| Values | `WeightKg`, summarized by average |
+| Pivot Area | Field                                |
+| ---------- | ------------------------------------ |
+| Rows       | `AnimalType`                         |
+| Values     | `AppointmentID`, summarized by count |
+| Values     | `WeightKg`, summarized by average    |
 
 If your pivot table does not update automatically, refresh it after formulas are filled.
 
 > 📎 **Treat this pivot as a starter-data snapshot.** Build it now, before Step 7. **Do not refresh or rebuild it** after you add Maple, add Rex, or delete Angel. The pivot is meant to summarize the original 24-row starter file so the grader can compare against fixed expected counts.
 
-# Quiz Question 9
+### Quiz Question 9
 
 **Brightspace question type:** Matching  
 **Auto-graded:** Yes  
@@ -353,13 +419,13 @@ If your pivot table does not update automatically, refresh it after formulas are
 Match each animal type to its appointment count in the starter file.
 
 | Animal Type | Count |
-|---|---|
-| Cat | 6 |
-| Dog | 18 |
+| ----------- | ----- |
+| Cat         | 6     |
+| Dog         | 18    |
 
 ---
 
-# Quiz Question 10
+### Quiz Question 10
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -374,16 +440,16 @@ D. 20.1
 
 ---
 
-# Step 6 — Identify Flat-File Redundancy
+## Step 6 — Identify Flat-File Redundancy
 
 A flat file repeats facts across many rows.
 
 In this file, owner and pet information is repeated because each row is an appointment, not a separate owner table or pet table.
 
-![Figure 3.10 - One Big Table vs. Related Tables](../../../../.images/Ch4%20Databases/optimized/figure_47_one_big_table_vs_related_tablesc.jpg)
+![Figure 3.10 - One Big Table vs. Related Tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-raw-vs-organized)
 *Figure 3.10: Redundancy in Flat Tables vs. Relational Design. Visualizes how splitting a multi-theme table into independent related tables eliminates duplicate storage and modification risks.*
 
-# Quiz Question 11
+### Quiz Question 11
 
 **Brightspace question type:** Multi-Select  
 **Auto-graded:** Yes  
@@ -399,7 +465,7 @@ E. Richard Bowman
 
 ---
 
-# Step 6.5 — Same Pet Name, Co-Owned Pet: Why We Need Primary Keys
+## Step 6.5 — Same Pet Name, Co-Owned Pet: Why We Need Primary Keys
 
 > 💡 `AppointmentID` identifies an appointment, not a pet. That is why an `AppointmentID` cannot solve the "two Charlies" problem you are about to see.
 
@@ -411,7 +477,7 @@ The starter file already contains two situations that are obvious when a human r
 
 Do not edit these rows. Just inspect them and answer the four checkpoints.
 
-# Quiz Question 12
+### Quiz Question 12
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -426,7 +492,7 @@ D. No — the only fix is to ban duplicate pet names at the clinic
 
 ---
 
-# Quiz Question 13
+### Quiz Question 13
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -441,7 +507,7 @@ D. A larger spreadsheet
 
 ---
 
-# Quiz Question 14
+### Quiz Question 14
 
 **Brightspace question type:** Multi-Select  
 **Auto-graded:** Yes  
@@ -457,7 +523,7 @@ E. From the columns alone, the workbook cannot prove that 1007 and 1008 refer to
 
 ---
 
-# Quiz Question 15
+### Quiz Question 15
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -472,7 +538,7 @@ D. Delete one of the owner rows so each pet has only one owner
 
 ---
 
-# Workbook task for Q12–Q15
+### Workbook task for Q12–Q15
 
 In `APPOINTMENTS_FLAT`, add a short note in the `Notes` cell of row **1003** (or row **1007**, your choice) that reads:
 
@@ -482,29 +548,29 @@ Finish that sentence in your own words (about 25–50 words). Mention either *pr
 
 ---
 
-# Step 7 — Add a New Appointment Record
+## Step 7 — Add a New Appointment Record
 
 Add this new record at the bottom of `APPOINTMENTS_FLAT`.
 
-| Field | Value |
-|---|---|
-| `AppointmentID` | 1025 |
-| `AppointmentDate` | 2026-04-02 |
-| `AppointmentTime` | 13:00 |
-| `PetName` | Maple |
-| `OwnerName` | Priya Shah |
-| `OwnerEmail` | priya.shah@example.com |
-| `BreedName` | Beagle |
-| `WeightKg` | 16.0 |
-| `ServiceType` | Vaccination |
-| `AppointmentStatus` | Scheduled |
-| `ReminderSent` | TRUE |
-| `PaymentAmount` | 64.91 |
-| `Notes` | New appointment added during lab |
+| Field               | Value                            |
+| ------------------- | -------------------------------- |
+| `AppointmentID`     | 1025                             |
+| `AppointmentDate`   | 2026-04-02                       |
+| `AppointmentTime`   | 13:00                            |
+| `PetName`           | Maple                            |
+| `OwnerName`         | Priya Shah                       |
+| `OwnerEmail`        | priya.shah@example.com           |
+| `BreedName`         | Beagle                           |
+| `WeightKg`          | 16.0                             |
+| `ServiceType`       | Vaccination                      |
+| `AppointmentStatus` | Scheduled                        |
+| `ReminderSent`      | TRUE                             |
+| `PaymentAmount`     | 64.91                            |
+| `Notes`             | New appointment added during lab |
 
 Fill the lookup formulas down for the new row.
 
-# Quiz Question 16
+### Quiz Question 16
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -516,7 +582,7 @@ Do not count the header row.
 
 ---
 
-# Quiz Question 17
+### Quiz Question 17
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -530,7 +596,7 @@ After adding Maple and filling the formulas down, how many appointment records i
 
 > ⚠️ **Do not change the fixed range yet.** The point of the next question is to see that the formula does **not** automatically include the new Maple row. You will not edit the `FILTER` formula in this lab.
 
-# Quiz Question 18
+### Quiz Question 18
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -545,7 +611,7 @@ D. A deletion anomaly
 
 ---
 
-# Step 8 — Create an Update Anomaly
+## Step 8 — Create an Update Anomaly
 
 Now create an update anomaly.
 
@@ -563,7 +629,7 @@ to:
 
 Do not change Sarah Perry's other rows.
 
-# Quiz Question 19
+### Quiz Question 19
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -573,7 +639,7 @@ After changing Sarah Perry's email in only one row, how many different email val
 
 ---
 
-# Quiz Question 20
+### Quiz Question 20
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -588,31 +654,31 @@ D. Validity constraint
 
 ---
 
-# Step 9 — Create an Insertion Anomaly
+## Step 9 — Create an Insertion Anomaly
 
 A flat appointment file has no clean place to store a pet that does not yet have an appointment.
 
 Add this placeholder row at the bottom of `APPOINTMENTS_FLAT`:
 
-| Field | Value |
-|---|---|
-| `AppointmentID` | 1026 |
-| `AppointmentDate` | leave blank |
-| `AppointmentTime` | leave blank |
-| `PetName` | Rex |
-| `OwnerName` | Morgan Pugh |
-| `OwnerEmail` | morgan.pugh@example.com |
-| `BreedName` | Mixed Breed |
-| `WeightKg` | 23.0 |
-| `ServiceType` | leave blank |
-| `AppointmentStatus` | leave blank |
-| `ReminderSent` | leave blank |
-| `PaymentAmount` | leave blank |
-| `Notes` | Pet exists, but no appointment yet |
+| Field               | Value                              |
+| ------------------- | ---------------------------------- |
+| `AppointmentID`     | 1026                               |
+| `AppointmentDate`   | leave blank                        |
+| `AppointmentTime`   | leave blank                        |
+| `PetName`           | Rex                                |
+| `OwnerName`         | Morgan Pugh                        |
+| `OwnerEmail`        | morgan.pugh@example.com            |
+| `BreedName`         | Mixed Breed                        |
+| `WeightKg`          | 23.0                               |
+| `ServiceType`       | leave blank                        |
+| `AppointmentStatus` | leave blank                        |
+| `ReminderSent`      | leave blank                        |
+| `PaymentAmount`     | leave blank                        |
+| `Notes`             | Pet exists, but no appointment yet |
 
 Fill lookup formulas where possible.
 
-# Quiz Question 21
+### Quiz Question 21
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -627,7 +693,7 @@ D. Rex is already in the pivot table
 
 ---
 
-# Step 10 — Create a Deletion Anomaly
+## Step 10 — Create a Deletion Anomaly
 
 Now delete the row with:
 
@@ -635,7 +701,7 @@ Now delete the row with:
 
 This is Angel's only appointment row in the flat file.
 
-# Quiz Question 22
+### Quiz Question 22
 
 **Brightspace question type:** Short Answer / Fill in the Blank  
 **Auto-graded:** Yes  
@@ -645,7 +711,7 @@ After deleting `AppointmentID = 1022`, which pet name disappears from the appoin
 
 ---
 
-# Quiz Question 23
+### Quiz Question 23
 
 **Brightspace question type:** Multiple Choice  
 **Auto-graded:** Yes  
@@ -660,51 +726,53 @@ D. Measurement validity
 
 ---
 
-# Step 11 — Final File Submission
+## Step 11 — Final File Submission
 
 This lab is submitted in two places.
 
-## 1. Submit the Brightspace quiz
+### 1. Submit the Brightspace quiz
 
-Answer all 24 quiz questions inside the Brightspace quiz for this lab. Brightspace grades them automatically. Make sure your answers match the values in your workbook.
+Answer all 27 quiz questions inside the Brightspace quiz for this lab. Brightspace grades them automatically. Make sure your answers match the values in your workbook.
 
-## 2. Upload your spreadsheet file
+### 2. Upload your spreadsheet file
 
-Upload your completed workbook to the separate file-submission assignment, using the filename `Lab03-PetVax-Spreadsheet-LastName.xlsx`. The AI grader checks that the required work is present and authentic — not that each cell is re-scored.
+Upload your completed workbook to the separate file-submission assignment, using the filename `Lab03-PetVax-Spreadsheet-LastName.xlsx`. The AI grader checks that the required work is present and authentic. It does not re-score each cell.
 
-# Required Evidence in the File
+### Required Evidence in the File
 
-| Required Evidence | Where It Should Appear |
-|---|---|
-| Lookup formulas filled for `AnimalType`, `AvgHealthyWeightKg`, `OverweightThresholdKg`, `WeightStatus`, and `PetOwnerKey` | `APPOINTMENTS_FLAT` |
-| Fixed-range `FILTER` formula | `QUERY_AREA` |
-| Pivot table or pivot-style summary | `PIVOT_SUMMARY` |
-| Maple appointment added | `APPOINTMENTS_FLAT` |
-| Sarah Perry email changed in only one row | `APPOINTMENTS_FLAT` |
-| Rex placeholder row added | `APPOINTMENTS_FLAT` |
-| Angel appointment deleted | `APPOINTMENTS_FLAT` |
-| Note explaining why `PetName` is a bad identifier (from Step 6.5) | `Notes` cell of row 1003 or 1007 |
+| Required Evidence                                                                                                         | Where It Should Appear           |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| Lookup formulas filled for `AnimalType`, `AvgHealthyWeightKg`, `OverweightThresholdKg`, `WeightStatus`, and `PetOwnerKey` | `APPOINTMENTS_FLAT`              |
+| Fixed-range `FILTER` formula                                                                                              | `QUERY_AREA`                     |
+| Pivot table or pivot-style summary                                                                                        | `PIVOT_SUMMARY`                  |
+| Maple appointment added                                                                                                   | `APPOINTMENTS_FLAT`              |
+| Sarah Perry email changed in only one row                                                                                 | `APPOINTMENTS_FLAT`              |
+| Rex placeholder row added                                                                                                 | `APPOINTMENTS_FLAT`              |
+| Angel appointment deleted                                                                                                 | `APPOINTMENTS_FLAT`              |
+| Note explaining why `PetName` is a bad identifier (from Step 6.5)                                                         | `Notes` cell of row 1003 or 1007 |
 
-# Final-State Checklist (what the AI grader looks for)
+### Final-State Checklist (what the AI grader looks for)
 
-| Item | Final State |
-|---|---|
-| Maple | Exists as `AppointmentID = 1025` with lookup formulas filled |
-| Rex | Exists as `AppointmentID = 1026` with blank appointment date, time, service, status, reminder, and payment |
-| Angel | `AppointmentID = 1022` has been **deleted** (no row remains) |
-| Sarah Perry | Has **two different** email values across her rows |
-| Fixed `FILTER` formula in `QUERY_AREA` | Still uses the range `A2:Q25` (do not expand it) |
-| Pivot summary in `PIVOT_SUMMARY` | Shows the **original starter snapshot** — Dog = 18, Cat = 6, avg dog weight ≈ 18.3 — not the modified file |
-| Identifier note from Step 6.5 | Appears in the `Notes` cell of row `1003` **or** row `1007` and begins `Why PetName alone is a bad identifier:` |
+| Item                                   | Final State                                                                                                     |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Maple                                  | Exists as `AppointmentID = 1025` with lookup formulas filled                                                    |
+| Rex                                    | Exists as `AppointmentID = 1026` with blank appointment date, time, service, status, reminder, and payment      |
+| Angel                                  | `AppointmentID = 1022` has been **deleted** (no row remains)                                                    |
+| Sarah Perry                            | Has **two different** email values across her rows                                                              |
+| Fixed `FILTER` formula in `QUERY_AREA` | Still uses the range `A2:Q25` (do not expand it)                                                                |
+| Pivot summary in `PIVOT_SUMMARY`       | Shows the **original starter snapshot** — Dog = 18, Cat = 6, avg dog weight ≈ 18.3 — not the modified file      |
+| Identifier note from Step 6.5          | Appears in the `Notes` cell of row `1003` **or** row `1007` and begins `Why PetName alone is a bad identifier:` |
 
 ---
 
-# Final Concept Check
+## Final Concept Check
 
-![Figure 3.12 - Spreadsheets vs. Databases Comparative Summary](../../../../.images/Ch4%20Databases/optimized/ch04-to-add-spreadsheet-vs-database-detailed.png)
+This final question checks the transfer path from the Grading Database rehearsal to PetVax and then forward to Chapter 4.
+
+![Figure 3.12 - Spreadsheets vs. Databases Comparative Summary](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-unstructured-to-structured)
 *Figure 3.12: Comparative Summary. Detailed structural contrast of flat spreadsheet limitations against relational database capabilities, reinforcing the main takeaways of Lab 03.*
 
-# Quiz Question 24
+### Quiz Question 24
 
 **Brightspace question type:** Ordering  
 **Auto-graded:** Yes  
@@ -719,7 +787,7 @@ D. Chapter 4 moves toward databases because related data needs stronger structur
 
 ---
 
-# Optional Extension
+## Optional Extension
 
 Not required.
 

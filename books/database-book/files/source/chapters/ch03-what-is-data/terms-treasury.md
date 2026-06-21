@@ -1,3 +1,4 @@
+<!-- metadata: date="2026-06-19" -->
 # Chapter 3 Term Treasury — Understanding Data Fundamentals
 
 <p align="center">

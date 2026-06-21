@@ -1,3 +1,4 @@
+<!-- metadata: date="2026-06-21" -->
 # Readiness Assessment Test (RAT): Chapter 3 — Understanding Data Fundamentals
 
 <p align="center">
@@ -5,11 +6,11 @@
 </p>
 <p align="center">
 
-# Assessment Design Notes
+**Assessment Design Notes**
 
 This RAT checks whether students completed the Chapter 3 reading and can reason with the chapter's core concepts — data fundamentals, classification, representation, structure, stewardship, and the bridge from spreadsheets to databases — before class discussion. Questions are grounded in the Grading Database running example, the chapter's tables and definitions, the Let's Build Google Sheets exercise, and the business scenarios the chapter presents.
 
-## Bloom Distribution
+**Bloom Distribution**
 
 | Bloom Level | Questions | Count |
 |---|---|---|
@@ -19,7 +20,7 @@ This RAT checks whether students completed the Chapter 3 reading and can reason 
 | Analyze | 25–32 | 8 |
 | Evaluate | 33–40 | 8 |
 
-## Design Criterion Coverage
+**Design Criterion Coverage**
 
 | Design Criterion | Bloom Sections Used | Questions | Count |
 |---|---|---|---|
@@ -27,7 +28,7 @@ This RAT checks whether students completed the Chapter 3 reading and can reason 
 | Scenario-based | Understand, Apply, Analyze, Evaluate | 10–12, 18, 21, 27, 29–31, 35, 38 | 12 |
 | Definition-only | Remember, Understand | 1–9, 13–16, 20, 25 | 14 |
 
-## AI-Resistance Strategies Used
+**AI-Resistance Strategies Used**
 
 1. **Chapter-specific reasoning** — questions reference the Grading Database fields (`StudentID`, `Score`, `DueDate`, `DeliverableType`) and the Let's Build Google Sheets tabs (`GRADEBOOK`, `GRADE_WEIGHT`, `DATA_DICTIONARY`).
 2. **Schema-specific context** — questions use exact table structures, data hierarchy levels, and measurement-level classifications from the chapter.
@@ -37,7 +38,7 @@ This RAT checks whether students completed the Chapter 3 reading and can reason 
 6. **Output prediction** — questions ask students to predict what would happen if a data type were changed, a definition were missing, or a flat file were updated incorrectly.
 7. **Platform-specific detail** — questions reference SQLite, Access, and PostgreSQL type names from the chapter's cross-platform data types table.
 
-# Remember Questions
+### Remember Questions
 
 **1. How does Chapter 3 define data?**
 
@@ -98,7 +99,7 @@ C. An empty string ("")
 D. A blank space (" ")
 E. A formula error (#VALUE!)
 
-# Understand Questions
+### Understand Questions
 
 **9. Why does Chapter 3 say the "data is the new oil" analogy falls short?**
 
@@ -158,7 +159,7 @@ B. Databases provide structure, control, and shared access that flat files canno
 C. Spreadsheets cannot store numbers
 D. Databases require no training to use
 
-# Apply Questions
+### Apply Questions
 
 **17. A grading spreadsheet has these columns: `StudentID, StudentName, DeliverableType, Score, DueDate`. The same student appears in 12 rows with their name spelled "Jon" in 8 rows and "John" in 4 rows. Which data quality dimension is most clearly violated?**
 
@@ -218,7 +219,7 @@ C. Cleaning
 D. Retention and Archiving
 E. Anonymization and Deletion
 
-# Analyze Questions
+### Analyze Questions
 
 **25. A dataset has temperature readings in Celsius and customer satisfaction ratings on a 1–5 scale. Why are these two fields at different measurement levels?**
 
@@ -279,7 +280,7 @@ B. Volume (how much), validity (how accurate), and value (how useful)
 C. Velocity (how fast), veracity (how trustworthy), and volume (how much)
 D. Variety (how many forms), visualization (how displayed), and volume (how much)
 
-# Evaluate Questions
+### Evaluate Questions
 
 **33. A university wants to track student grades across multiple courses, instructors, and semesters. They currently use a single shared spreadsheet. Which is the strongest argument for moving to a database?**
 
@@ -344,9 +345,9 @@ E. Is the data timely — does the report reflect the most recent month's data, 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Answer Key
+## Answer Key
 
-## Remember Questions
+### Remember Questions
 
 **Question 1: How does Chapter 3 define data?**
 
@@ -469,7 +470,7 @@ E. Is the data timely — does the report reflect the most recent month's data, 
 | D | Yes | A blank space (" ") is text containing a space character. |
 | E | No | Formula errors are not among the four stored conditions the chapter distinguishes. |
 
-## Understand Questions
+### Understand Questions
 
 **Question 9: Why does Chapter 3 say the "data is the new oil" analogy falls short?**
 
@@ -591,7 +592,7 @@ E. Is the data timely — does the report reflect the most recent month's data, 
 | C | No | Spreadsheets can store numbers — the issue is structure, not capability. |
 | D | No | Databases require training; ease of use is not the argument. |
 
-## Apply Questions
+### Apply Questions
 
 **Question 17: A grading spreadsheet has these columns: `StudentID, StudentName, DeliverableType, Score, DueDate`. The same student appears in 12 rows with their name spelled "Jon" in 8 rows and "John" in 4 rows. Which data quality dimension is most clearly violated?**
 
@@ -713,7 +714,7 @@ E. Is the data timely — does the report reflect the most recent month's data, 
 | D | Yes | Retention & Archiving is a named lifecycle stage. |
 | E | Yes | Anonymization & Deletion is the final lifecycle stage. |
 
-## Analyze Questions
+### Analyze Questions
 
 **Question 25: A dataset has temperature readings in Celsius and customer satisfaction ratings on a 1–5 scale. Why are these two fields at different measurement levels?**
 
@@ -836,7 +837,7 @@ E. Is the data timely — does the report reflect the most recent month's data, 
 | C | No | Veracity is sometimes discussed in big data literature but not in this chapter's three Vs. |
 | D | No | Visualization is not one of the three Vs. |
 
-## Evaluate Questions
+### Evaluate Questions
 
 **Question 33: A university wants to track student grades across multiple courses, instructors, and semesters. They currently use a single shared spreadsheet. Which is the strongest argument for moving to a database?**
 
@@ -962,7 +963,7 @@ E. Is the data timely — does the report reflect the most recent month's data, 
 
 ---
 
-# Question Distribution Summary
+**Question Distribution Summary**
 
 ## Bloom Level
 

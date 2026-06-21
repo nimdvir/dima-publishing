@@ -1,7 +1,7 @@
 # Chapter 5 Term Treasury - SQL: The Language of Databases
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/terms_gqkau8?_a=BAMAAAiu0" alt="Term Treasury" />
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/terms_gqkau8?_a=BAMAAAiu0" alt="Term Treasury" />
 </p>
 
 <!-- Companion: Key terms and definitions - 2026-06-16 -->
@@ -31,7 +31,7 @@
 | **Transaction Control Language (TCL)** | The subset of SQL statements used to manage database transactions, ensuring group operations succeed or fail as a single unit. | Guarantees database integrity during multi-step modifications, such as transferring bank funds or enrolling in linked classes. | `COMMIT` and `ROLLBACK` commands. |
 | **WHERE** | The SQL clause used to filter individual database rows before any grouping or aggregation takes place. | Increases retrieval speed and filters out irrelevant noise, allowing managers to target specific dates, locations, or criteria. | `WHERE DeliverableType = 'Exam'` to narrow query execution down to exams only. |
 
-# Acronyms and Abbreviations
+## Acronyms and Abbreviations
 
 | Abbreviation | Full Form | Brief Meaning | Where It Appears |
 |---|---|---|---|

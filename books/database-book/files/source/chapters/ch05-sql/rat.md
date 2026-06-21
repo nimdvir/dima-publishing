@@ -1,6 +1,8 @@
 # Readiness Assessment Test (RAT): SQL -- The Language of Databases
 
-![RAT](https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/RAT_big?_a=BAMAAAhK0)
+<p align="center"><img src="https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/RAT_big?_a=BAMAAAhK0" alt="RAT" /></p>
+
+## Questions
 
 > **Part of:** Chapter 5 -- *How Structured Queries Turn Stored Data into Usable Information*  
 > **Main chapter file:** [ch05-main-edited-2026-05-18.md](../main/ch05-main-edited-2026-05-18.md)  
@@ -9,7 +11,7 @@
 
 ---
 
-## Remember
+### Remember Questions
 
 **1. What does it mean that SQL is a declarative language?**
 
@@ -101,7 +103,7 @@ E. `HAVING`
 
 ---
 
-## Understand
+### Understand Questions
 
 **9. Why does the chapter recommend using explicit column lists in `INSERT INTO` statements?**
 
@@ -193,7 +195,7 @@ E. Platform notes still matter even when the core logic stays stable
 
 ---
 
-## Apply
+### Apply Questions
 
 **17. Which query pattern correctly returns each deliverable category only once from `GRADEBOOK`?**
 
@@ -285,7 +287,7 @@ E. Use `TRUNCATE` as the default beginner-safe replacement for `DELETE`
 
 ---
 
-## Analyze
+### Analyze Questions
 
 **25. The instructor wants a reusable list of high-performing rows that can be queried again later without rewriting the full logic each time. Which Chapter 5 tool is the best direct fit?**
 
@@ -377,7 +379,7 @@ E. Return topics whose maximum score is above 90
 
 ---
 
-## Evaluate
+### Evaluate Questions
 
 **33. A class needs a reusable object for "high performers" across systems. Which recommendation best matches the chapter's guidance?**
 
@@ -469,7 +471,7 @@ E. SQL removes the need for managerial judgment once a result set appears
 
 ---
 
-## Assessment Design Notes
+**Assessment Design Notes**
 
 ### How Bloom's Taxonomy Was Applied
 
@@ -502,7 +504,7 @@ The question set is deliberately chapter-grounded. Rather than asking generic SQ
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Answer Key
+## Answer Key
 
 ### Question 1
 
@@ -1126,7 +1128,7 @@ Sections 5.1, 5.3, 5.12, and 5.13 emphasize that SQL is transparent, reproducibl
 
 ---
 
-## Question Distribution Summary
+**Question Distribution Summary**
 
 ### Bloom Level
 

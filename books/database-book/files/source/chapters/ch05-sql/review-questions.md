@@ -1,59 +1,60 @@
 <!-- markdownlint-disable MD025 -->
 
-# Chapter 5: Review and Reflection
-
-![Reflection GIF](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0)
+# Review and Reflection Questions
+<p align="center"><img src="https://res.cloudinary.com/dkndq6lyz/image/upload/w_200/f_auto/q_auto/review_cncyn6?_a=BAMAAAiu0" alt="Review and Reflection Questions" /></p>
 
 <!-- markdownlint-enable MD025 -->
 
 *Use these questions to strengthen your SQL foundation and think more carefully about how structured questions turn stored records into useful decisions.*
 
-# Review Questions
+## Questions
+
+### Review Questions
 
 *Use these questions to check your understanding of the chapter's core SQL concepts, vocabulary, examples, and query logic.*
 
-1. How does Chapter 5 define SQL, and why does the chapter describe SQL as a declarative language?
-2. How does SQL act as a bridge between structured database storage and decision-support questions in the chapter's business and grading examples?
-3. What is the difference among DDL, DML, DQL, and TCL, and which Chapter 5 commands belong in each category?
-4. Why does the chapter make SQLite the required hands-on path while treating Microsoft Access as a comparison point and Supabase as an optional cloud preview?
-5. What are the purposes of the `GRADEBOOK` and `GRADE_WEIGHT` tables, and why is the Chapter 5 teaching dataset intentionally flat and somewhat redundant?
-6. What does `CREATE TABLE` define, and how do constraints such as `PRIMARY KEY`, `NOT NULL`, and `CHECK (Score BETWEEN 0 AND 100)` support more reliable data entry?
-7. Why does the chapter recommend explicit column lists in `INSERT INTO` statements, and why should students inspect the inserted rows before writing more complex queries?
-8. How do `SELECT`, `DISTINCT`, `WHERE`, `IS NULL`, `ORDER BY`, aliases, joins, aggregate functions, `GROUP BY`, `HAVING`, calculated fields, and `CASE` each contribute to turning raw grade records into useful query results?
+**1. How does Chapter 5 define SQL, and why does the chapter describe SQL as a declarative language?**
+**2. How does SQL act as a bridge between structured database storage and decision-support questions in the chapter's business and grading examples?**
+**3. What is the difference among DDL, DML, DQL, and TCL, and which Chapter 5 commands belong in each category?**
+**4. Why does the chapter make SQLite the required hands-on path while treating Microsoft Access as a comparison point and Supabase as an optional cloud preview?**
+**5. What are the purposes of the `GRADEBOOK` and `GRADE_WEIGHT` tables, and why is the Chapter 5 teaching dataset intentionally flat and somewhat redundant?**
+**6. What does `CREATE TABLE` define, and how do constraints such as `PRIMARY KEY`, `NOT NULL`, and `CHECK (Score BETWEEN 0 AND 100)` support more reliable data entry?**
+**7. Why does the chapter recommend explicit column lists in `INSERT INTO` statements, and why should students inspect the inserted rows before writing more complex queries?**
+**8. How do `SELECT`, `DISTINCT`, `WHERE`, `IS NULL`, `ORDER BY`, aliases, joins, aggregate functions, `GROUP BY`, `HAVING`, calculated fields, and `CASE` each contribute to turning raw grade records into useful query results?**
 
-# Reflection Questions
+### Reflection Questions
 
 *Use these questions to interpret the chapter's ideas, compare trade-offs, and connect SQL practice to business judgment.*
 
 *Figure suggestion: A concept map linking Chapter 5 SQL patterns--filter, join, group, calculate, and label--to the business judgments students are asked to reflect on.*
 
-1. Why does SQL come naturally after Chapter 4's database-structure work and before later chapters on richer relational design and advanced SQL?
-2. The chapter says SQL is text-based, portable, transparent, flexible, and reproducible. Which of these strengths matters most for organizational decision-making, and why?
-3. Why is the flat `GRADEBOOK` table a useful teaching scaffold in Chapter 5 even though the chapter also points forward to better relational design?
-4. How does choosing `INNER JOIN` or `LEFT JOIN` change what a user can see, especially when a grade record has no matching row in `GRADE_WEIGHT`?
-5. How do aggregate functions, `GROUP BY`, and `HAVING` change SQL from a row-retrieval tool into an analysis tool?
-6. How do calculated fields and `CASE` expressions help translate technical query results into outputs that a manager, instructor, or analyst can interpret quickly?
-7. Compare SQLiteOnline and DB Browser for SQLite as learning environments. How might the tool a student chooses affect their habits for saving, checking, and rerunning SQL work?
-8. Which Chapter 5 pattern best represents the book's broader data-to-decisions arc: filtering specific records, joining related tables, summarizing groups, or labeling results with `CASE`? Defend your choice.
+**1. Why does SQL come naturally after Chapter 4's database-structure work and before later chapters on richer relational design and advanced SQL?**
+**2. The chapter says SQL is text-based, portable, transparent, flexible, and reproducible. Which of these strengths matters most for organizational decision-making, and why?**
+**3. Why is the flat `GRADEBOOK` table a useful teaching scaffold in Chapter 5 even though the chapter also points forward to better relational design?**
+**4. How does choosing `INNER JOIN` or `LEFT JOIN` change what a user can see, especially when a grade record has no matching row in `GRADE_WEIGHT`?**
+**5. How do aggregate functions, `GROUP BY`, and `HAVING` change SQL from a row-retrieval tool into an analysis tool?**
+**6. How do calculated fields and `CASE` expressions help translate technical query results into outputs that a manager, instructor, or analyst can interpret quickly?**
+**7. Compare SQLiteOnline and DB Browser for SQLite as learning environments. How might the tool a student chooses affect their habits for saving, checking, and rerunning SQL work?**
+**8. Which Chapter 5 pattern best represents the book's broader data-to-decisions arc: filtering specific records, joining related tables, summarizing groups, or labeling results with `CASE`? Defend your choice.**
 
-# Personal Reflection Questions
+### Personal Reflection Questions
 
 *Use these questions to connect Chapter 5 to your own learning habits, confidence, and professional development.*
 
-1. Which Chapter 5 SQL action feels most natural to you right now: creating tables, inserting rows, filtering records, joining tables, grouping results, or writing calculated outputs? Why?
-2. Which distinction feels most likely to cause mistakes for you: DDL versus DML, `WHERE` versus `HAVING`, `INNER JOIN` versus `LEFT JOIN`, or `NULL` versus zero or blank text? What would help you remember it?
-3. If you were completing the Chapter 5 Let's Build activity, which SQLite tool would you choose first, SQLiteOnline or DB Browser for SQLite, and what habit would help you avoid losing or confusing your SQL script?
-4. When a query returns a result you did not expect, what steps would you personally take to debug the issue before assuming the database is wrong?
-5. Think about a spreadsheet, grade report, sales report, schedule, or tracker you have used before. Where could SQL have made the work more transparent, repeatable, or easier to check?
-6. When you write or read a SQL query, do you focus first on the business question, the table structure, the syntax, or the expected result? How might that habit help you, and how might it limit you?
-7. As you think about your future career, why might SQL literacy matter even if your role is not mainly technical?
+**1. Which Chapter 5 SQL action feels most natural to you right now: creating tables, inserting rows, filtering records, joining tables, grouping results, or writing calculated outputs? Why?**
+**2. Which distinction feels most likely to cause mistakes for you: DDL versus DML, `WHERE` versus `HAVING`, `INNER JOIN` versus `LEFT JOIN`, or `NULL` versus zero or blank text? What would help you remember it?**
+**3. If you were completing the Chapter 5 Let's Build activity, which SQLite tool would you choose first, SQLiteOnline or DB Browser for SQLite, and what habit would help you avoid losing or confusing your SQL script?**
+**4. When a query returns a result you did not expect, what steps would you personally take to debug the issue before assuming the database is wrong?**
+**5. Think about a spreadsheet, grade report, sales report, schedule, or tracker you have used before. Where could SQL have made the work more transparent, repeatable, or easier to check?**
+**6. When you write or read a SQL query, do you focus first on the business question, the table structure, the syntax, or the expected result? How might that habit help you, and how might it limit you?**
+**7. As you think about your future career, why might SQL literacy matter even if your role is not mainly technical?**
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Answer Key
+## Answer Key
 
-## Review
+### Review Questions
 
 **Question 1: How does Chapter 5 define SQL, and why does the chapter describe SQL as a declarative language?**
 Suggested Answer: Chapter 5 defines SQL, or Structured Query Language, as the standard language used to work with relational databases. SQL can define structures, insert records, retrieve rows, combine tables, summarize patterns, and support reporting. The chapter calls SQL declarative because the user states what result they want, such as students below 80 or average score by deliverable type, while the DBMS decides how to retrieve and process the data internally.
@@ -79,7 +80,7 @@ Suggested Answer: Explicit column lists make `INSERT INTO` statements easier to 
 **Question 8: How do `SELECT`, `DISTINCT`, `WHERE`, `IS NULL`, `ORDER BY`, aliases, joins, aggregate functions, `GROUP BY`, `HAVING`, calculated fields, and `CASE` each contribute to turning raw grade records into useful query results?**
 Suggested Answer: `SELECT` chooses the columns to return. `DISTINCT` removes duplicate result values. `WHERE` filters individual rows, and `IS NULL` or `IS NOT NULL` handles missing values correctly. `ORDER BY` sorts results, while aliases make output easier to read. Joins combine related tables such as `GRADEBOOK` and `GRADE_WEIGHT`. Aggregate functions summarize values, `GROUP BY` creates summary groups, and `HAVING` filters those groups. Calculated fields create derived outputs, and `CASE` labels results into meaningful categories such as performance bands.
 
-## Reflection
+### Reflection Questions
 
 **Question 1: Why does SQL come naturally after Chapter 4's database-structure work and before later chapters on richer relational design and advanced SQL?**
 Suggested Answer: SQL comes after Chapter 4 because students first need to understand where data lives: tables, rows, columns, data types, keys, constraints, and the DBMS. Once that structure is visible, the next question is how to ask the stored data for answers. Chapter 5 provides that language. It also prepares later chapters by showing both the power and the limits of a simple teaching dataset, which makes richer relational design and more advanced query patterns feel necessary rather than abstract.
@@ -105,7 +106,7 @@ Suggested Answer: SQLiteOnline is useful for quick practice and live demonstrati
 **Question 8: Which Chapter 5 pattern best represents the book's broader data-to-decisions arc: filtering specific records, joining related tables, summarizing groups, or labeling results with `CASE`? Defend your choice.**
 Suggested Answer: Any of the four patterns can be defended if the reasoning is grounded. Filtering specific records supports decisions by finding cases that meet a condition, such as scores below 80. Joining related tables connects separate facts so they can be used together. Summarizing groups strongly represents the arc because it turns many records into performance patterns. Labeling results with `CASE` also matters because it translates numbers into action-oriented categories. The strongest response explains how the chosen pattern moves from stored data toward a useful judgment.
 
-## Personal Reflection
+### Personal Reflection Questions
 
 **Question 1: Which Chapter 5 SQL action feels most natural to you right now: creating tables, inserting rows, filtering records, joining tables, grouping results, or writing calculated outputs? Why?**
 Suggested Answer: A thoughtful response identifies one action and explains why it feels natural. For example, filtering may feel familiar because it resembles searching a spreadsheet for records that match a condition. Grouping may feel intuitive for someone who already thinks in summaries and averages. Joining may feel less familiar but satisfying once the student sees how separate tables produce one report. The strongest answer connects the choice to a real learning habit or prior experience.

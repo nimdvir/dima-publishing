@@ -32,14 +32,17 @@ single-stage work.
 | `chapter-editor`          | Full developmental edit of a chapter main file (editorial quality gate)         |
 | `chapter-editor-light`    | Light grammar/clarity pass, preserve voice                                      |
 | `chapter-editor-cursor`   | Superseded reference editor; prefer `chapter-editor`                            |
-| `chapter-review-codex`    | Repo-canonical final whole-package review orchestrator (no auto-sync or deploy) |
+| `chapter-review-codex`    | Deprecated final review command; use `chapter-final-check`                      |
 | `chapter-command-center`  | Interactive launcher/router; recommends next step and routes to the right skill |
-| `chapter-production-flow` | Full chapter lifecycle orchestrator; delegates review to chapter-review-codex   |
+| `chapter-production-flow` | Full chapter lifecycle orchestrator; delegates readiness to chapter-final-check |
+| `chapter-final-check`     | Final readiness checker for DOCX, import, build, and deploy readiness           |
 | `chapter-gap-analysis`    | Audit a chapter draft against source materials                                  |
 | `chapter-tracker`         | View or update the chapter progress tracker                                     |
 | `chapter-docx-build`      | Build a chapter into DOCX with Pandoc                                           |
-| `chapter-sync`            | Copy the latest canonical chapter files into the publishing repo                |
-| `book-deploy`             | Build and deploy the online reader after `chapter-sync`                         |
+| `chapter-source-import`   | Current safe Drive-to-repo import gate for stable source files                  |
+| `chapter-sync`            | Legacy dated-file sync route; use only when explicitly needed                   |
+| `book-deploy`             | Build and deploy the online reader after approved import/readiness checks       |
+| `book-workflow-routing`   | Workflow router: chapter-editor → source-import → final-check → book-deploy     |
 | `lets-build-creator`      | Draft or revise a Let's Build companion                                         |
 | `reflection`              | Draft Review and Reflection questions                                           |
 | `rat-creator`             | Draft RAT/quiz questions with answer key                                        |
@@ -66,15 +69,25 @@ single-stage work.
 - Orchestration entry points (pick by how much help you want):
   - Start with guidance: `/chapter-command-center chNN`
   - Run a guided production lifecycle: `/chapter-production-flow chNN`
-  - Run the final package review: `/chapter-review-codex chNN`
+  - Run the final package review: `/chapter-final-check chNN`
 - Typical chapter flow: `/chapter-editor` → `/chapter-media` → `/chapter-docx-build`
-- Final pre-publish flow: `/chapter-review-codex chNN` (orchestrates the above
-  plus terms, outline coverage, and DOCX readiness; no auto-sync or deploy)
+- Active production flow: `/chapter-editor` → `/chapter-source-import` →
+  `/chapter-final-check` → `/book-deploy`
+- Workflow routing reference: `/book-workflow-routing` (defines the canonical workflow,
+  marks chapter-sync as legacy, and maps index imports through import-index-approved)
+- Drive-side chapter index import: `/chapter-source-import import-index-approved`
+- Final pre-publish flow: `/chapter-final-check chNN` (checks package readiness,
+  outline coverage, media, companions, DOCX, import, and deploy readiness; no auto-sync
+  or deploy)
 - Audit and tracking flow: `/chapter-gap-analysis` → `/edits` →
   `/progress-update` → `/chapter-tracker`
 - Prompt-first image work: `/image-prompt` → `/image-placement` → `/image-link-optimizer`
 - Single-stage image work: `/image-prompt`, `/figure-suggestion`, `/image-placement`, or
   `/image-link-optimizer`
+
+Follow-up: `chapter-final-check` still needs a routing cleanup pass because parts of that
+skill may still refer to `chapter-sync` as the active sync tool. Do not update it during
+small `chapter-editor` / `chapter-media` instruction passes unless explicitly approved.
 
 ## Source of Truth
 

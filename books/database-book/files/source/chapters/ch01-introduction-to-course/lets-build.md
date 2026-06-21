@@ -1,10 +1,15 @@
-# Let's Build
+<!-- metadata: date="2026-06-21" -->
+## Let's Build
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
 
 Chapter 1 is about orientation, structure, and purpose before any construction begins. This Let's Build walks you through the logic of the Grading Database — what it models, how the project evolves, who uses it, and what questions it is meant to answer. There is no submission for this Let's Build. **Lab 01 — PetVax Project Introduction** is where you do the same kind of thinking for a veterinary clinic, and that lab is graded. Build the foundation here first.
+
+![Grading Database and PetVax Veterinary Hospital Database side by side — the two projects that run through every chapter of the book](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch01-introduction-to-course/ch01-grading-vs-petvax-letsbuild.jpg)
+
+_Figure 1.53 — Grading Database and PetVax: one builds confidence, the other builds transfer._
 
 **In This Chapter, You Are Not Building the Full Database Yet**
 
@@ -14,11 +19,11 @@ Your job in this chapter is to understand the logic of the Grading Database, see
 
 Good **database** work starts before any table is built. It starts with understanding the domain, the problem, the users, and the questions the system must eventually answer.
 
-## The Grading Database Project
+### The Grading Database Project
 
 ![Grading Database project overview](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/grading_svq05h?_a=BAMAAAiu0)
 
-*Figure 1.1 — Overview of the Grading Database, the running project for the book.*
+*Figure 1.50 — Overview of the Grading Database, the running project for the book.*
 
 The central hands-on project in this book is the **Grading Database** — a relational database that you will design, build, populate, **query**, and refine across the text. This is not a hypothetical exercise. You will model a real system: one that stores grades and attendance, calculates final grades, computes running averages, and presents results through forms and reports.
 
@@ -37,13 +42,13 @@ By the end of the project, your database will become a working system capable of
 
 ![Simplified ERD for the Grading Database](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/bitm330book/ch01-introduction-to-course/ch01-lets-build-erd?_a=BAMAAAiu0)
 
-*Figure 1.2 — Simplified entity relationship diagram (ERD) for the Grading Database.*
+*Figure 1.51 — Simplified entity relationship diagram (ERD) for the Grading Database.*
 
-## How the Project Evolves
+### How the Project Evolves
 
 The Grading Database evolves in two major phases across the book. That progression matters because the project is designed to move from foundation to integration, not from zero to complexity all at once.
 
-### Phase 1: Foundation
+#### Phase 1: Foundation
 
 In the first phase, you focus on core relational structure. You will design a basic schema, create tables and relationships, enter **data**, and begin asking useful questions with **SQL**. The emphasis is on structure, accuracy, and understanding how information is represented.
 
@@ -72,9 +77,9 @@ The project therefore evolves the same way many real systems do: first by gettin
 
 ![Two-phase progression of the Grading Database](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/bitm330book/ch01-introduction-to-course/ch01-lets-build-two-phase?_a=BAMAAAiu0)
 
-*Figure 1.3 — Two-phase progression of the Grading Database, from foundation to integration and analysis.*
+*Figure 1.52 — Two-phase progression of the Grading Database, from foundation to integration and analysis.*
 
-## Why a Grading Database?
+### Why a Grading Database?
 
 The Grading Database is deliberately chosen because it is a system students already understand as users. You know what grades are, how attendance works, and what a final grade means. That familiarity removes much of the guesswork about business rules and lets you focus on the real learning objectives: how to structure data, how to query it, how to protect it, and how to present it clearly.
 
@@ -82,17 +87,17 @@ At the same time, the domain is complex enough to surface real design challenges
 
 That is what makes the project effective. You do not waste early energy learning an unfamiliar domain. Instead, you can focus on learning how a relational system represents a domain you already understand.
 
-## Professional Roles You Will Begin to Practice
+### Professional Roles You Will Begin to Practice
 
 As the project develops, you will begin practicing the kinds of thinking associated with several professional roles.
 
-| Role | What You Begin to Practice |
-| --- | --- |
-| **Data architect** | Designing structure, entities, and relationships |
-| **SQL analyst** | Turning business questions into queries and interpretable outputs |
-| **Database manager** | Thinking about integrity, consistency, and reliability |
-| **Analyst** | Transforming structured data into useful insight |
-| **Communicator** | Presenting technical results clearly for non-technical audiences |
+| Role                 | What You Begin to Practice                                        |
+| -------------------- | ----------------------------------------------------------------- |
+| **Data architect**   | Designing structure, entities, and relationships                  |
+| **SQL analyst**      | Turning business questions into queries and interpretable outputs |
+| **Database manager** | Thinking about integrity, consistency, and reliability            |
+| **Analyst**          | Transforming structured data into useful insight                  |
+| **Communicator**     | Presenting technical results clearly for non-technical audiences  |
 
 You are not expected to perform all of these roles at an advanced level in Chapter 1. The goal is to begin recognizing them. As the project grows, you will revisit them repeatedly in more direct and demanding ways.
 
@@ -100,7 +105,7 @@ You are not expected to perform all of these roles at an advanced level in Chapt
 
 *Figure 1.4 — Professional roles you begin to practice through the Grading Database project.*
 
-## What You Will Do in Chapter 1
+### What You Will Do in Chapter 1
 
 Because this is an orientation chapter, the Chapter 1 version of Let's Build focuses on understanding the project before constructing it.
 
@@ -113,7 +118,7 @@ In this chapter, you will:
 - begin identifying the professional roles involved in database work;
 - define the kinds of business questions the project should eventually answer.
 
-## Chapter 1 Tasks
+### Chapter 1 Tasks
 
 Complete the following tasks as your first Let's Build activity:
 
@@ -145,16 +150,16 @@ Complete the following tasks as your first Let's Build activity:
 
 These tasks may seem simple, but they matter. They establish the logic of the project before you begin building, and they prepare you to work more deliberately in the chapters that follow.
 
-## Final Reflection
+### Final Reflection
 
 Take one minute to answer this question in your own words: **What is the Grading Database, and why does understanding the problem come before building the tables?**
 
 A strong answer recognizes that the Grading Database is a course-management information system — not just a collection of tables — and that knowing what questions it must answer (and who will use the answers) is what makes the design decisions in later chapters make sense. If you can explain that connection, you are ready for Chapter 2.
 
-## Peek Ahead — Chapter 2
+### Peek Ahead — Chapter 2
 
 Chapter 1 answered "what are we building?" Chapter 2 answers "how does data become a decision?" You will learn the DIKW hierarchy, the R.E.A.D. framework, KPIs, business processes, data quality dimensions, information behavior, and the five-component model of information systems — all before touching a database tool. The Let's Build will ask you to apply every one of those ideas to this same Grading Database, so the logic you built here carries straight through.
 
-## What This Prepares You For
+### What This Prepares You For
 
 This chapter's Let's Build prepares you for **Lab 01 — PetVax Project Introduction**, where you transfer the same orientation thinking to a veterinary clinic. It also establishes the mental model — *understand the domain before you build the system* — that every subsequent Let's Build and Lab will follow.

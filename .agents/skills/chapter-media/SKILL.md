@@ -9,7 +9,8 @@ description: >
   section. Replaces the old three-stage split (figure-suggestion → image-placement →
   image-link-optimizer). For single-stage-only work the individual skills remain available.
   Use `image-prompt` when the needed starting point is ready-to-paste Gemini prompt blocks,
-  in-text figure placements, a Figures Index, or a CSV image tracker.
+  in-text figure placements, a Figures Index, or a CSV image tracker. Does not edit prose,
+  page breaks, import source files, run final readiness checks, or publish/deploy.
 argument-hint: Chapter (chNN), file path, or section heading. Mode is chosen from the interactive menu (e.g., "ch05" or "ch05/main/...md @ ### SQL Joins").
 ---
 
@@ -33,6 +34,32 @@ For deep implementation detail on any single stage, the individual skills
 (`image-prompt`, `figure-suggestion`, `image-placement`, `image-link-optimizer`) may be used as
 implementation references. This skill is the canonical workflow; when they
 conflict, this skill takes precedence.
+
+---
+
+## Related Skill Routing
+
+Use `chapter-media` only for media planning, placement, optimization, upload, link rewriting, and media ledgers. Route adjacent work instead of folding it into this skill:
+
+| Need | Route to |
+|---|---|
+| Prose, chapter structure, visual pedagogy, or page-break pacing | `chapter-editor` |
+| Superseded editor reference | `chapter-editor-cursor` only as historical context |
+| Source coverage audit before media decisions | `chapter-gap-analysis` |
+| Callout syntax or callout conversion near an image | `call-out` |
+| Prompt blocks, figure specs, Figures Index, or CSV tracker | `image-prompt` |
+| Hidden figure suggestion comments only | `figure-suggestion` |
+| Local figure placement only | `image-placement` |
+| Optimization, Cloudinary upload, link rewrite, ledger only | `image-link-optimizer` |
+| Read-only image inventory, CSV, or gallery | `chapter-media-inventory` |
+| Drive-to-repo import or approved index import | `chapter-source-import` / `chapter-source-import import-index-approved` |
+| Final readiness check | `chapter-final-check` |
+| Deprecated final review command | `chapter-review-codex` is legacy; use `chapter-final-check` |
+| Lifecycle orchestration | `chapter-production-flow` |
+| HTML review artifact | `chapter-html-review` |
+| Chapter edit notes, progress log, work log, or tracker | `edits`, `progress-update`, `daily-work-log`, `chapter-tracker` |
+
+Do not use this skill to edit unrelated prose, change page breaks, import files, run `chapter-final-check`, run `book-deploy`, or publish.
 
 ---
 
@@ -88,7 +115,7 @@ Report the detected stage and ask: _"Start at this stage? (yes / no, pick a diff
 
 ---
 
-## New Image Discovery (Menu Option 6)
+## New Image Discovery (Menu Option 7)
 
 Check whether the chapter's `.images/` folder has images not yet referenced in the
 chapter. **Never auto-place — always ask first.**
@@ -136,10 +163,11 @@ thumbnail gallery, use `chapter-media-inventory` instead.
 
 ## Scope
 
-**Chapter-wide (default):** resolves `chNN` to the latest `chNN-main-YYYY-MM-DD.md`.
-Pipeline runs on the main file only unless a companion is explicitly named.
+**Chapter-wide (default):** resolves `chNN` to the active main/Core Concepts source
+according to Source Mode below. Pipeline runs on the main/Core Concepts file only unless
+a companion or index file is explicitly named.
 
-**Section-scoped (Menu Option 7):** all stages are constrained to the named section:
+**Section-scoped (Menu Option 8):** all stages are constrained to the named section:
 
 - Suggest: add blocks only within that heading scope.
 - Place: resolve only suggestions in that section. Number figures sequentially within
@@ -155,11 +183,18 @@ explicitly named.
 The skill supports two source paths:
 
 1. **Legacy draft mode** — `BITM330-Book-draft/chapter-drafts/chNN-.../main/chNN-main-YYYY-MM-DD.md`
-2. **Platform source mode** — `books/database-book/files/source/chapters/chNN-.../index.md`
+2. **Repo stable source mode** — `books/database-book/files/source/chapters/chNN-.../core-concepts.md`
 
-If the user gives a platform `index.md`, use it directly. If the user gives only
-`chNN`, prefer the platform source when working inside `dima-publishing`; otherwise
-default to the latest legacy draft file.
+If the user gives a specific Markdown file, use that file for media work only. If the
+path is a repo `index.md` or Drive-side chapter index draft, process it only when the
+user explicitly asks for media work on that landing page.
+
+If the user gives only `chNN`, prefer repo `core-concepts.md` when working inside
+`dima-publishing`; otherwise default to the latest legacy draft main file.
+
+This source selection is not an import or publishing decision. Approved Drive-to-repo
+imports belong to `chapter-source-import`; final readiness belongs to
+`chapter-final-check`; build/deploy belongs to `book-deploy`.
 
 ---
 
@@ -618,7 +653,7 @@ Do not paste the full rewritten chapter.
 5. Never create Cloudinary folders without approval.
 6. Never insert absolute Windows paths in final Markdown.
 7. Never insert broken image links.
-8. Never edit unrelated prose, callouts, or code blocks.
+8. Never edit unrelated prose, page breaks, callouts, or code blocks.
 9. Never insert figures inside tables, code fences, blockquote callouts, or HTML comments.
 10. Never optimize every candidate image before author selection.
 11. Never update the media ledger during dry-run, suggest-only, or place-only modes.

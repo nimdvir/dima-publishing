@@ -1,3 +1,4 @@
+<!-- metadata: date="2026-06-22" -->
 # Chapter 3: Understanding Data Fundamentals
 
 Business decisions depend on data, but organizations do not gain value just by collecting more of it. They gain value when recorded values are defined clearly, stored consistently, and interpreted in the right context. Serving as the bridge from general information systems to structured tables, this chapter explores what data actually is and how it transforms from raw values into meaningful insight. By the end, you will understand why a trustworthy data foundation is essential before any database tool or SQL query enters the picture.
@@ -7,7 +8,7 @@ In Chapter 2, you learned why information systems matter to organizational perfo
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Core Concepts
+## Core Concepts
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
@@ -17,7 +18,7 @@ In Chapter 2, you learned why information systems matter to organizational perfo
 
 Throughout the chapter, the Grading Database serves as a running example. Fields such as `StudentID`, `DeliverableType`, `DueDate`, `Score`, and `AttendanceStatus` show how ordinary recorded values become part of a larger, more reliable structure.
 
-# Why Data Fundamentals Drive Business Performance
+## Why Data Fundamentals Drive Business Performance
 
 Data fundamentals provide the foundation for every database, query, and business decision built later in the book.
 
@@ -33,9 +34,12 @@ When fundamentals are strong, decisions become faster and more defensible. Manag
 ![Pathway showing how raw data flows through fields and tables to dashboards and KPIs](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-data-to-kpi)
 *Figure 3.4. Data fundamentals connect the information systems view from Chapter 2 to the dashboards, KPIs, and decisions that follow in later chapters.*
 
+![Blueprint showing the interconnected layers of data fundamentals: meaning, structure, quality, and governance](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-data-fundamentals-blueprint)
+*Figure 3.30. The data fundamentals blueprint connects meaning, classification, representation, quality, and governance into one coherent framework.*
+
 Better data fundamentals make every later step in the arc — tables, relationships, queries, analytics, and decisions — easier and more reliable. We will return to this idea throughout the book.
 
-# Data, Meaning, and Context
+## Data, Meaning, and Context
 
 Data is a collection of values, symbols, measures, or observations that represent something about the world. A value such as `92`, `Quiz`, `2026-03-19`, or `Present` is data. By itself, each value is limited. It becomes useful only when people know what it refers to, how it relates to other values, and what question it helps answer.
 
@@ -77,14 +81,13 @@ Each step up this hierarchy adds more organization and more meaning, transformin
 ![Data hierarchy — example visual](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-di-hierarchy)
 *Figure 3.7. Data hierarchy: how bits and fields combine into tables and databases.*
 
-![Bits to databases schematic](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-data-as-raw-material)
-*Figure 3.8. Complementary schematic showing data at different levels of aggregation.*
-<!-- VERIFY: Figure 3.3 and Figure 3.8 share the same Cloudinary slug `ch03-data-as-raw-material`. Confirm whether these should be different images. -->
-
 Chapter 2 introduced the DIKW hierarchy and the R.E.A.D. model. Here we apply both more directly. If a student scored `62` and missed five classes, that is data. When an instructor sees that the student is below the course benchmark, that becomes information. Recognizing that repeated absences often predict weak quiz performance turns many information points into knowledge. Reaching out early and adjusting support timing turns knowledge into wisdom. DIKW explains the increasing meaning; R.E.A.D. explains the work needed to make that meaning usable — capturing data in a usable form, organizing it clearly, connecting it across records, and using it to support action.
 
 ![DIKW hierarchy with business examples](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-dikw-hierarchy)
 *Figure 3.9. DIKW hierarchy illustrated with business examples.*
+
+![The progression from raw data values through information and knowledge to wisdom and business decisions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-values-to-wisdom)
+*Figure 3.31. The values-to-wisdom progression: raw data becomes information, then knowledge, and finally wisdom that drives business decisions.*
 
 Context is what makes both models possible. The value `03/19/2026` could be a due date, a submission date, or a delivery date. The number `12` could mean units sold, absences, or points earned. Field meaning, format, relationships, and business purpose all shape interpretation. This is why disciplined data work begins before database design. A system that stores values without context creates confusion, not insight.
 
@@ -93,18 +96,60 @@ As introduced in Chapter 2, data supports judgment best when it is connected to 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Classifying Data
+## Classifying Data
 
-Organizations collect many kinds of data, and those kinds do not behave the same way. Classification matters because it determines what comparisons are valid, what calculations are meaningful, and what kind of storage or analysis makes sense.
+Organizations collect many kinds of data, and those kinds do not behave the same way. Classification matters because it determines what comparisons are valid, what calculations are meaningful, and what kind of storage or analysis makes sense. The table below provides a quick-reference overview of the major data types and what each one communicates.
 
-## Qualitative versus quantitative data
+| Type                              | What it does                                | Examples                                   |
+| --------------------------------- | ------------------------------------------- | ------------------------------------------ |
+| **Nominal**                       | Named categories, no order                  | gender, blood type, eye color, occupation  |
+| **Ordinal**                       | Ordered categories, gaps not measurable     | Likert scale, rankings, satisfaction level |
+| **Interval**                      | Ordered + equal intervals, **no true zero** | Celsius, IQ, calendar years                |
+| **Ratio**                         | All of the above + **true zero**            | height, weight, age, income, Kelvin        |
+| **Binary** (special Nominal)      | Just two values                             | yes/no, true/false, 0/1                    |
+| **Discrete / Continuous** (other) | Countable vs. any-value                     | # of kids vs. exact weight                 |
+
+![Data subtypes organized by qualitative vs. quantitative, categorical vs. numerical, and measurement level](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-subtypes-of-data)
+*Figure 3.29. Data subtypes span qualitative and quantitative categories, each with its own valid operations and business uses.*
+
+### Quantitative and Qualitative Data
+
+Understanding the difference between these two data types is essential for how we collect, process, and analyze information to make informed decisions.
+
+**Quantitative data** is information that can be measured and written down with numbers. Think of it as the "quantity" of something. It answers questions like "how many?", "how much?", or "how often?". Because it is numerical, this type of data is the foundation of mathematical calculations and statistical analysis.
+
+Examples of quantitative data include:
+- The number of students in a class (35 students)
+- The temperature outside (72&deg;F)
+- The price of a product ($19.99)
+- The number of clicks on a website link (1,247 clicks)
+
+**Qualitative data**, on the other hand, is descriptive and conceptual. It is information that can be observed but not measured with numbers. Think of it as the "quality" of something. It is collected through methods like interviews, observations, and open-ended survey questions. This type of data helps us understand the "why" behind the numbers.
+
+Examples of qualitative data include:
+- A customer's review of a product ("The interface was very user-friendly.")
+- The colors of cars in a parking lot (red, blue, silver)
+- Interview transcripts describing an employee's job satisfaction
+- The texture of a fabric (soft, rough, smooth)
+
+| Basis of Comparison | Quantitative Data                     | Qualitative Data                  |
+| :------------------ | :------------------------------------ | :-------------------------------- |
+| **Nature**          | Numerical, measurable                 | Descriptive, categorical          |
+| **Answers**         | "How many?", "How much?"              | "Why?", "What kind?"              |
+| **Analysis**        | Mathematical and statistical analysis | Interpretation and categorization |
+| **Examples**        | Age, height, sales figures            | Opinions, colors, feelings        |
+
+### Qualitative versus quantitative data
 
 One basic distinction is qualitative versus quantitative data. Qualitative data describes qualities, labels, or categories. Quantitative data measures amounts. An instructor comment such as `Great improvement` is qualitative; a score of `88` is quantitative. In a retail setting, customer reviews and product categories are qualitative, while sales revenue, units sold, and return rates are quantitative. Both kinds matter. Qualitative data often explains *why* something happened; quantitative data shows *how much* or *how often*.
 
 ![Qualitative descriptions shown beside quantitative measures](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-qualitative-vs-quantitative)
 *Figure 3.10. Qualitative data describes; quantitative data measures.*
 
-## Categorical versus numerical data
+![Quantitative data types broken down by discrete vs. continuous and interval vs. ratio](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-quantitative-types)
+*Figure 3.32. Quantitative data splits into discrete (countable) and continuous (measurable) subtypes, each with different analytical properties.*
+
+### Categorical versus numerical data
 
 Another useful distinction is categorical versus numerical data. Categorical data places observations into groups. Numerical data represents quantities that can participate in arithmetic operations. This matters because some fields look numeric but are really categories. Student IDs, ZIP codes, CRNs, and phone numbers contain digits, but they are identifiers, not quantities. Averaging them produces a number, but not a meaningful one.
 
@@ -132,25 +177,45 @@ Nominal data labels categories without order. Ordinal data introduces order, but
 ![Nominal, ordinal, interval, and ratio scales with typical valid operations](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-measurement-levels)
 *Figure 3.12. Measurement levels determine which comparisons and calculations are meaningful for a field.*
 
+![The natural progression from nominal through ratio, plus binary as a special nominal type, with properties, valid analyses, and real-world examples](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-data-levels-good)
+*Figure 3.33. The four measurement levels progress from nominal (labels only) through ordinal, interval, to ratio (full arithmetic), with binary as a special nominal case.*
+
 Classification also depends on structure. Structured data fits predefined rows, columns, and types, such as a student grades table. Semi-structured data has labels but more flexible form, such as JSON or XML. Unstructured data has no fixed schema, such as emails, images, audio, PDFs, and videos. This course focuses most directly on structured data because relational databases and SQL depend on it. Semi-structured and unstructured data still matter, however: organizations often capture them as inputs — customer messages, scanned forms, product images, server logs — and then classify, clean, and route useful pieces into structured tables for analysis.
+
+The next step is representation. Once you know what kind of data you have, you need a structure that tells people and systems where each value belongs. The Grading Database example uses this progression throughout the chapter and the companion activities: a value belongs in a field, fields combine into a record, records collect into a table, and a schema describes the pattern the table should follow.
 
 ![Data structure example: file versus table](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-unstructured-to-structured)
 *Figure 3.13. Example showing how an unstructured file maps into structured table fields.*
 
-# Representing Data in Structured Systems
+## Representing Data in Structured Systems
 
-## Tables: Rows, Columns, and Rules
+### Tables: Rows, Columns, and Rules
 
-A **table** is one of the most important structures in data management. A table organizes data into rows and columns so that records can be stored, compared, searched, and analyzed consistently.
+Once we have collected our data, it is often a disorganized mess. To turn it into useful information, we must process and structure it. The most common and effective way to organize data is by using a **table**. A table organizes data into a grid of **rows** and **columns**.
+
+- **Columns:** Each column represents a specific attribute or variable, such as "First Name," "Age," or "Major." The column header tells you what kind of data you will find in that column.
+- **Rows:** Each row represents a single record or observation, containing the specific data points for each column.
+
+For example, if we were collecting data about students, a table might look like this:
+
+| StudentID | FirstName | Age  | Major            |
+| :-------- | :-------- | :--- | :--------------- |
+| 101       | Sarah     | 21   | Marketing        |
+| 102       | David     | 19   | Computer Science |
+| 103       | Emily     | 22   | Business         |
+
+This structure makes the data contextualized and easy to read, compare, and analyze, moving us from raw data to organized information.
+
+For data management to work at scale, however, a table needs more than just rows and columns. It needs clear rules about what belongs where.
 
 In a table, each **row** represents one record. A record is one complete instance of the thing being described. If the table is about students, each row should describe one student. If the table is about assignments, each row should describe one assignment. If the table is about grades, each row should describe one grade event.
 
-Each **column** represents one attribute, field, or characteristic. In a student table, columns might include `StudentID`, `FirstName`, `LastName`, and `Email`. In a grade table, columns might include `GradeID`, `StudentID`, `DeliverableID`, and `Score`.
+Each **column** represents one attribute, field, or characteristic. In a student table, columns might include `StudentID`, `FirstName`, `LastName`, and `Email`. In a grade table, columns might include `GradeID`, `StudentID`, `DeliverableID`, and `Score`. In the Chapter 3 Let's Build, you will see this same idea in a spreadsheet tab named `GRADEBOOK`.
 
 For example:
 
 | StudentID | FirstName | LastName |
-|-----------|-----------|----------|
+| --------- | --------- | -------- |
 | S101      | Maya      | Chen     |
 | S102      | Jordan    | Smith    |
 | S103      | Aaliyah   | Johnson  |
@@ -159,31 +224,31 @@ This table describes students. Each row is one student. Each column is one attri
 
 A well-structured table follows several basic rules.
 
-| Rule | Meaning | Why It Matters |
-|------|---------|---------------|
-| One row represents one record | Each row should describe one instance of the same kind of thing | Mixing different kinds of records makes filtering and counting unreliable |
-| One column represents one attribute | Each column should store one clearly defined field | Combined columns make sorting, searching, and analysis harder |
-| Each cell contains one value | A cell should not hold a list of several values | Multi-value cells break filtering, joining, and calculation |
-| Values in a column use a consistent format | A column should use the same type and format throughout | Inconsistent values make reports and queries unreliable |
-| Each row should be identifiable | A table should have a stable way to identify each record | Stable identifiers make updates, relationships, and lookups possible |
-| Each table should focus on one theme | A table should describe one main subject | Mixing themes creates redundancy and update problems |
+| Rule                                       | Meaning                                                         | Why It Matters                                                            |
+| ------------------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| One row represents one record              | Each row should describe one instance of the same kind of thing | Mixing different kinds of records makes filtering and counting unreliable |
+| One column represents one attribute        | Each column should store one clearly defined field              | Combined columns make sorting, searching, and analysis harder             |
+| Each cell contains one value               | A cell should not hold a list of several values                 | Multi-value cells break filtering, joining, and calculation               |
+| Values in a column use a consistent format | A column should use the same type and format throughout         | Inconsistent values make reports and queries unreliable                   |
+| Each row should be identifiable            | A table should have a stable way to identify each record        | Stable identifiers make updates, relationships, and lookups possible      |
+| Each table should focus on one theme       | A table should describe one main subject                        | Mixing themes creates redundancy and update problems                      |
 
 These rules may sound simple, but they are the foundation of reliable data work. A spreadsheet may look like a table because it has rows and columns, but not every spreadsheet range is a good table. A worksheet that mixes students, assignments, attendance, and grades in one place may be easy to start, but it becomes difficult to maintain as the data grows.
 
 Consider this poorly structured grading sheet:
 
-| StudentName | AssignmentInfo | ScoreAndComment |
-|-------------|---------------|----------------|
-| Maya Chen   | Quiz 1, due 2026-03-19 | 92, excellent |
-| Jordan Smith | Quiz 1, due 2026-03-19 | 84, good |
-| Maya Chen   | Project 1, due 2026-04-02 | 95, strong work |
+| StudentName  | AssignmentInfo            | ScoreAndComment |
+| ------------ | ------------------------- | --------------- |
+| Maya Chen    | Quiz 1, due 2026-03-19    | 92, excellent   |
+| Jordan Smith | Quiz 1, due 2026-03-19    | 84, good        |
+| Maya Chen    | Project 1, due 2026-04-02 | 95, strong work |
 
 This table has several problems. The student's full name is stored in one field instead of separate fields. Assignment type, assignment number, and due date are combined in one column. Score and comment are combined in another column. The same student appears more than once, and there is no stable student identifier.
 
 A better structure separates values into clearer fields:
 
-| StudentID | FirstName | LastName | DeliverableType | DeliverableNumber | DueDate    | Score | Comment      |
-|-----------|-----------|----------|-----------------|-------------------|------------|-------|-------------|
+| StudentID | FirstName | LastName | DeliverableType | DeliverableNumber | DueDate    | Score | Comment     |
+| --------- | --------- | -------- | --------------- | ----------------- | ---------- | ----- | ----------- |
 | S101      | Maya      | Chen     | Quiz            | 1                 | 2026-03-19 | 92    | Excellent   |
 | S102      | Jordan    | Smith    | Quiz            | 1                 | 2026-03-19 | 84    | Good        |
 | S101      | Maya      | Chen     | Project         | 1                 | 2026-04-02 | 95    | Strong work |
@@ -201,6 +266,11 @@ STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score, Comment)
 ```
 
 For now, the key idea is that tables are not just visual grids. Tables are structured representations of data. Good tables make data easier to trust, search, connect, and analyze. Poor tables create confusion even before any SQL query is written.
+
+<div class="callout key-takeaway">
+  <p><strong>Key Takeaway: A table is not just rows and columns</strong></p>
+  <p>A useful table has rules. Each row represents one record, each column represents one attribute, each cell contains one value, and the table focuses on one main theme. These habits prepare data for databases, queries, and analysis.</p>
+</div>
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
@@ -221,19 +291,19 @@ This is a schema. More specifically, it is a simple table schema, also called a 
 
 The schema does not show the actual students. It shows the structure that student records should follow.
 
-| Part | Meaning |
-|------|---------|
-| `STUDENT` | The name of the table, relation, or entity being described |
-| `StudentID` | An attribute, or field, that identifies the student |
-| `FirstName` | An attribute that stores the student's first name |
-| `LastName` | An attribute that stores the student's last name |
+| Part        | Meaning                                                    |
+| ----------- | ---------------------------------------------------------- |
+| `STUDENT`   | The name of the table, relation, or entity being described |
+| `StudentID` | An attribute, or field, that identifies the student        |
+| `FirstName` | An attribute that stores the student's first name          |
+| `LastName`  | An attribute that stores the student's last name           |
 
 A schema is different from the data itself. The schema is the pattern. The data is the set of actual records that follow the pattern.
 
-| Schema | Example Data |
-|--------|-------------|
-| `STUDENT(StudentID, FirstName, LastName)` | `101, Maya, Chen` |
-| `STUDENT(StudentID, FirstName, LastName)` | `102, Jordan, Smith` |
+| Schema                                    | Example Data            |
+| ----------------------------------------- | ----------------------- |
+| `STUDENT(StudentID, FirstName, LastName)` | `101, Maya, Chen`       |
+| `STUDENT(StudentID, FirstName, LastName)` | `102, Jordan, Smith`    |
 | `STUDENT(StudentID, FirstName, LastName)` | `103, Aaliyah, Johnson` |
 
 This distinction matters. A business can have thousands of student records, customer records, order records, or appointment records. The schema tells the system how those records should be organized so they can be stored, searched, joined, analyzed, and trusted.
@@ -245,7 +315,7 @@ Consider a simple grading database. It might include schemas like these:
 ```
 STUDENT(StudentID, FirstName, LastName, Email)
 
-DELIVERABLE(DeliverableID, Type, DeliverableNumber, DueDate)
+DELIVERABLE(DeliverableID, DeliverableType, DeliverableNumber, DueDate)
 
 STUDENT_GRADE(GradeID, StudentID, DeliverableID, Score)
 ```
@@ -254,7 +324,7 @@ Each line describes a different kind of data.
 
 The `STUDENT` schema describes students. The `DELIVERABLE` schema describes assignments, quizzes, exams, or other graded work. The `STUDENT_GRADE` schema describes the score a student earned on a specific deliverable.
 
-The schema helps us see the logic of the data before we see any actual rows. It tells us that a grade is not just a number floating by itself. A grade belongs to a student, belongs to a deliverable, and has a score. That structure is what makes the data meaningful.
+The schema helps us see the logic of the data before we see any actual rows. It tells us that a grade is not just a number floating by itself. A grade belongs to a student, belongs to a deliverable, and has a score. That structure is what makes the data meaningful. A spreadsheet can imitate part of this structure with tabs such as `GRADEBOOK`, `GRADE_WEIGHT`, and `DATA_DICTIONARY`, but the spreadsheet does not enforce relationships the way a database can.
 
 A schema also helps prevent confusion. Without a schema, different people might record the same idea in different ways. One person might write a student's full name in one field. Another might separate first and last name. One person might call the assignment column `Assignment`; another might call it `Deliverable`, `Task`, or `Work`. A schema creates a shared agreement about how the data should be represented.
 
@@ -280,9 +350,14 @@ This notation is useful because it quickly shows the structure of a table withou
 
 A schema is not the whole database. It is the structural plan that makes the database possible. Before an organization can analyze data well, it must first decide how that data should be represented. That is why schemas sit at the boundary between raw data and reliable information systems.
 
+<div class="callout key-takeaway">
+  <p><strong>Key Takeaway: A schema is the blueprint for data</strong></p>
+  <p>A schema describes the structure of data before we look at the actual records. In <code>STUDENT(StudentID, FirstName, LastName)</code>, <code>STUDENT</code> is the table name, and the items inside the parentheses are attributes.</p>
+</div>
+
 Classification explains what kind of data you have. Representation explains how that data is stored so that people and systems can use it consistently. Representation is where meaning starts to become database-ready.
 
-Every stored value has a type, whether the system enforces it strictly or not. Data types affect meaning, validation, operations, and analytics. If `Score` is stored as text, averages become fragile. If `DueDate` is stored in inconsistent formats, turnaround analysis becomes harder. If `StudentID` is treated as a number for arithmetic, the analysis stops making sense.
+Every stored value has a type, whether the system enforces it strictly or not. Data types affect meaning, validation, operations, and analytics. If `Score` is stored as text, averages become fragile. If `DueDate` is stored in inconsistent formats, turnaround analysis becomes harder. If `StudentID` is treated as a number for arithmetic, the analysis stops making sense. This is why the Let's Build asks you to define fields in a `DATA_DICTIONARY` tab before relying on filters, lookups, or pivot tables.
 
 Different systems use different names for familiar type families, but the core concepts are consistent. The choice of data type affects storage, accuracy, and performance.
 
@@ -294,6 +369,9 @@ Different systems use different names for familiar type families, but the core c
 | **Date/Time** | Date/Time                 | TEXT, REAL, INTEGER | DATE, TIMESTAMP, TIME   | Due dates, submission times |
 | **Boolean**   | Yes/No                    | INTEGER (0/1)       | BOOLEAN                 | Status flags (e.g., Active) |
 | **Binary**    | OLE Object, Attachment    | BLOB                | BYTEA                   | Images, documents, files    |
+
+![Data types overview showing the full landscape of data classifications across platforms](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-data-types-textbook-preview)
+*Figure 3.35. A comprehensive overview of data types, their platform-specific names, and how they map to real-world business data.*
 
 ![Dashboard tiles resting on typed underlying data fields](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-dashboard-representation)
 *Figure 3.14. Dashboards depend on the underlying representation of values such as numbers, dates, and labels.*
@@ -328,7 +406,7 @@ Well-represented data improves reporting too. Numeric fields support totals and 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# From Spreadsheets to Databases
+## From Spreadsheets to Databases
 
 Many organizations begin with spreadsheets and flat files because they are easy to use. That starting point is reasonable. The problem begins when flexible tools are expected to provide the same structure, reuse, and control that organizations need as data grows.
 
@@ -339,27 +417,44 @@ A **spreadsheet** is a grid-based tool used to enter, view, calculate, and analy
 
 CSV files are useful for exchange and portability, but they do not preserve strong typing, validation rules, rich metadata, referential integrity, or built-in relationships across multiple tables. They move data well. They do not govern it.
 
-Spreadsheets and flat files begin to break down when organizations need many records, repeated updates, multiple related entities, shared definitions, or several users working from the same data. Imagine one sheet with these columns: `StudentID, StudentName, CourseSection, DeliverableType, DeliverableNumber, DueDate, Score, AttendanceStatus, InstructorComment`. At first the sheet seems practical. Over time, student facts, deliverable facts, score facts, and attendance facts become mixed together. Names are repeated, spellings drift, missing values pile up, and corrections must be made in many places.
+### CSV Files: A Universal Format
+
+After organizing data into a table, we need a way to store and share it. One of the simplest and most universal file formats for tabular data is the **CSV (Comma-Separated Values) file**.
+
+A CSV file is a plain text file where the values in each column are separated by a comma. Each new line in the text file represents a new row from the table. The student data table from earlier would look like this in a CSV file:
+
+```
+StudentID,FirstName,Age,Major
+101,Sarah,21,Marketing
+102,David,19,Computer Science
+103,Emily,22,Business
+```
+
+The first line contains the column headers, and each subsequent line is a record. Because of its simplicity, the CSV format is a lightweight and highly compatible way to transfer data between different software applications, such as Microsoft Excel, Google Sheets, and various databases.
+
+What makes CSV files so widely used? They are human-readable in any text editor, they require no special software to create or open, and nearly every data tool can import and export them. However, CSV files have no built-in way to enforce data types, prevent duplicate records, or link one table to another. They carry data from place to place, but they do not manage it.
+
+Spreadsheets and flat files begin to break down when organizations need many records, repeated updates, multiple related entities, shared definitions, or several users working from the same data. Imagine one sheet with these columns: `StudentID`, `StudentName`, `CourseSection`, `DeliverableType`, `DeliverableNumber`, `DueDate`, `Score`, `AttendanceStatus`, and `InstructorComment`. At first the sheet seems practical. Over time, student facts, deliverable facts, score facts, and attendance facts become mixed together. Names are repeated, spellings drift, missing values pile up, and corrections must be made in many places.
 
 The same problem appears in customer lists, clinic visit logs, and order-tracking sheets. A worksheet may still look organized, but repeated data and mixed themes make it fragile. This is the real bridge to databases. Organizations need a way to separate different themes of data without losing their connections.
 
 Four specific problems, known as **modification anomalies**, show up repeatedly in flat files and have names worth remembering:
 
-1.  **Data Redundancy:** The same fact is stored in many rows. In the vet spreadsheet, an owner's name and contact information would be repeated for every single visit their pet makes.
-2.  **Update Anomaly:** When a fact changes (like an owner's phone number), it must be updated in every single row where it appears. If even one row is missed, the data becomes inconsistent, and the clinic might call the wrong number.
-3.  **Insertion Anomaly:** There is no clean place to add a new fact on its own. For example, the clinic cannot add a new pet owner to the system until that owner has an appointment, because owner details are part of the appointment row.
-4.  **Deletion Anomaly:** Deleting one record unintentionally erases other essential information. If a client cancels their only upcoming appointment and the row is deleted, the clinic might lose the only record of that pet owner's existence.
+1.  **Data Redundancy:** The same fact is stored in many rows. In a grading spreadsheet, a student's name and email may be repeated for every quiz, homework, exam, and project.
+2.  **Update Anomaly:** When a fact changes, it must be updated in every row where it appears. If one student email is missed, the table now stores two different emails for the same student.
+3.  **Insertion Anomaly:** There is no clean place to add a new fact on its own. A new student may not fit into a flat gradebook until that student has a grade.
+4.  **Deletion Anomaly:** Deleting one record unintentionally erases other essential information. If the only grade for a student is deleted, the sheet may also lose the only record that the student exists.
 
 On top of these structural problems, flat files suffer from **query fragility**. Spreadsheet formulas often refer to fixed cell ranges (like `A1:F500`), which can break if rows are added or sorted. There is also no reliable, enforced way to join one sheet to another.
 
-Chapter 4 introduces databases precisely because they are designed to solve these four problems by separating data into distinct, related tables. A flat vet file can be redesigned into related tables like **Owners**, **Pets**, **Appointments**, and **Invoices**. Owner information appears only once in the `Owners` table. Appointment records refer back to the owner and pet using a unique ID instead of repeating all their information. This reduces repetition, prevents anomalies, and makes updates far more reliable.
+Chapter 4 introduces databases precisely because they are designed to solve these four problems by separating data into distinct, related tables. A flat gradebook can be redesigned into related tables such as `STUDENT`, `DELIVERABLE`, and `STUDENT_GRADE`. Student information appears once in `STUDENT`. Grade records refer back to the student and deliverable using identifiers instead of repeating all details in every row. This reduces repetition, prevents anomalies, and makes updates far more reliable.
 
-We will treat this as a conceptual preview only; the hands-on work of designing and building these related tables belongs in the companion Let's Build file and in later chapters on keys and relationships.
+We will treat this as a conceptual preview only. The companion Let's Build lets you experience the fragility in a small Grading Database spreadsheet. Lab 03 then transfers the same logic to PetVax. The hands-on work of building true related tables begins in Chapter 4 and deepens in later chapters on keys and relationships.
 
 ![Flat grading file split into student, deliverable, and grade tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-breaking-flat-file)
 *Figure 3.20. Breaking a flat file into related tables reduces repetition while preserving the connections needed for analysis.*
 
-Good tables follow simple rules even before students learn the full relational model. The checklist below summarizes the habits that separate a usable table from a fragile one.
+Good tables follow simple rules even before students learn the full relational model. The checklist below condenses the same habits introduced earlier in the table section.
 
 | Rule                          | What it means                                       | What goes wrong without it                            |
 | ----------------------------- | --------------------------------------------------- | ----------------------------------------------------- |
@@ -378,7 +473,7 @@ We will formalize this move in Chapter 4 when databases, tables, and DBMS featur
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Managing Data as an Organizational Asset
+## Managing Data as an Organizational Asset
 
 Once data is represented well, it still needs shared meaning and active stewardship. This is where metadata, quality, governance, lifecycle thinking, and ethics come together. They turn stored values into a trustworthy organizational asset.
 
@@ -403,6 +498,9 @@ Even three rows make a difference. Anyone using the data now knows that `Student
   <p><strong>🧪 Example: A mini data dictionary in action</strong></p>
   <p>A retail analyst noticed that "monthly sales" reports from two regional offices never matched. The fix was not new software. The fix was a shared data dictionary that defined <code>OrderDate</code> as the date the order was placed, not the date it shipped, and <code>Sales</code> as net of returns. After that change, both regions reported the same numbers.</p>
 </div>
+
+![Metadata layers showing how field names, types, descriptions, and constraints surround and define stored data values](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-metadata)
+*Figure 3.34. Metadata surrounds every data value with field names, types, descriptions, and constraints that make the data interpretable and trustworthy.*
 
 ## Data Quality
 
@@ -453,7 +551,7 @@ Ethics sits inside this same management problem. Organizations must ask what dat
 
 New technology does not remove these responsibilities. Cloud systems, streaming data, machine learning, and AI-assisted analytics increase scale and speed, but they do not remove the need for clear meaning, sound representation, trustworthy quality, and ethical judgment. In practice, new tools make the fundamentals more important, not less.
 
-# Big Data and the Digital Age
+## Big Data and the Digital Age
 
 Organizations now collect more data than ever before. Every swipe of a card, click on a website, scan in a clinic, ride in a delivery app, message to customer service, and sensor on a factory floor adds new records. This shift is often summarized as **big data**, and it is usually described by three traits: **volume** (how much data is collected), **velocity** (how fast it arrives), and **variety** (how many different forms it takes, from structured tables to images, audio, log files, and free text) (Gantz & Reinsel, 2012; Kitchin, 2014).
 
@@ -466,7 +564,7 @@ None of this removes the need for the fundamentals in this chapter. If anything,
   <p>Big data does not replace data fundamentals. It raises the cost of getting them wrong and the value of getting them right.</p>
 </div>
 
-# Summary
+## Summary
 
 ![Concept map recapping the chapter from data and meaning to representation, tables, governance, and decisions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-chapter-summary)
 *Figure 3.26. A visual recap of the chapter's path from raw data to a trustworthy foundation for analysis.*
@@ -481,7 +579,7 @@ The chapter first showed why data fundamentals drive business performance, then 
 ![Chapter recap map linking data, meaning, classification, representation, tables, governance, and decisions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch03-what-is-data/ch03-concept-map)
 *Figure 3.28. Chapter 3 at a glance: from raw data through context, structure, and stewardship to the database work that begins in Chapter 4.*
 
-# References
+## References
 
 Ackoff, R. L. (1989). From data to wisdom. *Journal of Applied Systems Analysis*, *16*(1), 3-9.
 

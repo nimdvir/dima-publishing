@@ -2,8 +2,8 @@
 
 ## Open Items
 
-- [ ] **Review `lets-build-v2.md`**: A second Let's Build variant (`ch04-databases/lets-build-v2.md`) exists alongside the stable `lets-build.md`. This file has uncommitted manual edits (not in Drive). Drive now has `ch04-lets-build-2026-06-13.md` which is a copy of `ch04-lets-build-2026-06-02.md` (no new content). Decision needed: merge v2.md into `lets-build.md`, archive v2.md, or treat v2.md as the new canonical version. Do not run `chapter-source-import` for ch04 Let's Build until this is resolved.
+- [x] **Review `lets-build-v2.md`** (2026-06-21): No `lets-build-v2.md` found in repo or Drive. Only dated files and a stable `ch04-lets-build.md`. Variant never existed — edit note was stale. Closed.
 
-- [ ] **Fix stale lab note in `index.md`**: The lab link is commented out with `<!-- Lab not yet in publishing repo -->` but `lab-04-intro-to-access/` already exists in the repo at `files/source/labs/lab-04-intro-to-access/lab-04-questions-2026-06-03.md`. Uncomment and update the lab link (confirm relative path from the reader platform before enabling).
+- [x] **Fix stale lab note in `index.md`** (2026-06-21): Lab link added to chapter index pointing to `/labs/lab-04-intro-to-access/`. No stale comment found — likely already resolved in a prior pass.
 
-- [ ] **Verify ch04 RAT content**: Quick review that `rat.md` covers Ch04 database concepts (not a leftover from an earlier chapter template).
+- [x] **Verify ch04 RAT content** (2026-06-21): RAT covers 40 Bloom-distributed questions on Ch04 database concepts (DBMS, keys, constraints, anomalies, Access). Answer key on separate page follows standard chapter convention. No template leftovers.

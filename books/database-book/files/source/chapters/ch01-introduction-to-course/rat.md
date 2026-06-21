@@ -1,3 +1,4 @@
+<!-- metadata: date="2026-06-21" -->
 # Readiness Assessment Test (RAT): Introduction to the Textbook
 
 <p align="center">
@@ -7,7 +8,8 @@
 
 <!-- markdownlint-disable-file MD024 MD033 MD036 MD060 -->
 
-# Assessment Design Notes
+## Questions
+**Assessment Design Notes**
 
 This RAT checks that students completed Chapter 1 and can reason with the book's orientation before class. It emphasizes the data-to-decisions arc, the five core competencies, the Tool Ecosystem, the two running projects, the chapter rhythm, Bloom's Taxonomy, the GD/GDB preview, PetVax transfer practice, and the success habits that support technical business learning.
 
@@ -43,7 +45,7 @@ The design criteria below identify the strongest examples for each target catego
 - Stage-progression reasoning: questions use the data-to-decisions arc, chapter rhythm, six-part course sequence, and GD/GDB-to-PetVax transfer path.
 - Platform-specific details: questions distinguish Access, SQLite, Supabase / PostgreSQL, BigQuery, Power BI, Google Forms, Lucidchart, GitHub, and AI-supported workflows.
 
-# Remember Questions
+### Remember Questions
 
 **1. According to Chapter 1, what is the book's central learning arc, in order?**
 
@@ -129,7 +131,7 @@ C. Chapters 11-14
 
 D. Chapters 15-17
 
-# Understand Questions
+### Understand Questions
 
 **9. Why does Chapter 1 argue that database design has business consequences?**
 
@@ -215,7 +217,7 @@ C. To move students from recognizing terms to building things with them
 
 D. To replace traditional letter grades
 
-# Apply Questions
+### Apply Questions
 
 **17. A student finishes a SQL chapter but cannot explain why a query matters for a business decision. Which Chapter 1 habit most directly addresses this problem?**
 
@@ -301,7 +303,7 @@ C. Replace the query with a spreadsheet pivot table
 
 D. Avoid running the query until the instructor reviews it
 
-# Analyze Questions
+### Analyze Questions
 
 **25. In the chapter's coffee shop example, which of the following is the root reason the owner cannot determine which supplier problems affect daily sales?**
 
@@ -387,7 +389,7 @@ C. The inclusion of AI-supported workflows
 
 D. The use of diagramming tools
 
-# Evaluate Questions
+### Evaluate Questions
 
 **33. Two student teams propose study plans. Team A reads each main chapter only. Team B reads the main chapter, then uses Let's Build, Terms, Review and Reflection, RAT, and Lab. Based on Chapter 1, which plan is stronger and why?**
 
@@ -476,9 +478,9 @@ D. Both are equally defensible
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Answer Key
+## Answer Key
 
-## Remember Questions
+### Remember Questions
 
 **1. According to Chapter 1, what is the book's central learning arc, in order?**
 
@@ -586,7 +588,7 @@ Explanation: In the six-part book structure table, Part 6: Strategy and Integrat
 | C | No | Chapters 11-14 are Part 5: Administration, BI, and Visualization. |
 | D | Yes | Chapters 15-17 are Part 6: Strategy and Integration. |
 
-## Understand Questions
+### Understand Questions
 
 **9. Why does Chapter 1 argue that database design has business consequences?**
 
@@ -694,7 +696,7 @@ Explanation: In "Bloom's Taxonomy in Practice," the chapter says the goal is to 
 | C | Yes | This closely paraphrases the chapter's stated purpose. |
 | D | No | Bloom's Taxonomy does not replace letter grades. |
 
-## Apply Questions
+### Apply Questions
 
 **17. A student finishes a SQL chapter but cannot explain why a query matters for a business decision. Which Chapter 1 habit most directly addresses this problem?**
 
@@ -802,7 +804,7 @@ Explanation: In "How to Read and Use This Book" and "How to Succeed in This Cour
 | C | No | Switching tools bypasses the query problem rather than diagnosing it. |
 | D | No | The chapter encourages testing and careful revision, not waiting passively. |
 
-## Analyze Questions
+### Analyze Questions
 
 **25. In the chapter's coffee shop example, which of the following is the root reason the owner cannot determine which supplier problems affect daily sales?**
 
@@ -910,7 +912,7 @@ Explanation: In "What Makes This Book Different," the first design choice is bus
 | C | No | AI-supported workflows are a tool support, not the central design choice. |
 | D | No | Diagramming tools support planning but do not directly solve the purpose gap. |
 
-## Evaluate Questions
+### Evaluate Questions
 
 **33. Two student teams propose study plans. Team A reads each main chapter only. Team B reads the main chapter, then uses Let's Build, Terms, Review and Reflection, RAT, and Lab. Based on Chapter 1, which plan is stronger and why?**
 
@@ -1018,7 +1020,7 @@ Explanation: Chapter 1 defines systems thinking as seeing how data, structure, a
 | C | No | The chapter says tools are part of a workflow, not the whole cause of performance. |
 | D | No | The two responses are not equally aligned with Chapter 1. |
 
-# Question Distribution Summary
+**Question Distribution Summary**
 
 **Table 1: Bloom Level**
 

@@ -3,7 +3,58 @@
 This file contains the rolling edit log for the database book. Each date heading
 groups task-list items for that day.
 
-## 2026-06-18 Edits
+## 2026-06-21
+
+- [x] Ran `chapter-final-check ch04` full audit — discovered 3 blockers (RAT answer key, HOW-TO-BUILD in assets, no stable files)
+- [x] RAT answer key confirmed as standard chapter convention (separate page, not a blocker)
+- [x] Moved `HOW-TO-BUILD-ACCDB.md` from `assets/` to `instructor/` in lab-04 folder
+- [x] Ran `chapter-final-check ch02` full audit — discovered 3 blockers (answer key exposure in reflection + RAT, bare G:\ path, missing lab folder)
+- [x] Separated answer keys from student-facing reflection and RAT into `ch02-reflection-answers-2026-06-21.md` and `ch02-rat-answers-2026-06-21.md`
+- [x] Removed bare `G:\` path from `ch02-main-2026-06-21.md`; centered Core Concepts icon
+- [x] Created `lab/` folder and copied lab-02 from canonical source
+- [x] Compared 06-21 (user edit) vs 06-22 (expanded) — 06-22 adds networks, cybersecurity, data ethics, cloud, AI/ML, IoT, blockchain, EIS, business-function transformation
+- [x] Built DOCX `ch02-2026-06-21.docx`
+- [x] Ran `chapter-media ch02` — optimized 5 images (90%+ reduction), uploaded to Cloudinary, renumbered all 43 figures sequentially (2.1–2.43), removed all MEDIA HANDOFF local markers
+- [x] Ran `chapter-source-import ch02` — imported 5 sections from Drive to repo with metadata comments; updated source-import-manifest.csv
+- [x] Build DOCX `ch02-2026-06-21.docx` (~37,400 words across 5 sections)
+- [ ] Run `chapter-media ch02` to upload and renumber 5 MEDIA HANDOFF figures (2.39–2.43)
+- [ ] Merge 06-22 additions into canonical or accept 06-22 as canonical
+- [ ] Run `chapter-source-import ch02` to reconcile Drive drafts into repo
+- [x] Added lab link to `ch04-databases/index.md` pointing to `/labs/lab-04-intro-to-access/`
+- [x] Ran `chapter-final-check` for ch05, ch06, ch07 — full 12-phase audit with reports in `.reports/`
+- [x] Ch06: Migrated dated filenames to stable flat names (core-concepts.md, lets-build.md, terms-treasury.md, review-questions.md, rat.md)
+- [x] Ch05: Imported newer GD RAT (06-21) and Reflection (06-21) companions
+- [x] Ch06: Imported all 5 GD companions (06-19/06-21)
+- [x] Ch07: Imported all 5 GD companions (06-19/06-21); author decision: keep appendices in main chapter
+- [x] Appended 12 import records to `source-import-manifest.csv`
+- [x] Created `ch05-edits.md` and `ch07-edits.md` in repo `.edits/`
+- [x] Verified and closed all 3 remaining ch06 edit items
+- [x] Updated chapter tracker (ch07 Next, ch05/ch06 archive)
+- [x] Reviewed Lab 07 — confirmed strong chapter alignment; fixed YAML date (06-16→06-19), stale build-on link, legacy :::callout→HTML, and added normal-form terminology connectors
+- [x] Created `lab-07-answers-2026-06-19.md` (instructor reference, 35-point quiz key + 65-point artifact rubric + consistency checks)
+- [x] Synced Lab 07 questions (06-19) and answers (06-19) from GD to repo
+- [x] Closed 2 resolved items in `ch04-edits.md`: stale lab note (not found — already resolved), RAT content verification (covers Ch04 concepts, standard format)
+- [x] Added Ch04 row to repo-side chapter tracker
+- [ ] Remaining: capture 10 Access screenshots, run chapter-media
+- [x] Closed all 3 ch04-edits.md items; incorporated tch04-tutorial-ms-access.md into main
+- [x] Generated 5 stable source files (core-concepts.md, lets-build.md, terms-treasury.md, review-questions.md, rat.md) from latest Drive drafts
+- [x] Updated outline-2026-06-12.md with Access hands-on section
+- [x] Wrote final check report to .reports/ch04-final-check-2026-06-21.md — READY_WITH_WARNINGS
+
+## 2026-06-20 Edits
+
+- [x] **Operational master plan created:** Wrote consolidated plan `books/database-book/plans/book-edit/book-plan-2026-06-20.md` with 4-phase execution order: freeze → Ch05-Ch08 → paid access → later chapters. Architecture: `data-pilot.dimapublishing.com` (free reader), `data.dimapublishing.com` (reserved for paid platform).
+- [x] **Phase 1 validation:** Validated deployed reader at `reader-hybrid-v11.vercel.app`. Found two blockers: (1) auth gate blocking all /book content, (2) Ch05-Ch17 all visible in sidebar with no Coming Soon/lock indicators.
+- [x] **Auth gate fix:** Modified `src/App.tsx`, `src/components/Sidebar.tsx`, and `src/components/Layout.tsx` — Ch01-Ch04 now readable without login, Ch05+ show lock icons and require authentication. Labs still require login.
+- [x] **Ch02 structural revision:** Ran gap analysis (full outline coverage, no missing topics). Fixed heading hierarchy: promoted `### Chapter Summary` and `### References` to `##` (H2). Added `## Learning Objectives` H2 section with canonical objectives. Repositioned 9 page breaks at major conceptual transitions only (removed breaks at every H3 boundary). All 6 callouts verified canonical. Created `ch02-main-2026-06-21.md` in Google Drive. Original `ch02-main-2026-06-20.md` untouched.
+- [x] **Stripe timing decision added to plan:** Roster-based free access first (Supabase already live). Stripe deferred until after book content work. One-time payment via Stripe Checkout + webhooks (not Payment Links).
+- [x] **Deployed reader with auth fix:** Build passed, deployed to Vercel project `data-pilot` (already renamed from `reader-hybrid-v1.1`). Verified: CH01 content renders without login, CH05+ show lock icons.
+- [x] **Lab answer exposure verified:** All 15 answer files properly in `instructor/` folders. Two minor notes: `lab-04/assets/HOW-TO-BUILD-ACCDB.md` (instructor content in assets/), `lab-11-questions` broken answer key link.
+- [x] **Plan updated with Stripe roster-first strategy** and corrected `FREE_CHAPTER_IDS` runtime error.
+- [ ] **Vercel domain/rename:** Being handled manually by Nim.
+- [x] **Created `chapter-section-status.md` dashboard** with row-per-section format for all 17 chapters.
+- [x] **Ch08 confirmed as midterm review:** Only `core-concepts.md` (main file) is needed. Companion sections (Let's Build, Terms Treasury, Review Questions, RAT, Lab) are N/A. Updated `chapter-section-status.md` and Phase 2 plan accordingly.
+- [ ] **Vercel domain/rename:** Being handled manually by Nim.
 
 - [x] **Inserted visual query engineering infographic into Chapter 10:** Added the custom-generated high-contrast textbook diagram `ch10-four-questions-before-query.jpg` to both the Google Drive manuscript ([BITM330-Book-draft/chapter-drafts/ch10-advanced-sql-queries/main/ch10-main-2026-06-16.md](g:\My Drive\0-Projects\!-important\BITM330-book-drive\BITM330-Book-draft\chapter-drafts\ch10-advanced-sql-queries\main\ch10-main-2026-06-16.md#L118)) and the stable dima-publishing master source ([books/database-book/files/source/chapters/ch10-advanced-sql-queries/ch10-main-2026-06-16.md](c:\Users\nd115232\Documents\GitHub\dima-publishing\books\database-book\files\source\chapters\ch10-advanced-sql-queries\ch10-main-2026-06-16.md#L94)).
 - [x] **Relocated and Cataloged the JPG asset:** Moved `advanced-query-infographic.jpeg` (created via Gemini image-generation) from the workspace root into the correct chapter image subdirectory, storing it under the mapped folder `.images/ch08-advanced-sql-queries/ch10-used/ch10-four-questions-before-query.jpg` due to original chapter mapping folder definitions.

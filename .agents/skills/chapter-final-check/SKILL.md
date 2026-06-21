@@ -3,12 +3,12 @@
 name: chapter-final-check
 description: >
 Final readiness checker for complete BITM330 database-book chapter packages.
-Use when checking whether a chapter is ready for sync, DOCX export, and deployment.
+Use when checking whether a chapter is ready for import, DOCX export, and deployment.
 Reviews the full chapter package: chapter index, core concepts, Let's Build,
 Terms Treasury, Review and Reflection, RAT, lab, media, figure captions, image
 records, answer exposure risks, outline coverage, word count, unresolved edits,
-DOCX readiness, sync readiness, and deploy readiness. This skill reports readiness,
-blockers, and recommended next commands. It does not edit, sync, deploy, commit,
+DOCX readiness, import readiness, and deploy readiness. This skill reports readiness,
+blockers, and recommended next commands. It does not edit, import, deploy, commit,
 push, or publish unless the user separately and explicitly requests those actions.
 argument-hint: Chapter number, chapter folder, source package path, or mode, such as "ch09", "ch09 full", "ch09 dry-run", "ch09 media-only", "books/database-book/files/source/chapters/ch09-database-design".
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ argument-hint: Chapter number, chapter folder, source package path, or mode, suc
 It answers one question:
 
 ```text
-Is this chapter package ready for DOCX, sync, and deployment?
+Is this chapter package ready for DOCX, import, and deployment?
 ```
 
 It does not replace `chapter-editor`, `chapter-media`, `lab-creation`, `lets-build-creator`, `term-creator`, `rat-creator`, `reflection`, or `chapter-production-flow`.
@@ -51,7 +51,7 @@ It checks:
 * outline coverage;
 * word count;
 * DOCX readiness;
-* sync readiness;
+* import readiness;
 * deploy readiness.
 
 The output is a readiness report, not a rewrite.
@@ -63,6 +63,7 @@ The output is a readiness report, not a rewrite.
 | Need                                                    | Use                                          |
 | ------------------------------------------------------- | -------------------------------------------- |
 | Decide what to do next                                  | `chapter-command-center`                     |
+| Clarify active workflow                                 | `book-workflow-routing`                      |
 | Manage the chapter lifecycle                            | `chapter-production-flow`                    |
 | Edit main prose and visual pedagogy                     | `chapter-editor`                             |
 | Handle images, placement, Cloudinary, and media records | `chapter-media`                              |
@@ -72,16 +73,18 @@ The output is a readiness report, not a rewrite.
 | Create or revise Review and Reflection                  | `reflection`                                 |
 | Create or revise RAT / quiz                             | `rat-creator`                                |
 | Build DOCX                                              | `chapter-docx-build`                         |
-| Sync files                                              | `chapter-sync`, only after explicit approval |
+| Import Drive drafts into repo                           | `chapter-source-import`                      |
 | Deploy or publish                                       | `book-deploy`, only after explicit approval  |
 | Final readiness check                                   | `chapter-final-check`                        |
+
+> **Legacy note:** `chapter-sync` is an older dated-file sync route. Use `chapter-source-import` as the current safe Drive-to-repo import gate.
 
 ---
 
 ## Non-Negotiable Rules
 
 1. **Do not edit by default.** This skill checks readiness and writes reports. It does not rewrite chapter content unless the user explicitly asks for a fix pass.
-2. **Do not sync automatically.** The skill may recommend `chapter-sync`, but it must not run it without a separate explicit user request.
+2. **Do not import automatically.** The skill may recommend `chapter-source-import`, but it must not run it without a separate explicit user request.
 3. **Do not deploy automatically.** The skill may recommend deployment readiness, but it must not deploy, publish, commit, push, or merge.
 4. **Do not expose lab answers.** No answer files, answer keys, or solution files may be present in student-facing source.
 5. **Do not hide blockers.** If something is missing, stale, incomplete, unsafe, or unresolved, report it clearly.
@@ -188,8 +191,8 @@ If no mode is provided, use `full`.
 | `outline-only`    | Check chapter package against current outline                         |
 | `word-count-only` | Compute and report word count by component                            |
 | `docx-ready`      | Check whether DOCX build can run safely                               |
-| `sync-ready`      | Check whether chapter appears ready to sync                           |
-| `deploy-ready`    | Check whether chapter appears ready for deployment after sync         |
+| `import-ready`    | Check whether chapter appears ready for Drive-to-repo import           |
+| `deploy-ready`    | Check whether chapter appears ready for deployment after import        |
 
 ---
 
@@ -205,7 +208,7 @@ Before checking, resolve:
 6. whether front matter is in scope;
 7. whether appendices are in scope;
 8. whether DOCX readiness is requested;
-9. whether sync/deploy readiness is requested.
+9. whether import/deploy readiness is requested.
 
 If the chapter is unclear, ask:
 
@@ -586,11 +589,11 @@ Do not run DOCX build unless the user explicitly asks.
 
 ---
 
-## Phase 9 — Sync Readiness
+## Phase 9 — Import Readiness
 
-Check whether the chapter appears ready to sync.
+Check whether the chapter appears ready for Drive-to-repo import via `chapter-source-import`.
 
-Sync readiness requires:
+Import readiness requires:
 
 * main chapter passes final check;
 * companions are present or intentionally deferred;
@@ -600,12 +603,12 @@ Sync readiness requires:
 * no unresolved author comments remain;
 * reports are current enough;
 * DOCX readiness is either ready or intentionally deferred;
-* user has approved moving from review to sync.
+* user has approved moving from review to import.
 
 Report:
 
 ```markdown
-## Sync Readiness
+## Import Readiness
 
 | Check | Status | Notes |
 |---|---|---|
@@ -615,13 +618,13 @@ Report:
 | Media ready | ready / blocked / needs-review |  |
 | No answer exposure risks | ready / blocked |  |
 | No unresolved blockers | ready / blocked / needs-review |  |
-| Recommended next command | `chapter-sync chNN` / not ready |  |
+| Recommended next command | `chapter-source-import chNN` / not ready |  |
 ```
 
 The skill may recommend:
 
 ```text
-chapter-sync chNN
+chapter-source-import chNN
 ```
 
 But it must not run it.
@@ -630,13 +633,13 @@ But it must not run it.
 
 ## Phase 10 — Deploy Readiness
 
-Check whether the chapter appears ready for deploy after sync.
+Check whether the chapter appears ready for deploy after import.
 
 Deploy readiness requires:
 
-* sync readiness is ready;
+* import readiness is ready;
 * no blocking final-check issues remain;
-* chapter has been synced or user explicitly accepts pre-sync deploy risk;
+* chapter has been imported or user explicitly accepts pre-import deploy risk;
 * build output is ready or intentionally deferred;
 * no answer exposure risks exist;
 * no local paths remain;
@@ -650,7 +653,7 @@ Report:
 
 | Check | Status | Notes |
 |---|---|---|
-| Sync completed or ready | ready / blocked / needs-review |  |
+| Import completed or ready | ready / blocked / needs-review |  |
 | Build output ready | ready / blocked / deferred |  |
 | No publication blockers | ready / blocked / needs-review |  |
 | Recommended next command | `book-deploy` / not ready |  |
@@ -672,10 +675,10 @@ Assign one overall status.
 
 | Status                | Meaning                                                 |
 | --------------------- | ------------------------------------------------------- |
-| `READY`               | No blockers. Sync or DOCX can proceed.                  |
+| `READY`               | No blockers. Import or DOCX can proceed.                 |
 | `READY_WITH_WARNINGS` | No blockers, but some non-blocking follow-up exists.    |
-| `NEEDS_FIXES`         | One or more issues should be fixed before sync or DOCX. |
-| `BLOCKED`             | Critical issue prevents publication or safe sync.       |
+| `NEEDS_FIXES`         | One or more issues should be fixed before import or DOCX. |
+| `BLOCKED`             | Critical issue prevents publication or safe import.      |
 | `INSUFFICIENT_INFO`   | Required files or context are missing.                  |
 
 Use:
@@ -754,7 +757,7 @@ Report structure:
 | Fix media | `chapter-media chNN` | yes / no |
 | Fix companions | `chapter-production-flow chNN companions` | yes / no |
 | Build DOCX | `chapter-docx-build chNN` | yes / no |
-| Sync | `chapter-sync chNN` | only after explicit approval |
+| Import | `chapter-source-import chNN` | only after explicit approval |
 | Deploy | `book-deploy` | only after explicit approval |
 
 ## Readiness Verdict

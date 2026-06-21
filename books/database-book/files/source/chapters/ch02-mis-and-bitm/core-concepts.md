@@ -1,34 +1,39 @@
+<!-- metadata: date="2026-06-22" -->
+<!-- Chapter edit (2026-06-22): integrated networks, EIS, business-function transformation, emerging technologies (cloud/AI/IoT/blockchain), cybersecurity, and data ethics; expanded chapter summary. Technical meaning preserved. -->
+
 # Chapter 2: Foundations of Information Systems
 
-This chapter establishes the conceptual foundations that connect business performance to information systems. As introduced in Chapter 1, this book follows a clear path: data becomes tables, tables form relationships, relationships enable queries, queries support analytics, and analytics inform decisions. Chapter 2 explains why that path matters. It shows how information systems turn raw observations into business decisions. Along the way, it introduces two simple frameworks: the **DIKW hierarchy** (data, information, knowledge, wisdom) and the **R.E.A.D. framework** (representation and retrieval, expression and experience, association and acquisition, decision-making and deployment). DIKW describes how meaning develops — what was recorded, what happened, why it is happening, and what should be done. R.E.A.D. describes the organizational and technical work required to move through those stages in practice. The chapter also separates **information technology** (the tools) from the broader **information system** (the tools plus people, data, and processes). Finally, it explains why **data quality** and **strategic alignment** are managerial concerns, not just technical ones.
+## Learning Objectives
 
-- define data, information, knowledge, and wisdom; - explain how raw data becomes useful for business decisions; - describe business performance and explain why it is multidimensional; - explain how KPIs translate goals into measurable signals; - define information systems and distinguish them from information technology; - describe the five components of an information system; - explain how MIS and BITM connect systems, management, and strategy.
+After reading this chapter, you will be able to:
+
+<!-- markdownlint-disable MD032 -->
+- define data, information, knowledge, and wisdom;
+- explain how raw data becomes useful for business decisions;
+- describe business performance and explain why it is multidimensional;
+- explain how KPIs translate goals into measurable signals;
+- define information systems and distinguish them from information technology;
+- describe the five components of an information system;
+- explain how MIS and BITM connect systems, management, and strategy.
+<!-- markdownlint-enable MD032 -->
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Core Concepts
+## Core Concepts
 
-## Supplementary Video
-
-### Supplementary Video 1
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yvo3Uj_6U4s" title="Chapter 2 supplementary video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220" loading="lazy">
 
 [Watch supplementary video 1](https://www.youtube.com/watch?v=yvo3Uj_6U4s)
 
-<p align="center">
-  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220" loading="lazy">
-</p>
-
-<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yvo3Uj_6U4s" title="Chapter 2 supplementary video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <!-- MEDIA HANDOFF: Uploaded to Cloudinary by user override -->
-![Chapter 2 Core Concepts Map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-concepts)
+![Chapter 2 concept map: foundations of information systems, from data to business performance](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-concepts)
 
-_Figure 2.2 — Chapter 2 concept map: foundations of information systems, from data to business performance._
+_Figure 2.1 — Chapter 2 concept map: foundations of information systems, from data to business performance._
 
-## Framing the Course Title
+### Framing the Course Title
 
 The course this book supports is called *Business Information Technology Management*. Each word in that title matters. **Business** reminds us that the starting point is not technology. The starting point is an organization that creates value under constraints. **Information** reminds us that data becomes useful when it is organized, interpreted, and connected to decisions. **Technology** reminds us that tools — databases, software, networks, analytics platforms — make information work scalable and repeatable. **Management** reminds us that every technology choice is also a resource decision, a people decision, and a strategy decision.
 
@@ -49,15 +54,15 @@ Specifically, ask yourself whether you can answer these questions:
 
 Those questions are the foundation of this chapter.
 
-![Study Questions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-study-questions)
+![Chapter 2 study questions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-study-questions)
 
-_Figure 2.3 — Study Questions._
+_Figure 2.2 — The eight study questions that frame Chapter 2._
 
-# Why Foundations Matter
+### Why Foundations Matter
 
 Every business activity leaves a trail.
 
-A sale, a shipment, a website click, a customer complaint, a late assignment, a hospital visit, a delivery delay, or a payment record can all become data. These records may look small by themselves. But together, they allow organizations to see what is happening.
+A sale, a shipment, a website click, a customer complaint, a returned item, a delivery delay, or a payment record can all become data. These records may look small by themselves. But together, they allow organizations to see what is happening.
 
 That is the starting point.
 
@@ -65,7 +70,7 @@ Data helps organizations observe activity. Information systems help organization
 
 This is why information systems are not just technical tools. They are business systems. They shape what people can see, what they can measure, what they can trust, and what they can improve.
 
-A coffee shop might use data to decide how much milk to order. A hospital might use data to manage staffing. A university might use data to identify students who need support. A retailer might use data to understand which products sell quickly and which sit on shelves. In each case, data becomes useful only when it is organized and connected to a decision.
+An online retailer might use data to decide which products to stock more of, which shipping routes to adjust, and which customers to offer promotions. A university might use data to identify students who need support. In each case, data becomes useful only when it is organized and connected to a decision.
 
 This chapter builds the conceptual foundation for the rest of the book. Later chapters focus more directly on data types, databases, SQL, relational design, analytics, and strategy. Here, we begin with the larger logic: how data, systems, management, and performance fit together.
 
@@ -74,19 +79,26 @@ This chapter builds the conceptual foundation for the rest of the book. Later ch
   <p>Data becomes valuable only when people use information systems to organize it, interpret it, and act on it. Storing records is not the same as using them.</p>
 </div>
 
-![Examples of business data from retail transactions, website analytics, patient monitoring, and student systems](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-interaction-data)
+![Business activity creates data everywhere, and information systems make those records usable for decisions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-interaction-data)
 
-_Figure 2.4 — Business activity creates data everywhere, and information systems make those records usable for decisions._
+_Figure 2.3 — Business activity creates data everywhere, and information systems make those records usable for decisions._
 
-# From Data to Business Meaning
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+### From Data to Business Meaning
 
 The book is titled *Using Data to Drive Business Performance*. Before we go further, we need a clear idea of what data is and how it becomes meaningful in a business context.
 
-![Chapter 2 Infographic Overview](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-infographic-overview)
+![Chapter 2 infographic overview](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-infographic-overview)
 
-_Figure 2.5 — Chapter 2 Infographic Overview._
+_Figure 2.4 — Chapter 2 infographic overview._
 
-## What Is Data?
+![Foundations of Information Systems Management — concept overview showing the relationships between data, systems, management, and business performance](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-foundations-is-management)
+
+_Figure 2.5 — Foundations of Information Systems Management: core concepts and their relationships._
+
+#### What Is Data?
 
 **Data** consists of raw observations, symbols, identifiers, measurements, and recorded facts that represent aspects of reality.
 
@@ -109,22 +121,21 @@ Data needs context.
 
 Context tells us what a value represents, where it came from, when it was recorded, and how it should be interpreted. Without context, data is just a recorded trace. With context, data can become evidence.
 
-For example, a retailer may record that Product A sold 120 units last week. That number becomes more useful when the retailer also knows the prior week's sales, the product category, the price, the promotion history, and the inventory level. The value is no longer just a number. It becomes part of a business story.
+For example, an online retailer may record that Product A sold 120 units last week. That number becomes more useful when the retailer also knows the prior week's sales, the product category, the price, the promotion history, and the inventory level. The value is no longer just a number. It becomes part of a business story.
 
-![Data as Raw Material](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-as-raw-material)
+![Data as raw material — processed into information, knowledge, and wisdom](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-as-raw-material)
 
-_Figure 2.6 — Data as Raw Material: Data is processed into information, knowledge, and wisdom._
+_Figure 2.6 — Data as raw material: data is processed into information, knowledge, and wisdom._
 
 Data matters because modern organizations depend on visibility. Managers cannot improve what they cannot observe, and they cannot observe at scale without records. Every interaction, workflow, and decision leaves a trace. Those traces become the raw material for measurement, analysis, and control.
 
 That is why data is the starting point, not the endpoint.
 
-![Slide 2: Learning Objectives](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-02)
+![Chapter 2 learning objectives slide](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-02)
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
+_Figure 2.7 — Chapter 2 learning objectives._
 
-## The DIKW Hierarchy
+#### The DIKW Hierarchy
 
 What is data? What is information? What is knowledge? What is wisdom? These four questions sit at the heart of one of the most useful frameworks in information systems: the **DIKW hierarchy** (Ackoff, 1989).
 
@@ -139,19 +150,19 @@ The hierarchy can be understood through four guiding questions:
 
 A student example helps. A student receives an exam score of 68. That score is data. If the class average was 82 and the student missed most questions about SQL joins, the score becomes information. If the instructor recognizes that several students struggled with joins, that becomes knowledge about a learning gap. If the instructor adds a new practice activity before the next assessment, that is wisdom in action.
 
-![Moving from data to information, knowledge, and wisdom](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-iwsom)
+![Moving from raw data to information, knowledge, and wisdom](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-iwsom)
 
-_Figure 2.7 — Moving from raw data to information, knowledge, and wisdom._
+_Figure 2.8 — Moving from raw data to information, knowledge, and wisdom._
 
-The same pattern appears in business. A grocery store records sales transactions. Those transactions are data. A report showing that dairy products sell faster on weekends is information. A manager recognizing that weekend demand is tied to family shopping patterns is using knowledge. Adjusting staffing and inventory before the weekend is a decision based on wisdom.
+The same pattern appears in business. An online retailer records sales transactions. Those transactions are data. A report showing that certain products sell faster on weekends is information. A manager recognizing that weekend demand is tied to promotional timing is using knowledge. Adjusting inventory and marketing before the weekend is a decision based on wisdom.
 
-![DIKW Staircase Exam Example](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-03)
+![The DIKW hierarchy moving from data to information, knowledge, and wisdom](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-03)
 
-_Figure 2.8 — The DIKW Hierarchy: Moving from data to information, knowledge, and wisdom._
+_Figure 2.9 — The DIKW hierarchy: moving from data to information, knowledge, and wisdom._
 
 The key point is simple: storing data is not the same as using data. Organizations create value when they move from records to interpretation and from interpretation to action. In that sense, MIS exists to move organizations up this hierarchy — from raw records to better decisions.
 
-## The R.E.A.D. Framework
+#### The R.E.A.D. Framework
 
 The DIKW hierarchy describes stages of meaning. But this book is also concerned with the organizational and technical work that makes those stages possible. That is why we introduce the **R.E.A.D. framework**.
 
@@ -164,7 +175,9 @@ Where DIKW describes stages of meaning, R.E.A.D. describes the work required to 
 | **A** | **Association and Acquisition**    | Identifying patterns, relationships, and explanations that turn information into knowledge. Analytics and business intelligence emerge here. |
 | **D** | **Decision-Making and Deployment** | Translating insight into action, strategy, process changes, or system improvements.                                                          |
 
-![The R.E.A.D. Framework](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-04)
+![The R.E.A.D. framework](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-04)
+
+_Figure 2.10 — The R.E.A.D. framework: representation and retrieval, expression and experience, association and acquisition, decision-making and deployment._
 
 The same four stages show up in very different settings. The two examples below — a university grading database and an online retailer — will both come back in later chapters.
 
@@ -177,19 +190,19 @@ The same four stages show up in very different settings. The two examples below 
 
 DIKW explains how meaning develops. R.E.A.D. explains how organizations and systems help that development happen in practice. Later chapters return to these stages in more applied ways — Chapter 3 examines data itself in detail before the book moves into database design and SQL.
 
-![DIKW and R.E.A.D. Compared](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-dikw-read-compared)
+![DIKW and R.E.A.D. compared](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-dikw-read-compared)
 
-_Figure 2.9 — DIKW and R.E.A.D. Compared: DIKW describes how meaning develops, while R.E.A.D. shows the organizational work that helps move data toward action._
+_Figure 2.11 — DIKW and R.E.A.D. compared: DIKW describes how meaning develops, while R.E.A.D. shows the organizational work that moves data toward action._
 
 ![R.E.A.D. online-retailer walkthrough](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-read-online-retailer-walkthrough)
 
-_Figure 2.10 — R.E.A.D. online-retailer walkthrough._
+_Figure 2.12 — R.E.A.D. framework applied to an online retailer._
 
-## Why Data Quality Matters
+#### Why Data Quality Matters
 
-![The data-to-performance Chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-11)
+![The data-to-performance chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-11)
 
-*The data-to-performance Chain.*
+_Figure 2.13 — The data-to-performance chain._
 
 Not all data is equally useful.
 
@@ -204,20 +217,22 @@ Four data quality dimensions matter throughout this book:
 | **Timeliness**   | Data is current enough for the decision | Inventory data updates after orders are already placed |
 | **Consistency**  | The same idea is recorded the same way  | One system uses "NY" while another uses "New York"     |
 
-![Slide 5: ](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-05)
+![Data quality dimensions slide](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-05)
 
-Data quality is a management issue. Poor data quality distorts KPIs, misleads managers, frustrates customers, and reduces trust in systems. Good decisions require trustworthy data. Chapter 3 examines data quality, classification, and governance in more depth.
+_Figure 2.14 — Four dimensions of data quality: accuracy, completeness, timeliness, and consistency._
 
-![KPI Before and After Cleaning](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-kpi-before-after-cleaning)
+Data quality is a management issue. Poor data quality distorts KPIs, misleads managers, frustrates customers, and reduces trust in systems. Good decisions require trustworthy data. Chapter 3 examines data quality, classification, and governance in more depth — including how data is structured into fields, records, and tables before Chapter 4 introduces databases as the organizing technology.
 
-_Figure 2.11 — KPI Before and After Cleaning: Quality data leads to trustworthy metrics._
+![KPI before and after data cleaning](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-kpi-before-after-cleaning)
+
+_Figure 2.15 — KPI before and after data cleaning: quality data leads to trustworthy metrics._
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Business as a Performance System
+### Business as a Performance System
 
-## What Is a Business?
+#### What Is a Business?
 
 To understand what information systems must support, we need a clear idea of what a business is. In this book, a business is not limited to a private company that earns profit. The term includes any organization that transforms resources into valued outcomes under constraints.
 
@@ -225,17 +240,17 @@ A **business** is an organization that creates value by transforming inputs into
 
 That definition includes retailers, manufacturers, hospitals, nonprofits, schools, banks, and government agencies. Each of these organizations pursues goals, allocates resources, and works under constraints. Profit may matter in some cases, but the broader pattern is the same: organizations exist to create outcomes that matter to stakeholders.
 
-**Stakeholders** are the people and groups affected by the organization's actions. They include customers, employees, owners, suppliers, students, regulators, patients, and the broader public. Because stakeholders care about different outcomes — financial, operational, social, and strategic — business performance is always multidimensional. A hospital may track patient safety, operating efficiency, regulatory compliance, and financial sustainability at the same time. A university may track enrollment, retention, learning outcomes, and budget stability. A retailer may track revenue, margin, customer satisfaction, and supply reliability.
+**Stakeholders** are the people and groups affected by the organization's actions. They include customers, employees, owners, suppliers, students, regulators, patients, and the broader public. Because stakeholders care about different outcomes — financial, operational, social, and strategic — business performance is always multidimensional. An online retailer may track revenue, margin, customer satisfaction, and supply reliability. A hospital may track patient safety, operating efficiency, regulatory compliance, and financial sustainability at the same time. A university may track enrollment, retention, learning outcomes, and budget stability.
 
 This is why data matters. Organizations need evidence about how well they are creating value, where processes are breaking down, and what adjustments are needed. **Value creation** — turning resources into outcomes that matter to stakeholders — is the central managerial challenge, and data is what makes that challenge visible and measurable. Without that evidence, management depends too heavily on anecdote and guesswork.
 
-## The Input-Process-Output Model
+#### The Input-Process-Output Model
 
 A useful way to understand how organizations work is the **Input-Process-Output (IPO) model**.
 
-![Basic Input-Process-Output Model](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-image-008)
+![Basic Input-Process-Output model](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-image-008)
 
-_Figure 2.12 — Basic Input-Process-Output Model._
+_Figure 2.16 — Basic Input-Process-Output model._
 
 Every business takes in inputs, transforms them through processes, and produces outputs.
 
@@ -253,9 +268,11 @@ For the online retailer, inputs include inventory, labor, warehouse space, softw
 
 The IPO model will appear again when the chapter defines information systems. That is not an accident. Information systems are themselves organized arrangements that take in inputs, process them, and generate outputs.
 
-![Input-Process-Output Model](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-input-output)
+![Input-Process-Output model](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-input-output)
 
-## Efficiency, Effectiveness, and KPIs
+_Figure 2.17 — Input-Process-Output model applied to a business context._
+
+#### Efficiency, Effectiveness, and KPIs
 
 Once a business is understood as a value-creating system, the next question is how to judge whether it is performing well.
 
@@ -295,16 +312,15 @@ When KPI design is sloppy, behavior gets distorted. If a call center tracks aver
   <p>When you evaluate a KPI, ask not only what it measures but also what behavior it encourages. A KPI that looks neutral on a dashboard can drive teams toward speed at the cost of quality, or short-term wins at the cost of long-term performance.</p>
 </div>
 
-![Efficiency vs Effectiveness 2x2 Matrix](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-efficiency-vs-effectiveness-matrix)
+![Efficiency vs. effectiveness 2x2 matrix](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-efficiency-vs-effectiveness-matrix)
 
-_Figure 2.13 — Efficiency vs Effectiveness 2x2 Matrix._
+_Figure 2.18 — Efficiency vs. effectiveness 2x2 matrix._
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
+#### The Data-to-Performance Chain
 
-## The Data-to-Performance Chain
+![The data-to-performance chain blueprint](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-chain-blueprint)
 
-![The Data-to-Performance Chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-chain-blueprint)
+_Figure 2.19 — The data-to-performance chain blueprint._
 
 The **Data-to-Performance Chain** is the progression by which data becomes information, informs decisions, changes outcomes, and generates new data. The central logic of this chapter can be stated simply:
 
@@ -314,21 +330,25 @@ Data -> Information -> Insight -> Decision -> Performance
 
 ![The data-to-wisdom hierarchy within a performance chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-to-wisdom)
 
+_Figure 2.20 — The data-to-wisdom hierarchy within a performance chain._
+
 Data is captured from activity. Data becomes information when it is organized and placed in context. Information becomes insight when people recognize a pattern, cause, risk, or opportunity. Insight becomes valuable when it informs a decision. A decision matters when it changes behavior, operations, or outcomes.
 
-Consider a delivery company. Each delivery creates data: pickup time, drop-off time, route, driver, distance, customer rating, and delay reason. A weekly report showing delays in one region is information. Further analysis that reveals warehouse congestion is insight. A staffing or routing change is a decision. If on-time delivery improves, the decision affects performance.
+For the online retailer, each order creates data: order time, product, quantity, payment method, shipping address, and delivery timestamp. A weekly report showing late deliveries in one region is information. Further analysis revealing that one warehouse is understaffed is insight. A staffing adjustment is a decision. If on-time delivery improves, the decision affects performance.
 
 This chain helps explain why the book connects technical and managerial topics. A database is not valuable merely because it stores records. It is valuable when its structure helps an organization ask better questions and make better decisions.
 
-![The Data-to-Performance Chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-chain)
+![The data-to-performance chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-chain)
 
-_Figure 2.14 — The Data-to-Performance Chain: Performance improves when organizations collect new data, summarize it, choose a response, act, and learn from the results._
+_Figure 2.21 — The data-to-performance chain: performance improves when organizations collect data, summarize it, choose a response, act, and learn from the results._
 
-## Management as Decision-Making
+#### Management as Decision-Making
 
 Management can be understood as decision-making under uncertainty (Simon, 1997). Managers decide what to prioritize, what to measure, how to allocate resources, when to intervene, and how to evaluate results.
 
 ![From operational inputs to managerial evidence](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-input-2-evidence)
+
+_Figure 2.22 — From operational inputs to managerial evidence._
 
 Information improves management because it reduces uncertainty and makes decisions more disciplined. Without reliable information, managers may depend too heavily on guesses, habits, anecdotes, or the loudest voice in the room.
 
@@ -342,11 +362,14 @@ Organizations make decisions at different levels.
 
 The same data can support more than one level. The difference is often aggregation, interpretation, time horizon, and responsibility. In the online-retailer example, one order record can trigger an operational alert about a late shipment, feed a managerial dashboard on warehouse performance, and contribute to a strategic discussion about whether the company should invest in a new fulfillment center.
 
-# Information Systems as Organizational Engines
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+### Information Systems as Organizational Engines
 
 Data alone does not create value. Organizations need systems that help people capture, store, process, retrieve, interpret, and use data consistently.
 
-## Why Data Alone Is Not Enough
+#### Why Data Alone Is Not Enough
 
 Small groups can sometimes manage with memory, informal conversations, and ad hoc spreadsheets. Larger organizations cannot. As operations grow, problems of scale, consistency, accountability, and coordination become too large for informal methods.
 
@@ -362,11 +385,13 @@ An information system makes information work repeatable. The same event can be r
 
 ![Repeatable operational workflow in an information system](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-image-003)
 
-## Information Behavior: How People Search for and Use Information
+_Figure 2.23 — A repeatable operational workflow in an information system._
 
-![T.D. Wilson's Information Behavior Model](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-wilson-information-behavior-model)
+#### Information Behavior: How People Search for and Use Information
 
-_Figure 2.15 — T.D. Wilson's Information Behavior Model._
+![T.D. Wilson's information behavior model](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-wilson-information-behavior-model)
+
+_Figure 2.24 — T.D. Wilson's information behavior model._
 
 Systems work better when designers understand the human side of information. In information science, **information behavior** refers to how people recognize information needs, search for information, encounter information, retrieve it, evaluate it, and use it in context (Wilson, 1981, 2000).
 
@@ -386,7 +411,9 @@ For this chapter, three ideas are especially useful.
 
 Information behavior matters because a database is not useful merely because it contains records. It is useful when people can connect those records to real questions and actions. Barriers such as unclear labels, poor search tools, missing permissions, inconsistent definitions, or low trust in the data can prevent users from moving from information need to information use.
 
-![Slide 9: Management as Decision-Making](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-09)
+![Management as decision-making slide](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-09)
+
+_Figure 2.25 — Management as decision-making._
 
 <div class="callout business-insight">
   <p><strong>📊 Business Insight: Information that no one uses has no value</strong></p>
@@ -395,14 +422,11 @@ Information behavior matters because a database is not useful merely because it 
 
 These three ideas map directly onto R.E.A.D. **Representation and Retrieval** supplies the records people search through. **Expression and Experience** shapes how information is encountered, scanned, and trusted. **Decision-Making and Deployment** is information use in action. The rest of the book moves through these layers in order: Chapters 4 and 5 build the retrieval layer with databases and SQL; Chapters 9 and 14 shape the experience layer with analytics and Power BI; later strategy and decision chapters return to how information is actually used. Designing a good information system means designing for all three.
 
-![Workflow showing an employee moving from information need to information seeking to information use, with barriers such as unclear labels, missing permissions, delayed data updates, inconsistent definitions of late shipment, and low trust in the data](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-information-behavior-workflow)
+![Information behavior links need, seeking, and use](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-information-behavior-workflow)
 
-_Figure 2.16 — Information behavior links need, seeking, and use; barriers at any stage can prevent information from turning into action._
+_Figure 2.26 — Information behavior links need, seeking, and use; barriers at any stage can prevent information from turning into action._
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-## What Is an Information System?
+#### What Is an Information System?
 
 An **information system** is a coordinated arrangement of people, processes, data, and technology that collects, processes, stores, and distributes information to support coordination, control, analysis, and decision-making (Laudon & Laudon, 2024).
 
@@ -418,13 +442,17 @@ A full information system can be described as a five-part operating loop:
 
 Feedback is the piece that ties information systems back to managerial learning and performance improvement. Without feedback, an information system is a one-way pipeline. With feedback, it becomes a cycle — and cycles improve over time.
 
-For example, a customer relationship management (CRM) system is not only CRM software. The full system also includes customer data, sales workflows, follow-up rules, dashboards, training, and reporting routines. Failures often come from unclear processes, weak data standards, poor training, or lack of trust in the output — not from the software alone.
+For example, a **customer relationship management (CRM)** system is not only CRM software. The full system also includes customer data, sales workflows, follow-up rules, dashboards, training, and reporting routines. Failures often come from unclear processes, weak data standards, poor training, or lack of trust in the output — not from the software alone.
 
-![Input-Process-Output Model](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-06)
+![Information Systems Architecture Overview diagram showing the layers and components of business information systems](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-information-systems-architecture-overview)
 
-_Figure 2.17 — An information system follows the same input-process-output logic as the business processes it supports._
+_Figure 2.27 — Information Systems Architecture Overview: the layered structure of business information systems._
 
-## Information Systems vs. Information Technology
+![An information system follows the input-process-output logic](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-06)
+
+_Figure 2.28 — An information system follows the same input-process-output logic as the business processes it supports._
+
+#### Information Systems vs. Information Technology
 
 Students often use **information system** and **information technology** as if they mean the same thing. They are related, but they are not identical.
 
@@ -433,18 +461,24 @@ Students often use **information system** and **information technology** as if t
 | **Information Technology (IT)** | The technical tools and infrastructure used to support digital work                              | Software, servers, networks, devices, databases                                                        |
 | **Information System (IS)**     | The full arrangement of people, processes, data, and technology that supports work and decisions | A complete sales process that uses software, shared data standards, dashboards, and follow-up routines |
 
-![Slide 7: Efficiency, Effectiveness, and KPIs](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-07)
+![Venn diagram showing the intersection of Information Technology, Information Systems, and Business Management](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-ven)
+
+_Figure 2.29 — The relationship between Information Technology, Information Systems, and Business Management._
+
+![Efficiency, effectiveness, and KPIs slide](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-07)
+
+_Figure 2.30 — Efficiency, effectiveness, and KPIs._
 
 This distinction matters because many organizations treat system problems as software problems. Sometimes the real issue is unclear data, weak processes, poor training, low trust, or a mismatch between the system and the work.
 
-Consider a coffee shop that installs a new point-of-sale system. The software is modern and the hardware works. But if the shop does not train staff on how to enter orders consistently, does not define what each menu button means, and does not check whether the end-of-day reports match the cash drawer, the data will be unreliable. The technology is in place, but the information system has failed — because the people and process components were neglected.
+Consider an online retailer that installs a new order-management system. The software is modern and the hardware works. But if the company does not train staff on how to enter orders consistently, does not define what each order status means, and does not check whether the end-of-day reports match actual shipments, the data will be unreliable. The technology is in place, but the information system has failed — because the people and process components were neglected.
 
 <div class="callout avoid">
   <p><strong>❌ Avoid: Buying a tool is not building a system</strong></p>
   <p>A CRM application is information technology. A sales process that defines what customer stages mean, trains staff to update records consistently, uses dashboards in weekly review meetings, and follows up on overdue opportunities is an information system. Buying the tool does not guarantee the system.</p>
 </div>
 
-## The Five-Component Framework
+#### The Five-Component Framework
 
 One useful way to describe an information system is the **five-component framework** (Kroenke & Boyle, 2021).
 
@@ -458,26 +492,79 @@ One useful way to describe an information system is the **five-component framewo
 
 All five components matter. A system can fail because the hardware is unreliable, the software is confusing, the data is inaccurate, the process is weak, or people do not trust or use the system well. A database project is therefore never only a database project. It is also a people project, a process project, and a decision-making project.
 
-![The Five-Component Framework](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-08)
-*The five components of an information system.*
+![The five-component framework](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-08)
+
+_Figure 2.31 — The five components of an information system._
 
 People are especially important because they define goals, interpret outputs, and choose actions. Hardware and software can automate parts of the process, but they do not decide what the organization should value or how competing goals should be balanced. That is why business courses pay such close attention to the managerial side of systems.
 
 In the online-retailer example, hardware includes scanners, warehouse devices, and servers. Software includes the storefront, payment platform, order-management system, and database. Data includes orders, inventory counts, delivery timestamps, and complaint records. Processes define how orders are validated, packed, shipped, and refunded. People include customers, warehouse staff, managers, analysts, and support agents. If delivery times worsen, the cause could lie in any one of the five components or in the relationships among them.
 
+A practical way to use this framework is to ask what happens when one component fails:
+
+| Component Problem | What Goes Wrong                            | Business Result                                     |
+| ----------------- | ------------------------------------------ | --------------------------------------------------- |
+| Hardware issue    | Scanners or servers fail                   | Inventory records and orders become inaccessible    |
+| Software issue    | Interface is confusing or buggy            | Employees enter wrong data or bypass the system     |
+| Data issue        | Duplicate or inconsistent customer records | Reports become unreliable, customer service suffers |
+| Process issue     | No standard return or refund workflow      | Refunds are inconsistent, customers lose trust      |
+| People issue      | Staff do not trust or use the dashboard    | Decisions revert to guesswork despite good data     |
+
+When a system underperforms, the cause could lie in any one component. Fixing the right component requires asking the right diagnostic question: is this a technology problem, a data problem, a process problem, or a people problem?
+
 ![The five components of an information system working together](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-components)
 
-_Figure 2.18 — Information systems work only when hardware, software, data, processes, and people support one another._
+_Figure 2.32 — Information systems work only when hardware, software, data, processes, and people support one another._
+
+![Components of an Information System — hardware, software, data, processes, people, and networks in a unified framework](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-components-of-is)
+
+_Figure 2.33 — Components of an Information System: hardware, software, data, processes, people, and networks working together._
 
 <div class="callout tip">
   <p><strong>💡 Tip: Remember the five components with a simple frame</strong></p>
   <p>Hardware is the machinery. Software is the logic. Data is the raw material. Processes are the rules. People give the system purpose. All five must work together for the system to deliver value.</p>
 </div>
 
+One more element connects all five components: **networks**. A network is a system of interconnected devices that can share data and resources. Networks are the backbone of communication in modern business, enabling everything from email to real-time collaboration and cloud access. They can be local, such as a **Local Area Network (LAN)** that connects computers within a single office, or vast, like a **Wide Area Network (WAN)** that connects multiple offices across the globe. The Internet is the largest WAN of all, providing a global platform for commerce, communication, and cloud-based information systems. Without networks, each component of an information system would operate in isolation.
+
+#### Common Types of Business Information Systems
+
+Organizations use many different kinds of information systems. Each type serves a distinct purpose, supports different decisions, and depends on quality data.
+
+![Types of business information systems organized by organizational level and business function](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-types-of-business-is)
+
+_Figure 2.34 — Types of business information systems organized by organizational level and business function._
+
+The table below introduces the most common categories.
+
+| Type                                | Main Purpose                            | Example                                              | Main Decision Level    |
+| ----------------------------------- | --------------------------------------- | ---------------------------------------------------- | ---------------------- |
+| Transaction Processing System (TPS) | Records daily business activity         | Sales entries, order processing, attendance tracking | Operational            |
+| Management Information System (MIS) | Summarizes activity for managers        | KPI reports, weekly performance dashboards           | Managerial             |
+| Decision Support / BI System        | Supports analysis and comparison        | Power BI dashboards, forecasting, what-if modeling   | Managerial / Strategic |
+| Enterprise System                   | Integrates major business functions     | ERP, CRM, HR systems                                 | Cross-functional       |
+| Executive Information System (EIS)  | Supports senior executive decisions     | Strategic dashboards, KPI scorecards, market trends  | Strategic              |
+| Knowledge / Collaboration System    | Helps people share and find information | Microsoft Teams, SharePoint, knowledge bases         | Organizational         |
+
+Notice how each system type depends on the same foundations this chapter has already established. A TPS needs accurate data entry. An MIS needs consistent definitions and trustworthy KPIs. A BI system needs clean, well-structured data to produce meaningful analysis. An enterprise system such as **ERP** integrates all core business functions — operations, finance, HR, and sales — into a single unified suite with a central database, providing one source of truth across the organization. An EIS gives senior leaders a high-level graphical overview of key performance indicators. A collaboration system needs clear processes so people know what information to share and where to find it.
+
+Databases are not the whole information system in any of these categories, but they often form its memory. They store the records that systems process, retrieve, report, and analyze. That is why the next chapters move from broad information-system concepts into data, databases, tables, relationships, and queries. Later in the book, you will see these system types again — transaction processing in Chapter 4, MIS reporting in Chapter 5, BI and analytics in Chapters 9 and 14, and enterprise and strategy concerns in Chapter 15.
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Why System Design Matters
+### How IT Transforms Business Functions
+
+Information systems are not implemented for their own sake. They are deployed to solve problems and create value in specific areas of the business.
+
+- **Operations:** IT has revolutionized how companies produce goods and deliver services. **Supply Chain Management (SCM)** systems use real-time data to track inventory, manage logistics, and coordinate with suppliers, reducing costs and minimizing delays. In manufacturing, automation and robotics controlled by software increase production speed and precision.
+- **Marketing and Sales:** The internet and data analytics have fundamentally changed marketing. Digital marketing allows companies to reach a global audience through websites, social media, and targeted advertising. Customer Relationship Management (CRM) systems store every interaction a customer has with a company, providing a complete view that helps sales teams personalize their approach and improve customer service.
+- **Finance and Accounting:** Financial software automates bookkeeping, invoicing, and financial reporting, dramatically reducing manual errors. These systems provide managers with real-time dashboards showing the financial health of the organization, enabling faster, more accurate decisions about budgeting, investment, and risk.
+- **Human Resources:** **Human Resource Information Systems (HRIS)** streamline payroll, benefits administration, and compliance. They also play a strategic role in talent management, helping HR professionals recruit, track applicant data, manage employee performance, and identify skill gaps.
+
+In each of these functions, the same pattern applies: technology turns scattered data into organized, accessible information that supports better decisions.
+
+### Why System Design Matters
 
 Design choices in information systems are never neutral. Decisions about what data to collect, how to structure it, how to present it, and who can access it directly shape what managers can see and act upon.
 
@@ -489,15 +576,18 @@ This is why information systems should be viewed as strategic assets rather than
 
 The five-component framework makes this practical. When a system underperforms, the cause could lie in any component. Hardware might be unreliable. Software might be confusing. Data might be inaccurate. Processes might be unclear. People might not trust or use the system well. Fixing the right component requires asking the right diagnostic question: is this a technology problem, a data problem, a process problem, or a people problem?
 
-# Managing Information Systems for Business Value
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-![MIS, BITM, Alignment, and Governance](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-mis-bitm-alignment-governance)
+### Managing Information Systems for Business Value
 
-_Figure 2.19 — MIS, BITM, Alignment, and Governance._
+![MIS, BITM, alignment, and governance](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-mis-bitm-alignment-governance)
+
+_Figure 2.35 — MIS, BITM, alignment, and governance._
 
 Information systems matter because they make better managerial action possible — not because the technology exists on its own. A system that no one trusts, no one uses, or no one connects to a real decision is just overhead. The next sections explore how organizations manage information systems to create business value: through MIS (managerial use of information), BITM (strategic management of technology), alignment (fitting systems to goals), and governance (deciding who decides).
 
-## Putting the Terms Side by Side
+#### Putting the Terms Side by Side
 
 Before going deeper, it helps to see the four key terms — IT, IS, MIS, and BITM — compared directly.
 
@@ -512,7 +602,9 @@ IT is the toolbox. IS is the workshop. MIS is the manager's view of the workshop
 
 ![Management information systems compared with business IT management](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-image-009)
 
-## Management Information Systems (MIS)
+_Figure 2.36 — Management information systems compared with business IT management._
+
+#### Management Information Systems (MIS)
 
 **Management Information Systems (MIS)** is the field of study and practice focused on using information systems to support managerial work, organizational coordination, and business performance.
 
@@ -526,19 +618,21 @@ MIS asks practical questions:
 
 MIS is not just about tools. It is about how information supports management. It supports planning through forecasting and trend analysis, organizing through workflow visibility and resource allocation, leading through communication and accountability, and controlling through KPIs, exception reports, and audit trails. An operations manager who uses daily reports on late shipments, return rates, and packing errors to decide whether to reassign labor or adjust service promises is doing the work MIS is designed to support.
 
-## Business Information Technology Management (BITM)
+#### Business Information Technology Management (BITM)
 
 **Business Information Technology Management (BITM)** focuses on how organizations select, design, govern, and adapt technology to support business goals.
 
 BITM is closely related to MIS, but it puts more emphasis on managing technology as a business resource. It asks which technologies an organization should invest in, how risks should be managed, and how technology value should be measured.
 
-In simple terms, MIS focuses on how information systems support management. BITM focuses on how technology choices are managed as strategic business decisions. The retailer uses MIS when managers monitor late shipments and return rates. It uses BITM when leadership decides whether to adopt a new order-management platform, redesign fulfillment workflows, retrain staff, and define who can approve major system changes.
+In simple terms, MIS focuses on how information systems support management. BITM focuses on how technology choices are managed as strategic business decisions. The online retailer uses MIS when managers monitor late shipments and return rates. It uses BITM when leadership decides whether to adopt a new order-management platform, redesign fulfillment workflows, retrain staff, and define who can approve major system changes.
 
-## Strategic Alignment
+#### Strategic Alignment
 
-**Strategic alignment** is the principle that information systems and technology investments should support the organization's goals, structure, and strategy (Henderson & Venkatraman, 1993). A system can be technically impressive and still fail if it does not fit the organization. A retailer that competes on low cost needs systems that support inventory control and operational discipline. A hospital that competes on quality needs systems that support accurate records, safe care, and coordinated decisions. The better question is not only, "Does the system work?" The better question is, "Does the system help the organization do what it is trying to do?"
+**Strategic alignment** is the principle that information systems and technology investments should support the organization's goals, structure, and strategy (Henderson & Venkatraman, 1993). A system can be technically impressive and still fail if it does not fit the organization. An online retailer that competes on low cost needs systems that support inventory control and operational discipline. A hospital that competes on quality needs systems that support accurate records, safe care, and coordinated decisions. The better question is not only, "Does the system work?" The better question is, "Does the system help the organization do what it is trying to do?"
 
-![Strategic Alignment](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-10)
+![Strategic alignment slide](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-10)
+
+_Figure 2.37 — Strategic alignment._
 
 Strategic alignment can support several common business aims:
 
@@ -548,7 +642,7 @@ Strategic alignment can support several common business aims:
 
 If the online retailer competes on fast and reliable delivery, its systems must support accurate inventory visibility, dependable checkout, timely shipping updates, and rapid issue resolution. If those capabilities are weak, the strategy fails in execution no matter how good the technology looks on paper.
 
-## Governance and Accountability
+#### Governance and Accountability
 
 **IT governance** refers to the decision rights, accountability structures, priorities, and oversight mechanisms used to guide technology investments and system use (Weill & Ross, 2004).
 
@@ -565,20 +659,31 @@ These questions matter because technology value is often harder to judge than ma
 
 Governance also matters because systems shape trust and accountability. Access controls, audit logs, data definitions, approval workflows, and ownership assignments all determine whether a system is safe, fair, and reliable. A technically capable system can still fail if no one knows who is responsible for data quality, security, or follow-up action.
 
+With the rise of digital data comes the risk of cyber threats. **Cybersecurity** is the practice of protecting systems, networks, and data from digital attacks, theft, and damage. It includes technical safeguards like firewalls, encryption, and antivirus software, as well as training employees to recognize phishing attacks and follow security procedures. No information system is complete without security.
+
+The ability to collect vast amounts of data also raises important ethical questions about privacy and consent. Businesses must be transparent about what data they collect and how they use it. Regulations like the **General Data Protection Regulation (GDPR)** in Europe set strict rules for handling personal data. Responsible information systems balance the power of data with the obligation to protect the people behind it.
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## Foundations That Carry Forward
+### Foundations That Carry Forward
 
-Organizations now work with cloud platforms, **artificial intelligence (AI)**, big data analytics, Internet of Things devices, automation tools, and digital transformation initiatives. These tools can be powerful, but they do not remove the need for strong foundations. Artificial intelligence still depends on data quality. Cloud systems still require governance. Dashboards still require clear definitions. Automation still requires good process design.
+Organizations now work with a new generation of technologies that extend the reach of information systems. These tools can be powerful, but they do not remove the need for strong foundations.
 
-![Innovation Paradox](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-innovation-paradox)
+- **Cloud Computing** delivers computing services — servers, storage, databases, and software — over the internet. Instead of owning and maintaining their own IT infrastructure, companies can rent access from providers like Amazon Web Services (AWS) or Microsoft Azure. This provides flexibility, scalability, and cost savings, but it does not remove the need for governance, security, or data quality.
+- **Artificial Intelligence (AI) and Machine Learning (ML)** enable systems to recognize patterns, make predictions, and automate decisions. AI is a broad field focused on creating machines that perform tasks requiring human intelligence. **ML**, a subset of AI, trains algorithms on large datasets to identify patterns. Businesses use AI for customer service chatbots, predictive analytics that forecast equipment failure, and recommendation engines that personalize shopping experiences. AI still depends on clean, well-structured data. When AI is added to a weak information system, it scales the weaknesses too.
+- **The Internet of Things (IoT)** refers to the vast network of physical devices — from vehicles to factory sensors to home appliances — embedded with sensors and software that connect and exchange data over the internet. In business, IoT sensors on machinery monitor performance in real time. In logistics, they track the location and condition of shipments. IoT generates enormous volumes of data, which makes database design and data quality more important, not less.
+- **Blockchain** is a secure, decentralized, and transparent way of recording transactions. While best known as the technology behind cryptocurrencies, its business applications include more secure supply chains, streamlined cross-border payments, and tamper-resistant digital records.
 
-_Figure 2.20 — Innovation Paradox: Technology value depends on process and organization._
+These technologies are exciting, but they all depend on the same foundations this chapter introduced. Artificial intelligence still depends on data quality. Cloud systems still require governance. Dashboards still require clear definitions. Automation still requires good process design. The tools change. The core challenge remains: turning data into useful, trustworthy, actionable intelligence.
 
-![Sweet Spot of Innovation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-sweet-spot-innovation)
+![Innovation paradox](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-innovation-paradox)
 
-_Figure 2.21 — Sweet Spot of Innovation: Intersection of technology, business, and human needs._
+_Figure 2.38 — Innovation paradox: technology value depends on process and organization._
+
+![Sweet spot of innovation](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-sweet-spot-innovation)
+
+_Figure 2.39 — Sweet spot of innovation: intersection of technology, business, and human needs._
 
 <div class="callout info">
   <p><strong>ℹ️ AI connection: New tools, same foundations</strong></p>
@@ -587,13 +692,16 @@ _Figure 2.21 — Sweet Spot of Innovation: Intersection of technology, business,
 
 The tools change. The core challenge remains. Organizations still need to turn data into useful, trustworthy, actionable intelligence.
 
-![Foundations Leading into Data Fundamentals](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-foundations-leading-data-fundamentals)
+![Foundations leading into data fundamentals](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/bitm330book/ch02-mis-and-bitm/ch02-foundations-leading-data-fundamentals)
 
-_Figure 2.22 — Foundations Leading into Data Fundamentals._
+_Figure 2.40 — Foundations leading into data fundamentals._
 
-# Apply the Concepts
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
 
-Before moving on, test your understanding by working through a short exercise. Choose a business you know — a coffee shop, a campus office, a delivery app, a streaming service, or any organization you interact with regularly. For that business, answer these five questions in order:
+### Apply the Concepts
+
+Before moving on, test your understanding by working through a short exercise. Choose a business you know — an online retailer, a coffee shop, a campus office, a streaming service, or any organization you interact with regularly. For that business, answer these five questions in order:
 
 1. **Identify a business need.** What problem or opportunity does the organization face?
 2. **Identify relevant data.** What records, measurements, or observations would help address that need?
@@ -603,11 +711,14 @@ Before moving on, test your understanding by working through a short exercise. C
 
 This exercise is not about getting a perfect answer. It is about practicing the habit of connecting data, systems, and decisions — the habit this entire book is designed to build.
 
-![The data-to-performance Chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-11)
+![The data-to-performance chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-slide-11)
 
-*The data-to-performance Chain.*
+_Figure 2.41 — The data-to-performance chain._
 
-# Chapter Summary
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Chapter Summary
 
 Chapter 2 explained why information systems matter for business performance.
 
@@ -615,24 +726,24 @@ The chapter began with the basic question of what data is and how it gains meani
 
 The chapter then defined a business as a value-creating system that transforms inputs into outputs under constraints. The Input-Process-Output model offered a simple way to understand that transformation. The discussion of efficiency, effectiveness, KPIs, and decision levels showed how organizations judge whether they are performing well and how the same data supports different kinds of decisions.
 
-From there, the chapter explained why organizations need information systems — and what those systems actually are. It distinguished information systems from information technology, added the five-part operating loop (input, processing, storage, output, feedback), and used the five-component framework to show that hardware, software, data, processes, and people all matter.
+From there, the chapter explained why organizations need information systems — and what those systems actually are. It distinguished information systems from information technology, added the five-part operating loop, and used the five-component framework — hardware, software, data, processes, people, and the networks that connect them. The chapter also introduced the most common types of business information systems — TPS, MIS, BI/DSS, enterprise, EIS, and collaboration systems — and showed how IT transforms operations, marketing, finance, and HR.
 
-Finally, the chapter connected systems to management with a side-by-side comparison of IT, IS, MIS, and BITM. MIS emphasizes the managerial use of information. BITM emphasizes technology as a strategic business resource. Strategic alignment explains why systems must fit organizational goals. IT governance explains how decision rights, accountability, risk, and value review shape results.
+Finally, the chapter connected systems to management with a side-by-side comparison of IT, IS, MIS, and BITM. MIS emphasizes the managerial use of information. BITM emphasizes technology as a strategic business resource. Strategic alignment explains why systems must fit organizational goals. IT governance explains how decision rights, accountability, risk, and value review shape results. The chapter closed with cybersecurity, data ethics, and the emerging technologies — cloud, AI, IoT, and blockchain — that extend the reach of information systems while depending on the same foundations.
 
 This foundation matters because the rest of the book builds directly on it. Chapter 3 examines data itself — classification, structure, metadata, and governance. Chapter 4 introduces databases as the core technology for reliable data management. Every later chapter — on SQL, the relational model, normalization, analytics, and strategy — depends on the ideas established here: that data gains meaning through organization, that systems are more than tools, and that performance improves when managers connect information to action.
 
 <!-- MEDIA HANDOFF: Uploaded to Cloudinary by user override -->
-![Chapter 2 Summary: Foundations of Information Systems — from data to business performance](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-all)
+![Chapter 2 at a glance: foundations of information systems, connecting data, systems, management, and performance](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch02-mis-and-bitm/ch02-all)
 
-_Figure 2.23 — Chapter 2 at a glance: foundations of information systems, connecting data, systems, management, and performance._
+_Figure 2.42 — Chapter 2 at a glance: foundations of information systems, from data to business performance._
 
-![The Data-to-Performance Chain](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-chain-blueprint)
+![The data-to-performance chain blueprint](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch02-mis-and-bitm/ch02-data-to-performance-chain-blueprint)
 
-*The Data-to-Performance Chain.*
+_Figure 2.43 — The data-to-performance chain: connecting data, decisions, and outcomes._
 
 ---
 
-# References
+## References
 
 Ackoff, R. L. (1989). From data to wisdom. *Journal of Applied Systems Analysis, 16*(1), 3-9.
 

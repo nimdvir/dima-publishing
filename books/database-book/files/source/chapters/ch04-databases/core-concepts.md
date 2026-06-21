@@ -1,0 +1,662 @@
+<!-- metadata: date="2026-06-22" -->
+# Chapter 4: Introduction to Databases
+
+This chapter introduces databases as structured systems that replace fragile file environments — covering DBMS architecture, relational tables, primary and foreign keys, constraints, and the bridge from spreadsheets to governed, multi-user data systems. It marks the transition from Chapter 3's data fundamentals into the database side of the book's arc.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Core Concepts
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
+</p>
+
+<p align="center"><em>Core Concepts introduces the main ideas, examples, and diagrams that explain how databases create reliable structure for organizational data.</em></p>
+
+## Why Databases Matter
+
+Nearly everything modern organizations do with information depends on databases. A customer portal, retail checkout system, payroll application, student record system, and streaming recommendation engine all rely on stored data that is organized well enough to support reliable retrieval and decision-making.
+
+Think about a point-of-sale system in a retail store. The cashier sees a simple screen. Under that screen, a database keeps product, price, tax, inventory, and transaction data consistent enough for the business to operate. If the database is unreliable, the visible system may still look polished, but the company will struggle with incorrect prices, wrong inventory counts, and misleading reports.
+
+The same logic applies to the Grading Database from Chapter 3's Let's Build and to the PetVax veterinary clinic you started in Lab 03. At first, student grades or pet appointments can be tracked in a spreadsheet. But once those records need to be reused, validated, queried, shared, and reported, the structure must become more disciplined. That is the point where databases become necessary.
+
+Databases matter because they turn scattered records into shared organizational infrastructure.
+
+| Capability                      | Why It Matters                                                                          |
+| ------------------------------- | --------------------------------------------------------------------------------------- |
+| **Centralized source of truth** | Everyone works from the same official data rather than competing copies.                |
+| **Reduced redundancy**          | Important facts are stored once and referenced where needed.                            |
+| **Improved accuracy**           | Rules and constraints prevent many bad values from entering the system.                 |
+| **Historical analysis**         | Stored records allow organizations to study patterns over time.                         |
+| **Timely access**               | Users and applications can retrieve current information when decisions need to be made. |
+| **Shared governance**           | Ownership, access, and quality rules can be managed more consistently.                  |
+
+These strengths connect directly to the R.E.A.D. framework from earlier in the book: databases represent data in structured form, make it expressible through reports and queries, associate related records, and support deployment when trustworthy information leads to action.
+
+![Audio - Connecting Database Design to Business Decisions](../../../../.images/Ch4%20Databases/media/Connecting_Database_Design_to_Business_Decisions.m4a)
+*Audio: Connecting Database Design to Business Decisions - A discussion on why structural database design rules directly affect organizational performance.*
+
+*Audio summary: In this brief discussion, we examine the direct link between database structural integrity and business performance. Design rules such as primary keys, foreign keys, and unique constraints prevent operational chaos and keep reports, dashboards, and decisions built on verifiable truth.*
+
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: Databases are organizational infrastructure</strong></p>
+  <p>Databases help organizations improve coordination, accountability, and business performance.</p>
+</div>
+
+![Figure 4.9 — Shared database and outputs](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-41a-one-shared-database-multiple-outp)
+*Figure 4.9 — One shared database supports multiple users, outputs, and decisions across the organization.*
+
+![Figure 4.10 — Shared Database Hub](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-datbase-in-center)
+*Figure 4.10 — Hub-and-spoke view of a centralized database driving business operations across different organizational roles.*
+
+![Figure 4.11 — Data Management Lifecycle](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-datamanagement-lifecyclecreate)
+*Figure 4.11 — One transaction coordinating inventory, sales, and loyalty updates.*
+
+## What a Database and DBMS Are
+
+A database is a structured collection of related data designed for reliable storage, retrieval, and management. In business settings, it serves as the official record of activity. It stores facts about customers, products, transactions, students, grades, employees, inventory, and operations in a form that can be reused and trusted over time.
+
+Students often use the words database, DBMS, and **database system** as if they mean the same thing. They do not.
+
+| Term                | Meaning                                                                                | Grading Example                                                       | PetVax Example                                                                    |
+| ------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Database**        | The structured collection of related data and metadata                                 | The Grading tables, relationships, and rules                          | The pet, owner, appointment, and vaccine tables                                   |
+| **DBMS**            | The software engine that creates, manages, queries, secures, and administers databases | Access, SQLite, PostgreSQL                                            | Access managing the PetVax tables                                                 |
+| **Database system** | The full arrangement of users, applications, DBMS, and database                        | A grade-entry form connected to Access tables through the Access DBMS | An appointment form used by clinic staff, the Access DBMS, and the PetVax reports |
+
+A simple distinction helps: the database holds records according to rules, the DBMS manages and protects those records, and the database system includes the people and applications that use them.
+
+Database systems also separate **data storage** from **data processing**. Storage preserves organized records over time. Processing retrieves, filters, summarizes, or updates those records. When storage is stable, many analyses can run without damaging the underlying data.
+
+The database approach also separates the **logical view** from the **physical view**. The logical view is what users see: tables, columns, relationships, and query results. The physical view is how the DBMS stores and optimizes the data behind the scenes. This gives users **data independence**.
+
+For example, a DBMS might add an **index** so grade lookups run faster. The professor still sees the same `STUDENT` and `STUDENT_GRADE` tables, and the grade-entry form does not need to be rewritten. The storage strategy changed, but the user's logical view stayed stable.
+
+```mermaid
+graph TB
+    A["Users"] --> B["Applications"]
+    B --> C["DBMS"]
+    C --> D["Database"]
+```
+
+![Figure 4.12 — Database system layers](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-43b-database-system-layerscreate-a)
+*Figure 4.12 — Users, applications, the DBMS, and the database shown as a layered system.*
+
+When a professor enters a quiz score through a form, several layers work together. The **database application** captures the input. The DBMS checks that the student exists and that the score is valid. The database stores the result according to its rules. The professor sees one screen, but the system is doing more than file storage.
+
+<div class="callout good-practice">
+  <p><strong>✅ Good Practice: Diagnose by layer</strong></p>
+  <p>When diagnosing a data problem, ask which layer is failing: the stored structure, DBMS settings, application interface, or human process.</p>
+</div>
+
+![Figure 4.13 — Grading Database Process Preview](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-grading-database-preview)
+*Figure 4.13 — A quiz score moving from form entry to DBMS validation and storage.*
+
+![Figure 4.14 — Logical vs. Physical Views](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-logical-vs-physical-views-of-data)
+*Figure 4.14 — Logical tables and fields separated from physical storage and indexes.*
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Why Spreadsheets and File Systems Break Down
+
+![Figure 4.15 — Spreadsheet vs. Database Strengths](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-spreadsheet-vs-database-strengths)
+*Figure 4.15 — High-level contrast between flexible spreadsheet sheets and structured database tables.*
+
+### From Spreadsheets to File Silos
+
+Spreadsheets are useful. They are flexible, visual, and easy to start with. For quick calculations, small local datasets, and early exploration, they are often the right first tools.
+
+![Figure 4.16 — Spreadsheet Limitations](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-spreadsheet-vs-database-detailed)
+*Figure 4.16 — Common structural failures in multi-theme spreadsheet files compared to relational structures.*
+
+![Figure 4.17 — Siloed File Systems](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-database-vs-filesystem)
+*Figure 4.17 — Inconsistencies and redundancies when customer records are scattered across billing, sales, and support files.*
+
+But spreadsheets are not databases. A spreadsheet behaves like a flexible grid where users can often type almost anything into almost any cell. That flexibility helps at first, but it also means the system may not enforce what a column means, what type of value belongs there, or how one sheet relates to another.
+
+Imagine tracking the Grading Database in one spreadsheet. Every row contains a student's name, email, deliverable type, deliverable number, due date, and score. For 30 students and 20 deliverables, the same student name and email may repeat hundreds of times. If one email changes, every copy must be updated. Miss one, and the spreadsheet now contains conflicting versions of the truth.
+
+That problem grows in the traditional **file environment**. Before databases became standard, organizations often stored data in separate departmental files: billing, sales, support, and more. Each file may contain part of the same customer record, but not the same version.
+
+The classic problems of the file environment are straightforward:
+
+| Problem                     | What It Means                               | Business Result                           |
+| --------------------------- | ------------------------------------------- | ----------------------------------------- |
+| **Redundancy**              | The same fact is stored in many places      | Waste and repeated updates                |
+| **Inconsistency**           | Different copies stop matching              | Conflicting reports and bad decisions     |
+| **Program-data dependence** | Programs are tightly tied to file structure | Small file changes break reports and apps |
+| **Low flexibility**         | It is hard to combine data across sources   | Slow, fragile analysis                    |
+| **Weak control**            | Rules and access are often informal         | More errors and less trust                |
+
+Spreadsheets also struggle with modification anomalies when too many facts are mixed into one flat table.
+
+| Anomaly               | What Happens                                    | Grading Example                                                                        |
+| --------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Insertion anomaly** | You cannot add one kind of fact without another | A new deliverable cannot be recorded cleanly until a student has a score               |
+| **Update anomaly**    | One fact must be changed in many rows           | A student's email must be updated everywhere it appears                                |
+| **Deletion anomaly**  | Removing one row removes another fact too       | Deleting the last score for a deliverable erases evidence that the deliverable existed |
+
+### Anomalies in Flat Tables
+
+Spreadsheet users often try to avoid these problems with lookup formulas such as `VLOOKUP` or `XLOOKUP`. Those tools can help, but they are still workarounds. They do not create enforced relationships, shared integrity rules, or real centralized storage.
+
+You met every one of these problems in Lab 03. The table below ties what you felt in the PetVax sheet back to the formal database concepts in this chapter.
+
+![Figure 4.18 — Flat Table vs. Related Tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-one-big-table-vs-related-tablesc)
+*Figure 4.18 — Insertion, update, and deletion anomalies in a single flat table.*
+
+| Lab 03 problem                                             | Database concept                           |
+| ---------------------------------------------------------- | ------------------------------------------ |
+| Sarah Perry's email changed in one row only                | Update anomaly                             |
+| Rex could not be stored cleanly without an appointment     | Insertion anomaly                          |
+| Deleting Angel's appointment erased evidence Angel existed | Deletion anomaly                           |
+| A fixed `FILTER()` range missed newly added rows           | Query fragility                            |
+| Two pets named Charlie or Coco could not be told apart     | Need for stable identifiers (primary keys) |
+| One pet (Coco) had two owners                              | Need for related tables and a link table   |
+
+![Figure 4.19 — File environment vs database](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-file-vs-db)
+*Figure 4.19 — File silos compared with the centralized database approach.*
+
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Neat-looking does not mean reliable</strong></p>
+  <p>A spreadsheet may look neat while quietly allowing inconsistent dates, duplicate records, missing values, and fragile relationships.</p>
+</div>
+
+## The Database Approach
+
+The **database approach** answers these problems by storing related facts in structured tables, documenting the structure with metadata, using keys to identify and connect records, and enforcing rules through the DBMS.
+
+![Figure 4.20 — Separating Subjects into Related Tables](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-users-to-tables)
+*Figure 4.20 — How moving customer and order subjects to independent tables eliminates redundancy.*
+
+![Figure 4.21 — Relational Data Integration](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch04-databases/ch04-data-flow)
+*Figure 4.21 — Flow diagram demonstrating data integration through metadata, keys, constraints, and shared queries.*
+
+![Figure 4.22 — Data Hierarchy](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-hierarchy)
+*Figure 4.22 — The data hierarchy, showing how bits build fields, fields build records, and records build tables in a database.*
+
+The contrast is sharp when you place the two approaches side by side.
+
+| Spreadsheet or flat file                     | Database approach                                  |
+| -------------------------------------------- | -------------------------------------------------- |
+| One big sheet mixes many subjects            | Separate tables store different subjects           |
+| Repeated facts are typed many times          | Shared facts are stored once and referenced        |
+| Formulas simulate connections between sheets | Keys define real relationships between tables      |
+| Users manually try to avoid errors           | Constraints enforce many rules automatically       |
+| Queries depend on fragile ranges             | Queries use table and field names                  |
+| One file may become many conflicting copies  | One database can serve as a shared source of truth |
+
+You do not need to know how to design tables yet. The point for now is that the database approach is a different way of thinking about data, not just a fancier spreadsheet. The rest of this chapter unpacks the pieces that make it work.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Tables, Keys, and Constraints
+
+### Rows, Columns, and Table Rules
+
+At the heart of a relational database is the **relational table**. A table stores data about one subject in a clear and consistent way. Rows, also called records, represent individual instances. Columns, also called fields or attributes, represent characteristics of those instances. Each cell contains one value for one attribute of one record.
+
+![Figure 4.23 — Relational Table Anatomy](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-anatomy-of-a-relational-tablecre)
+*Figure 4.23 — Structure of a relational table, highlighting columns (attributes), rows (records), and cells.*
+
+![Figure 4.24 — Table Design Discipline](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-normalization)
+*Figure 4.24 — Disciplined single-theme table compared with a mixed table.*
+
+Here is a simple `STUDENT` table:
+
+| StudentID | FirstName | LastName | Email                | Birthday   |
+| --------- | --------- | -------- | -------------------- | ---------- |
+| 1001      | Maria     | Santos   | `msantos@albany.edu` | 2003-05-14 |
+| 1002      | James     | Chen     | `jchen@albany.edu`   | 2002-11-22 |
+| 1003      | Aisha     | Rahman   | `arahman@albany.edu` | 2004-01-08 |
+
+Each row represents one student. Each column has one clear meaning. The table works well because the structure is disciplined.
+
+Relational tables follow a few core rules:
+
+| Rule                                               | Why It Matters                                                |
+| -------------------------------------------------- | ------------------------------------------------------------- |
+| **Each table has a unique name**                   | Queries and documentation can refer to it without ambiguity   |
+| **Each row represents one instance of one entity** | Student facts do not get mixed with deliverable facts         |
+| **No two rows are identical**                      | The database can distinguish one record from another          |
+| **Each cell contains one atomic value**            | Filtering, sorting, and aggregation stay possible             |
+| **Each column has one clear meaning**              | Users and systems interpret values consistently               |
+| **Values in a column follow a consistent type**    | Dates behave like dates, numbers like numbers, text like text |
+| **Rows must be uniquely identifiable**             | A specific record can be found and referenced reliably        |
+| **Row and column order do not create meaning**     | Data is retrieved by names and values, not by position        |
+
+When database designers document a table, they often use a compact schema notation:
+
+```text
+STUDENT(StudentID, FirstName, LastName, Email, Birthday)
+```
+
+The table name is usually written in all caps, and column names appear inside parentheses. The notation is simple, but the rule behind it matters: a table should have one clear subject, clearly named attributes, and a reliable way to identify each row.
+
+### Primary and Foreign Keys
+
+Keys make this structure usable. A key is one or more columns used to identify a row. A **primary key** is the key chosen as the official unique identifier for a table. It uniquely identifies each row and can never be `NULL`. A **foreign key** is a column in one table that references the primary key of another table.
+
+Primary keys solve a practical business problem: names are not unique, emails change, and descriptive fields can be duplicated. A well-designed database should not depend on a student's name to identify that student. It should use a stable identifier such as `StudentID`. The same logic applies to PetVax. `PetName = Coco` is not enough, because two pets can share a name and one pet can have two owners. A stable `PetID` identifies the pet, and a separate link table can connect a pet to more than one owner.
+
+![Figure 4.25 — Slide 10: Nominal Data](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-010)
+*Figure 4.25 — Nominal values are labels with no ranking, such as major or ID.*
+
+![Data measurement levels compared side by side: nominal, ordinal, interval, and ratio with their key properties and business examples](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-levels)
+*Figure 4.25b. The four measurement levels — nominal, ordinal, interval, and ratio — compared across their defining properties, valid operations, and common business examples.*
+
+![Figure 4.26 — Primary and Foreign Key Connection](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-sql-relationships)
+*Figure 4.26 — How primary and foreign keys connect STUDENT and STUDENT_GRADE tables.*
+
+![Figure 4.27 — Key Types Definitions](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-keys)
+*Figure 4.27 — Terminology map for candidate, primary, composite, natural, and surrogate keys.*
+
+In the Grading Database, `STUDENT.StudentID` is a primary key. `STUDENT_GRADE.StudentID` is a foreign key that references it. That design lets student information be stored once while still linking each grade to the correct student.
+
+Those links also make SQL joins possible. In Chapter 5, you will join `STUDENT` to `STUDENT_GRADE` yourself and see how SQL uses matching key values to reconnect facts that were stored in separate tables. Without keys, the database would have no reliable way to know which grade belongs to which student.
+
+For now, focus on **primary keys** and **foreign keys**. Chapter 6 will go deeper into candidate, composite, natural, and surrogate keys. The practical rule for this chapter is simple: use a stable value to identify each row, then use matching key values to connect related rows.
+
+Surrogate keys, such as an auto-numbered `StudentID` or `GradeID`, are common because they are stable and short. Natural keys can work when the real-world value is controlled, but names, emails, and addresses often change.
+
+![Figure 4.28 — Slide 11: Ordinal Data](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-011)
+*Figure 4.28 — Ordinal values are ranked labels, such as class standing or course level.*
+
+<div class="callout good-practice">
+  <p><strong>✅ Good Practice: Identify rows with stable keys</strong></p>
+  <p>Names, emails, and addresses are useful attributes, but they often change. Use stable identifiers for primary keys.</p>
+</div>
+
+The same idea shows up clearly in PetVax.
+
+<div class="callout example">
+  <p><strong>🧪 Example: Why PetName is not enough</strong></p>
+  <p>In PetVax, two pets named Coco may visit the clinic, and one pet may have two owners. A stable <code>PetID</code> keeps each pet distinct and prepares the data for relationships you will build later.</p>
+</div>
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+### Constraints That Protect Data
+
+**Constraints** add another layer of protection. They are rules enforced by the DBMS. Some constraints protect identity. Some protect relationships. Others protect the values that may be entered into a field.
+
+![Figure 4.29 — DBMS Constraint Enforcement](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/ch04-databases/ch04-constraint-enforcementcreate-a-s)
+*Figure 4.29 — Constraint rules (NOT NULL, UNIQUE, CHECK, FOREIGN KEY) serving as structural filters for database input.*
+
+![Figure 4.30 — Dimensions of Data Quality](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-quality-dimensions)
+*Figure 4.30 — Data quality dimensions protected by database constraints.*
+
+| Constraint        | What It Protects                                       |
+| ----------------- | ------------------------------------------------------ |
+| **`NOT NULL`**    | Requires a value                                       |
+| **`UNIQUE`**      | Prevents duplicates in a field that should stay unique |
+| **`PRIMARY KEY`** | Ensures unique, non-null row identity                  |
+| **`FOREIGN KEY`** | Preserves valid relationships across tables            |
+| **`CHECK`**       | Restricts values to an allowed range or rule           |
+
+For example, `CHECK (Score BETWEEN 0 AND 100)` prevents impossible scores. A foreign key prevents a grade from referring to a missing student. `NOT NULL` can require an essential email address, score, or due date.
+
+Different platforms expose these ideas differently. SQLite and PostgreSQL write constraints directly in SQL. Microsoft Access uses table design settings such as required fields, **validation rules**, indexes, and the Relationships window. The vocabulary differs, but the protection is similar.
+
+A short SQLite-style table definition shows what these constraints look like in code:
+
+```sql
+CREATE TABLE STUDENT (
+    StudentID INTEGER PRIMARY KEY,
+    Email     TEXT    NOT NULL UNIQUE
+);
+
+CREATE TABLE STUDENT_GRADE (
+    GradeID    INTEGER PRIMARY KEY,
+    StudentID  INTEGER NOT NULL REFERENCES STUDENT(StudentID),
+    Score      NUMERIC CHECK (Score BETWEEN 0 AND 100)
+);
+```
+
+You do not need to write SQL like this yet. Notice only that the code includes the same rules from the constraints table: `PRIMARY KEY`, `NOT NULL`, `UNIQUE`, `REFERENCES`, and `CHECK`.
+
+These rules are part of the database's **metadata**: data about the database itself. A **data dictionary** collects table names, column names, data types, keys, relationships, and constraints in a form people can read.
+
+| Table           | Column      | Type    | Key                 | Rule                          |
+| --------------- | ----------- | ------- | ------------------- | ----------------------------- |
+| `STUDENT`       | `StudentID` | INTEGER | Primary             | Not null, unique              |
+| `STUDENT`       | `Email`     | TEXT    | None                | Not null, unique              |
+| `STUDENT_GRADE` | `StudentID` | INTEGER | Foreign → `STUDENT` | Must match a real `StudentID` |
+| `STUDENT_GRADE` | `Score`     | NUMERIC | None                | Between 0 and 100             |
+
+The DBMS uses this structural information to reject many bad values before they distort a report, dashboard, or decision.
+
+This chapter keeps keys and constraints introductory. For now, the main idea is simple: tables create structure, keys create identity and connection, constraints protect data quality, and metadata explains the rules the database is using.
+
+You will use this structure directly in Chapter 5 when SQL starts working against real tables. Chapter 6 will return to relationship design in more depth.
+
+![Figure 4.31 — Relational table structure](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-database-schema)
+*Figure 4.31 — A relational table shown with labeled columns, sample rows, and a clearly marked primary key.*
+
+## SQL and Platforms as the Next Step
+
+SQL, or Structured Query Language, is the standard language used to work with relational databases. SQL matters because it gives users and applications a consistent way to retrieve, filter, update, and summarize structured data.
+
+![Figure 4.32 — SQL Declarative Logic](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-sqlquestions)
+*Figure 4.32 — SQL translating a user's question into table, field, and condition logic.*
+
+![Figure 4.33 — Local vs. Server Architecture Spectrum](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-local-vs-server)
+*Figure 4.33 — Architectural spectrum contrasting lightweight, local file-based systems (Access, SQLite) with multi-user server databases (PostgreSQL).*
+
+At this stage, the goal is recognition, not deep SQL fluency. SQL is declarative: users state what result they want and let the DBMS decide how to retrieve it. Chapter 5 will build this skill directly.
+
+The same SQL logic works across many platforms because the relational structure is shared. A query that asks, "Which students scored above 90 on the midterm?" depends on tables, columns, keys, and conditions. The screen may look different in Access, SQLite, or Supabase, but the reasoning stays the same.
+
+This course uses three platforms because each teaches a different part of database work.
+
+| Platform                  | Best For                                  | What It Helps Students See                                   |
+| ------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
+| **Microsoft Access**      | Visual learning and small local databases | Tables, relationships, forms, and reports in one environment |
+| **SQLite**                | Lightweight SQL practice                  | Portable, file-based database behavior with little setup     |
+| **PostgreSQL / Supabase** | Shared and production-style systems       | Strong typing, multi-user access, and server-based workflows |
+
+![Figure 4.34 — Microsoft Access Objects](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-ms-access-objects)
+*Figure 4.34 — Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports.*
+
+The most useful architectural contrast is between local file-based databases and server-based databases. Access and SQLite are local or file-based tools. PostgreSQL is server-based. Local tools are easier to start with. Server systems are better when many users, applications, and services connect at the same time because the DBMS manages **concurrency**: rules that keep data consistent when users read or update records at once.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+### Microsoft Access as Your First Database Environment
+
+Microsoft Access is the first DBMS you will use in this course because it makes database concepts visible. Where SQLite shows you command-line output and PostgreSQL runs on a server, Access places tables, queries, forms, reports, and relationships together in one desktop environment. That makes Access a powerful learning tool.
+
+In Access, tables store data in rows and columns. Each row is a record. Each column is a field that holds one kind of value, such as a name, a date, or a number. A primary key field gives each row a stable identity. Foreign key fields connect rows across tables. These are the same concepts you saw in the `STUDENT` and `STUDENT_GRADE` tables earlier in this chapter.
+
+Access is different from Excel, and the difference matters. Excel encourages a flat worksheet where everything lives in one place. Access encourages you to separate subjects into their own tables and connect them through keys. In Excel, a student's email might appear in dozens of rows. In Access, the email is stored once in the `STUDENT` table and referenced everywhere it is needed. This shift, from one flat sheet to several connected tables, is the core idea behind relational databases.
+
+Queries are how you ask questions of the data. In Access, you can build queries visually using the Query by Example (QBE) window. You drag tables onto a canvas, draw lines between matching fields, and choose which columns to display. The QBE window is a beginner-friendly way to experiment with joins before you learn to write them in SQL. But QBE is intentionally limited. Some questions can only be answered by writing SQL directly, and Access lets you switch to SQL View to see and edit the underlying code. Chapter 5 will take you deeper into that skill.
+
+Forms and reports are the input and output surfaces of a database. A form gives users a clean way to enter or view records without working directly in a grid of cells. A report formats data for printing, sharing, or presenting. These objects make a database usable by people who are not database designers.
+
+This section gave you a conceptual overview of Access. Later in this chapter, the "Getting Hands-On with Microsoft Access" section walks through building a complete database from scratch — creating tables, setting primary keys, establishing relationships with referential integrity, and using sorting, filtering, and maintenance tools.
+
+<div class="callout info">
+  <p><strong>ℹ️ Access is a learning environment, not the only tool</strong></p>
+  <p>Access is one of three platforms used in this course. You will also work in SQLite for lightweight SQL practice and in PostgreSQL/Supabase for server-based, multi-user database work. The concepts you learn in Access are portable. The interfaces differ. The logic stays the same.</p>
+</div>
+
+<div class="callout info">
+  <p><strong>ℹ️ Sidebar: Access Is Still Evolving</strong></p>
+  <p>Microsoft Access has been around for decades, but it is still maintained as part of Microsoft 365. Recent updates include improvements to the SQL editor, modern chart types, a linked table manager, and a redesigned Relationships window. In this course, we focus on durable database concepts that outlast any single software version. But these updates help explain why Access remains useful as a teaching, prototyping, and small-business database environment.</p>
+</div>
+
+One final preview matters here. Early database work sometimes uses one big table because it keeps rows and columns visible. That simplicity can help students learn, but one big table becomes fragile when it repeats facts and mixes too many themes. Later chapters will show how related tables solve that problem.
+
+<div class="callout warning">
+  <p><strong>⚠️ Warning: Valid SQL can still produce weak insight</strong></p>
+  <p>SQL syntax can be correct while the business meaning is wrong. A system may let you average an ID field, but an identifier is not a meaningful measurement.</p>
+</div>
+
+![Figure 4.35 — Data Types and Analytical Uses](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-data-types-analytical-uses)
+*Figure 4.35 — Data types and measurement scales mapped to analytical use.*
+
+![Figure 4.36 — Slide 5: Core Types Transition](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-005)
+*Figure 4.36 — Transition from qualitative properties to measurable numbers.*
+
+![Figure 4.37 — Slide 6: Qualitative vs. Quantitative Data](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-006)
+*Figure 4.37 — Qualitative attributes compared with quantitative measurements.*
+
+![Figure 4.38 — Slide 7: Definitions & Examples](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-007)
+*Figure 4.38 — Qualities and numeric scale values as different forms of measurement.*
+
+![Figure 4.39 — Slide 8: Categorical and Numerical Data](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-008)
+*Figure 4.39 — Categorical classes compared with numerical scale values.*
+
+![Figure 4.40 — Slide 9: Categorical Data Characteristics](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-009)
+*Figure 4.40 — Categorical values can use numbers without becoming measurements.*
+
+![Figure 4.41 — Slide 12: Interval Data](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-012)
+*Figure 4.41 — Interval data has equal differences but no absolute zero.*
+
+![Figure 4.42 — Slide 13: Ratio Data](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-013)
+*Figure 4.42 — Ratio data has equal intervals and a true zero point.*
+
+![Figure 4.43 — Slide 14: Measurement Summary Matrix](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-014)
+*Figure 4.43 — NOIR summary matrix for query and analysis choices.*
+
+![Figure 4.44 — Course platform spectrum](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-dbms-compare)
+*Figure 4.44 — Access, SQLite, and PostgreSQL shown along a spectrum of database environments.*
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Getting Hands-On with Microsoft Access
+
+In the last chapter, you learned the theory behind relational databases — how they solve the problems of simple lists by organizing data into related tables. Now it is time to put that theory into practice. We will use **Microsoft Access**, a powerful and accessible **Database Management System (DBMS)** included in the Microsoft Office suite. Think of Access as your personal workshop for building and managing databases, allowing you to control your data with precision.
+
+### The Anatomy of an Access Database: Core Objects
+
+When you open an Access database, you are not just opening a single file. You are opening a container for several interconnected components called **objects**. Understanding these four main objects is key to mastering Access.
+
+1. **Tables:** This is the foundation of your database. A **table** is where all your data is stored, organized into columns (**fields**) and rows (**records**). Each table should represent a single theme, such as "Students" or "Products." To ensure every record is unique, one field is designated as the **Primary Key**, such as a StudentID number.
+
+2. **Queries:** If tables are where data lives, **queries** are how you ask it questions. A query allows you to retrieve and filter data based on specific criteria. For example, you could run a query to ask, "Show me all customers from New York who have placed an order in the last 30 days." Queries can pull data from one or multiple tables.
+
+3. **Forms:** Data entry directly into a table's grid (Datasheet View) can be clumsy and overwhelming. A **form** provides a clean, user-friendly interface for entering, viewing, and editing data one record at a time. It is like a digital version of a paper form, making the process more intuitive and less error-prone.
+
+4. **Reports:** When you need to present your data in a polished, professional format, you use a **report**. Reports are designed for printing or sharing as PDFs. They allow you to summarize and format data from your tables or queries into an easy-to-read layout, complete with titles, totals, and graphics.
+
+<!-- 🎨 Figure Suggestion: Screenshot of the Microsoft Access navigation pane showing the four object categories: Tables, Queries, Forms, and Reports, each with an example object listed underneath. The Access ribbon should be visible at the top. -->
+
+![The four core Microsoft Access objects: Tables, Queries, Forms, and Reports, organized in the navigation pane](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-ms-access-objects)
+*Figure 4.48. The Microsoft Access navigation pane organizes a database into Tables, Queries, Forms, and Reports.*
+
+These four objects give a database the power that a simple spreadsheet lacks. Tables hold the data safely. Queries let you find the right piece of information fast. Forms make data entry comfortable. Reports put the results in front of decision-makers.
+
+### Your Workspace: Datasheet View and Design View
+
+Within Access, you will primarily work in two different views.
+
+- **Datasheet View:** This is the classic spreadsheet-like grid of rows and columns. You use this view to enter, edit, and view the actual data in your table. It looks familiar, but the structure underneath is much stronger than a spreadsheet.
+
+- **Design View:** This is the behind-the-scenes view where you build the structure of your objects. In a table's Design View, you define the field names, set their **data types**, and designate the primary key. Design View is where you make the blueprint. Datasheet View is where you fill in the values.
+
+Choosing the right data type for each field is one of the most important design decisions you make. The table below shows the common data types available in Access.
+
+| Data Type  | Use                                |
+| ---------- | ---------------------------------- |
+| Short Text | names, emails, phone numbers, ZIP codes |
+| Long Text  | notes, comments, descriptions      |
+| Number     | counts, measurements, foreign keys |
+| Date/Time  | due dates, birthdays, timestamps   |
+| Currency   | prices, salaries, payment amounts  |
+| Yes/No     | true/false fields, status flags    |
+| AutoNumber | automatically generated unique IDs (ideal for primary keys) |
+
+One rule saves more beginners than any other: **Even when a value looks numeric, it may still belong in Short Text.** Phone numbers, ZIP codes, and student IDs are identifiers, not measurements. You will never add two ZIP codes together or average a set of phone numbers. Store them as Short Text unless you plan to calculate with them.
+
+<!-- 🎨 Figure Suggestion: Side-by-side or stacked comparison showing the same table in Design View (top/bottom pane with field names, data types, and Primary Key indicator) and Datasheet View (spreadsheet-like grid with sample data). Caption should explain that Design View defines structure while Datasheet View holds data. -->
+
+The two views work together. Every time you need to change what kind of data a field holds, switch to Design View. Every time you need to add or look up a record, switch to Datasheet View.
+
+### Building a Database from Scratch
+
+Creating a database in Access begins with a simple plan. Let us imagine we are building a database for a gym to track its members and their payments.
+
+**Step 1: Create a Blank Database.** First, open Access and create a new, blank database. Give it a clear, professional name. Good table and database names are short and descriptive: `STUDENT`, `GRADE`, `GymMembership`. Avoid vague names like `Table1`, `Stuff`, or `DataNewFinal2`. Access saves the entire database as a single `.accdb` file.
+
+<!-- 🎨 Figure Suggestion: Screenshot of the Microsoft Access startup screen showing the "Blank database" option, with the file name field populated as "GymMembership.accdb" and a Create button. -->
+
+**Step 2: Build Tables in Design View.** Instead of one big list, we will create two tables.
+
+For the **Members table**, switch to Design View and create these fields:
+
+| Field Name | Data Type  | Notes                                                             |
+| :--------- | :--------- | :---------------------------------------------------------------- |
+| MemberID   | AutoNumber | Set as Primary Key. Access assigns a unique number automatically. |
+| FirstName  | Short Text | Stores the member's first name.                                   |
+| LastName   | Short Text | Stores the member's last name.                                    |
+| JoinDate   | Date/Time  | Stores the date the member joined.                                |
+
+<!-- 🎨 Figure Suggestion: Screenshot of Access Table Design View showing the Members table with the four fields listed. The MemberID row should show the Primary Key icon (key symbol). The Data Type column should show AutoNumber for MemberID, Short Text for names, and Date/Time for JoinDate. -->
+
+For the **Payments table**, create these fields:
+
+| Field Name  | Data Type  | Notes                                                       |
+| :---------- | :--------- | :---------------------------------------------------------- |
+| PaymentID   | AutoNumber | Primary Key.                                                |
+| MemberID    | Number     | Links to the Members table. This will become a foreign key. |
+| PaymentDate | Date/Time  | When the payment was made.                                  |
+| Amount      | Currency   | The payment amount.                                         |
+
+<!-- 🎨 Figure Suggestion: Screenshot of Access Table Design View showing the Payments table with its four fields. The MemberID row should be highlighted or annotated to show that it is a Number type that will connect to the Members table. -->
+
+**Step 3: Establish Relationships.** This is the crucial step that turns two separate tables into a working database. Switch to the **Database Tools** tab and open the **Relationships** window. Add both tables. Draw a line from MemberID in the Members table to MemberID in the Payments table. Access displays a dialog box. Check the box labeled **Enforce Referential Integrity**. This rule prevents orphan records — a payment that does not belong to any existing member.
+
+<!-- 🎨 Figure Suggestion: Screenshot of the Access Relationships window showing the Members table and Payments table with a join line connecting MemberID to MemberID. The Edit Relationships dialog should be visible showing the Enforce Referential Integrity checkbox checked. The relationship type "One-To-Many" should be visible. -->
+
+Referential integrity is one of the most important ideas in database work. It means the database itself will block you from entering a payment for a member who does not exist. The DBMS protects your data even when you are not paying attention.
+
+### Interacting with Your Data
+
+Once your structure is built, you can start working with your information.
+
+#### Sorting and Filtering
+
+It is easy to get lost when you have hundreds of records. Access provides simple tools to organize and narrow down your data.
+
+- **Sorting:** With a single click, you can sort any column in ascending (A–Z, 1–10) or descending (Z–A, 10–1) order. Right-click any column header and choose the sort direction.
+
+<!-- 🎨 Figure Suggestion: Screenshot of Access Datasheet View with the right-click context menu open on a column header, showing "Sort A to Z" and "Sort Z to A" options. A few rows of GymMembership data should be visible. -->
+
+- **Filtering:** Filters let you temporarily hide records that do not meet your criteria.
+  - **Selection Filter:** The simplest filter. Highlight a value (for example, the city "Boston") and Access shows you only the records that match it exactly.
+  - **Filter by Form:** A more powerful tool that gives you a blank form where you can set multiple criteria. For example, you could find all members who joined after a certain date AND live in a specific zip code.
+
+<!-- 🎨 Figure Suggestion: Screenshot of Access showing Filter by Form in action. A blank form row should be visible with criteria entered in two fields (e.g., a date field and a text field). The toggle between Filter by Form and Datasheet View should be visible. -->
+
+#### Entering, Editing, and Deleting Data
+
+Once your tables are built, you enter data in Datasheet View. Type values row by row, using the **Tab** key to move across fields. Each row is a record. Each column is a field. To edit a record, click into the cell and change the value directly.
+
+To delete a record, click the gray row selector on the far left of the row and press **Delete**. Be careful: deleting a record permanently removes it unless you undo immediately. In a database with relationships and referential integrity enforced, Access will block you from deleting a record that other tables depend on — for example, a member who still has payment records.
+
+#### Essential Maintenance Utilities
+
+To keep your database running smoothly, Access includes two key utilities:
+
+- **Back Up Database:** Databases are valuable. This command creates a safe, duplicate copy of your database file, which is crucial for preventing data loss. Find it under the File tab, then Save As.
+
+<!-- 🎨 Figure Suggestion: Screenshot of the Access File > Save As menu showing the "Back Up Database" option highlighted. -->
+
+- **Compact and Repair:** Over time, as you add and delete data, Access files can become bloated and occasionally corrupted. This tool cleans up the file, reduces its size, and fixes any internal errors, keeping it fast and reliable. Find it under the Database Tools tab.
+
+<!-- 🎨 Figure Suggestion: Screenshot of the Access Database Tools ribbon tab showing the "Compact and Repair Database" button highlighted. -->
+
+<div class="callout good-practice">
+  <p><strong>✅ Good Practice: Back up before compacting</strong></p>
+  <p>Always back up your database before running Compact and Repair. The tool is safe, but no maintenance operation should be run without a backup. A backup takes seconds and can save hours of work.</p>
+</div>
+
+### From This Chapter to the Let's Build
+
+This section introduced the Access environment and the GymMembership example. The Chapter 4 Let's Build companion walks you through a different scenario — a GRADEBOOK database — with step-by-step instructions for creating tables, building forms, writing queries, and generating reports. Working through both examples will give you confidence with the Access environment.
+
+The hands-on skills you build here transfer to later chapters. In Chapter 5, you will learn to write SQL queries instead of building them visually. In Chapter 6, you will deepen your understanding of relationships and keys. Access remains your practice environment through all of it.
+
+<!-- PAGE BREAK -->
+<div style="page-break-after: always;"></div>
+
+## Summary
+
+Chapter 4 introduced databases as the structural foundation of reliable information systems. It showed why spreadsheets and file-based environments become fragile as data grows in importance, reuse, and scale.
+
+The chapter then explained the database approach. A database is the structured collection of related data. A DBMS is the software engine that manages it. A full database system also includes users and applications. Together, these layers help organizations store data once, reuse it widely, and protect it with shared rules.
+
+You also learned the basic structure of relational tables. Rows represent records. Columns represent attributes. Primary keys identify rows. Foreign keys connect tables. Constraints such as `NOT NULL`, `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY`, and `CHECK` help preserve trustworthy data.
+
+Finally, the chapter introduced SQL and the three course platforms at a high level, and then walked through building a real database in Microsoft Access from scratch — from blank file to related tables with referential integrity, sorting, filtering, and maintenance. That work prepares you for Chapter 5 SQL and Chapter 6 relationship design.
+
+You are now ready to talk about data using the right vocabulary, recognize when a spreadsheet has outgrown its role, create a database in Access with proper table structure and relationships, and read a simple table definition with a clear sense of what each rule is protecting. Keep one idea above all the others as you move on:
+
+<div class="callout key-takeaway">
+  <p><strong>🔑 Key Takeaway: A database is not just a better spreadsheet</strong></p>
+  <p>A database is a structured system for storing related data reliably, protecting it with rules, and making it reusable across questions, reports, applications, and decisions.</p>
+</div>
+
+![Figure 4.45 — ](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-summary)
+*Figure 4.45 — Databases, tables, SQL, and platforms brought together in one closing recap image.*
+
+![Figure 4.46 — Chapter 4 Learning Map](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-learning-map)
+*Figure 4.46 — Conceptual pathway from file system limitations to database tables, keys, constraints, and SQL.*
+
+![Figure 4.47 — Slide 15: Review & Team Exercise](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1200/Database-book-BITM330/ch04-databases/ch04-015)
+*Figure 4.47 — In-class review on data types, structure, and concept translation.*
+
+**Further Reading**
+
+Connolly, T., & Begg, C. (2015). *Database systems: A practical approach to design, implementation, and management* (6th ed.). Pearson.
+
+Date, C. J. (2004). *An introduction to database systems* (8th ed.). Pearson/Addison Wesley.
+
+Davenport, T. H., & Harris, J. G. (2017). *Competing on analytics: The new science of winning* (Updated ed.). Harvard Business Review Press.
+
+Elmasri, R., & Navathe, S. B. (2016). *Fundamentals of database systems* (7th ed.). Pearson.
+
+Hoffer, J. A., Venkataraman, R., & Topi, H. (2019). *Modern database management* (13th ed.). Pearson.
+
+Laudon, K. C., & Laudon, J. P. (2024). *Management information systems: Managing the digital firm* (18th ed.). Pearson.
+
+## Figures Index
+
+| Figure      | Section                                      | Caption                                                                                                                                  | Source file                                      |
+| ----------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Figure 4.2  | Introduction                                 | Lecture slide introducing how technology structures business processes and information flows.                                            | `ch04-001.png`                                   |
+| Figure 4.3  | Introduction                                 | Lecture slide reviewing qualitative, quantitative, categorical, and numerical data.                                                      | `ch04-004.png`                                   |
+| Figure 4.4  | Introduction                                 | Knowledge check connecting Chapter 3 data structures to Chapter 4 database concepts.                                                     | `ch04-003.png`                                   |
+| Figure 4.5  | Introduction                                 | Learning path from data structures and file limits to SQL queries.                                                                       | `ch04-002.png`                                   |
+| Figure 4.6  | Introduction                                 | Raw records become useful when a database organizes them for queries, reports, and decisions.                                            | `ch04-database-intro.png`                        |
+| Figure 4.7  | Introduction                                 | Roadmap tracking the transition from Chapter 3's data fundamentals to Chapter 4's database structures and Chapter 5's queries.           | `ch04-40b-chapter-roadmapcreate-a-textboo.png`   |
+| Figure 4.8  | Introduction                                 | Concept map illustrating how day-to-day user interactions link to underlying database structures.                                        | `ch04-chapter-4-concept-mapcreate-a-cl.png`      |
+| Figure 4.9  | Why Databases Matter                         | One shared database supports multiple users, outputs, and decisions across the organization.                                             | `ch04-41a-one-shared-database-multiple-outp.png` |
+| Figure 4.10 | Why Databases Matter                         | Hub-and-spoke view of a centralized database driving business operations across different organizational roles.                          | `ch04-datbase-in-center.png`                     |
+| Figure 4.11 | Why Databases Matter                         | One transaction coordinating inventory, sales, and loyalty updates.                                                                      | `ch04-datamanagement-lifecyclecreate.png`        |
+| Figure 4.12 | What a Database and DBMS Are                 | Users, applications, the DBMS, and the database shown as a layered system.                                                               | `ch04-43b-database-system-layerscreate-a.png`    |
+| Figure 4.13 | What a Database and DBMS Are                 | A quiz score moving from form entry to DBMS validation and storage.                                                                      | `ch04-grading-database-preview.png`              |
+| Figure 4.14 | What a Database and DBMS Are                 | Logical tables and fields separated from physical storage and indexes.                                                                   | `ch04-logical-vs-physical-views-of-data.png`     |
+| Figure 4.15 | Why Spreadsheets and File Systems Break Down | High-level contrast between flexible spreadsheet sheets and structured database tables.                                                  | `ch04-spreadsheet-vs-database-strengths.png`     |
+| Figure 4.16 | From Spreadsheets to File Silos              | Common structural failures in multi-theme spreadsheet files compared to relational structures.                                           | `ch04-spreadsheet-vs-database-detailed.png`      |
+| Figure 4.17 | From Spreadsheets to File Silos              | Inconsistencies and redundancies when customer records are scattered across billing, sales, and support files.                           | `ch04-database-vs-filesystem.png`                |
+| Figure 4.18 | Anomalies in Flat Tables                     | Insertion, update, and deletion anomalies in a single flat table.                                                                        | `ch04-one-big-table-vs-related-tablesc.png`      |
+| Figure 4.19 | Anomalies in Flat Tables                     | File silos compared with the centralized database approach.                                                                              | `ch04-file-vs-db.png`                            |
+| Figure 4.20 | The Database Approach                        | How moving customer and order subjects to independent tables eliminates redundancy.                                                      | `ch04-users-to-tables.png`                       |
+| Figure 4.21 | The Database Approach                        | Flow diagram demonstrating data integration through metadata, keys, constraints, and shared queries.                                     | `ch04-data-flow.png`                             |
+| Figure 4.22 | The Database Approach                        | The data hierarchy, showing how bits build fields, fields build records, and records build tables in a database.                         | `ch04-data-hierarchy.png`                        |
+| Figure 4.23 | Rows, Columns, and Table Rules               | Structure of a relational table, highlighting columns (attributes), rows (records), and cells.                                           | `ch04-anatomy-of-a-relational-tablecre.png`      |
+| Figure 4.24 | Rows, Columns, and Table Rules               | Disciplined single-theme table compared with a mixed table.                                                                              | `ch04-normalization.png`                         |
+| Figure 4.25 | Primary and Foreign Keys                     | Nominal values are labels with no ranking, such as major or ID.                                                                          | `ch04-010.png`                                   |
+| Figure 4.26 | Primary and Foreign Keys                     | How primary and foreign keys connect STUDENT and STUDENT_GRADE tables.                                                                   | `ch04-sql-relationships.png`                     |
+| Figure 4.27 | Primary and Foreign Keys                     | Terminology map for candidate, primary, composite, natural, and surrogate keys.                                                          | `ch04-keys.png`                                  |
+| Figure 4.28 | Primary and Foreign Keys                     | Ordinal values are ranked labels, such as class standing or course level.                                                                | `ch04-011.png`                                   |
+| Figure 4.29 | Constraints That Protect Data                | Constraint rules (NOT NULL, UNIQUE, CHECK, FOREIGN KEY) serving as structural filters for database input.                                | `ch04-constraint-enforcementcreate-a-s.png`      |
+| Figure 4.30 | Constraints That Protect Data                | Data quality dimensions protected by database constraints.                                                                               | `ch04-data-quality-dimensions.png`               |
+| Figure 4.31 | Constraints That Protect Data                | A relational table shown with labeled columns, sample rows, and a clearly marked primary key.                                            | `ch04-database-schema.png`                       |
+| Figure 4.32 | SQL and Platforms as the Next Step           | SQL translating a user's question into table, field, and condition logic.                                                                | `ch04-sqlquestions.png`                          |
+| Figure 4.33 | SQL and Platforms as the Next Step           | Architectural spectrum contrasting lightweight, local file-based systems (Access, SQLite) with multi-user server databases (PostgreSQL). | `ch04-local-vs-server.png`                       |
+| Figure 4.34 | SQL and Platforms as the Next Step           | Core visual components of the Microsoft Access desktop DBMS: tables, queries, forms, and reports.                                        | `ch04-ms-access-objects.png`                     |
+| Figure 4.35 | SQL and Platforms as the Next Step           | Data types and measurement scales mapped to analytical use.                                                                              | `ch04-data-types-analytical-uses.png`            |
+| Figure 4.36 | SQL and Platforms as the Next Step           | Transition from qualitative properties to measurable numbers.                                                                            | `ch04-005.png`                                   |
+| Figure 4.37 | SQL and Platforms as the Next Step           | Qualitative attributes compared with quantitative measurements.                                                                          | `ch04-006.png`                                   |
+| Figure 4.38 | SQL and Platforms as the Next Step           | Qualities and numeric scale values as different forms of measurement.                                                                    | `ch04-007.png`                                   |
+| Figure 4.39 | SQL and Platforms as the Next Step           | Categorical classes compared with numerical scale values.                                                                                | `ch04-008.png`                                   |
+| Figure 4.40 | SQL and Platforms as the Next Step           | Categorical values can use numbers without becoming measurements.                                                                        | `ch04-009.png`                                   |
+| Figure 4.41 | SQL and Platforms as the Next Step           | Interval data has equal differences but no absolute zero.                                                                                | `ch04-012.png`                                   |
+| Figure 4.42 | SQL and Platforms as the Next Step           | Ratio data has equal intervals and a true zero point.                                                                                    | `ch04-013.png`                                   |
+| Figure 4.43 | SQL and Platforms as the Next Step           | NOIR summary matrix for query and analysis choices.                                                                                      | `ch04-014.png`                                   |
+| Figure 4.44 | SQL and Platforms as the Next Step           | Access, SQLite, and PostgreSQL shown along a spectrum of database environments.                                                          | `ch04-dbms-compare.png`                          |
+| Figure 4.45 | Summary                                      | Databases, tables, SQL, and platforms brought together in one closing recap image.                                                       | `ch04-summary.png`                               |
+| Figure 4.46 | Summary                                      | Conceptual pathway from file system limitations to database tables, keys, constraints, and SQL.                                          | `ch04-learning-map.png`                          |
+| Figure 4.47 | Summary                                      | In-class review on data types, structure, and concept translation.                                                                       | `ch04-015.png`                                   |
+| Figure 4.48 | Getting Hands-On with Microsoft Access       | The Microsoft Access navigation pane organizes a database into Tables, Queries, Forms, and Reports.                                      | `ch04-ms-access-objects.jpg`                     |

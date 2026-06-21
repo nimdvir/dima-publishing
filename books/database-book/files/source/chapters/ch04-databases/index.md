@@ -19,5 +19,6 @@ This chapter introduces databases as structured systems that replace fragile fil
 | [Tables, Keys, and Constraints](#tables-keys-and-constraints) | Key topic in this chapter's Core Concepts reading. |
 | [SQL and Platforms as the Next Step](#sql-and-platforms-as-the-next-step) | Key topic in this chapter's Core Concepts reading. |
 | [Summary](#summary) | Key topic in this chapter's Core Concepts reading. |
+| [Lab 04: Building a PetVax Database in Microsoft Access](/labs/lab-04-intro-to-access/) | Hands-on practice transferring database design skills to the PetVax veterinary clinic. |
 
 ---

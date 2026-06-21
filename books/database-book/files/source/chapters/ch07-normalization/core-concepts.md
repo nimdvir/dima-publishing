@@ -132,6 +132,8 @@ Carla remains in `STUDENT`.
 
 **Normalization** is the process of organizing relational data so that each fact is stored in the right place, redundancy is reduced, and relationships are represented through keys rather than repeated text.
 
+The guiding principle is simple: **every table should have one theme, and its primary key should determine every other attribute in that table.** If you find a non-key attribute determining other attributes, it is a red flag — a second theme is hiding in your table. The fix is to move that second theme into its own table, where its determinant becomes the primary key. This is the art of normalization: not splitting tables for the sake of splitting, but recognizing when one table is secretly carrying two stories.
+
 <div class="callout key-takeaway">
   <p><strong>🔑 Key Takeaway: Put each fact where it belongs</strong></p>
   <p>Normalization is not about adding tables for their own sake. It is about deciding where each fact belongs so the fact is stored once and stays consistent.</p>
@@ -217,6 +219,11 @@ If `Score` depends on both `StudentID` and `DeliverableID`, then it belongs in a
 
 *Figure 7.3 — Functional dependencies in the Grading Database: each determinant maps to the attributes that belong in its own table.*
 
+<div class="callout key-takeaway">
+  <p><strong>🔑 The central principle of relational design</strong></p>
+  <p><strong>Every determinant in a relation must be a candidate key.</strong> If a table contains a determinant that is not a candidate key, that table is carrying a second theme — and it will suffer from modification anomalies. Normalization is the process of identifying those hidden determinants and moving them into their own tables, where each becomes a primary key. This single rule is the mathematical foundation behind 2NF, 3NF, and BCNF.</p>
+</div>
+
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
@@ -229,6 +236,9 @@ Normalization happens through levels called **normal forms**. Each normal form c
 | **1NF** | Is each cell one value? | Multi-valued cells and repeating columns | One fact per cell |
 | **2NF** | Does every non-key attribute depend on the whole key? | Partial dependencies | The whole key |
 | **3NF** | Does every non-key attribute depend only on the key? | Transitive dependencies | Nothing but the key |
+| **BCNF** | Is every determinant a candidate key? | Overlapping candidate keys | Every determinant is a key |
+
+> **BCNF (Boyce-Codd Normal Form)** is a stricter version of 3NF that applies when a table has overlapping candidate keys. Most well-designed business databases satisfy BCNF without extra work, and 3NF is sufficient for the examples in this book. You may encounter BCNF in advanced database courses or certification exams.
 
 A common mnemonic captures all three:
 
@@ -562,7 +572,29 @@ If `RegionCode -> RegionManager`, then `RegionManager` belongs in a `REGION` tab
 
 This is the same logic as the grading database. Rules and lookup facts belong in lookup tables, not repeated across transaction rows.
 
-### 7.6.6 Before and After at a Glance
+### 7.6.6 Extended Business Example: A Sales Database
+
+The normalization principles from the grading database apply directly to business systems. Consider a retail sales database with four main subjects:
+
+| Table | Key Fields | Relationships |
+|---|---|---|
+| `CUSTOMER` | `CustomerID` (PK) | 1:M with `ORDER` |
+| `ORDER` | `OrderID` (PK), `CustomerID` (FK) | 1:M with `ORDER_LINE` |
+| `PRODUCT` | `ProductID` (PK) | M:N with `ORDER` through `ORDER_LINE` |
+| `ORDER_LINE` | `OrderID` (FK), `ProductID` (FK) | Junction table |
+
+This structure separates customer facts (name, address) from order facts (date, status), product facts (description, unit price), and line-item facts (quantity, price at time of sale). A flat order spreadsheet would repeat customer addresses and product descriptions in every row — the same update anomaly the grading database faces.
+
+Notice the same patterns from the grading database:
+
+- `CUSTOMER` stores identity once, just like `STUDENT`.
+- `PRODUCT` stores item facts once, just like `DELIVERABLE`.
+- `ORDER_LINE` is a junction table resolving a many-to-many relationship, just like `STUDENT_GRADE`.
+- Product prices belong in `PRODUCT`, not repeated in every order line — the same 3NF logic that puts `WeightPerItem` in `ASSIGNMENT_TYPE` instead of every grade row.
+
+This example reinforces a core idea: normalization is not a grading-database trick. It is the same design discipline used in inventory control, financial reporting, customer analytics, and every other system that must keep facts consistent as data grows.
+
+### 7.6.7 Before and After at a Glance
 
 Before moving from design to the finished schema, it helps to see the journey in one compact view.
 
@@ -819,7 +851,7 @@ Normalization is not about making databases more complicated. It is about making
 
 Chapter 8 reviews and integrates the first half of the course. You will revisit data fundamentals, database structure, SQL basics, keys, relationships, and normalization as one connected system.
 
-Chapter 9 then returns to SQL in a richer way, using the normalized Grading Database to answer more advanced questions across multiple related tables.
+Chapter 10 then returns to SQL in a richer way, using the normalized Grading Database to answer more advanced questions across multiple related tables.
 
 Chapter 10 moves from querying normalized databases to designing database systems from business requirements.
 
