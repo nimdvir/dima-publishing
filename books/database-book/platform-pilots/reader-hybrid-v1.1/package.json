@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "generate": "tsx scripts/generateBookData.ts",
+    "validate:access": "tsx scripts/validateAccessConfig.ts",
     "validate:content": "tsx scripts/validateContent.ts",
     "dev": "npm run generate && vite --host=0.0.0.0 --port=3000",
-    "build": "npm run generate && vite build",
+    "build": "npm run validate:access && npm run generate && vite build",
     "preview": "vite preview --host=0.0.0.0 --port=3000",
     "lint": "tsc --noEmit"
   },
