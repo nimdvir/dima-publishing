@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD040 -->
+
 # Reader Hybrid v1
 
 Frontend-only online textbook reader prototype for *Using Data to Drive Business Performance*.
@@ -64,6 +66,22 @@ npm run lint       # Type-check
 npm run build      # Production build
 ```
 
+## Required Environment Variables
+
+The production build runs `npm run validate:access` before building.
+
+That validator requires these variables at production build time:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
+
+Local development can use:
+
+- `.env.local`
+- or `.env` / `.env.example` as a template starting point
+
+For Vercel deployments, define the same variable names in the Vercel project environment settings.
+
 ## Design References
 
 - Visual direction borrowed from `platform-pilots/prototype/`
@@ -100,3 +118,10 @@ Before testing reader changes on Vercel, see:
 | GitHub Pages | nested under combined site                               | same build with `VITE_BASE_PATH=/dima-publishing/platform-pilots/reader-hybrid-v1.1/` | `dist` | Entry: `?scope=welcome`      |
 
 See `../README.md` for the full platform-pilots deployment guide.
+
+If a Vercel build fails with access-configuration validation, first check whether the Vercel project has:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
+
+configured in its environment settings.

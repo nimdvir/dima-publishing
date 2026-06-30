@@ -3,11 +3,12 @@ import type { ReaderScope, DemoUser, BookChapter, BookLab, BookAppendix } from "
 import Sidebar from "./Sidebar";
 import MobileNav from "./MobileNav";
 import { FeedbackLink } from "./FeedbackLink";
-import { Home, Menu, X, User, LogOut } from "lucide-react";
+import { Home, Menu, X, User, LogOut, ShieldCheck } from "lucide-react";
 
 interface LayoutProps {
   scope: ReaderScope;
   demoUser: DemoUser | null;
+  isAdmin?: boolean;
   onSignOut: () => void;
   sidebarOpen: boolean;
   onToggleSidebar: () => void;
@@ -42,6 +43,7 @@ const SCOPE_LABELS: Record<ReaderScope, string> = {
 export default function Layout({
   scope,
   demoUser,
+  isAdmin = false,
   onSignOut,
   sidebarOpen,
   onToggleSidebar,
@@ -95,6 +97,16 @@ export default function Layout({
             <span className="brand-scope">{SCOPE_LABELS[scope]}</span>
           </div>
           <div className="header-right">
+            {isAdmin && scope !== "admin" && (
+              <button
+                className="header-admin-btn"
+                onClick={() => onNavigateScope("admin")}
+                title="Admin dashboard"
+              >
+                <ShieldCheck size={14} />
+                <span>Admin</span>
+              </button>
+            )}
             {demoUser ? (
               <div className="user-chip">
                 <User size={14} className="user-avatar" />

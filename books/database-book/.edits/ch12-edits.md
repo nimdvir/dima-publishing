@@ -16,8 +16,8 @@
 | 12.4 Data Warehouses, Data Marts, Data Lakes | 2. Data Warehousing Concepts |
 
 - [x] All topics present in both files — BI fundamentals, OLTP/OLAP, ETL/ELT, data warehousing, dimensional modeling, OLAP operations
-- [ ] **DECIDE:** Which section order is canonical? Outline specifies BI → OLTP/OLAP → ETL → DW. If outline is authoritative, reorganize source core-concepts to match.
-- [ ] **ACTION:** Once canonical order is decided, align the non-conforming file before next chapter-sync
+- [x] **DECIDE:** Which section order is canonical? Resolved on 2026-06-29 against `outline-2026-06-16.md`: current source order is canonical: BI → OLTP/OLAP → ETL/ELT → DW/data marts/data lakes → dimensional modeling → OLAP → SQL BI → reports/dashboards → KPIs/Balanced Scorecard → governance → platform patterns → worked example.
+- [x] **ACTION:** No Ch12 reorganization needed for this pass; source already follows the latest book-level outline.
 
 ---
 

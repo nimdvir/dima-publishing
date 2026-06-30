@@ -1,0 +1,46 @@
+# Cline Rules — dima-publishing
+
+This is the canonical repository for the BITM330 database textbook and its
+publishing platform. All agent rules live in `AGENTS.md` and `.agents/`.
+
+## Read first
+
+Before editing any file:
+
+1. Read [AGENTS.md](AGENTS.md) — instruction precedence and project map.
+2. Read [.agents/README.md](.agents/README.md) — skills index.
+3. Open the relevant skill under `.agents/skills/<name>/SKILL.md` for the task
+   at hand (chapter editing, media, source import, deploy, etc.).
+
+Do not treat `.agents/archive/` as active instructions.
+
+## Cline-specific notes
+
+- Slash commands listed in `AGENTS.md` (e.g. `/chapter-editor`, `/chapter-media`,
+  `/book-deploy`) map to skills under `.agents/skills/`. If a slash command is
+  not available in Cline, open the matching `SKILL.md` and follow it manually.
+- This repo and its Google Drive sibling (`BITM330-book-drive`) share the same
+  `.agents/` content via a filesystem junction on the author's machine. Edit
+  only the repository copy under `C:\Users\nd115232\Documents\GitHub\dima-publishing\.agents`.
+- Large image originals live outside the repo at the configured media library
+  path. Do not move, delete, or overwrite them without explicit approval.
+
+## Windows PowerShell quirks
+
+- Avoid Bash heredocs (`python - <<'PY'`). Use a script file, `python -c`, or a
+  PowerShell here-string piped to Python.
+- In double-quoted strings, write `${var}:` when a variable is immediately
+  followed by a colon — `$var:` parses as a scoped variable reference.
+- If the terminal is stuck in a Python REPL, send `exit()` before running
+  normal PowerShell commands.
+
+## Style for student-facing content
+
+See `.github/copilot-instructions.md` and `AGENTS.md` for the full voice guide.
+Headlines:
+
+- Undergraduate business readers, Grade 8–10 reading level.
+- Prefer *use, help, show, explain, because*. Avoid *utilize, facilitate,
+  demonstrate, due to the fact that*. No em dashes.
+- Lines starting with `//` in Markdown are author instructions — act on them,
+  then delete the line.

@@ -132,3 +132,10 @@ groups task-list items for that day.
 - [x] Deleted root-level answer file lab-01-petvax-intro/lab-01-answers-2026-06-03.md (instructor/ copy preserved; exposure risk removed)
 - [x] Created books/database-book/.edits/ch04-edits.md — flags lets-build-v2.md conflict and stale index.md lab link
 - [x] Created books/database-book/.edits/chapter-section-status.md — full Ch01–Ch17 section readiness dashboard
+
+## 2026-06-29 Edits
+
+- [x] Started Ch12/Ch15 merge-plan implementation: corrected Ch15 `merge-plan.md` scope, added missing Ch15 15.1/15.2 strategic foundation sections, updated Ch15 title/index roadmap, fixed stale Ch15 companion/final-review references, and logged remaining media/companion handoffs.
+- [x] Continued Ch15 implementation by replacing placeholder stable companions: revised `terms-treasury.md`, `review-questions.md`, and `rat.md`; updated `ch15-edits.md` and `chapter-tracker.md` to close resolved Ch12/Ch15 companion and ordering tasks.
+- [x] Ran a Ch15 media dry-run inspection: confirmed prompt specs exist in the Ch15 image folder, but generated Ch15 image files are not present yet; media generation/placement remains a `chapter-media` handoff.
+- [x] Streamlined Ch15 for efficiency/effectiveness: compressed duplicated BI infrastructure/star-schema teaching into strategic summaries, removed awkward research-report phrasing, corrected the Horizon 3 chapter reference to Ch15, and removed broken legacy figure links/prompt details from `core-concepts.md`.

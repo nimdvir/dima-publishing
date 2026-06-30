@@ -16,6 +16,7 @@ import AppendicesView from "./components/AppendicesView";
 import AdminDashboard from "./components/AdminDashboard";
 import { supabase } from "./lib/supabaseClient";
 import { getMyAccess } from "./lib/courseAccess";
+import { checkIsAdmin } from "./lib/adminApi";
 import { isChapterGated } from "./lib/freePreview";
 
 // Optional display convenience only — Supabase Auth session is the real authority.
@@ -176,6 +177,7 @@ function scrollToHeadingId(id: string): boolean {
 export default function App() {
   const [scope, setScope] = useState<ReaderScope>("welcome");
   const [demoUser, setDemoUser] = useState<DemoUser | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [authLoading, setAuthLoading] = useState(() => !!supabase);
 
   // Book reader state
@@ -224,6 +226,11 @@ export default function App() {
                 accessStatus: "active",
                 createdAt: new Date().toISOString(),
               });
+              try {
+                setIsAdmin(await checkIsAdmin());
+              } catch {
+                setIsAdmin(false);
+              }
             }
           } catch {
             // Access check failed — user has session but no access. Don't hydrate.
@@ -242,6 +249,7 @@ export default function App() {
     } = client.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_OUT") {
         setDemoUser(null);
+        setIsAdmin(false);
         localStorage.removeItem(LS_DEMO_USER);
       } else if (event === "SIGNED_IN" && session?.user?.email) {
         try {
@@ -254,6 +262,11 @@ export default function App() {
               createdAt: new Date().toISOString(),
             };
             setDemoUser(user);
+            try {
+              setIsAdmin(await checkIsAdmin());
+            } catch {
+              setIsAdmin(false);
+            }
           }
         } catch {
           /* access check failed — leave unauthenticated */
@@ -442,6 +455,7 @@ export default function App() {
     setDemoUser(user);
     // Optional display convenience only — Supabase session is the real authority.
     localStorage.setItem(LS_DEMO_USER, JSON.stringify(user));
+    checkIsAdmin().then(setIsAdmin).catch(() => setIsAdmin(false));
   }, []);
 
   const handleSignOut = useCallback(async () => {
@@ -449,6 +463,7 @@ export default function App() {
       await supabase.auth.signOut();
     }
     setDemoUser(null);
+    setIsAdmin(false);
     localStorage.removeItem(LS_DEMO_USER);
   }, []);
 
@@ -535,6 +550,7 @@ export default function App() {
     <Layout
       scope={scope}
       demoUser={demoUser}
+      isAdmin={isAdmin}
       onSignOut={handleSignOut}
       sidebarOpen={sidebarOpen}
       onToggleSidebar={() => setSidebarOpen((o) => !o)}

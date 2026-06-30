@@ -57,7 +57,7 @@ A flat grading database with two tables (`GRADEBOOK`, `GRADE_WEIGHT`), a data-en
 
 | Mistake | Why It Happens | How to Fix It |
 |---|---|---|
-| Typing `RecordID` values manually | Forgetting AutoNumber fills itself | Delete the row, create a new one, let Access assign the number |
+| Typing `RecordID` values manually | Forgetting that Access fills AutoNumber automatically | Delete the row, create a new one, let Access assign the number |
 | Creating a form for the wrong table | Clicking the wrong table in the Navigation Pane before clicking Form | Delete the form, click `GRADEBOOK`, then Create → Form |
 | Forgetting to set the Criteria row | Query returns all rows instead of filtered results | Reopen in Design View, type the condition in Criteria |
 | Dragging the wrong field for a join | Dragging fields that don't match in meaning | Join `GRADEBOOK.DeliverableType` to `GRADE_WEIGHT.DeliverableType` |
@@ -103,7 +103,7 @@ GRADE_SCALE(LetterGrade, MinScore)
 | Skill | Where Practiced |
 |---|---|
 | Create tables with surrogate AutoNumber primary keys | Building `STUDENT`, `DELIVERABLE`, `STUDENT_GRADE` |
-| Match foreign key data types to the referenced primary key | Short Text FK → AutoNumber PK warning |
+| Match foreign key data types to the referenced primary key | AutoNumber PK → Short Text FK mismatch |
 | Define relationships in the Relationships window | Dragging PK → FK for all 5 relationships |
 | Enforce referential integrity (RI) | Check the "Enforce Referential Integrity" checkbox |
 | Understand cascade options | Cascade Update Related Fields vs. Cascade Delete |
@@ -117,7 +117,7 @@ GRADE_SCALE(LetterGrade, MinScore)
 
 1. **Surrogate keys everywhere.** Every table gets its own AutoNumber PK. `StudentGradeID`, `DeliverableID`, `AttendanceID` — these have no business meaning and never change, which makes them stable foreign key targets.
 
-2. **Short Text PK → Number FK is a trap.** Access AutoNumbers are `Long Integer`. If you create a foreign key as Short Text, the relationship cannot be enforced. Always check the data type in Design View before opening the Relationships window.
+2. **Number PK → Short Text FK is a trap.** Access AutoNumbers are `Long Integer`. If you create a foreign key as Short Text, the relationship cannot be enforced. Always check the data type in Design View before opening the Relationships window.
 
 3. **Referential integrity is the database's immune system.** It prevents orphan records — child rows that point to parents that don't exist. Test it: try to insert a grade for a student who isn't in the `STUDENT` table. Access should refuse.
 
@@ -164,7 +164,7 @@ Start with the flat, redundant `GRADEBOOK` table from Tutorial 1 and normalize i
 
 5. **Open the Relationships window.** Add all four tables. Drag `STUDENT.StudentID` → `STUDENT_GRADE.StudentID`. Drag `DELIVERABLE.DeliverableID` → `STUDENT_GRADE.DeliverableID`. Check "Enforce Referential Integrity" on both.
 
-6. **Migrate data with append queries in SQL View.** Write four `INSERT INTO ... SELECT DISTINCT` queries to extract unique student facts, unique deliverable facts, unique assignment-type facts, and all grade facts from the flat `GRADEBOOK` into the normalized tables.
+6. **Migrate data with append queries in SQL View.** Write four `INSERT INTO ... SELECT DISTINCT` queries to extract unique student facts, unique deliverable facts, unique assignment-type facts, and all grade records from the flat `GRADEBOOK` into the normalized tables.
 
 7. **Save and run each append query.** Access will warn about the number of rows being appended. Confirm the counts match your expectations before proceeding.
 
@@ -252,7 +252,7 @@ Copy-Item $source $dest
 
 ### Part 6: Query Optimization and Indexing
 
-**Create an index.** Open `VISIT` in Design View. Click `VisitDate`. In Field Properties, set **Indexed** to **Yes (Duplicates OK)**. This speeds up queries that filter or sort by visit date. Use "No Duplicates" only for fields that must be unique (like primary keys).
+**Create an index.** Open `VISIT` in Design View. Click `VisitDate`. In Field Properties, set **Indexed** to **Yes (Duplicates OK)**. This speeds up queries that filter or sort by visit date. Use "No Duplicates" only for fields that must have unique values across all rows, such as an email address or employee ID.
 
 **Run the Performance Analyzer.** Click **Database Tools** → **Analyze Performance**. Select all objects and click OK. Review the recommendations (add indexes, convert macros to VBA). Apply the suggestions that make sense for your workload — not every recommendation needs to be followed.
 

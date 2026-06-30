@@ -15,16 +15,16 @@ Students will learn how information systems, databases, analytics, and governanc
 
 * **Yes, the two chapters can be united**, but I would **not merge them as-is**. Together they are roughly **22,800 words**, which is too large for one clean textbook chapter.
 * The best approach is to unite them **conceptually** into one chapter/module: **“Business Intelligence, Analytics, and Information Systems Strategy.”**
-* Keep **Chapter 12 as the technical BI foundation** and use **Chapter 14 as the strategic capstone layer**, but remove duplicated material on ETL, warehouses, dashboards, star schemas, KPIs, and the Grading Database.
+* Keep **Chapter 12 as the technical BI foundation** and use **Chapter 15 as the strategic capstone layer**, but remove duplicated material on ETL, warehouses, dashboards, star schemas, KPIs, and the Grading Database.
 * My recommendation: **merge the overlapping conceptual material, but move the hands-on tutorials into a separate “Let’s Build” lab or appendix.**
 
 ---
 
-# Can Chapter 12 and Chapter 14 Be United?
+# Can Chapter 12 and Chapter 15 Be United?
 
 Yes — and there is a strong pedagogical argument for doing so.
 
-Chapter 12 is about **Business Intelligence and Analytics for Performance Improvement**, focusing on how operational data becomes insight through BI, ETL, data warehouses, OLAP, dashboards, KPIs, and platform-based implementation.  Chapter 14 is about **Business Strategy and Information Systems**, showing how databases, SQL, BI, governance, and system design create strategic value and competitive advantage. 
+Chapter 12 is about **Business Intelligence and Analytics for Performance Improvement**, focusing on how operational data becomes insight through BI, ETL, data warehouses, OLAP, dashboards, KPIs, and platform-independent implementation. Chapter 15 is about **Business Strategy and Information Systems**, showing how databases, SQL, BI, governance, and system design create strategic value and competitive advantage. Chapter 14 should remain separate as the hands-on Power BI reporting and visualization chapter.
 
 The two chapters are therefore not separate worlds. They sit on the same intellectual pipeline:
 
@@ -36,17 +36,19 @@ So yes, they can be united. But the merger needs discipline.
 
 # My Main Recommendation
 
-# Best Option: Unite Them as One Conceptual Chapter + Separate Lab
+# Best Option: Integrate the Conceptual Arc + Preserve Separate Applied Labs
 
-I would create one polished chapter titled something like:
+I would implement the merger as a disciplined conceptual integration rather than a raw file merge. Chapter 12 should remain the technical BI foundation, Chapter 14 should remain the Power BI tool chapter, and Chapter 15 should become the strategic capstone that explicitly connects BI, analytics, SQL, governance, and competitive advantage.
 
-> **Chapter 12/14: Business Intelligence, Analytics, and Information Systems Strategy**
+The capstone identity should be something like:
+
+> **Chapter 15: Information Systems Strategy**
 > *Turning Data into Insight, Performance, and Competitive Advantage*
 
-Then move the long hands-on material from Chapter 12 into a separate applied file:
+Then keep the long hands-on material from Chapter 12 and Chapter 15 in separate applied files:
 
-> **Let’s Build: Business Intelligence with the Grading Database**
-> Access | SQLite | Supabase/PostgreSQL
+> **Chapter 12 Let’s Build:** Business Intelligence with the Grading Database
+> **Chapter 15 Let’s Build:** Strategic SQL for the Grading Database
 
 That gives you the best of both worlds:
 
@@ -67,9 +69,9 @@ This would make the chapter tighter, more elegant, and more publishable.
 
 # Why They Fit Together
 
-The overlap is not accidental. Chapter 12 teaches students **how BI works**. Chapter 14 teaches students **why BI matters strategically**.
+The overlap is not accidental. Chapter 12 teaches students **how BI works**. Chapter 15 teaches students **why BI matters strategically**.
 
-| Chapter 12 Emphasis                | Chapter 14 Emphasis                         | Merged Interpretation                                      |
+| Chapter 12 Emphasis                | Chapter 15 Emphasis                         | Merged Interpretation                                      |
 | ---------------------------------- | ------------------------------------------- | ---------------------------------------------------------- |
 | Business Intelligence              | Strategy requires analytics                 | BI is the infrastructure of strategy                       |
 | Operational vs. analytical systems | IS as strategic infrastructure              | Different system designs support different strategic goals |
@@ -89,7 +91,7 @@ A direct merge would create three problems.
 
 # 1. Length
 
-Chapter 12 is already a full BI chapter, and Chapter 14 is a large strategy chapter. Combined without cuts, the chapter becomes too long for students to process in one sitting.
+Chapter 12 is already a full BI chapter, and Chapter 15 is a large strategy chapter. Combined without cuts, the chapter becomes too long for students to process in one sitting.
 
 That matters pedagogically. A chapter that tries to teach BI, ETL, OLAP, visualization, governance, Porter, RBV, strategic alignment, SQL as evidence, KPI risks, and build tutorials all at once may become conceptually impressive but cognitively heavy.
 
@@ -109,15 +111,15 @@ The strongest overlap appears around:
 * Governance
 * Grading Database analytics
 
-Chapter 14 already reintroduces BI infrastructure, ETL, dashboards, and dimensional modeling, which Chapter 12 covers more directly.  Chapter 12 also already covers BI governance, reporting, OLAP, star schemas, and platform tutorials. 
+Chapter 15 already reintroduces BI infrastructure, ETL, dashboards, and dimensional modeling, which Chapter 12 covers more directly. Chapter 12 also already covers BI governance, reporting, OLAP, star schemas, and platform tutorials.
 
 So the merged chapter should avoid teaching the same concepts twice.
 
 # 3. Different Learning Modes
 
-Chapter 12 is partly **conceptual and practical**. It contains extensive “Let’s Build” tutorials in Access, SQLite, and Supabase/PostgreSQL. 
+Chapter 12 is partly **conceptual and practical**. It contains extensive “Let’s Build” tutorials in Access, SQLite, and Supabase/PostgreSQL.
 
-Chapter 14 is more **integrative and strategic**, connecting earlier technical material to competitive advantage, information strategy, and organizational decision-making. 
+Chapter 15 is more **integrative and strategic**, connecting earlier technical material to competitive advantage, information strategy, and organizational decision-making.
 
 Those are both valuable, but they are different instructional modes. The merged chapter should separate:
 
@@ -148,7 +150,7 @@ Purpose: Open with the big idea.
 Use material from:
 
 * Chapter 12 overview
-* Chapter 14 overview
+* Chapter 15 overview
 * DIKW / READ connection
 * Grading Database as recurring example
 
@@ -171,7 +173,7 @@ Include:
 * DIKW hierarchy
 * READ model
 
-Trim repetition from Chapter 14’s BI feedback-loop discussion and integrate it here.
+Trim repetition from Chapter 15’s BI feedback-loop discussion and integrate it here.
 
 ---
 
@@ -190,7 +192,7 @@ Include:
 * Facts, dimensions, measures
 * Star schema and snowflake schema
 
-Then incorporate the stronger strategic framing from Chapter 14:
+Then incorporate the stronger strategic framing from Chapter 15:
 
 > ETL is not just data movement; it is the enforcement of business rules and analytical trust.
 
@@ -203,8 +205,8 @@ This is one of the best conceptual bridges between the chapters.
 Merge:
 
 * Chapter 12 reporting and visualization
-* Chapter 14 Balanced Scorecard
-* Chapter 14 KPI risk discussion
+* Chapter 15 Balanced Scorecard
+* Chapter 15 KPI risk discussion
 
 This section should answer:
 
@@ -227,9 +229,9 @@ This would be a very strong section.
 
 # 5. SQL as the Language of Evidence
 
-Use Chapter 14 Section 14.5.
+Use Chapter 15 Section 15.5.
 
-This is one of the most valuable parts of Chapter 14 and should absolutely survive the merger.
+This is one of the most valuable parts of Chapter 15 and should absolutely survive the merger.
 
 Include:
 
@@ -246,7 +248,7 @@ This section gives the chapter a distinctive database-textbook identity. Many BI
 
 # 6. Information Systems and Competitive Advantage
 
-Use Chapter 14 Sections 14.2–14.3.
+Use Chapter 15 Sections 15.2–15.3.
 
 Include:
 
@@ -263,7 +265,7 @@ This is where the chapter transitions from “BI supports decisions” to “inf
 
 # 7. Strategic Alignment and Technology Decisions
 
-Use Chapter 14 Section 14.6.
+Use Chapter 15 Section 15.6.
 
 Include:
 
@@ -283,7 +285,7 @@ This section should be concise but powerful. It can serve as the senior-level MI
 Merge:
 
 * Chapter 12 BI governance
-* Chapter 14 risks of poor information strategy
+* Chapter 15 risks of poor information strategy
 
 Include:
 
@@ -364,12 +366,12 @@ I would preserve these sections with minimal trimming:
 | Chapter 12 | BI fundamentals                      | Strong foundational explanation        |
 | Chapter 12 | ETL / warehouse / OLAP               | Necessary technical BI foundation      |
 | Chapter 12 | Governance and data quality          | Connects well with strategy risks      |
-| Chapter 14 | Strategy as information problem      | Excellent capstone framing             |
-| Chapter 14 | Porter frameworks                    | Needed for MIS strategy                |
-| Chapter 14 | Balanced Scorecard                   | Perfect bridge between BI and strategy |
-| Chapter 14 | Advanced SQL as strategic capability | Distinctive and valuable               |
-| Chapter 14 | Strategic alignment                  | Core MIS concept                       |
-| Chapter 14 | Grading Database as strategic system | Strong course integration              |
+| Chapter 15 | Strategy as information problem      | Excellent capstone framing             |
+| Chapter 15 | Porter frameworks                    | Needed for MIS strategy                |
+| Chapter 15 | Balanced Scorecard                   | Perfect bridge between BI and strategy |
+| Chapter 15 | Advanced SQL as strategic capability | Distinctive and valuable               |
+| Chapter 15 | Strategic alignment                  | Core MIS concept                       |
+| Chapter 15 | Grading Database as strategic system | Strong course integration              |
 
 ---
 
@@ -378,7 +380,7 @@ I would preserve these sections with minimal trimming:
 | Version                    |   Approximate Target |
 | -------------------------- | -------------------: |
 | Current Chapter 12         |         ~8,700 words |
-| Current Chapter 14         |        ~14,200 words |
+| Current Chapter 15         |        ~14,200 words |
 | Direct combined version    |        ~22,900 words |
 | Recommended merged chapter | ~11,000–13,000 words |
 | Separate lab file          |   ~5,000–7,000 words |

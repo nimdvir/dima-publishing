@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD029 MD040 -->
+
 # Vercel Preview Deployment Guide — Reader Hybrid v1.1
 
 Use this guide to test reader changes on a live Vercel preview URL **without touching production**.
@@ -298,6 +300,16 @@ Project: data-pilot
 Production branch: main
 Preview deployments: enabled
 ```
+
+Also confirm these environment variables exist for the project:
+
+```text
+VITE_SUPABASE_URL
+VITE_SUPABASE_PUBLISHABLE_KEY
+```
+
+The reader build runs `npm run validate:access` before `vite build`, and missing
+values will cause the deployment to fail before the static site is generated.
 
 The custom domain should remain attached to production:
 
