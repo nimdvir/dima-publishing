@@ -36,6 +36,7 @@ const SCOPE_LABELS: Record<ReaderScope, string> = {
   labs: "Labs",
   appendices: "Appendices",
   login: "Sign in",
+  admin: "Admin",
 };
 
 export default function Layout({

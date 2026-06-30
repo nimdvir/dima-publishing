@@ -11,7 +11,8 @@ export type ReaderScope =
   | 'book'
   | 'labs'
   | 'appendices'
-  | 'login';
+  | 'login'
+  | 'admin';
 
 // ── Demo user (localStorage only) ──
 export interface DemoUser {

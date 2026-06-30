@@ -13,6 +13,7 @@ import DemoLogin from "./components/DemoLogin";
 import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
 import AppendicesView from "./components/AppendicesView";
+import AdminDashboard from "./components/AdminDashboard";
 import { supabase } from "./lib/supabaseClient";
 import { getMyAccess } from "./lib/courseAccess";
 import { isChapterGated } from "./lib/freePreview";
@@ -20,7 +21,7 @@ import { isChapterGated } from "./lib/freePreview";
 // Optional display convenience only — Supabase Auth session is the real authority.
 const LS_DEMO_USER = "reader-hybrid-v1.1:demoUser";
 
-const VALID_SCOPES = new Set(["welcome", "book", "labs", "appendices", "login"]);
+const VALID_SCOPES = new Set(["welcome", "book", "labs", "appendices", "login", "admin"]);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map((c) => c.id));
 
 /** Pre-built lookup: pageId → index in FLAT_READER_PAGES (avoids repeated findIndex). */
@@ -85,6 +86,9 @@ function parsePathParams(): RouteState {
       appendix: chapter,
     };
   }
+  if (route === "admin") {
+    return { scope: "admin" };
+  }
 
   return { scope: "welcome" };
 }
@@ -143,12 +147,13 @@ function buildRoutePath(
     return `/appendices/${encodeURIComponent(opts.appendix)}`;
   if (scope === "appendices") return "/appendices";
   if (scope === "login") return "/login";
+  if (scope === "admin") return "/admin";
   return "/";
 }
 
 function writeRoute(
   scope: ReaderScope,
-  opts?: { chapter?: string; section?: string; page?: number; lab?: string },
+  opts?: { chapter?: string; section?: string; page?: number; lab?: string; appendix?: string },
 ) {
   const url = buildRoutePath(scope, opts);
   window.history.pushState(null, "", url);
@@ -671,6 +676,9 @@ export default function App() {
           activeAppendix={activeAppendix}
           onSelectAppendix={navigateToAppendix}
         />
+      )}
+      {scope === "admin" && (
+        <AdminDashboard />
       )}
     </Layout>
   );

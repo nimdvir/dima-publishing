@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { BookPage } from "../types";
 import { extractHeadingToc } from "../utils/headings";
 import { trackPageView, markPageCompleted } from "../lib/readingProgress";
+import { startReadingSession, endReadingSession } from "../lib/readingTime";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OnThisPage, { OnThisPageMobile } from "./OnThisPage";
 import BottomNavigation from "./BottomNavigation";
@@ -48,7 +49,16 @@ export default function ChapterReader({
       sectionId: page.sectionId,
       pageId: page.id,
     });
+    // Start timing this reading session
+    startReadingSession(page.chapterId, page.sectionId);
   }, [page.id, page.chapterId, page.sectionId]);
+
+  // End reading session on unmount
+  useEffect(() => {
+    return () => {
+      endReadingSession();
+    };
+  }, []);
 
   // Mark page as completed when user navigates past it
   useEffect(() => {
