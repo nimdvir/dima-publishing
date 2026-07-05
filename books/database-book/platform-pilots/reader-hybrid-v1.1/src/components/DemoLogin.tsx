@@ -168,10 +168,13 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="login-form">
-            <label className="form-field">
+            <label className="form-field" htmlFor="login-email">
               <span className="field-label">Email address</span>
               <input
+                id="login-email"
+                name="email"
                 type="email"
+                autoComplete="username"
                 className="field-input"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
@@ -180,10 +183,13 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
                 disabled={loading}
               />
             </label>
-            <label className="form-field">
+            <label className="form-field" htmlFor="login-password">
               <span className="field-label">Password</span>
               <input
+                id="login-password"
+                name="password"
                 type="password"
+                autoComplete={mode === 'create-account' ? 'new-password' : 'current-password'}
                 className="field-input"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
