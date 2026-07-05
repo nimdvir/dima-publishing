@@ -11,7 +11,7 @@ interface DemoLoginProps {
   onCancel: () => void;
 }
 
-type AuthMode = 'sign-in' | 'create-account';
+type AuthMode = 'sign-in' | 'create-account' | 'reset-password';
 
 export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
   const [mode, setMode] = useState<AuthMode>('sign-in');
@@ -22,11 +22,48 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
   const [authSuccess, setAuthSuccess] = useState('');
   const [accessDetails, setAccessDetails] = useState<AccessStatus | null>(null);
 
-  async function handleAuth(action: 'sign-in' | 'create-account') {
-    setLoading(true);
+  function resetFeedback() {
     setAuthError('');
     setAuthSuccess('');
     setAccessDetails(null);
+  }
+
+  async function handlePasswordReset() {
+    setLoading(true);
+    resetFeedback();
+
+    const cleanEmail = email.trim().toLowerCase();
+
+    try {
+      if (!supabase) {
+        setAuthError(supabaseConfigError ?? 'Reader login is not configured yet.');
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
+        redirectTo: `${window.location.origin}/account/update-password`,
+      });
+
+      if (error) {
+        setAuthError(error.message);
+        setLoading(false);
+        return;
+      }
+
+      setAuthSuccess(
+        'If an account exists for that email, a password reset link has been sent.'
+      );
+    } catch (err) {
+      setAuthError(err instanceof Error ? err.message : String(err));
+    }
+
+    setLoading(false);
+  }
+
+  async function handleAuth(action: 'sign-in' | 'create-account') {
+    setLoading(true);
+    resetFeedback();
 
     const cleanEmail = email.trim().toLowerCase();
 
@@ -104,15 +141,24 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !password.trim()) return;
+    if (!email.trim()) return;
+    if (mode === 'reset-password') {
+      handlePasswordReset();
+      return;
+    }
+    if (!password.trim()) return;
     handleAuth(mode);
   };
 
   const submitLabel = loading
-    ? 'Signing in...'
+    ? mode === 'reset-password'
+      ? 'Sending...'
+      : 'Signing in...'
     : mode === 'sign-in'
       ? 'Sign in'
-      : 'Create account';
+      : mode === 'create-account'
+        ? 'Create account'
+        : 'Send reset email';
 
   const hasAuthFeedback = !!authSuccess;
   const hasReaderAccess = !!accessDetails;
@@ -120,31 +166,41 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
   return (
     <div className="demo-login-page">
       <div className="login-card">
-        <h2>Sign in to DIMA Publishing</h2>
+        <h2>{mode === 'reset-password' ? 'Reset your password' : 'Sign in to DIMA Publishing'}</h2>
         <p className="login-desc">
-          Access the BITM 330 Course Reader with your university account.
+          {mode === 'reset-password'
+            ? 'Enter your email address and we will send a secure password reset link.'
+            : 'Access the BITM 330 Course Reader with your university account.'}
         </p>
 
-        <div className="login-mode-toggle" role="tablist" aria-label="Account mode">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={mode === 'sign-in'}
-            className={`login-mode-btn ${mode === 'sign-in' ? 'active' : ''}`}
-            onClick={() => setMode('sign-in')}
-          >
-            Sign in
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={mode === 'create-account'}
-            className={`login-mode-btn ${mode === 'create-account' ? 'active' : ''}`}
-            onClick={() => setMode('create-account')}
-          >
-            Create account
-          </button>
-        </div>
+        {mode !== 'reset-password' && (
+          <div className="login-mode-toggle" role="tablist" aria-label="Account mode">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'sign-in'}
+              className={`login-mode-btn ${mode === 'sign-in' ? 'active' : ''}`}
+              onClick={() => {
+                setMode('sign-in');
+                resetFeedback();
+              }}
+            >
+              Sign in
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'create-account'}
+              className={`login-mode-btn ${mode === 'create-account' ? 'active' : ''}`}
+              onClick={() => {
+                setMode('create-account');
+                resetFeedback();
+              }}
+            >
+              Create account
+            </button>
+          </div>
+        )}
 
         {hasAuthFeedback ? (
           <div className="login-success">
@@ -180,18 +236,20 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
                 disabled={loading}
               />
             </label>
-            <label className="form-field">
-              <span className="field-label">Password</span>
-              <input
-                type="password"
-                className="field-input"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                required
-                disabled={loading}
-              />
-            </label>
+            {mode !== 'reset-password' && (
+              <label className="form-field">
+                <span className="field-label">Password</span>
+                <input
+                  type="password"
+                  className="field-input"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  required
+                  disabled={loading}
+                />
+              </label>
+            )}
 
             {authError && (
               <div className="login-trial-info" style={{ background: '#fee2e2', color: '#991b1b' }}>
@@ -206,16 +264,33 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
               <button
                 type="button"
                 className="cta-btn cta-outline"
-                onClick={onCancel}
+                onClick={mode === 'reset-password' ? () => {
+                  setMode('sign-in');
+                  resetFeedback();
+                } : onCancel}
                 disabled={loading}
               >
-                Back
+                {mode === 'reset-password' ? 'Back to sign in' : 'Back'}
               </button>
             </div>
+
+            {mode === 'sign-in' && (
+              <button
+                type="button"
+                className="cta-btn cta-outline"
+                onClick={() => {
+                  setMode('reset-password');
+                  resetFeedback();
+                }}
+                disabled={loading}
+              >
+                Forgot password?
+              </button>
+            )}
           </form>
         )}
 
-        {!hasAuthFeedback && !authError && (
+        {!hasAuthFeedback && !authError && mode !== 'reset-password' && (
           <div className="login-trial-info">
             <h3>Course reader access</h3>
             <p>

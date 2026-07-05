@@ -10,6 +10,7 @@ import { extractHeadingToc } from "./utils/headings";
 import Layout from "./components/Layout";
 import HomePage from "./components/HomePage";
 import DemoLogin from "./components/DemoLogin";
+import UpdatePassword from "./components/UpdatePassword";
 import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
 import AppendicesView from "./components/AppendicesView";
@@ -22,7 +23,7 @@ import { isChapterGated } from "./lib/freePreview";
 // Optional display convenience only — Supabase Auth session is the real authority.
 const LS_DEMO_USER = "reader-hybrid-v1.1:demoUser";
 
-const VALID_SCOPES = new Set(["welcome", "book", "labs", "appendices", "login", "admin"]);
+const VALID_SCOPES = new Set(["welcome", "book", "labs", "appendices", "login", "update-password", "admin"]);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map((c) => c.id));
 
 /** Pre-built lookup: pageId → index in FLAT_READER_PAGES (avoids repeated findIndex). */
@@ -67,6 +68,8 @@ function parsePathParams(): RouteState {
 
   if (!route || route === "welcome") return { scope: "welcome" };
   if (route === "login") return { scope: "login" };
+  if (route === "update-password") return { scope: "update-password" };
+  if (route === "account" && chapter === "update-password") return { scope: "update-password" };
   if (route === "book") {
     return {
       scope: "book",
@@ -148,6 +151,7 @@ function buildRoutePath(
     return `/appendices/${encodeURIComponent(opts.appendix)}`;
   if (scope === "appendices") return "/appendices";
   if (scope === "login") return "/login";
+  if (scope === "update-password") return "/account/update-password";
   if (scope === "admin") return "/admin";
   return "/";
 }
@@ -614,6 +618,9 @@ export default function App() {
           onLogin={handleDemoLogin}
           onCancel={() => navigateScope("welcome")}
         />
+      )}
+      {scope === "update-password" && (
+        <UpdatePassword onDone={() => navigateScope("login")} />
       )}
       {scope === "book" &&
         !demoUser &&

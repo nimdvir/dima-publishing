@@ -37,6 +37,7 @@ const SCOPE_LABELS: Record<ReaderScope, string> = {
   labs: "Labs",
   appendices: "Appendices",
   login: "Sign in",
+  "update-password": "Update password",
   admin: "Admin",
 };
 
@@ -211,7 +212,7 @@ export default function Layout({
       </footer>
 
       {/* Feedback — floating report button */}
-      {scope !== "welcome" && scope !== "login" && <FeedbackLink />}
+      {scope !== "welcome" && scope !== "login" && scope !== "update-password" && <FeedbackLink />}
     </div>
   );
 }
