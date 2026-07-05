@@ -96,6 +96,13 @@ Files in this directory are authoritative.
 Do not maintain editable duplicate agent or skill files in Google Drive,
 platform-pilot folders, or temporary documentation folders.
 
+## BITM330 Course/Textbook Boundary
+
+- `dima-publishing` is the GitHub production and publishing repository for the textbook platform.
+- `G:\My Drive\0-Projects\!-important\BITM330-book-drive\` is the textbook drafting, media, and book-production workspace.
+- `G:\My Drive\1. Academic\Teaching\Albany\BITM330\` is the live BITM330 academic course root. It is the actual course home, not an extra, archive, or ancillary folder.
+- Keep semester course shells, student submissions, grade exports, LMS records, and active teaching materials in the academic course root. Keep textbook source, media, publication files, and book-linked tooling in the textbook/publishing workspaces unless the user explicitly asks for a cross-root workflow.
+
 ## External Assets
 
 Large image assets remain under:

@@ -44,6 +44,13 @@ If the path is not a verified junction:
 3. Edit the repository version instead.
 4. Never overwrite a newer repository file from Google Drive.
 
+## BITM330 Course/Textbook Boundary
+
+- `dima-publishing` is the GitHub production and publishing repository for the textbook platform.
+- `G:\My Drive\0-Projects\!-important\BITM330-book-drive\` is the textbook drafting, media, and book-production workspace.
+- `G:\My Drive\1. Academic\Teaching\Albany\BITM330\` is the live BITM330 academic course root. It is the actual course home, not an extra, archive, or ancillary folder.
+- Keep semester shells, student submissions, grade exports, LMS records, and active course operations in the academic course root. Do not move or recategorize them as textbook assets unless the user explicitly requests a cross-root workflow.
+
 ## External Assets
 
 Large image assets remain outside the repository at the configured media library
