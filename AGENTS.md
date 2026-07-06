@@ -51,6 +51,19 @@ If the path is not a verified junction:
 - `G:\My Drive\1. Academic\Teaching\Albany\BITM330\` is the live BITM330 academic course root. It is the actual course home, not an extra, archive, or ancillary folder.
 - Keep semester shells, student submissions, grade exports, LMS records, and active course operations in the academic course root. Do not move or recategorize them as textbook assets unless the user explicitly requests a cross-root workflow.
 
+## Design Authority
+
+The canonical design instructions for the book reader platform, chapter content
+styling, callouts, brand identity, typography, and accessibility are in:
+
+```
+books/database-book/plans/design-instructions.md
+```
+
+All platform CSS files (`styles.css`, `call-outs.css`) must match this spec.
+Update the document before updating CSS. A working copy also exists in the
+Drive workspace at `.docs/.styles/design-instructions.md`.
+
 ## External Assets
 
 Large image assets remain outside the repository at the configured media library

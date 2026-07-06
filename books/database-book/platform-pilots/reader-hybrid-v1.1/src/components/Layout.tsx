@@ -37,6 +37,7 @@ const SCOPE_LABELS: Record<ReaderScope, string> = {
   labs: "Labs",
   appendices: "Appendices",
   login: "Sign in",
+  "reset-password": "Reset password",
   admin: "Admin",
 };
 

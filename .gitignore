@@ -12,3 +12,8 @@ desktop.ini
 **/out/
 .vercel
 .env*
+
+# YouTube upload workflow secrets
+secrets/
+youtube_client_secret.json
+youtube_token.json

@@ -10,6 +10,7 @@ import { extractHeadingToc } from "./utils/headings";
 import Layout from "./components/Layout";
 import HomePage from "./components/HomePage";
 import DemoLogin from "./components/DemoLogin";
+import UpdatePassword from "./components/UpdatePassword";
 import ChapterReader from "./components/ChapterReader";
 import LabsView from "./components/LabsView";
 import AppendicesView from "./components/AppendicesView";
@@ -22,7 +23,7 @@ import { isChapterGated } from "./lib/freePreview";
 // Optional display convenience only — Supabase Auth session is the real authority.
 const LS_DEMO_USER = "reader-hybrid-v1.1:demoUser";
 
-const VALID_SCOPES = new Set(["welcome", "book", "labs", "appendices", "login", "admin"]);
+const VALID_SCOPES = new Set(["welcome", "book", "labs", "appendices", "login", "reset-password", "admin"]);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map((c) => c.id));
 
 /** Pre-built lookup: pageId → index in FLAT_READER_PAGES (avoids repeated findIndex). */
@@ -87,6 +88,12 @@ function parsePathParams(): RouteState {
       appendix: chapter,
     };
   }
+  if (route === "account" && chapter === "update-password") {
+    return { scope: "reset-password" };
+  }
+  if (route === "reset-password") {
+    return { scope: "reset-password" };
+  }
   if (route === "admin") {
     return { scope: "admin" };
   }
@@ -148,6 +155,7 @@ function buildRoutePath(
     return `/appendices/${encodeURIComponent(opts.appendix)}`;
   if (scope === "appendices") return "/appendices";
   if (scope === "login") return "/login";
+  if (scope === "reset-password") return "/account/update-password";
   if (scope === "admin") return "/admin";
   return "/";
 }
@@ -247,7 +255,10 @@ export default function App() {
     const {
       data: { subscription },
     } = client.auth.onAuthStateChange(async (event, session) => {
-      if (event === "SIGNED_OUT") {
+      if (event === "PASSWORD_RECOVERY") {
+        setScope("reset-password");
+        writeRoute("reset-password");
+      } else if (event === "SIGNED_OUT") {
         setDemoUser(null);
         setIsAdmin(false);
         localStorage.removeItem(LS_DEMO_USER);
@@ -613,6 +624,14 @@ export default function App() {
         <DemoLogin
           onLogin={handleDemoLogin}
           onCancel={() => navigateScope("welcome")}
+        />
+      )}
+      {scope === "reset-password" && (
+        <UpdatePassword
+          onDone={() => {
+            setScope("login");
+            writeRoute("login");
+          }}
         />
       )}
       {scope === "book" &&

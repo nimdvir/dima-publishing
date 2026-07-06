@@ -1,0 +1,19 @@
+# Video batch configuration and mapping example
+# Copy this to data/video_batch.yml and edit with your actual files.
+
+playlist: "BITM330 - Special Topics"
+privacy: unlisted
+
+videos:
+  - path: "G:/My Drive/0-Projects/!-important/BITM330-book-drive/.images/ch07-normalization/ch-07-videos/Data_Normalization.mp4"
+    title: "Chapter 7: Intro to Data Normalization"
+    description: "Learn how data normalization standardizes database entries to prevent anomalies."
+    label: "ch07-normalization-intro"
+    embed_target: "books/database-book/files/source/chapters/ch07-normalization/index.md"
+
+  - path: "G:/My Drive/0-Projects/!-important/BITM330-book-drive/.images/ch07-normalization/ch-07-videos/How_Database_Normalization_Prevents_Data_Corruption.mp4"
+    title: "Chapter 7: Normalization vs Data Corruption"
+    description: "A deeper look at database anomalies and data corruption prevention."
+    label: "ch07-normalization-corruption"
+    embed_target: "books/database-book/files/source/chapters/ch07-normalization/index.md"
+    embed_marker: "<!-- VIDEO:ch07-normalization-corruption -->"

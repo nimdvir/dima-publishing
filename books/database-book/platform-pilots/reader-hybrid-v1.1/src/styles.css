@@ -60,6 +60,42 @@
   --color-warning: #b45309;
   --color-danger: #b91c1c;
 
+  /* Callout type colors (authority: _static/call-outs.css) */
+  --callout-bg-default: #f8fafc;
+  --callout-border-default: #64748b;
+  --callout-business-insight-border: #2563eb;
+  --callout-business-insight-bg: #eff6ff;
+  --callout-tip-border: #16a34a;
+  --callout-tip-bg: #f0fdf4;
+  --callout-note-border: #64748b;
+  --callout-note-bg: #f8fafc;
+  --callout-important-border: #7c3aed;
+  --callout-important-bg: #f5f3ff;
+  --callout-warning-border: #f59e0b;
+  --callout-warning-bg: #fffbeb;
+  --callout-caution-border: #ea580c;
+  --callout-caution-bg: #fff7ed;
+  --callout-good-practice-border: #15803d;
+  --callout-good-practice-bg: #f0fdf4;
+  --callout-avoid-border: #dc2626;
+  --callout-avoid-bg: #fef2f2;
+  --callout-info-border: #0891b2;
+  --callout-info-bg: #ecfeff;
+  --callout-example-border: #0d9488;
+  --callout-example-bg: #f0fdfa;
+  --callout-question-border: #9333ea;
+  --callout-question-bg: #faf5ff;
+  --callout-definition-border: #475569;
+  --callout-definition-bg: #f8fafc;
+  --callout-discipline-definition-border: #1d4ed8;
+  --callout-discipline-definition-bg: #eff6ff;
+  --callout-term-border: #0369a1;
+  --callout-term-bg: #f0f9ff;
+  --callout-concept-border: #7e22ce;
+  --callout-concept-bg: #faf5ff;
+  --callout-key-takeaway-border: #ca8a04;
+  --callout-key-takeaway-bg: #fefce8;
+
   /* Elevation + shape (softer, cooler) */
   --shadow: 0 18px 50px rgba(24, 24, 27, 0.08);
   --shadow-sm: 0 1px 3px rgba(24, 24, 27, 0.08);
@@ -1239,6 +1275,21 @@ h3 {
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
+.login-forgot-link {
+  align-self: flex-start;
+  margin-top: 0.75rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--brand-accent, #2563eb);
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.login-forgot-link:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
 .login-success {
   text-align: center;
   display: flex;
@@ -1591,119 +1642,21 @@ h3 {
 }
 
 /* ═══════════════════════════ CALLOUTS ═══════════════════════════ */
-.markdown-body div[class*="callout"],
-.markdown-body .callout,
-.markdown-body .tip,
-.markdown-body .warning,
-.markdown-body .example,
-.markdown-body .key-takeaway,
-.markdown-body .business-insight,
-.markdown-body .good-practice,
-.markdown-body .avoid,
-.markdown-body .note,
-.markdown-body .info,
-.markdown-body .important,
-.markdown-body .caution,
-.markdown-body .definition,
-.markdown-body .concept,
-.markdown-body .question {
+/* Callout colors are defined in _static/call-outs.css as the single source of truth.
+   This file provides a scoped .markdown-body base only; individual type colors
+   are owned by call-outs.css and consume the --callout-* tokens defined in :root. */
+.markdown-body .callout {
   padding: 1rem 1.25rem;
   margin: 1em 0;
   border-radius: var(--radius-xs);
-  border-left: 5px solid var(--color-primary-soft);
-  background: var(--color-surface-muted);
+  border-left: 5px solid var(--callout-border-default, var(--color-primary-soft));
+  background: var(--callout-bg-default, var(--color-surface-muted));
+  color: var(--color-text);
   font-size: 0.93rem;
   line-height: 1.6;
 }
-.markdown-body div[class*="callout"] > *:first-child,
-.markdown-body .tip > *:first-child,
-.markdown-body .warning > *:first-child,
-.markdown-body .example > *:first-child,
-.markdown-body .key-takeaway > *:first-child,
-.markdown-body .business-insight > *:first-child,
-.markdown-body .good-practice > *:first-child,
-.markdown-body .avoid > *:first-child,
-.markdown-body .note > *:first-child,
-.markdown-body .info > *:first-child,
-.markdown-body .important > *:first-child,
-.markdown-body .caution > *:first-child,
-.markdown-body .definition > *:first-child,
-.markdown-body .concept > *:first-child,
-.markdown-body .question > *:first-child {
-  margin-top: 0;
-}
-.markdown-body div[class*="callout"] > *:last-child,
-.markdown-body .tip > *:last-child,
-.markdown-body .warning > *:last-child,
-.markdown-body .example > *:last-child,
-.markdown-body .key-takeaway > *:last-child,
-.markdown-body .business-insight > *:last-child,
-.markdown-body .good-practice > *:last-child,
-.markdown-body .avoid > *:last-child,
-.markdown-body .note > *:last-child,
-.markdown-body .info > *:last-child,
-.markdown-body .important > *:last-child,
-.markdown-body .caution > *:last-child,
-.markdown-body .definition > *:last-child,
-.markdown-body .concept > *:last-child,
-.markdown-body .question > *:last-child {
-  margin-bottom: 0;
-}
-
-.markdown-body .callout-tip,
-.markdown-body .tip {
-  border-left-color: var(--color-success);
-  background: rgba(78, 107, 93, 0.06);
-}
-.markdown-body .callout-warning,
-.markdown-body .warning,
-.markdown-body .caution {
-  border-left-color: var(--color-warning);
-  background: rgba(160, 111, 43, 0.08);
-}
-.markdown-body .callout-example,
-.markdown-body .example {
-  border-left-color: var(--color-secondary);
-  background: rgba(91, 110, 125, 0.06);
-}
-.markdown-body .callout-key-takeaway,
-.markdown-body .key-takeaway {
-  border-left-color: var(--color-accent-dark);
-  background: rgba(185, 170, 141, 0.08);
-}
-.markdown-body .business-insight {
-  border-left-color: #6f42c1;
-  background: rgba(111, 66, 193, 0.06);
-}
-.markdown-body .good-practice {
-  border-left-color: var(--color-success);
-  background: rgba(78, 107, 93, 0.05);
-}
-.markdown-body .avoid {
-  border-left-color: var(--color-danger);
-  background: rgba(138, 58, 54, 0.06);
-}
-.markdown-body .callout-important,
-.markdown-body .important {
-  border-left-color: var(--color-danger);
-  background: rgba(138, 58, 54, 0.05);
-}
-.markdown-body .callout-note,
-.markdown-body .note,
-.markdown-body .callout-info,
-.markdown-body .info {
-  border-left-color: var(--color-text-muted);
-  background: rgba(116, 120, 122, 0.06);
-}
-.markdown-body .definition,
-.markdown-body .concept {
-  border-left-color: var(--color-primary-soft);
-  background: rgba(64, 81, 96, 0.05);
-}
-.markdown-body .question {
-  border-left-color: #fd7e14;
-  background: rgba(253, 126, 20, 0.05);
-}
+.markdown-body .callout > *:first-child { margin-top: 0; }
+.markdown-body .callout > *:last-child  { margin-bottom: 0; }
 
 /* ═══════════════════════════ BOTTOM NAV ═══════════════════════════ */
 .bottom-nav {

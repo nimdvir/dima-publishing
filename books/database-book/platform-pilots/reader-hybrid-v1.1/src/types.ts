@@ -12,6 +12,7 @@ export type ReaderScope =
   | 'labs'
   | 'appendices'
   | 'login'
+  | 'reset-password'
   | 'admin';
 
 // ── Demo user (localStorage only) ──

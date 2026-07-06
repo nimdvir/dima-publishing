@@ -72,86 +72,88 @@
 
 /* ------------------------------------------------------------
    Business and Instructional Callouts
+   Colors defined as CSS custom properties in :root.
+   Fallback hex values match the canonical design-instructions.md spec.
    ------------------------------------------------------------ */
 
 .callout.business-insight {
-    border-left-color: #2563eb;
-    background: #eff6ff;
+    border-left-color: var(--callout-business-insight-border, #2563eb);
+    background: var(--callout-business-insight-bg, #eff6ff);
 }
 
 .callout.tip {
-    border-left-color: #16a34a;
-    background: #f0fdf4;
+    border-left-color: var(--callout-tip-border, #16a34a);
+    background: var(--callout-tip-bg, #f0fdf4);
 }
 
 .callout.note {
-    border-left-color: #64748b;
-    background: #f8fafc;
+    border-left-color: var(--callout-note-border, #64748b);
+    background: var(--callout-note-bg, #f8fafc);
 }
 
 .callout.important {
-    border-left-color: #7c3aed;
-    background: #f5f3ff;
+    border-left-color: var(--callout-important-border, #7c3aed);
+    background: var(--callout-important-bg, #f5f3ff);
 }
 
 .callout.warning {
-    border-left-color: #f59e0b;
-    background: #fffbeb;
+    border-left-color: var(--callout-warning-border, #f59e0b);
+    background: var(--callout-warning-bg, #fffbeb);
 }
 
 .callout.caution {
-    border-left-color: #ea580c;
-    background: #fff7ed;
+    border-left-color: var(--callout-caution-border, #ea580c);
+    background: var(--callout-caution-bg, #fff7ed);
 }
 
 .callout.good-practice {
-    border-left-color: #15803d;
-    background: #f0fdf4;
+    border-left-color: var(--callout-good-practice-border, #15803d);
+    background: var(--callout-good-practice-bg, #f0fdf4);
 }
 
 .callout.avoid {
-    border-left-color: #dc2626;
-    background: #fef2f2;
+    border-left-color: var(--callout-avoid-border, #dc2626);
+    background: var(--callout-avoid-bg, #fef2f2);
 }
 
 .callout.info {
-    border-left-color: #0891b2;
-    background: #ecfeff;
+    border-left-color: var(--callout-info-border, #0891b2);
+    background: var(--callout-info-bg, #ecfeff);
 }
 
 .callout.example {
-    border-left-color: #0d9488;
-    background: #f0fdfa;
+    border-left-color: var(--callout-example-border, #0d9488);
+    background: var(--callout-example-bg, #f0fdfa);
 }
 
 .callout.question {
-    border-left-color: #9333ea;
-    background: #faf5ff;
+    border-left-color: var(--callout-question-border, #9333ea);
+    background: var(--callout-question-bg, #faf5ff);
 }
 
 .callout.definition {
-    border-left-color: #475569;
-    background: #f8fafc;
+    border-left-color: var(--callout-definition-border, #475569);
+    background: var(--callout-definition-bg, #f8fafc);
 }
 
 .callout.discipline-definition {
-    border-left-color: #1d4ed8;
-    background: #eff6ff;
+    border-left-color: var(--callout-discipline-definition-border, #1d4ed8);
+    background: var(--callout-discipline-definition-bg, #eff6ff);
 }
 
 .callout.term {
-    border-left-color: #0369a1;
-    background: #f0f9ff;
+    border-left-color: var(--callout-term-border, #0369a1);
+    background: var(--callout-term-bg, #f0f9ff);
 }
 
 .callout.concept {
-    border-left-color: #7e22ce;
-    background: #faf5ff;
+    border-left-color: var(--callout-concept-border, #7e22ce);
+    background: var(--callout-concept-bg, #faf5ff);
 }
 
 .callout.key-takeaway {
-    border-left-color: #ca8a04;
-    background: #fefce8;
+    border-left-color: var(--callout-key-takeaway-border, #ca8a04);
+    background: var(--callout-key-takeaway-bg, #fefce8);
 }
 
 

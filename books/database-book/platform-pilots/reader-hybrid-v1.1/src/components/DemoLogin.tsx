@@ -11,7 +11,7 @@ interface DemoLoginProps {
   onCancel: () => void;
 }
 
-type AuthMode = 'sign-in' | 'create-account';
+type AuthMode = 'sign-in' | 'create-account' | 'forgot-password';
 
 export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
   const [mode, setMode] = useState<AuthMode>('sign-in');
@@ -102,17 +102,59 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
     setLoading(false);
   }
 
+  async function handleForgotPassword() {
+    setLoading(true);
+    setAuthError('');
+    setAuthSuccess('');
+
+    const cleanEmail = email.trim().toLowerCase();
+
+    try {
+      if (!supabase) {
+        setAuthError(supabaseConfigError ?? 'Reader login is not configured yet.');
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
+        redirectTo: `${window.location.origin}/account/update-password`,
+      });
+
+      if (error) {
+        setAuthError(error.message);
+      } else {
+        // Generic message avoids revealing whether an account exists.
+        setAuthSuccess(
+          'If an account exists for that email, a password reset link is on its way. Open the link in your inbox to choose a new password.'
+        );
+      }
+    } catch (err) {
+      setAuthError(err instanceof Error ? err.message : String(err));
+    }
+
+    setLoading(false);
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (mode === 'forgot-password') {
+      if (!email.trim()) return;
+      handleForgotPassword();
+      return;
+    }
     if (!email.trim() || !password.trim()) return;
     handleAuth(mode);
   };
 
   const submitLabel = loading
-    ? 'Signing in...'
+    ? mode === 'forgot-password'
+      ? 'Sending...'
+      : 'Signing in...'
     : mode === 'sign-in'
       ? 'Sign in'
-      : 'Create account';
+      : mode === 'create-account'
+        ? 'Create account'
+        : 'Send reset link';
 
   const hasAuthFeedback = !!authSuccess;
   const hasReaderAccess = !!accessDetails;
@@ -183,21 +225,23 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
                 disabled={loading}
               />
             </label>
-            <label className="form-field" htmlFor="login-password">
-              <span className="field-label">Password</span>
-              <input
-                id="login-password"
-                name="password"
-                type="password"
-                autoComplete={mode === 'create-account' ? 'new-password' : 'current-password'}
-                className="field-input"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                required
-                disabled={loading}
-              />
-            </label>
+            {mode !== 'forgot-password' && (
+              <label className="form-field" htmlFor="login-password">
+                <span className="field-label">Password</span>
+                <input
+                  id="login-password"
+                  name="password"
+                  type="password"
+                  autoComplete={mode === 'create-account' ? 'new-password' : 'current-password'}
+                  className="field-input"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  required
+                  disabled={loading}
+                />
+              </label>
+            )}
 
             {authError && (
               <div className="login-trial-info" style={{ background: '#fee2e2', color: '#991b1b' }}>
@@ -218,6 +262,35 @@ export default function DemoLogin({ onLogin, onCancel }: DemoLoginProps) {
                 Back
               </button>
             </div>
+
+            {mode === 'sign-in' && (
+              <button
+                type="button"
+                className="login-forgot-link"
+                onClick={() => {
+                  setMode('forgot-password');
+                  setAuthError('');
+                  setAuthSuccess('');
+                }}
+                disabled={loading}
+              >
+                Forgot password?
+              </button>
+            )}
+            {mode === 'forgot-password' && (
+              <button
+                type="button"
+                className="login-forgot-link"
+                onClick={() => {
+                  setMode('sign-in');
+                  setAuthError('');
+                  setAuthSuccess('');
+                }}
+                disabled={loading}
+              >
+                Back to sign in
+              </button>
+            )}
           </form>
         )}
 

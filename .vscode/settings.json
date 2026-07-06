@@ -6,5 +6,28 @@
   "geminicodeassist.inlineSuggestions.suggestionSpeed": "Fast",
   "geminicodeassist.languages": ["*", "yaml", "markdown", "html"],
   "geminicodeassist.updateChannel": "Default",
-  "geminicodeassist.inlineSuggestions.nextEditPredictions": true
+  "geminicodeassist.inlineSuggestions.nextEditPredictions": true,
+  "inlineChat.defaultModel": "DeepSeek V4 Flash (deepseek)",
+  "chat.mcp.serverSampling": {
+    "dima-publishing/.vscode/mcp.json: supabase": {
+      "allowedModels": [
+        "deepseek/deepseek-v4-flash",
+        "deepseek/deepseek-v4-pro",
+        "deepseek-v4/deepseek-v4-flash",
+        "deepseek-v4/deepseek-v4-flash::thinking",
+        "deepseek-v4/deepseek-v4-pro",
+        "deepseek-v4/deepseek-v4-pro::thinking",
+        "openrouter/OpenRouter/deepseek/deepseek-chat",
+        "openrouter/OpenRouter/deepseek/deepseek-chat-v3-0324",
+        "openrouter/OpenRouter/deepseek/deepseek-chat-v3.1",
+        "openrouter/OpenRouter/deepseek/deepseek-v3.1-terminus",
+        "openrouter/OpenRouter/deepseek/deepseek-v3.2",
+        "openrouter/OpenRouter/deepseek/deepseek-v3.2-exp",
+        "openrouter/OpenRouter/deepseek/deepseek-v4-flash",
+        "openrouter/OpenRouter/deepseek/deepseek-v4-pro",
+        "openrouter/OpenRouter/deepseek/deepseek-r1",
+        "openrouter/OpenRouter/deepseek/deepseek-r1-0528"
+      ]
+    }
+  }
 }

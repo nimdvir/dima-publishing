@@ -64,6 +64,12 @@ single-stage work.
 | `progress-update`         | Log progress to the rolling edit log                                            |
 | `daily-work-log`          | Generate a full dated Markdown work log                                         |
 
+### Cross-cutting / format skills
+
+| Skill                       | Use when                                                          |
+| --------------------------- | ----------------------------------------------------------------- |
+| `notion-flavored-markdown`  | Formatting content for Notion MCP create/update page calls        |
+
 ## Common Workflows
 
 - Orchestration entry points (pick by how much help you want):

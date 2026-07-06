@@ -1,5 +1,10 @@
 # Reader Hybrid v1.1 — Design System
 
+> **⚠️ SUPERSEDED — 2026-07-05**
+> This document has been superseded by [`design-instructions.md`](../design-instructions.md).
+> All design authority now lives in that single canonical document.
+> This file is retained for historical reference only. Do not use as an active instruction source.
+
 **Date:** 2026-06-06
 **Purpose:** CSS custom properties, color palette, typography, and component styles for the Reader Hybrid v1.1 redesign. Designed for use with Tailwind CSS 4 `@theme` tokens or as standalone CSS variables in `src/index.css`.
 
