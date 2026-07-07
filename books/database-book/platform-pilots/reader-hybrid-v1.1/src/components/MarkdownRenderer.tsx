@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import type { Options } from 'rehype-sanitize';
 import { slugifyHeading, uniqueId, textFromChildren, type HeadingTocItem } from '../utils/headings';
+import ImageLightbox from './ImageLightbox';
 
 // Custom sanitize schema: allow callout classes and YouTube iframes only
 const customSchema: Options = {
@@ -52,6 +54,8 @@ export default function MarkdownRenderer({
   onHeadingsExtracted,
   suppressFirstImage = false,
 }: MarkdownRendererProps) {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+
   // Per-render heading counter keeps DOM IDs aligned with extracted H1/H2/H3 IDs.
   const headingCounts = new Map<string, number>();
   let imageCount = 0;
@@ -106,7 +110,7 @@ export default function MarkdownRenderer({
               </div>
             );
           },
-          // Ensure images are responsive
+          // Images: click to enlarge in lightbox
           img: ({ src, alt, ...props }: any) => {
             imageCount += 1;
 
@@ -115,12 +119,25 @@ export default function MarkdownRenderer({
             }
 
             return (
-              <img
-                src={src}
-                alt={alt || ''}
-                loading="lazy"
-                {...props}
-              />
+              <span
+                className="image-zoom-wrapper"
+                role="button"
+                tabIndex={0}
+                onClick={() => setLightbox({ src, alt: alt || '' })}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setLightbox({ src, alt: alt || '' });
+                  }
+                }}
+              >
+                <img
+                  src={src}
+                  alt={alt || ''}
+                  loading="lazy"
+                  {...props}
+                />
+              </span>
             );
           },
           // Style tables
@@ -133,6 +150,14 @@ export default function MarkdownRenderer({
       >
         {content}
       </ReactMarkdown>
+
+      {lightbox && (
+        <ImageLightbox
+          src={lightbox.src}
+          alt={lightbox.alt}
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </div>
   );
 }
