@@ -62,6 +62,7 @@ single-stage work.
 | `notebooklm-video`        | Generate NotebookLM chapter preview video prompts                               |
 | `edits`                   | Manage per-chapter `.edits` files                                               |
 | `progress-update`         | Log progress to the rolling edit log                                            |
+| `todo`                    | Session handoff — show/add to the daily to-do list; updates chapter-tracker     |
 | `daily-work-log`          | Generate a full dated Markdown work log                                         |
 
 ### Cross-cutting / format skills
