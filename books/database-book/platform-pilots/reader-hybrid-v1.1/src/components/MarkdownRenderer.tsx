@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import type { Options } from 'rehype-sanitize';
-import { slugifyHeading, uniqueId, textFromChildren, type HeadingTocItem } from '../utils/headings';
+import {
+  slugifyHeading,
+  uniqueId,
+  textFromChildren,
+  extractHeadingTocRaw,
+  filterNonContentHeadings,
+  contentStartsWithHeading,
+  type HeadingTocItem,
+} from '../utils/headings';
 import ImageLightbox from './ImageLightbox';
 
 // Custom sanitize schema: allow callout classes and YouTube iframes only
@@ -55,10 +63,45 @@ export default function MarkdownRenderer({
   suppressFirstImage = false,
 }: MarkdownRendererProps) {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
-
-  // Per-render heading counter keeps DOM IDs aligned with extracted H1/H2/H3 IDs.
-  const headingCounts = new Map<string, number>();
   let imageCount = 0;
+
+  // Deterministic heading IDs: precompute once per content, keyed by source line.
+  // Generating IDs by mutating a counter during render is impure, so React
+  // StrictMode's double-invoke double-counts duplicates and produces spurious
+  // "-2" suffixes (and doubled "On this page" entries). Precomputing keeps DOM
+  // IDs stable and pure. `node.position.start.line` gives each heading a stable
+  // key that survives the double render.
+  const rawToc = useMemo(() => extractHeadingTocRaw(content), [content]);
+  const idByLine = useMemo(() => {
+    const m = new Map<number, string>();
+    for (const h of rawToc) m.set(h.line, h.id);
+    return m;
+  }, [rawToc]);
+  const contentHeadings = useMemo<HeadingTocItem[]>(() => {
+    // Omit the page's leading heading from "On this page" only when it acts as
+    // the page TITLE — i.e., the page opens with a title-level (H1/H2) heading
+    // that is either the sole heading or is followed by a deeper heading (its
+    // child). Pages that open with sibling sections, or whose only heading is a
+    // deeper subsection (H3, e.g. a continuation page), keep all of them so a
+    // real section is never dropped and "On this page" is never left empty.
+    const leadIsTitle =
+      rawToc.length > 0 &&
+      contentStartsWithHeading(content) &&
+      rawToc[0].level <= 2 &&
+      (rawToc.length === 1 || rawToc[1].level > rawToc[0].level);
+    const items = leadIsTitle ? rawToc.slice(1) : rawToc;
+    return filterNonContentHeadings(items).map(({ id, level, text }) => ({ id, level, text }));
+  }, [rawToc, content]);
+
+  // Fallback only for the rare heading whose source position is unavailable.
+  const fallbackCounts = new Map<string, number>();
+  const resolveHeadingId = (line: number | undefined, text: string): string =>
+    (line != null ? idByLine.get(line) : undefined) ?? uniqueId(slugifyHeading(text), fallbackCounts);
+
+  // Report this page's headings for the "On this page" rail.
+  useEffect(() => {
+    if (onHeadingsExtracted) onHeadingsExtracted(contentHeadings);
+  }, [contentHeadings, onHeadingsExtracted]);
 
   return (
     <div className="markdown-body">
@@ -70,19 +113,16 @@ export default function MarkdownRenderer({
         ]}
         components={{
           // Custom H1/H2/H3 with stable IDs for "On this page" navigation
-          h1: ({ children, ...props }: any) => {
-            const text = textFromChildren(children);
-            const id = uniqueId(slugifyHeading(text), headingCounts);
+          h1: ({ node, children, ...props }: any) => {
+            const id = resolveHeadingId(node?.position?.start?.line, textFromChildren(children));
             return <h1 {...props} id={id}>{children}</h1>;
           },
-          h2: ({ children, ...props }: any) => {
-            const text = textFromChildren(children);
-            const id = uniqueId(slugifyHeading(text), headingCounts);
+          h2: ({ node, children, ...props }: any) => {
+            const id = resolveHeadingId(node?.position?.start?.line, textFromChildren(children));
             return <h2 {...props} id={id}>{children}</h2>;
           },
-          h3: ({ children, ...props }: any) => {
-            const text = textFromChildren(children);
-            const id = uniqueId(slugifyHeading(text), headingCounts);
+          h3: ({ node, children, ...props }: any) => {
+            const id = resolveHeadingId(node?.position?.start?.line, textFromChildren(children));
             return <h3 {...props} id={id}>{children}</h3>;
           },
           // Custom iframe handler: only allow YouTube / youtube-nocookie

@@ -39,7 +39,7 @@ author: "Nimrod Dvir, PhD"
 | **Unique Constraint** | A rule that prevents duplicate values in a column or group of columns. Unlike the primary key, a table can have multiple unique constraints. | Unique constraints protect business identifiers — email addresses, student-deliverable pairs, course codes — from accidental duplication. They turn "this should be unique" into "this cannot be duplicated." | `UNIQUE (Email)` on `STUDENT` prevents two students from sharing an email. `UNIQUE (StudentID, DeliverableID)` prevents two grade rows for the same student-deliverable pair. |
 | **Window Function** | A SQL function that computes analytical values — rankings, running totals, moving averages — over a set of rows while preserving row-level detail. Unlike `GROUP BY`, window functions do not collapse rows. | Window functions add comparative context to individual records. An instructor can see each student's score alongside the class rank, running average, or percentile — supporting earlier interventions and fairer benchmarking. Detailed coverage is in Chapters 9 and 10. | `AVG(Score) OVER (PARTITION BY StudentID ORDER BY DueDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)` computes a running average per student over time. |
 
-# Acronyms and Abbreviations
+## Acronyms and Abbreviations
 
 | Acronym | Meaning |
 |---|---|

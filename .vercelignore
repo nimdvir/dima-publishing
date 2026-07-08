@@ -1,0 +1,29 @@
+# Secrets — never upload
+.env
+.env.local
+.env.*
+!.env.example
+
+# Deps / build artifacts (Vercel installs + builds fresh)
+node_modules
+**/node_modules
+**/dist
+.git
+
+# The production build only uses platform-pilots/reader-hybrid-v1.1.
+# Exclude the other pilot apps and their sources to keep the upload small.
+books/database-book/platform-pilots/chat-gpt
+books/database-book/platform-pilots/cursor-online-reader
+books/database-book/platform-pilots/ai-studio
+books/database-book/platform-pilots/reader-hybrid
+books/database-book/platform-pilots/reader-hybrid-alt
+books/database-book/platform-claude-5-30
+
+# Heavy repo artifacts not needed by the reader build
+chapter-review-ch10-17
+corporation
+data
+Dima-publishing-site
+.images
+ch01-cover.png
+ch01-cover-base64.txt

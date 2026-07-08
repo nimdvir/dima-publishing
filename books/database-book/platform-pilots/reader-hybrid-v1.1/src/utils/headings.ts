@@ -9,6 +9,11 @@ export interface HeadingTocItem {
   text: string;
 }
 
+export interface RawHeadingTocItem extends HeadingTocItem {
+  /** 1-based source line, matching hast `node.position.start.line`. */
+  line: number;
+}
+
 /** Generate a URL-safe slug from a heading text string. */
 export function slugifyHeading(value: string): string {
   return value
@@ -27,13 +32,19 @@ export function uniqueId(base: string, counts: Map<string, number>): string {
   return count === 0 ? base : `${base}-${count + 1}`;
 }
 
-/** Extract H1/H2/H3 headings from raw Markdown content for the "On this page" panel. */
-export function extractHeadingToc(content: string): HeadingTocItem[] {
+/**
+ * Extract H1/H2/H3 headings with their source line in a single deterministic
+ * pass. Unfiltered — includes UI/chrome headings — so it can supply stable DOM
+ * IDs keyed by line. `line` is 1-based to match hast `node.position.start.line`.
+ */
+export function extractHeadingTocRaw(content: string): RawHeadingTocItem[] {
   const counts = new Map<string, number>();
-  const headings: HeadingTocItem[] = [];
+  const headings: RawHeadingTocItem[] = [];
   let activeFence: { char: "`" | "~"; length: number } | null = null;
 
-  for (const line of content.split(/\r?\n/)) {
+  const lines = content.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
     const fenceMatch = line.match(/^\s*(`{3,}|~{3,})/);
     if (fenceMatch) {
       const fence = fenceMatch[1];
@@ -57,10 +68,58 @@ export function extractHeadingToc(content: string): HeadingTocItem[] {
       id: uniqueId(slugifyHeading(text), counts),
       level,
       text,
+      line: i + 1,
     });
   }
 
   return headings;
+}
+
+/** Extract H1/H2/H3 headings from raw Markdown content for the "On this page" panel. */
+export function extractHeadingToc(content: string): HeadingTocItem[] {
+  return filterNonContentHeadings(
+    extractHeadingTocRaw(content).map(({ id, level, text }) => ({ id, level, text })),
+  );
+}
+
+/**
+ * True when the content's first meaningful line is a Markdown heading (skipping
+ * blank lines and HTML comments). Such a page leads with its own title heading —
+ * which the reader shows as the page title and therefore omits both from the
+ * header (to avoid a duplicate) and from the "On this page" rail.
+ */
+export function contentStartsWithHeading(content: string): boolean {
+  for (const raw of content.split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line) continue;
+    if (line.startsWith("<!--")) continue; // skip leading HTML comments
+    return /^#{1,6}\s/.test(line);
+  }
+  return false;
+}
+
+/** Headings that are UI/chrome, not instructional content — excluded from "On this page". */
+const NON_CONTENT_HEADINGS = new Set([
+  "chapter video",
+  "supplementary video",
+  "chapter roadmap",
+  "learning objectives",
+  "core concepts",
+]);
+
+/** Regex patterns for headings that should be excluded from "On this page". */
+const NON_CONTENT_PATTERNS = [
+  /^supplementary video\b/i,
+];
+
+/** Filter out headings that represent UI chrome rather than instructional content. */
+export function filterNonContentHeadings(headings: HeadingTocItem[]): HeadingTocItem[] {
+  return headings.filter((h) => {
+    const lower = h.text.toLowerCase();
+    if (NON_CONTENT_HEADINGS.has(lower)) return false;
+    if (NON_CONTENT_PATTERNS.some((p) => p.test(lower))) return false;
+    return true;
+  });
 }
 
 /**

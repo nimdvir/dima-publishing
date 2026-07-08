@@ -153,6 +153,36 @@ Create the file at `books/database-book/chats/<filename>.md` with this structure
   (e.g. a ChatGPT/Claude share URL). Otherwise write "n/a" — never invent a
   `vscode://` or fake URL.
 
+### 4a. Update the grouped chat index
+
+After saving one or more chat summary files, regenerate the grouped chat index:
+
+- Script: `scripts/build-chat-index.ps1`
+- Output: `books/database-book/chats/CHAT-INDEX.md`
+
+This index groups chats by month and source so older sessions are easy to
+browse and reopen.
+
+### 4b. Mirror to Notion Chat Archive
+
+After saving one or more chat summaries, mirror each saved file to the Notion
+project archive page:
+
+- Project wiki: `📚 Book Project — BITM330`
+- Archive page: `💬 Chat Archive`
+- Page URL: `https://app.notion.com/p/396508ab55d781858de7e4d531d7553c`
+
+Append one checklist entry per saved chat under `## Entries` in this format:
+
+`- [ ] YYYY-MM-DD — <source> — <topic> · [open](https://github.com/nimdvir/dima-publishing/blob/main/books/database-book/chats/<filename>.md) · <one-line TL;DR>`
+
+Rules:
+
+- Append only (never delete prior entries).
+- Keep the one-line TL;DR concise (max ~140 chars).
+- If Notion is unavailable, still complete local save and index generation.
+- Never include student data in Notion entries.
+
 ### 5. Web-chat specifics
 
 - If the user provides a share link and the transcript, capture both.
@@ -169,6 +199,8 @@ After saving, confirm:
 - Line count
 - Key topics covered
 - A clickable workspace-relative link to the saved file
+- A clickable link to `books/database-book/chats/CHAT-INDEX.md`
+- Whether Notion `💬 Chat Archive` was updated (and how many entries appended)
 
 ## Target Directory
 

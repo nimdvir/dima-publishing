@@ -1,5 +1,6 @@
 import { BookOpen, LogIn, Database, Layers, BarChart3, Video, ListTree, ArrowDown, ClipboardCheck } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
+import { useEffect, useRef } from 'react';
 import AnimatedBookCover from './AnimatedBookCover';
 import { COURSE_OUTLINE } from '../content/courseOutline';
 
@@ -65,6 +66,14 @@ export default function HomePage({
   const coverUrl = 'https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto/bitm330book/0-cover-image/ch00-cover-art2-cropped.gif';
   const overviewVideoEmbedUrl = 'https://www.youtube-nocookie.com/embed/TjJoWX4vgFs?si=o2BuKL6jeGqtBfTS';
   const reducedMotion = useReducedMotion();
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  // Trigger title highlight sweep animation once on mount
+  useEffect(() => {
+    const el = titleRef.current;
+    if (!el) return;
+    el.classList.add("animate-title");
+  }, []);
 
   const fadeUp = (delay = 0) => ({
     initial: reducedMotion ? false : { opacity: 0, y: 16 },
@@ -86,7 +95,7 @@ export default function HomePage({
           <motion.p className="home-prototype-label" {...fadeUp(0)}>
             Digital Textbook
           </motion.p>
-          <motion.h1 id="home-title" className="home-book-title" {...fadeUp(0.06)}>
+          <motion.h1 id="home-title" className="home-book-title" ref={titleRef} {...fadeUp(0.06)}>
             Using Data to Drive Business Performance
           </motion.h1>
           <motion.p className="home-subtitle" {...fadeUp(0.12)}>

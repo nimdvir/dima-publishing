@@ -662,7 +662,9 @@ export default function App() {
         )}
       {scope === "book" &&
         currentPage &&
-        (demoUser || (activeChapterId && !isChapterGated(activeChapterId))) && (
+        (demoUser || (activeChapterId && !isChapterGated(activeChapterId))) && (() => {
+          const currentChapter = BOOK_CHAPTERS.find((c) => c.id === activeChapterId);
+          return (
           <ChapterReader
             page={currentPage}
             allPages={currentSectionPages}
@@ -675,8 +677,19 @@ export default function App() {
             onPrev={goPrev}
             onNext={goNext}
             showEntryCover={showReaderEntryCover}
+            roadmapItems={currentChapter?.roadmapItems}
+            chapterSubtitle={currentChapter?.subtitle}
+            sections={currentChapter?.sections}
+            onSelectSection={(sectionId) => {
+              const section = currentChapter?.sections.find(
+                (s) => s.id === sectionId,
+              );
+              const firstPage = section?.pages[0];
+              if (firstPage) navigateToPage(firstPage);
+            }}
           />
-        )}
+          );
+        })()}
       {scope === "labs" && !demoUser && !authLoading && (
         <div className="demo-login-page">
           <div className="login-card">

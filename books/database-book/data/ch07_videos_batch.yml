@@ -1,0 +1,33 @@
+playlist: BITM330 - Course Videos
+privacy: unlisted
+videos:
+- path: G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch07-normalization\ch-07-videos\Data_Normalization.mp4
+  title: Data Normalization
+  description: This video explains the basics of database design and data normalization,
+    showing how simple spreadsheets can easily fail due to repetition and inconsistencies.
+    It introduces functional dependencies and guides viewers through the first, second,
+    and third normal forms, while also addressing the trade-offs of denormalization
+    for faster performance.
+  label: ch07-video-1
+  embed_target: books/database-book/files/source/chapters/ch07-normalization/core-concepts.md
+  embed_marker: <!-- VIDEO:ch07-video-1 -->
+- path: G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch07-normalization\ch-07-videos\How_Database_Normalization_Prevents_Data_Corruption.mp4
+  title: How Database Normalization Prevents Data Corruption
+  description: Ever wonder how massive databases stay organized and error-free? This
+    video explains data normalization, a process that prevents "update anomalies"
+    by splitting giant, repetitive spreadsheets into smaller, linked tables. Discover
+    how this structural change protects data integrity and makes updates effortless.
+  label: ch07-video-2
+  embed_target: books/database-book/files/source/chapters/ch07-normalization/core-concepts.md
+  embed_marker: <!-- VIDEO:ch07-video-2 -->
+- path: G:\My Drive\0-Projects\!-important\BITM330-book-drive\.images\ch07-normalization\ch-07-videos\How_Normalization_Fixes_Messy_Databases.mp4
+  title: How Normalization Fixes Messy Databases
+  description: This video explains the concept of data normalization, which organizes
+    messy databases to prevent update errors and improve data integrity. Using a flat
+    grading table as an example, it walks through the steps of First Normal Form (1NF),
+    Second Normal Form (2NF), and Third Normal Form (3NF). Learn how to split complex
+    lists and dependencies into specialized, interconnected tables to create a reliable
+    relational database.
+  label: ch07-video-3
+  embed_target: books/database-book/files/source/chapters/ch07-normalization/core-concepts.md
+  embed_marker: <!-- VIDEO:ch07-video-3 -->

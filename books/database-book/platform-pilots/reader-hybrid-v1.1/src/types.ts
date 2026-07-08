@@ -24,12 +24,20 @@ export interface DemoUser {
 }
 
 // ── Book data model ──
+export interface RoadmapItem {
+  topic: string;       // display text (e.g. "Why This Book Exists")
+  anchor: string;      // heading anchor (e.g. "why-this-book-exists")
+  whyItMatters: string; // short explanation
+}
+
 export interface BookChapter {
   id: string;        // e.g. "ch01"
   slug: string;      // e.g. "ch01-introduction-to-course"
   title: string;
+  subtitle?: string; // chapter topic/strapline, e.g. "How Data Drives Business Performance"
   folderName: string;
   sections: BookSection[];
+  roadmapItems: RoadmapItem[];
 }
 
 export interface BookSection {

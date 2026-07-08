@@ -3,8 +3,11 @@ import { supabase, supabaseConfigError } from '../lib/supabaseClient';
 import { activateStudentTrial, getMyAccess } from '../lib/courseAccess';
 
 export default function SupabaseAccessTest() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const [currentEmail, setCurrentEmail] = useState<string | null>(null);
   const [result, setResult] = useState<unknown>(null);
@@ -54,11 +57,33 @@ export default function SupabaseAccessTest() {
 
     const cleanEmail = email.trim().toLowerCase();
 
+    // Domain validation: only @albany.edu emails allowed
+    if (!cleanEmail.endsWith('@albany.edu')) {
+      setErrorMessage('Please use your @albany.edu university email address.');
+      return;
+    }
+
+    // Password confirmation
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match.');
+      return;
+    }
+
+    // Password length
+    if (password.length < 8) {
+      setErrorMessage('Password must be at least 8 characters.');
+      return;
+    }
+
     const { data, error } = await supabase.auth.signUp({
       email: cleanEmail,
       password,
       options: {
         emailRedirectTo: window.location.origin + '/?authTest=1',
+        data: {
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
+        },
       },
     });
 
@@ -153,6 +178,30 @@ export default function SupabaseAccessTest() {
         </p>
 
         <div style={styles.form}>
+          <div style={styles.nameRow}>
+            <label style={styles.label}>
+              First name
+              <input
+                type="text"
+                value={firstName}
+                placeholder="Nimrod"
+                onChange={(event) => setFirstName(event.target.value)}
+                style={styles.input}
+              />
+            </label>
+
+            <label style={styles.label}>
+              Last name
+              <input
+                type="text"
+                value={lastName}
+                placeholder="Dvir"
+                onChange={(event) => setLastName(event.target.value)}
+                style={styles.input}
+              />
+            </label>
+          </div>
+
           <label style={styles.label}>
             Email address
             <input
@@ -169,10 +218,31 @@ export default function SupabaseAccessTest() {
             <input
               type="password"
               value={password}
-              placeholder="Enter your password"
+              placeholder="At least 8 characters"
               onChange={(event) => setPassword(event.target.value)}
               style={styles.input}
             />
+            {password.length > 0 && password.length < 8 ? (
+              <span style={styles.passwordHint}>Too short — {8 - password.length} more character{8 - password.length === 1 ? '' : 's'} needed</span>
+            ) : password.length >= 8 ? (
+              <span style={{ ...styles.passwordHint, color: '#166534' }}>Password strength: good</span>
+            ) : null}
+          </label>
+
+          <label style={styles.label}>
+            Confirm password
+            <input
+              type="password"
+              value={confirmPassword}
+              placeholder="Re-enter your password"
+              onChange={(event) => setConfirmPassword(event.target.value)}
+              style={styles.input}
+            />
+            {confirmPassword.length > 0 && password !== confirmPassword ? (
+              <span style={styles.passwordHint}>Passwords do not match</span>
+            ) : confirmPassword.length > 0 && password === confirmPassword ? (
+              <span style={{ ...styles.passwordHint, color: '#166534' }}>Passwords match</span>
+            ) : null}
           </label>
 
           <div style={styles.buttonGrid}>
@@ -274,6 +344,11 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'grid',
     gap: '1rem',
   },
+  nameRow: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '1rem',
+  },
   label: {
     display: 'grid',
     gap: '0.4rem',
@@ -290,6 +365,11 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '1rem',
     outline: 'none',
     background: '#ffffff',
+  },
+  passwordHint: {
+    fontSize: '0.8rem',
+    color: '#b91c1c',
+    fontWeight: 600,
   },
   buttonGrid: {
     display: 'grid',

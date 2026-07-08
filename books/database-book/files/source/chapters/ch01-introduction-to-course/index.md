@@ -10,19 +10,19 @@ This chapter is your **orientation to the book and the Journey from Data to Deci
 
 [Watch the Chapter 1 overview video](https://www.youtube.com/watch?v=kpUTXxPuEuU)
 
-## Chapter Roadmap
+### Chapter Roadmap
 
-| Topic                                                                                           | Why It Matters                                     |
-| ----------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [Core Concepts: The Data-to-Decisions Journey](#core-concepts-the-data-to-decisions-journey)    | Key topic in this chapter's Core Concepts reading. |
-| [Why This Book Exists](#why-this-book-exists)                                                   | Key topic in this chapter's Core Concepts reading. |
-| [The Big Idea: From Data to Decisions](#the-big-idea-from-data-to-decisions)                    | Key topic in this chapter's Core Concepts reading. |
-| [Why Databases Matter for Business Performance](#why-databases-matter-for-business-performance) | Key topic in this chapter's Core Concepts reading. |
-| [What Makes This Book Different](#what-makes-this-book-different)                               | Key topic in this chapter's Core Concepts reading. |
-| [How the Book Is Organized](#how-the-book-is-organized)                                         | Key topic in this chapter's Core Concepts reading. |
-| [The Book Flow: From Foundations to Strategy](#the-book-flow-from-foundations-to-strategy)      | Key topic in this chapter's Core Concepts reading. |
-| [The Six-Part Journey](#the-six-part-journey)                                                   | Key topic in this chapter's Core Concepts reading. |
-| [Five Core Competencies](#five-core-competencies)                                               | Key topic in this chapter's Core Concepts reading. |
-| [Why the Book Is Sequenced This Way](#why-the-book-is-sequenced-this-way)                       | Key topic in this chapter's Core Concepts reading. |
+| Topic | Why It Matters |
+| --- | --- |
+| [Core Concepts: The Data-to-Decisions Journey](#core-concepts-the-data-to-decisions-journey) | Your roadmap for the chapter — the key ideas that drive the data-to-decisions framework. |
+| [Why This Book Exists](#why-this-book-exists) | Understand the gap this book fills and why it was built for business students. |
+| [The Big Idea: From Data to Decisions](#the-big-idea-from-data-to-decisions) | Grasp the central thesis that connects every chapter in the book. |
+| [Why Databases Matter for Business Performance](#why-databases-matter-for-business-performance) | See how databases drive real business results, not just store information. |
+| [What Makes This Book Different](#what-makes-this-book-different) | Discover the hands-on, business-first approach that sets this book apart. |
+| [How the Book Is Organized](#how-the-book-is-organized) | Get oriented to the book's structure so you can find what you need fast. |
+| [The Book Flow: From Foundations to Strategy](#the-book-flow-from-foundations-to-strategy) | Preview the logical progression from data basics to strategic decisions. |
+| [The Six-Part Journey](#the-six-part-journey) | Map out the six major segments that structure your learning path. |
+| [Five Core Competencies](#five-core-competencies) | Know the five practical skills you will build by the end of this course. |
+| [Why the Book Is Sequenced This Way](#why-the-book-is-sequenced-this-way) | Learn why chapters build on each other instead of standing alone. |
 
 ---

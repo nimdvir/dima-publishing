@@ -1,13 +1,15 @@
-import { useMemo, useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import type { BookPage } from "../types";
-import { extractHeadingToc } from "../utils/headings";
+import type { BookPage, BookSection, RoadmapItem } from "../types";
+import type { HeadingTocItem } from "../utils/headings";
+import { filterNonContentHeadings, contentStartsWithHeading } from "../utils/headings";
 import { trackPageView, markPageCompleted } from "../lib/readingProgress";
 import { startReadingSession, endReadingSession } from "../lib/readingTime";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OnThisPage, { OnThisPageMobile } from "./OnThisPage";
 import BottomNavigation from "./BottomNavigation";
 import ReaderEntryCoverRotator from "./ReaderEntryCoverRotator";
+import ChapterRoadmapBar from "./ChapterRoadmapBar";
 interface ChapterReaderProps {
   page: BookPage;
   allPages: BookPage[];
@@ -20,7 +22,19 @@ interface ChapterReaderProps {
   onPrev: () => void;
   onNext: () => void;
   showEntryCover: boolean;
+  roadmapItems?: RoadmapItem[];
+  chapterSubtitle?: string;
+  sections?: BookSection[];
+  onSelectSection?: (sectionId: string) => void;
 }
+
+/** Short labels for the in-chapter section switcher. */
+const SECTION_TAB_LABELS: Record<string, string> = {
+  "Review Questions": "Review",
+  "Terms Treasury": "Key Terms",
+  "RAT: Reading Test": "Reading Test",
+  "Chapter Lab": "Lab",
+};
 
 export default function ChapterReader({
   page,
@@ -34,12 +48,30 @@ export default function ChapterReader({
   onPrev,
   onNext,
   showEntryCover,
+  roadmapItems,
+  chapterSubtitle,
+  sections,
+  onSelectSection,
 }: ChapterReaderProps) {
-  // Extract H2/H3 headings from the current page content for "On this page"
-  const headings = useMemo(
-    () => extractHeadingToc(page.content),
-    [page.content],
-  );
+  // Extract headings from the MarkdownRenderer (guarantees ID match with DOM).
+  // Each render reports the CURRENT page's full heading list, so we replace
+  // rather than merge — merging with previous state leaked a prior page's
+  // headings into "On this page". React StrictMode double-renders in dev, but
+  // both reports are identical, so the equality check keeps a stable reference.
+  const [headings, setHeadings] = useState<HeadingTocItem[]>([]);
+  const handleHeadingsExtracted = useCallback((h: HeadingTocItem[]) => {
+    const filtered = filterNonContentHeadings(h);
+    setHeadings((prev) => {
+      if (
+        filtered.length === prev.length &&
+        filtered.every((m, i) => m.id === prev[i].id && m.text === prev[i].text)
+      ) {
+        return prev;
+      }
+      return filtered;
+    });
+  }, []);
+
   const reducedMotion = useReducedMotion();
 
   // Track reading progress on every page view
@@ -99,7 +131,11 @@ export default function ChapterReader({
             <span className="breadcrumb-sep">/</span>
             <span className="breadcrumb-section">{page.sectionTitle}</span>
           </div>
-          <h2 className="reader-page-title">{page.title}</h2>
+          {/* Only show the derived page title when the content does NOT already
+              open with its own heading — otherwise the same heading appears twice. */}
+          {!contentStartsWithHeading(page.content) && (
+            <h2 className="reader-page-title">{page.title}</h2>
+          )}
           <div className="reader-meta">
             {page.totalPages > 1 && (
               <span className="page-indicator">
@@ -109,6 +145,24 @@ export default function ChapterReader({
           </div>
         </div>
 
+        {/* In-chapter section switcher — jump directly between the chapter's
+            sections (Introduction, Core Concepts, Let's Build, …). */}
+        {sections && sections.length > 1 && onSelectSection && (
+          <nav className="section-switcher" aria-label="Chapter sections">
+            {sections.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                className={`section-switch-tab ${s.id === page.sectionId ? "active" : ""}`}
+                aria-current={s.id === page.sectionId ? "page" : undefined}
+                onClick={() => onSelectSection(s.id)}
+              >
+                {SECTION_TAB_LABELS[s.title] || s.title}
+              </button>
+            ))}
+          </nav>
+        )}
+
         {/* Page tabs (if multi-page section) */}
         {allPages.length > 1 && (
           <div className="page-tabs">
@@ -117,6 +171,7 @@ export default function ChapterReader({
                 key={p.id}
                 className={`page-tab ${p.id === page.id ? "active" : ""}`}
                 onClick={() => onNavigate(p)}
+                data-tooltip={p.navTitle || ""}
               >
                 {p.pageNumber}
               </button>
@@ -126,6 +181,22 @@ export default function ChapterReader({
 
         {/* Mobile: collapsible "On this page" above the article */}
         <OnThisPageMobile headings={headings} />
+
+        {/* Chapter subtitle + inline roadmap (intro pages only) */}
+        {page.sectionSlug === "introduction" && (chapterSubtitle || (roadmapItems && roadmapItems.length > 0)) && (
+          <div className="chapter-intro-header">
+            {chapterSubtitle && (
+              <p className="chapter-subtitle">{chapterSubtitle}</p>
+            )}
+            {roadmapItems && roadmapItems.length > 0 && (
+              <ChapterRoadmapBar
+                items={roadmapItems}
+                onTopicClick={(anchor) => onHashNavigate?.(anchor)}
+                inline={true}
+              />
+            )}
+          </div>
+        )}
 
         {/* Reader body: main article + right-side "On this page" rail */}
         <div className="reader-body">
@@ -139,6 +210,7 @@ export default function ChapterReader({
             <MarkdownRenderer
               content={page.content}
               suppressFirstImage={showEntryCover}
+              onHeadingsExtracted={handleHeadingsExtracted}
             />
           </div>
           <OnThisPage headings={headings} />

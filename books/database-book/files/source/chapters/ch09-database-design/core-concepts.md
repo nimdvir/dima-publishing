@@ -17,7 +17,6 @@ Up to this point, we have built database objects, worked with tables, created re
 
 [Watch supplementary video 1](https://www.youtube.com/watch?v=BTm-v0fpS50)
 
-# Core Concepts
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>

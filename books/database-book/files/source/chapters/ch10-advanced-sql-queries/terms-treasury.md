@@ -29,7 +29,7 @@
 | **View** | A named, saved query that behaves like a virtual table. Views store logic, not data, and re-execute against current data each time they are queried. | Creates reusable reporting infrastructure. A dashboard view defined once can be queried by multiple users, tools, and reports without rewriting logic. | `CREATE VIEW StudentPerformanceSummary AS SELECT …` — query it anytime with `SELECT * FROM StudentPerformanceSummary WHERE Status = 'At Risk';` |
 | **Window Function** | An analytical function (`RANK`, `ROW_NUMBER`, `AVG OVER`, `SUM OVER`) that computes values across a set of rows without collapsing them into groups. Uses `OVER()` with optional `PARTITION BY` and `ORDER BY`. | Preserves detail while adding context — a student's individual score can appear next to their average and class rank. Enables rankings, running totals, and moving averages without losing row-level visibility. | `RANK() OVER (ORDER BY AverageScore DESC) AS ClassRank` — each student keeps their detail row and gains a rank. |
 
-# Acronyms and Abbreviations
+## Acronyms and Abbreviations
 
 | Abbreviation | Full Form | Brief Meaning | Where It Appears |
 |---|---|---|---|

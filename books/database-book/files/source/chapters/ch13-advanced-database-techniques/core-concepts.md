@@ -11,7 +11,7 @@ Earlier chapters focused on making databases correct: designing tables, defining
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>
 
-# 13.1 From Correct Queries to Reliable Systems
+## 13.1 From Correct Queries to Reliable Systems
 
 A query can be logically correct and still be operationally weak.
 
@@ -35,7 +35,7 @@ The same problem appears in other forms:
 
 These are not beginner syntax problems. They are **system reliability problems**.
 
-## 13.1.1 What Advanced Techniques Protect
+### 13.1.1 What Advanced Techniques Protect
 
 Advanced database techniques protect four core qualities.
 
@@ -48,7 +48,7 @@ Advanced database techniques protect four core qualities.
 
 Together, these qualities turn a database from a collection of tables into a trustworthy information system.
 
-## 13.1.2 The Idea of Database Hardening
+### 13.1.2 The Idea of Database Hardening
 
 **Database hardening** means strengthening a database so that it can operate safely under realistic conditions. Hardening does not usually change the basic business purpose of the database. Instead, it reinforces the system around that purpose.
 
@@ -68,11 +68,11 @@ A hardened database does not depend entirely on users remembering rules. It embe
   <p>Basic SQL asks, "Does the query work?" Advanced database work asks, "Will the system remain fast, safe, auditable, and trustworthy when real users depend on it?"</p>
 </div>
 
-# 13.2 Indexes: Making Queries Fast at Scale
+## 13.2 Indexes: Making Queries Fast at Scale
 
 Indexes are one of the most important tools for database performance. They do not change the data stored in a table. They change how efficiently the database can find that data.
 
-## 13.2.1 Why Performance Problems Appear Late
+### 13.2.1 Why Performance Problems Appear Late
 
 Performance problems often stay invisible during development because early datasets are small. A query that scans 100 rows feels instant. The same query scanning 5 million rows may become painful.
 
@@ -86,7 +86,7 @@ WHERE StudentID = 101;
 
 If `STUDENT_GRADE` has no index on `StudentID`, the database may inspect every grade record before returning the rows for Student 101.
 
-## 13.2.2 What an Index Does
+### 13.2.2 What an Index Does
 
 An **index** is a lookup structure that helps the DBMS locate rows quickly. A useful analogy is the index at the back of a textbook. Without the index, you search page by page. With the index, you jump directly to the relevant pages.
 
@@ -101,7 +101,7 @@ Common index targets include:
 - dates used in time-window queries;
 - business identifiers such as email addresses.
 
-## 13.2.3 Creating Indexes
+### 13.2.3 Creating Indexes
 
 The basic syntax is:
 
@@ -129,7 +129,7 @@ These indexes support frequent questions:
 - What scores were recorded for this deliverable?
 - Which deliverables are due before a given date?
 
-## 13.2.4 Composite Indexes
+### 13.2.4 Composite Indexes
 
 A **composite index** uses more than one column. It is useful when queries commonly filter or join using those columns together.
 
@@ -152,7 +152,7 @@ The order of columns matters. An index on `(StudentID, DeliverableID)` is most u
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 13.2.5 Unique Indexes
+### 13.2.5 Unique Indexes
 
 A **unique index** improves lookup speed and enforces uniqueness.
 
@@ -177,7 +177,7 @@ CREATE UNIQUE INDEX idx_one_grade_per_attempt
 ON STUDENT_GRADE (StudentID, DeliverableID, AttemptNumber);
 ```
 
-## 13.2.6 The Cost of Indexes
+### 13.2.6 The Cost of Indexes
 
 Indexes improve read performance, but they are not free.
 
@@ -192,7 +192,7 @@ Each index creates trade-offs:
 
 Every time a row is inserted, updated, or deleted, the DBMS may also need to update indexes. For this reason, indexing every column is usually a mistake.
 
-## 13.2.7 Using Query Plans
+### 13.2.7 Using Query Plans
 
 A **query plan** shows how the DBMS intends to execute a query. It helps you see whether indexes are being used.
 
@@ -221,7 +221,7 @@ If the plan says the database is scanning the entire table, an index may be need
   <p>Do not guess about performance. Use query plans to see what the database is actually doing. Databases are many things, but they are not impressed by confidence.</p>
 </div>
 
-# 13.3 Transactions: Protecting Multi-Step Operations
+## 13.3 Transactions: Protecting Multi-Step Operations
 
 Many database operations involve more than one step. A transaction groups those steps into a single unit of work.
 
@@ -230,7 +230,7 @@ Many database operations involve more than one step. A transaction groups those 
   <p>A <strong>transaction</strong> is a set of database operations that must succeed or fail together. It is a logical unit of work controlled by <code>BEGIN</code>, <code>COMMIT</code>, and <code>ROLLBACK</code>.</p>
 </div>
 
-## 13.3.1 How Transactions Work
+### 13.3.1 How Transactions Work
 
 The core commands are:
 
@@ -248,7 +248,7 @@ The basic principle is simple:
 
 > Either every operation inside the transaction succeeds, or none of them do.
 
-## 13.3.2 Why Transactions Matter in Grading
+### 13.3.2 Why Transactions Matter in Grading
 
 Consider a grading workflow:
 
@@ -279,7 +279,7 @@ ROLLBACK;
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 13.3.3 A Safer Grade Update Pattern
+### 13.3.3 A Safer Grade Update Pattern
 
 Updating grades is sensitive because grade changes affect student records, reports, and trust. A safer pattern records the old value before updating.
 
@@ -300,7 +300,7 @@ COMMIT;
 
 This transaction makes the grade update and the audit record part of the same operation.
 
-## 13.3.4 ACID in Practice
+### 13.3.4 ACID in Practice
 
 As introduced in Chapter 11, transactions are governed by ACID properties. Here they are applied to the grading context:
 
@@ -313,11 +313,11 @@ As introduced in Chapter 11, transactions are governed by ACID properties. Here 
 
 Transactions are one of the main reasons databases are more reliable than spreadsheets. A spreadsheet has cells. A database has rules about what happens when things go wrong.
 
-# 13.4 Constraints Beyond Primary Keys
+## 13.4 Constraints Beyond Primary Keys
 
 Primary keys and foreign keys protect identity and relationships. But many business rules require additional constraints.
 
-## 13.4.1 Why Keys Are Not Enough
+### 13.4.1 Why Keys Are Not Enough
 
 A table can have a valid primary key and still contain bad data.
 
@@ -331,7 +331,7 @@ Examples:
 
 These values may fit the column type, but they violate business meaning.
 
-## 13.4.2 NOT NULL Constraints
+### 13.4.2 NOT NULL Constraints
 
 A `NOT NULL` constraint requires a value.
 
@@ -346,7 +346,7 @@ CREATE TABLE STUDENT (
 
 This ensures that essential student identity fields cannot be omitted.
 
-## 13.4.3 CHECK Constraints
+### 13.4.3 CHECK Constraints
 
 A `CHECK` constraint restricts allowed values.
 
@@ -374,7 +374,7 @@ CREATE TABLE ATTENDANCE (
 );
 ```
 
-## 13.4.4 UNIQUE Constraints
+### 13.4.4 UNIQUE Constraints
 
 A `UNIQUE` constraint prevents duplicate values.
 
@@ -403,7 +403,7 @@ CREATE TABLE STUDENT_GRADE (
 
 This prevents duplicate grade rows for the same student and deliverable.
 
-## 13.4.5 DEFAULT Constraints
+### 13.4.5 DEFAULT Constraints
 
 A `DEFAULT` constraint supplies a value when none is provided.
 
@@ -422,7 +422,7 @@ Defaults reduce ambiguity. Instead of leaving a value missing, the database inse
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 13.4.6 Constraint Design Checklist
+### 13.4.6 Constraint Design Checklist
 
 Before adding a constraint, ask:
 
@@ -439,11 +439,11 @@ If the answer to the first four questions is yes, the rule probably belongs as a
   <p>Constraints are business rules made enforceable. They move data quality from "please be careful" to "the system will not allow this."</p>
 </div>
 
-# 13.5 Triggers: Automated Database Responses
+## 13.5 Triggers: Automated Database Responses
 
 A trigger is database logic that runs automatically when data changes.
 
-## 13.5.1 What Triggers Are
+### 13.5.1 What Triggers Are
 
 A **trigger** executes in response to an event such as `INSERT`, `UPDATE`, or `DELETE`.
 
@@ -457,7 +457,7 @@ Triggers answer three questions:
 
 Triggers are useful when the database must react automatically regardless of which user, application, or tool makes the change.
 
-## 13.5.2 Trigger Use Cases
+### 13.5.2 Trigger Use Cases
 
 Good uses include:
 
@@ -476,7 +476,7 @@ Riskier uses include:
 
 Triggers should be small, documented, and predictable.
 
-## 13.5.3 Audit Logging Example
+### 13.5.3 Audit Logging Example
 
 Grade changes should often be auditable.
 
@@ -506,7 +506,7 @@ END;
 
 Every update to `STUDENT_GRADE` now produces an audit record automatically.
 
-## 13.5.4 Preventing Invalid Scores with a Trigger
+### 13.5.4 Preventing Invalid Scores with a Trigger
 
 A `CHECK` constraint is usually better for simple rules. But triggers can produce custom behavior.
 
@@ -524,7 +524,7 @@ END;
 
 This stops the insert before bad data enters the table.
 
-## 13.5.5 PostgreSQL Trigger Pattern
+### 13.5.5 PostgreSQL Trigger Pattern
 
 PostgreSQL separates trigger logic into a function and a trigger.
 
@@ -559,7 +559,7 @@ EXECUTE FUNCTION log_grade_update();
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 13.5.6 Trigger Caution
+### 13.5.6 Trigger Caution
 
 Triggers are powerful because they are automatic. That is also what makes them dangerous.
 
@@ -578,7 +578,7 @@ and not realize that three other actions are happening behind the scenes.
   <p>Document triggers clearly, name them consistently, and avoid using them for rules that belong more naturally in queries, constraints, or application code.</p>
 </div>
 
-# 13.6 Window Functions: A Note on Scope
+## 13.6 Window Functions: A Note on Scope
 
 Window functions are powerful analytical tools that let you compute rankings, running totals, moving averages, and comparative metrics while preserving row-level detail. They are especially useful in dashboards and early-warning systems because they combine individual records with comparison context — a student's score can appear beside the class average, or a deliverable's pass rate can be tracked over time.
 
@@ -591,11 +591,11 @@ This chapter uses window functions only as part of the hardening story — for e
   <p>For a full treatment of window function syntax, rankings, frame clauses, and step-by-step examples, see Chapters 9 and 10. This chapter applies them as part of the hardening toolkit, not as a re-teaching.</p>
 </div>
 
-# 13.7 Advanced Analytics Patterns
+## 13.7 Advanced Analytics Patterns
 
 SQL can produce many BI-ready metrics without exporting data to spreadsheets or visualization tools. The key is to write transparent, reusable analytical logic.
 
-## 13.7.1 Conditional Aggregation
+### 13.7.1 Conditional Aggregation
 
 **Conditional aggregation** uses `CASE` inside aggregate functions.
 
@@ -609,7 +609,7 @@ FROM STUDENT_GRADE;
 
 This produces multiple metrics in one query.
 
-## 13.7.2 Pass Rate by Deliverable
+### 13.7.2 Pass Rate by Deliverable
 
 ```sql
 SELECT
@@ -630,7 +630,7 @@ ORDER BY PassRatePercent ASC;
 
 This identifies deliverables where students struggled most.
 
-## 13.7.3 Attendance Rate by Student
+### 13.7.3 Attendance Rate by Student
 
 ```sql
 SELECT
@@ -647,7 +647,7 @@ GROUP BY StudentID;
 
 Percentages are easier to interpret than raw counts.
 
-## 13.7.4 Normalized Scores
+### 13.7.4 Normalized Scores
 
 Scores from different deliverables may have different point values. Normalization converts them to a common scale.
 
@@ -668,7 +668,7 @@ JOIN ASSIGNMENT_TYPE AS a
 
 This makes quiz, exam, and project scores more comparable.
 
-## 13.7.5 Weighted Grade Calculation
+### 13.7.5 Weighted Grade Calculation
 
 A weighted grade calculation usually works best in stages. First, calculate each student's average within each assignment type. Then multiply each category average by its weight.
 
@@ -706,7 +706,7 @@ This pattern is easier to read and debug than a single dense query.
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 13.7.6 Dashboard-Ready Views
+### 13.7.6 Dashboard-Ready Views
 
 A view can store the logic for a metric and make it reusable.
 
@@ -749,11 +749,11 @@ The dashboard consumes a trusted metric instead of recreating the calculation ea
   <p>When metrics are defined once in SQL views instead of being recalculated separately by different tools, reports become consistent. Every dashboard, spreadsheet, and decision memo works from the same logic.</p>
 </div>
 
-# 13.8 Security and Permissions
+## 13.8 Security and Permissions
 
 Security determines who can see or change data. In real systems, this is not optional. Grades, attendance, and student information are sensitive.
 
-## 13.8.1 Authentication vs. Authorization
+### 13.8.1 Authentication vs. Authorization
 
 **Authentication** asks: Who are you?
 
@@ -761,7 +761,7 @@ Security determines who can see or change data. In real systems, this is not opt
 
 A student may be authenticated into a system but not authorized to view another student's grades or update any grades.
 
-## 13.8.2 Role-Based Access Control
+### 13.8.2 Role-Based Access Control
 
 As introduced in Chapter 11, role-based access control assigns permissions to roles rather than individuals.
 
@@ -775,7 +775,7 @@ As introduced in Chapter 11, role-based access control assigns permissions to ro
 
 This supports the **principle of least privilege**: users receive only the access necessary for their responsibilities.
 
-## 13.8.3 SQL Permission Examples
+### 13.8.3 SQL Permission Examples
 
 PostgreSQL-style examples:
 
@@ -794,7 +794,7 @@ TO student_role;
 
 Access should be granted carefully. A student role should not simply receive `SELECT` on the entire `STUDENT_GRADE` table if that exposes all students. More advanced systems use row-level policies to restrict which rows a user can see.
 
-## 13.8.4 Row-Level Security Concept
+### 13.8.4 Row-Level Security Concept
 
 In Supabase/PostgreSQL, row-level security can restrict records by user.
 
@@ -811,7 +811,7 @@ USING (StudentID = current_setting('app.current_student_id')::integer);
 
 The exact implementation depends on the application's authentication model, but the principle is clear: access control can operate at the row level, not only at the table level.
 
-## 13.8.5 Auditing Security-Sensitive Changes
+### 13.8.5 Auditing Security-Sensitive Changes
 
 Security is not only about preventing bad actions. It is also about recording important actions.
 
@@ -833,11 +833,11 @@ This can be supported by triggers, audit tables, and controlled update procedure
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# 13.9 Advanced Techniques Across Platforms
+## 13.9 Advanced Techniques Across Platforms
 
 The concepts in this chapter are portable, but the implementation differs by DBMS.
 
-## 13.9.1 Microsoft Access
+### 13.9.1 Microsoft Access
 
 Access is visual, local, and workflow-oriented. It is useful for learning and for small departmental systems.
 
@@ -853,7 +853,7 @@ Access is visual, local, and workflow-oriented. It is useful for learning and fo
 
 Access is strongest when the database is also an application interface. Forms, reports, and macros help guide user behavior. Its automation mechanism — macros — is covered in detail in Section 13.10.
 
-## 13.9.2 SQLite
+### 13.9.2 SQLite
 
 SQLite is lightweight, file-based, and explicit. It supports many advanced SQL features but has limited multi-user administration.
 
@@ -875,7 +875,7 @@ PRAGMA foreign_keys = ON;
 
 SQLite may not enforce foreign keys unless this setting is enabled.
 
-## 13.9.3 Supabase/PostgreSQL
+### 13.9.3 Supabase/PostgreSQL
 
 PostgreSQL is a full server-based DBMS. Supabase adds a cloud-hosted interface, authentication tools, APIs, and dashboards.
 
@@ -892,7 +892,7 @@ PostgreSQL is a full server-based DBMS. Supabase adds a cloud-hosted interface, 
 
 PostgreSQL is the best match for production systems that need concurrency, security, governance, and scalability.
 
-## 13.9.4 Platform Choice as a Business Decision
+### 13.9.4 Platform Choice as a Business Decision
 
 The right DBMS depends on the use case.
 
@@ -907,11 +907,11 @@ The right DBMS depends on the use case.
 
 Tool choice should follow requirements, not habit.
 
-# 13.10 Macros in Microsoft Access
+## 13.10 Macros in Microsoft Access
 
 Microsoft Access provides a distinctive mechanism for automation called **macros**. While most of this chapter focuses on database-level controls such as indexes, transactions, constraints, and triggers, Access macros operate at the **application interface level** — they connect database rules to the forms, reports, and workflows that users interact with every day.
 
-## 13.10.1 What Access Macros Are
+### 13.10.1 What Access Macros Are
 
 A macro in Access is an event-driven, declarative automation tool. Unlike SQL or VBA code, macros are built by selecting actions from a catalog and arranging them in sequence. They do not require programming in a traditional sense, but they can still produce meaningful automation.
 
@@ -927,7 +927,7 @@ Common trigger events include:
 
 When the event fires, the macro runs its defined sequence of actions — such as validating input, refreshing data, opening another form, or displaying a message.
 
-## 13.10.2 What Macros Are Good For
+### 13.10.2 What Macros Are Good For
 
 Macros are best suited for lightweight, interface-level automation.
 
@@ -942,7 +942,7 @@ Macros are best suited for lightweight, interface-level automation.
 
 These are interaction-level guardrails. They do not replace database constraints, but they complement them by catching problems at the point of user interaction — before the bad data reaches the table.
 
-## 13.10.3 Data Macros: Trigger-Like Behavior in Access
+### 13.10.3 Data Macros: Trigger-Like Behavior in Access
 
 Access also supports **data macros**, which are closer in spirit to SQL triggers. A data macro runs at the table level in response to `INSERT`, `UPDATE`, or `DELETE` events.
 
@@ -955,7 +955,7 @@ Data macros can:
 
 For example, a data macro on `STUDENT_GRADE` can check that a score falls between 0 and 100 and reject the update with a custom message if it does not — similar to the `CHECK` constraint or `BEFORE INSERT` trigger pattern described earlier in this chapter.
 
-## 13.10.4 Macros vs. VBA vs. SQL
+### 13.10.4 Macros vs. VBA vs. SQL
 
 Choosing the right tool for automation in Access depends on the job.
 
@@ -971,7 +971,7 @@ A good Access application often uses all four: constraints protect the data, dat
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-## 13.10.5 Why Macros Matter in Practice
+### 13.10.5 Why Macros Matter in Practice
 
 Not every data-quality problem should be solved with SQL alone. In an Access-based grading system, an instructor who enters grades through a form should not need to understand `CHECK` constraints to avoid mistakes. A well-designed macro can display a clear message — "Score must be between 0 and 100" — at the moment of entry, making the rule visible and actionable.
 
@@ -982,11 +982,11 @@ Macros are the glue between database rules and day-to-day user workflows. They h
   <p>Use database constraints for rules that must always hold. Use Access macros to make those rules visible, friendly, and immediate at the point of user interaction.</p>
 </div>
 
-# 13.11 Stored Procedures and Database Functions
+## 13.11 Stored Procedures and Database Functions
 
 While triggers respond automatically to data events and macros automate interface workflows, **stored procedures** and **database functions** provide another form of server-side logic: reusable, explicitly called code that lives inside the database.
 
-## 13.11.1 What Stored Procedures Are
+### 13.11.1 What Stored Procedures Are
 
 A **stored procedure** is a named block of SQL code that is saved in the database and can be executed on demand. Unlike a trigger — which fires automatically when data changes — a stored procedure is called explicitly by a user, application, or scheduled job.
 
@@ -1001,7 +1001,7 @@ The key distinction:
 | Can modify data? | Yes | Yes | Usually not (read-only) |
 | Used inside SQL? | No | No (called separately) | Yes |
 
-## 13.11.2 A PostgreSQL Stored Procedure Example
+### 13.11.2 A PostgreSQL Stored Procedure Example
 
 The following procedure updates a student's score and logs the change in one call:
 
@@ -1037,7 +1037,7 @@ CALL update_grade(10, 92);
 
 This pattern is especially useful when the same multi-step operation is needed from different places — a web application, a reporting tool, or an administrative script. Instead of repeating the logic, every caller uses the same stored procedure.
 
-## 13.11.3 When to Use Stored Procedures
+### 13.11.3 When to Use Stored Procedures
 
 Stored procedures are a good fit when:
 
@@ -1052,7 +1052,7 @@ They are less useful when:
 - the logic is simple enough for a single SQL statement;
 - the application already has strong service-layer logic that is easier to maintain outside the database.
 
-## 13.11.4 Platform Availability
+### 13.11.4 Platform Availability
 
 | Platform | Stored Procedure Support |
 |---|---|
@@ -1067,7 +1067,7 @@ They are less useful when:
   <p>Constraints enforce rules passively. Triggers react to changes automatically. Stored procedures package multi-step logic for explicit execution. Macros guide user behavior at the interface. A hardened database uses each where it fits best.</p>
 </div>
 
-# Chapter Summary
+## Chapter Summary
 
 This chapter extended the course from correct SQL to reliable database systems. Earlier chapters taught you how to design schemas, normalize tables, query data, administer databases, and build BI outputs. Chapter 13 showed how to harden those databases so they remain trustworthy under real use.
 
@@ -1083,7 +1083,7 @@ The larger lesson is simple: advanced database techniques are not decorative ext
 
 ---
 
-# References
+## References
 
 Connolly, T. M., & Begg, C. E. (2015). *Database systems: A practical approach to design, implementation, and management* (6th ed.). Pearson.
 

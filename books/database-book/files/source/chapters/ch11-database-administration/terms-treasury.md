@@ -40,7 +40,7 @@
 | **Two-Phase Locking (2PL)** | A concurrency control protocol with a growing phase (transactions acquire locks but release none) and a shrinking phase (transactions release locks but acquire no new ones). | 2PL guarantees serializability — that concurrent transactions produce results equivalent to some sequential order. It is the theoretical foundation for many DBMS locking systems. | A transaction locks STUDENT and STUDENT_GRADE during the growing phase, performs its updates, then releases both locks during the shrinking phase. |
 | **Write-Ahead Logging (WAL)** | A journal mode in which changes are written to a separate log file before being applied to the main database, improving concurrency and enabling crash recovery. | WAL allows readers and writers to operate with less interference, making SQLite and PostgreSQL more suitable for multi-user scenarios. It is a practical DBA tool for improving performance and safety. | In SQLite: `PRAGMA journal_mode = WAL;` — enables non-blocking reads alongside writes and provides automatic crash recovery. |
 
-# Acronyms and Abbreviations
+## Acronyms and Abbreviations
 
 | Abbreviation | Full Form | Brief Meaning | Where It Appears |
 |---|---|---|---|

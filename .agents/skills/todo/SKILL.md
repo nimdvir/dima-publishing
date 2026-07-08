@@ -11,7 +11,9 @@ description: >
   them into concrete next actions in `books/database-book/.edits/todo.md` and
   `books/database-book/.edits/chapter-tracker.md`. Every todo item includes
   links back to the saved chat (VS Code workspace path + GitHub URL). Also
-  outputs a clean summary when the user asks what to work on next.
+  outputs a clean summary when the user asks what to work on next. When Notion
+  is connected and accessible, also mirror the same confirmed items to the
+  Notion page `✅ Project TODO` under `📚 Book Project — BITM330`.
 argument-hint: "[optional: 'show' | 'add' | specific task to capture]"
 ---
 
@@ -145,6 +147,34 @@ For each chapter item confirmed in Step 2:
 3. Update the Updated date to today.
 4. If the chapter has no row, add one with the correct Category.
 
+### Step 4b — Mirror to Notion Project TODO (if available)
+
+After Steps 3-4 complete successfully, try to mirror the same confirmed todo
+items to Notion.
+
+Target page:
+
+- Project wiki/database: `📚 Book Project — BITM330`
+- Todo page title: `✅ Project TODO`
+
+Procedure:
+
+1. Check whether Notion tools are available and the workspace is connected.
+2. Find `✅ Project TODO` under `📚 Book Project — BITM330`.
+3. If it exists, append a new dated section for the next working day using
+  unchecked checklist items.
+4. If it does not exist, create it in the project wiki, then append items.
+5. Keep item wording aligned with `todo.md` entries so both systems stay in
+  sync.
+
+Rules:
+
+- Never skip repo writes (`todo.md`, `chapter-tracker.md`) even if Notion fails.
+- If Notion update fails, report the failure and continue with repo success.
+- Do not include student data in Notion content.
+- Respect `notion-bridge` boundaries: Notion is a mirror for task tracking,
+  not the canonical source for chapter manuscript files.
+
 ### Step 5 — Output the action-item list
 
 After writing, output a clear, numbered summary of the action items just added
@@ -164,6 +194,9 @@ so the user can see at a glance what needs to be done:
 Confirm the saved chat path, number of todo items added, and any
 chapter-tracker updates.
 
+If Notion mirroring ran, include the Notion page URL and whether mirror
+updates succeeded or failed.
+
 ---
 
 ## Mode 3 — Quick save chat only (no todo items)
@@ -182,6 +215,7 @@ When the user says "just save the chat", "save chat only", or invokes
 - **Chat saves**: `books/database-book/chats/`
 - **todo.md**: `books/database-book/.edits/todo.md`
 - **chapter-tracker.md**: `books/database-book/.edits/chapter-tracker.md`
+- **Notion mirror page**: `✅ Project TODO` (inside `📚 Book Project — BITM330`)
 
 Absolute paths:
 
@@ -205,3 +239,5 @@ c:\Users\nd115232\Documents\GitHub\dima-publishing\books\database-book\.edits\ch
 - Skipping the save-chat step — always save the chat before distilling todos.
 - Omitting the chat/GitHub links from todo items — every item must trace back
   to its source conversation.
+- Treating Notion as canonical for chapter content files — repo files remain
+  canonical for production text.

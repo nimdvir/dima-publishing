@@ -69,6 +69,7 @@ single-stage work.
 
 | Skill                       | Use when                                                          |
 | --------------------------- | ----------------------------------------------------------------- |
+| `notion-bridge`             | Routing + guardrails for Notion MCP work (source-of-truth, student-data boundary) |
 | `notion-flavored-markdown`  | Formatting content for Notion MCP create/update page calls        |
 
 ## Common Workflows

@@ -8,8 +8,6 @@ Chapter 5 introduced SQL as the language of relational databases. Chapter 9 show
 <div style="page-break-after: always;"></div>
 
 # Core Concepts
-
-# Core Concepts
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-concepts" alt="Core Concepts section icon" width="220">
 </p>
@@ -71,6 +69,8 @@ The Grading Database is the running case for this chapter. Most queries follow o
 A normalized database stores facts cleanly. SQL turns those facts into views, summaries, and decisions. The design principles behind this schema were covered in Chapter 9.
 
 ## 10.3 Diagnosing and Restructuring Data with SQL
+
+<!-- FIGURE 10.3 — IMAGE PROMPT (nano-banana / Gemini): Clean modern textbook diagram, flat vector illustration on a white background, 16:9. On the left, one wide "flat" spreadsheet-style table with visibly repeated/redundant rows (the same student name and class repeated on several rows). A bold arrow points right to three smaller, tidy normalized tables labeled "Students", "Deliverables", and "Grades", connected by thin key-relationship lines (primary key / foreign key). Minimal, correctly spelled labels; professional, high-contrast, uncluttered. When generated, place here as: ![Figure 10.3 — Restructuring a flat table into normalized tables](IMAGE_URL) -->
 
 Before building dashboards or calculating grades, check whether the data can be trusted. SQL can answer diagnostic questions directly. When problems are found, SQL can also restructure the data into a sound relational design — turning diagnosis into action.
 
@@ -327,6 +327,8 @@ From this point forward, all queries operate on the normalized relational design
 
 ## 10.4 Advanced JOIN Patterns
 
+<!-- FIGURE 10.4 — IMAGE PROMPT (nano-banana / Gemini): Clean modern textbook diagram, flat vector illustration on a white background, 16:9. Four small labeled set diagrams in a row showing SQL JOIN types — "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", and "FULL / CROSS JOIN" — each as two overlapping circles (Venn style) labeled "Students" and "Grades", with the region that the join returns shaded in a single accent color. Correctly spelled labels under each diagram; professional, high-contrast, uncluttered. When generated, place here as: ![Figure 10.4 — SQL JOIN types compared](IMAGE_URL) -->
+
 ### 10.4.1 Complete Gradebook Report
 
 A complete gradebook needs student names, deliverable labels, due dates, and scores — all from different tables:
@@ -556,6 +558,8 @@ JOIN GRADE_SCALE AS gs
 
 ## 10.9 Window Functions
 
+<!-- FIGURE 10.9 — IMAGE PROMPT (nano-banana / Gemini): Clean modern textbook diagram, flat vector illustration on a white background, 16:9. Show a table of student scores grouped into two colored partitions (by class), illustrating a SQL window function: within each partition a "RANK" column is computed, with small arrows indicating a "window" sliding over the partitioned, ordered rows. Include tidy labels "PARTITION BY class" and "ORDER BY score DESC". Keep detail rows visible (contrast with GROUP BY which collapses them). Correctly spelled minimal labels; professional, high-contrast. When generated, place here as: ![Figure 10.9 — How a SQL window function partitions and ranks rows](IMAGE_URL) -->
+
 Ordinary aggregation collapses rows. Window functions calculate summaries while preserving detail rows.
 
 ### `GROUP BY` vs. Window Functions
@@ -604,6 +608,8 @@ FROM StudentAverages;
 <div style="page-break-after: always;"></div>
 
 ## 10.10 Reusable Reporting Pipelines
+
+<!-- FIGURE 10.10 — IMAGE PROMPT (nano-banana / Gemini): Clean modern textbook diagram, flat vector illustration on a white background, 16:9. A left-to-right horizontal pipeline flow with four connected, labeled stages joined by arrows: "Raw Tables" (small table icon) → "SQL View" (gear/document icon) → "Aggregated Metrics" (small bar-chart icon) → "Reusable Report" (dashboard icon). Convey that logic is saved once and reused. Correctly spelled minimal labels; consistent accent color; professional, high-contrast, uncluttered. When generated, place here as: ![Figure 10.10 — A reusable SQL reporting pipeline](IMAGE_URL) -->
 
 Writing one correct query is useful. Writing query logic that can be reused is more valuable.
 

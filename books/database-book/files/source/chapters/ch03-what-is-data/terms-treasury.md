@@ -53,7 +53,7 @@
 | **Validity** | A data quality dimension that asks whether stored values follow defined rules, formats, ranges, and expectations. | Invalid data can be complete, consistent, and timely — and still wrong. Validity catches values that should never have been allowed into the system. | A `Score` of 150 when the allowed range is 0–100; a `DueDate` of February 30. |
 | **VLOOKUP** | A spreadsheet function that searches for a value in one column and returns a related value from another column, simulating a database join. | VLOOKUP is the most common way students first experience connecting data across sheets — but it is fragile, depends on exact matches, and has no enforcement, which is why databases replace it with real relationships. | `=VLOOKUP(G2, GRADE_WEIGHT!A:D, 3, FALSE)` to pull category weight into a gradebook row. |
 
-# Acronyms and Abbreviations
+## Acronyms and Abbreviations
 
 | Abbreviation | Full Form | Brief Meaning | Where It Appears |
 |---|---|---|---|
