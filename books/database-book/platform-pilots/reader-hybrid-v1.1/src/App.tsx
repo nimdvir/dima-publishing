@@ -17,6 +17,7 @@ import AppendicesView from "./components/AppendicesView";
 import AdminDashboard from "./components/AdminDashboard";
 import { supabase } from "./lib/supabaseClient";
 import { getMyAccess } from "./lib/courseAccess";
+import { getLastPosition } from "./lib/readingProgress";
 import { checkIsAdmin } from "./lib/adminApi";
 import { isChapterGated } from "./lib/freePreview";
 
@@ -59,8 +60,8 @@ function parseQueryParams(): RouteState {
   return { scope, chapter, section, page, lab };
 }
 
-function parsePathParams(): RouteState {
-  const parts = window.location.pathname
+function parsePathFromString(pathname: string): RouteState {
+  const parts = pathname
     .split("/")
     .filter(Boolean)
     .map((part) => decodeURIComponent(part));
@@ -101,6 +102,21 @@ function parsePathParams(): RouteState {
   return { scope: "welcome" };
 }
 
+function parsePathParams(): RouteState {
+  return parsePathFromString(window.location.pathname);
+}
+
+/**
+ * Parse an in-content link href (e.g. "/book/ch05/lets-build/1") into a route.
+ * Returns null for external links, hash links, or anything not an internal app route.
+ */
+function parseInternalHref(href: string): RouteState | null {
+  if (!href || !href.startsWith("/")) return null;
+  const pathname = href.split("#")[0].split("?")[0];
+  const route = parsePathFromString(pathname);
+  return route.scope === "welcome" && pathname !== "/" ? null : route;
+}
+
 function parseLocationParams(): RouteState {
   const params = new URLSearchParams(window.location.search);
   return params.has("scope") ? parseQueryParams() : parsePathParams();
@@ -137,6 +153,29 @@ function resolveLabId(routeLab: string | undefined): string | undefined {
   if (!routeLab) return undefined;
   return BOOK_LABS.find((lab) => lab.id === routeLab || lab.slug === routeLab)
     ?.id;
+}
+
+/**
+ * Resolve the reader page to resume on from a saved progress position.
+ * Prefers page 1 of the last section read; falls back to the chapter's first page.
+ */
+function resolveResumePage(
+  chapterId: string,
+  lastSection: string | null,
+): BookPage | null {
+  if (!KNOWN_CHAPTER_IDS.has(chapterId)) return null;
+  if (lastSection) {
+    const inSection = FLAT_READER_PAGES.find(
+      (p) =>
+        p.chapterId === chapterId &&
+        p.sectionId === lastSection &&
+        p.pageNumber === 1,
+    );
+    if (inSection) return inSection;
+  }
+  return (
+    FLAT_READER_PAGES.find((p) => p.chapterId === chapterId) ?? null
+  );
 }
 
 function buildRoutePath(
@@ -209,6 +248,9 @@ export default function App() {
 
   // Heading id to scroll to once the destination page has rendered (roadmap links).
   const pendingScrollIdRef = useRef<string | null>(null);
+
+  // Guards the one-time "resume where you left off" jump after a session loads.
+  const didAutoResumeRef = useRef(false);
 
   // On app load, check existing Supabase session (real authority) and hydrate display state.
   useEffect(() => {
@@ -346,6 +388,24 @@ export default function App() {
     return () => window.removeEventListener("popstate", handler);
   }, [applyRouteState]);
 
+  // Returning visitor with a live session: resume at their last reading position,
+  // but only when they land on the bare root/welcome. An explicit deep link
+  // (e.g. /book/ch07/...) always wins and is never overridden.
+  useEffect(() => {
+    if (authLoading || !demoUser || didAutoResumeRef.current) return;
+    didAutoResumeRef.current = true;
+    if (parsePathParams().scope !== "welcome") return;
+    getLastPosition()
+      .then((pos) => {
+        if (!pos) return;
+        const page = resolveResumePage(pos.chapter_id, pos.last_section);
+        if (page && parsePathParams().scope === "welcome") {
+          navigateToPage(page);
+        }
+      })
+      .catch(() => {});
+  }, [authLoading, demoUser, navigateToPage]);
+
   // Navigate to a scope — allow the free preview, gate labs and Ch05+.
   const navigateScope = useCallback(
     (newScope: ReaderScope) => {
@@ -420,6 +480,50 @@ export default function App() {
     writeRoute("appendices", { appendix: appendix.id });
   }, []);
 
+  // Navigate to an internal app link (e.g. a /book/... cross-link inside content).
+  // Routes through the SPA so no full-page reload occurs. External/unknown links
+  // fall through to the browser's default behavior (handled by the link itself).
+  const navigateToInternalPath = useCallback(
+    (href: string) => {
+      const route = parseInternalHref(href);
+      if (!route) return;
+
+      if (route.scope === "book") {
+        const page = resolveRoutePage(route);
+        if (page) {
+          navigateToPage(page);
+          return;
+        }
+        // Chapter/section not resolvable: fall back to the book scope.
+        navigateScope("book");
+        return;
+      }
+      if (route.scope === "labs") {
+        const labId = resolveLabId(route.lab);
+        const lab = labId ? BOOK_LABS.find((l) => l.id === labId) : undefined;
+        if (lab) {
+          navigateToLab(lab);
+          return;
+        }
+        navigateScope("labs");
+        return;
+      }
+      if (route.scope === "appendices") {
+        const appendix = BOOK_APPENDICES.find(
+          (a) => a.id === route.appendix || a.slug === route.appendix,
+        );
+        if (appendix) {
+          navigateToAppendix(appendix);
+          return;
+        }
+        navigateScope("appendices");
+        return;
+      }
+      navigateScope(route.scope);
+    },
+    [navigateToPage, navigateToLab, navigateToAppendix, navigateScope],
+  );
+
   // Navigate to an in-book heading anchor (e.g. a Chapter Roadmap row). Resolves the
   // target across pages and sections, switching pages when the heading lives elsewhere.
   const navigateToHeading = useCallback(
@@ -467,7 +571,18 @@ export default function App() {
     // Optional display convenience only — Supabase session is the real authority.
     localStorage.setItem(LS_DEMO_USER, JSON.stringify(user));
     checkIsAdmin().then(setIsAdmin).catch(() => setIsAdmin(false));
-  }, []);
+    // Smoother return: drop the reader at the last saved reading position.
+    // Falls back to the start of the book when there is no history.
+    getLastPosition()
+      .then((pos) => {
+        const page = pos
+          ? resolveResumePage(pos.chapter_id, pos.last_section)
+          : null;
+        if (page) navigateToPage(page);
+        else navigateScope("book");
+      })
+      .catch(() => navigateScope("book"));
+  }, [navigateToPage, navigateScope]);
 
   const handleSignOut = useCallback(async () => {
     if (supabase) {
@@ -670,6 +785,7 @@ export default function App() {
             allPages={currentSectionPages}
             onNavigate={navigateToPage}
             onHashNavigate={navigateToHeading}
+            onPathNavigate={navigateToInternalPath}
             hasPrev={hasPrev}
             hasNext={hasNext}
             prevPage={prevPage}
@@ -716,6 +832,7 @@ export default function App() {
           labs={BOOK_LABS}
           activeLab={activeLab}
           onSelectLab={navigateToLab}
+          onNavigatePath={navigateToInternalPath}
         />
       )}
       {scope === "appendices" && demoUser && activeAppendix && (
@@ -723,6 +840,7 @@ export default function App() {
           appendices={BOOK_APPENDICES}
           activeAppendix={activeAppendix}
           onSelectAppendix={navigateToAppendix}
+          onNavigatePath={navigateToInternalPath}
         />
       )}
       {scope === "admin" && (

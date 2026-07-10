@@ -61,6 +61,34 @@ export async function getAllProgress(): Promise<ChapterProgress[]> {
 }
 
 /**
+ * Get the user's most recent reading position (newest updated chapter row).
+ * Used to resume reading after login. Returns null when there is no history.
+ */
+export async function getLastPosition(): Promise<ChapterProgress | null> {
+  if (!supabase) return null;
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data, error } = await supabase
+    .from("progress")
+    .select("chapter_id, status, last_section, updated_at")
+    .eq("user_id", user.id)
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    console.warn("Failed to load last reading position:", error.message);
+    return null;
+  }
+
+  return (data as ChapterProgress) ?? null;
+}
+
+/**
  * Get progress status for a specific chapter.
  * Returns null if the chapter has never been opened.
  */

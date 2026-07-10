@@ -55,12 +55,21 @@ interface MarkdownRendererProps {
   /** Callback fired with all H1/H2/H3 headings found during render (for "On this page"). */
   onHeadingsExtracted?: (headings: HeadingTocItem[]) => void;
   suppressFirstImage?: boolean;
+  /**
+   * Called when an internal app link (e.g. /book/ch05/lets-build/1) is clicked,
+   * so the SPA can navigate in-app instead of triggering a full-page reload.
+   */
+  onInternalLinkClick?: (href: string) => void;
 }
+
+/** Internal app routes that should navigate in-app rather than reload the page. */
+const INTERNAL_ROUTE_RE = /^\/(book|labs|lab|appendices|login|account|admin)(\/|$)/;
 
 export default function MarkdownRenderer({
   content,
   onHeadingsExtracted,
   suppressFirstImage = false,
+  onInternalLinkClick,
 }: MarkdownRendererProps) {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   let imageCount = 0;
@@ -124,6 +133,52 @@ export default function MarkdownRenderer({
           h3: ({ node, children, ...props }: any) => {
             const id = resolveHeadingId(node?.position?.start?.line, textFromChildren(children));
             return <h3 {...props} id={id}>{children}</h3>;
+          },
+          // Anchor handler: internal app links navigate in-app (no reload);
+          // external links open safely in a new tab.
+          a: ({ href, children, ...props }: any) => {
+            const rawHref = typeof href === "string" ? href : "";
+            const isInternal = INTERNAL_ROUTE_RE.test(rawHref);
+            const isExternal = /^https?:\/\//i.test(rawHref);
+
+            if (isInternal) {
+              return (
+                <a
+                  {...props}
+                  href={rawHref}
+                  onClick={(e) => {
+                    // Let modified / non-left clicks open normally (new tab, etc.).
+                    if (
+                      e.defaultPrevented ||
+                      e.button !== 0 ||
+                      e.metaKey ||
+                      e.ctrlKey ||
+                      e.shiftKey ||
+                      e.altKey
+                    ) {
+                      return;
+                    }
+                    if (!onInternalLinkClick) return;
+                    e.preventDefault();
+                    onInternalLinkClick(rawHref);
+                  }}
+                >
+                  {children}
+                </a>
+              );
+            }
+
+            return (
+              <a
+                {...props}
+                href={rawHref}
+                {...(isExternal
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {children}
+              </a>
+            );
           },
           // Custom iframe handler: only allow YouTube / youtube-nocookie
           iframe: ({ src, ...props }: any) => {

@@ -5,12 +5,14 @@ interface LabsViewProps {
   labs: BookLab[];
   activeLab: BookLab;
   onSelectLab: (lab: BookLab) => void;
+  onNavigatePath?: (path: string) => void;
 }
 
 export default function LabsView({
   labs,
   activeLab,
   onSelectLab,
+  onNavigatePath,
 }: LabsViewProps) {
   const activeIdx = labs.findIndex((l) => l.id === activeLab.id);
   const hasPrev = activeIdx > 0;
@@ -46,7 +48,24 @@ export default function LabsView({
 
         <div className="lab-chapter-link">
           🧪 <strong>{activeLab.title}</strong> extends the{" "}
-          <a href={`/book/${chapterId}/lets-build/1`}>
+          <a
+            href={`/book/${chapterId}/lets-build/1`}
+            onClick={(e) => {
+              if (
+                e.defaultPrevented ||
+                e.button !== 0 ||
+                e.metaKey ||
+                e.ctrlKey ||
+                e.shiftKey ||
+                e.altKey
+              ) {
+                return;
+              }
+              if (!onNavigatePath) return;
+              e.preventDefault();
+              onNavigatePath(`/book/${chapterId}/lets-build/1`);
+            }}
+          >
             {chapterLabel} Let's Build
           </a>{" "}
           section. Complete the Let's Build activities first, then apply what
@@ -54,7 +73,10 @@ export default function LabsView({
         </div>
 
         <div className="lab-body">
-          <MarkdownRenderer content={activeLab.content} />
+          <MarkdownRenderer
+            content={activeLab.content}
+            onInternalLinkClick={onNavigatePath}
+          />
         </div>
 
         {/* Lab nav */}

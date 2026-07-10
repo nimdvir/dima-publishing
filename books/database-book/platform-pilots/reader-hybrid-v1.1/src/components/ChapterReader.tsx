@@ -15,6 +15,7 @@ interface ChapterReaderProps {
   allPages: BookPage[];
   onNavigate: (page: BookPage) => void;
   onHashNavigate?: (targetId: string) => void;
+  onPathNavigate?: (path: string) => void;
   hasPrev: boolean;
   hasNext: boolean;
   prevPage: BookPage | null;
@@ -41,6 +42,7 @@ export default function ChapterReader({
   allPages,
   onNavigate,
   onHashNavigate,
+  onPathNavigate,
   hasPrev,
   hasNext,
   prevPage,
@@ -211,6 +213,7 @@ export default function ChapterReader({
               content={page.content}
               suppressFirstImage={showEntryCover}
               onHeadingsExtracted={handleHeadingsExtracted}
+              onInternalLinkClick={onPathNavigate}
             />
           </div>
           <OnThisPage headings={headings} />
