@@ -388,24 +388,6 @@ export default function App() {
     return () => window.removeEventListener("popstate", handler);
   }, [applyRouteState]);
 
-  // Returning visitor with a live session: resume at their last reading position,
-  // but only when they land on the bare root/welcome. An explicit deep link
-  // (e.g. /book/ch07/...) always wins and is never overridden.
-  useEffect(() => {
-    if (authLoading || !demoUser || didAutoResumeRef.current) return;
-    didAutoResumeRef.current = true;
-    if (parsePathParams().scope !== "welcome") return;
-    getLastPosition()
-      .then((pos) => {
-        if (!pos) return;
-        const page = resolveResumePage(pos.chapter_id, pos.last_section);
-        if (page && parsePathParams().scope === "welcome") {
-          navigateToPage(page);
-        }
-      })
-      .catch(() => {});
-  }, [authLoading, demoUser, navigateToPage]);
-
   // Navigate to a scope — allow the free preview, gate labs and Ch05+.
   const navigateScope = useCallback(
     (newScope: ReaderScope) => {
@@ -465,6 +447,25 @@ export default function App() {
       page: page.pageNumber,
     });
   }, []);
+
+  // Returning visitor with a live session: resume at their last reading position,
+  // but only when they land on the bare root/welcome. An explicit deep link
+  // (e.g. /book/ch07/...) always wins and is never overridden.
+  // NOTE: must be declared after navigateToPage — it references that callback.
+  useEffect(() => {
+    if (authLoading || !demoUser || didAutoResumeRef.current) return;
+    didAutoResumeRef.current = true;
+    if (parsePathParams().scope !== "welcome") return;
+    getLastPosition()
+      .then((pos) => {
+        if (!pos) return;
+        const page = resolveResumePage(pos.chapter_id, pos.last_section);
+        if (page && parsePathParams().scope === "welcome") {
+          navigateToPage(page);
+        }
+      })
+      .catch(() => {});
+  }, [authLoading, demoUser, navigateToPage]);
 
   // Navigate to a lab
   const navigateToLab = useCallback((lab: BookLab) => {
