@@ -3,6 +3,47 @@
 This file contains the rolling edit log for the database book. Each date heading
 groups task-list items for that day.
 
+## 2026-07-07
+
+- [x] Added `subtitle?: string` to `BookChapter` type (`types.ts`)
+- [x] Added `parseSubtitle()` — extracts italic subtitle after H1 from intro pages
+- [x] Added `stripRoadmapFromContent()` — removes `## Chapter Roadmap` table from intro content at generation time
+- [x] Added `generateTocContent()` — generates TOC markdown listing front matter + all 17 chapters
+- [x] Added TOC section to `FRONT_MATTER_SECTIONS` (before preface, at `ch00/toc`)
+- [x] Restructured `generateBookData.ts` build order (chapters before front matter so TOC can reference them)
+- [x] Fixed missing `for` loop after front matter block removal
+- [x] Fixed roadmap parse-before-strip order (parse first, then strip from content)
+- [x] Passed `roadmapItems` + `chapterSubtitle` from `App.tsx` to `ChapterReader`
+- [x] Rendered inline roadmap grid + prominent subtitle on chapter intro pages (`ChapterReader.tsx`)
+- [x] Added `inline` rendering mode to `ChapterRoadmapBar` (always-visible TOC grid, kept dropdown mode)
+- [x] Animated homepage title: CSS `@keyframes titleHighlightSweep` (black→gold→heading), triggered once via ref
+- [x] Removed sidebar nav captions (`SECTION_SUBTITLES` deleted from `Sidebar.tsx`)
+- [x] Normalized terms-treasury heading levels (9 chapters: ch03,04,06,07,09,10,11,12,13 — demoted flat headings)
+- [x] Added CSS for `.chapter-subtitle`, `.roadmap-inline`, `.toc-page`, `.animate-title`
+- [x] Regenerated `bookData.ts`: 18 chapters, 120 sections, 273 pages, 161 roadmap topics, 0 warnings
+- [x] TypeScript: zero errors. Vite build: 2520 modules, clean
+- [x] Deployed to Vercel production (`www.dimapublishing.com`) from working tree
+- [x] Saved chat: `books/database-book/chats/2026-07-07-copilot-toc-roadmap-animated-title.md`
+- [x] Updated `todo.md` with 6 action items for 2026-07-08
+- [x] Updated `chapter-tracker.md` and `edit-log.md`
+- [x] Diagnosed & fixed Supabase-Vercel connectivity: empty `VITE_SUPABASE_URL`/`VITE_SUPABASE_PUBLISHABLE_KEY` in Vercel were causing `"Unrecognized client_id"`. Set via CLI (`vercel env add`), deployed.
+- [x] Fixed MCP config: `.vscode/mcp.json` was pointing to unused Dbook project (`mreqwgpbssbeoonxldvp`), switched to active reader project (`akjidhxkcuubeajsntrz`).
+- [x] Cleaned root `.env`: removed Dbook project notes with hardcoded Postgres password, replaced with pointer comment.
+- [x] Added registration features to `SupabaseAccessTest.tsx`: first/last name fields, @albany.edu domain validation, password confirmation + strength meter, `raw_user_meta_data` on sign-up.
+- [x] Verified live site: `data-pilot.dimapublishing.com/login` loads with zero console errors, Supabase connected.
+- [x] Saved chat: `books/database-book/chats/2026-07-07-copilot-supabase-vercel-connectivity-fix.md`
+- [x] Updated `todo.md`: 2 of 4 new items completed, 2 remaining for tomorrow
+
+## 2026-07-06
+
+- [x] Cleaned up legacy `BITM330-Book-git` repo (1,295 → 32 MB)
+- [x] Moved unique content to `BITM330-book-drive/do-not-delete-yet/BITM330-Book-git-archive/`
+- [x] Verified duplicates (Cengage, Lectures) via SHA256; deleted from repo
+- [x] Deleted bloat: `.history/`, `.venv/`, `_build/`
+- [x] Ran `git gc --aggressive` + `git prune-packed` (`.git`: 1,263 → 520 MB)
+- [x] Committed cleanup and pushed to `nimdvir/BITM330-Book-github`
+- [x] Deleted `.git` locally; 32 MB working files remain, history on GitHub
+
 ## 2026-06-21
 
 - [x] Ran `chapter-final-check ch04` full audit — discovered 3 blockers (RAT answer key, HOW-TO-BUILD in assets, no stable files)

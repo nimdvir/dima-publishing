@@ -2,7 +2,11 @@
   "servers": {
     "supabase": {
       "type": "http",
-      "url": "https://mcp.supabase.com/mcp?project_ref=mreqwgpbssbeoonxldvp&features=database,docs"
+      "url": "https://mcp.supabase.com/mcp?project_ref=akjidhxkcuubeajsntrz&features=database,docs"
+    },
+    "notion": {
+      "type": "http",
+      "url": "https://mcp.notion.com/mcp"
     }
   }
 }

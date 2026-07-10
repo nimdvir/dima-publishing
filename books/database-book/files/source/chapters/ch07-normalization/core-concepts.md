@@ -868,3 +868,18 @@ Elmasri, R., & Navathe, S. B. (2016). *Fundamentals of database systems* (7th ed
 Hoffer, J. A., Venkataraman, R., & Topi, H. (2019). *Modern database management* (13th ed.). Pearson.
 
 Laudon, K. C., & Laudon, J. P. (2024). *Management information systems: Managing the digital firm* (18th ed.). Pearson.
+
+<!-- VIDEO:ch07-video-1 -->
+<div class="video-wrapper">
+  <iframe src="https://www.youtube.com/embed/nTlbk1sCl2g" title="Data Normalization" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+<!-- VIDEO:ch07-video-2 -->
+<div class="video-wrapper">
+  <iframe src="https://www.youtube.com/embed/QrMKVjAdEmw" title="How Database Normalization Prevents Data Corruption" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+<!-- VIDEO:ch07-video-3 -->
+<div class="video-wrapper">
+  <iframe src="https://www.youtube.com/embed/BAbBQ17U9xc" title="How Normalization Fixes Messy Databases" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>

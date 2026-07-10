@@ -51,6 +51,27 @@ If the path is not a verified junction:
 - `G:\My Drive\1. Academic\Teaching\Albany\BITM330\` is the live BITM330 academic course root. It is the actual course home, not an extra, archive, or ancillary folder.
 - Keep semester shells, student submissions, grade exports, LMS records, and active course operations in the academic course root. Do not move or recategorize them as textbook assets unless the user explicitly requests a cross-root workflow.
 
+## Notion Integration Boundary
+
+Notion is connected through the hosted Notion MCP server
+(`https://mcp.notion.com/mcp`, OAuth) defined as `notion` in
+`.vscode/mcp.json`. When any task involves reading, writing, or syncing Notion,
+follow the `notion-bridge` skill.
+
+- **OAuth only.** Never use a static `secret_...` token; never paste tokens into
+  chat, settings, or committed files.
+- **Student-data boundary (hard rule).** Never send student data to Notion or to
+  a model: grades, submissions, rosters, LMS/Brightspace exports, or anything
+  from the academic course root at
+  `G:\My Drive\1. Academic\Teaching\Albany\BITM330\`. Do not share
+  student-data pages with the integration.
+- **Source of truth by content type.** Repo/Drive Markdown is canonical for
+  chapters and course material; Notion is canonical for the task tracker,
+  personal knowledge base, and the data-source catalog. Write to the
+  non-canonical side only as an explicit, user-requested mirror.
+- **Content syntax** for Notion pages comes from the `notion-flavored-markdown`
+  skill.
+
 ## Design Authority
 
 The canonical design instructions for the book reader platform, chapter content

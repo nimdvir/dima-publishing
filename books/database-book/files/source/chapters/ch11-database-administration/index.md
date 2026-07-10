@@ -6,21 +6,24 @@ Database design and SQL are forward-looking disciplines — they build and query
 
 ## Chapter Video
 
-> **Video placeholder:** Chapter 11 overview video will be added here before publication.
+<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 11 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: chapter-review-ch10-17/VIDEO-PROMPTS-NotebookLM.md -->
+
+> 🎬 _Chapter 11 overview video — coming soon._
 
 # Chapter Roadmap
 
 | Topic | Why It Matters |
 | --- | --- |
-| [What Is Database Administration?](#what-is-database-administration) | Key topic in this chapter's Core Concepts reading. |
-| [Design vs. Administration](#design-vs-administration) | Key topic in this chapter's Core Concepts reading. |
-| [Data Administration vs. Database Administration](#data-administration-vs-database-administration) | Key topic in this chapter's Core Concepts reading. |
-| [The DBA as Guardian of Data Trust](#the-dba-as-guardian-of-data-trust) | Key topic in this chapter's Core Concepts reading. |
-| [The Data Professional Ecosystem](#the-data-professional-ecosystem) | Key topic in this chapter's Core Concepts reading. |
-| [Core DBA Responsibilities](#core-dba-responsibilities) | Key topic in this chapter's Core Concepts reading. |
-| [Security and Access Management](#security-and-access-management) | Key topic in this chapter's Core Concepts reading. |
-| [Concurrency Control](#concurrency-control) | Key topic in this chapter's Core Concepts reading. |
-| [Transaction Management](#transaction-management) | Key topic in this chapter's Core Concepts reading. |
-| [Backup and Recovery](#backup-and-recovery) | Key topic in this chapter's Core Concepts reading. |
+| [11.1 What Is Database Administration?](#11-1-what-is-database-administration) | Meet the role that keeps organizational data secure, available, and performing well. |
+| [11.2 Core DBA Responsibilities](#11-2-core-dba-responsibilities) | Learn the essential tasks — backup, recovery, performance, and security — that define the DBA role. |
+| [11.3 Multi-User Databases and Concurrency Control](#11-3-multi-user-databases-and-concurrency-control) | Learn how databases handle hundreds of simultaneous users without data conflicts. |
+| [11.4 Transactions and ACID Reliability](#11-4-transactions-and-acid-reliability) | See how databases guarantee that multi-step operations either fully complete or fully roll back. |
+| [11.5 Database Security](#11-5-database-security) | Understand how databases control who can see and change what — a critical business concern. |
+| [11.6 Backup and Recovery](#11-6-backup-and-recovery) | Learn the strategies that prevent a single hardware failure from destroying organizational data. |
+| [11.7 Performance Monitoring and Tuning](#11-7-performance-monitoring-and-tuning) | Diagnose and fix the slow queries and bottlenecks that frustrate users. |
+| [11.8 Maintenance and Database Evolution](#11-8-maintenance-and-database-evolution) | Keep a production database healthy as requirements and schemas change over time. |
+| [11.9 DBA Work Across Platforms](#11-9-dba-work-across-platforms) | Compare how administration works across Access, SQLite, PostgreSQL, and Supabase. |
+| [11.10 Common DBA Mistakes](#11-10-common-dba-mistakes) | Recognize the avoidable errors that cause outages, breaches, and data loss. |
+| [11.11 Practicing DBA Thinking](#11-11-practicing-dba-thinking) | Build the judgment to protect data and decisions, not just run commands. |
 
 ---

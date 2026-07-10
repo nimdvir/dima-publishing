@@ -14,15 +14,15 @@ This chapter has two purposes. First, it gives you a clear review of the core id
 
 | Topic | Why It Matters |
 | --- | --- |
-| [The First Half as One Connected Framework](#the-first-half-as-one-connected-framework) | Key topic in this chapter's Core Concepts reading. |
-| [Data and Information](#data-and-information) | Key topic in this chapter's Core Concepts reading. |
-| [Databases and DBMS Concepts](#databases-and-dbms-concepts) | Key topic in this chapter's Core Concepts reading. |
-| [Tables, Keys, and Relationships](#tables-keys-and-relationships) | Key topic in this chapter's Core Concepts reading. |
-| [SQL and Query Logic](#sql-and-query-logic) | Key topic in this chapter's Core Concepts reading. |
-| [Normalization and Data Quality](#normalization-and-data-quality) | Key topic in this chapter's Core Concepts reading. |
-| [Why This Review Matters](#why-this-review-matters) | Key topic in this chapter's Core Concepts reading. |
-| [What to Review Before the Midterm](#what-to-review-before-the-midterm) | Key topic in this chapter's Core Concepts reading. |
-| [Midterm Test Instructions](#midterm-test-instructions) | Key topic in this chapter's Core Concepts reading. |
-| [Files for the Midterm Test](#files-for-the-midterm-test) | Key topic in this chapter's Core Concepts reading. |
+| [The First Half as One Connected Framework](#the-first-half-as-one-connected-framework) | See how Chapters 1-7 form a single integrated story, not seven separate topics. |
+| [Data and Information](#data-and-information) | Revisit the DIKW framework and data fundamentals as the exam foundation. |
+| [Databases and DBMS Concepts](#databases-and-dbms-concepts) | Refresh the core database architecture concepts the midterm will test. |
+| [Tables, Keys, and Relationships](#tables-keys-and-relationships) | Review structural elements — the most heavily tested topic on the midterm. |
+| [SQL and Query Logic](#sql-and-query-logic) | Revisit SELECT, JOIN, and aggregation — core SQL skills the exam requires. |
+| [Normalization and Data Quality](#normalization-and-data-quality) | Revisit 1NF through 3NF — understand why clean design prevents data corruption. |
+| [Why This Review Matters](#why-this-review-matters) | Understand how the midterm connects to course outcomes and professional readiness. |
+| [What to Review Before the Midterm](#what-to-review-before-the-midterm) | Prioritize your study time with a targeted review checklist. |
+| [Midterm Test Instructions](#midterm-test-instructions) | Know exactly what to expect on test day — format, rules, and submission steps. |
+| [Files for the Midterm Test](#files-for-the-midterm-test) | Locate and prepare the database files you will need during the exam. |
 
 ---

@@ -14,6 +14,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as crypto from "crypto";
 import { fileURLToPath } from "url";
+import { COURSE_OUTLINE } from "../src/content/courseOutline";
 
 // ── Resolve repo root relative to this script ──
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -103,12 +104,20 @@ interface BookPage {
   exists: boolean;
 }
 
+interface RoadmapItem {
+  topic: string;
+  anchor: string;
+  whyItMatters: string;
+}
+
 interface BookChapter {
   id: string;
   slug: string;
   title: string;
+  subtitle?: string;
   folderName: string;
   sections: BookSection[];
+  roadmapItems: RoadmapItem[];
 }
 
 interface BookLab {
@@ -392,12 +401,13 @@ interface FrontMatterSectionDef {
 }
 
 const FRONT_MATTER_SECTIONS: FrontMatterSectionDef[] = [
-  { slug: "preface", title: "Preface", fileName: "00-preface.md" },
+  { slug: "toc", title: "Table of Contents", fileName: "_generated-toc.md" },
   {
     slug: "acknowledgements",
-    title: "Copyright & Acknowledgements",
+    title: "Copyright & Publication Information",
     fileName: "00-acknowlgements.md",
   },
+  { slug: "preface", title: "Preface", fileName: "00-preface.md" },
 ];
 
 // ── Warnings accumulator ──
@@ -426,6 +436,157 @@ function splitPages(raw: string): string[] {
 function extractTitle(content: string, fallback: string): string {
   const match = content.match(/^#\s+(.+?)(?:\s+#\s+)?$/m);
   return match ? match[1].trim() : fallback;
+}
+
+// ── Roadmap table parser ──
+
+/**
+ * Parse the "Chapter Roadmap" or "### Chapter Roadmap" table from
+ * a chapter's Introduction page content. Returns an array of
+ * { topic, anchor, whyItMatters } items.
+ */
+function parseRoadmap(introContent: string): RoadmapItem[] {
+  // Find the roadmap heading and following table
+  const roadmapIdx = introContent.search(/#{1,3}\s+Chapter Roadmap/i);
+  if (roadmapIdx === -1) return [];
+
+  const afterHeading = introContent.substring(roadmapIdx);
+  const tableStart = afterHeading.indexOf("|");
+  if (tableStart === -1) return [];
+
+  // Extract table lines (skip header + separator rows)
+  const lines = afterHeading
+    .substring(tableStart)
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l.startsWith("|") && l.endsWith("|"));
+
+  if (lines.length < 3) return []; // header + sep + at least 1 row
+
+  const items: RoadmapItem[] = [];
+  for (let i = 2; i < lines.length; i++) {
+    const cells = lines[i]
+      .split("|")
+      .map((c) => c.trim())
+      .filter((c) => c.length > 0);
+    if (cells.length < 2) continue;
+
+    // Parse topic link: [Topic Name](#anchor)
+    const linkMatch = cells[0].match(/\[(.+?)\]\(#(.+?)\)/);
+    if (!linkMatch) continue;
+
+    items.push({
+      topic: linkMatch[1],
+      anchor: linkMatch[2],
+      whyItMatters: cells[1],
+    });
+  }
+
+  return items;
+}
+
+/**
+ * Parse the chapter subtitle from the intro page. The subtitle is the first
+ * italic line (*like this*) after the first H1 heading, stripped of markers.
+ */
+function parseSubtitle(introContent: string): string | undefined {
+  const lines = introContent.split("\n");
+  let pastFirstH1 = false;
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!pastFirstH1 && /^#\s+/.test(line)) {
+      pastFirstH1 = true;
+      continue;
+    }
+    if (!pastFirstH1 || line.length === 0) continue;
+    if (line.startsWith(">") || line.startsWith("<!--") || line.startsWith("```")) continue;
+    const italicMatch = line.match(/^[*_](.+?)[*_]$/);
+    if (italicMatch) {
+      const text = italicMatch[1].trim();
+      if (text.length > 3) return text;
+    }
+    if (line.length > 0 && !/^[#*_>|]/.test(line)) break;
+  }
+  return undefined;
+}
+
+/**
+ * Strip the "## Chapter Roadmap" heading and its following table from
+ * intro page content so it doesn't duplicate the rendered Roadmap component.
+ */
+function stripRoadmapFromContent(content: string): string {
+  const roadmapIdx = content.search(/#{1,3}\s+Chapter Roadmap/i);
+  if (roadmapIdx === -1) return content;
+
+  const beforeRoadmap = content.substring(0, roadmapIdx);
+  const afterHeading = content.substring(roadmapIdx);
+  const tableStart = afterHeading.indexOf("|");
+  if (tableStart === -1) return content;
+
+  const lines = afterHeading.substring(tableStart).split("\n");
+  let tableEndLine = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.startsWith("|") || line.length === 0) {
+      tableEndLine = i;
+      continue;
+    }
+    break;
+  }
+
+  const afterTable = afterHeading
+    .substring(tableStart)
+    .split("\n")
+    .slice(tableEndLine + 1)
+    .join("\n");
+
+  return (beforeRoadmap + "\n" + afterTable).trim();
+}
+
+/**
+ * Generate a Table of Contents markdown page listing front matter and all
+ * chapters with number, title, and subtitle. Links jump to each chapter intro.
+ */
+function generateTocContent(_chapters: BookChapter[]): string {
+  const lines: string[] = [
+    // Cover hero — the book title's first appearance in the reader. The two
+    // key words gently shift between brand colors (styled in styles.css).
+    '<div class="toc-hero">',
+    '  <div class="toc-kicker">Digital Textbook</div>',
+    '  <div class="toc-title">Using <span class="toc-word">Data</span> to Drive <span class="toc-word">Business</span> Performance</div>',
+    '  <div class="toc-sub">Databases and Management Information Systems</div>',
+    '  <div class="toc-author">Nimrod Dvir, PhD</div>',
+    "</div>",
+    "",
+    "# Table of Contents",
+    "",
+    "## Front Matter",
+    "",
+    "- [Copyright & Publication Information](/book/ch00/acknowledgements/1)",
+    "- [Preface](/book/ch00/preface/1)",
+    "",
+    "## Chapters",
+    "",
+    "| # | Chapter | Topic |",
+    "| :--- | :--- | :--- |",
+  ];
+
+  // Chapter titles + topics come from the canonical course outline so every
+  // chapter has a reliable topic (parsing them from intro markdown was fragile).
+  for (const item of COURSE_OUTLINE) {
+    const num = parseInt(item.chapter, 10);
+    const link = `/book/ch${item.chapter}/introduction/1`;
+    lines.push(`| ${num} | [${item.title}](${link}) | ${item.subtitle} |`);
+  }
+
+  lines.push("", "## Appendices", "");
+  for (const app of APPENDICES) {
+    lines.push(`- [${app.title}](/appendices/${app.id})`);
+  }
+
+  lines.push("", "## Labs", "", "- [PetVax Veterinary Clinic Labs](/labs)");
+
+  return lines.join("\n");
 }
 
 // ── navTitle derivation (sidebar page labels) ──
@@ -949,9 +1110,10 @@ function main() {
         }
       }
 
-      // Check front-matter files
+      // Check front-matter files (skip generated TOC which always refreshes)
       const fmCheckDir = path.join(SOURCE_CHAPTERS, FRONT_MATTER_FOLDER);
       for (const fmSec of FRONT_MATTER_SECTIONS) {
+        if (fmSec.slug === "toc") continue; // generated, not file-backed
         const fmFilePath = path.join(fmCheckDir, fmSec.fileName);
         const fmFileExists = fs.existsSync(fmFilePath);
         const currentHash = fmFileExists ? hashFile(fmFilePath) : "placeholder";
@@ -991,82 +1153,7 @@ function main() {
     placeholder: 0,
   };
 
-  // ── Front matter (ch00: preface + acknowledgements) ──
-  const fmDir = path.join(SOURCE_CHAPTERS, FRONT_MATTER_FOLDER);
-  if (fs.existsSync(fmDir)) {
-    const fmSections: BookSection[] = [];
-    const fmPages: BookPage[] = [];
-
-    for (const fmSec of FRONT_MATTER_SECTIONS) {
-      const fmFilePath = path.join(fmDir, fmSec.fileName);
-      let content = readFileSafe(fmFilePath);
-      let sourceFile: string | null = fmSec.fileName;
-      let sourceType: SourceType = "stable";
-
-      if (!content || content.trim().length === 0) {
-        content = PLACEHOLDER_MD;
-        sourceFile = null;
-        sourceType = "placeholder";
-        warn(`ch00/${fmSec.slug}: placeholder (${fmSec.fileName} not found)`);
-      }
-
-      const sectionId = `ch00-${fmSec.slug}`;
-      const exists = sourceType !== "placeholder";
-      const pageSegments = splitPages(content);
-      let prevNavTitle: string | null = null;
-      const pages: BookPage[] = pageSegments.map((seg, i) => {
-        const navTitle = deriveNavTitle(seg, i + 1, prevNavTitle);
-        prevNavTitle = navTitle;
-        return {
-          id: `${sectionId}-page-${i + 1}`,
-          slug: `${fmSec.slug}-page-${i + 1}`,
-          title: derivePageTitle(fmSec.title, i + 1, navTitle),
-          navTitle,
-          content: seg,
-          pageNumber: i + 1,
-          totalPages: pageSegments.length,
-          chapterId: "ch00",
-          chapterSlug: "ch00-front-matter",
-          sectionId,
-          sectionSlug: fmSec.slug,
-          sectionTitle: fmSec.title,
-          sourceFile,
-          sourceType,
-          exists,
-        };
-      });
-
-      fmSections.push({
-        id: sectionId,
-        slug: fmSec.slug,
-        title: fmSec.title,
-        fileName: fmSec.fileName,
-        exists,
-        sourceFile,
-        sourceType,
-        pages,
-      });
-      fmPages.push(...pages);
-
-      totalSectionsResolved++;
-      sourceTypeCounts[sourceType] = (sourceTypeCounts[sourceType] || 0) + 1;
-    }
-
-    chapters.push({
-      id: "ch00",
-      slug: "ch00-front-matter",
-      title: "Front Matter",
-      folderName: FRONT_MATTER_FOLDER,
-      sections: fmSections,
-    });
-    allPages.push(...fmPages);
-    console.log(`  Front matter: loaded (preface + acknowledgements)`);
-  } else {
-    console.log(
-      `  Front matter: folder not found (${FRONT_MATTER_FOLDER}) — skipped`,
-    );
-  }
-
+  // ── Build regular chapters first (needed for TOC generation) ──
   for (const ch of CHAPTERS) {
     const chapterDir = path.join(SOURCE_CHAPTERS, ch.folderName);
     const sections: BookSection[] = [];
@@ -1222,13 +1309,123 @@ function main() {
       }
     }
 
+    // Parse roadmap items before stripping from content
+    const introSection = sections.find((s) => s.slug === "introduction");
+    const introContent =
+      introSection?.pages?.[0]?.content ?? "";
+    const roadmapItems = parseRoadmap(introContent);
+    const subtitle = parseSubtitle(introContent);
+
+    // Strip the roadmap table from the intro page content so it doesn't
+    // duplicate the rendered Roadmap component in the reader.
+    if (introSection && introSection.pages.length > 0) {
+      const introPage = introSection.pages[0];
+      const stripped = stripRoadmapFromContent(introPage.content);
+      if (stripped !== introPage.content) {
+        introPage.content = stripped;
+      }
+    }
+
     chapters.push({
       id: ch.id,
       slug: ch.slug,
       title: chapterTitle,
+      subtitle,
       folderName: ch.folderName,
       sections,
+      roadmapItems,
     });
+  }
+
+  // ── Front matter (ch00: toc + preface + acknowledgements) ──
+  // Built after chapters so the TOC can reference all chapter data.
+  const fmDir = path.join(SOURCE_CHAPTERS, FRONT_MATTER_FOLDER);
+  if (fs.existsSync(fmDir)) {
+    const fmSections: BookSection[] = [];
+    const fmPages: BookPage[] = [];
+
+    for (const fmSec of FRONT_MATTER_SECTIONS) {
+      let content: string;
+      let sourceFile: string | null;
+      let sourceType: SourceType;
+
+      if (fmSec.slug === "toc") {
+        // Generated TOC — uses chapter data, not a file on disk
+        content = generateTocContent(chapters);
+        sourceFile = "_generated";
+        sourceType = "stable";
+      } else {
+        const fmFilePath = path.join(fmDir, fmSec.fileName);
+        content = readFileSafe(fmFilePath) ?? "";
+        sourceFile = fmSec.fileName;
+        sourceType = "stable";
+
+        if (content.trim().length === 0) {
+          content = PLACEHOLDER_MD;
+          sourceFile = null;
+          sourceType = "placeholder";
+          warn(`ch00/${fmSec.slug}: placeholder (${fmSec.fileName} not found)`);
+        }
+      }
+
+      const sectionId = `ch00-${fmSec.slug}`;
+      const exists = sourceType !== "placeholder";
+      const pageSegments = splitPages(content);
+      let prevNavTitle: string | null = null;
+      const pages: BookPage[] = pageSegments.map((seg, i) => {
+        const navTitle = deriveNavTitle(seg, i + 1, prevNavTitle);
+        prevNavTitle = navTitle;
+        return {
+          id: `${sectionId}-page-${i + 1}`,
+          slug: `${fmSec.slug}-page-${i + 1}`,
+          title: derivePageTitle(fmSec.title, i + 1, navTitle),
+          navTitle,
+          content: seg,
+          pageNumber: i + 1,
+          totalPages: pageSegments.length,
+          chapterId: "ch00",
+          chapterSlug: "ch00-front-matter",
+          sectionId,
+          sectionSlug: fmSec.slug,
+          sectionTitle: fmSec.title,
+          sourceFile,
+          sourceType,
+          exists,
+        };
+      });
+
+      fmSections.push({
+        id: sectionId,
+        slug: fmSec.slug,
+        title: fmSec.title,
+        fileName: fmSec.fileName,
+        exists,
+        sourceFile,
+        sourceType,
+        pages,
+      });
+      fmPages.push(...pages);
+
+      totalSectionsResolved++;
+      sourceTypeCounts[sourceType] = (sourceTypeCounts[sourceType] || 0) + 1;
+    }
+
+    // ch00 goes first in the chapters array
+    chapters.unshift({
+      id: "ch00",
+      slug: "ch00-front-matter",
+      title: "Front Matter",
+      subtitle: undefined,
+      folderName: FRONT_MATTER_FOLDER,
+      sections: fmSections,
+      roadmapItems: [],
+    });
+    allPages.unshift(...fmPages);
+    console.log(`  Front matter: loaded (toc + preface + acknowledgements)`);
+  } else {
+    console.log(
+      `  Front matter: folder not found (${FRONT_MATTER_FOLDER}) — skipped`,
+    );
   }
 
   // ── Labs ──

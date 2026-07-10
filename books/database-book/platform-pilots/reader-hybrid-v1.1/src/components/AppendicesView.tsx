@@ -5,6 +5,7 @@ interface AppendicesViewProps {
   appendices: BookAppendix[];
   activeAppendix: BookAppendix;
   onSelectAppendix: (appendix: BookAppendix) => void;
+  onNavigatePath?: (path: string) => void;
 }
 
 const APPENDIX_SHORT: Record<string, string> = {
@@ -17,6 +18,7 @@ export default function AppendicesView({
   appendices,
   activeAppendix,
   onSelectAppendix,
+  onNavigatePath,
 }: AppendicesViewProps) {
   const activeIdx = appendices.findIndex((a) => a.id === activeAppendix.id);
   const hasPrev = activeIdx > 0;
@@ -49,7 +51,10 @@ export default function AppendicesView({
         </div>
 
         <div className="lab-body">
-          <MarkdownRenderer content={activeAppendix.content} />
+          <MarkdownRenderer
+            content={activeAppendix.content}
+            onInternalLinkClick={onNavigatePath}
+          />
         </div>
 
         {/* Appendix nav */}

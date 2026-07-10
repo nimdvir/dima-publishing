@@ -1,0 +1,36 @@
+{
+  "playlists": {
+    "BITM330 - Course Videos": {
+      "playlist_id": "PLDOnpyyctLZo"
+    }
+  },
+  "videos": {
+    "ch07-video-1": {
+      "video_id": "nTlbk1sCl2g",
+      "title": "Data Normalization",
+      "source_path": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\.images\\ch07-normalization\\ch-07-videos\\Data_Normalization.mp4",
+      "url": "https://youtu.be/nTlbk1sCl2g",
+      "embed_url": "https://www.youtube.com/embed/nTlbk1sCl2g",
+      "playlist": "BITM330 - Course Videos",
+      "privacy": "unlisted"
+    },
+    "ch07-video-2": {
+      "video_id": "QrMKVjAdEmw",
+      "title": "How Database Normalization Prevents Data Corruption",
+      "source_path": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\.images\\ch07-normalization\\ch-07-videos\\How_Database_Normalization_Prevents_Data_Corruption.mp4",
+      "url": "https://youtu.be/QrMKVjAdEmw",
+      "embed_url": "https://www.youtube.com/embed/QrMKVjAdEmw",
+      "playlist": "BITM330 - Course Videos",
+      "privacy": "unlisted"
+    },
+    "ch07-video-3": {
+      "video_id": "BAbBQ17U9xc",
+      "title": "How Normalization Fixes Messy Databases",
+      "source_path": "G:\\My Drive\\0-Projects\\!-important\\BITM330-book-drive\\.images\\ch07-normalization\\ch-07-videos\\How_Normalization_Fixes_Messy_Databases.mp4",
+      "url": "https://youtu.be/BAbBQ17U9xc",
+      "embed_url": "https://www.youtube.com/embed/BAbBQ17U9xc",
+      "playlist": "BITM330 - Course Videos",
+      "privacy": "unlisted"
+    }
+  }
+}

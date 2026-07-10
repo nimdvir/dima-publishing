@@ -46,20 +46,6 @@ const SECTION_LABELS: Record<string, string> = {
   "Terms Treasury": "Key Terms",
 };
 
-/** Subtitles for reader areas. */
-const SECTION_SUBTITLES: Record<string, string> = {
-  Preface: "About this book",
-  "Copyright & Acknowledgements": "Rights & attribution",
-  Introduction: "Course overview",
-  "Core Concepts": "Core reading",
-  "Let's Build": "Hands-on practice",
-  "Review Questions": "Check your understanding",
-  "Terms Treasury": "Essential vocabulary",
-  "Key Terms": "Essential vocabulary",
-  "RAT: Reading Test": "Reading assessment",
-  "Chapter Lab": "PetVax hands-on project",
-};
-
 interface SidebarProps {
   scope: ReaderScope;
   onNavigateScope: (scope: ReaderScope) => void;
@@ -236,11 +222,6 @@ export default function Sidebar({
                               <span className="section-title">
                                 {SECTION_LABELS[sec.title] || sec.title}
                               </span>
-                              {SECTION_SUBTITLES[sec.title] && (
-                                <span className="section-subtitle">
-                                  {SECTION_SUBTITLES[sec.title]}
-                                </span>
-                              )}
                             </span>
                             {!sec.exists && (
                               <span className="badge-placeholder">missing</span>

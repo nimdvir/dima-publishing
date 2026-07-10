@@ -29,25 +29,26 @@ Those questions are the foundation of this chapter.
 - describe the five components of an information system;
 - explain how MIS and BITM connect systems, management, and strategy.
 
-## Chapter Video
+## Introduction
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TtQPqJm5BIs" title="Chapter 2 overview video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 [Watch the Chapter 2 overview video](https://www.youtube.com/watch?v=TtQPqJm5BIs)
 
-# Chapter Roadmap
 
-| Topic | Why It Matters |
-| --- | --- |
-| [Framing the Course Title](#framing-the-course-title) | Key topic in this chapter's Core Concepts reading. |
-| [Why Foundations Matter](#why-foundations-matter) | Key topic in this chapter's Core Concepts reading. |
-| [From Data to Business Meaning](#from-data-to-business-meaning) | Key topic in this chapter's Core Concepts reading. |
-| [What Is Data?](#what-is-data) | Key topic in this chapter's Core Concepts reading. |
-| [The DIKW Hierarchy](#the-dikw-hierarchy) | Key topic in this chapter's Core Concepts reading. |
-| [The R.E.A.D. Framework](#the-r-e-a-d-framework) | Key topic in this chapter's Core Concepts reading. |
-| [Why Data Quality Matters](#why-data-quality-matters) | Key topic in this chapter's Core Concepts reading. |
-| [Business as a Performance System](#business-as-a-performance-system) | Key topic in this chapter's Core Concepts reading. |
-| [What Is a Business?](#what-is-a-business) | Key topic in this chapter's Core Concepts reading. |
-| [The Input-Process-Output Model](#the-input-process-output-model) | Key topic in this chapter's Core Concepts reading. |
+## Chapter Roadmap
+
+| Topic                                                                 | Why It Matters                                     |
+| --------------------------------------------------------------------- | -------------------------------------------------- |
+| [Framing the Course Title](#framing-the-course-title)                 | Decode what BITM330 means and why the course name signals what you will learn. |
+| [Why Foundations Matter](#why-foundations-matter)                     | Learn why skipping the basics leads to fragile technical knowledge later. |
+| [From Data to Business Meaning](#from-data-to-business-meaning)       | See how raw observations transform into actionable business insight. |
+| [What Is Data?](#what-is-data)                                        | Define data precisely — because unclear definitions lead to unclear decisions. |
+| [The DIKW Hierarchy](#the-dikw-hierarchy)                             | Understand the progression from raw data to wisdom that drives strategy. |
+| [The R.E.A.D. Framework](#the-r-e-a-d-framework)                      | Learn a practical four-step model for turning information into action. |
+| [Why Data Quality Matters](#why-data-quality-matters)                 | Discover why bad input guarantees bad output, no matter how good your tools are. |
+| [Business as a Performance System](#business-as-a-performance-system) | See every organization as a measurable input-process-output engine. |
+| [What Is a Business?](#what-is-a-business)                            | Establish a working definition of business that anchors the rest of the book. |
+| [The Input-Process-Output Model](#the-input-process-output-model)     | Learn a universal model for how any organization creates and delivers value. |
 
 ---

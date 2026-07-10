@@ -1,22 +1,21 @@
 # Chapter 17: Designing Systems That Matter
 
-<!-- Draft Status: Edited 2026-05-08 -->
-
 This chapter synthesizes the entire course and shifts focus from competency to responsibility. The chapter addresses the ethical dimensions of data systems, the manager's role in system design decisions, and the habits of mind required for lifelong learning in a data-driven world. The chapter sends students forward with clarity about what they know, what it means, and how to keep growing.
 
 ## Chapter Video
 
-> **Video placeholder:** Chapter 17 overview video will be added here before publication.
+<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 17 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: chapter-review-ch10-17/VIDEO-PROMPTS-NotebookLM.md -->
+
+> 🎬 _Chapter 17 overview video — coming soon._
 
 # Chapter Roadmap
 
 | Topic | Why It Matters |
 | --- | --- |
-| [Chapter 17: Designing Systems That Matter](#chapter-17-designing-systems-that-matter) | Key topic in this chapter's Core Concepts reading. |
-| [Conclusion: Designing Systems That Matter](#conclusion-designing-systems-that-matter) | Key topic in this chapter's Core Concepts reading. |
-| [Course Integration](#course-integration) | Key topic in this chapter's Core Concepts reading. |
-| [Professional Practice](#professional-practice) | Key topic in this chapter's Core Concepts reading. |
-| [Continuing Development](#continuing-development) | Key topic in this chapter's Core Concepts reading. |
-| [Final Reflection](#final-reflection) | Key topic in this chapter's Core Concepts reading. |
+| [Conclusion: Designing Systems That Matter](#conclusion-designing-systems-that-matter) | Reflect on the book's central argument — good design serves human decisions. |
+| [Course Integration](#course-integration) | See how every chapter contributed to your ability to connect data and decisions. |
+| [Professional Practice](#professional-practice) | Translate classroom skills into workplace capabilities — what to say in an interview. |
+| [Continuing Development](#continuing-development) | Plan your next steps — certifications, tools, and resources to keep growing. |
+| [Final Reflection](#final-reflection) | Take a moment to recognize how far you have come since Chapter 1. |
 
 ---
