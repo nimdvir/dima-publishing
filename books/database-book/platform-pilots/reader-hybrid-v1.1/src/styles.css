@@ -1177,6 +1177,14 @@ h3 {
   border-color: #c7d2fe;
   box-shadow: 0 10px 26px rgba(24, 24, 27, 0.08);
 }
+.outline-card--interactive {
+  cursor: pointer;
+  text-align: left;
+}
+.outline-card--interactive:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
 .outline-number {
   display: inline-flex;
   align-items: center;

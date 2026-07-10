@@ -7,6 +7,7 @@ import { COURSE_OUTLINE } from '../content/courseOutline';
 interface HomePageProps {
   onEnterReader: () => void;
   onOpenLogin: () => void;
+  onOpenChapter: (chapterId: string) => void;
 }
 
 const FEATURE_CARDS = [
@@ -62,6 +63,7 @@ const CHAPTER_STRUCTURE = [
 export default function HomePage({
   onEnterReader,
   onOpenLogin,
+  onOpenChapter,
 }: HomePageProps) {
   const coverUrl = 'https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto/bitm330book/0-cover-image/ch00-cover-art2-cropped.gif';
   const overviewVideoEmbedUrl = 'https://www.youtube-nocookie.com/embed/TjJoWX4vgFs?si=o2BuKL6jeGqtBfTS';
@@ -186,10 +188,22 @@ export default function HomePage({
           Inside the Book
         </h2>
         <div className="outline-grid">
-          {COURSE_OUTLINE.map((chapter, index) => (
+          {COURSE_OUTLINE.map((chapter, index) => {
+            const chapterId = `ch${chapter.chapter}`;
+            return (
             <motion.article
               key={chapter.chapter}
-              className="outline-card"
+              className="outline-card outline-card--interactive"
+              role="button"
+              tabIndex={0}
+              aria-label={`Open Chapter ${chapter.chapter}: ${chapter.title}`}
+              onClick={() => onOpenChapter(chapterId)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onOpenChapter(chapterId);
+                }
+              }}
               initial={reducedMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={
@@ -205,7 +219,8 @@ export default function HomePage({
                 <p className="outline-focus">{chapter.focus}</p>
               </div>
             </motion.article>
-          ))}
+            );
+          })}
         </div>
       </section>
 

@@ -734,6 +734,13 @@ export default function App() {
         <HomePage
           onEnterReader={() => navigateScope("book")}
           onOpenLogin={() => navigateScope("login")}
+          onOpenChapter={(chapterId) => {
+            const page = FLAT_READER_PAGES.find(
+              (p) => p.chapterId === chapterId,
+            );
+            if (page) navigateToPage(page);
+            else navigateScope("book");
+          }}
         />
       )}
       {scope === "login" && (
