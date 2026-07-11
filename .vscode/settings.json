@@ -7,7 +7,6 @@
   "geminicodeassist.languages": ["*", "yaml", "markdown", "html"],
   "geminicodeassist.updateChannel": "Default",
   "geminicodeassist.inlineSuggestions.nextEditPredictions": true,
-  "inlineChat.defaultModel": "DeepSeek V4 Flash (deepseek)",
   "chat.mcp.serverSampling": {
     "dima-publishing/.vscode/mcp.json: supabase": {
       "allowedModels": [

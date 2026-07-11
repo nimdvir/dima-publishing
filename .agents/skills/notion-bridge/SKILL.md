@@ -88,3 +88,56 @@ Decide direction before writing anything.
 - Do not create static tokens or bypass OAuth.
 - Do not overwrite a Notion page without fetching and confirming first.
 - Do not treat `.agents/archive/` guidance as active.
+
+---
+
+## Known MCP Tool Behaviors (verified 2026-07-10)
+
+### create-pages — do not use to place pages inside a wiki
+
+`mcp_notion_mcp_notion-create-pages` with `parentUrl` as a top-level parameter
+**creates pages at the workspace root**, not inside the target wiki or database.
+This causes orphan pages and duplicates.
+
+**Rule:** Never use `create-pages` to add content to an existing wiki. Instead:
+1. Fetch the target page ID with `notion-fetch`.
+2. Use `update-page` with `insert_content` or `replace_content` on that ID.
+
+When a new page truly must be created inside a wiki, `create-pages` requires
+the `pages` items to use only Notion-native fields — `{"properties": {"title": "..."}}`.
+Even then, verify placement by fetching the result immediately.
+
+### update-page — valid commands
+
+Valid `command` values:
+`update_properties` | `update_content` | `replace_content` | `insert_content` | `apply_template` | `update_verification`
+
+- `replace_content` uses `new_str` param (not `content`).
+- `update_properties` uses a `properties` object with schema field names (e.g. `Page`, `Summary`, `Tags`). `archived` is **not** a schema property — cannot archive via this command.
+
+### Archiving / deleting pages
+
+The MCP cannot delete or archive pages. Workaround: rename the page title to
+`🗑️ DELETE ME — <reason>` as a marker for manual deletion in the Notion UI.
+
+### Tools that require Business plan (unavailable)
+
+- `query-database-view`
+- `query-meeting-notes`
+
+To list pages in a wiki without Business plan, fetch known page IDs directly
+or ask the user to share the URL.
+
+### Key page IDs (📚 Book Project — BITM330)
+
+| Page | ID |
+|---|---|
+| 📚 Book Project — BITM330 wiki | `318508ab55d7816b85a3c8e942da4cde` |
+| ✅ Project TODO | `396508ab55d78108904ef8b6df495764` |
+| 📋 Restructure & Plans 2026-07-08 | `397508ab55d7815e9eaac4430fcb388f` |
+
+To append new todo items to ✅ Project TODO:
+```
+fetch page 396508ab55d78108904ef8b6df495764
+update-page command=insert_content page_id=396508ab55d78108904ef8b6df495764
+```
