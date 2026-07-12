@@ -4,7 +4,7 @@ The final chapter brings the course together. Across the semester, you learned h
 
 ## Chapter Video
 
-<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 16 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: chapter-review-ch10-17/VIDEO-PROMPTS-NotebookLM.md -->
+<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 16 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: books/database-book/media-prompts/VIDEO-PROMPTS-NotebookLM.md -->
 
 > 🎬 _Chapter 16 overview video — coming soon._
 

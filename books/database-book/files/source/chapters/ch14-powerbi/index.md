@@ -10,7 +10,7 @@ This chapter introduces Microsoft Power BI as the industry-standard tool for tur
 
 ## Chapter Video
 
-<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 14 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: chapter-review-ch10-17/VIDEO-PROMPTS-NotebookLM.md -->
+<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 14 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: books/database-book/media-prompts/VIDEO-PROMPTS-NotebookLM.md -->
 
 > 🎬 _Chapter 14 overview video — coming soon._
 

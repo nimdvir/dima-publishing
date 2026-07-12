@@ -4,7 +4,7 @@ This chapter synthesizes the entire course and shifts focus from competency to r
 
 ## Chapter Video
 
-<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 17 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: chapter-review-ch10-17/VIDEO-PROMPTS-NotebookLM.md -->
+<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 17 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: books/database-book/media-prompts/VIDEO-PROMPTS-NotebookLM.md -->
 
 > 🎬 _Chapter 17 overview video — coming soon._
 

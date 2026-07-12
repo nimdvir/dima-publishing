@@ -21,6 +21,7 @@ books/database-book/platform-claude-5-30
 
 # Heavy repo artifacts not needed by the reader build
 chapter-review-ch10-17
+books/database-book/archive
 corporation
 data
 Dima-publishing-site
