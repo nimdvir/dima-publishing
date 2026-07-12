@@ -180,3 +180,7 @@ groups task-list items for that day.
 - [x] Continued Ch15 implementation by replacing placeholder stable companions: revised `terms-treasury.md`, `review-questions.md`, and `rat.md`; updated `ch15-edits.md` and `chapter-tracker.md` to close resolved Ch12/Ch15 companion and ordering tasks.
 - [x] Ran a Ch15 media dry-run inspection: confirmed prompt specs exist in the Ch15 image folder, but generated Ch15 image files are not present yet; media generation/placement remains a `chapter-media` handoff.
 - [x] Streamlined Ch15 for efficiency/effectiveness: compressed duplicated BI infrastructure/star-schema teaching into strategic summaries, removed awkward research-report phrasing, corrected the Horizon 3 chapter reference to Ch15, and removed broken legacy figure links/prompt details from `core-concepts.md`.
+
+## 2026-07-10 Edits
+
+- [x] Created permanent xAI Text-to-Speech Copilot customization: added canonical skill `.agents/skills/xai-text-to-speech/SKILL.md` plus user prompt shortcut `Code/User/prompts/xai-text-to-speech.prompt.md`; validated discovery-first/no-code guardrails and browser-side `XAI_API_KEY` safety.
