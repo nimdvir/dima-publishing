@@ -17,3 +17,4 @@ desktop.ini
 secrets/
 youtube_client_secret.json
 youtube_token.json
+local-copilot-debug-session-index*.md
