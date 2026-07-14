@@ -3,6 +3,12 @@
 This file contains the rolling edit log for the database book. Each date heading
 groups task-list items for that day.
 
+## 2026-07-14 Edits
+
+- [x] Repaired Chapter 10 local reader source: replaced internal intro/status content with student-facing intro and roadmap, added both opening videos to Core Concepts page 1, regenerated reader data, and kept changes local only.
+- [x] Moved Chapter 10 Core Concepts key terms into the Terms Treasury, replaced the in-chapter key-terms section with a bold SQL for Data Analysis Cheat Sheet link and responsive Google Drive preview embed, and validated the local reader build.
+- [x] Moved the Chapter 10 SQL for Data Analysis Cheat Sheet onto its own Core Concepts page after the Looking Ahead, Chapter Summary, and References page.
+
 ## 2026-07-07
 
 - [x] Added `subtitle?: string` to `BookChapter` type (`types.ts`)

@@ -1,26 +1,36 @@
 # Chapter 10: Advanced SQL for Business Analysis
 
-Chapter 5 introduced SQL as the language of relational databases. Chapter 9 showed how to design databases from requirements. This chapter returns to SQL with a more advanced goal: using queries to diagnose data problems, restructure messy data into clean normalized tables, connect those tables, calculate meaningful metrics, and create reusable reporting logic.
+Chapter 10 extends the SQL foundations from Chapter 5 and the design work from Chapter 9. The goal is to use SQL not only to retrieve rows, but also to diagnose data quality problems, connect normalized tables, calculate business measures, and build reusable logic for decision support.
+
+Advanced SQL is less about memorizing more commands and more about writing queries that someone else can trust. In this chapter, you will practice joining, aggregating, filtering, reshaping, and documenting data so the result can support a clear business decision.
 
 ## Chapter Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kFlSsAMlYTU" title="Chapter 10 overview video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G69DkWdnz44?si=p_0zDn9AuesExDcr" title="Chapter 10 overview video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-[Watch the Chapter 10 overview video](https://www.youtube.com/watch?v=kFlSsAMlYTU)
+[Watch the Chapter 10 overview video](https://youtu.be/G69DkWdnz44)
+
+## Supplementary Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kFlSsAMlYTU?si=QsF7mibkd57zyqDj" title="How Advanced SQL Builds Analytical Pipelines video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[Watch How Advanced SQL Builds Analytical Pipelines](https://youtu.be/kFlSsAMlYTU)
 
 # Chapter Roadmap
 
 | Topic | Why It Matters |
 | --- | --- |
-| [10.1 From Basic SQL to Advanced SQL](#10-1-from-basic-sql-to-advanced-sql) | Bridge from simple SELECT to the analytical queries that drive business decisions. |
-| [10.2 Grading Database Refresher](#10-2-grading-database-refresher) | Revisit the Grading Database schema before applying advanced techniques to it. |
-| [10.3 Diagnosing and Restructuring Data with SQL](#10-3-diagnosing-and-restructuring-data-with-sql) | Use SQL to find and fix data problems before they corrupt your analysis. |
-| [10.4 Advanced JOIN Patterns](#10-4-advanced-join-patterns) | Go beyond INNER JOIN — master LEFT, RIGHT, CROSS, and self-joins for complex questions. |
-| [10.5 Cleaning and Conditional Functions](#10-5-cleaning-and-conditional-functions) | Transform messy real-world data into clean, analysis-ready results with CASE and COALESCE. |
-| [10.6 Analytical Aggregation](#10-6-analytical-aggregation) | Move beyond basic GROUP BY to produce business-ready summary reports. |
-| [10.7 Date and Time Queries](#10-7-date-and-time-queries) | Filter, group, and calculate using dates — essential for any business timeline analysis. |
-| [10.8 Weighted Grades and Policy Tables](#10-8-weighted-grades-and-policy-tables) | Apply SQL to a real academic scenario — computing grades with configurable weights. |
-| [10.9 Window Functions](#10-9-window-functions) | Learn the advanced technique that ranks, partitions, and computes running totals without GROUP BY. |
-| [10.10 Reusable Reporting Pipelines](#10-10-reusable-reporting-pipelines) | Build SQL workflows you can run repeatedly — the foundation of business intelligence. |
-
----
+| [From Basic SQL to Analytical SQL](#10-1-from-basic-sql-to-analytical-sql) | Reframe SQL as structured reasoning for reliable business decisions. |
+| [Joins as Business Connections](#10-2-joins-as-business-connections) | Connect related tables so reports preserve the right business meaning. |
+| [Outer Joins and NULL](#10-3-outer-joins-and-the-business-meaning-of-null) | Find missing records and interpret absence without hiding it. |
+| [Advanced Join Patterns](#10-4-advanced-join-patterns) | Build complete reports, compare rows, and follow multi-table pathways. |
+| [Aggregation with GROUP BY](#10-5-aggregation-with-group-by) | Summarize detailed records into decision-ready measures. |
+| [Filtering Groups with HAVING](#10-6-filtering-groups-with-having) | Apply business thresholds after grouped calculations are complete. |
+| [Calculated Fields and CASE Logic](#10-7-calculated-fields-and-case-logic) | Turn raw values into labels, flags, and policy-based categories. |
+| [Diagnosing Data Problems with SQL](#10-8-diagnosing-data-problems-with-sql) | Detect duplicates, inconsistent values, and data quality risks. |
+| [Restructuring Data with SQL](#10-9-restructuring-data-with-sql-executing-a-normalization) | Use SQL to move from inherited flat data toward cleaner tables. |
+| [Date and Time Queries](#10-10-date-and-time-queries) | Analyze due dates, lateness, ranges, and time-based patterns. |
+| [Weighted Grades and Policy Tables](#10-11-weighted-grades-and-policy-tables) | Keep grading rules explicit, auditable, and easy to change. |
+| [Subqueries and Views](#10-12-subqueries-and-views-reusable-reporting-pipelines) | Organize complex logic into reusable reporting structures. |
+| [Window Functions](#10-13-stretch-window-functions-without-collapsing-rows) | Add rankings and running calculations without losing row detail. |
+| [Transactions and Reliability](#10-14-looking-ahead-transactions-and-reliability) | Prepare for safer updates, reliability, and database administration. |

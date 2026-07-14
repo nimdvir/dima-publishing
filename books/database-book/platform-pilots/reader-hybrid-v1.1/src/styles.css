@@ -1980,6 +1980,20 @@ details.roadmap-inline[open] .roadmap-inline-heading::after {
   height: 100%;
   border-radius: var(--radius-xs);
 }
+.document-wrapper {
+  width: 100%;
+  height: clamp(520px, 78vh, 920px);
+  overflow: hidden;
+  margin: 1em 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  background: var(--color-surface-muted);
+}
+.document-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 .blocked-iframe {
   padding: 1rem;
   background: #f8d7da;
@@ -1988,6 +2002,11 @@ details.roadmap-inline[open] .roadmap-inline-heading::after {
   text-align: center;
   font-size: 0.85rem;
   margin: 1em 0;
+}
+@media (max-width: 700px) {
+  .document-wrapper {
+    height: clamp(420px, 72vh, 760px);
+  }
 }
 .markdown-body input[type="checkbox"] {
   margin-right: 0.4em;
