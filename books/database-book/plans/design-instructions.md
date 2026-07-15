@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-05
 **Status:** Canonical — all CSS files derive from this spec
-**Applies to:** `reader-hybrid-v1.1` (production at dima-publishing.vercel.app)
+**Applies to:** `reader-hybrid-v1.1` (active book production at https://data-pilot.dimapublishing.com/)
 
 > **Canonical source of truth.** This document defines the complete design system for the DIMA Publishing online reader platform and the *Using Data to Drive Business Performance* textbook. All CSS files in the platform (`styles.css`, `call-outs.css`) must match this spec. When in doubt, this document wins.
 
@@ -678,7 +678,7 @@ From `_static/call-outs.css`. These define the 16 callout types. Used by the Mar
 - **Icons:** `lucide-react`
 - **Markdown rendering:** `react-markdown` + `remark-gfm`
 - **Auth:** Supabase
-- **Deployment:** Vercel (dima-publishing.vercel.app)
+- **Deployment:** Vercel (https://data-pilot.dimapublishing.com/)
 
 ### 9.2 CSS File Relationship
 

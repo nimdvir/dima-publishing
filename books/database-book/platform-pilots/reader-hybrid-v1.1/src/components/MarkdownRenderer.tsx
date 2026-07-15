@@ -15,7 +15,7 @@ import {
 } from '../utils/headings';
 import ImageLightbox from './ImageLightbox';
 
-// Custom sanitize schema: allow callout classes and YouTube iframes only
+// Custom sanitize schema: allow callout classes and trusted iframes only
 const customSchema: Options = {
   ...defaultSchema,
   tagNames: [
@@ -64,6 +64,8 @@ interface MarkdownRendererProps {
 
 /** Internal app routes that should navigate in-app rather than reload the page. */
 const INTERNAL_ROUTE_RE = /^\/(book|labs|lab|appendices|login|account|admin)(\/|$)/;
+const YOUTUBE_EMBED_RE = /^https:\/\/(www\.)?(youtube\.com|youtube-nocookie\.com)\//;
+const GOOGLE_DRIVE_PREVIEW_RE = /^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/preview(?:\?.*)?$/;
 
 export default function MarkdownRenderer({
   content,
@@ -180,9 +182,9 @@ export default function MarkdownRenderer({
               </a>
             );
           },
-          // Custom iframe handler: only allow YouTube / youtube-nocookie
+          // Custom iframe handler: allow only trusted embed sources.
           iframe: ({ src, ...props }: any) => {
-            if (src && /^https:\/\/(www\.)?(youtube\.com|youtube-nocookie\.com)\//.test(src)) {
+            if (src && YOUTUBE_EMBED_RE.test(src)) {
               return (
                 <div className="video-wrapper">
                   <iframe
@@ -193,6 +195,17 @@ export default function MarkdownRenderer({
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     frameBorder="0"
+                    loading="lazy"
+                  />
+                </div>
+              );
+            }
+            if (src && GOOGLE_DRIVE_PREVIEW_RE.test(src)) {
+              return (
+                <div className="document-wrapper">
+                  <iframe
+                    src={src}
+                    title={props.title || 'Embedded document'}
                     loading="lazy"
                   />
                 </div>

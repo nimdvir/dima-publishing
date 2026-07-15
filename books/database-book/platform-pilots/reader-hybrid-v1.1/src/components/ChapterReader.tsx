@@ -75,6 +75,11 @@ export default function ChapterReader({
   }, []);
 
   const reducedMotion = useReducedMotion();
+  const showChapterRoadmap =
+    page.sectionSlug === "introduction" ||
+    (page.chapterId === "ch10" &&
+      page.sectionSlug === "core-concepts" &&
+      page.pageNumber === 1);
 
   // Track reading progress on every page view
   useEffect(() => {
@@ -184,10 +189,10 @@ export default function ChapterReader({
         {/* Mobile: collapsible "On this page" above the article */}
         <OnThisPageMobile headings={headings} />
 
-        {/* Chapter subtitle + inline roadmap (intro pages only) */}
-        {page.sectionSlug === "introduction" && (chapterSubtitle || (roadmapItems && roadmapItems.length > 0)) && (
+        {/* Chapter subtitle + inline roadmap */}
+        {showChapterRoadmap && (chapterSubtitle || (roadmapItems && roadmapItems.length > 0)) && (
           <div className="chapter-intro-header">
-            {chapterSubtitle && (
+            {page.sectionSlug === "introduction" && chapterSubtitle && (
               <p className="chapter-subtitle">{chapterSubtitle}</p>
             )}
             {roadmapItems && roadmapItems.length > 0 && (
