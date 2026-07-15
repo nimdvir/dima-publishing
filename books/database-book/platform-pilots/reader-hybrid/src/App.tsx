@@ -6,10 +6,11 @@ import HomePage from './components/HomePage';
 import DemoLogin from './components/DemoLogin';
 import ChapterReader from './components/ChapterReader';
 import LabsView from './components/LabsView';
+import ActivityDashboard from './components/ActivityDashboard';
 
 const LS_DEMO_USER = 'reader-hybrid:demoUser';
 
-const VALID_SCOPES = new Set(['welcome', 'book', 'labs', 'login']);
+const VALID_SCOPES = new Set(['welcome', 'book', 'labs', 'dashboard', 'login']);
 const KNOWN_CHAPTER_IDS = new Set(BOOK_CHAPTERS.map(c => c.id));
 
 function parseQueryParams(): {
@@ -295,6 +296,15 @@ export default function App() {
           labs={BOOK_LABS}
           activeLab={activeLab}
           onSelectLab={navigateToLab}
+        />
+      )}
+      {scope === 'dashboard' && (
+        <ActivityDashboard
+          chapters={BOOK_CHAPTERS}
+          pages={FLAT_READER_PAGES}
+          labs={BOOK_LABS}
+          onOpenPage={navigateToPage}
+          onOpenLab={navigateToLab}
         />
       )}
     </Layout>

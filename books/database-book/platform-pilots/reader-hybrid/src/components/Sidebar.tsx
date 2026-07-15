@@ -61,6 +61,12 @@ export default function Sidebar({
           <span className="scope-icon">&#x1F9EA;</span> Labs
         </button>
         <button
+          className={`scope-link ${scope === 'dashboard' ? 'active' : ''}`}
+          onClick={() => onNavigateScope('dashboard')}
+        >
+          <span className="scope-icon">&#x1F4CA;</span> Dashboard
+        </button>
+        <button
           className={`scope-link ${scope === 'login' ? 'active' : ''}`}
           onClick={() => onNavigateScope('login')}
         >

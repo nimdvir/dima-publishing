@@ -27,6 +27,7 @@ const SCOPE_LABELS: Record<ReaderScope, string> = {
   welcome: 'Home',
   book: 'Reader',
   labs: 'Labs',
+  dashboard: 'Dashboard',
   login: 'Login / Access',
 };
 
