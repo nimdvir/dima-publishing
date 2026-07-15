@@ -13,4 +13,4 @@ Students will learn how databases are secured, maintained, backed up, and optimi
 ---
 # Database Administration
 
-![Chapter Image](../../_static/images/ch1-machine.gif)
+![Chapter Image](https://res.cloudinary.com/dkndq6lyz/image/upload/w_1600/Database-book-BITM330/ch11-database-administration/figure-11.1-dba-overview.png)

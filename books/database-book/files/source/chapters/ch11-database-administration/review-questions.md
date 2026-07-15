@@ -1,5 +1,4 @@
-# Chapter 11: Review and Reflection
-
+# Review and Reflection Questions
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-revie-resized" alt="Review and Reflection section icon" width="220">
 </p>
@@ -8,7 +7,9 @@
 
 ---
 
-# Review Questions
+## Questions
+
+### Review Questions
 
 *These questions help you recall and explain the chapter's key concepts, definitions, and frameworks.*
 
@@ -30,7 +31,7 @@
 
 ---
 
-# Reflection Questions
+### Reflection Questions
 
 *These questions ask you to interpret, compare, evaluate, and apply the chapter's ideas beyond simple recall.*
 
@@ -52,7 +53,7 @@
 
 ---
 
-# Personal Reflection Questions
+### Personal Reflection Questions
 
 *These questions invite you to connect the chapter's ideas to your own experience, habits, and professional development.*
 
@@ -73,9 +74,9 @@
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
-# Answer Key
+## Answer Key
 
-## Review Questions
+### Review Questions
 
 **Question 1: What is the difference between Database Administration and Data Administration?**
 
@@ -111,7 +112,7 @@
 
 ---
 
-## Reflection Questions
+### Reflection Questions
 
 **Question 1: The chapter describes the DBA as a "guardian of data trust" rather than simply a technician. What does this framing mean, and why is it an important way to think about database administration?**
 
@@ -147,7 +148,7 @@
 
 ---
 
-## Personal Reflection Questions
+### Personal Reflection Questions
 
 **Question 1: Which DBA responsibility — security, concurrency, backup, or performance — do you find most challenging to think about? What makes it difficult, and what would help you understand it better?**
 

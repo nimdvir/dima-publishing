@@ -6,9 +6,11 @@ Database design and SQL are forward-looking disciplines — they build and query
 
 ## Chapter Video
 
-<!-- VIDEO (NotebookLM) — hidden note: generate the Chapter 11 overview video, then replace the line below with the YouTube iframe (see ch10 for the embed pattern). Full prompt: books/database-book/media-prompts/VIDEO-PROMPTS-NotebookLM.md -->
+<div class="video-container">
+  <iframe width="720" height="405" src="https://www.youtube.com/embed/1QX02C7xBYk" title="Ch 11 - DB Administration (5:35)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
-> 🎬 _Chapter 11 overview video — coming soon._
+*Chapter 11 overview video (5:35) — a quick orientation before you read.*
 
 # Chapter Roadmap
 
