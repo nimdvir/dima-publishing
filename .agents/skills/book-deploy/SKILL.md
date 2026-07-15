@@ -1,18 +1,26 @@
 ---
 name: book-deploy
 description: >
-  Build and deploy the online reader after chapter-sync. Runs generate (incremental),
-  lint, build, then asks before committing, pushing, and deploying to Vercel.
-  Prerequisite: chapter-sync has already been run for the target chapter(s).
+  Build and deploy the online reader after approved source import/readiness checks.
+  Runs generate (incremental), lint, build, then asks before committing, pushing,
+  and deploying the root-linked data-pilot Vercel project.
+  Prerequisite: chapter-source-import and readiness checks have already been run for the target chapter(s).
 argument-hint: Optional flags (e.g., "--force" to force-regenerate, "--skip-deploy" to build only)
 ---
 
 # Book Deploy: Build and Deploy the Online Reader
 
 Run the full build-and-deploy pipeline for the Reader Hybrid v1.1 online textbook
-after chapter content has been synced via `chapter-sync`.
+after chapter content has been imported through `chapter-source-import` and checked for readiness.
 
-**This skill does NOT run `chapter-sync`.** The user must sync content first.
+**This skill does NOT run `chapter-source-import`, `chapter-sync`, or `chapter-final-check`.**
+The user must approve source import/readiness first.
+
+**Deployment target rule:** deploy from the repository root to the root-linked
+`data-pilot` Vercel project. Do **not** deploy from
+`books/database-book/platform-pilots/reader-hybrid-v1.1/`; doing so can target
+the separate `reader-hybrid-v1.1` Vercel project and create/use the wrong
+`reader-hybrid-v11-*` URL.
 
 ---
 
@@ -21,8 +29,9 @@ after chapter content has been synced via `chapter-sync`.
 ```
 Repo root:    C:\Users\nd115232\Documents\GitHub\dima-publishing
 Project root: books/database-book/platform-pilots/reader-hybrid-v1.1
-Vercel project: dima-media/reader-hybrid-v1.1
-Production URL: https://reader-hybrid-v11.vercel.app
+Vercel project: dima-media/data-pilot
+Production URL: https://data-pilot.dimapublishing.com/
+Root Vercel config: vercel.json
 ```
 
 ---
@@ -88,9 +97,10 @@ Present the changed files and ask:
 > "Ready to commit, push, and deploy to Vercel?
 >
 > Changed files:
-> - src/generated/bookData.ts
+> - books/database-book/files/source/chapters/chNN-.../core-concepts.md
+> - books/database-book/platform-pilots/reader-hybrid-v1.1/src/generated/bookData.ts
 >
-> This will push to GitHub and deploy to https://reader-hybrid-v11.vercel.app.
+> This will push to GitHub and deploy to https://data-pilot.dimapublishing.com/.
 > Proceed?"
 
 **Wait for explicit user confirmation.** Do not auto-proceed.
@@ -101,11 +111,17 @@ If the user says no, stop and report what was built locally.
 
 ```
 cd C:\Users\nd115232\Documents\GitHub\dima-publishing
+git add <approved changed source files>
 git add books/database-book/platform-pilots/reader-hybrid-v1.1/src/generated/bookData.ts
-git add books/database-book/platform-pilots/reader-hybrid-v1.1/.gitignore
 git commit -m "Update reader content: <summary of what changed>"
 git push
 ```
+
+Only stage files that belong to the approved deploy. If the worktree contains
+unrelated chapter, agent, or platform changes, leave them unstaged. The root
+Vercel build can regenerate reader data from committed source files; include
+`src/generated/bookData.ts` when it was intentionally regenerated as part of the
+approved deploy.
 
 The commit message should include what changed, e.g.:
 - "Update reader content: ch02 main, ch02 terms"
@@ -115,16 +131,20 @@ The commit message should include what changed, e.g.:
 ### 7. Deploy to Vercel
 
 ```
-cd books/database-book/platform-pilots/reader-hybrid-v1.1
-npx vercel deploy --prod --yes
+cd C:\Users\nd115232\Documents\GitHub\dima-publishing
+npx vercel deploy --prod --yes --scope dima-media
 ```
+
+The root `vercel.json` runs the reader build in `reader-hybrid-v1.1` and serves
+the output through the active `data-pilot` project. Never use the subfolder as
+the deployment working directory for production.
 
 ### 8. Report
 
 After deployment, report:
 
 ```
-Deployed to: https://reader-hybrid-v11.vercel.app
+Deployed to: https://data-pilot.dimapublishing.com/
 Changed: ch02/main, ch02/terms
 Build: ✓ (X modules, Y.YY KB gzipped)
 Commit: <hash>
@@ -146,11 +166,12 @@ Commit: <hash>
 **Does:**
 - Run generate, lint, build from `reader-hybrid-v1.1/`
 - Commit and push `bookData.ts` changes to GitHub
-- Deploy to Vercel production
+- Deploy the root-linked `data-pilot` Vercel project to production
 
 **Does NOT:**
-- Run `chapter-sync` (separate prerequisite)
+- Run `chapter-source-import`, `chapter-sync`, or readiness checks (separate prerequisites)
 - Edit source chapter or lab files
 - Touch `reader-hybrid/` (v1) or `reader-hybrid-alt/`
 - Modify `vercel.json` or project configuration
+- Deploy from `books/database-book/platform-pilots/reader-hybrid-v1.1/`
 - Deploy without asking first

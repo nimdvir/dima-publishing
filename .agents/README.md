@@ -53,6 +53,7 @@ single-stage work.
 | `chapter-media`           | Unified image pipeline: suggest → place → optimize → upload → rewrite           |
 | `chapter-media-inventory` | Used/unused image tracking, CSV inventories, galleries (read-only)              |
 | `image-prompt`            | Generate figure prompt blocks, placements, Figures Index, and CSV image tracker |
+| `pdf-slide-to-images`     | Convert a chapter slide PDF into per-page PNG files with descriptive filenames   |
 | `figure-suggestion`       | Stage 1 only: insert figure suggestion blocks per sub-section                   |
 | `image-placement`         | Stage 2 only: place or generate local figures with captions                     |
 | `image-link-optimizer`    | Stage 3 only: optimize, upload to Cloudinary, rewrite links                     |
@@ -103,6 +104,27 @@ Files in this directory are authoritative.
 
 Do not maintain editable duplicate agent or skill files in Google Drive,
 platform-pilot folders, or temporary documentation folders.
+
+### Canonical Skill Locations
+
+**Edit skills only in `.agents\skills\`.** This is the single source of truth.
+
+| Location | Status | Rule |
+|---|---|---|
+| `.agents\skills\` | **Canonical** | Create, edit, and maintain all skills here |
+| `.claude\skills\` | Mirror | Keep in sync from `.agents\skills\` — verified identical (2026-07-12) |
+| `.continue\skills\` | Mirror | Keep in sync from `.agents\skills\` — verified identical (2026-07-12) |
+| `G:\...\BITM330-book-drive\.agents\` | **Separate copy** | Not a junction — may drift. Prefer editing repo `.agents` directly |
+
+### Skills Reference
+
+A comprehensive skills catalog with locations and work orders is at:
+
+`.agents\skills\skills-work-order-reference.md`
+
+Also mirrored (as human-readable handbook) at:
+
+`BITM330-Book-draft\00-general\prompts-and-skills\skills-work-order-reference.md`
 
 ## BITM330 Course/Textbook Boundary
 
