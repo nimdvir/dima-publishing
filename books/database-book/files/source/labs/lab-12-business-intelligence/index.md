@@ -1,211 +1,118 @@
-<!-- metadata: date="2026-06-21" -->
+<!-- metadata: date="2026-07-19" -->
+<!-- Ch12 Lab — PetVax case study (independent). Aligned to ch12-main-2026-07-19.md. Auto-graded answer key is in a separate instructor file. -->
 
-# Lab 12: Building a PetVax Business Intelligence Dashboard
+![Lab banner](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/lab_jpifze?_a=BAMAAAiu0)
 
-<p align="center">
-  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-lb" alt="Lab section icon" width="220">
-</p>
+# Lab 12: PetVax Visualization and Knowledge Report
 
-<p align="center"><em>Turn the PetVax operational database into analytical insight — build a star schema, define KPIs, and design a dashboard the practice manager can use every morning.</em></p>
+## Objective
 
-# Overview
+Work independently with the **PetVax** database to build one reporting artifact and explain why your chosen reporting tier fits the business need. This lab applies the whole chapter: an analytical question, a validated source, a dashboard story, honest visuals, tier selection, and verified AI-assisted reporting.
 
-Operational databases store transactions. Business intelligence turns transactions into decisions. Chapter 12 introduced data warehouses, dimensional modeling, ETL, star schemas, OLAP, and dashboards. In the Let's Build, you applied these concepts to the Grading Database. In this lab, you apply them to PetVax.
+PetVax is a small veterinary clinic group. It records owners, pets, appointments, services, vaccinations, staff, and clinics.
 
-Your job is to stop thinking like a database builder and start thinking like a business analyst: What does the practice manager need to see every morning to run the clinic effectively?
+---
 
-**This lab has two graded parts:**
+## Part 1: Auto-Graded Concept Questions
 
-1. **Quiz part** — auto-gradable check questions.
-2. **File submission part** — a BI Design Document with star schema, KPI definitions, and dashboard wireframe.
+Answer in your course platform. Each has one correct response.
 
-**Estimated time:** 50–65 minutes.
+1. Which chart best shows monthly appointment volume across a year?
+2. A five-person clinic needs a printable vaccination invoice generated from Access. Which reporting tier fits best?
+3. A hospital network needs an interactive dashboard that refreshes as data changes. Which reporting tier fits best?
+4. In Power BI Desktop, which on-page control lets a viewer filter the whole report to one clinic?
+5. Moving a visual from yearly totals down to monthly detail uses which Power BI interaction?
+6. `Total Appointments`, calculated live as the viewer filters, is best created as a calculated column or a measure?
+7. `VaccinationStatus` ("Current," "Due," "Overdue"), stored once per row, is best created as a calculated column or a measure?
+8. A bar chart's vertical axis begins at 98 when the values range from 98 to 100. What is misleading about it?
+9. Access data inside a `.pbix` file is imported, not live. What must you do after the clinic updates its records?
+10. Why should a dashboard display its refresh date?
 
-> ⚠️ **Missing-file rule:** If the BI Design Document is missing, you receive zero for the file-submission part and may receive zero for the entire lab.
+---
 
-# Scenario
+## Part 2: File Upload
 
-PetVax now has three years of operational data: thousands of visits, hundreds of pets, dozens of treatments, and growing revenue. The practice manager has a problem: the data exists, but no one can answer a simple question like "Which service line grew fastest last quarter?" without scrolling through spreadsheets for hours.
+### The source
 
-You have been asked to design a **Business Intelligence solution** for PetVax. You will not build a real data warehouse — you will design the blueprint: a star schema, a set of KPIs, and a dashboard wireframe the clinic could implement.
+Use a PetVax reporting query or view as your single source. A representative view is below; field names may differ in your copy. Its grain is **one row per completed appointment**.
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
-
-# Part 1: Define the Business Questions
-
-A BI system starts with the questions, not the data. Write five business questions the PetVax practice manager should be able to answer every morning.
-
-| # | Business Question | Why It Matters |
-|---|------------------|----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
-
-Examples: "How many appointments are scheduled for today?" or "Which veterinarian has the highest average billing per visit this month?"
-
-> **Check Question 1:** Which of your five questions requires data from the most tables to answer? (You will identify this in the quiz.)
-
-# Part 2: Design the Star Schema
-
-Choose one business process that matters most to PetVax (appointments, treatments, or billing). Design a star schema with one fact table and at least four dimension tables.
-
-Draw your star schema. For each table list the columns:
-
-```
-FACT_VISIT
-    VisitID (PK)
-    PetID (FK → DIM_PET)
-    VetID (FK → DIM_VET)
-    OwnerID (FK → DIM_OWNER)
-    DateID (FK → DIM_DATE)
-    VisitCount (measure — always 1)
-    TotalCharge (measure)
-    TreatmentCount (measure)
-
-DIM_PET
-    PetID (PK)
-    PetName
-    Species
-    Breed
-    BirthDate
-
-DIM_VET
-    ...
-
-DIM_OWNER
-    ...
-
-DIM_DATE
-    DateID (PK)
-    FullDate
-    DayOfWeek
-    Month
-    Quarter
-    Year
+```sql
+-- qry_PetVaxVisitBI  (grain: one row per completed appointment)
+SELECT
+    a.AppointmentID,
+    a.AppointmentDate,
+    p.PetName,
+    p.Species,
+    o.OwnerName,
+    cl.ClinicName,
+    st.StaffName,
+    sv.ServiceName,
+    sv.ServiceCategory,
+    a.Amount,
+    p.VaccinationStatus            -- 'Current', 'Due', 'Overdue'
+FROM
+    ((((APPOINTMENT AS a
+    INNER JOIN PET AS p    ON a.PetID = p.PetID)
+    INNER JOIN OWNER AS o  ON p.OwnerID = o.OwnerID)
+    INNER JOIN CLINIC AS cl ON a.ClinicID = cl.ClinicID)
+    INNER JOIN STAFF AS st ON a.StaffID = st.StaffID)
+    INNER JOIN SERVICE AS sv ON a.ServiceID = sv.ServiceID;
 ```
 
-> **Check Question 2:** In your star schema, which dimension table would you use to answer "How many appointments happened on Saturdays?"
+Validate the source before you visualize: confirm the grain in one sentence, check five known records, confirm no `Amount` is negative, and confirm `VaccinationStatus` values are spelled consistently.
 
-# Part 3: Define KPIs
+### Required dashboard components
 
-Define five Key Performance Indicators for PetVax. For each, name the business question it answers and the formula or query that calculates it.
+| Component | Requirement |
+|---|---|
+| KPI card | One important clinic measure (e.g., total appointments, total revenue, overdue-vaccination count) |
+| Comparison chart | Compare across service, vaccination status, clinic, or staff |
+| Trend chart | Show a measure over time using `AppointmentDate` |
+| Detail table | Show the records behind the summary |
+| Slicer | Support one meaningful exploration question (e.g., by clinic) |
+| Data-source note | Name the database, the query/view, the grain, and the refresh date |
+| Visual explanations | One sentence per visual stating what it shows |
+| Tier justification | One paragraph on why your chosen tier fits the audience and task |
+| Interpretation | State the main finding, one limitation, and the next investigation |
 
-| KPI | Business Question | Formula |
-|-----|------------------|---------|
-| Daily Visit Count | How many appointments today? | `COUNT(VisitID)` from FACT_VISIT where date = today |
-| Avg Revenue Per Visit | Are we charging enough? | `AVG(TotalCharge)` from FACT_VISIT per time period |
-| | | |
-| | | |
-| | | |
+Pick one business question to anchor the dashboard, for example:
 
-> **Check Question 3:** Which KPI would most directly help the practice manager decide whether to hire another veterinarian? (Multiple choice.)
+- Which vaccination types are administered most often?
+- How many pets are overdue for a required vaccination?
+- Which months have the highest appointment volume?
+- Which services generate the most revenue?
+- Which staff members handle the greatest appointment volume?
 
-<!-- PAGE BREAK -->
-<div style="page-break-after: always;"></div>
+### NotebookLM knowledge-report step
 
-# Part 4: Dashboard Wireframe
+Give NotebookLM only **approved sources**: a dashboard screenshot, your metric definitions, your data-source note, an exported summary table, and the PetVax scenario. Ask it for a short management summary.
 
-Sketch a one-page dashboard layout for the PetVax practice manager. Your wireframe does not need to be beautiful — it needs to be clear. Use boxes and labels.
+Then submit a critique that identifies:
 
-Include:
+1. one statement it got right;
+2. one qualification it left out (a filter, denominator, date range, or limitation);
+3. one unsupported or overstated claim, if any;
+4. one revision you made after checking the source data.
 
-- At least four visual elements (charts, KPIs, tables)
-- A title and date range selector
-- Labels explaining what each element shows
-- At least one element that compares current performance to a target
+Remember the chapter's rule: the AI summary is a **draft for inspection**, not evidence. The database, query, and verified numbers remain the source of truth.
 
-Draw your wireframe by hand or using any drawing tool. Export as PNG or PDF. Label each numbered element with a short explanation:
+### Submission package
 
-```
-┌─────────────────────────────────────────┐
-│  PETVAX DAILY OPERATIONS DASHBOARD      │
-│  Date: [Today]                    ◷     │
-├────────────────────┬────────────────────┤
-│  ① KPI: Visits     │  ② KPI: Revenue    │
-│     24 today       │     $2,840 today   │
-├────────────────────┴────────────────────┤
-│  ③ VISITS BY VET (bar chart)           │
-│  Dr. Chen  ████████████ 12              │
-│  Dr. Singh ██████ 6                     │
-│  Dr. Lopez ████████ 8                   │
-├─────────────────────────────────────────┤
-│  ④ REVENUE BY SPECIES (pie chart)      │
-│  Dogs 45%  Cats 35%  Other 20%         │
-└─────────────────────────────────────────┘
-```
+Submit:
 
-> **Check Question 4:** Which element in your dashboard would the practice manager check first thing in the morning? Why?
+- the `.pbix` file (or an approved alternative);
+- a dashboard screenshot or PDF;
+- the PetVax query or view;
+- the data-source note and tier justification;
+- the written interpretation;
+- the NotebookLM output and your critique.
 
-# Lab Quiz
+---
 
-## Question 1 — Most Complex Question (Multiple Choice)
+## What this lab checks
 
-Which of your five business questions from Part 1 requires data from the most tables?
+- You can turn a business need into an analytical question and a validated source.
+- You can build a four-layer dashboard story with honest visuals in the right tier.
+- You can use AI to help communicate results while verifying every claim.
 
-- A. Question 1
-- B. Question 2
-- C. Question 3
-- D. Question 4
-- E. Question 5
-
-## Question 2 — Saturday Appointments (Multiple Choice)
-
-To answer "How many appointments happened on Saturdays?" which dimension table is essential?
-
-- A. DIM_PET
-- B. DIM_VET
-- C. DIM_DATE
-- D. DIM_OWNER
-
-## Question 3 — Hiring Decision KPI (Multiple Choice)
-
-Which KPI would most help the practice manager decide whether to hire another veterinarian?
-
-- A. Total revenue per day
-- B. Average visits per vet per day
-- C. Average treatment cost
-- D. Number of unique pets per month
-
-## Question 4 — Dashboard First Check (Multiple Choice)
-
-The first dashboard element a manager should check in the morning is:
-
-- A. Year-to-date revenue trend
-- B. Today's scheduled visits
-- C. Species distribution pie chart
-- D. Average treatment cost by vet
-
-## Question 5 — Fact vs Dimension (Select All That Apply)
-
-Which PetVax tables would become dimension tables (not fact tables) in a star schema? Select all that apply.
-
-- A. OWNER
-- B. PET
-- C. VISIT
-- D. VET
-- E. TREATMENT
-
-# Submission
-
-Submit one file: `lab-12-petvax-bi-design.pdf`
-
-Your BI Design Document must include all four parts:
-
-1. Business questions table (5 rows)
-2. Star schema diagram with fact table and 4+ dimensions
-3. KPI definitions (5 KPIs with formulas)
-4. Dashboard wireframe (4+ visual elements, labeled)
-
-> ⚠️ If the BI Design Document is missing, you receive zero for the file-submission part.
-
-# Lab 12 Completion Checklist
-
-- [ ] Part 1: 5 business questions with "why it matters" explanations
-- [ ] Part 2: Star schema with fact table, 4+ dimensions, and all columns listed
-- [ ] Part 3: 5 KPIs with formulas
-- [ ] Part 4: Dashboard wireframe labeled and exported
-- [ ] Quiz answers consistent with your design
-- [ ] Single PDF uploaded
+Deciding what the clinic should *do* about overdue vaccinations — targets, ownership, and trade-offs — is the work of Chapter 13.

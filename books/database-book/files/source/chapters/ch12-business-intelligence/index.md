@@ -1,6 +1,24 @@
-# Chapter 12: Business Intelligence and Analytics for Performance Improvement
+# Chapter 12: Business Intelligence, Data Visualization, and Reporting
 
-Business Intelligence, or BI, is where the database becomes useful to managers. Earlier chapters focused on how data is structured, queried, designed, and administered. This chapter shifts to the question that motivates all of that work: how do organizations use reliable data to understand performance and make better decisions? It introduces operational versus analytical systems, data warehouses, ETL and ELT pipelines, dimensional modeling, star schemas, OLAP operations, dashboards, KPIs, governance, and the Balanced Scorecard, using the Grading Database as the running example.
+*From reliable database records to understandable business evidence*
+
+A database can store every score, appointment, payment, order, and attendance record correctly and still fail to improve a single decision. The missing step is communication.
+
+By this point in the course, you can organize data into relational tables, enforce relationships, write SQL queries, and create reusable database objects. Those skills protect the accuracy and integrity of the data. Managers, however, rarely want to inspect ten normalized tables or read a 400-row query result. They want to know what is happening, where performance differs, whether conditions are changing, and what deserves attention.
+
+That is the role of **Business Intelligence**, or **BI**. BI connects trustworthy database records to reports, visualizations, metrics, and explanations. It does not replace database design or SQL. It depends on them.
+
+This chapter focuses on the practical reporting layer. You will learn how to prepare reporting-ready data, select an appropriate reporting format, and use three levels of reporting technology. Microsoft Access provides structured printable reports close to the database. Notion offers lightweight collaborative views for small teams. Power BI Desktop provides a free Windows environment for importing data, preparing it with Power Query, creating calculations with DAX, and building interactive reports.
+
+AI also enters the reporting workflow. A source-grounded tool such as NotebookLM can help summarize a dashboard, compare supplied documents, or draft a management briefing. Yet an AI-generated explanation is not evidence by itself. The database, reporting query, and verified metric remain the sources of truth.
+
+The three chapters at the end of this book follow one progression:
+
+```
+Chapter 12: Communicate what the data shows.
+Chapter 13: Decide what the organization should do.
+Chapter 14: Understand the modern infrastructure behind analytics and AI.
+```
 
 ## Chapter Video
 
@@ -8,21 +26,33 @@ Business Intelligence, or BI, is where the database becomes useful to managers. 
 
 > 🎬 _Chapter 12 overview video — coming soon._
 
-# Chapter Roadmap
+## Learning Objectives
 
-| Topic | Why It Matters |
-| --- | --- |
-| [12.1 Business Intelligence Fundamentals](#12-1-business-intelligence-fundamentals) | See how BI transforms stored data into dashboards, reports, and decisions. |
-| [12.2 Operational Systems vs. Analytical Systems](#12-2-operational-systems-vs-analytical-systems) | Grasp the fundamental split between systems that run the business and systems that analyze it. |
-| [12.3 ETL and ELT: Moving Data into Analytical Systems](#12-3-etl-and-elt-moving-data-into-analytical-systems) | Learn how data is extracted, cleaned, and loaded into systems built for analysis. |
-| [12.4 Data Warehouses, Data Marts, and Data Lakes](#12-4-data-warehouses-data-marts-and-data-lakes) | Distinguish the main architectures for storing analytical data at scale. |
-| [12.5 Dimensional Modeling: Facts, Dimensions, and Measures](#12-5-dimensional-modeling-facts-dimensions-and-measures) | Model data for analysis using facts, dimensions, and the star schema. |
-| [12.6 OLAP Operations: Exploring Data from Multiple Angles](#12-6-olap-operations-exploring-data-from-multiple-angles) | Slice, dice, drill down, and roll up to explore data interactively. |
-| [12.7 SQL as a BI Tool](#12-7-sql-as-a-bi-tool) | Use the SQL you already know to build reusable BI views and KPIs. |
-| [12.8 Reports, Dashboards, and Visualization](#12-8-reports-dashboards-and-visualization) | Turn query results into visuals that communicate insight at a glance. |
-| [12.9 KPIs, Targets, and the Balanced Scorecard](#12-9-kpis-targets-and-the-balanced-scorecard) | Measure performance against goals with well-designed metrics. |
-| [12.10 BI Governance and Data Quality](#12-10-bi-governance-and-data-quality) | Keep metrics trustworthy with shared definitions and data stewardship. |
-| [12.11 BI Across Access, SQLite, and Supabase](#12-11-bi-across-access-sqlite-and-supabase) | Apply the same BI patterns across the platforms used in this course. |
-| [12.12 Worked Example: Building a Simple BI Layer for the Grading Database](#12-12-worked-example-building-a-simple-bi-layer-for-the-grading-database) | Put it all together by building a BI layer end to end. |
+After completing this chapter, you will be able to:
 
----
+1. Define Business Intelligence and explain how it turns database output into decision support.
+2. Connect BI to the DIKW hierarchy and the R.E.A.D. framework.
+3. Distinguish operational questions from analytical questions.
+4. Explain how ETL, data quality rules, and grain create trustworthy reporting data.
+5. Design and validate a reusable reporting query in Microsoft Access.
+6. Distinguish measures, attributes, identifiers, metrics, KPIs, reports, dashboards, and KPI cards.
+7. Select and evaluate visualizations for comparison, trend, distribution, relationship, and exact-value questions.
+8. Match a reporting need to Access, Notion, or Power BI Desktop.
+9. Install Power BI Desktop and import a saved query from a Microsoft Access database.
+10. Use Power Query, basic DAX measures, filters, slicers, and report interactions.
+11. Use NotebookLM as a source-grounded reporting assistant while verifying every factual and numerical claim.
+
+## Chapter Roadmap
+
+- **12.1 What Is Business Intelligence?** — BI workflow, DIKW, R.E.A.D., decision support
+- **12.2 From Operational Records to Analytical Questions** — Individual records, groups, comparisons, trends
+- **12.3 Preparing Trustworthy Reporting Data** — ETL, ELT, data quality, grain, refresh
+- **12.4 The Reporting Query as a Reporting Layer** — Reporting layer, measures, attributes, validation
+- **12.5 Metrics and Reporting Outputs** — Metrics, KPIs, reports, dashboards, KPI cards
+- **12.6 Choosing and Evaluating Visualizations** — Chart selection, clarity, context, honest design
+- **12.7 The Three Reporting Tiers** — Three Reporting Tiers
+- **12.8 Tier 1: Microsoft Access Reports** — Grouping, totals, printing, PDF export
+- **12.9 Tier 3: Power BI Desktop and Microsoft Access** — Installation, `.pbix`, Import, refresh, troubleshooting
+- **12.10 Power Query, DAX, and Interactive Reporting** — Power Query, DAX, filters, slicers, cross-filtering
+- **12.11 Tier 2: Notion as a Lightweight Reporting Workspace** — Views, relations, rollups, small-team reporting
+- **12.12 NotebookLM as a Knowledge-Reporting Sidecar** — NotebookLM, source grounding, verification

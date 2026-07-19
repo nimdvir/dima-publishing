@@ -1,389 +1,196 @@
-# Let's Build: Create a BI Layer for the Grading Database
+<!-- metadata: date="2026-07-19" -->
+<!-- Ch12 Let's Build — Grading Database (guided model). Aligned to ch12-main-2026-07-19.md §§12.4, 12.9, 12.10. -->
+
+## Let's Build
 
 <p align="center">
   <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_600/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build section icon" width="220">
 </p>
 
-<p align="center">
+# Let's Build 12: Build a Dashboard Story
 
-In this build, you will turn the operational Grading Database into a small Business Intelligence layer. The goal is not to build a full dashboard — that comes in Chapter 14. The goal is to create the SQL-based analytical foundation that dashboards, reports, and KPI cards depend on. Before data can look good, it must be trustworthy.
+*Guided build — the Grading Database*
 
-By the end, you will have one reusable analytical view, several KPI queries, a missing-submission query, an attendance-performance view, a dashboard blueprint, and a governed metric definition. This activity feeds directly into Lab 12 — Building a BI Layer for PetVax.
+In this Let's Build we construct one complete dashboard **story** from the Grading Database, using the reporting query from Section 12.4 and the Power BI Desktop workflow from Sections 12.9 and 12.10. Follow along in your own copy of the database. Every step reuses a concept the chapter already introduced; nothing here is new.
 
-## Purpose
+A dashboard story has four layers — **KPI → comparison → trend → detail** — plus one slicer for exploration and one written interpretation. Our story answers a single question:
 
-An operational database records what happened. A BI layer helps explain what those events mean. In the Grading Database, scores, attendance, and deliverables are stored in normalized tables. That design is excellent for data entry and integrity. It is not ideal for asking analytical questions such as "Which students are at risk?" or "Are scores improving over time?"
+> How is the class performing, and where might the instructor need to intervene?
 
-This Let's Build bridges the gap. You will transform operational tables into analytical views, build KPI queries that support decision-making, and learn that BI governance matters as much as BI technology.
+### Step 1: Write the question
 
-## What You Will Practice
+Write the business question before opening any tool. Ours is fixed above. A good question names a population (the class), a concern (performance), and a purpose (deciding where to intervene).
 
-- Translating management questions into BI queries
-- Building reusable analytical views that reshape normalized data
-- Writing KPI queries with thresholds and targets
-- Using `CROSS JOIN` and `LEFT JOIN` to find missing data
-- Sketching a dashboard from query outputs
-- Defining a governed metric
+### Step 2: Define the grain
 
-## Before You Begin
+State what one row of the analytical source means:
 
-You need your current Grading Database with these tables populated:
+```text
+One row per student per recorded deliverable result.
+```
 
-- `STUDENT` — at least 8 students, with varied names and a `Section` column
-- `DELIVERABLE` — at least 10 deliverables across types such as Quiz, Exam, Homework, and Project
-- `STUDENT_GRADE` — scores for most student-deliverable pairs; leave some pairs intentionally missing
-- `ATTENDANCE` — attendance records for several class sessions
+This grain supports score analysis. A complete missing-work metric needs a separate expected-submission query, because a missing row and a null score are not the same condition.
 
-You will work in SQLite, Access SQL View, or the SQL environment you used in previous chapters. Save every query and view you create — you will need them for Lab 12.
+### Step 3: Build the reporting query in Access
 
-## Start with the BI Questions
-
-Before writing any SQL, write down the questions an instructor would want answered from grading data. A BI system is built on decision needs, not on charts.
-
-**What are five BI questions the Grading Database could help answer?**
-
-A useful starting set:
-
-1. What is the average score by deliverable type?
-2. Which students are currently at risk (average below 70)?
-3. How many submissions are missing?
-4. Are scores improving or declining over time?
-5. Does attendance appear related to student performance?
-
-For each question, note what kind of output would be most useful: a single number (KPI), a table of students, a bar chart, a trend line, or a comparison table. Write these down — they will guide every query you build next.
-
-## Build a Core Analytical View
-
-The first technical step in BI is turning normalized operational tables into a reporting-ready structure. This is a small ETL-style transformation: you are extracting data from source tables, transforming it with a `CASE` expression, and loading it into a reusable view.
-
-**Create the `GradeBI` view.**
+Save this as `qry_GradeBI`. Table and field names may differ in your database; adjust them, not the idea.
 
 ```sql
-CREATE VIEW GradeBI AS
 SELECT
     s.StudentID,
-    s.FirstName || ' ' || s.LastName AS StudentName,
-    s.Section,
+    s.FirstName & " " & s.LastName AS StudentName,
     d.DeliverableID,
-    d.Type AS DeliverableType,
-    d.DeliverableNumber,
+    d.DeliverableName,
+    c.CategoryName,
     d.DueDate,
-    sg.Score,
-    CASE
-        WHEN sg.Score IS NULL THEN 'Missing'
-        WHEN sg.Score < 70 THEN 'At Risk'
-        WHEN sg.Score < 85 THEN 'Satisfactory'
-        ELSE 'Strong'
-    END AS ScoreStatus
-FROM STUDENT AS s
-JOIN STUDENT_GRADE AS sg
-    ON s.StudentID = sg.StudentID
-JOIN DELIVERABLE AS d
-    ON sg.DeliverableID = d.DeliverableID;
+    g.Score,
+    d.PointsPossible,
+    IIf(
+        IsNull([g].[Score]),
+        Null,
+        Round(([g].[Score] / [d].[PointsPossible]) * 100, 1)
+    ) AS PercentageEarned,
+    IIf(
+        IsNull([g].[Score]),
+        "Missing or Ungraded",
+        IIf(([g].[Score] / [d].[PointsPossible]) * 100 < 70, "At Risk",
+        IIf(([g].[Score] / [d].[PointsPossible]) * 100 < 85, "Satisfactory",
+        "Strong"))
+    ) AS ScoreStatus
+FROM
+    ((STUDENT AS s
+    INNER JOIN STUDENT_GRADE AS g ON s.StudentID = g.StudentID)
+    INNER JOIN DELIVERABLE AS d ON g.DeliverableID = d.DeliverableID)
+    INNER JOIN CATEGORY AS c ON d.CategoryID = c.CategoryID;
 ```
 
-Run `SELECT * FROM GradeBI LIMIT 10;` to confirm the view works.
+This query is the reporting contract. Every visual we build reads from it, so the business rules live in one place.
 
-**What does this view give you that the original tables do not?**
+### Step 4: Validate before you visualize
 
-- Readable student names instead of just IDs.
-- A `ScoreStatus` column that classifies each row into meaningful analytical categories.
-- A `Section` column for comparing groups.
-- A `DeliverableType` and `DueDate` for grouping and time-based analysis.
+Confirm, against five known records:
 
-The original tables remain normalized and unchanged. The view provides a cleaner analytical surface. This is the BI pattern: operational tables stay safe; analytical views do the heavy lifting.
+- student names match the correct IDs;
+- categories match the correct deliverables;
+- percentages compute correctly;
+- `PointsPossible` is never zero;
+- null scores follow course policy;
+- the row count matches the expected number of recorded grade rows.
 
-**Important limitation:** This view uses inner joins. It includes only student-deliverable pairs that already have a grade row in `STUDENT_GRADE`. A `NULL` score here means a grade record exists with no score entered. To find deliverables with no grade record at all — truly missing submissions — you need `CROSS JOIN` and `LEFT JOIN`, which you will build next.
+Power BI makes data look finished quickly. Validation is what makes it trustworthy.
 
-## Build a Deliverable Performance Report
+### Step 5: Confirm the tier
 
-Now use the `GradeBI` view to answer your first BI question: which deliverable types or individual deliverables have the lowest averages?
+Apply the selector questions from Section 12.7:
 
-**Write the deliverable performance query.**
+| Question | Answer |
+|---|---|
+| Does the instructor need interactive exploration? | Yes |
+| Are category and student filters useful? | Yes |
+| Will the data refresh as grades change? | Yes |
+| Is a static printout the only need? | No |
 
-```sql
-SELECT
-    DeliverableType,
-    DeliverableNumber,
-    ROUND(AVG(Score), 2) AS AvgScore,
-    MIN(Score) AS LowestScore,
-    MAX(Score) AS HighestScore,
-    COUNT(*) AS SubmissionCount
-FROM GradeBI
-GROUP BY DeliverableType, DeliverableNumber
-ORDER BY AvgScore ASC;
+**Tier 3 (Power BI Desktop) is justified.** An Access report could still print a grade statement, but it would not replace an interactive dashboard.
+
+### Step 6: Connect and transform
+
+1. In Power BI Desktop, choose **Home → Get data → Access database**.
+2. Select the `.accdb` file and choose `qry_GradeBI` in Navigator.
+3. Choose **Transform Data**.
+4. Confirm data types for IDs, dates, scores, and percentages.
+5. Rename fields only where a clearer label helps.
+6. Filter out test records using a documented rule, if any.
+7. Choose **Close & Apply**.
+
+Remember: the Access connector **imports** the data. After grades change, you must **Refresh**.
+
+### Step 7: Create the measures
+
+These match Section 12.10 exactly. `PercentageEarned` is on a 0–100 scale.
+
+```dax
+Average Score = AVERAGE(qry_GradeBI[PercentageEarned])
 ```
 
-Run the query and examine the results.
-
-**What do the numbers tell you?** A deliverable with a low average and wide gap between `LowestScore` and `HighestScore` might signal that some students understood the material and others did not — a preparation or instruction gap, not necessarily a bad assessment. A deliverable where everyone scored low might signal unclear instructions or a topic that needs reteaching. The query provides evidence. You provide the interpretation.
-
-## Build an At-Risk Student Report
-
-Your second BI question: which students need attention before the semester ends?
-
-**Write the at-risk student query.**
-
-```sql
-SELECT
-    StudentID,
-    StudentName,
-    ROUND(AVG(Score), 2) AS AverageScore,
-    COUNT(*) AS CompletedItems
-FROM GradeBI
-GROUP BY StudentID, StudentName
-HAVING AVG(Score) < 70
-ORDER BY AverageScore ASC;
+```dax
+Recorded Results = COUNTROWS(qry_GradeBI)
 ```
 
-Run the query.
-
-**What would you do with this list?** The `HAVING` clause acts as a threshold — a simple business rule. In a real BI system, this threshold would be a governed parameter, not a hard-coded number buried in SQL. The query does not tell you what to do. It tells you who to look at. The decision — send an email, offer tutoring, investigate attendance — is yours.
-
-## Build a Missing Submission Report
-
-This is the most important query in the build because it teaches a subtle BI lesson: sometimes BI must identify what is absent, not only what exists.
-
-The `GradeBI` view only shows records that exist. To find missing submissions — expected student-deliverable pairs with no grade record — you need a different approach.
-
-**Write the missing-submission query.**
-
-```sql
-SELECT
-    s.StudentID,
-    s.FirstName || ' ' || s.LastName AS StudentName,
-    d.DeliverableID,
-    d.Type AS DeliverableType,
-    d.DeliverableNumber,
-    d.DueDate
-FROM STUDENT AS s
-CROSS JOIN DELIVERABLE AS d
-LEFT JOIN STUDENT_GRADE AS sg
-    ON s.StudentID = sg.StudentID
-   AND d.DeliverableID = sg.DeliverableID
-WHERE sg.GradeID IS NULL
-ORDER BY s.LastName, s.FirstName, d.DueDate;
+```dax
+Unique Students = DISTINCTCOUNT(qry_GradeBI[StudentID])
 ```
 
-Run the query.
-
-**Why does this require `CROSS JOIN` and `LEFT JOIN`?**
-
-- `CROSS JOIN` generates every possible student-deliverable pair — the complete set of expected submissions.
-- `LEFT JOIN` to `STUDENT_GRADE` tries to match each expected pair with an actual grade record.
-- `WHERE sg.GradeID IS NULL` keeps only the pairs where no grade record exists.
-
-This is a major BI concept. Absence can be analytically meaningful. A missing submission is not a low score. It is a different kind of problem that requires a different kind of query.
-
-## Build KPI Queries
-
-KPIs turn raw data into signals. Each KPI should answer one clear question and connect to a threshold or target.
-
-**Write at least three KPI queries. Use these as starting points.**
-
-**KPI 1: Average Class Score**
-
-```sql
-SELECT
-    ROUND(AVG(Score), 2) AS AverageClassScore
-FROM GradeBI;
-```
-
-**KPI 2: Pass Rate**
-
-```sql
-SELECT
-    ROUND(
-        100.0 * COUNT(CASE WHEN Score >= 60 THEN 1 END) / COUNT(*),
-        1
-    ) AS PassRatePercent
-FROM GradeBI;
-```
-
-**KPI 3: At-Risk Rate**
-
-```sql
-WITH StudentAverages AS (
-    SELECT
-        StudentID,
-        AVG(Score) AS AvgScore
-    FROM GradeBI
-    GROUP BY StudentID
+```dax
+At-Risk Students =
+COUNTROWS(
+    FILTER(
+        VALUES(qry_GradeBI[StudentID]),
+        [Average Score] < 70
+    )
 )
-SELECT
-    ROUND(
-        100.0 * COUNT(CASE WHEN AvgScore < 70 THEN 1 END) / COUNT(*),
-        1
-    ) AS AtRiskRatePercent
-FROM StudentAverages;
 ```
 
-**KPI 4: Missing Submission Rate**
-
-```sql
-SELECT
-    ROUND(
-        100.0 * (
-            SELECT COUNT(*)
-            FROM STUDENT AS s
-            CROSS JOIN DELIVERABLE AS d
-            LEFT JOIN STUDENT_GRADE AS sg
-                ON s.StudentID = sg.StudentID
-               AND d.DeliverableID = sg.DeliverableID
-            WHERE sg.GradeID IS NULL
-        ) / (
-            SELECT COUNT(*) FROM STUDENT
-        ) / (
-            SELECT COUNT(*) FROM DELIVERABLE
-        ),
-        1
-    ) AS MissingRatePercent;
+```dax
+At-Risk Rate = DIVIDE([At-Risk Students], [Unique Students], 0)
 ```
 
-For each KPI, ask: if this number changed by 10% next week, what would you do? A KPI without an action is just a number.
+The same `Average Score` measure shows the class average on an unfiltered card and each student's own average inside a student's filter context. That is the payoff of defining grain first: `Recorded Results` and `Unique Students` are different numbers, and the dashboard must not confuse them.
 
-## Build an Attendance-Performance View
+### Step 8: Build the six story components
 
-Your final analytical view connects two data sources that were stored separately.
+| Layer | Visual | Field or measure |
+|---|---|---|
+| KPI | Card | `Average Score` |
+| KPI | Card | `At-Risk Students` |
+| Comparison | Bar chart | `CategoryName` × `Average Score` |
+| Trend | Line chart | `DueDate` × `Average Score` |
+| Detail | Table | `StudentName`, `Average Score`, `ScoreStatus` |
+| Explore | Slicer | `CategoryName` |
 
-**Create the `AttendancePerformance` view.**
+Every visual serves the same question. Adding more visuals does not add more insight.
 
-```sql
-CREATE VIEW AttendancePerformance AS
-SELECT
-    s.StudentID,
-    s.FirstName || ' ' || s.LastName AS StudentName,
-    COUNT(CASE WHEN a.Attended = 1 THEN 1 END) AS ClassesAttended,
-    COUNT(a.AttendanceID) AS ClassesRecorded,
-    ROUND(
-        100.0 * COUNT(CASE WHEN a.Attended = 1 THEN 1 END) /
-        NULLIF(COUNT(a.AttendanceID), 0),
-        1
-    ) AS AttendanceRate,
-    ROUND(AVG(sg.Score), 2) AS AvgScore
-FROM STUDENT AS s
-LEFT JOIN ATTENDANCE AS a
-    ON s.StudentID = a.StudentID
-LEFT JOIN STUDENT_GRADE AS sg
-    ON s.StudentID = sg.StudentID
-GROUP BY s.StudentID, s.FirstName, s.LastName;
-```
+### Step 9: Test the interactions
 
-Query the view:
+Select **Exam** in the slicer and confirm:
 
-```sql
-SELECT *
-FROM AttendancePerformance
-ORDER BY AttendanceRate ASC, AvgScore ASC;
-```
+- the `Average Score` card recalculates for exams only;
+- the trend line shows exam dates only;
+- the detail table shows exam records;
+- `At-Risk Students` reflects exam performance, not overall performance;
+- the title or a text box makes the current filter visible.
 
-**What patterns do you see?** Do students with the lowest attendance also have the lowest average scores? Is the relationship strong or weak? This view does not prove causation. It surfaces a pattern worth investigating. That is what BI does.
+Then clear the slicer and confirm the overall totals return.
 
-## Sketch a Dashboard Blueprint
+### Step 10: Write the interpretation
 
-A dashboard is a visual summary that helps someone monitor performance and decide what to do next. Before building anything in Power BI, sketch what the dashboard should show.
+A strong interpretation separates what the dashboard *shows* from what it *explains*:
 
-**Draw or describe a simple one-page dashboard layout with at least six elements.**
+> The current class average is 81.6%. Exams have the lowest category average at 74.2%, and the last two exam averages are below the first. Four students have exam averages under 70%. The dashboard identifies a performance risk but does not establish its cause. Before choosing an intervention, the instructor should review item difficulty, attendance, missing work, and student-level patterns.
 
-Use this template for each element:
+Notice what it does not do: it never claims the dashboard proves *why* exam scores fell.
 
-| Dashboard Element | BI Question Answered | Data Source | Visualization Type |
-|---|---|---|---|
-| Average class score | How is the class doing overall? | KPI 1 query | KPI card |
-| Pass rate | What percentage of students are passing? | KPI 2 query | KPI card |
-| At-risk rate | How many students need intervention? | KPI 3 query | KPI card |
-| Missing submissions | How many deliverables are unsubmitted? | KPI 4 query | KPI card |
-| Avg score by deliverable type | Which assessment categories are hardest? | Deliverable performance query | Bar chart |
-| Attendance vs. performance | Are attendance and grades related? | AttendancePerformance view | Scatter plot |
+### Step 11: Document the dashboard
 
-The dashboard should help an instructor answer three practical questions at a glance: How is the class doing? Where are the problems? Who needs action?
+Record, alongside the file:
 
-## Define a Governed Metric
+- source database and query (`qry_GradeBI`);
+- refresh date;
+- grain (one row per student per recorded deliverable result);
+- measure formulas;
+- the at-risk cutoff used (70);
+- included and excluded records;
+- known limitations.
 
-BI metrics are not just numbers. They are governed definitions. If two people calculate "pass rate" differently, the dashboard becomes untrustworthy.
+This documentation is a reproducibility note, not a strategy document. Deciding *whether 70 is the right target*, and who owns the response, belongs to Chapter 13.
 
-**Choose one of your KPIs and complete this governance template.**
+---
 
-| Field | Your Definition |
-|---|---|
-| **KPI name** | |
-| **Goal** | What decision does this KPI support? |
-| **Formula** | Write the exact calculation. |
-| **Grain** | Student? Student-deliverable? Student-course? |
-| **Data sources** | Which tables or views feed this KPI? |
-| **Exclusions** | What is intentionally left out (e.g., withdrawn students)? |
-| **Refresh frequency** | How often should this be recalculated? |
-| **Owner** | Who is responsible for this metric? |
-| **Action threshold** | At what value should someone act? |
-| **Action** | What should happen when the threshold is crossed? |
+### Your turn
 
-Example for At-Risk Rate:
+Rebuild the same dashboard story for a **different** question from the list below. Keep all six components and write a fresh 100–150 word interpretation.
 
-| Field | Example |
-|---|---|
-| **KPI name** | At-Risk Rate |
-| **Goal** | Identify the percentage of students needing intervention |
-| **Formula** | Students with average below 70 / total students with graded work |
-| **Grain** | Student-course |
-| **Data sources** | `GradeBI` view → `STUDENT_GRADE` and `STUDENT` tables |
-| **Exclusions** | Students with zero graded items |
-| **Refresh frequency** | Weekly |
-| **Owner** | Course instructor |
-| **Action threshold** | Alert if above 20% |
-| **Action** | Review at-risk list; send outreach to students below 70 |
+- Which students appear at risk, and what evidence explains it?
+- Are scores improving or declining across the term?
+- Which deliverable categories carry the most missing or ungraded work?
 
-This is what separates BI from ad-hoc querying. Governance makes metrics reusable, comparable, and trustworthy across reports, semesters, and people.
-
-## Check Your Work
-
-Before you submit, verify each deliverable:
-
-- [ ] `GradeBI` view returns rows with `StudentName`, `Section`, `DeliverableType`, `Score`, and `ScoreStatus`.
-- [ ] Deliverable performance query shows at least three deliverable types with averages.
-- [ ] At-risk student query returns only students with average below 70.
-- [ ] Missing-submission query returns rows where no `STUDENT_GRADE` record exists — not rows with `NULL` scores.
-- [ ] Each KPI query returns exactly one number.
-- [ ] `AttendancePerformance` view shows `AttendanceRate` and `AvgScore` for every student.
-- [ ] Dashboard blueprint has at least six elements, each linked to a query and a visualization type.
-- [ ] Governance template is fully filled in for one KPI.
-
-**Quick self-check:** Pick one student from your at-risk list. Look up their attendance rate in the `AttendancePerformance` view. Look up their missing submissions. Do the three data points tell a consistent story? If not, which number would you trust most, and why?
-
-## What This Shows
-
-This Let's Build demonstrates the full BI pipeline on a real database:
-
-- **BI questions** → drive every query you wrote.
-- **ETL-style view** → transforms normalized tables into an analytical surface.
-- **OLAP operations** → slice (filter by type), dice (filter by type and section), drill-down (type → deliverable number), roll-up (deliverable → type average).
-- **KPI queries** → turn rows into signals with thresholds.
-- **Missing-submission logic** → finds what is absent, not only what is present.
-- **Dashboard blueprint** → maps queries to visual elements.
-- **Governed metric** → defines a KPI clearly enough that someone else could reproduce it.
-
-## Common Mistakes
-
-- **Confusing NULL scores with missing submissions.** A `NULL` score means a grade record exists but has no value entered. A missing submission means no grade record exists at all. Use `CROSS JOIN` + `LEFT JOIN` for the second case.
-- **Using the wrong view for section-based queries.** The `GradeBI` view includes `Section`. If you use a different view that does not include `Section`, your dice and drill-down queries will fail.
-- **Treating KPIs as just numbers.** A KPI without a target, owner, threshold, or action is not governed. Define at least one metric fully.
-- **Skipping the dashboard blueprint.** The point is not to make something pretty. The point is to connect queries to decisions before touching a visualization tool.
-- **Using inner joins for attendance.** Use `LEFT JOIN` for attendance so students with no attendance records still appear with a calculated rate.
-
-## Submit or Save
-
-Save your work as a single SQL script or document containing:
-
-1. The `GradeBI` view definition.
-2. The deliverable performance query.
-3. The at-risk student query.
-4. The missing-submission query.
-5. At least three KPI queries.
-6. The `AttendancePerformance` view definition.
-7. Your dashboard blueprint (as a table or sketch).
-8. One completed governance template.
-
-You will use these artifacts in Lab 12 — Building a BI Layer for PetVax, where you will transfer the same BI patterns to the PetVax veterinary clinic database.
-
-## Peek Ahead — Chapter 13
-
-In Chapter 13, we will explore advanced database techniques — indexes, transactions, triggers, and window functions — that make BI queries faster, safer, and more powerful at scale. The views and queries you built here will become the foundation for understanding why those techniques matter.
+Bring your `.pbix`, a screenshot, and your interpretation to class.

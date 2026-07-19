@@ -510,37 +510,13 @@ function parseSubtitle(introContent: string): string | undefined {
   return undefined;
 }
 
-/**
- * Strip the "## Chapter Roadmap" heading and its following table from
- * intro page content so it doesn't duplicate the rendered Roadmap component.
+/** 
+ * Preserve the Chapter Roadmap heading and content in the intro page.
+ * Previously stripped to avoid duplicating a rendered Roadmap component,
+ * but now kept in-page for direct reader visibility.
  */
 function stripRoadmapFromContent(content: string): string {
-  const roadmapIdx = content.search(/#{1,3}\s+Chapter Roadmap/i);
-  if (roadmapIdx === -1) return content;
-
-  const beforeRoadmap = content.substring(0, roadmapIdx);
-  const afterHeading = content.substring(roadmapIdx);
-  const tableStart = afterHeading.indexOf("|");
-  if (tableStart === -1) return content;
-
-  const lines = afterHeading.substring(tableStart).split("\n");
-  let tableEndLine = 0;
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (line.startsWith("|") || line.length === 0) {
-      tableEndLine = i;
-      continue;
-    }
-    break;
-  }
-
-  const afterTable = afterHeading
-    .substring(tableStart)
-    .split("\n")
-    .slice(tableEndLine + 1)
-    .join("\n");
-
-  return (beforeRoadmap + "\n" + afterTable).trim();
+  return content;
 }
 
 /**
