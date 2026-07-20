@@ -38,6 +38,7 @@ For non-chapter rows, the Ch column is `—`.
 <!-- markdownlint-disable MD060 -->
 | Date       | Ch  | Summary                                                                                                                                                                                                  |
 | ---------- | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-07-20 | 16  | Updated core-concepts.md with revised GD draft, converted `---` to page breaks, archived old file, generated local content, and deployed to Vercel production |
 | 2026-07-07 | 07  | Uploaded 3 normalization videos to YouTube (unlisted) and embedded players in core-concepts.md; generated SRT + summaries via Gemini; built video-registry.md and upgraded upload-book-videos skill to v0.4.0 |
 | 2026-06-18 | 10  | Placed query roadmap in [books/database-book/files/source/chapters/ch10-advanced-sql-queries/core-concepts.md](books/database-book/files/source/chapters/ch10-advanced-sql-queries/core-concepts.md#L105), successfully uploaded to Cloudinary, and regenerated hybrid-reader book data |
 | 2026-06-17 | 01  | Created ch01-main-2026-06-17.md: removed duplicate Chapter Roadmap, added Key Takeaways section, strengthened business performance framing |

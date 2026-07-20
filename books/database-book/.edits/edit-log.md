@@ -3,6 +3,11 @@
 This file contains the rolling edit log for the database book. Each date heading
 groups task-list items for that day.
 
+## 2026-07-20 Edits
+
+- [x] Updated chapter 16 local source: replaced `core-concepts.md` with revised Google Drive draft, added HTML page breaks to replace standalone `---`, and safely archived the previous draft version.
+- [x] Generated local reader content, verified no warnings, pushed to GitHub, and deployed live to `data-pilot.dimapublishing.com` via Vercel.
+
 ## 2026-07-14 Edits
 
 - [x] Repaired Chapter 10 local reader source: replaced internal intro/status content with student-facing intro and roadmap, added both opening videos to Core Concepts page 1, regenerated reader data, and kept changes local only.
