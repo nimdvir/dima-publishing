@@ -1,0 +1,141 @@
+"// Brightspace CSV Import - Chapter 12 Top Questions",,,,
+"// Source: Chapter 12 RAT - Business Intelligence, Data Visualization, and Reporting",,,,
+"// Date: 2026-07-19",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Bloom distribution: 1 Understand, 2 Apply, 2 Analyze, 5 Evaluate",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+NewQuestion,MS,,,
+ID,BITM330-CH12-Q01,,,
+Title,CH12 Q1: Grain - Record Count vs. Distinct Count,,,
+QuestionText,Select ALL that apply: A dataset contains one row per student per assignment. Which calculations would correctly produce the number of students and the count of those scoring below a defined threshold?,,,
+Points,2,,,
+Difficulty,4,,,
+Scoring,RightAnswers,,,
+Option,0,Counting every row in the dataset to determine the number of students,,"Incorrect - row count gives recorded results, not students."
+Option,1,Counting only the distinct student identifiers to determine the number of students,,Correct - distinct counting is required when grain is finer than the entity being counted.
+Option,0,Averaging all score values to identify which students are below threshold,,Incorrect - averaging across all rows does not identify individual students below threshold.
+Option,1,"Filtering to students whose average score falls below the threshold, then counting the distinct results",,Correct - this properly applies a condition at the student level before counting.
+Option,1,Dividing the total row count by the number of assignments to estimate the student count,,"Correct - a reasonable estimation approach when the grain is known, though less precise than distinct counting."
+Hint,,,,The key concept is grain - one student appears in many rows. How do you isolate unique students?
+Feedback,,,,"When data is stored at a finer grain than the entity you want to count, you must use distinct counting rather than row counting. Filtering to students meeting a condition and counting distinct identifiers is correct."
+,,,,
+NewQuestion,MS,,,
+ID,BITM330-CH12-Q02,,,
+Title,CH12 Q2: Responsible AI in Reporting,,,
+QuestionText,"Select ALL that apply: When using AI to assist with reporting, which practices reflect responsible use?",,,
+Points,2,,,
+Difficulty,5,,,
+Scoring,RightAnswers,,,
+Option,1,"Supplying the AI with approved, validated source documents rather than unverified data",,Correct - responsible AI use begins with verified inputs.
+Option,1,Cross-checking every factual and numerical claim the AI produces against original sources,,Correct - AI output is not evidence by itself; every claim must be verified.
+Option,1,Using the AI to draft an initial summary that a human then reviews and edits,,Correct - AI can accelerate drafting while humans retain editorial control.
+Option,0,Accepting AI-generated explanations as authoritative without verification,,Incorrect - this abdicates human responsibility for accuracy.
+Option,1,Treating the database and validated reporting query - not the AI output - as the source of truth,,Correct - the database and reporting query remain the authoritative sources.
+Hint,,,,"The AI is a reporting assistant, not a replacement for verification. Which practices keep humans accountable?"
+Feedback,,,,"Responsible AI use means verified inputs, cross-checked outputs, human review of drafts, and treating the database as the authoritative source of truth."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q03,,,
+Title,CH12 Q3: Grain - Why Rows Exceed Entities,,,
+QuestionText,"An analyst runs a query joining student records to grade records. The query returns 400 rows, but there are only 50 students. What is the most likely explanation?",,,
+Points,1,,,
+Difficulty,3,,,
+Option,0,The database is corrupted,,Incorrect - The database is corrupted
+Option,100,"The query operates at a finer grain - one row per student per graded assignment, so each student appears in multiple rows",,"Correct - The query operates at a finer grain - one row per student per graded assignment,"
+Option,0,The reporting tool miscounts rows by default,,Incorrect - The reporting tool miscounts rows by default
+Option,0,Students are double-counted because of a software bug,,Incorrect - Students are double-counted because of a software bug
+Hint,,,,"Consider what one row in the result represents. Is it one student, or one student-assignment combination?"
+Feedback,,,,"Grain determines what one row represents. When grain is per student per assignment, row counts and entity counts are different things. Distinct counting is needed to count unique students."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q04,,,
+Title,CH12 Q4: Chart Choice - Trend Over Time,,,
+QuestionText,A manager wants to see how a key metric has trended month by month over the past two years. Which visual approach best serves this need?,,,
+Points,1,,,
+Difficulty,3,,,
+Option,0,A pie chart showing each month's share of the total,,Incorrect - A pie chart showing each month's share of the total
+Option,100,A line chart with time on the horizontal axis and the metric on the vertical axis,,Correct - A line chart with time on the horizontal axis and the metric on the vertical axi
+Option,0,A table listing every individual data point,,Incorrect - A table listing every individual data point
+Option,0,"A set of KPI cards, one for each month",,"Incorrect - A set of KPI cards, one for each month"
+Hint,,,,What type of chart best reveals direction and rate of change across a time period?
+Feedback,,,,"Line charts are recommended for showing change over time. Position and slope communicate direction and rate. Pie charts show composition, tables preserve detail, and KPI cards highlight single values."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q05,,,
+Title,CH12 Q5: Dishonest Axis - Truncated Bar Chart,,,
+QuestionText,"A bar chart compares average scores across five departments. The vertical axis starts at 78 instead of zero, making an 80 and an 82 appear to be dramatically different. What principle does this violate?",,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,The chart uses too many colors,,Incorrect - The chart uses too many colors
+Option,100,The visual encoding is dishonest - bar length should represent magnitude from a zero baseline,,Correct - The visual encoding is dishonest - bar length should represent magnitude from a
+Option,0,The chart type is wrong for comparing categories,,Incorrect - The chart type is wrong for comparing categories
+Option,0,The chart should have been a pie chart instead,,Incorrect - The chart should have been a pie chart instead
+Hint,,,,What does the length of a bar represent? Should a small numerical difference look large?
+Feedback,,,,"Bar charts encode values through length, so the axis should begin at zero. Truncating the axis exaggerates visual differences and creates a misleading impression."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q06,,,
+Title,CH12 Q6: ETL - Prepared Query as ETL Layer,,,
+QuestionText,"A saved reporting query that joins, calculates, and labels data before any visualization tool imports it acts most like which stage of data preparation?",,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,"An ELT step - loading raw data first, then transforming it later",,"Incorrect - An ELT step - loading raw data first, then transforming it later"
+Option,100,"A small ETL layer - extracting, transforming, and structuring data before downstream use",,"Correct - A small ETL layer - extracting, transforming, and structuring data before downst"
+Option,0,A purely storage-level object with no role in the reporting pipeline,,Incorrect - A purely storage-level object with no role in the reporting pipeline
+Option,0,A complete replacement for all further data preparation,,Incorrect - A complete replacement for all further data preparation
+Hint,,,,Think about the order: does transformation happen before or after loading into the reporting tool?
+Feedback,,,,"A reporting query follows the ETL pattern: Extract from tables, Transform through joins and calculations, Load a structured result for import. ELT would load raw data first."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q07,,,
+Title,CH12 Q7: Tool Selection - Print and Archive,,,
+QuestionText,A department needs a recurring monthly summary showing exact figures by category for five senior leaders who will print and archive the document. The data lives in a single operational database. Which reporting approach is most justified?,,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,An interactive dashboard with animated visuals,,Incorrect - An interactive dashboard with animated visuals
+Option,100,"A structured, printable report generated close to the source database",,"Correct - A structured, printable report generated close to the source database"
+Option,0,A collaborative workspace with notes and status tags,,Incorrect - A collaborative workspace with notes and status tags
+Option,0,Both an interactive dashboard AND a printable report,,Incorrect - Both an interactive dashboard AND a printable report
+Hint,,,,"What does the audience actually do with the output? Print and archive, or explore interactively?"
+Feedback,,,,"The simplest tool that fully meets the need is the right choice. For print-and-archive workflows with stable formats, structured reports close to the source database are most appropriate."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q08,,,
+Title,CH12 Q8: Clarity - Multiple Visualization Failures,,,
+QuestionText,"A quarterly business review uses a 3-D pie chart with fifteen segments, a bar chart with a truncated axis, and unlabeled axes throughout. What is the most fundamental problem?",,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,The presentation uses too many different chart types,,Incorrect - The presentation uses too many different chart types
+Option,100,The visuals fail the clarity test - a viewer cannot quickly and accurately understand what is being measured,,Correct - The visuals fail the clarity test - a viewer cannot quickly and accurately under
+Option,0,The charts were not created with the most expensive software,,Incorrect - The charts were not created with the most expensive software
+Option,0,Color choices are inconsistent across slides,,Incorrect - Color choices are inconsistent across slides
+Hint,,,,All the described problems share one root cause. What is the most basic thing a visualization must do?
+Feedback,,,,"Clarity is the most fundamental principle. The viewer must quickly understand what is measured, which population is included, what the units mean, and which result matters. All the described problems undermine this core requirement."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q09,,,
+Title,CH12 Q9: Enterprise Reporting - Governance and Scale,,,
+QuestionText,"A large healthcare network must compare standardized quality metrics across thirty facilities, with governed definitions, automated weekly refresh, and role-based access. Which approach is appropriate?",,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,Individual spreadsheet files emailed weekly,,Incorrect - Individual spreadsheet files emailed weekly
+Option,0,A shared collaborative workspace with manual data entry,,Correct - A shared collaborative workspace with manual data entry
+Option,100,A governed business intelligence platform with shared data models and scheduled refresh,,Incorrect - A governed business intelligence platform with shared data models and scheduled
+Option,0,Printed reports generated once per quarter,,Incorrect - Printed reports generated once per quarter
+Hint,,,,"Consider the requirements: standardized metrics, automation, access control, and many locations. What infrastructure supports governance at scale?"
+Feedback,,,,"Enterprise-scale reporting with governed metrics, automated refresh, and role-based access requires a governed BI platform. The choice of approach must match the scale and governance needs."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH12-Q10,,,
+Title,CH12 Q10: Context - Numbers Need Comparison,,,
+QuestionText,A report shows a single number: Customer Retention: 84%. Nothing else. What is the most important improvement?,,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,Make the number larger with a more decorative font,,Incorrect - Make the number larger with a more decorative font
+Option,100,"Add context - such as the previous period's rate, a target range, or a benchmark",,"Correct - Add context - such as the previous period's rate, a target range, or a benchmark"
+Option,0,Convert the number into a pie chart,,Incorrect - Convert the number into a pie chart
+Option,0,Add a second number showing total customer count,,Incorrect - Add a second number showing total customer count
+Hint,,,,Is 84% good or bad? What information would help answer that question?
+Feedback,,,,"A number becomes meaningful through comparison. Without context - a previous period, target, or benchmark - the reader cannot determine whether the value is good, bad, or expected."
+,,,,

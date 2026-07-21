@@ -1,4 +1,4 @@
-﻿<!-- metadata: date="2026-07-20" -->
+<!-- metadata: date="2026-07-20" -->
 # Chapter 16: Final Integration and Assessment Readiness
 
 A database course should end with more than a collection of commands. By this point, you have learned how to define data, organize it into tables, connect tables through relationships, retrieve records with SQL, calculate business metrics, automate routine work, and communicate results. The final assessments ask you to bring those skills together.
@@ -32,7 +32,6 @@ After completing this chapter, you should be able to:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 # Core Concepts
 
 # Part I: Completing the Final Project
@@ -61,14 +60,14 @@ The course can be summarized as a progression:
 
 ```text
 Data
-â†’ Tables
-â†’ Keys
-â†’ Relationships
-â†’ Queries
-â†’ Calculations
-â†’ Automation
-â†’ Analytics
-â†’ Decisions
+→ Tables
+→ Keys
+→ Relationships
+→ Queries
+→ Calculations
+→ Automation
+→ Analytics
+→ Decisions
 ```
 
 Each step depends on the earlier steps.
@@ -95,7 +94,6 @@ The final project requires all three. The final test evaluates whether you can r
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.2 What the Final Project Is Really Assessing
 
 The final project asks you to build and document a grading database in Microsoft Access. The official assignment document remains the authoritative source for required tasks, point values, cutoff dates, and submission rules. This chapter explains the thinking behind those requirements.
@@ -186,7 +184,6 @@ Documentation is part of the solution. Query names, screenshots, SQL text, expla
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.3 Begin with a Requirements Matrix
 
 Before building or revising the final project, create a requirements matrix. This prevents the common problem of completing many technical steps but overlooking one required output.
@@ -218,12 +215,11 @@ A requirements matrix turns the assignment into a controlled production process.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.4 Use the TRACE Method for Query Planning
 
 When faced with a new database question, use the **TRACE** method.
 
-### T â€” Translate the Question
+### T — Translate the Question
 
 Rewrite the requirement in plain language.
 
@@ -236,7 +232,7 @@ Ask:
 
 A surprising number of SQL errors begin before SQL is written. They begin with a misread question.
 
-### R â€” Recognize the Grain
+### R — Recognize the Grain
 
 The **grain** is what one row in the result represents.
 
@@ -256,7 +252,7 @@ Before writing a query, complete this sentence:
 
 If you cannot complete that sentence clearly, you are not ready to write the query.
 
-### A â€” Assemble the Relationships
+### A — Assemble the Relationships
 
 Identify the tables that contain the required facts and the paths that connect them.
 
@@ -271,7 +267,7 @@ Ask:
 
 Draw the relationship path on paper before opening Query Design View.
 
-### C â€” Calculate Carefully
+### C — Calculate Carefully
 
 Determine what operations are needed.
 
@@ -289,7 +285,7 @@ Possible operations include:
 
 Write the calculation in words first. Then write it as a mathematical expression. Only then translate it into Access.
 
-### E â€” Evaluate the Result
+### E — Evaluate the Result
 
 Never stop when the query runs.
 
@@ -308,7 +304,6 @@ A query that executes without an error has passed a syntax test. It has not yet 
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.5 Plan Queries Before Building Them
 
 A query-planning worksheet makes reasoning visible before Access becomes involved.
@@ -359,7 +354,6 @@ A name should help another user understand the database without opening every ob
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.6 Time-Bounded Calculations
 
 Several final-project calculations use an official cutoff date. A cutoff date creates a boundary between work that belongs in a current calculation and work that belongs to the future.
@@ -411,7 +405,6 @@ Do not delete valid future records merely to make a current query easier.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.7 Aggregation, Percentages, and Weighted Metrics
 
 Aggregate queries compress many records into fewer summary rows. This is powerful, but it can also hide mistakes.
@@ -421,7 +414,7 @@ Aggregate queries compress many records into fewer summary rows. This is powerfu
 Every percentage has two parts:
 
 ```text
-Percentage = Relevant Amount Ã· Eligible Total
+Percentage = Relevant Amount ÷ Eligible Total
 ```
 
 Before building the calculation, define both parts in words.
@@ -464,7 +457,6 @@ Rounding a number to two decimal places improves presentation. It does not corre
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.8 Missing Data Is a Business Rule, Not a Formatting Problem
 
 A blank grade and a zero grade are not automatically equivalent.
@@ -518,7 +510,6 @@ Choose one student and calculate the result outside Access using a small table o
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.9 Joins: Preserving, Matching, and Multiplying Records
 
 A join determines which records survive and how many rows are produced.
@@ -561,7 +552,6 @@ Before counting, ask:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.10 Counting Without Double Counting
 
 Counting is one of the most deceptively difficult database tasks.
@@ -611,7 +601,6 @@ This is a reasoning pattern, not a specific query recipe.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.11 Action Queries Require a Safety Plan
 
 Select queries display information. Action queries change information.
@@ -658,7 +647,6 @@ After the action:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.12 Forms Should Reduce Cognitive and Data-Entry Errors
 
 A form is not merely a visual requirement. It is an interface between a user and the database.
@@ -695,7 +683,6 @@ A form that looks polished but permits bad data is not a strong form.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.13 Macros Should Represent a Coherent Workflow
 
 A macro automates a sequence of actions. The quality of the macro depends on the logic of the workflow, not the number of actions.
@@ -717,10 +704,10 @@ If a workflow depends on user input, the input must exist before it can be used.
 
 ```text
 Obtain input
-â†’ store or reference input
-â†’ perform the database action
-â†’ display or open the result
-â†’ communicate completion
+→ store or reference input
+→ perform the database action
+→ display or open the result
+→ communicate completion
 ```
 
 This is a general workflow principle. The exact actions depend on the specific macro.
@@ -739,7 +726,6 @@ Automation makes good logic faster. It also makes bad logic faster.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.14 Database Administration in a Small Project
 
 Database administration is not limited to large corporations. Even a student project benefits from administrative discipline.
@@ -800,7 +786,6 @@ Auditability is one reason SQL text and result evidence are required in the proj
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.15 Business Intelligence: From Records to Action
 
 Business intelligence does not begin with a chart. It begins with a decision.
@@ -809,11 +794,11 @@ Business intelligence does not begin with a chart. It begins with a decision.
 
 ```text
 Operational records
-â†’ validated query
-â†’ metric
-â†’ comparison or threshold
-â†’ interpretation
-â†’ action
+→ validated query
+→ metric
+→ comparison or threshold
+→ interpretation
+→ action
 ```
 
 A grading database can support many decisions, but only when the metric is connected to a practical response.
@@ -859,7 +844,6 @@ To evaluate a BI proposal, ask:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.16 Documenting the Final Project
 
 A professional submission should allow the reviewer to follow your work without guessing.
@@ -923,7 +907,6 @@ Before submitting:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
@@ -976,7 +959,7 @@ Conceptually:
 Credit for one author on one publication
 =
 Publication's journal score
-Ã·
+÷
 Number of authors on that publication
 ```
 
@@ -991,7 +974,6 @@ The formula is given. The challenge is designing a correct process that:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.18 Reasoning About the Publications Schema
 
 The schema contains several kinds of tables, but the table names alone do not prove every relationship or participation rule. Use the database itself to determine the role of each table.
@@ -1020,7 +1002,6 @@ This inspection will help you determine which table records collaborative relati
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.19 Recognizing Question Families
 
 A randomized test may present questions in different wording, but most questions belong to a recognizable family.
@@ -1038,7 +1019,7 @@ Questions to ask:
 
 - What exactly is being counted?
 - Can the same entity appear more than once after the join?
-- Does â€œnot including zeroâ€ require excluding entities with no related records?
+- Does “not including zero” require excluding entities with no related records?
 - Does the question ask for a maximum value or the identity of the entity with that value?
 
 ### Family 2: Allocated Scores
@@ -1084,7 +1065,7 @@ Questions to ask:
 - Which table contains one row per authorship relationship?
 - Do both professors share the same publication identifier?
 - Is the question asking for publications, coauthors, or authorship rows?
-- Does â€œcoauthorsâ€ mean all authors or all authors other than a focal author?
+- Does “coauthors” mean all authors or all authors other than a focal author?
 
 ### Family 6: Journal and Publisher Analysis
 
@@ -1118,7 +1099,6 @@ These questions require concept recognition rather than data calculation.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.20 Cardinality: Always Read the Direction
 
 Cardinality describes how many records of one entity may or must relate to records of another entity.
@@ -1158,7 +1138,6 @@ Do not memorize cardinality as a pair of labels detached from direction.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.21 Evaluating Database Limitations
 
 A database limitation is not simply a fact that does not exist in the world. It is a relevant fact the database does not represent well enough to support a desired analysis.
@@ -1198,7 +1177,6 @@ This illustrates a broader principle:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.22 Data Mart, Data Warehouse, and Big Data Reasoning
 
 ### Data Mart
@@ -1233,7 +1211,6 @@ Moving a small database to a more advanced DBMS does not automatically make it b
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.23 Business Intelligence Decisions Must Be Supported by the Data
 
 A BI decision is appropriate when the database contains evidence relevant to the decision.
@@ -1267,7 +1244,6 @@ If the database contains no relevant evidence about a proposed topic, the decisi
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.24 Normalization Questions: Look for Dependency and Anomalies
 
 A normalized design separates facts according to what they describe and what determines them.
@@ -1313,7 +1289,6 @@ Normalization is about dependencies, redundancy, and anomalies.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.25 Macro Reasoning
 
 Macro questions often test whether you understand workflow order and responsible automation.
@@ -1346,7 +1321,6 @@ Poor objectives include random, destructive, or unexplained changes.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.26 Permissions and Least Privilege
 
 Different users need different access.
@@ -1374,7 +1348,6 @@ A senior title does not automatically require unrestricted technical access. Per
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.27 Transactions and ACID
 
 A transaction is a logical unit of work that should be processed reliably.
@@ -1422,7 +1395,6 @@ When reading a scenario, identify the central failure or guarantee:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.28 Concurrency Phenomena
 
 Concurrency problems occur when multiple transactions interact with the same data.
@@ -1452,7 +1424,6 @@ A useful way to distinguish two commonly confused phenomena:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.29 Interpreting Join Queries Conceptually
 
 Some test questions may show a query and ask what it does.
@@ -1483,7 +1454,6 @@ Understanding the set operation matters more than memorizing a particular statem
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.30 A Practical Test Workflow
 
 When the final test begins, resist the urge to answer immediately. Use a controlled workflow.
@@ -1564,7 +1534,6 @@ A correct query can still produce a wrong submitted answer if the requested form
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.31 Common Final-Test Mistakes
 
 ### Mistake 1: Counting Junction-Table Rows as Unique Entities
@@ -1575,7 +1544,7 @@ Correction: define the intended entity and identifier before counting.
 
 ### Mistake 2: Ignoring Direction in Cardinality
 
-Why it happens: students remember â€œone-to-manyâ€ but not which side is which.
+Why it happens: students remember “one-to-many” but not which side is which.
 
 Correction: begin with one record from the table named first.
 
@@ -1617,7 +1586,6 @@ Correction: identify the central guarantee or failure described.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
 
@@ -1663,7 +1631,6 @@ A full solution may help you finish one task, but it can prevent you from learni
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.33 Debugging by Symptom
 
 Different output problems suggest different causes.
@@ -1693,7 +1660,6 @@ Debugging the final query alone may hide an error introduced earlier.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.34 Responsible Use of AI and Assistance Tools
 
 AI can be useful for learning database concepts, but it can also produce plausible-looking SQL that is structurally wrong or inappropriate for Microsoft Access.
@@ -1748,7 +1714,6 @@ Microsoft Access differs from PostgreSQL, SQLite, MySQL, and SQL Server. When re
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.35 Final Project Quality-Control Checklist
 
 ### Database File
@@ -1793,7 +1758,6 @@ Microsoft Access differs from PostgreSQL, SQLite, MySQL, and SQL Server. When re
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.36 Final Test Readiness Checklist
 
 Before taking the test, confirm that you can explain or perform the following without a copied answer:
@@ -1837,7 +1801,6 @@ Before taking the test, confirm that you can explain or perform the following wi
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.37 Review and Reflection Questions
 
 These questions are designed to strengthen your reasoning. They are not replicas of final-test questions.
@@ -1870,7 +1833,6 @@ These questions are designed to strengthen your reasoning. They are not replicas
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.38 Practice Scenarios
 
 ### Scenario A: Customer Support
@@ -1935,7 +1897,6 @@ Before running the action query, determine:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.39 Key Terms
 
 | Term | Meaning |
@@ -1972,7 +1933,6 @@ Before running the action query, determine:
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## 16.40 Final Reflection: What Database Competence Looks Like
 
 Completing a database course does not mean memorizing every SQL function or building every query without reference materials. Database competence is the ability to reason reliably when the problem changes.
@@ -2002,7 +1962,6 @@ That is the larger purpose of this course.
 
 <!-- PAGE BREAK -->
 <div style="page-break-after: always;"></div>
-
 ## Closing Note
 
 Approach the final assessments as a professional analyst would:
@@ -2019,4 +1978,3 @@ Approach the final assessments as a professional analyst would:
 10. Protect the integrity of the data and your own learning.
 
 You have already learned the individual skills. The final step is learning to coordinate them.
-

@@ -1,0 +1,141 @@
+"// Brightspace CSV Import - Chapter 13 Top Questions",,,,
+"// Source: Chapter 13 RAT - From Knowledge to Wisdom: Strategy, Judgment, and Data-Driven Decision-Making",,,,
+"// Date: 2026-07-19",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Bloom distribution: 2 Apply, 3 Analyze, 5 Evaluate",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+NewQuestion,MS,,,
+ID,BITM330-CH13-Q01,,,
+Title,CH13 Q1: Survivorship Bias and Selection Bias,,,
+QuestionText,Select ALL that apply: An analyst studies only completed appointments to understand why appointments are missed. Which biases or fallacies does this approach risk?,,,
+Points,2,,,
+Difficulty,4,,,
+Scoring,RightAnswers,,,
+Option,1,Survivorship bias - analysis focuses on visible cases while ignoring missed appointments,,Correct - survivorship bias means focusing on cases that remain visible after a selection process while ignoring cases that disappeared or failed.
+Option,0,Simpson's paradox - the aggregate data reverses within groups,,"Incorrect - Simpson's paradox involves aggregate-subgroup reversal, not sample-selection issues."
+Option,1,Selection bias - observed cases differ from the population of interest,,Correct - the population of interest is all appointments; the analyst observes only completed ones.
+Option,0,Goodhart's Law - the metric becomes the target,,"Incorrect - Goodhart's Law involves metric-target distortion, not sample selection."
+Option,1,Missing-data bias - missingness may be related to the outcome,,Correct - missed appointments may be systematically different from completed ones.
+Hint,,,,Think about which cases the analyst can see and which cases are systematically absent from the dataset.
+Feedback,,,,"Survivorship bias, selection bias, and missing-data bias all apply when studying only completed cases. Simpson's paradox and Goodhart's Law describe different failure modes not present here."
+,,,,
+NewQuestion,MS,,,
+ID,BITM330-CH13-Q02,,,
+Title,CH13 Q2: AI Ethics - Credit Denial,,,
+QuestionText,"Select ALL that apply: A company's AI system recommends denying credit to applicants from certain ZIP codes. Using ethical-responsibility principles, which concerns should be raised?",,,
+Points,2,,,
+Difficulty,5,,,
+Scoring,RightAnswers,,,
+Option,1,Proxy bias - ZIP code may indirectly represent race or income,,"Correct - ZIP code acts as a proxy for race or income, which is a form of proxy bias."
+Option,1,Fairness - the decision may create unjustified differences,,Correct - fairness concerns whether decisions create unjustified differences between groups.
+Option,1,Contestability - affected people may have no meaningful way to challenge the decision,,"Correct - contestability means affected people can question, correct, or appeal a decision."
+Option,1,Transparency - stakeholders may not understand the data source or logic,,"Correct - transparency means stakeholders can understand the data source, logic, and limitation."
+Option,0,The AI system is too slow,,Incorrect - system speed is not an ethical concern raised in the chapter.
+Hint,,,,"Review the ethical principles: privacy, consent, fairness, transparency, accountability, and security. Which apply here?"
+Feedback,,,,"Proxy bias, fairness, contestability, and transparency are all directly relevant when an automated system makes consequential decisions using geographic proxies."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q03,,,
+Title,CH13 Q3: Goodhart's Law,,,
+QuestionText,"A call center rewards employees for reducing average call time. Call time drops, but repeat-call rates rise and satisfaction falls. Which concept does this scenario best illustrate?",,,
+Points,1,,,
+Difficulty,3,,,
+Option,0,Simpson's paradox,,Incorrect - Simpson's paradox
+Option,0,Survivorship bias,,Correct - Survivorship bias
+Option,100,Goodhart's Law,,Incorrect - Goodhart's Law
+Option,0,The McNamara fallacy,,Incorrect - The McNamara fallacy
+Hint,,,,The key is what happens when a measure becomes a target - the chapter has a named law for this.
+Feedback,,,,"Goodhart's Law: when a measure becomes a target, people change their behavior to improve the measure, sometimes at the expense of the real goal. The chapter uses a nearly identical call-center example."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q04,,,
+Title,CH13 Q4: Simpson's Paradox,,,
+QuestionText,"A manager notices that Program A has a higher overall success rate (81.8%) than Program B (80.9%). However, when students are grouped by risk level, Program B performs better in both the lower-risk and higher-risk groups. Which concept does this illustrate?",,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,Goodhart's Law,,Incorrect - Goodhart's Law
+Option,100,Simpson's paradox,,Correct - Simpson's paradox
+Option,0,The McNamara fallacy,,Incorrect - The McNamara fallacy
+Option,0,Survivorship bias,,Incorrect - Survivorship bias
+Hint,,,,The chapter provides a numerical table with two risk groups and two programs - look for the paradox where the overall winner loses in every subgroup.
+Feedback,,,,Simpson's paradox: a relationship in aggregated data changes or reverses after the data is divided into meaningful groups. The chapter includes a worked example with nearly identical numbers.
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q05,,,
+Title,CH13 Q5: Strategic Alignment - Data Grain,,,
+QuestionText,"An organization stores only monthly sales totals and cannot determine which product, customer, or region caused a decline. Which strategic-alignment failure does this represent?",,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,Goal without a decision question,,Incorrect - Goal without a decision question
+Option,0,Dashboard without ownership,,Correct - Dashboard without ownership
+Option,100,Data without the required grain,,Incorrect - Data without the required grain
+Option,0,Action without review,,Incorrect - Action without review
+Hint,,,,The problem is not about what question to ask or who owns the dashboard - it is about the level of detail at which data is stored.
+Feedback,,,,"Data without the required grain: store only monthly totals, and managers cannot identify the responsible product, customer, or location. This matches the scenario exactly."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q06,,,
+Title,CH13 Q6: Schema as Strategic Commitment,,,
+QuestionText,A schema is described as a structured theory of what the organization has chosen to record. What is the strategic implication?,,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,Database schemas are objective representations of reality,,Incorrect - Database schemas are objective representations of reality
+Option,100,What the organization chooses not to record may be as strategically significant as what it records,,Correct - What the organization chooses not to record may be as strategically significant
+Option,0,Schema design is purely a technical exercise unrelated to strategy,,Incorrect - Schema design is purely a technical exercise unrelated to strategy
+Option,0,Every organization should use the same schema,,Incorrect - Every organization should use the same schema
+Hint,,,,"Think about what the word chosen implies - if the organization chose to record certain things, it also chose not to record others."
+Feedback,,,,Schema design involves deliberate choices about inclusion and exclusion. What is excluded - the blind spots - can be strategically significant. A schema is not a complete representation of reality.
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q07,,,
+Title,CH13 Q7: McNamara Fallacy,,,
+QuestionText,A hospital administrator proposes managing department performance using only patient throughput. What is the strongest objection to this single-metric approach?,,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,Throughput cannot be measured accurately,,Incorrect - Throughput cannot be measured accurately
+Option,100,"Single-metric management risks the McNamara fallacy - it ignores important factors that are difficult to quantify, such as patient outcomes, safety culture, and staff morale",,Correct - Single-metric management risks the McNamara fallacy - it ignores important facto
+Option,0,Hospitals should never use metrics,,Incorrect - Hospitals should never use metrics
+Option,0,"Throughput is a leading indicator, not a lagging indicator",,"Incorrect - Throughput is a leading indicator, not a lagging indicator"
+Hint,,,,"The chapter names a specific fallacy about relying on what is easy to measure, and also presents a framework with four balanced perspectives."
+Feedback,,,,The McNamara fallacy is relying heavily on what is easy to quantify while ignoring important factors that are difficult to measure. The chapter gives the hospital-throughput example directly.
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q08,,,
+Title,CH13 Q8: Human-AI Decision Workflow,,,
+QuestionText,The chapter states that AI may assist the reasoning but a person remains accountable for the decision. Which workflow best applies this principle?,,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,"The AI model generates a recommendation, and the organization implements it automatically",,"Incorrect - The AI model generates a recommendation, and the organization implements it auto"
+Option,100,"A manager defines the goal, approves data sources, reviews AI output, examines missing context, compares alternatives, makes the decision, documents it, and monitors results",,"Correct - A manager defines the goal, approves data sources, reviews AI output, examines m"
+Option,0,The AI system makes the decision while the manager focuses on other tasks,,Incorrect - The AI system makes the decision while the manager focuses on other tasks
+Option,0,The organization avoids AI entirely to eliminate all risk,,Incorrect - The organization avoids AI entirely to eliminate all risk
+Hint,,,,Look for the workflow where the human maintains authority at every stage.
+Feedback,,,,"The chapter presents the human-AI workflow: define goal, approve data, generate/predict, verify output, examine context, compare alternatives, human decision, document, monitor."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q09,,,
+Title,CH13 Q9: Misaligned KPI,,,
+QuestionText,"An organization's strategy states it will differentiate through exceptional customer experience, but its only tracked KPI is cost per transaction. What is the most important problem?",,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,Cost per transaction cannot be calculated,,Incorrect - Cost per transaction cannot be calculated
+Option,100,The KPI measures operational efficiency but does not represent the differentiation strategy,,Correct - The KPI measures operational efficiency but does not represent the differentiati
+Option,0,Customer experience is impossible to measure,,Incorrect - Customer experience is impossible to measure
+Option,0,The organization should abandon its differentiation strategy,,Incorrect - The organization should abandon its differentiation strategy
+Hint,,,,Compare what the strategy claims to value with what the KPI actually measures. Are they tracking the same thing?
+Feedback,,,,"Metric without strategic relevance: cost per transaction measures cost-leadership efficiency, not differentiation through customer experience. The KPI and strategy are misaligned."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH13-Q10,,,
+Title,CH13 Q10: Strategic Alignment - Start with Decision,,,
+QuestionText,"A team begins designing a dashboard by selecting chart types and color schemes. Their alignment card has fields for Strategic Goal, Decision, Metric, and Limitation. Which principle are they violating?",,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,Dashboards should always use bar charts,,Incorrect - Dashboards should always use bar charts
+Option,100,"The correct starting point is the decision, not the chart or model",,"Correct - The correct starting point is the decision, not the chart or model"
+Option,0,Dashboard design should precede metric selection,,Incorrect - Dashboard design should precede metric selection
+Option,0,Color schemes are more important than data accuracy,,Incorrect - Color schemes are more important than data accuracy
+Hint,,,,The alignment card exists specifically to prevent teams from doing exactly what this team did. What does it say about where to start?
+Feedback,,,,"The alignment card states: the correct starting point is the decision, not the chart or model. The team skipped strategic-alignment reasoning and started with visual design."
+,,,,

@@ -2,15 +2,17 @@
 
 # Ch16 Edit Notes
 
-## 2026-07-20 — Replaced core-concepts with revised Drive draft
+## 2026-07-20 — Import revised main draft, convert separators to page breaks
 
-_Updated local repository chapter 16 main file with the latest Google Drive version, archived the old one, and converted standalone `---` separators to HTML page breaks. Generated local content and pushed to production._
-
-- [x] Imported `ch16-main-revised-2026-07-20.md` from Drive as `core-concepts.md`
-- [x] Converted `---` to page breaks
-- [x] Archived older `core-concepts.md` to `archive/core-concepts-old.md`
-- [x] Rebuilt `bookData.ts` and pushed to GitHub
-- [x] Deployed live to data-pilot
+- **Source:** `G:\...\ch16-final-review\main\ch16-main-revised-2026-07-20.md` (1979 lines)
+- **Archived:** Previous content retained in `.archive/2026-07-20/core-concepts.md`; upstream also retains `archive/core-concepts-old.md`
+- **Conversion:** 44 `---` section separators → `<!-- PAGE BREAK -->` + `<div>` page breaks
+- **Generate:** 18 chapters, 120 sections, 317 pages, 0 warnings
+- **Lint:** Passed (`tsc --noEmit`)
+- **Build:** Vite production build succeeded (2520 modules, 7.42s)
+- **GitHub:** Revised Chapter 16 commits confirmed on `origin/main`.
+- **Deploy:** Local preview/build confirmed in preserved notes; production deployment was not re-verified during consolidation.
+- **Next:** Review production status before any new deploy.
 
 ---
 
@@ -21,7 +23,7 @@ _Updated local repository chapter 16 main file with the latest Google Drive vers
 ### Main file completeness
 
 - [x] 16.1-16.3: Final Integration Point, Project Overview, Final Project Tasks (13 tasks) — present
-- [ ] 16.4-16.11: Project SQL Guidance, Final Test Overview, Publication Scoring Logic, Core Test Queries, Test Question Map, Study Strategy, Submission Checklist, Final Reflection — **not confirmed** (file may be truncated)
+- [x] 16.4-16.11+: ~~Project SQL Guidance, Final Test Overview, Publication Scoring Logic, Core Test Queries, Test Question Map, Study Strategy, Submission Checklist, Final Reflection~~ — **confirmed** (2026-07-20 revised draft covers 16.1–16.20+, 1979 lines, 40 sections)
 
 ### GD companion file organization
 

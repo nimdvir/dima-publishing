@@ -1,0 +1,141 @@
+"// Brightspace CSV Import - Chapter 14 Top Questions",,,,
+"// Source: Chapter 14 RAT - Modern Data Infrastructure for Analytics and AI",,,,
+"// Date: 2026-07-19",,,,
+"// 10 questions: 2 Multi-Select (MS) + 8 Multiple Choice (MC)",,,,
+"// Bloom distribution: 2 Apply, 3 Analyze, 5 Evaluate",,,,
+"// Save as CSV UTF-8 before importing",,,,
+,,,,
+NewQuestion,MS,,,
+ID,BITM330-CH14-Q01,,,
+Title,CH14 Q1: Row-Level Security Design Principles,,,
+QuestionText,Select ALL that apply: An organization is designing row-level security for a multi-tenant application. Which principles should guide the design?,,,
+Points,2,,,
+Difficulty,5,,,
+Scoring,RightAnswers,,,
+Option,1,Each authenticated user should only access rows belonging to their own organization or account,,Correct - this is the core principle of multi-tenant RLS.
+Option,0,A service account with broad access should be embedded in public browser code for convenience,,Incorrect - broad credentials must never be exposed in public code.
+Option,1,AI retrieval systems should respect the same row-level permissions as direct user access,,Correct - AI does not create an exception to privacy rules.
+Option,1,An instructor role should have different row access than a student role,,Correct - role-based access is a fundamental RLS pattern.
+Option,1,Row-level policies act like automatic WHERE conditions added to relevant queries,,Correct - this is the conceptual model for how RLS policies work.
+Hint,,,,"Think about least privilege - who needs access to what, and how should that be enforced?"
+Feedback,,,,Row-level security applies authorization at the row level. Policies act as automatic WHERE clauses. Different roles need different access. AI retrieval must respect the same permissions. Service credentials must never be exposed publicly.
+,,,,
+NewQuestion,MS,,,
+ID,BITM330-CH14-Q02,,,
+Title,CH14 Q2: AI-Ready Document Architecture,,,
+QuestionText,Select ALL that apply: A hospital wants to use AI to answer staff questions using approved policy documents. Which architecture decisions support responsible implementation?,,,
+Points,2,,,
+Difficulty,5,,,
+Scoring,RightAnswers,,,
+Option,1,"Store policy documents with version numbers, effective dates, and approval status",,"Correct - versioned, dated, and approved documents are essential for AI readiness."
+Option,1,Create retrieval views that expose only approved and current document versions,,Correct - governed views prevent stale or draft content from reaching the model.
+Option,1,Apply row-level or document-level access controls before retrieval,,Correct - authorization must occur before data enters the model context.
+Option,0,Allow the AI model to access all documents in the network without restriction,,Incorrect - unrestricted access violates privacy and governance principles.
+Option,1,Include source citations and effective dates in generated answers,,Correct - citations allow users to verify the source and check currency.
+Hint,,,,Authorization must happen before data reaches the model. What metadata and controls make retrieval trustworthy?
+Feedback,,,,"AI-ready document systems require version control, approval status, effective dates, governed retrieval views, pre-retrieval access controls, and citations. Unrestricted access is a dangerous anti-pattern."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q03,,,
+Title,CH14 Q3: OLTP and OLAP Workload Separation,,,
+QuestionText,A university runs a registration system handling thousands of enrollments per hour and also needs to analyze five years of grade data for student success predictors. Which architectural approach is most appropriate?,,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,Run both workloads on the same operational database with no separation,,Incorrect - Run both workloads on the same operational database with no separation
+Option,100,Maintain the registration system on an OLTP-optimized database and periodically load cleaned grade history into a separate analytical store,,Correct - Maintain the registration system on an OLTP-optimized database and periodically
+Option,0,Move all data into a data lake and run analytical queries directly against registration tables,,Incorrect - Move all data into a data lake and run analytical queries directly against regis
+Option,0,Replace the registration system with a spreadsheet,,Incorrect - Replace the registration system with a spreadsheet
+Hint,,,,Think about what happens when a complex historical query runs against a live transaction system.
+Feedback,,,,OLTP and OLAP have different design priorities. Separating them preserves transaction speed for operations while enabling historical analysis without disruption.
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q04,,,
+Title,CH14 Q4: Metric Governance Failure,,,
+QuestionText,An organization built a data warehouse three years ago. Two departments now report different values for monthly revenue even though both use the same warehouse. What is the most likely root cause?,,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,The warehouse hardware is faulty,,Incorrect - The warehouse hardware is faulty
+Option,100,"The organization lacks a single governed definition of the metric, and departments apply different filters or inclusion rules",,"Correct - The organization lacks a single governed definition of the metric, and departmen"
+Option,0,SQL cannot calculate revenue correctly,,Incorrect - SQL cannot calculate revenue correctly
+Option,0,One department is using OLTP instead of OLAP,,Incorrect - One department is using OLTP instead of OLAP
+Hint,,,,"When different people get different answers from the same data, what is usually missing?"
+Feedback,,,,"Conflicting numbers from the same source typically indicate a governance gap - no single agreed-upon definition of the metric. Without governance, different filters and rules produce different results."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q05,,,
+Title,CH14 Q5: Flexible Data Model Governance,,,
+QuestionText,"A team stores product catalog data in flexible document columns. Over time, different team members use different field names for the same concept. What is the fundamental problem?",,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,Document columns are incompatible with modern databases,,Incorrect - Document columns are incompatible with modern databases
+Option,100,Flexibility without governance leads to inconsistency - the documents lack enforced naming conventions and validation,,Correct - Flexibility without governance leads to inconsistency - the documents lack enfor
+Option,0,The data should have been stored in a graph database,,Incorrect - The data should have been stored in a graph database
+Option,0,Document columns cannot store numeric values,,Incorrect - Document columns cannot store numeric values
+Hint,,,,The problem is not the technology - it is how the technology is being used without rules.
+Feedback,,,,"Flexible document storage offers adaptability, but flexibility without governance creates chaos. Without naming conventions and validation, the same concept gets recorded under different names."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q06,,,
+Title,CH14 Q6: CAP Theorem - Banking,,,
+QuestionText,A bank's distributed transaction system experiences a network partition between two data centers. Customer account balances are at stake. Which CAP trade-off decision is most defensible?,,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,"Prioritize availability - allow both centers to process withdrawals independently, accepting potential inconsistency",,Incorrect - Prioritize availability - allow both centers to process withdrawals independentl
+Option,100,"Prioritize consistency - suspend transactions at one center until communication is restored, protecting balance accuracy",,Correct - Prioritize consistency - suspend transactions at one center until communication
+Option,0,Shut down all banking operations globally until the network is fixed,,Incorrect - Shut down all banking operations globally until the network is fixed
+Option,0,Ignore the partition and hope it resolves itself,,Incorrect - Ignore the partition and hope it resolves itself
+Hint,,,,"What is worse for a bank: temporarily declining some transactions, or allowing accounts to be overdrawn?"
+Feedback,,,,"For financial transactions, consistency is more important than availability. The CAP theorem states you cannot have both during a partition - you must choose. Banking prioritizes correctness."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q07,,,
+Title,CH14 Q7: Prompt Is Not a Security Boundary,,,
+QuestionText,"A company is building a customer-facing AI assistant. The proposed architecture sends the entire customer database to the LLM with every request, relying on a prompt instruction to limit access. What is the most serious flaw?",,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,The prompt is too long for the LLM to process,,Incorrect - The prompt is too long for the LLM to process
+Option,100,Using a prompt instruction as a security boundary is not reliable - authorization must be enforced through database controls before data reaches the model,,Correct - Using a prompt instruction as a security boundary is not reliable - authorizatio
+Option,0,LLMs cannot process database records,,Incorrect - LLMs cannot process database records
+Option,0,The database should use NoSQL instead,,Incorrect - The database should use NoSQL instead
+Hint,,,,Can you trust a language model to reliably enforce access control through natural language instructions?
+Feedback,,,,A prompt instruction is not a security boundary. Authorization must be enforced through database access controls before data reaches the model. Sending all data and hoping the model filters correctly is dangerous.
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q08,,,
+Title,CH14 Q8: Flexible Documents at Scale,,,
+QuestionText,"A startup stores all data in flexible document columns. At 50 million records, queries searching inside documents are slow. What is the most appropriate response?",,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,Continue with the current approach - performance will improve automatically,,Incorrect - Continue with the current approach - performance will improve automatically
+Option,100,Evaluate which fields are consistently queried and consider extracting them into indexed relational columns while keeping truly variable attributes in documents,,Correct - Evaluate which fields are consistently queried and consider extracting them into
+Option,0,Delete half the data to improve speed,,Incorrect - Delete half the data to improve speed
+Option,0,Replace the entire system with a key-value store,,Incorrect - Replace the entire system with a key-value store
+Hint,,,,The chapter recommends a specific pattern: a relational core with a flexible edge.
+Feedback,,,,"A hybrid approach is best: keep stable, frequently-queried fields in indexed relational columns, and use document columns for truly variable attributes. This preserves flexibility while gaining relational performance."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q09,,,
+Title,CH14 Q9: RAG - Retrieval vs. Generation Failure,,,
+QuestionText,A RAG system retrieves a policy document and generates an answer. The answer is fluent but contradicts the retrieved document. What is the most likely explanation?,,,
+Points,1,,,
+Difficulty,4,,,
+Option,0,The database connection failed,,Incorrect - The database connection failed
+Option,100,The model generated a plausible continuation not faithful to the evidence - retrieval succeeded but generation failed,,Correct - The model generated a plausible continuation not faithful to the evidence - retr
+Option,0,Vector search cannot retrieve text documents,,Incorrect - Vector search cannot retrieve text documents
+Option,0,The user asked the wrong question,,Incorrect - The user asked the wrong question
+Hint,,,,"RAG has two stages. If the right document was found but the answer is wrong, which stage failed?"
+Feedback,,,,"RAG can fail at retrieval (wrong documents) or generation (model ignores evidence). When the correct document was retrieved but the answer contradicts it, generation failed - the model produced fluent but unfaithful output."
+,,,,
+NewQuestion,MC,,,
+ID,BITM330-CH14-Q10,,,
+Title,CH14 Q10: Relational Relevance for Modern Workloads,,,
+QuestionText,"The chapter argues that modern infrastructure does not always require abandoning relational databases. A growing company with operational, analytical, and AI retrieval needs should consider which approach?",,,
+Points,1,,,
+Difficulty,5,,,
+Option,0,Replace everything with a vector database for AI workloads,,Incorrect - Replace everything with a vector database for AI workloads
+Option,100,"A strong relational platform can support all three modes - operational, analytical, and AI retrieval - when the workload and scale are appropriate",,"Correct - A strong relational platform can support all three modes - operational, analytic"
+Option,0,Relational databases are obsolete for any modern use case,,Incorrect - Relational databases are obsolete for any modern use case
+Option,0,Use separate NoSQL systems for each mode with no relational component,,Incorrect - Use separate NoSQL systems for each mode with no relational component
+Hint,,,,Reread the chapter's central thesis about what changes and what remains at scale.
+Feedback,,,,"The chapter's central thesis: relational databases remain foundational. Modern platforms support operational tables, analytical queries, document columns, full-text search, and vector similarity - all within one environment."
+,,,,
