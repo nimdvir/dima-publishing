@@ -10,6 +10,11 @@
     "dev": "npm run generate && vite --host=0.0.0.0 --port=3000",
     "build": "npm run validate:access && npm run generate && vite build",
     "preview": "vite preview --host=0.0.0.0 --port=3000",
+    "local:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-deployment.ps1 -Action start -Mode preview",
+    "local:dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-deployment.ps1 -Action start -Mode dev",
+    "local:all": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-deployment.ps1 -Action start -Mode all",
+    "local:status": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-deployment.ps1 -Action status -Mode all",
+    "local:stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-deployment.ps1 -Action stop -Mode all",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

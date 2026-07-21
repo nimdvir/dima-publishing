@@ -2,6 +2,19 @@
 
 # Ch16 Edit Notes
 
+## 2026-07-20 — Import revised main draft, convert separators to page breaks
+
+- **Source:** `G:\...\ch16-final-review\main\ch16-main-revised-2026-07-20.md` (1979 lines)
+- **Archived:** Previous `core-concepts.md` → `.archive/2026-07-20/core-concepts.md`
+- **Conversion:** 44 `---` section separators → `<!-- PAGE BREAK -->` + `<div>` page breaks
+- **Generate:** 18 chapters, 120 sections, 317 pages, 0 warnings
+- **Lint:** Passed (`tsc --noEmit`)
+- **Build:** Vite production build succeeded (2520 modules, 7.42s)
+- **Deploy:** Local preview only (localhost:3000, PID 8964). **NOT pushed to production.**
+- **Next:** Awaiting user confirmation before Vercel production deploy.
+
+---
+
 ## 2026-06-13 — Outline-to-chapter structural audit
 
 *Compared `outline-2026-06-12.md` against GD draft `ch16-main-draft-2026-05-18.md` and dima-pub `core-concepts.md`. Main file appears incomplete (stops at 16.3 of 16.11 expected). GD companion files scattered across wrong chapter folders.*
@@ -9,7 +22,7 @@
 ### Main file completeness
 
 - [x] 16.1-16.3: Final Integration Point, Project Overview, Final Project Tasks (13 tasks) — present
-- [ ] 16.4-16.11: Project SQL Guidance, Final Test Overview, Publication Scoring Logic, Core Test Queries, Test Question Map, Study Strategy, Submission Checklist, Final Reflection — **not confirmed** (file may be truncated)
+- [x] 16.4-16.11+: ~~Project SQL Guidance, Final Test Overview, Publication Scoring Logic, Core Test Queries, Test Question Map, Study Strategy, Submission Checklist, Final Reflection~~ — **confirmed** (2026-07-20 revised draft covers 16.1–16.20+, 1979 lines, 40 sections)
 
 ### GD companion file organization
 
