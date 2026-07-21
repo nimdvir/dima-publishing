@@ -58,13 +58,46 @@ Simulated responses only. No external API calls, no API keys, no backend routes.
 ## Commands
 
 ```bash
-cd books/database-book/platform-pilots/reader-hybrid
+cd books/database-book/platform-pilots/reader-hybrid-v1.1
 npm install
 npm run generate   # Scan source files and build bookData.ts
 npm run dev        # Start dev server on port 3000
 npm run lint       # Type-check
 npm run build      # Production build
 ```
+
+## Local Background Deployment (Windows)
+
+The local deployment launcher serves the production build in the background on
+port 3000. A separate hot-reload development server is available on port 3001.
+Both servers bind to `0.0.0.0`, so they are available from this computer and
+other devices on the same local network.
+
+```powershell
+npm run local:start   # Validate, generate, lint, build, and start preview on 3000
+npm run local:dev     # Generate and start hot-reload development on 3001
+npm run local:all     # Start both modes
+npm run local:status  # Show process state, URLs, and log paths
+npm run local:stop    # Stop both modes
+```
+
+The preview is available at `http://localhost:3000`; development is available
+at `http://localhost:3001`. The launcher discovers and prints current LAN URLs,
+which can change when the computer reconnects to a network.
+
+Process state and stdout/stderr logs are stored under
+`%TEMP%\dima-textbook-local`. The servers continue running after the launching
+terminal closes, but they do not restart automatically after Windows sign-out
+or reboot. To restart one mode directly, run:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-deployment.ps1 -Action restart -Mode preview
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-deployment.ps1 -Action restart -Mode dev
+```
+
+The local frontend uses the existing hosted Supabase configuration from the
+project environment files. The launcher does not modify Vercel, Windows startup,
+Windows Firewall, or router settings.
 
 ## Required Environment Variables
 
