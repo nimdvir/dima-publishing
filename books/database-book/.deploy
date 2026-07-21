@@ -1,0 +1,137 @@
+# Chapter Deployment Checklist
+
+> Last updated: 2026-07-19 · Workflow: chapter-editor → chapter-source-import → chapter-final-check → book-deploy
+
+---
+
+## Quick Reference
+
+| Step | What | Command / Action |
+|---|---|---|
+| 1 | Format Drive drafts | Strip YAML, add metadata, page breaks, section GIFs |
+| 2 | Archive repo files | Copy to `.archive/YYYY-MM-DD/` |
+| 3 | Import to repo | Copy Drive drafts → repo stable names |
+| 4 | Update index.md | Title, description, learning objectives, roadmap |
+| 5 | Generate | `npm run generate` from `reader-hybrid-v1.1/` |
+| 6 | Preview locally | `localhost:3001` (dev) or `localhost:3000` (preview) |
+| 7 | Lint | `npm run lint` (tsc --noEmit) |
+| 8 | Build | `npm run build` |
+| 9 | Commit & push | Stage chapter files + `bookData.ts`, commit, push |
+| 10 | Deploy | `npx vercel deploy --prod --yes --scope dima-media` |
+
+---
+
+## Detailed Steps
+
+### 1. Format Drive Drafts for Publication
+
+- Strip YAML frontmatter (`---` blocks) — repo uses `<!-- metadata: date="YYYY-MM-DD" -->` on line 1
+- Add `<!-- PAGE BREAK -->` + `<div style="page-break-after: always;"></div>` before every major section
+- Add section-opening GIFs to companion files:
+  - Let's Build: `ch00-let-build-resize`
+  - RAT: `RAT_nqr5a3`
+  - Lab: `lab_jpifze`
+- Do NOT edit the Drive source file — only edit the repo copy
+
+### 2. Archive Current Repo Files
+
+Copy all chapter and lab files to `.archive/YYYY-MM-DD/` before overwriting.
+
+### 3. Import Drive Drafts into Repo
+
+Drive → Repo mapping (stable filenames, no dates in repo):
+
+| Drive | Repo |
+|---|---|
+| `main/chNN-main-YYYY-MM-DD.md` | `core-concepts.md` |
+| `lets-build/chNN-lets-build-YYYY-MM-DD.md` | `lets-build.md` |
+| `rat/chNN-rat-YYYY-MM-DD.md` | `rat.md` |
+| `lab/chNN-lab-YYYY-MM-DD.md` | `labs/lab-NN/index.md` |
+| `lab/chNN-lab-answer-key-YYYY-MM-DD.md` | `labs/lab-NN/instructor/` |
+
+### 4. Update index.md
+
+The Introduction page renders from `index.md`. Update:
+- Chapter title and subtitle
+- Full multi-paragraph description
+- `## Chapter Video` section (or placeholder)
+- `## Learning Objectives` (numbered list)
+- `## Chapter Roadmap` — **use list format, NOT a table** (generator strips tables from intro pages)
+
+### 5. Generate Book Data
+
+```bash
+cd books/database-book/platform-pilots/reader-hybrid-v1.1
+npm run generate
+```
+
+Verify: 0 warnings, correct chapter/page counts.
+
+### 6. Preview Locally
+
+- **Dev**: `localhost:3001` — hot-reloads, `npm run dev`
+- **Production preview**: `localhost:3000` — static snapshot, `npm run build && vite preview`
+- Check: intro page, core concepts, companions, lab — GIFs, page breaks, no exposed answers
+
+### 7. Lint
+
+```bash
+npm run lint   # tsc --noEmit — must pass
+```
+
+### 8. Build
+
+```bash
+npm run build  # validate + generate + vite build
+```
+
+### 9. Commit & Push
+
+From repo root:
+
+```bash
+git add books/database-book/files/source/chapters/chNN-*/
+git add books/database-book/files/source/labs/lab-NN-*/
+git add books/database-book/platform-pilots/reader-hybrid-v1.1/src/generated/bookData.ts
+git commit -m "Update reader content: chNN main, lets-build, rat, lab"
+git push
+```
+
+Only stage chapter, lab, and generated files. Leave unrelated working-tree changes unstaged.
+
+### 10. Deploy to Vercel
+
+```bash
+cd dima-publishing repo root
+npx vercel deploy --prod --yes --scope dima-media
+```
+
+Production: **https://www.dimapublishing.com**
+
+---
+
+## Common Pitfalls
+
+| Issue | Fix |
+|---|---|
+| Index shows old content | `index.md` wasn't updated — separate file from `core-concepts.md` |
+| Roadmap missing from intro | Generator strips tables — use list format instead |
+| Preview shows stale content | Kill and restart `vite preview` server |
+| YAML frontmatter visible | Strip `---` blocks, use `<!-- metadata: date="..." -->` |
+| Lab answers visible | Answer keys go in `instructor/` only |
+| Push rejected (non-fast-forward) | `git stash && git pull --no-rebase && git stash pop && git push` |
+
+---
+
+## File Map
+
+```
+dima-publishing/
+├── books/database-book/
+│   ├── files/source/
+│   │   ├── chapters/chNN-slug/     ← index.md, core-concepts.md, lets-build.md, etc.
+│   │   └── labs/lab-NN-slug/       ← index.md, instructor/
+│   └── platform-pilots/reader-hybrid-v1.1/
+│       ├── scripts/generateBookData.ts   ← content generator
+│       └── src/generated/bookData.ts     ← generated (committed)
+└── vercel.json                      ← root Vercel config (data-pilot project)
