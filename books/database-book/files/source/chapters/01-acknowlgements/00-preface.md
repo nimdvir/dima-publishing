@@ -1,52 +1,22 @@
 # Preface
 
-# Using Data to Drive Business Performance
+**Over the years I tried nearly every textbook and platform on the market for the courses I was teaching in BITM (Business Information Technology Management) and MIS (Management Information Systems), and none of them satisfied me.** They were expensive, typically $100 or more, outdated, and incomplete. Some were theory manuals with no business context; others were software manuals with no theory. Peer programs cope by assigning two books at once: a database theory text plus a separate Access manual. And after years of teaching these courses, I kept hearing the same two sentences from students: *"I understand the terms, but not how they connect,"* and *"We learn SQL, but I don't know why it matters."*
 
-# Databases and Management Information Systems
+**So, I built the resource I wished existed:** a courseware platform rather than just a book, where the text, the labs, the databases, the datasets, and the semester projects all live in one place and reinforce each other, and where AI is built into the labs so you learn to work with it responsibly rather than around it.
 
-Welcome to **Using Data to Drive Business Performance: Databases and Management Information Systems**.
-
-This book was written around a simple but important idea:
-
-> **Organizations improve performance by using data to make better decisions.**
-
-Businesses today generate enormous amounts of information. Every customer purchase, employee interaction, shipment, website click, financial transaction, and operational activity leaves behind data. Yet data alone does not create value.
-
-Organizations succeed when they transform data into meaningful information, use that information to make better decisions, and align those decisions with business goals.
-
-This book is designed to help you understand **how that process works**—not only technically, but managerially and strategically.
-
-Rather than treating databases, analytics, information systems, and business strategy as separate topics, this book approaches them as **parts of one connected system**.
-
-The result is a practical, business-focused understanding of how information technologies improve organizational performance.
+**Everything here is designed around one idea:** data only matters when it drives a decision. You'll first learn to recognize and describe data, then organize it, connect it, question it, communicate it, and finally apply judgment to real business problems. Along the way you'll build real systems, not exercises you throw away, but working databases you can show an employer as evidence of what you can do. That's the promise of this book, and I hope you'll hold me to it.
 
 ---
 
-# Why This Book Exists
+# Concept Map of the Book
 
-Many textbooks teach databases as purely technical systems. Others teach Management Information Systems (MIS) at a high conceptual level without enough hands-on experience. Some focus heavily on software tools without explaining the larger business purpose behind them.
+The entire book follows a connected conceptual architecture:
 
-This book takes a different approach.
+![Concept Map of the Book](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/01-acknowledgements/ch00-book-concept-map)
 
-It integrates:
+The final arrow returns to **business value creation**, reinforcing an important idea:
 
-* **Business thinking**
-* **Data and databases**
-* **Information systems**
-* **SQL and querying**
-* **Analytics and reporting**
-* **Managerial decision-making**
-* **Technology strategy**
-
-Throughout the book, you will repeatedly see one core idea:
-
-```text
-Data → Structure → Queries → Systems → Analytics → Decisions → Performance
-```
-
-This progression reflects how modern organizations actually operate.
-
-Businesses collect data, organize it into structured systems, retrieve and analyze information, and ultimately use those insights to improve performance.
+> **Information systems are not ends in themselves. They exist to improve organizational performance.**
 
 ---
 
@@ -54,9 +24,9 @@ Businesses collect data, organize it into structured systems, retrieve and analy
 
 The book follows a deliberate intellectual progression:
 
-```text
-Business Value → Decisions → Measurement → Information Systems → Data Structures → Queries → Analytics → Strategy
-```
+<div class="preface-diagram">
+      <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/v1784753475/Database-book/01-acknowledgements/book-logic-diagram-groq_wemu86.jpg" alt="Business value to strategy logic diagram" />
+</div>
 
 This structure is intentional.
 
@@ -66,11 +36,11 @@ Rather than jumping immediately into databases or SQL, we begin with a more fund
 
 To answer that question, we first examine:
 
-* What businesses are trying to accomplish
-* How managers make decisions
-* How performance is measured
-* Why organizations rely on information systems
-* How data supports managerial action
+* What are businesses trying to accomplish?
+* How do managers make decisions?
+* How is performance measured?
+* Why do organizations rely on information systems?
+* How does data support managerial action?
 
 Only then do we move into the technical foundations of databases, querying, and analytics.
 
@@ -82,20 +52,6 @@ This approach mirrors both:
 The goal is not simply to teach software or memorization.
 
 The goal is to help you develop **systems thinking**.
-
----
-
-# Concept Map of the Book
-
-The entire book follows a connected conceptual architecture:
-
-![Concept Map of the Book](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/Database-book-BITM330/01-acknowledgements/ch00-book-concept-map)
-
-*Concept map showing the six-stage arc: Data → Tables → Relationships → Queries → Analytics → Decisions.*
-
-The final arrow returns to **business value creation**, reinforcing an important idea:
-
-> **Information systems are not ends in themselves. They exist to improve organizational performance.**
 
 ---
 
@@ -163,30 +119,18 @@ One of the defining features of this book is that learning occurs through **cont
 
 The book uses two recurring cases:
 
-| Case System                    | Purpose                                                            |
-| ------------------------------ | ------------------------------------------------------------------ |
-| **Grading Database**           | Demonstrates information system design and performance measurement |
-| **Veterinary Clinic Database** | Hands-on labs for database creation, relationships, and querying   |
+|  | Case System | Purpose |
+| --- | --- | --- |
+| <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_75/bitm330book/00-general/ch00-let-build-resize" alt="Let's Build icon" width="36" /> | **Grading Database** | Demonstrates information system design and performance measurement |
+| <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_75/bitm330book/00-general/ch00-lb" alt="Lab icon" width="36" /> | **Veterinary Clinic Database** | Hands-on labs for database creation, relationships, and querying |
 
 These cases evolve throughout the book.
 
 Students move from understanding business goals to designing systems that support decisions.
 
-```text
-Business Goals
-      ↓
-KPIs
-      ↓
-Required Data
-      ↓
-Database Design
-      ↓
-Queries
-      ↓
-Reports
-      ↓
-Managerial Decisions
-```
+<div class="preface-diagram preface-diagram--flow">
+  <img src="https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto/q_auto/v1784752764/Database-book/01-acknowledgements/book-logic-diagram-groq2_jabfqi.jpg" alt="Business goals to managerial decisions flow diagram" />
+</div>
 
 This approach reinforces a key principle:
 
@@ -196,7 +140,7 @@ This approach reinforces a key principle:
 
 # A Final Thought Before We Begin
 
-Modern organizations increasingly depend on people who can think across disciplines—people who understand business problems, data structures, technology, and decision-making together.
+Modern organizations increasingly depend on people who can think across disciplines, people who understand business problems, data structures, technology, and decision-making together.
 
 This book was written to help you become one of those people.
 
@@ -208,7 +152,7 @@ You do not even need to consider yourself “technical.”
 
 You simply need curiosity, persistence, and a willingness to think systematically.
 
-The skills you develop here—understanding systems, organizing information, writing queries, interpreting performance, and making evidence-based decisions—are among the most valuable skills in modern organizations.
+The skills you develop here, understanding systems, organizing information, writing queries, interpreting performance, and making evidence-based decisions, are among the most valuable skills in modern organizations.
 
 Let’s begin.
 
@@ -221,5 +165,3 @@ His teaching and research focus on the ways data, technology, and information sy
 The goal of this book is to help students build confidence with technical concepts while understanding how data-driven organizations actually operate. Rather than treating databases as abstract technical systems, the book presents them as tools for organizing information, improving decisions, and creating business value.
 
 ![Portrait of Dr. Nimrod Dvir](https://res.cloudinary.com/dkndq6lyz/image/upload/f_auto,q_auto,c_limit,w_1600/bitm330book/ch01-introduction-to-course/ch01-me)
-
-*Dr. Nimrod Dvir teaches Information Systems and Business Analytics at the University at Albany, SUNY, with a focus on databases, analytics, human-computer interaction, and business performance.*

@@ -208,7 +208,7 @@ export default function Layout({
             reserved.
           </span>
         </div>
-        <span className="footer-updated">Last updated June 17, 2026</span>
+        <span className="footer-updated">Last updated July 22, 2026</span>
       </footer>
 
       {/* Feedback — floating report button */}

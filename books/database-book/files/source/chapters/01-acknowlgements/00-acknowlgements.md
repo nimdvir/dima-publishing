@@ -21,7 +21,7 @@ insert the image here for the publisher - "G:\My Drive\0-Projects\!-important\BI
 **Publication year:** 2026  
 **Edition:** First Edition  
 **Version:** 1.0  
-**Last updated:** June 17, 2026
+**Last updated:** July 22, 2026
 
 **ISBN ebook:** 979-8-9955692-0-6
 

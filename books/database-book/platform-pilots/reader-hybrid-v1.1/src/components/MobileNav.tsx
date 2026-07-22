@@ -17,6 +17,12 @@ export default function MobileNav({ open, onClose, children }: MobileNavProps) {
       />
       {/* Drawer */}
       <nav className={`mobile-drawer ${open ? 'is-open' : ''}`} aria-label="Mobile navigation">
+        <button className="mobile-drawer-close" type="button" onClick={onClose} aria-label="Close navigation">
+          ×
+        </button>
+        <button className="mobile-drawer-edge-close" type="button" onClick={onClose} aria-label="Collapse navigation">
+          ‹
+        </button>
         {children}
       </nav>
     </>
