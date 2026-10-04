@@ -1,0 +1,5 @@
+I need this consolidation to one file for chapter 14, with all the files here- G:\My Drive\0-Projects\!-important\BITM330-book-drive\BITM330-Book-draft\chapter-drafts\ch02-mis-and-bitm\.planning\outlines\BITM330-chapter-strengths-overlay-2026-07-16-ch02-2026-07-21.md
+G:\My Drive\0-Projects\!-important\BITM330-book-drive\BITM330-Book-draft\chapter-drafts\ch02-mis-and-bitm\.planning\outlines\BOOK-OUTLINE-Complete-ch02-2026-07-21.md
+G:\My Drive\0-Projects\!-important\BITM330-book-drive\BITM330-Book-draft\chapter-drafts\ch02-mis-and-bitm\.planning\outlines\ch02-consolidated-outlines-2026-07-21.md
+G:\My Drive\0-Projects\!-important\BITM330-book-drive\BITM330-Book-draft\chapter-drafts\ch02-mis-and-bitm\.planning\outlines\ch02-outline-ch02-2026-07-21.md
+G:\My Drive\0-Projects\!-important\BITM330-book-drive\BITM330-Book-draft\chapter-drafts\ch02-mis-and-bitm\.planning\outlines\ch02-target-outline.md 

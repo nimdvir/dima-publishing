@@ -1,0 +1,97 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - button "Home" [ref=e8] [cursor=pointer]
+        - generic [ref=e12]: Using Data to Drive Performance
+        - generic [ref=e13]: Reader
+      - button "Sign in" [ref=e15] [cursor=pointer]
+  - generic [ref=e18]:
+    - complementary [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - button "Home" [ref=e22] [cursor=pointer]
+          - button "Book" [ref=e28] [cursor=pointer]
+          - button "Labs" [ref=e31] [cursor=pointer]
+          - button "Appendices" [ref=e34] [cursor=pointer]
+          - button "Sign in" [ref=e37] [cursor=pointer]
+        - separator [ref=e41]
+        - generic [ref=e42]:
+          - button "Front Matter" [ref=e44] [cursor=pointer]
+          - generic [ref=e49]:
+            - 'button "CH01: Introduction to the Textbook" [ref=e50] [cursor=pointer]'
+            - generic [ref=e55]:
+              - button "Introduction" [ref=e57] [cursor=pointer]
+              - generic [ref=e64]:
+                - button "Core Concepts" [ref=e65] [cursor=pointer]
+                - generic [ref=e73]:
+                  - button "1 Why Databases Matter for Business Performance" [ref=e74] [cursor=pointer]:
+                    - generic [ref=e75]: "1"
+                    - generic [ref=e76]: Why Databases Matter for Business Performance
+                  - button "2 Five Core Competencies" [ref=e77] [cursor=pointer]:
+                    - generic [ref=e78]: "2"
+                    - generic [ref=e79]: Five Core Competencies
+                  - button "3 How Each Chapter Works" [ref=e80] [cursor=pointer]:
+                    - generic [ref=e81]: "3"
+                    - generic [ref=e82]: How Each Chapter Works
+                  - button "4 Bloom's Taxonomy in Practice" [ref=e83] [cursor=pointer]:
+                    - generic [ref=e84]: "4"
+                    - generic [ref=e85]: Bloom's Taxonomy in Practice
+                  - button "5 The Two Running Projects" [ref=e86] [cursor=pointer]:
+                    - generic [ref=e87]: "5"
+                    - generic [ref=e88]: The Two Running Projects
+                  - button "6 How to Succeed in This Course" [ref=e89] [cursor=pointer]:
+                    - generic [ref=e90]: "6"
+                    - generic [ref=e91]: How to Succeed in This Course
+              - button "Let's Build" [ref=e93] [cursor=pointer]
+              - button "Review Questions" [ref=e100] [cursor=pointer]
+              - button "Key Terms" [ref=e108] [cursor=pointer]
+              - generic [ref=e115]:
+                - 'button "RAT: Reading Test" [ref=e116] [cursor=pointer]'
+                - generic [ref=e123]:
+                  - 'button "1 Readiness Assessment Test (RAT): Introduction to the…" [ref=e124] [cursor=pointer]':
+                    - generic [ref=e125]: "1"
+                    - generic [ref=e126]: "Readiness Assessment Test (RAT): Introduction to the…"
+                  - button "2 Answer Key" [ref=e127] [cursor=pointer]:
+                    - generic [ref=e128]: "2"
+                    - generic [ref=e129]: Answer Key
+              - generic [ref=e130]:
+                - button "Chapter Lab" [ref=e131] [cursor=pointer]
+                - generic [ref=e137]:
+                  - 'button "1 Lab 01: PetVax Project Introduction" [ref=e138] [cursor=pointer]':
+                    - generic [ref=e139]: "1"
+                    - generic [ref=e140]: "Lab 01: PetVax Project Introduction"
+                  - button "2 Lab Quiz" [ref=e141] [cursor=pointer]:
+                    - generic [ref=e142]: "2"
+                    - generic [ref=e143]: Lab Quiz
+          - 'button "CH02: Foundations of Information Systems" [ref=e145] [cursor=pointer]'
+          - 'button "CH03: Understanding Data Fundamentals" [ref=e151] [cursor=pointer]'
+          - 'button "CH04: Introduction to Databases" [ref=e157] [cursor=pointer]'
+          - 'button "CH05: SQL — The Language of Databases" [ref=e163] [cursor=pointer]'
+          - 'button "CH06: The Relational Model" [ref=e173] [cursor=pointer]'
+          - 'button "CH07: Data Normalization" [ref=e183] [cursor=pointer]'
+          - 'button "CH08: Midterm Review — Concepts" [ref=e193] [cursor=pointer]'
+          - 'button "CH09: Database Design and ER Modeling" [ref=e203] [cursor=pointer]'
+          - 'button "CH10: Advanced SQL for Business Analysis" [ref=e213] [cursor=pointer]'
+          - 'button "CH11: Database Administration" [ref=e223] [cursor=pointer]'
+          - 'button "CH12: Business Intelligence and Analytics for Performance Improvement" [ref=e233] [cursor=pointer]'
+          - 'button "CH13: Advanced Database Techniques" [ref=e243] [cursor=pointer]'
+          - 'button "CH14: Power BI — Data Visualization and Business Reporting" [ref=e253] [cursor=pointer]'
+          - 'button "CH15: Business Strategy and Information Systems" [ref=e263] [cursor=pointer]'
+          - 'button "CH16: Final Integration" [ref=e273] [cursor=pointer]'
+          - 'button "CH17: Designing Systems That Matter" [ref=e283] [cursor=pointer]'
+    - main [ref=e292]:
+      - generic [ref=e294]:
+        - heading "Access required" [level=2] [ref=e295]
+        - paragraph [ref=e296]: Sign in with your university email to read chapters beyond Chapter 4.
+        - button "Sign in" [ref=e298] [cursor=pointer]
+  - contentinfo [ref=e299]:
+    - generic [ref=e300]:
+      - img "DIMA Publishing" [ref=e301]
+      - generic [ref=e302]: © 2026 DIMA Publishing. All rights reserved.
+    - generic [ref=e303]: Last updated June 17, 2026
+  - button "Report issue" [ref=e304] [cursor=pointer]:
+    - generic [ref=e305]: 💬
+    - text: Report issue

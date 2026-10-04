@@ -1,91 +1,125 @@
-# Repository Agent Instructions
+<!-- generated from database-textbook-github, do not edit -->
 
-The canonical project agents, skills, prompts, references, templates, and
-schemas are stored in `.agents/`.
+# BITM330 Database Textbook — Agent Instructions
 
-## Getting Started
+Book: *Using Data to Drive Business Performance: Databases and Management
+Information Systems.* Arc: Data → Tables → Relationships → Queries →
+Analytics → Decisions.
 
-Before editing the database textbook or platform code, read:
+This file is the single source of truth for agent behavior across all
+BITM330 workspaces. Keep it under 120 lines — situational detail belongs
+in `.agents/reference/`, loaded only when a trigger below matches.
 
-- `.agents/README.md`
-- the relevant skill under `.agents/skills/`
-- any linked reference files
+## Instruction precedence
 
-## Instruction Precedence
+1. Explicit user instructions in the current session
+2. This file
+3. `.agents/reference/*.md` — on demand, per the triggers below
+4. `.agents/skills/*/SKILL.md` — Claude Code and Copilot agents only
 
-1. System and explicit user instructions
-2. Root `AGENTS.md`
-3. Relevant canonical skill under `.agents/skills/`
-4. Task-specific prompt
-5. Active reference files
-6. Generated editor-specific mirrors
+## Workspace map
 
-Files under `.agents/archive/` are historical and must never be used as active
-instructions.
+| Workspace | Root | Role |
+|-----------|------|------|
+| `data-book` | `G:\My Drive\0-Projects\!-important\data-book\` | Active manuscript root (`book-source/`), skills (`.agents/`), outlines, media |
+| `database-book-project` | `C:\Users\nd115232\github\database-book-project\` | Active deployment repository: web reader app & Vercel deployment |
+| `database-textbook-github` | `C:\Users\nd115232\github\database-textbook-github\` | Reference repository & central AGENTS.md sync source |
+| `dima-publishing` | `C:\Users\nd115232\Documents\GitHub\dima-publishing\` | LEGACY / archive platform code (v1), historical skills & published source |
+| `BITM330-book-drive` | `G:\My Drive\0-Projects\!-important\BITM330-book-drive\` | LEGACY. Image library and historical drafts only |
+| `BITM330` | `G:\My Drive\1. Academic\Teaching\Albany\BITM330\` | Live course root. Student data. Off limits to book work |
+| `knowledge-base` | `C:\Users\nd115232\Documents\GitHub\knowledge-base\` | Personal research notes |
 
-## Legacy `.agents` Path Alias
+Full tree: `data-book/.00-START-HERE/WORKSPACE-MAP.md`. Read before any
+cross-workspace file operation.
 
-The canonical agents and skills directory is:
+## Canonical locations
 
-`C:\Users\nd115232\Documents\GitHub\dima-publishing\.agents`
+Locations are folders, not files — filenames change, folders don't.
 
-On this computer, the following legacy Google Drive path may be configured as
-a filesystem junction to the canonical directory:
+| What | Where |
+|------|-------|
+| Agent instructions | `data-book/AGENTS.md` (synced with `database-textbook-github/AGENTS.md`) |
+| Active Skills & Personas | `data-book/.agents/skills/` and `data-book/.agents/agents/` |
+| Reference docs | `data-book/.agents/reference/` and `database-textbook-github/.agents/reference/` |
+| Active Manuscript | `data-book/book-source/` (`chapters/`, `labs/`, `appendices/`) |
+| Book outline | `data-book/.project/outlines/canonical/` |
+| Chapter manuscript | `data-book/book-source/chapters/NN-slug/content/main/` |
+| Chapter outlines | `data-book/book-source/chapters/NN-slug/.planning/outlines/` |
+| Chapter edits | `data-book/book-source/chapters/NN-slug/.edits/` |
+| Media inventories | `data-book/media/inventory/` |
+| Live Deployment Platform | `database-book-project/` (Vite/React reader live on Vercel) |
 
-`G:\My Drive\0-Projects\!-important\BITM330-book-drive\.agents`
+Write targets are named: progress log → `data-book/.project/edits/progress-tracker.md`.
 
-When the path is a verified junction, editing either path modifies the same
-canonical repository files.
+### Choosing a file inside a canonical folder
 
-If the path is not a verified junction:
+1. Prefer the file with no date and no model name — that is the
+   canonical one (e.g. `chNN-target-outline.md`).
+2. If every file is dated, use the highest date.
+3. Model tags (`-claude-`, `-GPT-`, `-DeepSeek-`, `-GLM-`) mark generated
+   drafts. Never authoritative, even if newest.
+4. If two files could plausibly be canonical, list them and ask. Never
+   merge them silently, and never edit both.
 
-1. Do not edit the Google Drive copy.
-2. Map the same relative path to the repository `.agents` directory.
-3. Edit the repository version instead.
-4. Never overwrite a newer repository file from Google Drive.
+## Hard rules
 
-## BITM330 Course/Textbook Boundary
+- **Student data never leaves `BITM330/`.** Not into this repo, not into
+  Notion, not into a prompt. Never edit `BITM330/` from book workflows.
+- **No secrets committed.** No `.env`, tokens, or API keys.
+- **Editing vs. Deployment**: All content editing takes place in `data-book` (`G:\My Drive\0-Projects\!-important\data-book`). All web application builds, code changes, and live publishing/deployments take place in `database-book-project` (`C:\Users\nd115232\github\database-book-project`).
+- **`dima-publishing` is READ-ONLY** (legacy archive). Copy from it;
+  never modify it.
+- **Never delete files.** Propose deletions, list them, and stop.
+- **Never rewrite content that already exists in usable form.** Move or
+  reference it. Rewriting is how canonical copies fork.
+- **Ignore `desktop.ini`** — Google Drive sync artifact, never content.
+- **Author comments**: Lines starting with `//` in Markdown are
+  instructions. Follow them, then remove the line. If unresolvable,
+  convert to `<!-- VERIFY: ... -->`.
+- **SQL**: Confirm target platform before editing (SQLite, Access,
+  SQL Server, PostgreSQL). Never rewrite binary files (`.accdb`).
+  Preserve table and field names unless correcting a clear error.
+- **Log completion**: At session end or when asked, update
+  `data-book/.project/edits/progress-tracker.md` with what was done.
 
-- `dima-publishing` is the GitHub production and publishing repository for the textbook platform.
-- `G:\My Drive\0-Projects\!-important\BITM330-book-drive\` is the textbook drafting, media, and book-production workspace.
-- `G:\My Drive\1. Academic\Teaching\Albany\BITM330\` is the live BITM330 academic course root. It is the actual course home, not an extra, archive, or ancillary folder.
-- Keep semester shells, student submissions, grade exports, LMS records, and active course operations in the academic course root. Do not move or recategorize them as textbook assets unless the user explicitly requests a cross-root workflow.
+## Efficiency rules (apply to every task)
 
-## Notion Integration Boundary
+Token cost scales with what an agent reads and repeats. Compute is free.
 
-Notion is connected through the hosted Notion MCP server
-(`https://mcp.notion.com/mcp`, OAuth) defined as `notion` in
-`.vscode/mcp.json`. When any task involves reading, writing, or syncing Notion,
-follow the `notion-bridge` skill.
+- **Before doing the same operation more than ~20 times, write a script
+  instead.** Renames, moves, conversions, extractions, counts, link
+  checks — all script work. Say in one line which route you chose.
+- **Locate before reading.** Use glob and grep to find the relevant files
+  and line ranges, then read only those ranges. Never read a whole
+  chapter to answer a question about one section.
+- **Never paste file contents back to me** to show what you found.
+  Summarize, and cite path + line numbers.
+- **Bulk results go to a file, not the chat.** Write CSV or JSON to
+  `scripts/output/`, then report counts and exceptions only.
+- **Hybrid by default**: script first to gather and filter, human or
+  model judgment only on the shortlist. Never judge the full set when a
+  filter can shrink it.
+- **Save reusable scripts** to `scripts/` with a one-line header comment
+  so the next session re-runs instead of re-writes.
+- **Destructive or bulk operations run as a dry run first.** Print the
+  plan, stop, wait for explicit approval.
+- **Don't re-read** files already read this session.
 
-- **OAuth only.** Never use a static `secret_...` token; never paste tokens into
-  chat, settings, or committed files.
-- **Student-data boundary (hard rule).** Never send student data to Notion or to
-  a model: grades, submissions, rosters, LMS/Brightspace exports, or anything
-  from the academic course root at
-  `G:\My Drive\1. Academic\Teaching\Albany\BITM330\`. Do not share
-  student-data pages with the integration.
-- **Source of truth by content type.** Repo/Drive Markdown is canonical for
-  chapters and course material; Notion is canonical for the task tracker,
-  personal knowledge base, and the data-source catalog. Write to the
-  non-canonical side only as an explicit, user-requested mirror.
-- **Content syntax** for Notion pages comes from the `notion-flavored-markdown`
-  skill.
+## When to load reference files
 
-## Design Authority
+Conditions, not labels — load the file when the condition matches.
 
-The canonical design instructions for the book reader platform, chapter content
-styling, callouts, brand identity, typography, and accessibility are in:
+- Before editing chapter prose → `.agents/reference/writing-rules.md`
+- Before changing anything in Cloudinary or media paths →
+  `.agents/reference/media-rules.md`
 
-```
-books/database-book/plans/design-instructions.md
-```
+*(Add lines only when the file exists — dangling pointers cause invention.)*
 
-All platform CSS files (`styles.css`, `call-outs.css`) must match this spec.
-Update the document before updating CSS. A working copy also exists in the
-Drive workspace at `.docs/.styles/design-instructions.md`.
+## Bridges
 
-## External Assets
-
-Large image assets remain outside the repository at the configured media library
-path. Do not move, delete, or overwrite original media without explicit approval.
+- **Claude Code** reads `CLAUDE.md`, which contains only `@AGENTS.md`.
+- **Copilot Chat** reads `.github/copilot-instructions.md`, which points
+  here. DeepSeek and Grok running inside Copilot inherit it.
+- **Codex, Gemini CLI, Cursor** read this file natively.
+- Synced copies in other workspace roots are stamped generated; edit
+  only the copy in `database-textbook-github`.
